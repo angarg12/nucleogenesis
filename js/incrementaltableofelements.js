@@ -1,7 +1,7 @@
 angular.module('incremental',[])
 .controller('IncCtrl',['$scope','$document','$interval', '$sce', '$filter', '$timeout', 
 function($scope,$document,$interval,$sce,$filter,$timeout) { 
-		$scope.version = '0.1';
+		$scope.version = '0.0';
 		$scope.Math = window.Math;
 		
 		const startPlayer = {
@@ -128,6 +128,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 			var price = generatorBasePrice[index]*Math.pow(priceIncrease,level);
 			return Math.ceil(price);
 		};
+		
+		$scope.isCostMet = function(element, index) {return false;};
 
 		$scope.filterAndOrder = function(map) {	
 			if(map == undefined) return;
@@ -153,13 +155,15 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 			return array;
 		};
 		
-        $scope.buyHGenerator = function(number) {
+        $scope.buyGenerator = function(number) {
+        /*
             if ($scope.player.h >= $scope.player.hGeneratorPrice[number]) {
                 $scope.player.h -= $scope.player.hGeneratorPrice[number];
                 $scope.player.hGeneratorLevel[number]++;
 				$scope.player.hGeneratorPrice[number] = hGeneratorBasePrice[number]*Math.pow(priceIncrease,$scope.player.hGeneratorLevel[number]);
 				refreshUpgradeLine(number, true);
             }
+            */
         };
 
 		$scope.save = function save() {

@@ -56,20 +56,20 @@
                   <table class="table">
                     <tbody>
                       <tr ng-repeat="generator in player.elements['h'].level">
-                      	<td>
+                      	<td class="vcenter">
                           <div class="pull-left">
                             Tier {{$index+1}}
                           </div>
                         </td>
 
                         <td>
-                          <div class="pull-left">
+                          <div class="vcenter" class="pull-left">
                             {{generator}}
                           </div>
                         </td>
 
                         <td>
-                          <div class="pull-left">
+                          <div class="vcenter" class="pull-left">
                             {{calculatePrice('h',$index)}}
                           </div>
                         </td>
@@ -91,7 +91,7 @@
                   <h4>Upgrades</h4>
                   <table class="table">
                     <tbody>
-                      <tr ng-repeat="upgrade in player.elements['h'].upgrades">
+                      <tr class="vcenter" ng-repeat="upgrade in player.elements['h'].upgrades">
                         <td>
                           <div class="pull-left">
                             {{upgrade.name}}
@@ -107,8 +107,8 @@
                         <td>
                           <div class="pull-left"  ng-if="!upgrade.purchased">
                             <a class="btn btn-default"
-                            ng-click="buyResource({resource:resource, num:fullnum()})"
-                            ng-if="resource.isCostMet()">Buy</a>
+                            ng-click="buyGenerator('h', 1)"
+                            ng-if="isCostMet()">Buy</a>
                           </div>
                         </td>
                       </tr>

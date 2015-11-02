@@ -14,3 +14,11 @@
 .right-box {
 	padding-left:0px;
 }
+
+.no_bottom {
+    margin-bottom: 0px;
+}
+
+.vcenter {
+	vertical-align:middle;
+}

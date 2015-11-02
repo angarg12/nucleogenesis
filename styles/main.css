@@ -18,3 +18,7 @@
 .no_bottom {
     margin-bottom: 0px;
 }
+
+.table > tbody > tr > td {
+     vertical-align: middle;
+}

@@ -1,6 +1,2 @@
-The generators table need to be vertically aligned in the middle to look good
-
 keep track of the current element somehow (using the path param?)
-
-the elements need to link to the symbol, not the index
 
