@@ -18,45 +18,44 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 						has_new:false,
 						order:3}
 			},		
-			elements: {'h':{
+			elements: {
+				'H':{
 					name:'Hydrogen',
 					level: [10,4,1,2,0],
-					upgrades:[{name:'Upgrade 1',
-						price:{h:1},
-						purchased:true},
+					upgrades:[
+						{name:'Upgrade 1',
+							price:1,
+							purchased:true},
 						{name:'Upgrade 2',
-						price:{h:10},
-						purchased:false}],
-						visible:true,
-						has_new:false,
-						order:1
-				},'o':{
+							price:10,
+							purchased:false}],
+					visible:true,
+					has_new:false,
+					order:1
+				},'O':{
 					name:'Oxygen',
 					level: [15,1,0,0],
-						visible:true,
-						has_new:true,
-						order:7
+					visible:true,
+					has_new:true,
+					order:7
 				}
 			},
 			resources:{
-				'h':{
-					'h':{ 
+				'H':{
+					'H':{ 
 						number:1.523e25,
-						html:'h',
 						is_new:false,
 						visible:true,
 						order:0
 					},
-					'2h':{ 
+					'2H':{ 
 						number:100000000,
-						html:'<sup>2</sup>h',
 						is_new:true,
 						visible:true,
 						order:1
 					},
-					'3h':{ 
+					'3H':{ 
 						number:1000000000,
-						html:'<sup>3</sup>h',
 						is_new:true,
 						visible:true,
 						order:2
@@ -65,28 +64,24 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 				'misc':{
 					'e-':{ 
 						number:0,
-						html:'e-',
 						is_new:false,
 						visible:true,
 						order:0
 					},
 					'n':{ 
 						number:0,
-						html:'n',
 						is_new:true,
 						visible:true,
 						order:1
 					},
 					'p':{ 
 						number:0,
-						html:'p',
 						is_new:false,
 						visible:true,
 						order:2
 					},
 					'kev':{ 
 						number:0,
-						html:'KeV',
 						is_new:false,
 						visible:true,
 						order:3
@@ -95,6 +90,11 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 				}
 			};
 		
+		var resourceHTML = {
+					'2H':'<sup>2</sup>H',
+					'3H':'<sup>3</sup>H',
+					'kev':'KeV'
+		};
 		
 		var priceIncrease = 1.15;
         var generatorBasePrice = [15,
@@ -122,11 +122,17 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		
 		cache = {};
 		$scope.current_tab = "Elements";
-		$scope.current_element = 'h';
+		$scope.current_element = 'H';
 
 		$scope.generatorPrice = function(index,level) {
 			var price = generatorBasePrice[index]*Math.pow(priceIncrease,level);
 			return Math.ceil(price);
+		};
+		
+		$scope.getHTML = function(resource) {
+			var html = resourceHTML[resource];
+			if(html == null) return resource;
+			return html;
 		};
 		
 		$scope.isCostMet = function(element, index) {return false;};

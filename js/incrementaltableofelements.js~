@@ -42,21 +42,18 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 				'h':{
 					'h':{ 
 						number:1.523e25,
-						html:'h',
 						is_new:false,
 						visible:true,
 						order:0
 					},
 					'2h':{ 
 						number:100000000,
-						html:'<sup>2</sup>h',
 						is_new:true,
 						visible:true,
 						order:1
 					},
 					'3h':{ 
 						number:1000000000,
-						html:'<sup>3</sup>h',
 						is_new:true,
 						visible:true,
 						order:2
@@ -65,28 +62,24 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 				'misc':{
 					'e-':{ 
 						number:0,
-						html:'e-',
 						is_new:false,
 						visible:true,
 						order:0
 					},
 					'n':{ 
 						number:0,
-						html:'n',
 						is_new:true,
 						visible:true,
 						order:1
 					},
 					'p':{ 
 						number:0,
-						html:'p',
 						is_new:false,
 						visible:true,
 						order:2
 					},
 					'kev':{ 
 						number:0,
-						html:'KeV',
 						is_new:false,
 						visible:true,
 						order:3
@@ -95,6 +88,11 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 				}
 			};
 		
+		var resourceHTML = {
+					'2h':'<sup>2</sup>h',
+					'3h':'<sup>3</sup>h',
+					'kev':'KeV'
+		};
 		
 		var priceIncrease = 1.15;
         var generatorBasePrice = [15,
@@ -129,7 +127,13 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 			return Math.ceil(price);
 		};
 		
-		$scope.isCostMet() = function(element, index) {return false;};
+		$scope.getHTML = function(resource) {
+			var html = resourceHTML[resource];
+			if(html == null) return resource;
+			return html;
+		};
+		
+		$scope.isCostMet = function(element, index) {return false;};
 
 		$scope.filterAndOrder = function(map) {	
 			if(map == undefined) return;

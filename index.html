@@ -55,30 +55,28 @@
                 <div>
                   <table class="table">
                     <tbody>
-                      <tr ng-repeat="generator in player.elements['h'].level">
-                      	<td class="vcenter">
+                      <tr ng-repeat="generator in player.elements['H'].level">
+                      	<td>
                           <div class="pull-left">
                             Tier {{$index+1}}
                           </div>
                         </td>
 
                         <td>
-                          <div class="vcenter" class="pull-left">
+                          <div class="pull-left">
                             {{generator}}
                           </div>
                         </td>
 
                         <td>
-                          <div class="vcenter" class="pull-left">
-                            {{calculatePrice('h',$index)}}
-                          </div>
+                          <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(generatorPrice($index, player.elements['H'].level[$index])))"></div> &nbsp;H
                         </td>
 
                         <td>
                           <div class="pull-left">
                             <button class="btn btn-default"
                             ng-click="buyResource({resource:resource, num:fullnum()})"
-                            disabled="!isCostMet('h',$index)">Buy</button>
+                            disabled="!isCostMet('H',$index)">Buy</button>
                           </div>
                         </td>
                       </tr>
@@ -86,12 +84,12 @@
                   </table>
                 </div>
 
-                <div ng-if="player.elements['h'].upgrades.length &gt; 0">
+                <div ng-if="player.elements['H'].upgrades.length > 0">
                 <hr>
                   <h4>Upgrades</h4>
                   <table class="table">
                     <tbody>
-                      <tr class="vcenter" ng-repeat="upgrade in player.elements['h'].upgrades">
+                      <tr class="vcenter" ng-repeat="upgrade in player.elements['H'].upgrades">
                         <td>
                           <div class="pull-left">
                             {{upgrade.name}}
@@ -107,8 +105,8 @@
                         <td>
                           <div class="pull-left"  ng-if="!upgrade.purchased">
                             <a class="btn btn-default"
-                            ng-click="buyGenerator('h', 1)"
-                            ng-if="isCostMet()">Buy</a>
+                            ng-click="buyUpgrade('H', 1)"
+                            disabled="!isCostMet()">Buy</a>
                           </div>
                         </td>
                       </tr>
@@ -126,7 +124,7 @@
 		            	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="resource.value.is_new"></span>
 		            </td>
 		            <td width=40%>
-		              <div class="pull-left" ng-bind-html="trustHTML(resource.value.html)"></div>
+		              <div class="pull-left" ng-bind-html="trustHTML(getHTML(resource.name))"></div>
 		            </td>
 		            <td width=45%>
 		              <div class="pull-left"  ng-bind-html="trustHTML(prettifyNumber(resource.value.number))"></div>
@@ -141,14 +139,10 @@
 		            	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="resource.value.is_new"></span>
 		            </td>
 		            <td width=40%>
-		              <div class="pull-left">
-		                {{resource.value.html}}
-		              </div>
+		              <div class="pull-left" ng-bind-html="trustHTML(getHTML(resource.name))"></div>
 		            </td>
 		            <td width=45%>
-		              <div class="pull-left">
-		                {{resource.value.number}}
-		              </div>
+		              <div class="pull-left"  ng-bind-html="trustHTML(prettifyNumber(resource.value.number))"></div>
 		            </td>
                   </tr>
                 </tbody>
