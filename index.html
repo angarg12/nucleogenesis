@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta content="text/html; charset=us-ascii" http-equiv=
+  "Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <script type="text/javascript" src="js/angular.min.js">
+</script>
+  <script type="text/javascript" src=
+  "js/incrementaltableofelements.js">
+</script>
+  <link rel="stylesheet" type="text/css" href=
+  "styles/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+
+
+  <title>The Incremental Table of Elements</title>
+</head>
+
+<body class="ng-scope theme-none" ng-app="incremental" ng-controller="IncCtrl">
+  <div class="container">
+    <div class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <span class="navbar-brand page-title">
+          	The Incremental Table of Elements 
+          	<small>by angarg12</small>
+          </span> 
+          <span class="navbar-brand">
+          	<span class="text-muted small">v{{version}}</span>
+          </span>
+        </div>         
+      </div>
+    </div>
+
+    <div class="viewwrap">
+      <div>
+        <div class="ng-scope ng-isolate-scope">
+          <ul class="nav nav-tabs ng-scope" role="tablist">
+          	<li ng-repeat="tab in filterAndOrder(player.tabs)" 
+          		ng-class="{active: current_tab === tab.name}">
+		        <a class="ng-binding" ng-href="#/tab/{{tab.name}} " href="#/tab/{{tab.name}} "> {{tab.name}} 
+		        	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="tab.value.has_new"></span>
+		        </a>
+		    </li>
+          </ul>
+        </div>
+
+        <div class="tab-content ng-scope">
+          <div class="tab-pane active row">
+            <div class="col-lg-8 col-lg-push-3">
+              <h3>Hydrogen</h3>
+              <div>
+                <div>
+                  <table class="table">
+                    <tbody>
+                      <tr ng-repeat="generator in player.elements['h'].level">
+                      	<td>
+                          <div class="pull-left">
+                            Tier {{$index+1}}
+                          </div>
+                        </td>
+
+                        <td>
+                          <div class="pull-left">
+                            {{generator}}
+                          </div>
+                        </td>
+
+                        <td>
+                          <div class="pull-left">
+                            {{calculatePrice('h',$index)}}
+                          </div>
+                        </td>
+
+                        <td>
+                          <div class="pull-left">
+                            <button class="btn btn-default"
+                            ng-click="buyResource({resource:resource, num:fullnum()})"
+                            disabled="!isCostMet('h',$index)">Buy</button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div ng-if="player.elements['h'].upgrades.length &gt; 0">
+                <hr>
+                  <h4>Upgrades</h4>
+                  <table class="table">
+                    <tbody>
+                      <tr ng-repeat="upgrade in player.elements['h'].upgrades">
+                        <td>
+                          <div class="pull-left">
+                            {{upgrade.name}}
+                          </div>
+                        </td>
+
+                        <td>
+                          <div class="pull-left" ng-if="!upgrade.purchased">
+                            {{upgrade.price}}
+                          </div>
+                        </td>
+
+                        <td>
+                          <div class="pull-left"  ng-if="!upgrade.purchased">
+                            <a class="btn btn-default"
+                            ng-click="buyResource({resource:resource, num:fullnum()})"
+                            ng-if="resource.isCostMet()">Buy</a>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-lg-pull-8">
+              <table class="table table-hover element-table no_bottom">
+                <tbody>
+                  <tr ng-repeat="resource in filterAndOrder(player.resources[current_element])">
+		            <td width=15%>
+		            	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="resource.value.is_new"></span>
+		            </td>
+		            <td width=40%>
+		              <div class="pull-left" ng-bind-html="trustHTML(resource.value.html)"></div>
+		            </td>
+		            <td width=45%>
+		              <div class="pull-left"  ng-bind-html="trustHTML(prettifyNumber(resource.value.number))"></div>
+		            </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table table-hover">
+                <tbody>
+                  <tr ng-repeat="resource in filterAndOrder(player.resources['misc'])">
+		            <td width=15%>
+		            	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="resource.value.is_new"></span>
+		            </td>
+		            <td width=40%>
+		              <div class="pull-left">
+		                {{resource.value.html}}
+		              </div>
+		            </td>
+		            <td width=45%>
+		              <div class="pull-left">
+		                {{resource.value.number}}
+		              </div>
+		            </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <div class="col-lg-1 col-lg-pull-0 right-box">
+              <table class="table table-hover element-table">
+                <tbody>
+                  <tr ng-repeat="element in filterAndOrder(player.elements)">
+					<td>
+                      <div class="pull-left">
+                        <a ng-href="#{{element.name}}" href="#{{element.name}}">
+                        	{{element.value.name}}
+                        	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="element.value.has_new"></span>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content ng-scope" id="encyclopedia">
+          <div class="tab-pane row">
+            <div class="col-lg-9 col-lg-push-3">
+              <h3><a href="http://en.wikipedia.com/Hydrogen">Hydrogen</a></h3>
+
+              <div>
+                Lorep ipsum dolor sit amen
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-lg-pull-9">
+              <table class="table table-hover">
+                <tbody>
+                  <tr>
+                    <td></td>
+
+                    <td><a ng-href="#/hydrogen" href="#/hydrogen">Hydrogen</a></td>
+                  </tr>
+
+                  <tr ng-repeat="unit in cur.tab.sortUnits() | filter:filterVisible track by unit.name">
+                  <td><span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="unit.isNewlyUpgradable()"></span></td>
+
+                    <td><a ng-href="#/isotope" href="#/isotope">Isotope</a></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <p style="padding-bottom:200px"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+      <!--<div class="achieve achievealert animif" ng-if="achieveQueue.isVisible()">-->
+      <div class="animif" ng-if="achieveQueue.isVisible()">
+        <div class="container alert alert-success">
+            <p>Achievement:</p>
+            <a class="alert-link" ng-href="#/achievements">
+              <h3>name{{achieveQueue.get().type.label}}</h3>
+            </a>
+            <p class="achievedesc">desc{{achieveQueue.get().description()}}</p>
+            <p><em>long desc{{achieveQueue.get().type.longdesc}}</em></p>
+            <button type="button" class="close" data-dismiss="alert" ng-click="achieveQueue.clear()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        </div>
+      </div>
+</body>
+</html>

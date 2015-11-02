@@ -1,0 +1,27 @@
+{
+  "name": "IncrementalTableOfElements",
+  "version": "0.0.0",
+  "description": "Chemistry-based incremental game",
+  "main": "index.html",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "notyet"
+  },
+  "keywords": [
+    "incremental",
+    "game",
+    "chemistry",
+    "periodic",
+    "table"
+  ],
+  "author": "angarg12",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.11.2",
+    "grunt-jscs": "~2.0.0"
+  }
+}
