@@ -25,9 +25,15 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 					upgrades:[
 						{name:'Upgrade 1',
 							price:1,
+							description:"Do this and that",
 							purchased:true},
 						{name:'Upgrade 2',
 							price:10,
+							description:"Do this and that",
+							purchased:false},
+						{name:'Upgrade 3',
+							price:100,
+							description:"Do this and that",
 							purchased:false}],
 					visible:true,
 					has_new:false,
@@ -46,19 +52,22 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 						number:1.523e25,
 						is_new:false,
 						visible:true,
-						order:0
+						order:0,
+						ratio:0.999884
 					},
 					'2H':{ 
 						number:100000000,
 						is_new:true,
 						visible:true,
-						order:1
+						order:1,
+						ratio:0.000115
 					},
 					'3H':{ 
 						number:1000000000,
 						is_new:true,
 						visible:true,
-						order:2
+						order:2,						
+						ratio:0.000001
 					}
 				},
 				'misc':{

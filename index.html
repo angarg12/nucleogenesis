@@ -51,6 +51,12 @@
           <div class="tab-pane active row">
             <div class="col-lg-8 col-lg-push-3">
               <h3>Hydrogen</h3>
+              <h4>0 H/s</h4>
+              <ul><!-- ng-if=isotopes unlocked-->
+		          <li ng-repeat="isotope in filterAndOrder(player.resources['H'])">
+		          	<span ng-bind-html="trustHTML(getHTML(isotope.name))"></span>: {{(isotope.value.ratio*100).toFixed(4)}}%
+		          </li>
+              </ul>
               <div>
                 <div>
                   <table class="table">
@@ -58,7 +64,7 @@
                       <tr ng-repeat="generator in player.elements['H'].level">
                       	<td>
                           <div class="pull-left">
-                            Tier {{$index+1}}
+                            Tier {{$index+1}}: {{generatorPower[$index]}} H/s
                           </div>
                         </td>
 
@@ -89,19 +95,22 @@
                   <h4>Upgrades</h4>
                   <table class="table">
                     <tbody>
-                      <tr class="vcenter" ng-repeat="upgrade in player.elements['H'].upgrades">
+                      <tr ng-repeat="upgrade in player.elements['H'].upgrades">
                         <td>
                           <div class="pull-left">
                             {{upgrade.name}}
                           </div>
                         </td>
-
+                        <td>
+                          <div class="pull-left">
+                            {{upgrade.description}}
+                          </div>
+                        </td>
                         <td>
                           <div class="pull-left" ng-if="!upgrade.purchased">
                             {{upgrade.price}}
                           </div>
                         </td>
-
                         <td>
                           <div class="pull-left"  ng-if="!upgrade.purchased">
                             <a class="btn btn-default"
@@ -152,7 +161,7 @@
             <div class="col-lg-1 col-lg-pull-0 right-box">
               <table class="table table-hover element-table">
                 <tbody>
-                  <tr ng-repeat="element in filterAndOrder(player.elements)">
+                  <tr ng-repeat="element in filterAndOrder(player.elements)" ng-class="{active:current_element===element.name}">
 					<td>
                       <div class="pull-left">
                         <a ng-href="#{{element.name}}" href="#{{element.name}}">
