@@ -50,10 +50,10 @@
         <div class="tab-content ng-scope">
           <div class="tab-pane active row">
             <div class="col-lg-8 col-lg-push-3">
-              <h3>Hydrogen</h3>
-              <h4>0 H/s</h4>
+              <h3>{{player.elements[current_element].name}}</h3>
+              <h4>0 {{current_element}}/s</h4>
               <ul><!-- ng-if=isotopes unlocked-->
-		          <li ng-repeat="isotope in filterAndOrder(player.resources['H'])">
+		          <li ng-repeat="isotope in filterAndOrder(player.resources)">
 		          	<span ng-bind-html="trustHTML(getHTML(isotope.name))"></span>: {{(isotope.value.ratio*100).toFixed(4)}}%
 		          </li>
               </ul>
@@ -61,10 +61,10 @@
                 <div>
                   <table class="table">
                     <tbody>
-                      <tr ng-repeat="generator in player.elements['H'].level">
+                      <tr ng-repeat="generator in player.elements[current_element].level track by $index">
                       	<td>
                           <div class="pull-left">
-                            Tier {{$index+1}}: {{generatorPower[$index]}} H/s
+                            Tier {{$index+1}}: {{generatorPower[$index]}} {{current_element}}/s
                           </div>
                         </td>
 
@@ -75,14 +75,14 @@
                         </td>
 
                         <td>
-                          <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(generatorPrice($index, player.elements['H'].level[$index])))"></div> &nbsp;H
+                          <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(generatorPrice($index, player.elements[current_element].level[$index])))"></div> &nbsp;{{current_element}}
                         </td>
 
                         <td>
                           <div class="pull-left">
                             <button class="btn btn-default"
                             ng-click="buyResource({resource:resource, num:fullnum()})"
-                            disabled="!isCostMet('H',$index)">Buy</button>
+                            disabled="!isCostMet(current_element,$index)">Buy</button>
                           </div>
                         </td>
                       </tr>
@@ -90,12 +90,12 @@
                   </table>
                 </div>
 
-                <div ng-if="player.elements['H'].upgrades.length > 0">
+                <div ng-if="player.elements[current_element].upgrades.length > 0">
                 <hr>
                   <h4>Upgrades</h4>
                   <table class="table">
                     <tbody>
-                      <tr ng-repeat="upgrade in player.elements['H'].upgrades">
+                      <tr ng-repeat="upgrade in player.elements[current_element].upgrades">
                         <td>
                           <div class="pull-left">
                             {{upgrade.name}}
@@ -114,7 +114,7 @@
                         <td>
                           <div class="pull-left"  ng-if="!upgrade.purchased">
                             <a class="btn btn-default"
-                            ng-click="buyUpgrade('H', 1)"
+                            ng-click="buyUpgrade(current_element, 1)"
                             disabled="!isCostMet()">Buy</a>
                           </div>
                         </td>
@@ -128,22 +128,7 @@
             <div class="col-lg-3 col-lg-pull-8">
               <table class="table table-hover element-table no_bottom">
                 <tbody>
-                  <tr ng-repeat="resource in filterAndOrder(player.resources[current_element])">
-		            <td width=15%>
-		            	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="resource.value.is_new"></span>
-		            </td>
-		            <td width=40%>
-		              <div class="pull-left" ng-bind-html="trustHTML(getHTML(resource.name))"></div>
-		            </td>
-		            <td width=45%>
-		              <div class="pull-left"  ng-bind-html="trustHTML(prettifyNumber(resource.value.number))"></div>
-		            </td>
-                  </tr>
-                </tbody>
-              </table>
-              <table class="table table-hover">
-                <tbody>
-                  <tr ng-repeat="resource in filterAndOrder(player.resources['misc'])">
+                  <tr ng-repeat="resource in filterAndOrder(player.resources)">
 		            <td width=15%>
 		            	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="resource.value.is_new"></span>
 		            </td>

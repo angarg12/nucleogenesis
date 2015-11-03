@@ -5,16 +5,24 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		$scope.Math = window.Math;
 		
 		const startPlayer = {
-			tabs:{'Elements':{visible:true,
+			tabs:{'Elements':{visible:function(){
+							return true;
+						},
 						has_new:false,
 						order:0},
-				'Encyclopedia':{visible:true,
+				'Encyclopedia':{visible:function(){
+							return true;
+						},
 						has_new:true,
 						order:1},
-				'Periodic Table':{visible:false,
+				'Periodic Table':{visible:function(){
+							return false;
+						},
 						has_new:false,
 						order:2},
-				'Options':{visible:true,
+				'Options':{visible:function(){
+							return true;
+						},
 						has_new:false,
 						order:3}
 			},		
@@ -35,14 +43,19 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 							price:100,
 							description:"Do this and that",
 							purchased:false}],
-					visible:true,
+					visible:function(){
+							return true;
+						},
 					has_new:false,
 					order:1
 				},'O':{
 					name:'Oxygen',
 					level: [15,1,0,0],
-					visible:true,
+					visible:function(){
+							return $scope.player.elements.O.unlocked;
+						},
 					has_new:true,
+					unlocked:true,
 					order:7
 				}
 			},
@@ -51,45 +64,91 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 					'H':{ 
 						number:1.523e25,
 						is_new:false,
-						visible:true,
-						order:0
+						visible:function(){
+							return $scope.current_element === "H";
+						},
+						order:0,
+						ratio:0.999884
 					},
 					'2H':{ 
 						number:100000000,
 						is_new:true,
-						visible:true,
-						order:1
+						visible:function(){
+							return $scope.current_element === "H";
+						},
+						order:1,
+						ratio:0.000115
 					},
 					'3H':{ 
 						number:1000000000,
 						is_new:true,
-						visible:true,
-						order:2
+						visible:function(){
+							return $scope.current_element === "H";
+						},
+						order:2,						
+						ratio:0.000001
+					}
+				},
+				'O':{
+					'O':{ 
+						number:0,
+						is_new:false,
+						visible:function(){
+							return $scope.current_element === "O";
+						},
+						order:0,
+						ratio:0.9976
+					},
+					'17O':{ 
+						number:345,
+						is_new:true,						
+						visible:function(){
+							return $scope.current_element === "O";
+						},
+						order:1,
+						ratio:0.00039
+					},
+					'18O':{ 
+						number:36236,
+						is_new:true,						
+						visible:function(){
+							return $scope.current_element === "O";
+						},
+						order:2,						
+						ratio:0.00201 
 					}
 				},
 				'misc':{
 					'e-':{ 
 						number:0,
 						is_new:false,
-						visible:true,
+						visible:function(){
+							return true;
+						},
 						order:0
 					},
 					'n':{ 
 						number:0,
 						is_new:true,
-						visible:true,
+						visible:function(){
+							return true;
+						},
 						order:1
 					},
 					'p':{ 
 						number:0,
 						is_new:false,
-						visible:true,
+						visible:function(){
+							return true;
+						},
 						order:2
 					},
-					'kev':{ 
+					'energy':{ 
 						number:0,
 						is_new:false,
-						visible:true,
+						visible:function(){
+							return true;
+						},
 						order:3
 					}
 				}
@@ -99,7 +158,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		var resourceHTML = {
 					'2H':'<sup>2</sup>H',
 					'3H':'<sup>3</sup>H',
-					'kev':'KeV'
+					'17O':'<sup>17</sup>O',
+					'18O':'<sup>18</sup>O',
+					'energy':'KeV'
 		};
 		
 		var priceIncrease = 1.15;
@@ -128,7 +189,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		
 		cache = {};
 		$scope.current_tab = "Elements";
-		$scope.current_element = 'H';
+		$scope.current_element = "H";
 
 		$scope.generatorPrice = function(index,level) {
 			var price = generatorBasePrice[index]*Math.pow(priceIncrease,level);
@@ -151,7 +212,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 			}	
 			var array = [];
 			for(var objectKey in map) {
-				if(map[objectKey].visible){
+				if(map[objectKey].visible()){
 					var object = {};
 					object.name = objectKey;
 					object.value = map[objectKey];
