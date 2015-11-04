@@ -38,7 +38,7 @@
       <div>
         <div class="ng-scope ng-isolate-scope">
           <ul class="nav nav-tabs ng-scope" role="tablist">
-          	<li ng-repeat="tab in filterAndOrder(player.tabs)" 
+          	<li ng-repeat="tab in filterAndOrder(tabs, tabs)" 
           		ng-class="{active: current_tab === tab.name}">
 		        <a class="ng-binding" ng-href="#/tab/{{tab.name}} " href="#/tab/{{tab.name}} "> {{tab.name}} 
 		        	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="tab.value.has_new"></span>
@@ -50,12 +50,15 @@
         <div class="tab-content ng-scope">
           <div class="tab-pane active row">
             <div class="col-lg-8 col-lg-push-3">
-              <h3>{{player.elements[current_element].name}}</h3>
+              <h3>{{elements[current_element].name}}</h3>
               <h4>0 {{current_element}}/s</h4>
               <ul><!-- ng-if=isotopes unlocked-->
-		          <li ng-repeat="isotope in filterAndOrder(player.resources)">
-		          	<span ng-bind-html="trustHTML(getHTML(isotope.name))"></span>: {{(isotope.value.ratio*100).toFixed(4)}}%
-		          </li>
+              	 <li>
+		          	<span ng-bind-html="trustHTML(getHTML(current_element))"></span>: {{(resources[current_element].ratio*100).toFixed(4)}}%
+		         </li>
+		         <li ng-repeat="isotope in filterAndOrder(elements[current_element].isotopes, resources)">
+		         	<span ng-bind-html="trustHTML(getHTML(isotope.name))"></span>: {{(resources[isotope.name].ratio*100).toFixed(4)}}%
+		         </li>
               </ul>
               <div>
                 <div>
@@ -128,7 +131,7 @@
             <div class="col-lg-3 col-lg-pull-8">
               <table class="table table-hover element-table no_bottom">
                 <tbody>
-                  <tr ng-repeat="resource in filterAndOrder(player.resources)">
+                  <tr ng-repeat="resource in filterAndOrder(player.resources, resources)">
 		            <td width=15%>
 		            	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="resource.value.is_new"></span>
 		            </td>
@@ -146,12 +149,12 @@
             <div class="col-lg-1 col-lg-pull-0 right-box">
               <table class="table table-hover element-table">
                 <tbody>
-                  <tr ng-repeat="element in filterAndOrder(player.elements)" ng-class="{active:current_element===element.name}">
+                  <tr ng-repeat="element in filterAndOrder(player.elements, elements)" ng-class="{active:current_element===element.name}">
 					<td>
                       <div class="pull-left">
                         <a ng-href="#{{element.name}}" href="#{{element.name}}">
-                        	{{element.value.name}}
-                        	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="element.value.has_new"></span>
+                        	{{elements[element.name].name}}
+                        	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="elements[element.name].has_new"></span>
                         </a>
                       </div>
                     </td>
