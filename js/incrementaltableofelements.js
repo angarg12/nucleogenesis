@@ -34,14 +34,14 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 							bought:true
 						},
 						'Upgrade 2':{
-							unlocked:true,
+							unlocked:false,
 							bought:false
 						},
 						'Upgrade 3':{
 							unlocked:false,
 							bought:false
 						},
-						unlocked: false
+						unlocked: true
 					},
 					unlocked:true
 				}
@@ -161,7 +161,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 						description:"Do this and that",
 						order:0,
 						visible:function(){
-							return $scope.player.elements.H.upgrades['Upgrade 1'].unlocked;
+							return $scope.player.elements[$scope.current_element].upgrades['Upgrade 1'].unlocked;
 						}
 					},
 					'Upgrade 2':{
@@ -169,7 +169,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 						description:"Do this and that",
 						order:1,
 						visible:function(){
-							return $scope.player.elements.H.upgrades['Upgrade 2'].unlocked;
+							return $scope.player.elements[$scope.current_element].upgrades['Upgrade 2'].unlocked;
 						}
 					},
 					'Upgrade 3':{
@@ -177,7 +177,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 						description:"Do this and that",
 						order:2,
 						visible:function(){
-							return $scope.player.elements.H.upgrades['Upgrade 3'].unlocked;
+							return $scope.player.elements[$scope.current_element].upgrades['Upgrade 3'].unlocked;
 						}
 					}};
 		
@@ -250,22 +250,26 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 					}
 		};
 		
-		$scope.tabs = {'Elements':{visible:function(){
+		$scope.tabs = {'Elements':{
+						visible:function(){
 							return true;
 						},
 						has_new:false,
 						order:0},
-				'Encyclopedia':{visible:function(){
+				'Encyclopedia':{
+						visible:function(){
 							return true;
 						},
 						has_new:true,
 						order:1},
-				'Periodic Table':{visible:function(){
+				'Periodic Table':{
+						visible:function(){
 							return false;
 						},
 						has_new:false,
 						order:2},
-				'Options':{visible:function(){
+				'Options':{
+						visible:function(){
 							return true;
 						},
 						has_new:false,
@@ -306,7 +310,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		
 		cache = {};
 		$scope.current_tab = "Elements";
-		$scope.current_element = "H";
+		$scope.current_element = "O";
 
 		$scope.generatorPrice = function(index,level) {
 			var price = generatorBasePrice[index]*Math.pow(priceIncrease,level);
