@@ -93,12 +93,12 @@
                   </table>
                 </div>
 
-                <div ng-if="player.elements[current_element].upgrades.length > 0">
+                <div ng-if="player.elements[current_element].upgrades.unlocked">
                 <hr>
                   <h4>Upgrades</h4>
                   <table class="table">
                     <tbody>
-                      <tr ng-repeat="upgrade in player.elements[current_element].upgrades">
+                      <tr ng-repeat="upgrade in filterAndOrder(upgrades,upgrades)">
                         <td>
                           <div class="pull-left">
                             {{upgrade.name}}

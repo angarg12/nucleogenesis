@@ -10,21 +10,39 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 			elements: {
 				'H':{
 					level: [10,4,1,2,0],
-					upgrades:[
-						{name:'Upgrade 1',
-							price:1,
-							description:"Do this and that",
-							purchased:true},
-						{name:'Upgrade 2',
-							price:10,
-							description:"Do this and that",
-							purchased:false},
-						{name:'Upgrade 3',
-							price:100,
-							description:"Do this and that",
-							purchased:false}],
+					upgrades:{
+						'Upgrade 1':{
+							unlocked:true,
+							bought:true
+						},
+						'Upgrade 2':{
+							unlocked:true,
+							bought:false
+						},
+						'Upgrade 3':{
+							unlocked:false,
+							bought:false
+						},
+						unlocked: true
+					},
+					unlocked:true
 				},'O':{
 					level: [15,1,0,0],
+					upgrades:{
+						'Upgrade 1':{
+							unlocked:true,
+							bought:true
+						},
+						'Upgrade 2':{
+							unlocked:true,
+							bought:false
+						},
+						'Upgrade 3':{
+							unlocked:false,
+							bought:false
+						},
+						unlocked: false
+					},
 					unlocked:true
 				}
 			},
@@ -122,21 +140,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 				'H':{
 					name:'Hydrogen',
 					isotopes:['2H','3H'],
-					upgrades:[
-						{name:'Upgrade 1',
-							price:1,
-							description:"Do this and that",
-							purchased:true},
-						{name:'Upgrade 2',
-							price:10,
-							description:"Do this and that",
-							purchased:false},
-						{name:'Upgrade 3',
-							price:100,
-							description:"Do this and that",
-							purchased:false}],
 					visible:function(){
-							return true;
+							return $scope.player.elements.H.unlocked;
 						},
 					has_new:false,
 					order:1
@@ -149,6 +154,32 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 					order:7
 				}
 		};
+		
+		$scope.upgrades = {
+					'Upgrade 1':{
+						price:1,
+						description:"Do this and that",
+						order:0,
+						visible:function(){
+							return $scope.player.elements.H.upgrades['Upgrade 1'].unlocked;
+						}
+					},
+					'Upgrade 2':{
+						price:10,
+						description:"Do this and that",
+						order:1,
+						visible:function(){
+							return $scope.player.elements.H.upgrades['Upgrade 2'].unlocked;
+						}
+					},
+					'Upgrade 3':{
+						price:100,
+						description:"Do this and that",
+						order:2,
+						visible:function(){
+							return $scope.player.elements.H.upgrades['Upgrade 3'].unlocked;
+						}
+					}};
 		
 		$scope.resources = {
 					'H':{ 
@@ -290,21 +321,25 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		
 		$scope.isCostMet = function(element, index) {return false;};
 
-		$scope.filterAndOrder = function(map, table) {	
-			if(map == undefined) return;
-			hash = JSON.stringify(map).hashCode();
+		/*
+			Values is a list or map of values that we want to filter and order.
+			Table is the map that contains the information of order and visibility.
+		*/
+		$scope.filterAndOrder = function(values, table) {	
+			if(values == undefined) return;
+			hash = JSON.stringify(values).hashCode();
 			if(cache[hash] != null){
 				return cache[hash];
 			}	
 			var array = [];
-			for(var objectKey in map) {
-				if(Array.isArray(map)){
-					objectKey = map[objectKey];
+			for(var objectKey in values) {
+				if(Array.isArray(values)){
+					objectKey = values[objectKey];
 				}
 				if(table[objectKey].visible()){
 					var object = {};
 					object.name = objectKey;
-					object.value = map[objectKey];
+					object.value = values[objectKey];
 					array.push(object);
 				}
 			}
