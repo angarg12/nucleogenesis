@@ -5,8 +5,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		$scope.Math = window.Math;
 		
 		const startPlayer = {
-			unlocks: {
-			},
+			unlocks: [
+				'isotopes'
+			],
 			elements: {
 				'H':{
 					level: [10,4,1,2,0],
@@ -54,7 +55,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 							return $scope.current_element === "H";
 						},
 						order:0,
-						ratio:0.999884
+						ratio:0.999884,
+						unlocked: true
 					},
 					'2H':{ 
 						number:100000000,
@@ -63,7 +65,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 							return $scope.current_element === "H";
 						},
 						order:1,
-						ratio:0.000115
+						ratio:0.000115,
+						unlocked: true
 					},
 					'3H':{ 
 						number:1000000000,
@@ -72,7 +75,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 							return $scope.current_element === "H";
 						},
 						order:2,						
-						ratio:0.000001
+						ratio:0.000001,
+						unlocked: true
 					},
 					'O':{ 
 						number:0,
@@ -81,7 +85,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 							return $scope.current_element === "O";
 						},
 						order:700,
-						ratio:0.9976
+						ratio:0.9976,
+						unlocked: true
 					},
 					'17O':{ 
 						number:345,
@@ -90,7 +95,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 							return $scope.current_element === "O";
 						},
 						order:701,
-						ratio:0.00039
+						ratio:0.00039,
+						unlocked: true
 					},
 					'18O':{ 
 						number:36236,
@@ -99,15 +105,17 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 							return $scope.current_element === "O";
 						},
 						order:702,						
-						ratio:0.00201 
+						ratio:0.00201,
+						unlocked: true
 					},
 					'e-':{ 
-						number:0,
+						number:10,
 						is_new:false,
 						visible:function(){
-							return true;
+							return $scope.player.resources['e-'].unlocked;
 						},
-						order:20000
+						order:20000,
+						unlocked: false
 					},
 					'n':{ 
 						number:0,
@@ -115,7 +123,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 						visible:function(){
 							return true;
 						},
-						order:20001
+						order:20001,
+						unlocked: true
 					},
 					'p':{ 
 						number:0,
@@ -123,7 +132,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 						visible:function(){
 							return true;
 						},
-						order:20002
+						order:20002,
+						unlocked: true
 					},
 					'energy':{ 
 						number:0,
@@ -131,7 +141,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 						visible:function(){
 							return true;
 						},
-						order:20003
+						order:20003,
+						unlocked: true
 					}
 				}
 			};
@@ -147,6 +158,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 					order:1
 				},'O':{
 					name:'Oxygen',
+					isotopes:['17O','18O'],
 					visible:function(){
 							return $scope.player.elements.O.unlocked;
 						},
@@ -187,66 +199,76 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 							return $scope.current_element === "H";
 						},
 						order:0,
-						ratio:0.999884
+						ratio:0.999884,
+						type:'element'
 					},
 					'2H':{ 
 						visible:function(){
 							return $scope.current_element === "H";
 						},
 						order:1,
-						ratio:0.000115
+						ratio:0.000115,
+						type:'isotope'
 					},
 					'3H':{ 
 						visible:function(){
 							return $scope.current_element === "H";
 						},
 						order:2,						
-						ratio:0.000001
+						ratio:0.000001,
+						type:'isotope'
 					},
 					'O':{ 
 						visible:function(){
 							return $scope.current_element === "O";
 						},
 						order:700,
-						ratio:0.9976
+						ratio:0.9976,
+						type:'element'
 					},
 					'17O':{ 					
 						visible:function(){
 							return $scope.current_element === "O";
 						},
 						order:701,
-						ratio:0.00039
+						ratio:0.00039,
+						type:'isotope'
 					},
 					'18O':{ 						
 						visible:function(){
 							return $scope.current_element === "O";
 						},
 						order:702,						
-						ratio:0.00201 
+						ratio:0.00201 ,
+						type:'isotope'
 					},
 					'e-':{ 
 						visible:function(){
 							return true;
 						},
-						order:20000
+						order:20000,
+						type:'subatomic'
 					},
 					'n':{ 
 						visible:function(){
 							return true;
 						},
-						order:20001
+						order:20001,
+						type:'subatomic'
 					},
 					'p':{ 
 						visible:function(){
 							return true;
 						},
-						order:20002
+						order:20002,
+						type:'subatomic'
 					},
 					'energy':{ 
 						visible:function(){
 							return true;
 						},
-						order:20003
+						order:20003,
+						type:'energy'
 					}
 		};
 		

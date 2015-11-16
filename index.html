@@ -52,7 +52,7 @@
             <div class="col-lg-8 col-lg-push-3">
               <h3>{{elements[current_element].name}}</h3>
               <h4>0 {{current_element}}/s</h4>
-              <ul><!-- ng-if=isotopes unlocked-->
+              <ul ng-if="player.unlocks.indexOf('isotopes') != -1">
               	 <li>
 		          	<span ng-bind-html="trustHTML(getHTML(current_element))"></span>: {{(resources[current_element].ratio*100).toFixed(4)}}%
 		         </li>
