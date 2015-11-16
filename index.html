@@ -64,7 +64,7 @@
                 <div>
                   <table class="table">
                     <tbody>
-                      <tr ng-repeat="generator in player.elements[current_element].level track by $index">
+                      <tr ng-repeat="generator in player.elements[current_element].generators track by $index" ng-if="generator.visible()">
                       	<td>
                           <div class="pull-left">
                            {{generators[$index].name}}: {{generators[$index].power}} {{current_element}}/s
@@ -73,12 +73,12 @@
 
                         <td>
                           <div class="pull-left">
-                            {{generator}}
+                            {{generator.level}}
                           </div>
                         </td>
 
                         <td>
-                          <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(generatorPrice($index, player.elements[current_element].level[$index])))"></div> &nbsp;{{current_element}}
+                          <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(generatorPrice($index, player.elements[current_element].generators[$index].level)))"></div> &nbsp;{{current_element}}
                         </td>
 
                         <td>

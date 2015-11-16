@@ -10,7 +10,50 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 			],
 			elements: {
 				'H':{
-					level: [10,4,1,2,0],
+					generators: [{level:5,
+							visible:function(){
+								return true;
+							}},							
+							{level:1,
+							visible:function(){
+								return $scope.player.elements.H.generators[0].level > 0;
+							}},
+							{level:3,
+							visible:function(){
+								return $scope.player.elements.H.generators[1].level > 0;
+							}},
+							{level:1,
+							visible:function(){
+								return $scope.player.elements.H.generators[2].level > 0;
+							}},
+							{level:2,
+							visible:function(){
+								return $scope.player.elements.H.generators[3].level > 0;
+							}},
+							{level:0,
+							visible:function(){
+								return $scope.player.elements.H.generators[4].level > 0;
+							}},
+							{level:0,
+							visible:function(){
+								return $scope.player.elements.H.generators[5].level > 0;
+							}},
+							{level:0,
+							visible:function(){
+								return $scope.player.elements.H.generators[6].level > 0;
+							}},
+							{level:0,
+							visible:function(){
+								return $scope.player.elements.H.generators[7].level > 0;
+							}},
+							{level:0,
+							visible:function(){
+								return $scope.player.elements.H.generators[8].level > 0;
+							}},
+							{level:0,
+							visible:function(){
+								return $scope.player.elements.H.generators[9].level > 0;
+							}}],
 					upgrades:{
 						'Upgrade 1':{
 							unlocked:true,
@@ -28,7 +71,51 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 					},
 					unlocked:true
 				},'O':{
-					level: [15,1,0,0],
+					generators: [
+							{level:15,
+							visible:function(){
+								return true;
+							}},							
+							{level:1,
+							visible:function(){
+								return $scope.player.elements.O.generators[0].level > 0;
+							}},
+							{level:0,
+							visible:function(){
+								return $scope.player.elements.O.generators[1].level > 0;
+							}},
+							{level:0,
+							visible:function(){
+								return $scope.player.elements.O.generators[2].level > 0;
+							}},
+							{level:0,
+							visible:function(){
+								return $scope.player.elements.O.generators[3].level > 0;
+							}},
+							{level:0,
+							visible:function(){
+								return $scope.player.elements.O.generators[4].level > 0;
+							}},
+							{level:0,
+							visible:function(){
+								return $scope.player.elements.O.generators[5].level > 0;
+							}},
+							{level:0,
+							visible:function(){
+								return $scope.player.elements.O.generators[6].level > 0;
+							}},
+							{level:0,
+							visible:function(){
+								return $scope.player.elements.O.generators[7].level > 0;
+							}},
+							{level:0,
+							visible:function(){
+								return $scope.player.elements.O.generators[8].level > 0;
+							}},
+							{level:0,
+							visible:function(){
+								return $scope.player.elements.O.generators[9].level > 0;
+							}}],
 					upgrades:{
 						'Upgrade 1':{
 							unlocked:true,
@@ -366,7 +453,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		
 		cache = {};
 		$scope.current_tab = "Elements";
-		$scope.current_element = "O";
+		$scope.current_element = "H";
 
 		$scope.generatorPrice = function(index,level) {
 			var price = $scope.generators[index].price*Math.pow($scope.generators[index].priceIncrease,level);
