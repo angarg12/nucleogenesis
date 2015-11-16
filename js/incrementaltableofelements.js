@@ -142,7 +142,6 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 							return $scope.current_element === "H";
 						},
 						order:0,
-						ratio:0.999884,
 						unlocked: true
 					},
 					'2H':{ 
@@ -152,7 +151,6 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 							return $scope.current_element === "H";
 						},
 						order:1,
-						ratio:0.000115,
 						unlocked: true
 					},
 					'3H':{ 
@@ -161,8 +159,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 						visible:function(){
 							return $scope.current_element === "H";
 						},
-						order:2,						
-						ratio:0.000001,
+						order:2,		
 						unlocked: true
 					},
 					'O':{ 
@@ -172,7 +169,6 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 							return $scope.current_element === "O";
 						},
 						order:700,
-						ratio:0.9976,
 						unlocked: true
 					},
 					'17O':{ 
@@ -182,7 +178,6 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 							return $scope.current_element === "O";
 						},
 						order:701,
-						ratio:0.00039,
 						unlocked: true
 					},
 					'18O':{ 
@@ -191,8 +186,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 						visible:function(){
 							return $scope.current_element === "O";
 						},
-						order:702,						
-						ratio:0.00201,
+						order:702,			
 						unlocked: true
 					},
 					'e-':{ 
