@@ -67,7 +67,7 @@
                       <tr ng-repeat="generator in player.elements[current_element].level track by $index">
                       	<td>
                           <div class="pull-left">
-                            Tier {{$index+1}}: {{generatorPower[$index]}} {{current_element}}/s
+                           {{generators[$index].name}}: {{generators[$index].power}} {{current_element}}/s
                           </div>
                         </td>
 

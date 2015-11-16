@@ -306,36 +306,70 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 					'energy':'KeV'
 		};
 		
-		var priceIncrease = 1.15;
-        var generatorBasePrice = [15,
-                                 100,
-                                 500,
-                                 3000,
-                                 10000,
-                                 40000,
-                                 200000,
-                                 1666666,
-                                 123456789,
-                                 3999999999,
-                                 75000000000];
-        $scope.generatorPower = [0.1,
-                                0.5,
-                                4,
-                                10,
-                                40,
-                                100,
-                                400,
-                                6666,
-                                98765,
-                                999999,                                        		
-                                10000000];
+		$scope.generators = [
+					{name:'Tier 1',
+					price:15,
+					power:0.1,
+					priceIncrease:1.15
+					},
+					{name:'Tier 2',
+					price:100,
+					power:0.5,
+					priceIncrease:1.15
+					},
+					{name:'Tier 3',
+					price:500,
+					power:4,
+					priceIncrease:1.15
+					},
+					{name:'Tier 4',
+					price:3000,
+					power:10,
+					priceIncrease:1.15
+					},
+					{name:'Tier 5',
+					price:10000,
+					power:40,
+					priceIncrease:1.15
+					},
+					{name:'Tier 6',
+					price:40000,
+					power:100,
+					priceIncrease:1.15
+					},
+					{name:'Tier 7',
+					price:200000,
+					power:400,
+					priceIncrease:1.15
+					},
+					{name:'Tier 8',
+					price:1666666,
+					power:6666,
+					priceIncrease:1.15
+					},
+					{name:'Tier 9',
+					price:123456789,
+					power:98765,
+					priceIncrease:1.15
+					},
+					{name:'Tier 10',
+					price:3999999999,
+					power:999999,
+					priceIncrease:1.15
+					},
+					{name:'Tier 11',
+					price:75000000000,
+					power:10000000,
+					priceIncrease:1.15
+					}
+		];
 		
 		cache = {};
 		$scope.current_tab = "Elements";
 		$scope.current_element = "O";
 
 		$scope.generatorPrice = function(index,level) {
-			var price = generatorBasePrice[index]*Math.pow(priceIncrease,level);
+			var price = $scope.generators[index].price*Math.pow($scope.generators[index].priceIncrease,level);
 			return Math.ceil(price);
 		};
 		
