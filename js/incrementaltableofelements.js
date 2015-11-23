@@ -1,8 +1,9 @@
 angular.module('incremental',[])
-.controller('IncCtrl',['$scope','$document','$interval', '$sce', '$filter', '$timeout', 
-function($scope,$document,$interval,$sce,$filter,$timeout) { 
+.controller('IncCtrl',['$scope','$document','$interval', '$sce', '$filter', '$timeout', '$log',
+function($scope,$document,$interval,$sce,$filter,$timeout,$log) { 
 		$scope.version = '0.0';
 		$scope.Math = window.Math;
+		$scope.log = $log;
 		
 		const startPlayer = {
 			unlocks: [
@@ -447,7 +448,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		
 		cache = {};
 		$scope.current_tab = "Elements";
-		$scope.current_element = "H";
+		$scope.current_element = "O";
 
 		$scope.generatorPrice = function(index,level) {
 			var price = $scope.generators[index].price*Math.pow($scope.generators[index].priceIncrease,level);
@@ -504,13 +505,17 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
             */
         };
 
-		$scope.save = function save() {
+		$scope.updateCurrentElement = function(new_value) {
+			$scope.current_element = new_value;
+		};
+
+		$scope.save = function() {
 			localStorage.setItem("playerStored", JSON.stringify($scope.player));
 			var d = new Date();
 			$scope.lastSave = d.toLocaleTimeString();
 		};
 		
-		$scope.load = function load() {
+		$scope.load = function() {
 			try {
 				$scope.player = JSON.parse(localStorage.getItem("playerStored"));
 				$scope.currentPrestige = parseInt(localStorage.getItem("currentPrestige"));
@@ -522,7 +527,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 			versionControl();
 		};
 		
-		$scope.reset = function reset(ask) {
+		$scope.reset = function(ask) {
 			var confirmation = true;
 			if(ask){
 				confirmation = confirm("Are you sure you want to reset? This will permanently erase your progress.");
@@ -539,10 +544,10 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
         };
 		
         function update() {
-            
+            $scope.player.resources["2H"].number++;
         };
         
-		$scope.prettifyNumber = function prettifyNumberHTML(number){
+		$scope.prettifyNumber = function(number){
 			if(typeof number == 'undefined'){
 				return;
 			}

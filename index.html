@@ -151,8 +151,8 @@
                 <tbody>
                   <tr ng-repeat="element in filterAndOrder(player.elements, elements)" ng-class="{active:current_element===element.name}">
 					<td>
-                      <div class="pull-left">
-                        <a ng-href="#{{element.name}}" href="#{{element.name}}">
+                      <div class="pull-left" ng-click="updateCurrentElement(element.name)">
+                        <a>
                         	{{elements[element.name].name}}
                         	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="elements[element.name].has_new"></span>
                         </a>
