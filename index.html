@@ -41,7 +41,7 @@
           	<li ng-repeat="tab in filterAndOrder(tabs, tabs)" 
           		ng-class="{active: current_tab === tab.name}">
 		        <a class="ng-binding" ng-href="#/tab/{{tab.name}} " href="#/tab/{{tab.name}} "> {{tab.name}} 
-		        	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="tab.value.has_new"></span>
+		        	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="tab.value.has_new()"></span>
 		        </a>
 		    </li>
           </ul>
@@ -154,7 +154,7 @@
                       <div class="pull-left" ng-click="updateCurrentElement(element.name)">
                         <a>
                         	{{elements[element.name].name}}
-                        	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="elements[element.name].has_new"></span>
+                        	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="elements[element.name].has_new()"></span>
                         </a>
                       </div>
                     </td>

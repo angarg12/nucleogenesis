@@ -236,7 +236,11 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 					visible:function(){
 							return $scope.player.elements.H.unlocked;
 						},
-					has_new:false,
+					has_new:function(){
+							return $scope.player.resources['H'].is_new ||
+									$scope.player.resources['2H'].is_new ||
+									$scope.player.resources['3H'].is_new;
+						},
 					order:1
 				},'O':{
 					name:'Oxygen',
@@ -244,7 +248,11 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 					visible:function(){
 							return $scope.player.elements.O.unlocked;
 						},
-					has_new:true,
+					has_new:function(){
+							return $scope.player.resources['O'].is_new ||
+									$scope.player.resources['17O'].is_new ||
+									$scope.player.resources['18O'].is_new;
+						},
 					order:7
 				}
 		};
@@ -448,7 +456,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		
 		cache = {};
 		$scope.current_tab = "Elements";
-		$scope.current_element = "O";
+		$scope.current_element = "H";
 
 		$scope.generatorPrice = function(index,level) {
 			var price = $scope.generators[index].price*Math.pow($scope.generators[index].priceIncrease,level);
@@ -561,9 +569,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				var exponent = parseFloat(exponential[1].split("+")[1]);
 				// And it is displayed in with superscript
 				if(exponential[0] == "1"){
-					return  "10<sup>"+prettifyNumberHTML(exponent)+"</sup>";							
+					return  "10<sup>"+$scope.prettifyNumber(exponent)+"</sup>";							
 				}
-				return  $filter('number')(exponential[0])+" &#215; 10<sup>"+prettifyNumberHTML(exponent)+"</sup>";						
+				return  $filter('number')(exponential[0])+" &#215; 10<sup>"+$scope.prettifyNumber(exponent)+"</sup>";						
 			}
 			return $filter('number')(number);
 		};   
