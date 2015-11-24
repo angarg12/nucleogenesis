@@ -9,6 +9,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			unlocks: [
 				'isotopes'
 			],
+			encyclopedia: {
+				'Hydrogen':{is_new:true}
+			},
 			elements: {
 				'H':{
 					generators: [{level:5,
@@ -388,6 +391,16 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 						order:3}
 			};
 			
+		$scope.encyclopedia = {'Hydrogen':{
+							visible:function(){
+								return true;
+							},
+							order:0,
+							link:'https://en.wikipedia.org/wiki/Hydrogen',
+							description:'<b>Hydrogen</b> is a chemical element with chemical symbol <b>H</b> and atomic number 1. With an atomic weight of 1.00794 u, hydrogen is the lightest element on the periodic table. Its monatomic form (H) is the most abundant chemical substance in the Universe, constituting roughly 75% of all baryonic mass. Non-remnant stars are mainly composed of hydrogen in its plasma state. The most common isotope of hydrogen, termed protium, has one proton and no neutrons.'
+							}
+		};
+			
 		var resourceHTML = {
 					'2H':'<sup>2</sup>H',
 					'3H':'<sup>3</sup>H',
@@ -456,6 +469,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		
 		cache = {};
 		$scope.current_tab = "Elements";
+		$scope.current_entry = "Hydrogen";
 		$scope.current_element = "H";
 
 		$scope.generatorPrice = function(index,level) {
@@ -515,6 +529,10 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 
 		$scope.updateCurrentElement = function(new_value) {
 			$scope.current_element = new_value;
+		};		
+		
+		$scope.updateCurrentTab = function(new_value) {
+			$scope.current_tab = new_value;
 		};
 
 		$scope.save = function() {
