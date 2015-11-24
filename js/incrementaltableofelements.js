@@ -369,25 +369,50 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 						visible:function(){
 							return true;
 						},
-						has_new:false,
+						has_new:function(){
+							for(var key in $scope.elements){
+								if($scope.elements[key].has_new()){
+									return true;
+								}
+							}
+							var other = ['e-','n','p','energy'];
+							for(var key in other){
+								if($scope.player.resources[other[key]].is_new){
+									return true;
+								}
+							}
+							return false;
+						},
 						order:0},
 				'Encyclopedia':{
 						visible:function(){
 							return true;
 						},
-						has_new:true,
+						has_new:function(){						
+							for(var key in $scope.player.encyclopedia){
+								if($scope.player.encyclopedia[key].is_new){
+									return true;
+								}
+							}
+						
+							return false;
+						},
 						order:1},
 				'Periodic Table':{
 						visible:function(){
 							return false;
 						},
-						has_new:false,
+						has_new:function(){
+							return true;
+						},
 						order:2},
 				'Options':{
 						visible:function(){
 							return true;
 						},
-						has_new:false,
+						has_new:function(){
+							return false;
+						},
 						order:3}
 			};
 			
