@@ -6,11 +6,12 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		$scope.log = $log;
 		
 		const startPlayer = {
-			unlocks: [
-				'isotopes'
-			],
+			unlocks: {
+				isotopes:true
+			},
 			encyclopedia: {
-				'Hydrogen':{is_new:true}
+				'Hydrogen':{is_new:true},				
+				'Isotope':{is_new:true}
 			},
 			elements: {
 				'H':{
@@ -298,6 +299,10 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		
 		$scope.updateCurrentTab = function(new_value) {
 			$scope.current_tab = new_value;
+		};
+		
+		$scope.updateCurrentEntry = function(new_value) {
+			$scope.current_entry = new_value;
 		};
 
 		$scope.save = function() {
