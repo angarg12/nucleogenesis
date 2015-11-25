@@ -5,16 +5,11 @@
   <meta content="text/html; charset=us-ascii" http-equiv=
   "Content-Type">
   <meta content="utf-8" http-equiv="encoding">
-  <script type="text/javascript" src="js/angular.min.js">
-</script>
-  <script type="text/javascript" src=
-  "js/incrementaltableofelements.js">
-</script>
-  <link rel="stylesheet" type="text/css" href=
-  "styles/bootstrap.min.css">
+  <script type="text/javascript" src="js/angular.min.js"></script>
+  <script type="text/javascript" src="js/data.js"></script>
+  <script type="text/javascript" src="js/incrementaltableofelements.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="styles/main.css">
-
-
   <title>The Incremental Table of Elements</title>
 </head>
 
@@ -135,10 +130,10 @@
 		            <td width=15%>
 		            	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="resource.value.is_new"></span>
 		            </td>
-		            <td width=40%>
+		            <td width=35%>
 		              <div class="pull-left" ng-bind-html="trustHTML(getHTML(resource.name))"></div>
 		            </td>
-		            <td width=45%>
+		            <td width=50%>
 		              <div class="pull-left"  ng-bind-html="trustHTML(prettifyNumber(resource.value.number))"></div>
 		            </td>
                   </tr>
