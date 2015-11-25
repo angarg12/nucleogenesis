@@ -210,15 +210,12 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			return array;
 		};
 		
-        $scope.buyGenerator = function(element, tier) {
-        /*
-            if ($scope.player.h >= $scope.player.hGeneratorPrice[number]) {
-                $scope.player.h -= $scope.player.hGeneratorPrice[number];
-                $scope.player.hGeneratorLevel[number]++;
-				$scope.player.hGeneratorPrice[number] = hGeneratorBasePrice[number]*Math.pow(priceIncrease,$scope.player.hGeneratorLevel[number]);
-				refreshUpgradeLine(number, true);
+        $scope.buyGenerator = function(name, element) {
+        	var price = $scope.generatorPrice(name, element);
+            if ($scope.player.resources[element].number >= price) {
+                $scope.player.resources[element].number -= price;
+                $scope.player.elements[element].generators[name].level++;
             }
-            */
         };
 
 		$scope.isCostMet = function(element, index) {return false;};

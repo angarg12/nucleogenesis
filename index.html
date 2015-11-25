@@ -79,7 +79,7 @@
                         <td>
                           <div class="pull-left">
                             <button class="btn btn-default"
-                            ng-click="buyResource({resource:resource, num:fullnum()})"
+                            ng-click="buyGenerator(generator.name, current_element)"
                             ng-class="{disabled: generatorPrice(generator.name, current_element) > player.resources[current_element].number}">Buy</button>
                           </div>
                         </td>
