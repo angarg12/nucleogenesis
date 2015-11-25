@@ -35,7 +35,7 @@
           <ul class="nav nav-tabs ng-scope" role="tablist">
           	<li ng-repeat="tab in filterAndOrder(tabs, tabs)" 
           		ng-class="{active: current_tab === tab.name}">
-		        <a class="ng-binding" ng-click="updateCurrentTab(tab.name)"> {{tab.name}} 
+		        <a class="ng-binding" ng-click="updateCurrent('current_tab',tab.name)"> {{tab.name}} 
 		        	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="tab.value.has_new()"></span>
 		        </a>
 		    </li>
@@ -146,7 +146,7 @@
                 <tbody>
                   <tr ng-repeat="element in filterAndOrder(player.elements, elements)" ng-class="{active:current_element===element.name}">
 					<td>
-                      <div class="pull-left" ng-click="updateCurrentElement(element.name)">
+                      <div class="pull-left" ng-click="updateCurrent('current_element', element.name)">
                         <a>
                         	{{elements[element.name].name}}
                         	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="elements[element.name].has_new()"></span>
@@ -170,7 +170,7 @@
             <div class="col-lg-3 col-lg-pull-9">
               <table class="table table-hover element-table no_bottom">
                 <tbody>
-                  <tr ng-repeat="entry in filterAndOrder(encyclopedia, encyclopedia)" ng-mouseover="player.encyclopedia[entry.name].is_new = false" ng-click="updateCurrentEntry(entry.name)">
+                  <tr ng-repeat="entry in filterAndOrder(encyclopedia, encyclopedia)" ng-mouseover="player.encyclopedia[entry.name].is_new = false" ng-click="updateCurrent('current_entry', entry.name)">
                   <td width=15%><span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.encyclopedia[entry.name].is_new"></span></td>
 
                     <td><a>{{entry.name}}</a></td>

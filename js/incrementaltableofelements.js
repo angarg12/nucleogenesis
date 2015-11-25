@@ -293,17 +293,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
             */
         };
 
-		$scope.updateCurrentElement = function(new_value) {
-			$scope.current_element = new_value;
-		};		
-		
-		$scope.updateCurrentTab = function(new_value) {
-			$scope.current_tab = new_value;
-		};
-		
-		$scope.updateCurrentEntry = function(new_value) {
-			$scope.current_entry = new_value;
-		};
+		$scope.updateCurrent = function(variable, new_value) {
+			$scope[variable] = new_value;
+		};	
 
 		$scope.save = function() {
 			localStorage.setItem("playerStored", JSON.stringify($scope.player));
