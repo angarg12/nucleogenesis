@@ -46,7 +46,7 @@
           <div class="tab-pane row" ng-class="{active: current_tab == 'Elements'}">
             <div class="col-lg-8 col-lg-push-3">
               <h3>{{elements[current_element].name}}</h3>
-              <h4>0 {{current_element}}/s</h4>
+              <h4>{{elementProduction(current_element)}} {{current_element}}/s</h4>
               <ul ng-if="player.unlocks.isotopes">
               	 <li>
 		          	<span ng-bind-html="trustHTML(getHTML(current_element))"></span>: {{(resources[current_element].ratio*100).toFixed(4)}}%
@@ -69,6 +69,12 @@
                         <td>
                           <div class="pull-left">
                             {{player.elements[current_element].generators[generator.name].level}}
+                          </div>
+                        </td>
+                        
+                        <td>
+                          <div class="pull-left">
+                            Total {{tierProduction(generator.name,current_element)}} {{current_element}}/s
                           </div>
                         </td>
 

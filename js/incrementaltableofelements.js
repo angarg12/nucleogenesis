@@ -218,7 +218,17 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
             }
         };
 
-		$scope.isCostMet = function(element, index) {return false;};
+		$scope.tierProduction = function(name, element) {
+			return $scope.generators[name].power*$scope.player.elements[element].generators[name].level;
+		};
+		
+		$scope.elementProduction = function(element) {
+			var total = 0;
+			for(var tier in $scope.generators){
+				total += $scope.generators[tier].power*$scope.player.elements[element].generators[tier].level;
+			}
+			return total;
+		};
 		
 		$scope.updateCurrent = function(variable, new_value) {
 			$scope[variable] = new_value;
@@ -259,7 +269,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
         };
 		
         function update() {
-            $scope.player.resources["2H"].number++;
+        // VERY BASIC AND PRELIMINARY IMPLEMENTATION, ONLY FOR TESTING
+            $scope.player.resources["H"].number+=$scope.elementProduction("H");
         };
         
 		$scope.prettifyNumber = function(number){
