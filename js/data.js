@@ -64,7 +64,8 @@ function loadData($scope) {
 				},
 				'2H':{ 
 					visible:function(){
-						return $scope.current_element === "H";
+						return $scope.current_element === "H" && 
+								$scope.player.resources['2H'].unlocked;
 					},
 					order:1,
 					ratio:0.000115,
@@ -73,7 +74,8 @@ function loadData($scope) {
 				},
 				'3H':{ 
 					visible:function(){
-						return $scope.current_element === "H";
+						return $scope.current_element === "H" && 
+								$scope.player.resources['3H'].unlocked;
 					},
 					order:2,						
 					ratio:0.000001,
@@ -90,7 +92,8 @@ function loadData($scope) {
 				},
 				'17O':{ 					
 					visible:function(){
-						return $scope.current_element === "O";
+						return $scope.current_element === "O" && 
+								$scope.player.resources['17O'].unlocked;
 					},
 					order:701,
 					ratio:0.00039,
@@ -99,7 +102,8 @@ function loadData($scope) {
 				},
 				'18O':{ 						
 					visible:function(){
-						return $scope.current_element === "O";
+						return $scope.current_element === "O" && 
+								$scope.player.resources['18O'].unlocked;
 					},
 					order:702,						
 					ratio:0.00201 ,
@@ -108,28 +112,28 @@ function loadData($scope) {
 				},
 				'e-':{ 
 					visible:function(){
-						return true;
+						return $scope.player.resources['e-'].unlocked;
 					},
 					order:20000,
 					type:'subatomic'
 				},
 				'n':{ 
 					visible:function(){
-						return true;
+						return $scope.player.resources['n'].unlocked;
 					},
 					order:20001,
 					type:'subatomic'
 				},
 				'p':{ 
 					visible:function(){
-						return true;
+						return $scope.player.resources['p'].unlocked;
 					},
 					order:20002,
 					type:'subatomic'
 				},
 				'energy':{ 
 					visible:function(){
-						return true;
+						return $scope.player.resources['energy'].unlocked;
 					},
 					order:20003,
 					html:'KeV',

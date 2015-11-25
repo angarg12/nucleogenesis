@@ -143,91 +143,51 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 					'H':{ 
 						number:1.523e25,
 						is_new:false,
-						visible:function(){
-							return $scope.current_element === "H";
-						},
-						order:0,
 						unlocked: true
 					},
 					'2H':{ 
 						number:100000000,
 						is_new:true,
-						visible:function(){
-							return $scope.current_element === "H";
-						},
-						order:1,
 						unlocked: true
 					},
 					'3H':{ 
 						number:1000000000,
-						is_new:true,
-						visible:function(){
-							return $scope.current_element === "H";
-						},
-						order:2,		
-						unlocked: true
+						is_new:true,		
+						unlocked: false
 					},
 					'O':{ 
 						number:0,
 						is_new:false,
-						visible:function(){
-							return $scope.current_element === "O";
-						},
-						order:700,
 						unlocked: true
 					},
 					'17O':{ 
 						number:345,
-						is_new:true,						
-						visible:function(){
-							return $scope.current_element === "O";
-						},
-						order:701,
+						is_new:true,	
 						unlocked: true
 					},
 					'18O':{ 
 						number:36236,
-						is_new:true,						
-						visible:function(){
-							return $scope.current_element === "O";
-						},
-						order:702,			
+						is_new:true,			
 						unlocked: true
 					},
 					'e-':{ 
 						number:10,
 						is_new:false,
-						visible:function(){
-							return $scope.player.resources['e-'].unlocked;
-						},
-						order:20000,
-						unlocked: false
+						unlocked: true
 					},
 					'n':{ 
 						number:0,
 						is_new:true,
-						visible:function(){
-							return true;
-						},
-						order:20001,
-						unlocked: true
+						unlocked: false
 					},
 					'p':{ 
 						number:0,
 						is_new:false,
-						visible:function(){
-							return true;
-						},
-						order:20002,
 						unlocked: true
 					},
 					'energy':{ 
 						number:0,
 						is_new:false,
-						visible:function(){
-							return true;
-						},
-						order:20003,
 						unlocked: true
 					}
 				}
@@ -248,8 +208,6 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			if(html == null) return resource;
 			return html;
 		};
-		
-		$scope.isCostMet = function(element, index) {return false;};
 
 		/*
 			Values is a list or map of values that we want to filter and order.
@@ -282,7 +240,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			return array;
 		};
 		
-        $scope.buyGenerator = function(number) {
+        $scope.buyGenerator = function(element, tier) {
         /*
             if ($scope.player.h >= $scope.player.hGeneratorPrice[number]) {
                 $scope.player.h -= $scope.player.hGeneratorPrice[number];
@@ -293,6 +251,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
             */
         };
 
+		$scope.isCostMet = function(element, index) {return false;};
+		
 		$scope.updateCurrent = function(variable, new_value) {
 			$scope[variable] = new_value;
 		};	
