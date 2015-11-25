@@ -15,50 +15,19 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			},
 			elements: {
 				'H':{
-					generators: [{level:5,
-							visible:function(){
-								return true;
-							}},							
-							{level:1,
-							visible:function(){
-								return $scope.player.elements.H.generators[0].level > 0;
-							}},
-							{level:3,
-							visible:function(){
-								return $scope.player.elements.H.generators[1].level > 0;
-							}},
-							{level:1,
-							visible:function(){
-								return $scope.player.elements.H.generators[2].level > 0;
-							}},
-							{level:2,
-							visible:function(){
-								return $scope.player.elements.H.generators[3].level > 0;
-							}},
-							{level:0,
-							visible:function(){
-								return $scope.player.elements.H.generators[4].level > 0;
-							}},
-							{level:0,
-							visible:function(){
-								return $scope.player.elements.H.generators[5].level > 0;
-							}},
-							{level:0,
-							visible:function(){
-								return $scope.player.elements.H.generators[6].level > 0;
-							}},
-							{level:0,
-							visible:function(){
-								return $scope.player.elements.H.generators[7].level > 0;
-							}},
-							{level:0,
-							visible:function(){
-								return $scope.player.elements.H.generators[8].level > 0;
-							}},
-							{level:0,
-							visible:function(){
-								return $scope.player.elements.H.generators[9].level > 0;
-							}}],
+					generators: {
+							'Tier 1':{level:5},							
+							'Tier 2':{level:1},
+							'Tier 3':{level:3},
+							'Tier 4':{level:1},
+							'Tier 5':{level:2},
+							'Tier 6':{level:0},
+							'Tier 7':{level:0},
+							'Tier 8':{level:0},
+							'Tier 9':{level:0},
+							'Tier 10':{level:0},
+							'Tier 11':{level:0}
+					},
 					upgrades:{
 						'Upgrade 1':{
 							unlocked:true,
@@ -141,7 +110,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			},
 			resources:{
 					'H':{ 
-						number:1.523e25,
+						number:5000,
 						is_new:false,
 						unlocked: true
 					},
@@ -198,8 +167,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		$scope.current_entry = "Hydrogen";
 		$scope.current_element = "H";
 
-		$scope.generatorPrice = function(index,level) {
-			var price = $scope.generators[index].price*Math.pow($scope.generators[index].priceIncrease,level);
+		$scope.generatorPrice = function(name, element) {
+			var level = $scope.player.elements[element].generators[name].level;
+			var price = $scope.generators[name].price*Math.pow($scope.generators[name].priceIncrease, level);
 			return Math.ceil(price);
 		};
 		

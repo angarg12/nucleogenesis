@@ -59,28 +59,28 @@
                 <div>
                   <table class="table">
                     <tbody>
-                      <tr ng-repeat="generator in player.elements[current_element].generators track by $index" ng-if="generator.visible()">
+                      <tr ng-repeat="generator in filterAndOrder(generators, generators)">
                       	<td>
                           <div class="pull-left">
-                           {{generators[$index].name}}: {{generators[$index].power}} {{current_element}}/s
+                           {{generator.name}}: {{generator.value.power}} {{current_element}}/s
                           </div>
                         </td>
 
                         <td>
                           <div class="pull-left">
-                            {{generator.level}}
+                            {{player.elements[current_element].generators[generator.name].level}}
                           </div>
                         </td>
 
                         <td>
-                          <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(generatorPrice($index, player.elements[current_element].generators[$index].level)))"></div> &nbsp;{{current_element}}
+                          <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(generatorPrice(generator.name, current_element)))"></div> &nbsp;{{current_element}}
                         </td>
 
                         <td>
                           <div class="pull-left">
                             <button class="btn btn-default"
                             ng-click="buyResource({resource:resource, num:fullnum()})"
-                            disabled="!isCostMet(current_element,$index)">Buy</button>
+                            ng-class="{disabled: generatorPrice(generator.name, current_element) > player.resources[current_element].number}">Buy</button>
                           </div>
                         </td>
                       </tr>

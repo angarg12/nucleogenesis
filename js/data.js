@@ -12,7 +12,8 @@ function loadData($scope) {
 								$scope.player.resources['3H'].is_new;
 					},
 				order:1
-			},'O':{
+			},
+			'O':{
 				name:'Oxygen',
 				isotopes:['17O','18O'],
 				visible:function(){
@@ -141,7 +142,8 @@ function loadData($scope) {
 				}
 	};
 	
-	$scope.tabs = {'Elements':{
+	$scope.tabs = {
+			'Elements':{
 					visible:function(){
 						return true;
 					},
@@ -192,7 +194,8 @@ function loadData($scope) {
 					order:3}
 		};
 		
-	$scope.encyclopedia = {'Hydrogen':{
+	$scope.encyclopedia = {
+					'Hydrogen':{
 						visible:function(){
 							return true;
 						},
@@ -200,7 +203,7 @@ function loadData($scope) {
 						link:'https://en.wikipedia.org/wiki/Hydrogen',
 						description:'<b>Hydrogen</b> is a chemical element with chemical symbol <b>H</b> and atomic number 1. With an atomic weight of 1.00794 u, hydrogen is the lightest element on the periodic table. Its monatomic form (H) is the most abundant chemical substance in the Universe, constituting roughly 75% of all baryonic mass. Non-remnant stars are mainly composed of hydrogen in its plasma state. The most common isotope of hydrogen, termed protium, has one proton and no neutrons.'
 						},
-						'Isotope':{
+					'Isotope':{
 						visible:function(){
 							return $scope.player.unlocks.isotopes;
 						},
@@ -210,61 +213,105 @@ function loadData($scope) {
 						}
 	};
 
-	$scope.generators = [
-				{name:'Tier 1',
-				price:15,
-				power:0.1,
-				priceIncrease:1.15
+	$scope.generators = {
+				'Tier 1':{
+					order:1,
+					visible:function(){
+						return true;
+					},
+					price:15,
+					power:0.1,
+					priceIncrease:1.15
 				},
-				{name:'Tier 2',
-				price:100,
-				power:0.5,
-				priceIncrease:1.15
+				'Tier 2':{
+					order:2,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 1'].level > 0;
+					},
+					price:100,
+					power:0.5,
+					priceIncrease:1.15
 				},
-				{name:'Tier 3',
-				price:500,
-				power:4,
-				priceIncrease:1.15
+				'Tier 3':{
+					order:3,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 2'].level > 0;
+					},
+					price:500,
+					power:4,
+					priceIncrease:1.15
 				},
-				{name:'Tier 4',
-				price:3000,
-				power:10,
-				priceIncrease:1.15
+				'Tier 4':{
+					order:4,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 3'].level > 0;
+					},
+					price:3000,
+					power:10,
+					priceIncrease:1.15
 				},
-				{name:'Tier 5',
-				price:10000,
-				power:40,
-				priceIncrease:1.15
+				'Tier 5':{
+					order:5,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 4'].level > 0;
+					},
+					price:10000,
+					power:40,
+					priceIncrease:1.15
 				},
-				{name:'Tier 6',
-				price:40000,
-				power:100,
-				priceIncrease:1.15
+				'Tier 6':{
+					order:6,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 5'].level > 0;
+					},
+					price:40000,
+					power:100,
+					priceIncrease:1.15
 				},
-				{name:'Tier 7',
-				price:200000,
-				power:400,
-				priceIncrease:1.15
+				'Tier 7':{
+					order:7,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 6'].level > 0;
+					},
+					price:200000,
+					power:400,
+					priceIncrease:1.15
 				},
-				{name:'Tier 8',
-				price:1666666,
-				power:6666,
-				priceIncrease:1.15
+				'Tier 8':{
+					order:8,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 7'].level > 0;
+					},
+					price:1666666,
+					power:6666,
+					priceIncrease:1.15
 				},
-				{name:'Tier 9',
-				price:123456789,
-				power:98765,
-				priceIncrease:1.15
+				'Tier 9':{
+					order:9,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 8'].level > 0;
+					},
+					price:123456789,
+					power:98765,
+					priceIncrease:1.15
 				},
-				{name:'Tier 10',
-				price:3999999999,
-				power:999999,
-				priceIncrease:1.15
+				'Tier 10':{
+					order:10,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 9'].level > 0;
+					},
+					price:3999999999,
+					power:999999,
+					priceIncrease:1.15
 				},
-				{name:'Tier 11',
-				price:75000000000,
-				power:10000000,
-				priceIncrease:1.15
+				'Tier 11':{
+					order:11,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 10'].level > 0;
+					},
+					price:75000000000,
+					power:10000000,
+					priceIncrease:1.15
 				}
-	];	
+	};	
 }
