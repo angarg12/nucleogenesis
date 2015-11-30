@@ -19,6 +19,10 @@
     margin-bottom: 0px;
 }
 
-.vcenter {
-	vertical-align:middle;
+.table > tbody > tr > td, .table > tbody > tr > td > span {
+     vertical-align: middle;
+}
+
+.icon {
+	font-size:150%;
 }

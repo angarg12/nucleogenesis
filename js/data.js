@@ -81,7 +81,22 @@ function loadData($scope) {
 					order:2,						
 					ratio:0.000001,
 					html:'<sup>3</sup>H',
-					type:'isotope'
+					type:'isotope',
+					radioactivity:{
+						half_life:3.8852e+8,
+						decay_energy:18610,
+						decay_type:'beta-',
+						decay_product:['3He+1','e-']
+					}
+				},
+				'3He+1':{ 					
+					visible:function(){
+						return $scope.current_element === "He" && 
+								$scope.player.resources['3He+1'].unlocked;
+					},
+					order:101,
+					html:'<sup>3</sup>He<sup>+1</sup>',
+					type:['isotope','ion']
 				},
 				'O':{ 
 					visible:function(){
@@ -314,4 +329,8 @@ function loadData($scope) {
 					priceIncrease:1.15
 				}
 	};	
+	
+	$scope.html = {
+		'beta-':'&#946;<sup>-</sup>'
+	};
 }

@@ -19,6 +19,14 @@
     margin-bottom: 0px;
 }
 
-.table > tbody > tr > td {
+.table > tbody > tr > td, .table > tbody > tr > td > span {
      vertical-align: middle;
+}
+
+.icon {
+	font-size:150%;
+}
+
+.by-icon {
+	line-height:2.14305;
 }

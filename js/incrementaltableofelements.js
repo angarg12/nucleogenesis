@@ -44,52 +44,20 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 						unlocked: true
 					},
 					unlocked:true
-				},'O':{
-					generators: [
-							{level:15,
-							visible:function(){
-								return true;
-							}},							
-							{level:1,
-							visible:function(){
-								return $scope.player.elements.O.generators[0].level > 0;
-							}},
-							{level:0,
-							visible:function(){
-								return $scope.player.elements.O.generators[1].level > 0;
-							}},
-							{level:0,
-							visible:function(){
-								return $scope.player.elements.O.generators[2].level > 0;
-							}},
-							{level:0,
-							visible:function(){
-								return $scope.player.elements.O.generators[3].level > 0;
-							}},
-							{level:0,
-							visible:function(){
-								return $scope.player.elements.O.generators[4].level > 0;
-							}},
-							{level:0,
-							visible:function(){
-								return $scope.player.elements.O.generators[5].level > 0;
-							}},
-							{level:0,
-							visible:function(){
-								return $scope.player.elements.O.generators[6].level > 0;
-							}},
-							{level:0,
-							visible:function(){
-								return $scope.player.elements.O.generators[7].level > 0;
-							}},
-							{level:0,
-							visible:function(){
-								return $scope.player.elements.O.generators[8].level > 0;
-							}},
-							{level:0,
-							visible:function(){
-								return $scope.player.elements.O.generators[9].level > 0;
-							}}],
+				},'O':{					
+					generators: {
+							'Tier 1':{level:15},							
+							'Tier 2':{level:1},
+							'Tier 3':{level:0},
+							'Tier 4':{level:0},
+							'Tier 5':{level:0},
+							'Tier 6':{level:0},
+							'Tier 7':{level:0},
+							'Tier 8':{level:0},
+							'Tier 9':{level:0},
+							'Tier 10':{level:0},
+							'Tier 11':{level:0}
+					},
 					upgrades:{
 						'Upgrade 1':{
 							unlocked:true,
@@ -122,7 +90,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 					'3H':{ 
 						number:1000000000,
 						is_new:true,		
-						unlocked: false
+						unlocked: true
 					},
 					'O':{ 
 						number:0,
@@ -173,8 +141,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			return Math.ceil(price);
 		};
 		
-		$scope.getHTML = function(resource) {
-			var html = $scope.resources[resource].html;
+		$scope.getHTML = function(resource) {		
+			var html = $scope.html[resource];
+			if(html == null) html = $scope.resources[resource].html;
 			if(html == null) return resource;
 			return html;
 		};

@@ -131,16 +131,43 @@
 
             <div class="col-lg-3 col-lg-pull-8">
               <table class="table table-hover element-table no_bottom">
-                <tbody>
-                  <tr ng-repeat="resource in filterAndOrder(player.resources, resources)" ng-mouseover="resource.value.is_new = false">
+                <tbody ng-repeat="resource in filterAndOrder(player.resources, resources)" ng-mouseover="resource.value.is_new = false">
+                  <tr>
 		            <td width=15%>
 		            	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="resource.value.is_new"></span>
 		            </td>
-		            <td width=35%>
-		              <div class="pull-left" ng-bind-html="trustHTML(getHTML(resource.name))"></div>
+		            <td width=35% colspan="2">
+		              <span class="pull-left by-icon" ng-bind-html="trustHTML(getHTML(resource.name))"></span>&nbsp;
+		              <span ng-if="resources[resource.name].radioactivity != null" title="Radioctive" class="pull-left icon">&#9762;</span>  
 		            </td>
 		            <td width=50%>
-		              <div class="pull-left"  ng-bind-html="trustHTML(prettifyNumber(resource.value.number))"></div>
+		              <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(resource.value.number))"></div>
+		            </td>
+                  </tr>
+                  <tr ng-if="resources[resource.name].radioactivity != null">
+		            <td width=15%>
+		            </td>
+		            <td width=20%>
+		              <div class="pull-right">&#9495;</div>		              
+		            </td>
+		            <td width=15%>
+		            	t<sub>1/2</sub>
+		            </td>
+		            <td width=50%>
+		            	<div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(resources[resource.name].radioactivity.half_life))"></div> s
+		            </td>
+                  </tr>
+                  <tr ng-if="resources[resource.name].radioactivity != null">
+		            <td width=15%>
+		            </td>
+		            <td width=20%>
+		              <div class="pull-right" >&#9495;</div>	              
+		            </td>
+		            <td width=15%>
+		            	<div ng-bind-html="trustHTML(getHTML(resources[resource.name].radioactivity.decay_type))"></div>
+		            </td>
+		            <td width=50%>
+		            	<div class="pull-left"><span class="icon">&#8594;</span> {{resources[resource.name].radioactivity.decay_product[0]}}+{{resources[resource.name].radioactivity.decay_energy}} eV</div>
 		            </td>
                   </tr>
                 </tbody>
