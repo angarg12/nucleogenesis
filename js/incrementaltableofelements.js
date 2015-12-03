@@ -242,6 +242,15 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
             $scope.player.resources["H"].number+=$scope.elementProduction("H");
         };
         
+        $scope.decayFormat = function(radioactivity) {
+        	var format = '<span class="icon">&#8594;</span>';
+        	for (var i = 0; i < radioactivity.decay_product.length; i++) {
+        		format += $scope.getHTML(radioactivity.decay_product[i])+"+";
+        	}
+        	format += $scope.prettifyNumber(radioactivity.decay_energy)+' '+$scope.getHTML('energy');
+        	return format;
+        }
+        
 		$scope.prettifyNumber = function(number){
 			if(typeof number == 'undefined'){
 				return;

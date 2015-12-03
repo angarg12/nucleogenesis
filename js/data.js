@@ -152,7 +152,7 @@ function loadData($scope) {
 						return $scope.player.resources['energy'].unlocked;
 					},
 					order:20003,
-					html:'KeV',
+					html:'eV',
 					type:'energy'
 				}
 	};

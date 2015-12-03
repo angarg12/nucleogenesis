@@ -167,7 +167,7 @@
 		            	<div ng-bind-html="trustHTML(getHTML(resources[resource.name].radioactivity.decay_type))"></div>
 		            </td>
 		            <td width=50%>
-		            	<div class="pull-left"><span class="icon">&#8594;</span> {{resources[resource.name].radioactivity.decay_product[0]}}+{{resources[resource.name].radioactivity.decay_energy}} eV</div>
+		            	<div class="pull-left" ng-bind-html="trustHTML(decayFormat(resources[resource.name].radioactivity))"></div>
 		            </td>
                   </tr>
                 </tbody>
