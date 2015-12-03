@@ -235,7 +235,7 @@ function loadData($scope) {
 						return true;
 					},
 					price:15,
-					power:0.1,
+					power:1,
 					priceIncrease:1.15
 				},
 				'Tier 2':{
@@ -244,7 +244,7 @@ function loadData($scope) {
 						return $scope.player.elements[$scope.current_element].generators['Tier 1'].level > 0;
 					},
 					price:100,
-					power:0.5,
+					power:5,
 					priceIncrease:1.15
 				},
 				'Tier 3':{
@@ -253,7 +253,7 @@ function loadData($scope) {
 						return $scope.player.elements[$scope.current_element].generators['Tier 2'].level > 0;
 					},
 					price:500,
-					power:4,
+					power:40,
 					priceIncrease:1.15
 				},
 				'Tier 4':{
@@ -262,7 +262,7 @@ function loadData($scope) {
 						return $scope.player.elements[$scope.current_element].generators['Tier 3'].level > 0;
 					},
 					price:3000,
-					power:10,
+					power:100,
 					priceIncrease:1.15
 				},
 				'Tier 5':{
@@ -271,7 +271,7 @@ function loadData($scope) {
 						return $scope.player.elements[$scope.current_element].generators['Tier 4'].level > 0;
 					},
 					price:10000,
-					power:40,
+					power:400,
 					priceIncrease:1.15
 				},
 				'Tier 6':{
@@ -280,7 +280,7 @@ function loadData($scope) {
 						return $scope.player.elements[$scope.current_element].generators['Tier 5'].level > 0;
 					},
 					price:40000,
-					power:100,
+					power:1000,
 					priceIncrease:1.15
 				},
 				'Tier 7':{
@@ -289,7 +289,7 @@ function loadData($scope) {
 						return $scope.player.elements[$scope.current_element].generators['Tier 6'].level > 0;
 					},
 					price:200000,
-					power:400,
+					power:4000,
 					priceIncrease:1.15
 				},
 				'Tier 8':{
@@ -298,7 +298,7 @@ function loadData($scope) {
 						return $scope.player.elements[$scope.current_element].generators['Tier 7'].level > 0;
 					},
 					price:1666666,
-					power:6666,
+					power:66666,
 					priceIncrease:1.15
 				},
 				'Tier 9':{
@@ -307,7 +307,7 @@ function loadData($scope) {
 						return $scope.player.elements[$scope.current_element].generators['Tier 8'].level > 0;
 					},
 					price:123456789,
-					power:98765,
+					power:987654,
 					priceIncrease:1.15
 				},
 				'Tier 10':{
@@ -316,7 +316,7 @@ function loadData($scope) {
 						return $scope.player.elements[$scope.current_element].generators['Tier 9'].level > 0;
 					},
 					price:3999999999,
-					power:999999,
+					power:9999999,
 					priceIncrease:1.15
 				},
 				'Tier 11':{
@@ -325,7 +325,7 @@ function loadData($scope) {
 						return $scope.player.elements[$scope.current_element].generators['Tier 10'].level > 0;
 					},
 					price:75000000000,
-					power:10000000,
+					power:100000000,
 					priceIncrease:1.15
 				}
 	};	
