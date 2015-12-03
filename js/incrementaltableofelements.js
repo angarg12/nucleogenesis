@@ -7,7 +7,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		
 		const startPlayer = {
 			unlocks: {
-				isotopes:true
+				isotopes:true,
+				decay:true
 			},
 			encyclopedia: {
 				'Hydrogen':{is_new:true},				

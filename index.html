@@ -157,7 +157,7 @@
 		            	<div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(resources[resource.name].radioactivity.half_life))"></div> s
 		            </td>
                   </tr>
-                  <tr ng-if="resources[resource.name].radioactivity != null">
+                  <tr ng-if="resources[resource.name].radioactivity != null && player.unlocks.decay">
 		            <td width=15%>
 		            </td>
 		            <td width=20%>
