@@ -46,7 +46,7 @@
           <div class="tab-pane row" ng-class="{active: current_tab == 'Elements'}">
             <div class="col-lg-8 col-lg-push-3">
               <h3>{{elements[current_element].name}}</h3>
-              <h4>{{elementProduction(current_element)}} {{current_element}}/s</h4>
+              <h4><span ng-bind-html="trustHTML(prettifyNumber(elementProduction(current_element)))"></span> {{current_element}}/s</h4>
               <ul ng-if="player.unlocks.isotopes">
               	 <li>
 		          	<span ng-bind-html="trustHTML(getHTML(current_element))"></span>: {{(resources[current_element].ratio*100).toFixed(4)}}%
@@ -107,19 +107,21 @@
                         </td>
                         <td>
                           <div class="pull-left">
-                            {{upgrade.description}}
+                            {{upgrade.value.description}}
                           </div>
                         </td>
                         <td>
-                          <div class="pull-left" ng-if="!upgrade.purchased">
-                            {{upgrade.price}}
-                          </div>
+                        	<div ng-if="!player.elements[current_element].upgrades[upgrade.name].bought">
+                        		<span class="pull-left" ng-bind-html="trustHTML(prettifyNumber(upgrade.value.price))"></span> &nbsp;{{current_element}}
+                        	</div>
                         </td>
                         <td>
-                          <div class="pull-left"  ng-if="!upgrade.purchased">
+                          <div class="pull-left" ng-if="!player.elements[current_element].upgrades[upgrade.name].bought">
                             <a class="btn btn-default"
-                            ng-click="buyUpgrade(current_element, 1)"
-                            disabled="!isCostMet()">Buy</a>
+		                        ng-click="buyUpgrade(upgrade.name, current_element)"
+		                        ng-class="{disabled: upgrade.value.price > player.resources[current_element].number}">
+		                        Buy
+		                    </a>
                           </div>
                         </td>
                       </tr>

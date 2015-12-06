@@ -29,28 +29,37 @@ function loadData($scope) {
 	};
 
 	$scope.upgrades = {
-				'Upgrade 1':{
+				'Tier 1-1':{
 					price:1,
-					description:"Do this and that",
+					description:"Tier 1 production x2",
 					order:0,
 					visible:function(){
-						return $scope.player.elements[$scope.current_element].upgrades['Upgrade 1'].unlocked;
+						return $scope.player.elements[$scope.current_element].upgrades['Tier 1-1'].unlocked;
+					},
+					apply:function(resource){
+						return resource*2;
 					}
 				},
-				'Upgrade 2':{
+				'Tier 1-2':{
 					price:10,
-					description:"Do this and that",
+					description:"Tier 1 production x2",
 					order:1,
 					visible:function(){
-						return $scope.player.elements[$scope.current_element].upgrades['Upgrade 2'].unlocked;
+						return $scope.player.elements[$scope.current_element].upgrades['Tier 1-2'].unlocked;
+					},
+					apply:function(resource){
+						return resource*2;
 					}
 				},
-				'Upgrade 3':{
-					price:100,
-					description:"Do this and that",
-					order:2,
+				'Tier 2-1':{
+					price:1,
+					description:"Tier 2 production x2",
+					order:10,
 					visible:function(){
-						return $scope.player.elements[$scope.current_element].upgrades['Upgrade 3'].unlocked;
+						return $scope.player.elements[$scope.current_element].upgrades['Tier 2-1'].unlocked;
+					},
+					apply:function(resource){
+						return resource*2;
 					}
 				}};
 	
@@ -236,7 +245,8 @@ function loadData($scope) {
 					},
 					price:15,
 					power:1,
-					priceIncrease:1.15
+					priceIncrease:1.15,
+					upgrades:['Tier 1-1','Tier 1-2']
 				},
 				'Tier 2':{
 					order:2,

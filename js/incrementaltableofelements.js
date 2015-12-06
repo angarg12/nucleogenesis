@@ -30,15 +30,15 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 							'Tier 11':{level:0}
 					},
 					upgrades:{
-						'Upgrade 1':{
+						'Tier 1-1':{
 							unlocked:true,
 							bought:true
 						},
-						'Upgrade 2':{
+						'Tier 1-2':{
 							unlocked:true,
 							bought:false
 						},
-						'Upgrade 3':{
+						'Tier 2-1':{
 							unlocked:false,
 							bought:false
 						},
@@ -60,15 +60,15 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 							'Tier 11':{level:0}
 					},
 					upgrades:{
-						'Upgrade 1':{
+						'Tier 1-1':{
 							unlocked:true,
 							bought:true
 						},
-						'Upgrade 2':{
+						'Tier 1-2':{
 							unlocked:false,
 							bought:false
 						},
-						'Upgrade 3':{
+						'Tier 2-1':{
 							unlocked:false,
 							bought:false
 						},
@@ -187,15 +187,30 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
                 $scope.player.elements[element].generators[name].level++;
             }
         };
+        
+        $scope.buyUpgrade = function(name, element) {
+        	var price = $scope.upgrades[name].price;
+            if ($scope.player.resources[element].number >= price) {
+                $scope.player.resources[element].number -= price;
+                $scope.player.elements[element].upgrades[name].bought = true;
+            }
+        };
 
 		$scope.tierProduction = function(name, element) {
-			return $scope.generators[name].power*$scope.player.elements[element].generators[name].level;
+			var baseProduction = $scope.generators[name].power*$scope.player.elements[element].generators[name].level;
+			var upgradedProduction = baseProduction;
+			for(var upgrade in $scope.generators[name].upgrades){
+				if($scope.player.elements[element].upgrades[$scope.generators[name].upgrades[upgrade]].bought){
+					upgradedProduction = $scope.upgrades[$scope.generators[name].upgrades[upgrade]].apply(upgradedProduction);
+				}
+			}
+			return upgradedProduction;
 		};
 		
 		$scope.elementProduction = function(element) {
 			var total = 0;
 			for(var tier in $scope.generators){
-				total += $scope.generators[tier].power*$scope.player.elements[element].generators[tier].level;
+				total += $scope.tierProduction(tier, element);
 			}
 			return total;
 		};
