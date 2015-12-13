@@ -68,14 +68,12 @@
                         </td>
 
                         <td>
-                          <div class="pull-left">
-                            {{player.elements[current_element].generators[generator.name].level}}
-                          </div>
+                          <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(player.elements[current_element].generators[generator.name].level))"></div>
                         </td>
                         
                         <td>
                           <div class="pull-left">
-                            Total {{tierProduction(generator.name,current_element)}} {{current_element}}/s
+                            Total <span ng-bind-html="trustHTML(prettifyNumber(tierProduction(generator.name,current_element)))"></span> {{current_element}}/s
                           </div>
                         </td>
 

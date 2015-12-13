@@ -22,7 +22,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 							'Tier 1':{level:1},							
 							'Tier 2':{level:1},
 							'Tier 3':{level:1},
-							'Tier 4':{level:100},
+							'Tier 4':{level:100000000000},
 							'Tier 5':{level:0},
 							'Tier 6':{level:0},
 							'Tier 7':{level:0},
@@ -305,9 +305,11 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		        	var variance = remaning_N*p*q;
 		        	var std = Math.sqrt(variance);
 		        	production = Math.round(numberGenerator.nextGaussian()*std+mean);
-
 		        	if(production > remaning_N){
 		        		production = remaning_N;
+		        	}
+		        	if(production < 0){
+		        		production = 0;
 		        	}
 		        	$scope.player.resources[isotopes[i]].number += production;
 		        	remaning_N -= production;
@@ -336,7 +338,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			}
 			if(number > 1e8){
 				// Very ugly way to extract the mantisa and exponent from an exponential string
-				var exponential = number.toExponential().split("e");
+				var exponential = number.toPrecision(8).split("e");
 				var exponent = parseFloat(exponential[1].split("+")[1]);
 				// And it is displayed in with superscript
 				if(exponential[0] == "1"){
