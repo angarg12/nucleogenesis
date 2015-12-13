@@ -17,10 +17,10 @@ function loadData($scope) {
 				name:'Carbon',
 				isotopes:[],
 				visible:function(){
-						return $scope.player.elements.C.unlocked;
+						return false;
 					},
 				has_new:function(){
-						return $scope.player.resources['C'].is_new;
+						return false;
 					},
 				order:6,
 				disabled:true
@@ -29,10 +29,10 @@ function loadData($scope) {
 				name:'Nitrogen',
 				isotopes:[],
 				visible:function(){
-						return $scope.player.elements.N.unlocked;
+						return false;
 					},
 				has_new:function(){
-						return $scope.player.resources['N'].is_new;
+						return false;
 					},
 				order:7,
 				disabled:true

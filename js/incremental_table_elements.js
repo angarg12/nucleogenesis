@@ -19,11 +19,11 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			elements: {
 				'H':{
 					generators: {
-							'Tier 1':{level:5},							
+							'Tier 1':{level:1},							
 							'Tier 2':{level:1},
-							'Tier 3':{level:3},
-							'Tier 4':{level:1},
-							'Tier 5':{level:2},
+							'Tier 3':{level:1},
+							'Tier 4':{level:100},
+							'Tier 5':{level:0},
 							'Tier 6':{level:0},
 							'Tier 7':{level:0},
 							'Tier 8':{level:0},
@@ -81,17 +81,17 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			},
 			resources:{
 					'H':{ 
-						number:5000,
+						number:0,
 						is_new:false,
 						unlocked: true
 					},
 					'2H':{ 
-						number:100000000,
+						number:0,
 						is_new:true,
 						unlocked: true
 					},
 					'3H':{ 
-						number:1000000000,
+						number:0,
 						is_new:true,		
 						unlocked: true
 					},
@@ -134,10 +134,11 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			};
 		
 		cache = {};
-		$scope.current_tab = "Periodic Table";
+		$scope.current_tab = "Elements";
 		$scope.current_entry = "Hydrogen";
 		$scope.current_element = "H";
 		$scope.hover_element = "";
+        var numberGenerator = new Ziggurat();
 
 		$scope.elementPrice = function(element) {
 			return Math.pow($scope.player.elements_unlocked+1,$scope.resources[element].number);
@@ -279,8 +280,41 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
         };
 		
         function update() {
-        // VERY BASIC AND PRELIMINARY IMPLEMENTATION, ONLY FOR TESTING
-            $scope.player.resources["H"].number+=$scope.elementProduction("H");
+            // We will simulate the production of isotopes proportional to their ratio
+            for(var element in $scope.player.elements){
+            	// Prepare an array with the isotopes
+            	var isotopes = [element];
+            	isotopes = isotopes.concat($scope.elements[element].isotopes);
+            	// N is the total production for this element
+            	var N = $scope.elementProduction(element);
+            	var remaning_N = N;
+            	// We will create a random draw from a Gaussian with mean N*p and std
+            	// based on a binomial
+            	// On each consecutive draw we subtract the number generated to the total and
+            	// recalculate the mean and std
+            	for(var i = 0; i < isotopes.length-1; i++){
+            		// First we need to adjust the ratio for the remaning isotopes 
+            		var remaining_ratio_sum = 0;
+            		for(var j = i; j < isotopes.length; j++){
+            			remaining_ratio_sum += $scope.resources[isotopes[j]].ratio;
+            		}
+            		
+		        	var p = $scope.resources[isotopes[i]].ratio/remaining_ratio_sum;
+		        	var q = 1-p;
+		        	var mean = remaning_N*p;
+		        	var variance = remaning_N*p*q;
+		        	var std = Math.sqrt(variance);
+		        	production = Math.round(numberGenerator.nextGaussian()*std+mean);
+
+		        	if(production > remaning_N){
+		        		production = remaning_N;
+		        	}
+		        	$scope.player.resources[isotopes[i]].number += production;
+		        	remaning_N -= production;
+            	}
+            	// The last isotope is just the remaining production that hasn't been consumed
+            	$scope.player.resources[isotopes[isotopes.length-1]].number += remaning_N;
+            }
         };
         
         $scope.decayFormat = function(radioactivity) {
