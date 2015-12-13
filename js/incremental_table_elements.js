@@ -8,12 +8,14 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		const startPlayer = {
 			unlocks: {
 				isotopes:true,
-				decay:true
+				decay:true,
+				periodic_table:true
 			},
 			encyclopedia: {
 				'Hydrogen':{is_new:true},				
 				'Isotope':{is_new:true}
 			},
+			elements_unlocked:2,
 			elements: {
 				'H':{
 					generators: {
@@ -109,17 +111,17 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 						unlocked: true
 					},
 					'e-':{ 
-						number:10,
+						number:1000,
 						is_new:false,
 						unlocked: true
 					},
 					'n':{ 
-						number:0,
+						number:1000,
 						is_new:true,
 						unlocked: false
 					},
 					'p':{ 
-						number:0,
+						number:1000,
 						is_new:false,
 						unlocked: true
 					},
@@ -132,9 +134,21 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			};
 		
 		cache = {};
-		$scope.current_tab = "Elements";
+		$scope.current_tab = "Periodic Table";
 		$scope.current_entry = "Hydrogen";
 		$scope.current_element = "H";
+		$scope.hover_element = "";
+
+		$scope.elementPrice = function(element) {
+			return Math.pow($scope.player.elements_unlocked+1,$scope.resources[element].number);
+		};
+		
+		$scope.isElementCostMet = function(element) {
+			var price = $scope.elementPrice(element);
+			return $scope.player.resources['e-'].number >= price &&
+					$scope.player.resources['p'].number >= price &&
+					$scope.player.resources['n'].number >= price;
+		};
 
 		$scope.generatorPrice = function(name, element) {
 			var level = $scope.player.elements[element].generators[name].level;
@@ -164,7 +178,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				if(Array.isArray(values)){
 					objectKey = values[objectKey];
 				}
-				if(table[objectKey].visible()){
+				if(objectKey in table && table[objectKey].visible()){
 					var object = {};
 					object.name = objectKey;
 					object.value = values[objectKey];
@@ -194,6 +208,17 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
                 $scope.player.resources[element].number -= price;
                 $scope.player.elements[element].upgrades[name].bought = true;
             }
+        };
+        
+        $scope.buyElement = function(element) {
+        	if($scope.isElementCostMet(element)){
+        		var price = $scope.elementPrice(element);
+				$scope.player.resources['e-'].number -= price;
+				$scope.player.resources['p'].number -= price;
+				$scope.player.resources['n'].number -= price;
+				$scope.player.elements[element].unlocked = true;
+				$scope.player.elements_unlocked++;
+        	}
         };
 
 		$scope.tierProduction = function(name, element) {

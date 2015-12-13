@@ -30,3 +30,170 @@
 .by-icon {
 	line-height:2.14305;
 }
+
+.table_tab {
+	text-align: center;
+}
+
+.title {
+	font-size: 30px;
+	font-weight: 500;
+	line-height: 33px;
+	margin-bottom: 10px;
+	margin-top: 20px;
+}
+
+/* Periodic Table */
+
+.element_table 
+{	
+	display: inline-block;
+	text-align: center;
+    float: none;
+    margin: auto;
+    position: relative;
+}
+
+.clear
+{
+	clear: both;
+}
+
+.fl
+{
+	float: left;
+}
+
+.element_row
+{
+	margin: 0px;
+	height: 52px;
+	padding: 4px 0 0 4px;
+}
+
+.element
+{
+	position: relative;
+	height: 48px;
+	width: 50px;
+	margin-right: 2px;
+}
+
+.element_purchased
+{
+	background-color:#a2d34d;	
+}
+
+.element_purchased_dark
+{
+	background-color:#458a05;	
+}
+
+.element_unavailable
+{
+	background-color:#cfcfcf;	
+}
+
+.element_unavailable_dark
+{
+	background-color:#858585;	
+}
+
+.element_cost_not_met
+{
+	background-color:#f07049;	
+}
+
+.element_cost_not_met_dark
+{
+	background-color:#e72a00;	
+}
+
+.element_cost_met
+{
+	background-color:#eada24;	
+}
+
+.element_cost_met_dark
+{
+	background-color:#9d6d00;	
+}
+
+.element_blank
+{
+	height: 48px;
+	width: 50px;
+	margin-right: 2px;
+}
+
+.element_no
+{
+    height: 15px;
+    margin-top: 6px;
+    text-align: center;
+    font-size: 11px;
+	color:white;
+}
+
+.element_name
+{
+	text-align: center;
+	margin-top: 12px;
+    font-size: 18px;
+    line-height: 15px;
+}
+
+.element_info
+{
+	left: 117px;
+	position: absolute;
+	top: 50px;
+	overflow: hidden;
+}
+
+.element_basic
+{
+	margin-top:5px;
+	width: 100px;
+	bottom: 2px;	
+	height: 100px;
+	text-align: center;
+	padding-top: 36px;
+    font-size:13px;
+    line-height:15px;
+}
+
+.element_details
+{
+	margin-top:5px;
+	width: 150px;
+	bottom: 2px;	
+	height: 100px;
+	text-align: left;
+	margin-left: 15px;
+}
+
+.bottom
+{
+	position:absolute;
+	bottom:0;
+}
+
+.element_symbol
+{
+    font-size:40px;
+    padding-bottom:20px;
+    line-height:15px;
+}
+.symbol_name
+{
+    line-height:29px;
+	height: 29px;
+	color:white;
+	font-weight: bold;
+}
+
+.blank_row
+{
+    height:20px;
+}

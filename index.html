@@ -7,7 +7,7 @@
   <meta content="utf-8" http-equiv="encoding">
   <script type="text/javascript" src="js/angular.min.js"></script>
   <script type="text/javascript" src="js/data.js" charset="UTF-8"></script>
-  <script type="text/javascript" src="js/incrementaltableofelements.js"></script>
+  <script type="text/javascript" src="js/incremental_table_elements.js"></script>
   <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="styles/main.css">
   <title>The Incremental Table of Elements</title>
@@ -217,20 +217,88 @@
             </div>
           </div>
         </div>
+        
+        <div class="tab-content ng-scope" id="periodic_table">
+          <div class="tab-pane table_tab" ng-class="{active: current_tab == 'Periodic Table'}">
+            <div class="col-lg-11 col-lg-push-1">
+              <div class="title">Periodic Table of Elements</div>
+		      <div class="element_table">
+					<div class="element_info" ng-show="hover_element != ''">
+						<div class="fl element_basic"
+						ng-class="{element_purchased: player.elements[hover_element].unlocked === true,
+				   							element_unavailable: elements[hover_element].disabled === true,
+				   							element_cost_not_met: player.elements[hover_element].unlocked === false && !isElementCostMet(hover_element),
+				   							element_cost_met: player.elements[hover_element].unlocked === false && isElementCostMet(hover_element)}">
+							<div id="symbol" class="element_symbol">{{hover_element}}</div>
+							<div id="ename" class="symbol_name"
+								ng-class="{element_purchased_dark: player.elements[hover_element].unlocked == true,
+				   							element_unavailable_dark: elements[hover_element].disabled === true,
+				   							element_cost_not_met_dark: player.elements[hover_element].unlocked === false && !isElementCostMet(hover_element),
+				   							element_cost_met_dark: player.elements[hover_element].unlocked === false && isElementCostMet(hover_element)}" >
+								{{elements[hover_element].name}}
+							</div>
+						</div>
+						<div class="fl element_details" ng-if="player.elements.hasOwnProperty(hover_element) && player.elements[hover_element].unlocked != true">
+							<div>Cost</div>
+							<div><span ng-bind-html="trustHTML(prettifyNumber(elementPrice(hover_element)))"></span> e-</div> 
+							<div><span ng-bind-html="trustHTML(prettifyNumber(elementPrice(hover_element)))"></span> p</div> 
+							<div><span ng-bind-html="trustHTML(prettifyNumber(elementPrice(hover_element)))"></span> n</div>
+						</div>
+					</div>
+					<div ng-repeat="element_row in periodic_table"
+						class="element_row">
+						<span ng-repeat="element in element_row track by $index">
+				   			<div ng-class="{element_purchased: player.elements[element].unlocked === true,
+				   							element_unavailable: elements[element].disabled === true,
+				   							element_cost_not_met: player.elements[element].unlocked === false && !isElementCostMet(element),
+				   							element_cost_met: player.elements[element].unlocked === false && isElementCostMet(element)}" 
+				   				ng-if="element != ''" 
+				   				ng-mouseover="updateCurrent('hover_element',element)"
+				   				ng-mouseleave="updateCurrent('hover_element','')"
+				   				ng-click="buyElement(element)"
+				   				class="fl element col-centered">
+								<div class="clear element_name">{{element}}</div>
+								<div ng-class="{element_purchased_dark: player.elements[element].unlocked == true,
+				   							element_unavailable_dark: elements[element].disabled === true,
+				   							element_cost_not_met_dark: player.elements[element].unlocked === false && !isElementCostMet(element),
+				   							element_cost_met_dark: player.elements[element].unlocked === false && isElementCostMet(element)}" 
+				   							class="clear element_no">{{elements[element].order}}</div>
+							</div>
+				   			<div ng-if="element == ''" class="fl element_blank col-centered"></div>
+						</span>
+					</div>
+		    	</div>
+            </div>            
+            <div class="col-lg-1 col-lg-pull-11">
+            <table class="table table-hover element-table no_bottom">
+                <tbody ng-repeat="resource in filterAndOrder(player.resources, resources)">
+                  <tr>
+		            <td width=15%>
+		              <span class="pull-left by-icon" ng-bind-html="trustHTML(getHTML(resource.name))"></span>
+		            </td>
+		            <td width=85%>
+		              <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(resource.value.number))"></div>
+		            </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>   
+          </div>
+        </div>
       </div>
     </div>
   </div>
-      <!--<div class="achieve achievealert animif" ng-if="achieveQueue.isVisible()">-->
-      <div class="animif" ng-if="achieveQueue.isVisible()">
-        <div class="container alert alert-success">
-            <p>Achievement:</p>
-            <a class="alert-link" ng-href="#/achievements">
-              <h3>name{{achieveQueue.get().type.label}}</h3>
-            </a>
-            <p class="achievedesc">desc{{achieveQueue.get().description()}}</p>
-            <p><em>long desc{{achieveQueue.get().type.longdesc}}</em></p>
-            <button type="button" class="close" data-dismiss="alert" ng-click="achieveQueue.clear()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        </div>
-      </div>
+  <!--<div class="achieve achievealert animif" ng-if="achieveQueue.isVisible()">-->
+  <div class="animif" ng-if="achieveQueue.isVisible()">
+    <div class="container alert alert-success">
+        <p>Achievement:</p>
+        <a class="alert-link" ng-href="#/achievements">
+          <h3>name{{achieveQueue.get().type.label}}</h3>
+        </a>
+        <p class="achievedesc">desc{{achieveQueue.get().description()}}</p>
+        <p><em>long desc{{achieveQueue.get().type.longdesc}}</em></p>
+        <button type="button" class="close" data-dismiss="alert" ng-click="achieveQueue.clear()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    </div>
+  </div>
 </body>
 </html>

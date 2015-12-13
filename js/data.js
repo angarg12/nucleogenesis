@@ -13,6 +13,30 @@ function loadData($scope) {
 					},
 				order:1
 			},
+			'C':{
+				name:'Carbon',
+				isotopes:[],
+				visible:function(){
+						return $scope.player.elements.C.unlocked;
+					},
+				has_new:function(){
+						return $scope.player.resources['C'].is_new;
+					},
+				order:6,
+				disabled:true
+			},
+			'N':{
+				name:'Nitrogen',
+				isotopes:[],
+				visible:function(){
+						return $scope.player.elements.N.unlocked;
+					},
+				has_new:function(){
+						return $scope.player.resources['N'].is_new;
+					},
+				order:7,
+				disabled:true
+			},
 			'O':{
 				name:'Oxygen',
 				isotopes:['17O','18O'],
@@ -24,7 +48,7 @@ function loadData($scope) {
 								$scope.player.resources['17O'].is_new ||
 								$scope.player.resources['18O'].is_new;
 					},
-				order:7
+				order:8
 			}
 	};
 
@@ -66,7 +90,8 @@ function loadData($scope) {
 	$scope.resources = {
 				'H':{ 
 					visible:function(){
-						return $scope.current_element === "H";
+						return $scope.current_element === "H" &&
+								$scope.current_tab == "Elements";
 					},
 					order:0,
 					ratio:0.999884,
@@ -74,7 +99,8 @@ function loadData($scope) {
 				},
 				'2H':{ 
 					visible:function(){
-						return $scope.current_element === "H" && 
+						return $scope.current_element === "H" &&
+								$scope.current_tab == "Elements" && 
 								$scope.player.resources['2H'].unlocked;
 					},
 					order:1,
@@ -84,7 +110,8 @@ function loadData($scope) {
 				},
 				'3H':{ 
 					visible:function(){
-						return $scope.current_element === "H" && 
+						return $scope.current_element === "H" &&
+								$scope.current_tab == "Elements" && 
 								$scope.player.resources['3H'].unlocked;
 					},
 					order:2,						
@@ -98,18 +125,44 @@ function loadData($scope) {
 						decay_product:['3He+1','e-']
 					}
 				},
+				'He':{ 
+					visible:function(){
+						return $scope.current_element === "He" &&
+								$scope.current_tab == "Elements";
+					},
+					order:100,
+					type:'element',
+				},
 				'3He+1':{ 					
 					visible:function(){
-						return $scope.current_element === "He" && 
+						return $scope.current_element === "He" &&
+								$scope.current_tab == "Elements" && 
 								$scope.player.resources['3He+1'].unlocked;
 					},
 					order:101,
 					html:'<sup>3</sup>He<sup>+1</sup>',
 					type:['isotope','ion']
 				},
+				'C':{ 
+					visible:function(){
+						return $scope.current_element === "C" &&
+								$scope.current_tab == "Elements";
+					},
+					order:500,
+					type:'element',
+				},
+				'N':{ 
+					visible:function(){
+						return $scope.current_element === "N" &&
+								$scope.current_tab == "Elements";
+					},
+					order:600,
+					type:'element',
+				},
 				'O':{ 
 					visible:function(){
-						return $scope.current_element === "O";
+						return $scope.current_element === "O" &&
+								$scope.current_tab == "Elements";
 					},
 					order:700,
 					ratio:0.9976,
@@ -117,7 +170,8 @@ function loadData($scope) {
 				},
 				'17O':{ 					
 					visible:function(){
-						return $scope.current_element === "O" && 
+						return $scope.current_element === "O" &&
+								$scope.current_tab == "Elements" && 
 								$scope.player.resources['17O'].unlocked;
 					},
 					order:701,
@@ -127,7 +181,8 @@ function loadData($scope) {
 				},
 				'18O':{ 						
 					visible:function(){
-						return $scope.current_element === "O" && 
+						return $scope.current_element === "O" &&
+								$scope.current_tab == "Elements" && 
 								$scope.player.resources['18O'].unlocked;
 					},
 					order:702,						
@@ -202,10 +257,10 @@ function loadData($scope) {
 					order:1},
 			'Periodic Table':{
 					visible:function(){
-						return false;
+						return $scope.player.unlocks.periodic_table;
 					},
 					has_new:function(){
-						return true;
+						return false;
 					},
 					order:2},
 			'Options':{
@@ -343,4 +398,9 @@ function loadData($scope) {
 	$scope.html = {
 		'beta-':'&#946;<sup>-</sup>'
 	};
+	
+	$scope.periodic_table =[ 
+	['H','','','','','','','','','','','','','','','','','He'],
+	['Li','Be','','','','','','','','','','','B','C','N','O','F','Ne']
+	];
 }
