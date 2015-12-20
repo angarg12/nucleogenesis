@@ -364,9 +364,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		$scope.prettifyNumber = function(number){
 			if(typeof number == 'undefined'){
 				return;
-			}
-					
-			if(number == ""){
+			}					
+			if(number === ""){
 				return "";
 			}
 			if(number == Infinity){
