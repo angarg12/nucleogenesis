@@ -107,7 +107,11 @@
                             value="1" 
                             min="1"
                             ng-init="ionization[current_element][$index] = ionization[current_element][$index] || 1" 
-                            ng-model="ionization[current_element][$index]"><button>React</button>
+                            ng-model="ionization[current_element][$index]">
+                            	<button class="btn btn-default"
+                            	ng-click="react(ionization[current_element][$index], ionization)"
+                            	ng-class="{disabled: !isReactionCostMet(ionization[current_element][$index], ionization)}">React</button>
+                            </input>
                           </div>
                         </td>
                       </tr>
@@ -128,7 +132,11 @@
                             value="1" 
                             min="1"
                             ng-init="electron_affinity[current_element][$index] = electron_affinity[current_element][$index] || 1" 
-                            ng-model="electron_affinity[current_element][$index]"><button>React</button>
+                            ng-model="electron_affinity[current_element][$index]">
+                            <button class="btn btn-default"
+                            	ng-click="react(electron_affinity[current_element][$index], electron_affinity)"
+                            	ng-class="{disabled: !isReactionCostMet(electron_affinity[current_element][$index], electron_affinity)}">React</button>
+                            </input>
                           </div>
                         </td>
                       </tr>
@@ -149,7 +157,10 @@
                             min="1"
                             ng-init="binding[current_element][$index] = binding[current_element][$index] || 1" 
                             ng-model="binding[current_element][$index]">
-                            <button>React</button>
+                            <button class="btn btn-default"
+                            	ng-click="react(binding[current_element][$index], binding)"
+                            	ng-class="{disabled: !isReactionCostMet(binding[current_element][$index], binding)}">React</button>
+                            </input>
                           </div>
                         </td>
                       </tr>

@@ -86,6 +86,11 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 						is_new:false,
 						unlocked: true
 					},
+					'H-':{ 
+						number:0,
+						is_new:true,
+						unlocked: false
+					},
 					'2H':{ 
 						number:0,
 						is_new:true,
@@ -117,7 +122,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 						unlocked: true
 					},
 					'n':{ 
-						number:1000,
+						number:0,
 						is_new:true,
 						unlocked: false
 					},
@@ -127,7 +132,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 						unlocked: true
 					},
 					'energy':{ 
-						number:0,
+						number:10000000,
 						is_new:false,
 						unlocked: true
 					}
@@ -220,6 +225,36 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				$scope.player.resources['n'].number -= price;
 				$scope.player.elements[element].unlocked = true;
 				$scope.player.elements_unlocked++;
+        	}
+        };
+        
+        $scope.isReactionCostMet = function(number, reaction) {
+	    	var keys = Object.keys(reaction.reactant);
+	    	for(var i = 0; i < keys.length; i++){
+	    		var available = $scope.player.resources[keys[i]].number;
+	    		var required = Number.parseFloat((number*reaction.reactant[keys[i]]).toFixed(4));
+				if(required > available){
+					return false;
+				}
+	    	}
+	    	return true;
+        };
+        
+        $scope.react = function(number, reaction) {
+        	if($scope.isReactionCostMet(number, reaction)){
+		    	var keys = Object.keys(reaction.reactant);
+		    	for(var i = 0; i < keys.length; i++){
+	    			var required = Number.parseFloat((number*reaction.reactant[keys[i]]).toFixed(4));
+	    			$scope.player.resources[keys[i]].number -= required;
+	    			$scope.player.resources[keys[i]].number = Number.parseFloat($scope.player.resources[keys[i]].number.toFixed(4));
+		    	}
+		    	var keys = Object.keys(reaction.product);
+		    	for(var i = 0; i < keys.length; i++){
+	    			var produced = Number.parseFloat((number*reaction.product[keys[i]]).toFixed(4));
+	    			$scope.player.resources[keys[i]].number += produced;
+	    			$scope.player.resources[keys[i]].unlocked = true;
+	    			$scope.player.resources[keys[i]].number = Number.parseFloat($scope.player.resources[keys[i]].number.toFixed(4));
+		    	}
         	}
         };
 
