@@ -97,13 +97,24 @@ function loadData($scope) {
 					ratio:0.999884,
 					type:'element'
 				},
+				'H-':{ 
+					visible:function(){
+						return $scope.current_element === "H" &&
+								$scope.current_tab == "Elements" && 
+								$scope.player.resources['H-'].unlocked;;
+					},
+					order:1,
+					html:'H<sup>-</sup>',
+					type:'ion',
+					charge:+1
+				},
 				'2H':{ 
 					visible:function(){
 						return $scope.current_element === "H" &&
 								$scope.current_tab == "Elements" && 
 								$scope.player.resources['2H'].unlocked;
 					},
-					order:1,
+					order:2,
 					ratio:0.000115,
 					html:'<sup>2</sup>H',
 					type:'isotope'
@@ -114,7 +125,7 @@ function loadData($scope) {
 								$scope.current_tab == "Elements" && 
 								$scope.player.resources['3H'].unlocked;
 					},
-					order:2,						
+					order:4,						
 					ratio:0.000001,
 					html:'<sup>3</sup>H',
 					type:'isotope',
@@ -140,7 +151,7 @@ function loadData($scope) {
 								$scope.player.resources['3He+1'].unlocked;
 					},
 					order:101,
-					html:'<sup>3</sup>He<sup>+1</sup>',
+					html:'<sup>3</sup>He<sup>+</sup>',
 					type:['isotope','ion']
 				},
 				'C':{ 
@@ -393,7 +404,60 @@ function loadData($scope) {
 					power:100000000,
 					priceIncrease:1.15
 				}
-	};	
+	};
+	
+	$scope.reactions = {
+		'H':{
+			'ionization':[
+				{
+					reactant:{
+						'energy':13.5984,
+						'H':1
+					},
+					product:{
+						'p':1,
+						'e-':1
+					}
+				}
+			],
+			'electron_affinity':[
+				{
+					reactant:{
+						'e-':1,
+						'H':1
+					},
+					product:{
+						'H-':1,
+						'energy':0.7545
+					}
+				}
+			],
+			'binding_energy':[
+				{
+					reactant:{
+						'energy':2224520,
+						'2H':1
+					},
+					product:{
+						'p':1,
+						'n':1,
+						'e-':1
+					}
+				},
+				{
+					reactant:{
+						'energy':2827266,
+						'3H':1
+					},
+					product:{
+						'p':1,
+						'n':2,
+						'e-':1
+					}
+				}
+			]
+		}
+	};			
 	
 	$scope.html = {
 		'beta-':'&#946;<sup>-</sup>'

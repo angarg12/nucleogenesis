@@ -46,8 +46,8 @@
         <div class="tab-content ng-scope" id="elements">
           <div class="tab-pane row" ng-class="{active: current_tab == 'Elements'}">
             <div class="col-lg-8 col-lg-push-3">
-              <h3>{{elements[current_element].name}}</h3>
-              <h4><span ng-bind-html="trustHTML(prettifyNumber(elementProduction(current_element)))"></span> {{current_element}}/s</h4>
+              <h2>{{elements[current_element].name}}</h2>
+              <h3><span ng-bind-html="trustHTML(prettifyNumber(elementProduction(current_element)))"></span> {{current_element}}/s</h3>
               <ul ng-if="player.unlocks.isotopes">
               	 <li>
 		          	<span ng-bind-html="trustHTML(getHTML(current_element))"></span>: {{(resources[current_element].ratio*100).toFixed(4)}}%
@@ -66,21 +66,17 @@
                            {{generator.name}}: {{generator.value.power}} {{current_element}}/s
                           </div>
                         </td>
-
                         <td>
                           <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(player.elements[current_element].generators[generator.name].level))"></div>
-                        </td>
-                        
+                        </td>                        
                         <td>
                           <div class="pull-left">
                             Total <span ng-bind-html="trustHTML(prettifyNumber(tierProduction(generator.name,current_element)))"></span> {{current_element}}/s
                           </div>
                         </td>
-
                         <td>
                           <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(generatorPrice(generator.name, current_element)))"></div> &nbsp;{{current_element}}
                         </td>
-
                         <td>
                           <div class="pull-left">
                             <button class="btn btn-default"
@@ -92,7 +88,75 @@
                     </tbody>
                   </table>
                 </div>
-
+				
+				<div ng-if="player.unlocks.reactions">
+                <hr>
+                  <h3>Reactions</h3>
+                  <h4>Ionization</h4>
+                  <table class="table">
+                    <tbody>
+                      <tr ng-repeat="ionization in reactions[current_element].ionization">
+                        <td width=50%>
+                          <div class="pull-left">
+                            <span ng-bind-html="trustHTML(reactionFormat(ionization[current_element][$index],ionization))"></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="pull-left">
+                            <input type="number" 
+                            value="1" 
+                            min="1"
+                            ng-init="ionization[current_element][$index] = ionization[current_element][$index] || 1" 
+                            ng-model="ionization[current_element][$index]"><button>React</button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <h4>Electron affinity</h4>
+                  <table class="table">
+                    <tbody>
+                      <tr ng-repeat="electron_affinity in reactions[current_element].electron_affinity">
+                        <td width=50%>
+                          <div class="pull-left">
+                          	<span ng-bind-html="trustHTML(reactionFormat(electron_affinity[current_element][$index],electron_affinity))"></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="pull-left">
+                            <input type="number" 
+                            value="1" 
+                            min="1"
+                            ng-init="electron_affinity[current_element][$index] = electron_affinity[current_element][$index] || 1" 
+                            ng-model="electron_affinity[current_element][$index]"><button>React</button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <h4>Binding energy</h4>
+                  <table class="table">
+                    <tbody>
+                      <tr ng-repeat="binding in reactions[current_element].binding_energy">
+                        <td width=50%>
+                          <div class="pull-left">
+                            <span ng-bind-html="trustHTML(reactionFormat(binding[current_element][$index],binding))"></span>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="pull-left">
+                            <input type="number" 
+                            min="1"
+                            ng-init="binding[current_element][$index] = binding[current_element][$index] || 1" 
+                            ng-model="binding[current_element][$index]">
+                            <button>React</button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+				
                 <div ng-if="player.elements[current_element].upgrades.unlocked">
                 <hr>
                   <h4>Upgrades</h4>

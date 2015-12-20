@@ -9,7 +9,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			unlocks: {
 				isotopes:true,
 				decay:true,
-				periodic_table:true
+				periodic_table:true,
+				reactions:true
 			},
 			encyclopedia: {
 				'Hydrogen':{is_new:true},				
@@ -318,6 +319,38 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
             	$scope.player.resources[isotopes[isotopes.length-1]].number += remaning_N;
             }
         };
+
+		/* 
+			Formats a reaction i.e. a transformation from one compound to another
+		*/
+		$scope.reactionFormat = function(number, reaction) {
+			var reactionHTML = "";
+			reactionHTML += $scope.compoundFormat(number, reaction.reactant);
+			reactionHTML += "<span class=\"icon\">&#8594;</span> ";
+			reactionHTML += $scope.compoundFormat(number, reaction.product);
+			return reactionHTML;
+		}
+
+		/* 
+			Formats in HTML a compound i.e. a collection of resources 
+			of the form x + y + z
+		*/
+        $scope.compoundFormat = function(number, compound) {
+        	var compoundHTML = "";
+        	var keys = Object.keys(compound);
+        	for(var i = 0; i < keys.length; i++){
+		    	if(Number.isInteger(number) && number > 1){
+		    		compoundHTML += $scope.prettifyNumber(Number.parseFloat((number*compound[keys[i]]).toFixed(4)))+" ";
+		    	}else if(compound[keys[i]] != 1){
+		    		compoundHTML += $scope.prettifyNumber(compound[keys[i]])+" ";
+		    	}
+        		compoundHTML += $scope.getHTML(keys[i])+" ";
+        		if(i < keys.length-1){
+        			compoundHTML += "+ ";
+        		}
+        	}
+        	return compoundHTML;
+        }
         
         $scope.decayFormat = function(radioactivity) {
         	var format = '<span class="icon">&#8594;</span>';
@@ -332,7 +365,10 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			if(typeof number == 'undefined'){
 				return;
 			}
-				
+					
+			if(number == ""){
+				return "";
+			}
 			if(number == Infinity){
 				return "&infin;";
 			}
