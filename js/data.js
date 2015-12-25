@@ -136,6 +136,16 @@ function loadData($scope) {
 						decay_product:['3He+1','e-']
 					}
 				},
+				'H2':{ 
+					visible:function(){
+						return $scope.current_element === "H" &&
+								$scope.current_tab == "Elements" && 
+								$scope.player.resources['H2'].unlocked;
+					},
+					order:5,		
+					html:'H<sub>2</sub>',
+					type:'allotrope'
+				},
 				'He':{ 
 					visible:function(){
 						return $scope.current_element === "He" &&
@@ -453,6 +463,19 @@ function loadData($scope) {
 						'p':1,
 						'n':2,
 						'e-':1
+					}
+				}
+			],
+			'synthesis':[
+				{
+					name:'H-p',
+					reactant:{
+						'H-':1,
+						'p':1
+					},
+					product:{
+						'H2':1,
+						'energy':17.3705
 					}
 				}
 			]

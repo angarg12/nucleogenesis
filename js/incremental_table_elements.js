@@ -47,6 +47,12 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 						},
 						unlocked: true
 					},
+					synthesis:{
+						'H-p':{
+							number:0,
+							active:0
+						}
+					},
 					unlocked:true
 				},'O':{					
 					generators: {
@@ -138,12 +144,17 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 					}
 				}
 			};
+			
+			TODO:
+		implement the actual functionality of synthesis!!
 		
 		cache = {};
 		$scope.current_tab = "Elements";
 		$scope.current_entry = "Hydrogen";
 		$scope.current_element = "H";
 		$scope.hover_element = "";
+		$scope.synthesis_price_increase = 2;
+		$scope.synthesis_power_increase = 2;
         var numberGenerator = new Ziggurat();
 
 		$scope.elementPrice = function(element) {
@@ -162,6 +173,45 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			var price = $scope.generators[name].price*Math.pow($scope.generators[name].priceIncrease, level);
 			return Math.ceil(price);
 		};
+		
+		$scope.synthesisMultiplier = function(synthesis) {
+			var level = $scope.player.elements[$scope.current_element].synthesis[synthesis.name].number;
+			return Math.ceil(Math.pow($scope.synthesis_price_increase, level));
+		};
+		
+		$scope.synthesisPower = function(synthesis) {
+			var level = $scope.player.elements[$scope.current_element].synthesis[synthesis.name].active;
+			return Math.ceil(Math.pow(level, $scope.synthesis_power_increase));
+		};
+		
+		$scope.synthesisPrice = function(synthesis) {
+			var multiplier = $scope.synthesisMultiplier(synthesis);
+			var price = {};
+			for(resource in synthesis.reactant){
+				price[resource] = synthesis.reactant[resource]*multiplier;
+			}
+			return price;
+		};
+		
+		$scope.isSynthesisCostMet = function(synthesis) {
+			var price = $scope.synthesisPrice(synthesis);
+			for(resource in price){
+				if($scope.player.resources[resource].number < price[resource]){
+					return false;
+				}
+			}
+			return true;
+		};	
+		
+		$scope.buySynthesis = function(synthesis) {
+            if ($scope.isSynthesisCostMet(synthesis)) {
+            	var price = $scope.synthesisPrice(synthesis);
+            	for(resource in price){
+					$scope.player.resources[resource].number -= price[resource];
+				}
+				$scope.player.elements[$scope.current_element].synthesis[synthesis.name].number += 1;
+            }
+		};	
 		
 		$scope.getHTML = function(resource) {		
 			var html = $scope.html[resource];
