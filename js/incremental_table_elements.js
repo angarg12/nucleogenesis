@@ -107,6 +107,11 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 						is_new:true,		
 						unlocked: true
 					},
+					'H2':{ 
+						number:0,
+						is_new:true,		
+						unlocked: false
+					},
 					'O':{ 
 						number:0,
 						is_new:false,
@@ -403,6 +408,16 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
             	}
             	// The last isotope is just the remaining production that hasn't been consumed
             	$scope.player.resources[isotopes[isotopes.length-1]].number += remaning_N;
+            }
+            
+            // We will process the synthesis reactions
+            for(var element in $scope.player.elements){
+            	for(var synthesis in $scope.player.elements[element].synthesis){
+            		var power = $scope.synthesisPower(synthesis);
+            		if(power != 0){
+            			$scope.react(power, $scope.synthesis[synthesis]);
+            		}
+            	}
             }
         };
 
