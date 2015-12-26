@@ -133,7 +133,7 @@ function loadData($scope) {
 						half_life:3.8852e+8,
 						decay_energy:18610,
 						decay_type:'beta-',
-						decay_product:['3He+1','e-']
+						decay_product:{'3He+1':1,'e-':1}
 					}
 				},
 				'H2':{ 
@@ -241,6 +241,8 @@ function loadData($scope) {
 					type:'energy'
 				}
 	};
+	
+	$scope.radioisotopes = ['3H'];
 	
 	$scope.tabs = {
 			'Elements':{

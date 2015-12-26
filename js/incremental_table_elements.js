@@ -23,7 +23,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 							'Tier 1':{level:1},							
 							'Tier 2':{level:1},
 							'Tier 3':{level:1},
-							'Tier 4':{level:100000000000},
+							'Tier 4':{level:10000000000},
 							'Tier 5':{level:0},
 							'Tier 6':{level:0},
 							'Tier 7':{level:0},
@@ -112,6 +112,11 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 						is_new:true,		
 						unlocked: false
 					},
+					'3He+1':{ 
+						number:0,
+						is_new:true,
+						unlocked: false
+					},
 					'O':{ 
 						number:0,
 						is_new:false,
@@ -128,9 +133,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 						unlocked: true
 					},
 					'e-':{ 
-						number:1000,
+						number:0,
 						is_new:false,
-						unlocked: true
+						unlocked: false
 					},
 					'n':{ 
 						number:0,
@@ -366,7 +371,43 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
             
         };
 		
-        function update() {
+        function update() {        
+            // decay should become first, since we are decaying the products from last step
+            // We will process the radioactive decay
+            for(var i = 0; i < $scope.radioisotopes.length; i++){
+            	var radioisotope = $scope.radioisotopes[i];
+            	if($scope.player.resources[radioisotope].unlocked){
+            		var number = $scope.player.resources[radioisotope].number;
+            		// p is the decay constant
+            		var p = Math.log(2) / $scope.resources[radioisotope].radioactivity.half_life;
+            		var q = 1-p;
+		        	var mean = number*p;
+		        	var variance = number*p*q;
+		        	var std = Math.sqrt(variance);
+		        	production = Math.round(numberGenerator.nextGaussian()*std+mean);
+		        	if(production > number){
+		        		production = number;
+		        	}
+		        	if(production < 0){
+		        		production = 0;
+		        	}
+		        	// we decrease the number of radioactive element
+		        	$scope.player.resources[radioisotope].number -= production;
+		        	// produce energy
+		        	$scope.player.resources["energy"].number += $scope.resources[radioisotope].radioactivity.decay_energy*production;
+		        	if($scope.resources[radioisotope].radioactivity.decay_energy*production > 0){
+			        	$scope.player.resources["energy"].unlocked = true;
+			        }
+		        	// and decay products
+		        	for(var product in $scope.resources[radioisotope].radioactivity.decay_product){
+		        		$scope.player.resources[product].number += $scope.resources[radioisotope].radioactivity.decay_product[product]*production;
+		        		if(production > 0){
+			        		$scope.player.resources[product].unlocked = true;
+			        	}
+		        	}
+            	}
+            }
+        
             // We will simulate the production of isotopes proportional to their ratio
             for(var element in $scope.player.elements){
             	// Prepare an array with the isotopes
@@ -399,10 +440,16 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		        		production = 0;
 		        	}
 		        	$scope.player.resources[isotopes[i]].number += production;
+		        	if(production > 0){
+		        		$scope.player.resources[isotopes[i]].unlocked = true;
+		        	}
 		        	remaning_N -= production;
             	}
             	// The last isotope is just the remaining production that hasn't been consumed
             	$scope.player.resources[isotopes[isotopes.length-1]].number += remaning_N;
+            	if(remaning_N > 0){
+            		$scope.player.resources[isotopes[isotopes.length-1]].unlocked = true;
+            	}
             }
             
             // We will process the synthesis reactions
