@@ -467,20 +467,23 @@ function loadData($scope) {
 				}
 			],
 			'synthesis':[
-				{
-					name:'H-p',
-					reactant:{
-						'H-':1,
-						'p':1
-					},
-					product:{
-						'H2':1,
-						'energy':17.3705
-					}
-				}
+				'H-p'
 			]
 		}
-	};			
+	};
+	
+	$scope.synthesis = {
+		'H-p':{
+			reactant:{
+				'H-':1,
+				'p':1
+			},
+			product:{
+				'H2':1,
+				'energy':17.3705
+			}
+		}
+	};	
 	
 	$scope.html = {
 		'beta-':'&#946;<sup>-</sup>'

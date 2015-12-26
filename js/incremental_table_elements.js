@@ -145,8 +145,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				}
 			};
 			
-			TODO:
-		implement the actual functionality of synthesis!!
+		//TODO:
+		//implement the actual functionality of synthesis!!
 		
 		cache = {};
 		$scope.current_tab = "Elements";
@@ -175,20 +175,21 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		};
 		
 		$scope.synthesisMultiplier = function(synthesis) {
-			var level = $scope.player.elements[$scope.current_element].synthesis[synthesis.name].number;
+			var level = $scope.player.elements[$scope.current_element].synthesis[synthesis].number;
 			return Math.ceil(Math.pow($scope.synthesis_price_increase, level));
 		};
 		
 		$scope.synthesisPower = function(synthesis) {
-			var level = $scope.player.elements[$scope.current_element].synthesis[synthesis.name].active;
+			var level = $scope.player.elements[$scope.current_element].synthesis[synthesis].active;
 			return Math.ceil(Math.pow(level, $scope.synthesis_power_increase));
 		};
 		
 		$scope.synthesisPrice = function(synthesis) {
 			var multiplier = $scope.synthesisMultiplier(synthesis);
 			var price = {};
-			for(resource in synthesis.reactant){
-				price[resource] = synthesis.reactant[resource]*multiplier;
+			var reactant = $scope.synthesis[synthesis].reactant;
+			for(resource in reactant){
+				price[resource] = reactant[resource]*multiplier;
 			}
 			return price;
 		};
@@ -209,7 +210,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
             	for(resource in price){
 					$scope.player.resources[resource].number -= price[resource];
 				}
-				$scope.player.elements[$scope.current_element].synthesis[synthesis.name].number += 1;
+				$scope.player.elements[$scope.current_element].synthesis[synthesis].number += 1;
             }
 		};	
 		

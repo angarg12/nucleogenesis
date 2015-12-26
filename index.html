@@ -169,40 +169,40 @@
                   <h3>Synthesis</h3>
                   <table class="table">
                     <tbody>
-                      <tr ng-repeat="synthesis in reactions[current_element].synthesis">
+                      <tr ng-repeat="syn in reactions[current_element].synthesis">
                         <td width=50%>
                           <div class="pull-left"
-								ng-class="{'text-muted': player.elements[current_element].synthesis[synthesis.name].active <= 0}">
-                            <span ng-bind-html="trustHTML(reactionFormat(synthesisPower(synthesis),synthesis))"></span>
+								ng-class="{'text-muted': player.elements[current_element].synthesis[syn].active <= 0}">
+                            <span ng-bind-html="trustHTML(reactionFormat(synthesisPower(syn),synthesis[syn]))"></span>
                           </div>
                         </td>
                         <td>
-                          <div class="pull-left" ng-if="player.elements[current_element].synthesis[synthesis.name].number > 0">
-                            {{player.elements[current_element].synthesis[synthesis.name].active}}/{{player.elements[current_element].synthesis[synthesis.name].number}} 
+                          <div class="pull-left" ng-if="player.elements[current_element].synthesis[syn].number > 0">
+                            {{player.elements[current_element].synthesis[syn].active}}/{{player.elements[current_element].synthesis[syn].number}} 
                           </div>
                         </td>
                   		<td>
-                          <div class="pull-left" ng-if="player.elements[current_element].synthesis[synthesis.name].number > 0">
+                          <div class="pull-left" ng-if="player.elements[current_element].synthesis[syn].number > 0">
                             <button class="btn btn-default"
-                            ng-disabled="player.elements[current_element].synthesis[synthesis.name].active >= player.elements[current_element].synthesis[synthesis.name].number"
-                            ng-click="player.elements[current_element].synthesis[synthesis.name].active = player.elements[current_element].synthesis[synthesis.name].active+1"
-                            ng-class="{disabled: player.elements[current_element].synthesis[synthesis.name].active >= player.elements[current_element].synthesis[synthesis.name].number}">+</button>
+                            ng-disabled="player.elements[current_element].synthesis[syn].active >= player.elements[current_element].synthesis[syn].number"
+                            ng-click="player.elements[current_element].synthesis[syn].active = player.elements[current_element].synthesis[syn].active+1"
+                            ng-class="{disabled: player.elements[current_element].synthesis[syn].active >= player.elements[current_element].synthesis[syn].number}">+</button>
                             <button class="btn btn-default"
-                            ng-disabled="player.elements[current_element].synthesis[synthesis.name].active <= 0"
-                            ng-click="player.elements[current_element].synthesis[synthesis.name].active = player.elements[current_element].synthesis[synthesis.name].active-1"
-                            ng-class="{disabled: player.elements[current_element].synthesis[synthesis.name].active <= 0}">-</button>
+                            ng-disabled="player.elements[current_element].synthesis[syn].active <= 0"
+                            ng-click="player.elements[current_element].synthesis[syn].active = player.elements[current_element].synthesis[syn].active-1"
+                            ng-class="{disabled: player.elements[current_element].synthesis[syn].active <= 0}">-</button>
                           </div>
                         </td>
                         <td>
                           <div class="pull-left">
-                            <span ng-bind-html="trustHTML(compoundFormat(synthesisMultiplier(synthesis),synthesis.reactant))"></span>
+                            <span ng-bind-html="trustHTML(compoundFormat(synthesisMultiplier(syn),synthesis[syn].reactant))"></span>
                           </div>
                         </td>
                         <td>
                           <div class="pull-left">
                             <button class="btn btn-default"
-                            ng-click="buySynthesis(synthesis)"
-                            ng-class="{disabled: !isSynthesisCostMet(synthesis)}">Buy</button>
+                            ng-click="buySynthesis(syn)"
+                            ng-class="{disabled: !isSynthesisCostMet(syn)}">Buy</button>
                           </div>
                         </td>
                       </tr>
