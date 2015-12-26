@@ -150,9 +150,6 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				}
 			};
 			
-		//TODO:
-		//implement the actual functionality of synthesis!!
-		
 		cache = {};
 		$scope.current_tab = "Elements";
 		$scope.current_entry = "Hydrogen";
@@ -346,8 +343,6 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		$scope.load = function() {
 			try {
 				$scope.player = JSON.parse(localStorage.getItem("playerStored"));
-				$scope.currentPrestige = parseInt(localStorage.getItem("currentPrestige"));
-
 			}catch(err){
 				alert("Error loading savegame, reset forced.");
 				$scope.reset(false);
@@ -500,9 +495,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				$scope.lastSave = "None";
 			}
 			loadData($scope);
-			init();
+			//init();
             $interval(update,1000);
-            $interval($scope.save,60000);
+            //$interval($scope.save,60000);
         });	
         
         $scope.trustHTML = function(html) {
