@@ -173,7 +173,7 @@
                         <td width=50%>
                           <div class="pull-left"
 								ng-class="{'text-muted': player.elements[current_element].synthesis[syn].active <= 0}">
-                            <span ng-bind-html="trustHTML(reactionFormat(synthesisPower(syn),synthesis[syn]))"></span>
+                            <span ng-bind-html="trustHTML(reactionFormat(synthesisPower(current_element, syn),synthesis[syn]))"></span>
                           </div>
                         </td>
                         <td>
@@ -195,14 +195,14 @@
                         </td>
                         <td>
                           <div class="pull-left">
-                            <span ng-bind-html="trustHTML(compoundFormat(synthesisMultiplier(syn),synthesis[syn].reactant))"></span>
+                            <span ng-bind-html="trustHTML(compoundFormat(synthesisMultiplier(current_element, syn),synthesis[syn].reactant))"></span>
                           </div>
                         </td>
                         <td>
                           <div class="pull-left">
                             <button class="btn btn-default"
-                            ng-click="buySynthesis(syn)"
-                            ng-class="{disabled: !isSynthesisCostMet(syn)}">Buy</button>
+                            ng-click="buySynthesis(current_element, syn)"
+                            ng-class="{disabled: !isSynthesisCostMet(current_element, syn)}">Buy</button>
                           </div>
                         </td>
                       </tr>

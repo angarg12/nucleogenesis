@@ -187,7 +187,34 @@ function loadData($scope) {
 					},
 					order:700,
 					ratio:0.9976,
-					type:'element'
+					type:'element',
+					free_radical:{
+						reactivity:0.8,
+						reaction:{
+							'O':'O2',
+							'O2':'O3'
+						}
+					}
+				},
+				'O2':{ 
+					visible:function(){
+						return $scope.current_element === "O" &&
+								$scope.current_tab == "Elements" && 
+								$scope.player.resources['O2'].unlocked;
+					},
+					order:701,
+					html:'O<sub>2</sub>',
+					type:'molecule',
+				},
+				'O3':{ 
+					visible:function(){
+						return $scope.current_element === "O" &&
+								$scope.current_tab == "Elements" && 
+								$scope.player.resources['O3'].unlocked;
+					},
+					order:702,
+					html:'O<sub>3</sub>',
+					type:'molecule'
 				},
 				'17O':{ 					
 					visible:function(){
@@ -195,7 +222,7 @@ function loadData($scope) {
 								$scope.current_tab == "Elements" && 
 								$scope.player.resources['17O'].unlocked;
 					},
-					order:701,
+					order:710,
 					ratio:0.00039,
 					html:'<sup>17</sup>O',
 					type:'isotope'
@@ -206,7 +233,7 @@ function loadData($scope) {
 								$scope.current_tab == "Elements" && 
 								$scope.player.resources['18O'].unlocked;
 					},
-					order:702,						
+					order:720,						
 					ratio:0.00201 ,
 					html:'<sup>18</sup>O',
 					type:'isotope'
@@ -243,6 +270,8 @@ function loadData($scope) {
 	};
 	
 	$scope.radioisotopes = ['3H'];
+	
+	$scope.free_radicals = ['O'];
 	
 	$scope.tabs = {
 			'Elements':{

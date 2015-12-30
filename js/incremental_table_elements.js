@@ -83,6 +83,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 						},
 						unlocked: true
 					},
+					synthesis:{
+					},
 					unlocked:true
 				}
 			},
@@ -122,13 +124,23 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 						is_new:false,
 						unlocked: true
 					},
+					'O2':{ 
+						number:0,
+						is_new:true,
+						unlocked: false
+					},
+					'O3':{ 
+						number:0,
+						is_new:true,
+						unlocked: false
+					},
 					'17O':{ 
-						number:345,
+						number:0,
 						is_new:true,	
 						unlocked: true
 					},
 					'18O':{ 
-						number:36236,
+						number:0,
 						is_new:true,			
 						unlocked: true
 					},
@@ -158,7 +170,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		cache = {};
 		$scope.current_tab = "Elements";
 		$scope.current_entry = "Hydrogen";
-		$scope.current_element = "H";
+		$scope.current_element = "O";
 		$scope.hover_element = "";
 		$scope.synthesis_price_increase = 2;
 		$scope.synthesis_power_increase = 2;
@@ -181,18 +193,18 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			return Math.ceil(price);
 		};
 		
-		$scope.synthesisMultiplier = function(synthesis) {
-			var level = $scope.player.elements[$scope.current_element].synthesis[synthesis].number;
+		$scope.synthesisMultiplier = function(element, synthesis) {
+			var level = $scope.player.elements[element].synthesis[synthesis].number;
 			return Math.ceil(Math.pow($scope.synthesis_price_increase, level));
 		};
 		
-		$scope.synthesisPower = function(synthesis) {
-			var level = $scope.player.elements[$scope.current_element].synthesis[synthesis].active;
+		$scope.synthesisPower = function(element, synthesis) {
+			var level = $scope.player.elements[element].synthesis[synthesis].active;
 			return Math.ceil(Math.pow(level, $scope.synthesis_power_increase));
 		};
 		
-		$scope.synthesisPrice = function(synthesis) {
-			var multiplier = $scope.synthesisMultiplier(synthesis);
+		$scope.synthesisPrice = function(element, synthesis) {
+			var multiplier = $scope.synthesisMultiplier(element, synthesis);
 			var price = {};
 			var reactant = $scope.synthesis[synthesis].reactant;
 			for(resource in reactant){
@@ -201,8 +213,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			return price;
 		};
 		
-		$scope.isSynthesisCostMet = function(synthesis) {
-			var price = $scope.synthesisPrice(synthesis);
+		$scope.isSynthesisCostMet = function(element, synthesis) {
+			var price = $scope.synthesisPrice(element, synthesis);
 			for(resource in price){
 				if($scope.player.resources[resource].number < price[resource]){
 					return false;
@@ -211,9 +223,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			return true;
 		};	
 		
-		$scope.buySynthesis = function(synthesis) {
-            if ($scope.isSynthesisCostMet(synthesis)) {
-            	var price = $scope.synthesisPrice(synthesis);
+		$scope.buySynthesis = function(element, synthesis) {
+            if ($scope.isSynthesisCostMet(element, synthesis)) {
+            	var price = $scope.synthesisPrice(element, synthesis);
             	for(resource in price){
 					$scope.player.resources[resource].number -= price[resource];
 				}
@@ -407,7 +419,59 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		        	}
             	}
             }
-        
+            
+            // We will simulate the reactivity of free radicals            
+            for(var i = 0; i < $scope.free_radicals.length; i++){
+            	var radical = $scope.free_radicals[i];
+            	if($scope.player.resources[radical].unlocked){
+            	    var number = $scope.player.resources[radical].number;
+            		var p = $scope.resources[radical].free_radical.reactivity;
+            		var q = 1-p;
+		        	var mean = number*p;
+		        	var variance = number*p*q;
+		        	var std = Math.sqrt(variance);
+		        	production = Math.round(numberGenerator.nextGaussian()*std+mean);
+		        	var reactants_number = 0;
+		        	for(var product in $scope.resources[radical].free_radical.reaction){
+		        		reactants_number += $scope.player.resources[product].number;
+		        	}
+		        	if(reactants_number == 0){
+		        		continue;
+		        	}
+		        	if(production > reactants_number){
+		        		production = reactants_number;
+		        	}
+		        	if(production > number){
+		        		production = number;
+		        	}
+		        	if(production < 0){
+		        		production = 0;
+		        	}	   	
+// bugs: the numbers are rounded and therefore not exact
+					var reacted = {};
+		        	for(var product in $scope.resources[radical].free_radical.reaction){
+		        		reacted[product] = Math.round(production*($scope.player.resources[product].number/reactants_number));
+		        		// This is complicated...
+		        		// when an element reacts with itself, we are not producing the full amount, but half of it
+		        		// e.g. if you react 30 atoms with itself, they will form 15 pairs
+		        		// also if the production number is even, there will be one leftover atom, that must be put back into the pool
+		        		// finally to avoid double counting, we need to refil the atoms by half of the production
+		        		if(product == radical){
+		        			reacted[product] = Math.floor(reacted[product]/2);
+		        			$scope.player.resources[radical].number += reacted[product]%2+reacted[product];
+		        		}
+		        	}
+		        	for(var product in $scope.resources[radical].free_radical.reaction){
+		        		$scope.player.resources[product].number -= reacted[product];
+		        		$scope.player.resources[$scope.resources[radical].free_radical.reaction[product]].number += reacted[product];
+		        		if($scope.player.resources[$scope.resources[radical].free_radical.reaction[product]].number > 0){
+			        		$scope.player.resources[$scope.resources[radical].free_radical.reaction[product]].unlocked = true;
+			        	}
+		        	}
+		        	$scope.player.resources[radical].number -= production;
+            	}
+            }
+            
             // We will simulate the production of isotopes proportional to their ratio
             for(var element in $scope.player.elements){
             	// Prepare an array with the isotopes
@@ -455,7 +519,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
             // We will process the synthesis reactions
             for(var element in $scope.player.elements){
             	for(var synthesis in $scope.player.elements[element].synthesis){
-            		var power = $scope.synthesisPower(synthesis);
+            		var power = $scope.synthesisPower(element, synthesis);
             		if(power != 0){
             			$scope.react(power, $scope.synthesis[synthesis]);
             		}
