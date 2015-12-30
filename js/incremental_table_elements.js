@@ -431,36 +431,58 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		        	var variance = number*p*q;
 		        	var std = Math.sqrt(variance);
 		        	production = Math.round(numberGenerator.nextGaussian()*std+mean);
-		        	var reactants_number = 0;
-		        	for(var product in $scope.resources[radical].free_radical.reaction){
-		        		reactants_number += $scope.player.resources[product].number;
-		        	}
-		        	if(reactants_number == 0){
-		        		continue;
-		        	}
-		        	if(production > reactants_number){
-		        		production = reactants_number;
-		        	}
+
 		        	if(production > number){
 		        		production = number;
 		        	}
 		        	if(production < 0){
 		        		production = 0;
 		        	}	   	
-// bugs: the numbers are rounded and therefore not exact
+		        	
 					var reacted = {};
-		        	for(var product in $scope.resources[radical].free_radical.reaction){
-		        		reacted[product] = Math.round(production*($scope.player.resources[product].number/reactants_number));
+					var remaining_production = production;
+					
+        			var keys = Object.keys($scope.resources[radical].free_radical.reaction);
+					for(var i = 0; i < keys.length-1; i++){
+						var product = keys[i];
+				    	var reactants_number = 0;
+				    	for(var j = i; j < keys.length; j++){
+				    		var reactant = keys[j];
+				    		reactants_number += $scope.player.resources[reactant].number;
+				    	}
+				    	
+				    	if(reactants_number == 0){
+				    		var p = 0;
+				    	}else{
+				    		var p = $scope.player.resources[product].number/reactants_number;
+				    	}
+				    	var q = 1-p;
+				    	var mean = remaining_production*p;
+				    	var variance = remaining_production*p*q;
+				    	var std = Math.sqrt(variance);
+				    	reacted[product] = Math.round(numberGenerator.nextGaussian()*std+mean);
+				    	if(reacted[product] > remaining_production){
+				    		reacted[product] = remaining_production;
+				    	}
+				    	if(reacted[product] < 0){
+				    		reacted[product] = 0;
+				    	}
+				    	
+		        		remaining_production -= reacted[product];
 		        		// This is complicated...
 		        		// when an element reacts with itself, we are not producing the full amount, but half of it
 		        		// e.g. if you react 30 atoms with itself, they will form 15 pairs
 		        		// also if the production number is even, there will be one leftover atom, that must be put back into the pool
-		        		// finally to avoid double counting, we need to refil the atoms by half of the production
+		        		// finally to avoid double counting, we need to refill the atoms by half of the production
 		        		if(product == radical){
-		        			reacted[product] = Math.floor(reacted[product]/2);
-		        			$scope.player.resources[radical].number += reacted[product]%2+reacted[product];
-		        		}
+		        			var adjusted_production = Math.floor(reacted[product]/2);
+		        			$scope.player.resources[radical].number += reacted[product]%2+adjusted_production;
+		        			reacted[product] = adjusted_production;
+		        		}		        		
 		        	}
+		        	// The last reaction is just the remaining production that hasn't been consumed
+            		reacted[keys[keys.length-1]] = remaining_production;
+            		
 		        	for(var product in $scope.resources[radical].free_radical.reaction){
 		        		$scope.player.resources[product].number -= reacted[product];
 		        		$scope.player.resources[$scope.resources[radical].free_radical.reaction[product]].number += reacted[product];
@@ -479,13 +501,13 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
             	isotopes = isotopes.concat($scope.elements[element].isotopes);
             	// N is the total production for this element
             	var N = $scope.elementProduction(element);
-            	var remaning_N = N;
+            	var remaining_N = N;
             	// We will create a random draw from a Gaussian with mean N*p and std
             	// based on a binomial
             	// On each consecutive draw we subtract the number generated to the total and
             	// recalculate the mean and std
             	for(var i = 0; i < isotopes.length-1; i++){
-            		// First we need to adjust the ratio for the remaning isotopes 
+            		// First we need to adjust the ratio for the remaining isotopes 
             		var remaining_ratio_sum = 0;
             		for(var j = i; j < isotopes.length; j++){
             			remaining_ratio_sum += $scope.resources[isotopes[j]].ratio;
@@ -493,12 +515,12 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
             		
 		        	var p = $scope.resources[isotopes[i]].ratio/remaining_ratio_sum;
 		        	var q = 1-p;
-		        	var mean = remaning_N*p;
-		        	var variance = remaning_N*p*q;
+		        	var mean = remaining_N*p;
+		        	var variance = remaining_N*p*q;
 		        	var std = Math.sqrt(variance);
 		        	production = Math.round(numberGenerator.nextGaussian()*std+mean);
-		        	if(production > remaning_N){
-		        		production = remaning_N;
+		        	if(production > remaining_N){
+		        		production = remaining_N;
 		        	}
 		        	if(production < 0){
 		        		production = 0;
@@ -507,11 +529,11 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		        	if(production > 0){
 		        		$scope.player.resources[isotopes[i]].unlocked = true;
 		        	}
-		        	remaning_N -= production;
+		        	remaining_N -= production;
             	}
             	// The last isotope is just the remaining production that hasn't been consumed
-            	$scope.player.resources[isotopes[isotopes.length-1]].number += remaning_N;
-            	if(remaning_N > 0){
+            	$scope.player.resources[isotopes[isotopes.length-1]].number += remaining_N;
+            	if(remaining_N > 0){
             		$scope.player.resources[isotopes[isotopes.length-1]].unlocked = true;
             	}
             }
