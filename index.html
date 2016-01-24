@@ -6,6 +6,7 @@
   "Content-Type">
   <meta content="utf-8" http-equiv="encoding">
   <script type="text/javascript" src="js/angular.min.js"></script>
+  <script type="text/javascript" src="js/angular-animate.min.js"></script>
   <script type="text/javascript" src="js/data.js" charset="UTF-8"></script>
   <script type="text/javascript" src="js/incremental_table_elements.js"></script>
   <script type="text/javascript" src="js/ziggurat.js"></script>
@@ -427,17 +428,14 @@
       </div>
     </div>
   </div>
-  <!--<div class="achieve achievealert animif" ng-if="achieveQueue.isVisible()">-->
-  <div class="animif" ng-if="achieveQueue.isVisible()">
-    <div class="container alert alert-success">
-        <p>Achievement:</p>
-        <a class="alert-link" ng-href="#/achievements">
-          <h3>name{{achieveQueue.get().type.label}}</h3>
-        </a>
-        <p class="achievedesc">desc{{achieveQueue.get().description()}}</p>
-        <p><em>long desc{{achieveQueue.get().type.longdesc}}</em></p>
-        <button type="button" class="close" data-dismiss="alert" ng-click="achieveQueue.clear()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    </div>
+  <div ng-cloak>
+	  <div class="achieve achievealert animif" ng-if="toast.length > 0">
+		<div class="container alert alert-success">
+		    <h3>New unlock:</h3>
+		    <h2>{{toast[0].name}}</h2>
+		    <button type="button" class="close" data-dismiss="alert" ng-click="toast.shift()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		</div>
+	  </div>
   </div>
 </body>
 </html>

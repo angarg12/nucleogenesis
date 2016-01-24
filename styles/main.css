@@ -43,6 +43,42 @@
 	margin-top: 20px;
 }
 
+.achievealert {
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+}
+.achieve {
+  text-align:center;
+}
+.achieve h3 {
+  margin-top:0px;
+  margin-bottom:0px;
+  font-weight:bold;
+  padding-left:1em;
+  padding-right:1em;
+}
+
+// animations from ng-if docs: https://docs.angularjs.org/api/ng/directive/ngIf
+.animif.ng-enter, .animif.ng-leave {
+    -webkit-transition: 5s linear all;
+    -moz-transition: 5s linear all;
+    -ms-transition: 5s linear all;
+    -o-transition: 5s linear all;
+    transition: 5s linear all;
+}
+
+.animif.ng-enter,
+.animif.ng-leave.ng-leave-active {
+  opacity:0;
+}
+
+.animif.ng-leave,
+.animif.ng-enter.ng-enter-active {
+  opacity:0;
+}
+
 /* Periodic Table */
 
 .element_table 

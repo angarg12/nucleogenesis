@@ -1,4 +1,4 @@
-angular.module('incremental',[])
+angular.module('incremental',['ngAnimate'])
 .controller('IncCtrl',['$scope','$document','$interval', '$sce', '$filter', '$timeout', '$log',
 function($scope,$document,$interval,$sce,$filter,$timeout,$log) { 
 		$scope.version = '0.0';
@@ -58,9 +58,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 					generators: {
 							'Tier 1':{level:15},							
 							'Tier 2':{level:1},
-							'Tier 3':{level:0},
-							'Tier 4':{level:0},
-							'Tier 5':{level:0},
+							'Tier 3':{level:10},
+							'Tier 4':{level:10},
+							'Tier 5':{level:10},
 							'Tier 6':{level:0},
 							'Tier 7':{level:0},
 							'Tier 8':{level:0},
@@ -84,6 +84,10 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 						unlocked: true
 					},
 					synthesis:{
+						'O3':{
+							number:0,
+							active:0
+						}
 					},
 					unlocked:true
 				}
@@ -174,6 +178,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		$scope.hover_element = "";
 		$scope.synthesis_price_increase = 2;
 		$scope.synthesis_power_increase = 2;
+		$scope.toast = [{name:'Allotropes'}];
+		
         var numberGenerator = new Ziggurat();
 
 		$scope.elementPrice = function(element) {
@@ -413,6 +419,37 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		        	// and decay products
 		        	for(var product in $scope.resources[radioisotope].radioactivity.decay_product){
 		        		$scope.player.resources[product].number += $scope.resources[radioisotope].radioactivity.decay_product[product]*production;
+		        		if(production > 0){
+			        		$scope.player.resources[product].unlocked = true;
+			        	}
+		        	}
+            	}
+            }
+            
+            // decomposition comes second since it is very similar to radioactivity
+            // We will process the decompositions
+            for(var i = 0; i < $scope.unstables.length; i++){
+            	var unstable = $scope.unstables[i];
+            	if($scope.player.resources[unstable].unlocked){
+            		var number = $scope.player.resources[unstable].number;
+            		// p is the decay constant
+            		var p = Math.log(2) / $scope.resources[unstable].decomposition.half_life;
+            		var q = 1-p;
+		        	var mean = number*p;
+		        	var variance = number*p*q;
+		        	var std = Math.sqrt(variance);
+		        	production = Math.round(numberGenerator.nextGaussian()*std+mean);
+		        	if(production > number){
+		        		production = number;
+		        	}
+		        	if(production < 0){
+		        		production = 0;
+		        	}
+		        	// we decrease the number of unstable element
+		        	$scope.player.resources[unstable].number -= production;
+		        	// produce decay products
+		        	for(var product in $scope.resources[unstable].decomposition.decomposition_product){
+		        		$scope.player.resources[product].number += $scope.resources[unstable].decomposition.decomposition_product[product]*production;
 		        		if(production > 0){
 			        		$scope.player.resources[product].unlocked = true;
 			        	}

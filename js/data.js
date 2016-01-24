@@ -214,7 +214,11 @@ function loadData($scope) {
 					},
 					order:702,
 					html:'O<sub>3</sub>',
-					type:'molecule'
+					type:'molecule',
+					decomposition:{
+						half_life:86400,
+						decomposition_product:{'O2':1,'O':1}
+					}
 				},
 				'17O':{ 					
 					visible:function(){
@@ -272,6 +276,8 @@ function loadData($scope) {
 	$scope.radioisotopes = ['3H'];
 	
 	$scope.free_radicals = ['O'];
+	
+	$scope.unstables = ['O3'];
 	
 	$scope.tabs = {
 			'Elements':{
@@ -500,6 +506,20 @@ function loadData($scope) {
 			'synthesis':[
 				'H-p'
 			]
+		},
+		'O':{
+			'ionization':[
+
+			],
+			'electron_affinity':[
+
+			],
+			'binding_energy':[
+
+			],
+			'synthesis':[
+				'O3'
+			]
 		}
 	};
 	
@@ -512,6 +532,16 @@ function loadData($scope) {
 			product:{
 				'H2':1,
 				'energy':17.3705
+			}
+		},
+		'O3':{
+			reactant:{
+				'O3':1,
+				'energy':4.43
+			},
+			product:{
+				'O2':1,
+				'O':1
 			}
 		}
 	};	
