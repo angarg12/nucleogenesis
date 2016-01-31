@@ -190,10 +190,14 @@ function loadData($scope) {
 					type:'element',
 					free_radical:{
 						reactivity:0.8,
-						reaction:{
-							'O':'O2',
-							'O2':'O3'
-						}
+						reaction:[
+							{reactant:'O',
+							product:'O2',
+							chance:1},
+							{reactant:'O2',
+							product:'O3',
+							chance:1e-6}
+						]
 					}
 				},
 				'O2':{ 

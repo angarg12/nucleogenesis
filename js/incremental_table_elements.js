@@ -499,19 +499,19 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 					var reacted = {};
 					var remaining_production = production;
 					
-        			var keys = Object.keys($scope.resources[radical].free_radical.reaction);
-					for(var i = 0; i < keys.length-1; i++){
-						var product = keys[i];
+					for(var j = 0; j < $scope.resources[radical].free_radical.reaction.length-1; j++){
+						reaction = $scope.resources[radical].free_radical.reaction[j];
+						var product = reaction.product;
 				    	var reactants_number = 0;
-				    	for(var j = i; j < keys.length; j++){
-				    		var reactant = keys[j];
+				    	// we have to calculate how many reactants are there so that we get the proportions right
+				    	for(var k = j; k < $scope.resources[radical].free_radical.reaction.length; k++){
+				    		var reactant = $scope.resources[radical].free_radical.reaction[k].reactant;
 				    		reactants_number += $scope.player.resources[reactant].number;
 				    	}
-				    	
 				    	if(reactants_number == 0){
 				    		var p = 0;
 				    	}else{
-				    		var p = $scope.player.resources[product].number/reactants_number;
+				    		var p = $scope.player.resources[reaction.reactant].number/reactants_number;
 				    	}
 				    	var q = 1-p;
 				    	var mean = remaining_production*p;
@@ -538,13 +538,18 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		        		}		        		
 		        	}
 		        	// The last reaction is just the remaining production that hasn't been consumed
-            		reacted[keys[keys.length-1]] = remaining_production;
+            		reacted[$scope.resources[radical].free_radical.reaction[$scope.resources[radical].free_radical.reaction.length-1].product] = remaining_production;
             		
-		        	for(var product in $scope.resources[radical].free_radical.reaction){
-		        		$scope.player.resources[product].number -= reacted[product];
-		        		$scope.player.resources[$scope.resources[radical].free_radical.reaction[product]].number += reacted[product];
-		        		if($scope.player.resources[$scope.resources[radical].free_radical.reaction[product]].number > 0){
-			        		$scope.player.resources[$scope.resources[radical].free_radical.reaction[product]].unlocked = true;
+		        	for(var reaction in $scope.resources[radical].free_radical.reaction){
+		        		reactant = $scope.resources[radical].free_radical.reaction[reaction].reactant;
+		        		product = $scope.resources[radical].free_radical.reaction[reaction].product;
+		        		//alert(reactant);
+		        		//alert(product);
+		        		//alert(reacted[product]);
+		        		$scope.player.resources[reactant].number -= reacted[product];
+		        		$scope.player.resources[product].number += reacted[product];
+		        		if($scope.player.resources[product].number > 0){
+			        		$scope.player.resources[product].unlocked = true;
 			        	}
 		        	}
 		        	$scope.player.resources[radical].number -= production;
