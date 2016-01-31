@@ -257,13 +257,15 @@
 		            </td>
 		            <td width=35% colspan="2">
 		              <span class="pull-left by-icon" ng-bind-html="trustHTML(getHTML(resource.name))"></span>&nbsp;
-		              <span ng-if="resources[resource.name].radioactivity != null" title="Radioctive" class="pull-left icon">&#9762;</span>  
+		              <span ng-if="radioisotopes.indexOf(resource.name) != -1" title="Radioctive" class="pull-left icon">&#9762;</span> &nbsp;
+		              <span ng-if="free_radicals.indexOf(resource.name) != -1" title="Free radical" class="pull-left icon">&bull;</span>&nbsp;
+		              <span ng-if="unstables.indexOf(resource.name) != -1" title="Unstable" class="pull-left icon">&#8967;</span>   
 		            </td>
 		            <td width=50%>
 		              <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(resource.value.number))"></div>
 		            </td>
                   </tr>
-                  <tr ng-if="resources[resource.name].radioactivity != null">
+                  <tr ng-if="resources[resource.name].decay != null">
 		            <td width=15%>
 		            </td>
 		            <td width=20%>
@@ -273,20 +275,20 @@
 		            	t<sub>1/2</sub>
 		            </td>
 		            <td width=50%>
-		            	<div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(resources[resource.name].radioactivity.half_life))"></div> s
+		        		<div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(resources[resource.name].decay.half_life))"></div> s
 		            </td>
                   </tr>
-                  <tr ng-if="resources[resource.name].radioactivity != null && player.unlocks.decay">
+                  <tr ng-if="resources[resource.name].decay != null && player.unlocks.decay">
 		            <td width=15%>
 		            </td>
 		            <td width=20%>
 		              <div class="pull-right" >&#9495;</div>	              
 		            </td>
 		            <td width=15%>
-		            	<div ng-bind-html="trustHTML(getHTML(resources[resource.name].radioactivity.decay_type))"></div>
+		            	<div ng-bind-html="trustHTML(getHTML(resources[resource.name].decay.decay_type))"></div>
 		            </td>
 		            <td width=50%>
-		            	<div class="pull-left" ng-bind-html="trustHTML(decayFormat(resources[resource.name].radioactivity))"></div>
+		            	<div class="pull-left" ng-bind-html="trustHTML(decayFormat(resources[resource.name].decay))"></div>
 		            </td>
                   </tr>
                 </tbody>

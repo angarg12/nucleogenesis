@@ -129,7 +129,7 @@ function loadData($scope) {
 					ratio:0.000001,
 					html:'<sup>3</sup>H',
 					type:'isotope',
-					radioactivity:{
+					decay:{
 						half_life:3.8852e+8,
 						decay_energy:18610,
 						decay_type:'beta-',
@@ -215,9 +215,9 @@ function loadData($scope) {
 					order:702,
 					html:'O<sub>3</sub>',
 					type:'molecule',
-					decomposition:{
+					decay:{
 						half_life:86400,
-						decomposition_product:{'O2':1,'O':1}
+						decay_product:{'O2':1,'O':1}
 					}
 				},
 				'17O':{ 					

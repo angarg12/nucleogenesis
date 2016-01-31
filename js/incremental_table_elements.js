@@ -417,7 +417,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
             	if($scope.player.resources[radioisotope].unlocked){
             		var number = $scope.player.resources[radioisotope].number;
             		// p is the decay constant
-            		var p = Math.log(2) / $scope.resources[radioisotope].radioactivity.half_life;
+            		var p = Math.log(2) / $scope.resources[radioisotope].decay.half_life;
             		var q = 1-p;
 		        	var mean = number*p;
 		        	var variance = number*p*q;
@@ -432,13 +432,13 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		        	// we decrease the number of radioactive element
 		        	$scope.player.resources[radioisotope].number -= production;
 		        	// produce energy
-		        	$scope.player.resources["energy"].number += $scope.resources[radioisotope].radioactivity.decay_energy*production;
-		        	if($scope.resources[radioisotope].radioactivity.decay_energy*production > 0){
+		        	$scope.player.resources["energy"].number += $scope.resources[radioisotope].decay.decay_energy*production;
+		        	if($scope.resources[radioisotope].decay.decay_energy*production > 0){
 			        	$scope.player.resources["energy"].unlocked = true;
 			        }
 		        	// and decay products
-		        	for(var product in $scope.resources[radioisotope].radioactivity.decay_product){
-		        		$scope.player.resources[product].number += $scope.resources[radioisotope].radioactivity.decay_product[product]*production;
+		        	for(var product in $scope.resources[radioisotope].decay.decay_product){
+		        		$scope.player.resources[product].number += $scope.resources[radioisotope].decay.decay_product[product]*production;
 		        		if(production > 0){
 			        		$scope.player.resources[product].unlocked = true;
 			        	}
@@ -453,7 +453,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
             	if($scope.player.resources[unstable].unlocked){
             		var number = $scope.player.resources[unstable].number;
             		// p is the decay constant
-            		var p = Math.log(2) / $scope.resources[unstable].decomposition.half_life;
+            		var p = Math.log(2) / $scope.resources[unstable].decay.half_life;
             		var q = 1-p;
 		        	var mean = number*p;
 		        	var variance = number*p*q;
@@ -468,8 +468,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		        	// we decrease the number of unstable element
 		        	$scope.player.resources[unstable].number -= production;
 		        	// produce decay products
-		        	for(var product in $scope.resources[unstable].decomposition.decomposition_product){
-		        		$scope.player.resources[product].number += $scope.resources[unstable].decomposition.decomposition_product[product]*production;
+		        	for(var product in $scope.resources[unstable].decay.decay_product){
+		        		$scope.player.resources[product].number += $scope.resources[unstable].decay.decay_product[product]*production;
 		        		if(production > 0){
 			        		$scope.player.resources[product].unlocked = true;
 			        	}
@@ -638,12 +638,12 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
         	return compoundHTML;
         }
         
-        $scope.decayFormat = function(radioactivity) {
+        $scope.decayFormat = function(decay) {
         	var format = '<span class="icon">&#8594;</span>';
-        	for (var i = 0; i < radioactivity.decay_product.length; i++) {
-        		format += $scope.getHTML(radioactivity.decay_product[i])+"+";
-        	}
-        	format += $scope.prettifyNumber(radioactivity.decay_energy)+' '+$scope.getHTML('energy');
+        	format += $scope.compoundFormat(1, decay.decay_product)
+        	if(decay.decay_energy){
+        		format += " + "+$scope.prettifyNumber(decay.decay_energy)+' '+$scope.getHTML('energy');
+        	}        	
         	return format;
         }
         
