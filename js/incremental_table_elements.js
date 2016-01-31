@@ -178,9 +178,29 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		$scope.hover_element = "";
 		$scope.synthesis_price_increase = 2;
 		$scope.synthesis_power_increase = 2;
-		$scope.toast = [{name:'Allotropes'}];
+		$scope.toast = [];
+		$scope.is_toast_visible = false;
 		
         var numberGenerator = new Ziggurat();
+        
+        $scope.removeToast = function() {
+	        $scope.is_toast_visible = false;
+	        $timeout(deleteToast, 1100);
+        }
+        
+        function deleteToast(){
+        	$scope.toast.shift();
+        	if($scope.toast.length > 0){
+        		$scope.is_toast_visible = true;
+        	}        	
+        }
+        
+         function addToast(toast) {
+        	$scope.toast.push(toast);
+        	if($scope.toast.length == 1){
+        		$scope.is_toast_visible = true;
+        	}        	
+        }
 
 		$scope.elementPrice = function(element) {
 			return Math.pow($scope.player.elements_unlocked+1,$scope.resources[element].number);
@@ -668,6 +688,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			//init();
             $interval(update,1000);
             //$interval($scope.save,60000);
+            addToast('Isotopes');
+            addToast('Allotropes');
+            addToast('Radioactivity');
         });	
         
         $scope.trustHTML = function(html) {

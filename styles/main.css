@@ -60,23 +60,21 @@
   padding-right:1em;
 }
 
-// animations from ng-if docs: https://docs.angularjs.org/api/ng/directive/ngIf
-.animif.ng-enter, .animif.ng-leave {
-    -webkit-transition: 5s linear all;
-    -moz-transition: 5s linear all;
-    -ms-transition: 5s linear all;
-    -o-transition: 5s linear all;
-    transition: 5s linear all;
+.animif {
+    opacity: 1;
 }
 
-.animif.ng-enter,
-.animif.ng-leave.ng-leave-active {
-  opacity:0;
+.animif.ng-hide {
+    opacity: 0;
 }
 
-.animif.ng-leave,
-.animif.ng-enter.ng-enter-active {
-  opacity:0;
+.animif.ng-hide-add,
+.animif.ng-hide-remove {
+    -webkit-transition: 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) all;
+    -moz-transition: 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) all;
+    -ms-transition: 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) all;
+    -o-transition: 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) all;
+    transition: 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) all;
 }
 
 /* Periodic Table */

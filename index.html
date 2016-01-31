@@ -429,11 +429,11 @@
     </div>
   </div>
   <div ng-cloak>
-	  <div class="achieve achievealert animif" ng-if="toast.length > 0">
+	  <div class="achieve achievealert animif" ng-show="is_toast_visible">
 		<div class="container alert alert-success">
 		    <h3>New unlock:</h3>
-		    <h2>{{toast[0].name}}</h2>
-		    <button type="button" class="close" data-dismiss="alert" ng-click="toast.shift()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		    <h2>{{toast[0]}}</h2>
+		    <button type="button" class="close" data-dismiss="alert" ng-click="removeToast()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 		</div>
 	  </div>
   </div>
