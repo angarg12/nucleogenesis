@@ -435,7 +435,14 @@
 		<div class="container alert alert-success">
 		    <h3>New unlock:</h3>
 		    <h2>{{toast[0]}}</h2>
-		    <button type="button" class="close" data-dismiss="alert" ng-click="removeToast()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		    <button type="button" 
+		    	class="close" 
+		    	data-dismiss="alert" 
+		    	ng-click="removeToast()"
+		    	ng-disabled="!is_toast_visible">
+		    		<span aria-hidden="true">&times;</span>
+		    		<span class="sr-only">Close</span>
+		    </button>
 		</div>
 	  </div>
   </div>

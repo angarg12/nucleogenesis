@@ -10,7 +10,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				isotopes:true,
 				decay:true,
 				periodic_table:true,
-				reactions:true
+				reactions:true,
+				unstable:false
 			},
 			encyclopedia: {
 				'Hydrogen':{is_new:true},				
@@ -60,7 +61,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 							'Tier 2':{level:1},
 							'Tier 3':{level:10},
 							'Tier 4':{level:10},
-							'Tier 5':{level:10},
+							'Tier 5':{level:100},
 							'Tier 6':{level:0},
 							'Tier 7':{level:0},
 							'Tier 8':{level:0},
@@ -201,6 +202,13 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
         		$scope.is_toast_visible = true;
         	}        	
         }
+
+		function checkUnlock(item){
+			if(item == "O3"){
+				addToast("Unstable compound");
+				$scope.player.unlocks.unstable = true;
+			}
+		};
 
 		$scope.elementPrice = function(element) {
 			return Math.pow($scope.player.elements_unlocked+1,$scope.resources[element].number);
@@ -506,13 +514,16 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				    	// we have to calculate how many reactants are there so that we get the proportions right
 				    	for(var k = j; k < $scope.resources[radical].free_radical.reaction.length; k++){
 				    		var reactant = $scope.resources[radical].free_radical.reaction[k].reactant;
-				    		reactants_number += $scope.player.resources[reactant].number;
+				    		var chance = $scope.resources[radical].free_radical.reaction[k].chance;
+				    		reactants_number += Math.floor($scope.player.resources[reactant].number*chance);
 				    	}
 				    	if(reactants_number == 0){
 				    		var p = 0;
 				    	}else{
 				    		var p = $scope.player.resources[reaction.reactant].number/reactants_number;
 				    	}
+				    	// weight the probability by the chance of the reaction
+				    	//p = p*$scope.resources[radical].free_radical.reaction[j].chance;
 				    	var q = 1-p;
 				    	var mean = remaining_production*p;
 				    	var variance = remaining_production*p*q;
@@ -524,14 +535,13 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				    	if(reacted[product] < 0){
 				    		reacted[product] = 0;
 				    	}
-				    	
 		        		remaining_production -= reacted[product];
 		        		// This is complicated...
 		        		// when an element reacts with itself, we are not producing the full amount, but half of it
 		        		// e.g. if you react 30 atoms with itself, they will form 15 pairs
 		        		// also if the production number is even, there will be one leftover atom, that must be put back into the pool
 		        		// finally to avoid double counting, we need to refill the atoms by half of the production
-		        		if(product == radical){
+		        		if(reaction.reactant == radical){
 		        			var adjusted_production = Math.floor(reacted[product]/2);
 		        			$scope.player.resources[radical].number += reacted[product]%2+adjusted_production;
 		        			reacted[product] = adjusted_production;
@@ -543,12 +553,10 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		        	for(var reaction in $scope.resources[radical].free_radical.reaction){
 		        		reactant = $scope.resources[radical].free_radical.reaction[reaction].reactant;
 		        		product = $scope.resources[radical].free_radical.reaction[reaction].product;
-		        		//alert(reactant);
-		        		//alert(product);
-		        		//alert(reacted[product]);
 		        		$scope.player.resources[reactant].number -= reacted[product];
 		        		$scope.player.resources[product].number += reacted[product];
 		        		if($scope.player.resources[product].number > 0){
+		        			checkUnlock(product);
 			        		$scope.player.resources[product].unlocked = true;
 			        	}
 		        	}
