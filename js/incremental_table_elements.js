@@ -192,7 +192,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		cache = {};
 		$scope.current_tab = "Elements";
 		$scope.current_entry = "Hydrogen";
-		$scope.current_element = "O";
+		$scope.current_element = "H";
 		$scope.hover_element = "";
 		$scope.synthesis_price_increase = 2;
 		$scope.synthesis_power_increase = 2;
@@ -357,7 +357,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			}	
 			var array = [];
 			for(var objectKey in values) {
-				if(Array.isArray(values)){
+				// hack to make it work with reactions. Now we allow table to also be an array
+				// honestly this function is horrible and I would much rather just get rid of 
+				if(Array.isArray(values) && !Array.isArray(table)){
 					objectKey = values[objectKey];
 				}
 				if(objectKey in table && table[objectKey].visible()){
@@ -372,6 +374,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				m = parseInt(table[b.name].order);
 				return n - m;
 			});
+
 			cache[hash] = array;
 			return array;
 		};
@@ -773,8 +776,13 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			loadData($scope);
 			//init();
             $interval(update,1000);
+            $interval(clearCache,3000);
             //$interval($scope.save,60000);
         });	
+        
+        function clearCache() {
+			cache = {};
+        };
         
         $scope.trustHTML = function(html) {
                return $sce.trustAsHtml(html);

@@ -330,7 +330,7 @@ function loadData($scope) {
 						},
 					'Isotope':{
 						visible:function(){
-							return $scope.player.unlocks.isotopes;
+							return $scope.player.unlocks.isotope;
 						},
 						order:1,
 						link:'https://en.wikipedia.org/wiki/Isotope',
@@ -452,7 +452,11 @@ function loadData($scope) {
 					product:{
 						'p':1,
 						'e-':1
-					}
+					},
+					visible:function(){
+						return $scope.player.resources['energy'].unlocked;
+					},
+					order:0
 				}
 			],
 			'electron_affinity':[
@@ -464,7 +468,11 @@ function loadData($scope) {
 					product:{
 						'H-':1,
 						'energy':0.7545
-					}
+					},
+					visible:function(){
+						return $scope.player.resources['e-'].unlocked;
+					},
+					order:0
 				}
 			],
 			'binding_energy':[
@@ -477,7 +485,11 @@ function loadData($scope) {
 						'p':1,
 						'n':1,
 						'e-':1
-					}
+					},
+					visible:function(){
+						return $scope.player.resources['2H'].unlocked;
+					},
+					order:0
 				},
 				{
 					reactant:{
@@ -488,7 +500,11 @@ function loadData($scope) {
 						'p':1,
 						'n':2,
 						'e-':1
-					}
+					},
+					visible:function(){
+						return $scope.player.resources['3H'].unlocked;
+					},
+					order:1
 				}
 			],
 			'synthesis':[
@@ -520,7 +536,12 @@ function loadData($scope) {
 			product:{
 				'H2':1,
 				'energy':17.3705
-			}
+			},
+			visible:function(){
+				return $scope.player.resources['H-'].unlocked &&
+						$scope.player.resources['p'].unlocked;
+			},
+			order:0
 		},
 		'O3':{
 			reactant:{
@@ -530,7 +551,12 @@ function loadData($scope) {
 			product:{
 				'O2':1,
 				'O':1
-			}
+			},
+			visible:function(){
+				return $scope.player.resources['O3'].unlocked &&
+						$scope.player.resources['energy'].unlocked;
+			},
+			order:1
 		}
 	};	
 	
