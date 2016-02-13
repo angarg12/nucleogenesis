@@ -49,7 +49,7 @@
             <div class="col-lg-8 col-lg-push-3">
               <h2>{{elements[current_element].name}}</h2>
               <h3><span ng-bind-html="trustHTML(prettifyNumber(elementProduction(current_element)))"></span> {{current_element}}/s</h3>
-              <ul ng-if="player.unlocks.isotopes">
+              <ul ng-if="player.unlocks.isotope">
               	 <li>
 		          	<span ng-bind-html="trustHTML(getHTML(current_element))"></span>: {{(resources[current_element].ratio*100).toFixed(4)}}%
 		         </li>
@@ -250,7 +250,9 @@
 
             <div class="col-lg-3 col-lg-pull-8">
               <table class="table table-hover element-table no_bottom">
-                <tbody ng-repeat="resource in filterAndOrder(player.resources, resources)" ng-mouseover="resource.value.is_new = false">
+                <tbody ng-repeat="resource in filterAndOrder(player.resources, resources)" 
+                	ng-mouseover="resource.value.is_new = false"
+                	class="">
                   <tr>
 		            <td width=15%>
 		            	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="resource.value.is_new"></span>
@@ -278,7 +280,7 @@
 		        		<div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(resources[resource.name].decay.half_life))"></div> s
 		            </td>
                   </tr>
-                  <tr ng-if="resources[resource.name].decay != null && player.unlocks.decay">
+                  <tr ng-if="resources[resource.name].decay != null && player.unlocks.radioactive_decay">
 		            <td width=15%>
 		            </td>
 		            <td width=20%>

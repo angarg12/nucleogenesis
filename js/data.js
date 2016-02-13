@@ -164,22 +164,6 @@ function loadData($scope) {
 					html:'<sup>3</sup>He<sup>+</sup>',
 					type:['isotope','ion']
 				},
-				'C':{ 
-					visible:function(){
-						return $scope.current_element === "C" &&
-								$scope.current_tab == "Elements";
-					},
-					order:500,
-					type:'element',
-				},
-				'N':{ 
-					visible:function(){
-						return $scope.current_element === "N" &&
-								$scope.current_tab == "Elements";
-					},
-					order:600,
-					type:'element',
-				},
 				'O':{ 
 					visible:function(){
 						return $scope.current_element === "O" &&

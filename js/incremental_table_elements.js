@@ -6,12 +6,29 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		$scope.log = $log;
 		
 		const startPlayer = {
-			unlocks: {
-				isotopes:true,
-				decay:true,
+			unlocks: {	
+				hydrogen:false,
+				oxygen:false,
+				isotope:false,
+				ion:false,
+				ionization_energy:false,
+				electron_affinity:false,
+				nuclear_binding_energy:false,
+				radioactivity:false,
+				radioactive_decay:false,
+				beta_decay:false,
+				molecule:false,
+				allotrope:false,
+				free_radical:false,
+				unstable_compound:false,
+				synthesis:false,
+				electron:false,
+				proton:false,
+				meutron:false,
+				energy:false,
+				half_life:false,
 				periodic_table:true,
-				reactions:true,
-				unstable:false
+				reactions:true
 			},
 			encyclopedia: {
 				'Hydrogen':{is_new:true},				
@@ -204,10 +221,61 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
         }
 
 		function checkUnlock(item){
-			if(item == "O3" && $scope.player.unlocks.unstable == false){
-				addToast("Unstable compound");
-				$scope.player.unlocks.unstable = true;
+			if(['2H','3H'].indexOf(item) != -1 && $scope.player.unlocks.isotope == false){
+				addToast("Isotope");
+				$scope.player.unlocks.isotope = true;
 			}
+
+			if(item == "H-" && $scope.player.unlocks.ion == false){
+				addToast("Ion");
+				$scope.player.unlocks.ion = true;
+			}
+			
+			if(item == "3H" && $scope.player.unlocks.radioactivity == false){
+				addToast("Radioactivity");
+				$scope.player.unlocks.radioactivity = true;
+			}
+
+			if(['O2','O3'].indexOf(item) != -1 && $scope.player.unlocks.allotrope == false){
+				addToast("Allotrope");
+				$scope.player.unlocks.allotrope = true;
+			}
+
+			if(item == "O" && $scope.player.unlocks.free_radical == false){
+				addToast("Free radical");
+				$scope.player.unlocks.free_radical = true;
+			}
+
+			if(item == "O3" && $scope.player.unlocks.unstable_compound == false){
+				addToast("Unstable compound");
+				$scope.player.unlocks.unstable_compound = true;
+			}
+
+			if(item == "e-" && $scope.player.unlocks.electron == false){
+				addToast("Electron");
+				$scope.player.unlocks.electron = true;
+			}
+
+			if(item == "p" && $scope.player.unlocks.proton == false){
+				addToast("Proton");
+				$scope.player.unlocks.proton = true;
+			}
+			
+			if(item == "n" && $scope.player.unlocks.neutron == false){
+				addToast("Neutron");
+				$scope.player.unlocks.neutron = true;
+			}
+
+			if(item == "energy" && $scope.player.unlocks.energy == false){
+				addToast("Energy");
+				$scope.player.unlocks.energy = true;
+			}
+
+			if(item == "3H" && $scope.player.unlocks.half_life == false){
+				addToast("Half-life");
+				$scope.player.unlocks.half_life = true;
+			}
+			
 			if($scope.player.resources[item] != null){
 	    		$scope.player.resources[item].unlocked = true;
 	    	}
