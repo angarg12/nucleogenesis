@@ -24,11 +24,12 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				synthesis:false,
 				electron:false,
 				proton:false,
-				meutron:false,
+				neutron:false,
 				energy:false,
 				half_life:false,
 				periodic_table:true,
-				reactions:true
+				reactions:true,
+				finished:false
 			},
 			encyclopedia: {
 				'Hydrogen':{is_new:true},				
@@ -786,6 +787,22 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
         
         $scope.trustHTML = function(html) {
                return $sce.trustAsHtml(html);
+        };
+        
+        $scope.numberUnlocks = function() {
+        	if($scope.player == undefined) return;
+	        return Object.keys($scope.player.unlocks).length;
+        };
+        
+        $scope.numberUnlocked = function() {
+        	if($scope.player == undefined) return;
+        	var unlocked = 0;
+        	for(var key in $scope.player.unlocks){
+        		if($scope.player.unlocks[key]){
+        			unlocked++;
+        		}
+        	}
+        	return unlocked;
         };
         
         String.prototype.hashCode = function() {

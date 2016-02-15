@@ -435,10 +435,19 @@ filterAndOrder(reactions[current_element].binding_energy, reactions[current_elem
               <button class="btn btn-default btn-block"
                     ng-click="reset(true)">Erase save</button>               
             </div>
+            <div class="col-lg-12" ng-if="numberUnlocked() > 0">
+              <div ng-if="numberUnlocked() < 10">
+		          <br>
+		          Unlocked: {{numberUnlocked()}}/??
+              </div>
+              <div ng-if="numberUnlocked() >= 10">
+		          <br>
+		          Unlocked: {{numberUnlocked()}}/{{numberUnlocks()}}
+              </div>   
+            </div>
             <div class="col-lg-12">
               <br>
               Github: <a href="https://github.com/angarg12/incremental_table_elements">https://github.com/angarg12/incremental_table_elements</a>   
-              <br>      
             </div>
             
               <p style="padding-bottom:200px"></p>
