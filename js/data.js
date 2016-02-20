@@ -861,6 +861,98 @@ function loadData($scope) {
 				}
 			},
 			event:"resource"
+		},
+		"oxygen":{
+			check:function(event,data){  
+				if("Oxygen" == data){
+					$scope.addToast("Oxygen");
+					$scope.player.unlocks["oxygen"] = true;
+					$scope.unlocks["oxygen"].listener();
+				}
+			},
+			event:"element"
+		},
+		"upgrade":{
+			check:function(event,data){  
+				if("Tier 3" == data){
+					$scope.addToast("Upgrades");
+					$scope.player.unlocks["upgrade"] = true;
+					$scope.unlocks["upgrade"].listener();
+				}
+			},
+			event:"upgrade"
+		},
+		"ionization_energy":{
+			check:function(event,data){  
+				if("e-" == data){
+					$scope.addToast("Ionization energy");
+					$scope.player.unlocks["ionization_energy"] = true;
+					$scope.unlocks["ionization_energy"].listener();
+				}
+			},
+			event:"resource"
+		},
+		"electron_affinity":{
+			check:function(event,data){  
+				if($scope.player.resources['e-'].number >= 10 &&
+					$scope.player.resources['p'].number >= 10){
+					$scope.addToast("Electron affinity");
+					$scope.player.unlocks["electron_affinity"] = true;
+					$scope.unlocks["electron_affinity"].listener();
+				}
+			},
+			event:"cycle"
+		},
+		"nuclear_binding_energy":{
+			check:function(event,data){  
+				if($scope.player.resources['e-'].number >= 100 &&
+					$scope.player.resources['p'].number >= 100){
+					$scope.addToast("Nuclear binding energy");
+					$scope.player.unlocks["nuclear_binding_energy"] = true;
+					$scope.unlocks["nuclear_binding_energy"].listener();
+				}
+			},
+			event:"cycle"
+		},
+		"beta_decay":{
+			check:function(event,data){  
+				$scope.addToast("Beta decay");
+				$scope.player.unlocks["beta_decay"] = true;
+				$scope.unlocks["beta_decay"].listener();
+			},
+			event:"decay"
+		},
+		"molecule":{
+			check:function(event,data){  
+				if("H2" == data ||
+					"O2" == data ||
+					"O3" == data){
+					$scope.addToast("Molecule");
+					$scope.player.unlocks["molecule"] = true;
+					$scope.unlocks["molecule"].listener();
+				}
+			},
+			event:"resource"
+		},
+		"synthesis":{
+			check:function(event,data){  
+				if($scope.player.resources['H-'].number >= 10){
+					$scope.addToast("Synthesis");
+					$scope.player.unlocks["synthesis"] = true;
+					$scope.unlocks["synthesis"].listener();
+				}
+			},
+			event:"cycle"
+		},
+		"finished":{
+			check:function(event,data){  
+				if($scope.player.resources['H2O'].unlocked){
+					$scope.addToast("Congratulations! You finished the game");
+					$scope.player.unlocks["finished"] = true;
+					$scope.unlocks["finished"].listener();
+				}
+			},
+			event:"cycle"
 		}
 	};
 	

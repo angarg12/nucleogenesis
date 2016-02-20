@@ -9,6 +9,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			unlocks: {	
 				hydrogen:false,
 				oxygen:false,
+				upgrade:false,
 				isotope:false,
 				ion:false,
 				ionization_energy:false,
@@ -63,8 +64,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 						'Tier 2-1':{
 							unlocked:false,
 							bought:false
-						},
-						unlocked: true
+						}
 					},
 					synthesis:{
 						'H-p':{
@@ -99,8 +99,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 						'Tier 2-1':{
 							unlocked:false,
 							bought:false
-						},
-						unlocked: true
+						}
 					},
 					synthesis:{
 						'O3':{
@@ -333,6 +332,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
             if ($scope.player.resources[element].number >= price) {
                 $scope.player.resources[element].number -= price;
                 $scope.player.elements[element].generators[name].level++;
+				$scope.$emit("upgrade",name);
             }
         };
         
@@ -351,7 +351,6 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				$scope.player.resources['p'].number -= price;
 				$scope.player.resources['n'].number -= price;
 				$scope.$emit("element","Oxygen");
-				// TODO move this to check unlock
 				$scope.player.elements[element].unlocked = true;
 				$scope.player.elements_unlocked++;
         	}
