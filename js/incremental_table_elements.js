@@ -27,7 +27,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				neutron:false,
 				energy:false,
 				half_life:false,
-				periodic_table:true,
+				periodic_table:false,
 				reactions:true,
 				finished:false
 			},
@@ -214,73 +214,21 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
         	}        	
         }
         
-         function addToast(toast) {
+        $scope.addToast = function(toast) {
         	$scope.toast.push(toast);
         	if($scope.toast.length == 1){
         		$scope.is_toast_visible = true;
         	}        	
         }
 
-		function checkUnlock(item){
-			if(['2H','3H'].indexOf(item) != -1 && $scope.player.unlocks.isotope == false){
-				addToast("Isotope");
-				$scope.player.unlocks.isotope = true;
+		 $scope.$on("resource",
+		 	function checkUnlock(event, item){
+				if($scope.player.resources[item] != null){
+					$scope.player.resources[item].unlocked = true;
+				}
 			}
+		);
 
-			if(item == "H-" && $scope.player.unlocks.ion == false){
-				addToast("Ion");
-				$scope.player.unlocks.ion = true;
-			}
-			
-			if(item == "3H" && $scope.player.unlocks.radioactivity == false){
-				addToast("Radioactivity");
-				$scope.player.unlocks.radioactivity = true;
-			}
-
-			if(['O2','O3'].indexOf(item) != -1 && $scope.player.unlocks.allotrope == false){
-				addToast("Allotrope");
-				$scope.player.unlocks.allotrope = true;
-			}
-
-			if(item == "O" && $scope.player.unlocks.free_radical == false){
-				addToast("Free radical");
-				$scope.player.unlocks.free_radical = true;
-			}
-
-			if(item == "O3" && $scope.player.unlocks.unstable_compound == false){
-				addToast("Unstable compound");
-				$scope.player.unlocks.unstable_compound = true;
-			}
-
-			if(item == "e-" && $scope.player.unlocks.electron == false){
-				addToast("Electron");
-				$scope.player.unlocks.electron = true;
-			}
-
-			if(item == "p" && $scope.player.unlocks.proton == false){
-				addToast("Proton");
-				$scope.player.unlocks.proton = true;
-			}
-			
-			if(item == "n" && $scope.player.unlocks.neutron == false){
-				addToast("Neutron");
-				$scope.player.unlocks.neutron = true;
-			}
-
-			if(item == "energy" && $scope.player.unlocks.energy == false){
-				addToast("Energy");
-				$scope.player.unlocks.energy = true;
-			}
-
-			if(item == "3H" && $scope.player.unlocks.half_life == false){
-				addToast("Half-life");
-				$scope.player.unlocks.half_life = true;
-			}
-			
-			if($scope.player.resources[item] != null){
-	    		$scope.player.resources[item].unlocked = true;
-	    	}
-		};
 
 		$scope.elementPrice = function(element) {
 			return Math.pow($scope.player.elements_unlocked+1,$scope.resources[element].number);
@@ -402,7 +350,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				$scope.player.resources['e-'].number -= price;
 				$scope.player.resources['p'].number -= price;
 				$scope.player.resources['n'].number -= price;
-				checkUnlock("Oxygen");
+				$scope.$emit("element","Oxygen");
 				// TODO move this to check unlock
 				$scope.player.elements[element].unlocked = true;
 				$scope.player.elements_unlocked++;
@@ -434,7 +382,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 	    			var produced = number*reaction.product[keys[i]];
 	    			var current = $scope.player.resources[keys[i]].number;
 	    			$scope.player.resources[keys[i]].number = Number.parseFloat((current+produced).toFixed(4));
-	    			checkUnlock(keys[i]);
+	    			$scope.$emit("resource",keys[i]);
 		    	}
         	}
         };
@@ -519,13 +467,13 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				    	// produce energy
 		        	if($scope.resources[radioisotope].decay.decay_energy*production > 0){
 				    	$scope.player.resources["energy"].number += $scope.resources[radioisotope].decay.decay_energy*production;
-			        	checkUnlock("energy");
+			        	$scope.$emit("resource","energy");
 			        }
 		        	// and decay products
 		        	for(var product in $scope.resources[radioisotope].decay.decay_product){
 		        		if(production > 0){
 			        		$scope.player.resources[product].number += $scope.resources[radioisotope].decay.decay_product[product]*production;
-			        		checkUnlock(product);
+			        		$scope.$emit("resource",product);
 			        	}
 		        	}
             	}
@@ -556,8 +504,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		        	for(var product in $scope.resources[unstable].decay.decay_product){
 		        		if(production > 0){
 		        			$scope.player.resources[product].number += $scope.resources[unstable].decay.decay_product[product]*production;
-		        			checkUnlock(product);
-		        			
+		        			$scope.$emit("resource",product);
 			        	}
 		        	}
             	}
@@ -634,7 +581,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		        		$scope.player.resources[reactant].number -= reacted[product];
 		        		$scope.player.resources[product].number += reacted[product];
 		        		if($scope.player.resources[product].number > 0){
-		        			checkUnlock(product);
+		        			$scope.$emit("resource",product);
 			        	}
 		        	}
 		        	$scope.player.resources[radical].number -= production;
@@ -674,14 +621,14 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		        	}
 		        	if(production > 0){
 		        		$scope.player.resources[isotopes[i]].number += production;
-		        		checkUnlock(isotopes[i]);
+		        		$scope.$emit("resource",isotopes[i]);
 		        	}
 		        	remaining_N -= production;
             	}
             	// The last isotope is just the remaining production that hasn't been consumed
             	if(remaining_N > 0){
             		$scope.player.resources[isotopes[isotopes.length-1]].number += remaining_N;
-            		checkUnlock(isotopes[isotopes.length-1]);
+            		$scope.$emit("resource",isotopes[isotopes.length-1]);
             	}
             }
             
@@ -775,14 +722,28 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				$scope.lastSave = "None";
 			}
 			loadData($scope);
-			//init();
+			init();
+			initializeListeners();
             $interval(update,1000);
+            $interval(checkUnlocks,1000);
             $interval(clearCache,3000);
             //$interval($scope.save,60000);
         });	
         
         function clearCache() {
 			cache = {};
+        };
+        
+        function initializeListeners(){
+        	for(var key in $scope.unlocks){
+        		if(!$scope.player.unlocks[key]){
+        			$scope.unlocks[key].listener = $scope.$on($scope.unlocks[key].event,$scope.unlocks[key].check);
+        		}
+        	}
+        };
+        
+        function checkUnlocks(){
+        	$scope.$emit("cycle",null);
         };
         
         $scope.trustHTML = function(html) {

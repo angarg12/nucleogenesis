@@ -739,6 +739,134 @@ function loadData($scope) {
 		'beta-':'&#946;<sup>-</sup>'
 	};
 	
+	$scope.unlocks = {
+		"periodic_table":{
+			check:function(event,data){  
+				if($scope.player.resources['e-'].unlocked &&
+					$scope.player.resources['p'].unlocked &&
+					$scope.player.resources['n'].unlocked){
+					$scope.addToast("Periodic table");
+					$scope.player.unlocks["periodic_table"] = true;
+					$scope.unlocks["periodic_table"].listener();
+				}
+			},
+			event:"cycle"
+		},
+		"isotope":{
+			check:function(event,data){  
+				if(['2H','3H'].indexOf(data) != -1){
+					$scope.addToast("Isotope");
+					$scope.player.unlocks["isotope"] = true;
+					$scope.unlocks["isotope"].listener();
+				}
+			},
+			event:"resource"
+		},
+		"ion":{
+			check:function(event,data){  
+				if("H-" == data){
+					$scope.addToast("Ion");
+					$scope.player.unlocks["ion"] = true;
+					$scope.unlocks["ion"].listener();
+				}
+			},
+			event:"resource"
+		},
+		"radioactivity":{
+			check:function(event,data){  
+				if("3H" == data){
+					$scope.addToast("Radioactivity");
+					$scope.player.unlocks["radioactivity"] = true;
+					$scope.unlocks["radioactivity"].listener();
+				}
+			},
+			event:"resource"
+		},
+		"allotrope":{
+			check:function(event,data){  
+				if(['O2','O3'].indexOf(data) != -1){
+					$scope.addToast("Allotrope");
+					$scope.player.unlocks["allotrope"] = true;
+					$scope.unlocks["allotrope"].listener();
+				}
+			},
+			event:"resource"
+		},
+		"free_radical":{
+			check:function(event,data){  
+				if("O" == data){
+					$scope.addToast("Free radical");
+					$scope.player.unlocks["free_radical"] = true;
+					$scope.unlocks["free_radical"].listener();
+				}
+			},
+			event:"resource"
+		},
+		"unstable_compound":{
+			check:function(event,data){  
+				if("O3" == data){
+					$scope.addToast("Unstable compound");
+					$scope.player.unlocks["unstable_compound"] = true;
+					$scope.unlocks["unstable_compound"].listener();
+				}
+			},
+			event:"resource"
+		},
+		"electron":{
+			check:function(event,data){  
+				if("e-" == data){
+					$scope.addToast("Electron");
+					$scope.player.unlocks["electron"] = true;
+					$scope.unlocks["electron"].listener();
+				}
+			},
+			event:"resource"
+		},
+		"proton":{
+			check:function(event,data){
+				if("p" == data){
+					$scope.addToast("Proton");
+					$scope.player.unlocks["proton"] = true;
+					$scope.unlocks["proton"].listener();
+				}
+			},
+			event:"resource"
+		},
+		"neutron":{
+			check:function(event,data){  
+				if("n" == data){
+					$scope.addToast("Neutron");
+					$scope.player.unlocks["neutron"] = true;
+					$scope.unlocks["neutron"].listener();
+				}
+			},
+			event:"resource"
+		},
+		"energy":{
+			check:function(event,data){  
+				if("energy" == data){
+					$scope.addToast("Energy");
+					$scope.player.unlocks["energy"] = true;
+					$scope.unlocks["energy"].listener();
+				}
+			},
+			event:"resource"
+		},
+		"half_life":{
+			check:function(event,data){  
+				if("3H" == data){
+					$scope.addToast("Half-life");
+					$scope.player.unlocks["half_life"] = true;
+					$scope.unlocks["half_life"].listener();
+				}
+			},
+			event:"resource"
+		}
+	};
+	
+	$scope.reactiveUnlocks = {
+	};
+	
 	$scope.periodic_table =[ 
 	['H','','','','','','','','','','','','','','','','','He'],
 	['Li','Be','','','','','','','','','','','B','C','N','O','F','Ne']
