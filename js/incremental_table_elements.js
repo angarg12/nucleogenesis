@@ -7,7 +7,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		
 		const startPlayer = {
 			unlocks: {	
-				hydrogen:false,
+				hydrogen:true,
 				oxygen:false,
 				upgrade:false,
 				isotope:false,
@@ -16,7 +16,6 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				electron_affinity:false,
 				nuclear_binding_energy:false,
 				radioactivity:false,
-				radioactive_decay:false,
 				beta_decay:false,
 				molecule:false,
 				allotrope:false,
@@ -28,7 +27,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				neutron:false,
 				energy:false,
 				half_life:false,
-				periodic_table:false,
+				periodic_table:true,
 				reactions:true,
 				finished:false
 			},
@@ -43,7 +42,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 							'Tier 1':{level:1},							
 							'Tier 2':{level:1},
 							'Tier 3':{level:1},
-							'Tier 4':{level:10000000000},
+							'Tier 4':{level:1000000000000},
 							'Tier 5':{level:0},
 							'Tier 6':{level:0},
 							'Tier 7':{level:0},
@@ -467,6 +466,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		        	if($scope.resources[radioisotope].decay.decay_energy*production > 0){
 				    	$scope.player.resources["energy"].number += $scope.resources[radioisotope].decay.decay_energy*production;
 			        	$scope.$emit("resource","energy");
+			        	$scope.$emit("decay",$scope.resources[radioisotope].decay.decay_type);
 			        }
 		        	// and decay products
 		        	for(var product in $scope.resources[radioisotope].decay.decay_product){

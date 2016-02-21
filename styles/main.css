@@ -119,15 +119,15 @@
 .element_row
 {
 	margin: 0px;
-	height: 52px;
+	height: 50px;
 	padding: 4px 0 0 4px;
 }
 
 .element
 {
 	position: relative;
-	height: 48px;
-	width: 50px;
+	height: 45px;
+	width: 45px;
 	margin-right: 2px;
 }
 
@@ -173,8 +173,8 @@
 
 .element_blank
 {
-	height: 48px;
-	width: 50px;
+	height: 45px;
+	width: 45px;
 	margin-right: 2px;
 }
 

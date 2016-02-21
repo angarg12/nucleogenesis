@@ -296,7 +296,10 @@ filterAndOrder(reactions[current_element].binding_energy, reactions[current_elem
 		        		<div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(resources[resource.name].decay.half_life))"></div> s
 		            </td>
                   </tr>
-                  <tr ng-if="resources[resource.name].decay != null && player.unlocks.radioactive_decay">
+                  <!-- XXX: We tie this unlock to beta decay to avoid introducing a new generic unlock "decay". Since beta
+                  decay is the first and only decay type on the game, this works just fine.
+                  -->
+                  <tr ng-if="resources[resource.name].decay != null && player.unlocks.beta_decay">
 		            <td width=15%>
 		            </td>
 		            <td width=20%>
@@ -357,7 +360,7 @@ filterAndOrder(reactions[current_element].binding_energy, reactions[current_elem
         
         <div class="tab-content ng-scope" id="periodic_table">
           <div class="tab-pane table_tab" ng-class="{active: current_tab == 'Periodic Table'}">
-            <div class="col-lg-11 col-lg-push-1">
+            <div class="col-lg-10 col-lg-push-2">
               <div class="title">Periodic Table of Elements</div>
 		      <div class="element_table">
 					<div class="element_info" ng-show="hover_element != ''">
@@ -406,7 +409,7 @@ filterAndOrder(reactions[current_element].binding_energy, reactions[current_elem
 					</div>
 		    	</div>
             </div>            
-            <div class="col-lg-1 col-lg-pull-11">
+            <div class="col-lg-2 col-lg-pull-10">
             <table class="table table-hover element-table no_bottom">
                 <tbody ng-repeat="resource in filterAndOrder(player.resources, resources)">
                   <tr>

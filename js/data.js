@@ -13,6 +13,54 @@ function loadData($scope) {
 					},
 				order:1
 			},
+			'He':{
+				name:'Helium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:2,
+				disabled:true
+			},
+			'Li':{
+				name:'Lithium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:3,
+				disabled:true
+			},
+			'Be':{
+				name:'Beryllium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:4,
+				disabled:true
+			},
+			'B':{
+				name:'Boron',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:5,
+				disabled:true
+			},
 			'C':{
 				name:'Carbon',
 				isotopes:[],
@@ -49,6 +97,1326 @@ function loadData($scope) {
 								$scope.player.resources['18O'].is_new;
 					},
 				order:8
+			},
+			'F':{
+				name:'Fluorine',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:9,
+				disabled:true
+			},
+			'Ne':{
+				name:'Neon',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:10,
+				disabled:true
+			},
+			'Na':{
+				name:'Sodium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:11,
+				disabled:true
+			},
+			'Mg':{
+				name:'Magnesium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:12,
+				disabled:true
+			},
+			'Al':{
+				name:'Aluminium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:13,
+				disabled:true
+			},
+			'Si':{
+				name:'Silicon',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:14,
+				disabled:true
+			},
+			'P':{
+				name:'Phosphorus',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:15,
+				disabled:true
+			},
+			'S':{
+				name:'Sulfur',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:16,
+				disabled:true
+			},
+			'Cl':{
+				name:'Chlorine',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:17,
+				disabled:true
+			},
+			'Ar':{
+				name:'Argon',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:18,
+				disabled:true
+			},
+			'K':{
+				name:'Potassium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:19,
+				disabled:true
+			},
+			'Ca':{
+				name:'Calcium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:20,
+				disabled:true
+			},
+			'Sc':{
+				name:'Scandium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:21,
+				disabled:true
+			},
+			'Ti':{
+				name:'Titanium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:22,
+				disabled:true
+			},
+			'V':{
+				name:'Vanadium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:23,
+				disabled:true
+			},
+			'Cr':{
+				name:'Chromium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:24,
+				disabled:true
+			},
+			'Mn':{
+				name:'Manganese',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:25,
+				disabled:true
+			},
+			'Fe':{
+				name:'Iron',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:26,
+				disabled:true
+			},
+			'Co':{
+				name:'Cobalt',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:27,
+				disabled:true
+			},
+			'Ni':{
+				name:'Nickel',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:28,
+				disabled:true
+			},
+			'Cu':{
+				name:'Copper',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:29,
+				disabled:true
+			},
+			'Zn':{
+				name:'Zinc',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:30,
+				disabled:true
+			},
+			'Ga':{
+				name:'Gallium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:31,
+				disabled:true
+			},
+			'Ge':{
+				name:'Germanium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:32,
+				disabled:true
+			},
+			'As':{
+				name:'Arsenic',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:33,
+				disabled:true
+			},
+			'Se':{
+				name:'Selenium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:34,
+				disabled:true
+			},
+			'Br':{
+				name:'Bromine',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:35,
+				disabled:true
+			},
+			'Kr':{
+				name:'Krypton',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:36,
+				disabled:true
+			},
+			'Rb':{
+				name:'Rubidium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:37,
+				disabled:true
+			},
+			'Sr':{
+				name:'Strontium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:38,
+				disabled:true
+			},
+			'Y':{
+				name:'Yttrium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:39,
+				disabled:true
+			},
+			'Zr':{
+				name:'Zirconium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:40,
+				disabled:true
+			},
+			'Nb':{
+				name:'Niobium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:41,
+				disabled:true
+			},
+			'Mo':{
+				name:'Molybdenum',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:42,
+				disabled:true
+			},
+			'Tc':{
+				name:'Technetium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:43,
+				disabled:true
+			},
+			'Ru':{
+				name:'Ruthenium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:44,
+				disabled:true
+			},
+			'Rh':{
+				name:'Rhodium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:45,
+				disabled:true
+			},
+			'Pd':{
+				name:'Palladium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:46,
+				disabled:true
+			},
+			'Ag':{
+				name:'Silver',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:47,
+				disabled:true
+			},
+			'Cd':{
+				name:'Cadmium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:48,
+				disabled:true
+			},
+			'In':{
+				name:'Indium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:49,
+				disabled:true
+			},
+			'Sn':{
+				name:'Tin',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:50,
+				disabled:true
+			},
+			'Sb':{
+				name:'Antimony',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:51,
+				disabled:true
+			},
+			'Te':{
+				name:'Tellurium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:52,
+				disabled:true
+			},
+			'I':{
+				name:'Iodine',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:53,
+				disabled:true
+			},
+			'Xe':{
+				name:'Xenon',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:54,
+				disabled:true
+			},
+			'Cs':{
+				name:'Caesium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:55,
+				disabled:true
+			},
+			'Ba':{
+				name:'Barium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:56,
+				disabled:true
+			},
+			'La':{
+				name:'Lanthanum',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:57,
+				disabled:true
+			},
+			'Ce':{
+				name:'Cerium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:58,
+				disabled:true
+			},
+			'Pr':{
+				name:'Praseodymium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:59,
+				disabled:true
+			},
+			'Nd':{
+				name:'Neodymium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:60,
+				disabled:true
+			},
+			'Pm':{
+				name:'Promethium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:61,
+				disabled:true
+			},
+			'Sm':{
+				name:'Samarium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:62,
+				disabled:true
+			},
+			'Eu':{
+				name:'Europium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:63,
+				disabled:true
+			},
+			'Gd':{
+				name:'Gadolinium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:64,
+				disabled:true
+			},
+			'Tb':{
+				name:'Terbium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:65,
+				disabled:true
+			},
+			'Dy':{
+				name:'Dysprosium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:66,
+				disabled:true
+			},
+			'Ho':{
+				name:'Holmium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:67,
+				disabled:true
+			},
+			'Er':{
+				name:'Erbium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:68,
+				disabled:true
+			},
+			'Tm':{
+				name:'Thulium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:69,
+				disabled:true
+			},
+			'Yb':{
+				name:'Ytterbium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:70,
+				disabled:true
+			},
+			'Lu':{
+				name:'Lutetium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:71,
+				disabled:true
+			},
+			'Hf':{
+				name:'Hafnium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:72,
+				disabled:true
+			},
+			'Ta':{
+				name:'Tantalum',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:73,
+				disabled:true
+			},
+			'W':{
+				name:'Tungsten',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:74,
+				disabled:true
+			},
+			'Re':{
+				name:'Rhenium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:75,
+				disabled:true
+			},
+			'Os':{
+				name:'Osmium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:76,
+				disabled:true
+			},
+			'Ir':{
+				name:'Iridium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:77,
+				disabled:true
+			},
+			'Pt':{
+				name:'Platinum',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:78,
+				disabled:true
+			},
+			'Au':{
+				name:'Gold',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:79,
+				disabled:true
+			},
+			'Hg':{
+				name:'Mercury',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:80,
+				disabled:true
+			},
+			'Tl':{
+				name:'Thallium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:81,
+				disabled:true
+			},
+			'Pb':{
+				name:'Lead',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:82,
+				disabled:true
+			},
+			'Bi':{
+				name:'Bismuth',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:83,
+				disabled:true
+			},
+			'Po':{
+				name:'Polonium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:84,
+				disabled:true
+			},
+			'At':{
+				name:'Astatine',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:85,
+				disabled:true
+			},
+			'Rn':{
+				name:'Radon',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:86,
+				disabled:true
+			},
+			'Fr':{
+				name:'Francium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:87,
+				disabled:true
+			},
+			'Ra':{
+				name:'Radium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:88,
+				disabled:true
+			},
+			'Ac':{
+				name:'Actinium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:89,
+				disabled:true
+			},
+			'Th':{
+				name:'Thorium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:90,
+				disabled:true
+			},
+			'Pa':{
+				name:'Protactinium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:91,
+				disabled:true
+			},
+			'U':{
+				name:'Uranium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:92,
+				disabled:true
+			},
+			'Np':{
+				name:'Neptunium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:93,
+				disabled:true
+			},
+			'Pu':{
+				name:'Plutonium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:94,
+				disabled:true
+			},
+			'Am':{
+				name:'Americium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:95,
+				disabled:true
+			},
+			'Cm':{
+				name:'Curium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:96,
+				disabled:true
+			},
+			'Bk':{
+				name:'Berkelium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:97,
+				disabled:true
+			},
+			'Cf':{
+				name:'Californium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:98,
+				disabled:true
+			},
+			'Es':{
+				name:'Einsteinium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:99,
+				disabled:true
+			},
+			'Fm':{
+				name:'Fermium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:100,
+				disabled:true
+			},
+			'Md':{
+				name:'Mendelevium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:101,
+				disabled:true
+			},
+			'No':{
+				name:'Nobelium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:102,
+				disabled:true
+			},
+			'Lr':{
+				name:'Lawrencium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:103,
+				disabled:true
+			},
+			'Rf':{
+				name:'Rutherfordium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:104,
+				disabled:true
+			},
+			'Db':{
+				name:'Dubnium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:105,
+				disabled:true
+			},
+			'Sg':{
+				name:'Seaborgium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:106,
+				disabled:true
+			},
+			'Bh':{
+				name:'Bohrium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:107,
+				disabled:true
+			},
+			'Hs':{
+				name:'Hassium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:108,
+				disabled:true
+			},
+			'Mt':{
+				name:'Meitnerium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:109,
+				disabled:true
+			},
+			'Ds':{
+				name:'Darmstadtium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:110,
+				disabled:true
+			},
+			'Rg':{
+				name:'Roentgenium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:111,
+				disabled:true
+			},
+			'Cn':{
+				name:'Copernicium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:112,
+				disabled:true
+			},
+			'Uut':{
+				name:'Ununtrium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:113,
+				disabled:true
+			},
+			'Fl':{
+				name:'Flerovium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:114,
+				disabled:true
+			},
+			'Uup':{
+				name:'Ununpentium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:115,
+				disabled:true
+			},
+			'Lv':{
+				name:'Livermorium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:116,
+				disabled:true
+			},
+			'Uus':{
+				name:'Ununseptium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:117,
+				disabled:true
+			},
+			'Uuo':{
+				name:'Ununoctium',
+				isotopes:[],
+				visible:function(){
+						return false;
+					},
+				has_new:function(){
+						return false;
+					},
+				order:118,
+				disabled:true
 			}
 	};
 
@@ -812,6 +2180,16 @@ function loadData($scope) {
 			},
 			event:"resource"
 		},
+		"reactions":{
+			check:function(event,data){  
+				if("e-" == data){
+					$scope.addToast("Reactions");
+					$scope.player.unlocks["reactions"] = true;
+					$scope.unlocks["reactions"].listener();
+				}
+			},
+			event:"resource"
+		},
 		"electron":{
 			check:function(event,data){  
 				if("e-" == data){
@@ -916,9 +2294,11 @@ function loadData($scope) {
 		},
 		"beta_decay":{
 			check:function(event,data){  
-				$scope.addToast("Beta decay");
-				$scope.player.unlocks["beta_decay"] = true;
-				$scope.unlocks["beta_decay"].listener();
+				if("beta-" == data){
+					$scope.addToast("Beta decay");
+					$scope.player.unlocks["beta_decay"] = true;
+					$scope.unlocks["beta_decay"].listener();
+				}
 			},
 			event:"decay"
 		},
@@ -956,11 +2336,15 @@ function loadData($scope) {
 		}
 	};
 	
-	$scope.reactiveUnlocks = {
-	};
-	
 	$scope.periodic_table =[ 
 	['H','','','','','','','','','','','','','','','','','He'],
-	['Li','Be','','','','','','','','','','','B','C','N','O','F','Ne']
+	['Li','Be','','','','','','','','','','','B','C','N','O','F','Ne'],
+	['Na','Mg','','','','','','','','','','','Al','Si','P','S','Cl','Ar'],
+	['K','Ca','Sc','Ti','V','Cr','Mn','Fe','Co','Ni','Cu','Zn','Ga','Ge','As','Se','Br','Kr'],
+	['Rb','Sr','Y','Zr','Nb','Mo','Tc','Ru','Rh','Pd','Ag','Cd','In','Sn','Sb','Te','I','Xe'],
+	['Cs','Ba','','Hf','Ta','W','Re','Os','I','Pt','Au','Hg','Tl','Pb','Bi','Po','At','Rn'],
+	['Fr','Ra','','Rf','Db','Sg','Bh','Hs','Mt','Ds','Rg','Cn','Uut','Fl','Uup','Lv','Uus','Uuo'],
+	['','','','La','Ce','Pr','Nd','Pm','Sm','Eu','Gd','Tb','Dy','Ho','Er','Tm','Yb','Lu'],
+	['','','','Ac','Th','Pa','U','Np','Pu','Am','Cm','Bk','Cf','Es','Fm','Md','No','Lr']
 	];
 }
