@@ -106,7 +106,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 							active:0
 						}
 					},
-					unlocked:true
+					unlocked:false
 				}
 			},
 			resources:{
@@ -229,7 +229,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 
 
 		$scope.elementPrice = function(element) {
-			return Math.pow($scope.player.elements_unlocked+1,$scope.resources[element].number);
+			return Math.pow($scope.player.elements_unlocked+1,$scope.elements[element].order);
 		};
 		
 		$scope.isElementCostMet = function(element) {

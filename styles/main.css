@@ -197,18 +197,18 @@
 
 .element_info
 {
-	left: 167px;
+	left: 98px;
 	position: absolute;
-	top: 50px;
+	top: 49px;
 	overflow: hidden;
 }
 
 .element_basic
 {
 	margin-top:5px;
-	width: 100px;
+	width: 93px;
 	bottom: 2px;	
-	height: 100px;
+	height: 98px;
 	text-align: center;
 	padding-top: 36px;
     font-size:13px;
@@ -220,7 +220,6 @@
 	margin-top:5px;
 	width: 150px;
 	bottom: 2px;	
-	height: 100px;
 	text-align: left;
 	margin-left: 15px;
 }

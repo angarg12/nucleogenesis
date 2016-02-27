@@ -363,7 +363,7 @@ filterAndOrder(reactions[current_element].binding_energy, reactions[current_elem
             <div class="col-lg-10 col-lg-push-2">
               <div class="title">Periodic Table of Elements</div>
 		      <div class="element_table">
-					<div class="element_info" ng-show="hover_element != ''">
+					<div class="element_info" ng-show="elements[hover_element] != null">
 						<div class="fl element_basic"
 						ng-class="{element_purchased: player.elements[hover_element].unlocked === true,
 				   							element_unavailable: elements[hover_element].disabled === true,
