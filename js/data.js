@@ -1426,7 +1426,8 @@ function loadData($scope) {
 					description:"Tier 1 production x2",
 					order:0,
 					visible:function(){
-						return $scope.player.elements[$scope.current_element].upgrades['Tier 1-1'].unlocked;
+						return $scope.player.unlocks["upgrade"] && 
+								$scope.player.elements[$scope.current_element].generators['Tier 1'].level > 0;
 					},
 					apply:function(resource){
 						return resource*2;
@@ -1437,7 +1438,7 @@ function loadData($scope) {
 					description:"Tier 1 production x2",
 					order:1,
 					visible:function(){
-						return $scope.player.elements[$scope.current_element].upgrades['Tier 1-2'].unlocked;
+						return $scope.player.elements[$scope.current_element].upgrades['Tier 1-1'].bought;
 					},
 					apply:function(resource){
 						return resource*2;
@@ -1448,7 +1449,8 @@ function loadData($scope) {
 					description:"Tier 2 production x2",
 					order:10,
 					visible:function(){
-						return $scope.player.elements[$scope.current_element].upgrades['Tier 2-1'].unlocked;
+						return $scope.player.unlocks["upgrade"] && 
+								$scope.player.elements[$scope.current_element].generators['Tier 2'].level > 0;
 					},
 					apply:function(resource){
 						return resource*2;
@@ -1513,6 +1515,15 @@ function loadData($scope) {
 					order:5,		
 					html:'H<sub>2</sub>',
 					type:'allotrope'
+				},
+				'H2O':{ 
+					visible:function(){
+						return $scope.current_tab == "Elements" && 
+								$scope.player.resources['H2O'].unlocked;
+					},
+					order:6,		
+					html:'H<sub>2</sub>O',
+					type:'molecule'
 				},
 				'He':{ 
 					visible:function(){
@@ -1702,7 +1713,7 @@ function loadData($scope) {
 						},
 						order:2,
 						link:'https://en.wikipedia.org/wiki/Oxygen',
-						description:'Oxygen is a chemical element with symbol O and atomic number 8. It is a member of the chalcogen group on the periodic table and is a highly reactive nonmetal and oxidizing agent that readily forms compounds (notably oxides) with most elements. By mass, oxygen is the third-most abundant element in the universe, after hydrogen and helium. At standard temperature and pressure, two atoms of the element bind to form dioxygen, a colorless and odorless diatomic gas with the formula O<sub>2</sub>. Diatomic oxygen gas constitutes 20.8% of the Earth\'s atmosphere. Oxygen is the most abundant element by mass in the Earth\'s crust as part of oxide compounds such as silicon dioxide, making up almost half of the crust\'s mass.'
+						description:'<b>Oxygen</b> is a chemical element with symbol <b>O</b> and atomic number 8. It is a member of the chalcogen group on the periodic table and is a highly reactive nonmetal and oxidizing agent that readily forms compounds (notably oxides) with most elements. By mass, oxygen is the third-most abundant element in the universe, after hydrogen and helium. At standard temperature and pressure, two atoms of the element bind to form dioxygen, a colorless and odorless diatomic gas with the formula O<sub>2</sub>. Diatomic oxygen gas constitutes 20.8% of the Earth\'s atmosphere. Oxygen is the most abundant element by mass in the Earth\'s crust as part of oxide compounds such as silicon dioxide, making up almost half of the crust\'s mass.'
 						},
 					'Isotope':{
 						visible:function(){
@@ -1718,7 +1729,7 @@ function loadData($scope) {
 						},
 						order:4,
 						link:'https://en.wikipedia.org/wiki/Electron',
-						description:'The electron is a subatomic particle, symbol e−, with a negative elementary electric charge. Electrons belong to the first generation of the lepton particle family, and are generally thought to be elementary particles because they have no known components or substructure. The electron has a mass that is approximately 1/1836 that of the proton. Quantum mechanical properties of the electron include an intrinsic angular momentum (spin) of a half-integer value in units of ħ, which means that it is a fermion. Being fermions, no two electrons can occupy the same quantum state, in accordance with the Pauli exclusion principle.'
+						description:'The <b>electron</b> is a subatomic particle, symbol e−, with a negative elementary electric charge. Electrons belong to the first generation of the lepton particle family, and are generally thought to be elementary particles because they have no known components or substructure. The electron has a mass that is approximately 1/1836 that of the proton. Quantum mechanical properties of the electron include an intrinsic angular momentum (spin) of a half-integer value in units of ħ, which means that it is a fermion. Being fermions, no two electrons can occupy the same quantum state, in accordance with the Pauli exclusion principle.'
 						},
 					'Proton':{
 						visible:function(){
@@ -1726,7 +1737,7 @@ function loadData($scope) {
 						},
 						order:5,
 						link:'https://en.wikipedia.org/wiki/Proton',
-						description:'The proton is a subatomic particle, symbol p, with a positive electric charge of +1e elementary charge and mass slightly less than that of a neutron. Protons and neutrons, each with mass approximately one atomic mass unit, are collectively referred to as "nucleons". One or more protons are present in the nucleus of every atom. The number of protons in the nucleus is the defining property of an element, and is referred to as the atomic number. Since each element has a unique number of protons, each element has its own unique atomic number.'
+						description:'The <b>proton</b> is a subatomic particle, symbol p, with a positive electric charge of +1e elementary charge and mass slightly less than that of a neutron. Protons and neutrons, each with mass approximately one atomic mass unit, are collectively referred to as "nucleons". One or more protons are present in the nucleus of every atom. The number of protons in the nucleus is the defining property of an element, and is referred to as the atomic number. Since each element has a unique number of protons, each element has its own unique atomic number.'
 						},
 					'Neutron':{
 						visible:function(){
@@ -1734,7 +1745,7 @@ function loadData($scope) {
 						},
 						order:6,
 						link:'https://en.wikipedia.org/wiki/Neutron',
-						description:'The neutron is a subatomic particle, symbol n, with no net electric charge and a mass slightly larger than that of a proton. Protons and neutrons, each with mass approximately one atomic mass unit, constitute the nucleus of an atom, and they are collectively referred to as nucleons. Their properties and interactions are described by nuclear physics.<br>Within the nucleus, protons and neutrons are bound together through the nuclear force, and neutrons are required for the stability of nuclei. Neutrons are produced copiously in nuclear fission and fusion. They are a primary contributor to the nucleosynthesis of chemical elements within stars through fission, fusion, and neutron capture processes.'
+						description:'The <b>neutron</b> is a subatomic particle, symbol n, with no net electric charge and a mass slightly larger than that of a proton. Protons and neutrons, each with mass approximately one atomic mass unit, constitute the nucleus of an atom, and they are collectively referred to as nucleons. Their properties and interactions are described by nuclear physics.<br>Within the nucleus, protons and neutrons are bound together through the nuclear force, and neutrons are required for the stability of nuclei. Neutrons are produced copiously in nuclear fission and fusion. They are a primary contributor to the nucleosynthesis of chemical elements within stars through fission, fusion, and neutron capture processes.'
 						},
 					'Radioactivity':{
 						visible:function(){
@@ -1742,7 +1753,7 @@ function loadData($scope) {
 						},
 						order:8,
 						link:'https://en.wikipedia.org/wiki/Radioactive_decay',
-						description:'Radioactive decay, also known as nuclear decay or radioactivity, is the process by which a nucleus of an unstable atom loses energy by emitting radiation. A material that spontaneously emits such radiation — which includes alpha particles, beta particles, gamma rays and conversion electrons — is considered radioactive.<br>Radioactive decay is a stochastic (i.e. random) process at the level of single atoms, in that, according to quantum theory, it is impossible to predict when a particular atom will decay. The chance that a given atom will decay never changes, that is, it does not matter how long the atom has existed. For a large collection of atoms however, the decay rate for that collection can be calculated from their measured decay constants or half-lives.<BR>There are many different types of radioactive decay. A decay, or loss of energy from the nucleus, results when an atom with one type of nucleus, called the parent radionuclide (or parent radioisotope), transforms into an atom with a nucleus in a different state, or with a nucleus containing a different number of protons and neutrons. The product is called the daughter nuclide. In some decays, the parent and the daughter nuclides are different chemical elements, and thus the decay process results in the creation of an atom of a different element. This is known as a nuclear transmutation.'
+						description:'<b>Radioactive decay</b>, also known as <b>nuclear decay</b> or <b>radioactivity</b>, is the process by which a nucleus of an unstable atom loses energy by emitting <b>radiation</b>. A material that spontaneously emits such radiation — which includes alpha particles, beta particles, gamma rays and conversion electrons — is considered radioactive.<br>Radioactive decay is a stochastic (i.e. random) process at the level of single atoms, in that, according to quantum theory, it is impossible to predict when a particular atom will decay. The chance that a given atom will decay never changes, that is, it does not matter how long the atom has existed. For a large collection of atoms however, the decay rate for that collection can be calculated from their measured decay constants or half-lives.<BR>There are many different types of radioactive decay. A decay, or loss of energy from the nucleus, results when an atom with one type of nucleus, called the parent radionuclide (or parent radioisotope), transforms into an atom with a nucleus in a different state, or with a nucleus containing a different number of protons and neutrons. The product is called the daughter nuclide. In some decays, the parent and the daughter nuclides are different chemical elements, and thus the decay process results in the creation of an atom of a different element. This is known as a nuclear transmutation.'
 						},
 					'Half-life':{
 						visible:function(){
@@ -1750,7 +1761,7 @@ function loadData($scope) {
 						},
 						order:9,
 						link:'https://en.wikipedia.org/wiki/Half-life',
-						description:'Half-life (t1⁄2) is the amount of time required for the amount of something to fall to half its initial value. The term is very commonly used in nuclear physics to describe how quickly unstable atoms undergo radioactive decay, but it is also used more generally for discussing any type of exponential decay. <br>Half-life is used to describe a quantity undergoing exponential decay, and is constant over the lifetime of the decaying quantity. It is a characteristic unit for the exponential decay equation. The term "half-life" may generically be used to refer to any period of time in which a quantity falls by half, even if the decay is not exponential.'
+						description:'<b>Half-life</b> (t<sub>1/2</sub>) is the amount of time required for the amount of something to fall to half its initial value. The term is very commonly used in nuclear physics to describe how quickly unstable atoms undergo radioactive decay, but it is also used more generally for discussing any type of exponential decay. <br>Half-life is used to describe a quantity undergoing exponential decay, and is constant over the lifetime of the decaying quantity. It is a characteristic unit for the exponential decay equation. The term "half-life" may generically be used to refer to any period of time in which a quantity falls by half, even if the decay is not exponential.'
 						},
 					'Beta decay':{
 						visible:function(){
@@ -1758,7 +1769,7 @@ function loadData($scope) {
 						},
 						order:10,
 						link:'https://en.wikipedia.org/wiki/Beta_decay',
-						description:'In nuclear physics, beta decay (β-decay) is a type of radioactive decay in which a proton is transformed into a neutron, or vice versa, inside an atomic nucleus. This process allows the atom to move closer to the optimal ratio of protons and neutrons. As a result of this transformation, the nucleus emits a detectable beta particle, which is an electron or positron.<br>Beta decay is mediated by the weak force. There are two types of beta decay, known as beta minus and beta plus. In beta minus (β−) decay a neutron is lost and a proton appears and the process produces an electron and electron antineutrino, while in beta plus (β+) decay a proton is lost and a neutron appears and the process produces a positron and electron neutrino; β+ decay is thus also known as positron emission.'
+						description:'In nuclear physics, <b>beta decay</b> (β-decay) is a type of radioactive decay in which a proton is transformed into a neutron, or vice versa, inside an atomic nucleus. This process allows the atom to move closer to the optimal ratio of protons and neutrons. As a result of this transformation, the nucleus emits a detectable beta particle, which is an electron or positron.<br>Beta decay is mediated by the weak force. There are two types of beta decay, known as beta minus and beta plus. In beta minus (β−) decay a neutron is lost and a proton appears and the process produces an electron and electron antineutrino, while in beta plus (β+) decay a proton is lost and a neutron appears and the process produces a positron and electron neutrino; β+ decay is thus also known as positron emission.'
 						},
 					'Energy':{
 						visible:function(){
@@ -1766,7 +1777,7 @@ function loadData($scope) {
 						},
 						order:11,
 						link:'https://en.wikipedia.org/wiki/Energy',
-						description:'In physics, energy is a property of objects which can be transferred to other objects or converted into different forms, but cannot be created or destroyed. The "ability of a system to perform work" is a common description, but it is difficult to give one single comprehensive definition of energy because of its many forms. <br>Common energy forms include the kinetic energy of a moving object, the potential energy stored by an object\'s position in a force field (gravitational, electric or magnetic), the elastic energy stored by stretching solid objects, the chemical energy released when a fuel burns, the radiant energy carried by light, and the thermal energy due to an object\'s temperature. All of the many forms of energy are convertible to other kinds of energy, and obey the law of conservation of energy which says that energy can be neither created nor be destroyed; however, it can change from one form to another.'
+						description:'In physics, <b>energy</b> is a property of objects which can be transferred to other objects or converted into different forms, but cannot be created or destroyed. The "ability of a system to perform work" is a common description, but it is difficult to give one single comprehensive definition of energy because of its many forms. <br>Common energy forms include the kinetic energy of a moving object, the potential energy stored by an object\'s position in a force field (gravitational, electric or magnetic), the elastic energy stored by stretching solid objects, the chemical energy released when a fuel burns, the radiant energy carried by light, and the thermal energy due to an object\'s temperature. All of the many forms of energy are convertible to other kinds of energy, and obey the law of conservation of energy which says that energy can be neither created nor be destroyed; however, it can change from one form to another.'
 						},
 					'Electronvolt':{
 						visible:function(){
@@ -1774,7 +1785,7 @@ function loadData($scope) {
 						},
 						order:12,
 						link:'https://en.wikipedia.org/wiki/Electronvolt',
-						description:'In physics, the electronvolt (symbol eV; also written electron volt) is a unit of energy equal to approximately 160 zeptojoules (symbol zJ) or 1.6 × 10<sup>−19</sup> joules (symbol J). By definition, it is the amount of energy gained (or lost) by the charge of a single electron moving across an electric potential difference of one volt. <br>The electron volt is not an SI unit, and its definition is empirical, thus its value in SI units must be obtained experimentally.'
+						description:'In physics, the <b>electronvolt</b> (symbol <b>eV</b>; also written <b>electron volt</b>) is a unit of energy equal to approximately 160 zeptojoules (symbol zJ) or 1.6 × 10<sup>−19</sup> joules (symbol J). By definition, it is the amount of energy gained (or lost) by the charge of a single electron moving across an electric potential difference of one volt. <br>The electron volt is not an SI unit, and its definition is empirical, thus its value in SI units must be obtained experimentally.'
 						},
 					'Ionization energy':{
 						visible:function(){
@@ -1782,7 +1793,7 @@ function loadData($scope) {
 						},
 						order:13,
 						link:'https://en.wikipedia.org/wiki/Ionization_energy',
-						description:'The ionization energy is qualitatively defined as the amount of energy required to remove the most loosely bound electron of an isolated gaseous atom to form a cation.'
+						description:'The <b>ionization energy</b> is qualitatively defined as the amount of energy required to remove the most loosely bound electron of an isolated gaseous atom to form a cation.'
 						},
 					'Electron affinity':{
 						visible:function(){
@@ -1790,7 +1801,7 @@ function loadData($scope) {
 						},
 						order:14,
 						link:'https://en.wikipedia.org/wiki/Electron_affinity',
-						description:'In chemistry and atomic physics, the electron affinity of an atom or molecule is defined as the amount of energy released when an electron is added to a neutral atom or molecule in the gaseous state to form a negative ion.'
+						description:'In chemistry and atomic physics, the <b>electron affinity</b> of an atom or molecule is defined as the amount of energy released when an electron is added to a neutral atom or molecule in the gaseous state to form a negative ion.'
 						},
 					'Nuclear binding energy':{
 						visible:function(){
@@ -1798,7 +1809,7 @@ function loadData($scope) {
 						},
 						order:15,
 						link:'https://en.wikipedia.org/wiki/Nuclear_binding_energy',
-						description:'Nuclear binding energy is the energy that would be required to disassemble the nucleus of an atom into its component parts. These component parts are neutrons and protons, which are collectively called nucleons. The binding energy of nuclei is due to the attractive forces that hold these nucleons together and this is usually a positive number, since most nuclei would require the expenditure of energy to separate them into individual protons and neutrons. The mass of an atomic nucleus is usually less than the sum of the individual masses of the constituent protons and neutrons (according to Einstein\'s equation E=mc<sup>2</sup>) and this \'missing mass\' is known as the mass defect, and represents the energy that was released when the nucleus was formed.'
+						description:'<b>Nuclear binding energy</b> is the energy that would be required to disassemble the nucleus of an atom into its component parts. These component parts are neutrons and protons, which are collectively called nucleons. The binding energy of nuclei is due to the attractive forces that hold these nucleons together and this is usually a positive number, since most nuclei would require the expenditure of energy to separate them into individual protons and neutrons. The mass of an atomic nucleus is usually less than the sum of the individual masses of the constituent protons and neutrons (according to Einstein\'s equation E=mc<sup>2</sup>) and this \'missing mass\' is known as the mass defect, and represents the energy that was released when the nucleus was formed.'
 						},
 					'Synthesis':{
 						visible:function(){
@@ -1806,7 +1817,7 @@ function loadData($scope) {
 						},
 						order:16,
 						link:'https://en.wikipedia.org/wiki/Chemical_synthesis',
-						description:'Chemical synthesis is a purposeful execution of chemical reactions to obtain a product, or several products. This happens by physical and chemical manipulations usually involving one or more reactions.<br>A chemical synthesis begins by selection of compounds that are known as reagents or reactants. Various reaction types can be applied to these to synthesize the product.'
+						description:'<b>Chemical synthesis</b> is a purposeful execution of chemical reactions to obtain a product, or several products. This happens by physical and chemical manipulations usually involving one or more reactions.<br>A chemical synthesis begins by selection of compounds that are known as reagents or reactants. Various reaction types can be applied to these to synthesize the product.'
 						},
 					'Ion':{
 						visible:function(){
@@ -1814,7 +1825,7 @@ function loadData($scope) {
 						},
 						order:17,
 						link:'https://en.wikipedia.org/wiki/Ion',
-						description:'An ion (/ˈaɪən, -ɒn/) is an atom or a molecule in which the total number of electrons is not equal to the total number of protons, giving the atom or molecule a net positive or negative electrical charge. Ions can be created, by either chemical or physical means, via ionization.<br>In chemical terms, if a neutral atom loses one or more electrons, it has a net positive charge and is known as a cation.<br>If an atom gains electrons, it has a net negative charge and is known as an anion.'
+						description:'An <b>ion</b> (/ˈaɪən, -ɒn/) is an atom or a molecule in which the total number of electrons is not equal to the total number of protons, giving the atom or molecule a net positive or negative electrical charge. Ions can be created, by either chemical or physical means, via ionization.<br>In chemical terms, if a neutral atom loses one or more electrons, it has a net positive charge and is known as a cation.<br>If an atom gains electrons, it has a net negative charge and is known as an anion.'
 						},
 					'Molecule':{
 						visible:function(){
@@ -1822,7 +1833,7 @@ function loadData($scope) {
 						},
 						order:18,
 						link:'https://en.wikipedia.org/wiki/Molecule',
-						description:'A molecule (/ˈmɒlɪkjuːl/ from Latin moles "mass") is an electrically neutral group of two or more atoms held together by chemical bonds. Molecules are distinguished from ions by their lack of electrical charge.<br>A molecule may be homonuclear, that is, it consists of atoms of a single chemical element, or it may be heteronuclear, a chemical compound composed of more than one element. Atoms and complexes connected by non-covalent bonds such as hydrogen bonds or ionic bonds are generally not considered single molecules.'
+						description:'A <b>molecule</b> (/ˈmɒlɪkjuːl/ from Latin moles "mass") is an electrically neutral group of two or more atoms held together by chemical bonds. Molecules are distinguished from ions by their lack of electrical charge.<br>A molecule may be homonuclear, that is, it consists of atoms of a single chemical element, or it may be heteronuclear, a chemical compound composed of more than one element. Atoms and complexes connected by non-covalent bonds such as hydrogen bonds or ionic bonds are generally not considered single molecules.'
 						},
 					'Free radical':{
 						visible:function(){
@@ -1830,7 +1841,7 @@ function loadData($scope) {
 						},
 						order:19,
 						link:'https://en.wikipedia.org/wiki/Radical_%28chemistry%29',
-						description:'In chemistry, a radical (more precisely, a free radical) is an atom, molecule, or ion that has unpaired valence electrons. With some exceptions, these unpaired electrons make free radicals highly chemically reactive towards other substances, or even towards themselves: their molecules will often spontaneously dimerize or polymerize if they come in contact with each other. Most radicals are reasonably stable only at very low concentrations in inert media or in a vacuum.'
+						description:'In chemistry, a <b>radical</b> (more precisely, a <b>free radical</b>) is an atom, molecule, or ion that has unpaired valence electrons. With some exceptions, these unpaired electrons make free radicals highly chemically reactive towards other substances, or even towards themselves: their molecules will often spontaneously dimerize or polymerize if they come in contact with each other. Most radicals are reasonably stable only at very low concentrations in inert media or in a vacuum.'
 						},
 					'Allotrope':{
 						visible:function(){
@@ -1838,22 +1849,30 @@ function loadData($scope) {
 						},
 						order:20,
 						link:'https://en.wikipedia.org/wiki/Allotropy',
-						description:'Allotropy or allotropism (from Greek ἄλλος (allos), meaning "other", and τρόπος (tropos), meaning "manner, form") is the property of some chemical elements to exist in two or more different forms, in the same physical state, known as allotropes of these elements. Allotropes are different structural modifications of an element; the atoms of the element are bonded together in a different manner. '
+						description:'<b>Allotropy</b> or <b>allotropism</b> (from Greek ἄλλος (allos), meaning "other", and τρόπος (tropos), meaning "manner, form") is the property of some chemical elements to exist in two or more different forms, in the same physical state, known as allotropes of these elements. Allotropes are different structural modifications of an element; the atoms of the element are bonded together in a different manner. '
 						},
 					'Unstable compound':{
 						visible:function(){
 							return $scope.player.unlocks.unstable_compound;
 						},
 						order:21,
-						link:'',
+						link:null,
 						description:'A compound is a group of two or more elements<br>Unstable means it is highly reactive, and can condense, decompose, polymerize, or become self-reactive quite easily due to pressure or temperature'
+						},
+					'Water (H2O)':{
+						visible:function(){
+							return $scope.player.unlocks.finished;
+						},
+						order:22,
+						link:'https://en.wikipedia.org/wiki/Properties_of_water',
+						description:'<b>Water</b> (H<sub>2</sub>O) is the most abundant compound on Earth\'s surface, covering 70 percent of the planet. In nature, water exists in liquid, solid, and gaseous states. It is in dynamic equilibrium between the liquid and gas states at standard temperature and pressure. At room temperature, it is a tasteless and odorless liquid, nearly colorless with a hint of blue. Many substances dissolve in water and it is commonly referred to as the universal solvent. Because of this, water in nature and in use is rarely pure and some properties may vary from those of the pure substance. However, there are also many compounds that are essentially, if not completely, insoluble in water. Water is the only common substance found naturally in all three common states of matter and it is essential for all life on Earth. Water makes up 55% to 78% of the human body.'
 						},
 					'A word from the developer':{
 						visible:function(){
 							return $scope.player.unlocks.finished;
 						},
-						order:22,
-						link:'',
+						order:23,
+						link:null,
 						description:'Congratulations on finishing The Incremental Table of the Elements prototype!\
 						<br>When you first started playing, did you think this was a simple Cookie Clicker clone? Where your surprised when you saw the first game mechanics unfold? Where you curious about what else the game had to offer? And finally, where you engage by the prospect of managing a large quantity of resources in a complex \'economy simulation\' dictated by a small set of rules? Then this prototype has served its purpose.\
 						<br>The concept for this game started as a discussion about alternatives to current prestige systems. The original idea was a system where each reset introduces a new currency instead of providing a production bonus. This concept introduces several game design challenges such as how different currencies are related in a complex economic simulation. A parallel was drawn between this concept and the way different elements atoms interact, and the focus of the idea shifted to a chemistry-based game.\

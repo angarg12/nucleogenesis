@@ -338,7 +338,8 @@ filterAndOrder(reactions[current_element].binding_energy, reactions[current_elem
         <div class="tab-content ng-scope" id="encyclopedia">
           <div class="tab-pane row" ng-class="{active: current_tab == 'Encyclopedia'}">
             <div class="col-lg-9 col-lg-push-3">
-              <h3><a target="_blank" href="{{encyclopedia[current_entry].link}}">{{current_entry}}</a></h3>
+              <h3 ng-show="encyclopedia[current_entry].link != null"><a target="_blank" href="{{encyclopedia[current_entry].link}}">{{current_entry}}</a></h3>
+              <h3 ng-show="encyclopedia[current_entry].link == null">{{current_entry}}</h3>
               <div ng-bind-html="trustHTML(encyclopedia[current_entry].description)"></div>
             </div>
 
@@ -441,11 +442,11 @@ filterAndOrder(reactions[current_element].binding_energy, reactions[current_elem
             <div class="col-lg-12" ng-if="numberUnlocked() > 0">
               <div ng-if="numberUnlocked() < 10">
 		          <br>
-		          Unlocked: {{numberUnlocked()}}/??
+		          Unlocks: {{numberUnlocked()}}/??
               </div>
               <div ng-if="numberUnlocked() >= 10">
 		          <br>
-		          Unlocked: {{numberUnlocked()}}/{{numberUnlocks()}}
+		          Unlocks: {{numberUnlocked()}}/{{numberUnlocks()}}
               </div>   
             </div>
             <div class="col-lg-12">

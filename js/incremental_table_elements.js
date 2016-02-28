@@ -8,32 +8,52 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		const startPlayer = {
 			unlocks: {	
 				hydrogen:true,
-				oxygen:false,
-				upgrade:false,
-				isotope:false,
-				ion:false,
-				ionization_energy:false,
-				electron_affinity:false,
-				nuclear_binding_energy:false,
-				radioactivity:false,
-				beta_decay:false,
-				molecule:false,
-				allotrope:false,
-				free_radical:false,
-				unstable_compound:false,
-				synthesis:false,
-				electron:false,
-				proton:false,
-				neutron:false,
-				energy:false,
-				half_life:false,
+				oxygen:true,
+				upgrade:true,
+				isotope:true,
+				ion:true,
+				ionization_energy:true,
+				electron_affinity:true,
+				nuclear_binding_energy:true,
+				radioactivity:true,
+				beta_decay:true,
+				molecule:true,
+				allotrope:true,
+				free_radical:true,
+				unstable_compound:true,
+				synthesis:true,
+				electron:true,
+				proton:true,
+				neutron:true,
+				energy:true,
+				half_life:true,
 				periodic_table:true,
 				reactions:true,
-				finished:false
+				finished:true
 			},
 			encyclopedia: {
-				'Hydrogen':{is_new:true},				
-				'Isotope':{is_new:true}
+				'Hydrogen':{is_new:true},
+				'Oxygen':{is_new:true},
+				'Isotope':{is_new:true},
+				'Electron':{is_new:true},
+				'Proton':{is_new:true},
+				'Neutron':{is_new:true},
+				'Radioactivity':{is_new:true},
+				'Half-life':{is_new:true},
+				'Beta decay':{is_new:true},
+				'Energy':{is_new:true},
+				'Electronvolt':{is_new:true},
+				'Ionization energy':{is_new:true},
+				'Electron affinity':{is_new:true},
+				'Nuclear binding energy':{is_new:true},
+				'Synthesis':{is_new:true},
+				'Ion':{is_new:true},
+				'Molecule':{is_new:true},
+				'Free radical':{is_new:true},
+				'Allotrope':{is_new:true},
+				'Unstable compound':{is_new:true},
+				'Water (H2O)':{is_new:true},
+				'A word from the developer':{is_new:true}
 			},
 			elements_unlocked:2,
 			elements: {
@@ -53,15 +73,12 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 					},
 					upgrades:{
 						'Tier 1-1':{
-							unlocked:true,
-							bought:true
+							bought:false
 						},
 						'Tier 1-2':{
-							unlocked:true,
 							bought:false
 						},
 						'Tier 2-1':{
-							unlocked:false,
 							bought:false
 						}
 					},
