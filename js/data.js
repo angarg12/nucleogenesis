@@ -1420,43 +1420,153 @@ function loadData($scope) {
 			}
 	};
 
-	$scope.upgrades = {
-				'Tier 1-1':{
-					price:1,
-					description:"Tier 1 production x2",
-					order:0,
-					visible:function(){
-						return $scope.player.unlocks["upgrade"] && 
-								$scope.player.elements[$scope.current_element].generators['Tier 1'].level > 0;
-					},
-					apply:function(resource){
-						return resource*2;
-					}
-				},
-				'Tier 1-2':{
-					price:10,
-					description:"Tier 1 production x2",
+	// TODO: create this programatically
+	$scope.generators = {
+				'Tier 1':{
 					order:1,
 					visible:function(){
-						return $scope.player.elements[$scope.current_element].upgrades['Tier 1-1'].bought;
+						return true;
 					},
-					apply:function(resource){
-						return resource*2;
-					}
+					price:15,
+					power:1,
+					priceIncrease:1.15
 				},
-				'Tier 2-1':{
-					price:1,
-					description:"Tier 2 production x2",
+				'Tier 2':{
+					order:2,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 1'].level > 0;
+					},
+					price:100,
+					power:5,
+					priceIncrease:1.15
+				},
+				'Tier 3':{
+					order:3,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 2'].level > 0;
+					},
+					price:500,
+					power:40,
+					priceIncrease:1.15
+				},
+				'Tier 4':{
+					order:4,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 3'].level > 0;
+					},
+					price:3000,
+					power:100,
+					priceIncrease:1.15
+				},
+				'Tier 5':{
+					order:5,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 4'].level > 0;
+					},
+					price:10000,
+					power:400,
+					priceIncrease:1.15
+				},
+				'Tier 6':{
+					order:6,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 5'].level > 0;
+					},
+					price:40000,
+					power:1000,
+					priceIncrease:1.15
+				},
+				'Tier 7':{
+					order:7,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 6'].level > 0;
+					},
+					price:200000,
+					power:4000,
+					priceIncrease:1.15
+				},
+				'Tier 8':{
+					order:8,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 7'].level > 0;
+					},
+					price:1666666,
+					power:66666,
+					priceIncrease:1.15
+				},
+				'Tier 9':{
+					order:9,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 8'].level > 0;
+					},
+					price:123456789,
+					power:987654,
+					priceIncrease:1.15
+				},
+				'Tier 10':{
 					order:10,
 					visible:function(){
-						return $scope.player.unlocks["upgrade"] && 
-								$scope.player.elements[$scope.current_element].generators['Tier 2'].level > 0;
+						return $scope.player.elements[$scope.current_element].generators['Tier 9'].level > 0;
 					},
-					apply:function(resource){
-						return resource*2;
-					}
-				}};
+					price:3999999999,
+					power:9999999,
+					priceIncrease:1.15
+				},
+				'Tier 11':{
+					order:11,
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 10'].level > 0;
+					},
+					price:75000000000,
+					power:100000000,
+					priceIncrease:1.15
+				}
+	};
+
+	$scope.upgrades = {};
 	
+	var upgradePrice = [[1,10,100],
+						[5,25]];
+	var upgradePower = [[2,2,4],
+						[2,2]];
+
+	for(var i = 0; i < upgradePrice.length; i++){
+		$scope.generators["Tier "+(i+1)].upgrades = [];
+		for(var j = 0; j < upgradePrice[i].length; j++){
+			$scope.generators["Tier "+(i+1)].upgrades.push("Tier "+(i+1)+"-"+(j+1));
+			$scope.upgrades["Tier "+(i+1)+"-"+(j+1)] = {
+				price:upgradePrice[i][j],
+				description:"Tier "+(i+1)+" production x"+upgradePower[i][j],
+				order:i*upgradePrice.length+j,
+				apply:createApply(upgradePower[i][j])
+			}
+			if(j == 0){
+				$scope.upgrades["Tier "+(i+1)+"-"+(j+1)].visible = createIsVisible0(i);
+			}else{
+				$scope.upgrades["Tier "+(i+1)+"-"+(j+1)].visible = createIsVisible(i,j);
+			}			
+		}
+	}
+
+	function createApply(power) {
+		return function(resource){
+			return resource*power;
+		}
+	};
+	
+	function createIsVisible0(i){
+		return function(){
+			return $scope.player.unlocks["upgrade"] && 
+								$scope.player.elements[$scope.current_element].generators["Tier "+(i+1)].level > 0;
+		}
+	};
+	
+	function createIsVisible(i,j){
+		return function(){
+			return $scope.player.elements[$scope.current_element].upgrades["Tier "+(i+1)+"-"+j].bought;
+		}
+	};
+
 	$scope.resources = {
 				'H':{ 
 					visible:function(){
@@ -1665,7 +1775,8 @@ function loadData($scope) {
 						}
 						return false;
 					},
-					order:0},
+					order:0
+			},
 			'Encyclopedia':{
 					visible:function(){
 						return true;
@@ -1679,7 +1790,8 @@ function loadData($scope) {
 					
 						return false;
 					},
-					order:1},
+					order:1
+			},
 			'Periodic Table':{
 					visible:function(){
 						return $scope.player.unlocks.periodic_table;
@@ -1687,7 +1799,8 @@ function loadData($scope) {
 					has_new:function(){
 						return false;
 					},
-					order:2},
+					order:2
+			},
 			'Options':{
 					visible:function(){
 						return true;
@@ -1695,7 +1808,8 @@ function loadData($scope) {
 					has_new:function(){
 						return false;
 					},
-					order:3}
+					order:3
+			}
 		};
 		
 	$scope.encyclopedia = {
@@ -1900,113 +2014,11 @@ function loadData($scope) {
 						}
 	};
 
-	$scope.generators = {
-				'Tier 1':{
-					order:1,
-					visible:function(){
-						return true;
-					},
-					price:15,
-					power:1,
-					priceIncrease:1.15,
-					upgrades:['Tier 1-1','Tier 1-2']
-				},
-				'Tier 2':{
-					order:2,
-					visible:function(){
-						return $scope.player.elements[$scope.current_element].generators['Tier 1'].level > 0;
-					},
-					price:100,
-					power:5,
-					priceIncrease:1.15
-				},
-				'Tier 3':{
-					order:3,
-					visible:function(){
-						return $scope.player.elements[$scope.current_element].generators['Tier 2'].level > 0;
-					},
-					price:500,
-					power:40,
-					priceIncrease:1.15
-				},
-				'Tier 4':{
-					order:4,
-					visible:function(){
-						return $scope.player.elements[$scope.current_element].generators['Tier 3'].level > 0;
-					},
-					price:3000,
-					power:100,
-					priceIncrease:1.15
-				},
-				'Tier 5':{
-					order:5,
-					visible:function(){
-						return $scope.player.elements[$scope.current_element].generators['Tier 4'].level > 0;
-					},
-					price:10000,
-					power:400,
-					priceIncrease:1.15
-				},
-				'Tier 6':{
-					order:6,
-					visible:function(){
-						return $scope.player.elements[$scope.current_element].generators['Tier 5'].level > 0;
-					},
-					price:40000,
-					power:1000,
-					priceIncrease:1.15
-				},
-				'Tier 7':{
-					order:7,
-					visible:function(){
-						return $scope.player.elements[$scope.current_element].generators['Tier 6'].level > 0;
-					},
-					price:200000,
-					power:4000,
-					priceIncrease:1.15
-				},
-				'Tier 8':{
-					order:8,
-					visible:function(){
-						return $scope.player.elements[$scope.current_element].generators['Tier 7'].level > 0;
-					},
-					price:1666666,
-					power:66666,
-					priceIncrease:1.15
-				},
-				'Tier 9':{
-					order:9,
-					visible:function(){
-						return $scope.player.elements[$scope.current_element].generators['Tier 8'].level > 0;
-					},
-					price:123456789,
-					power:987654,
-					priceIncrease:1.15
-				},
-				'Tier 10':{
-					order:10,
-					visible:function(){
-						return $scope.player.elements[$scope.current_element].generators['Tier 9'].level > 0;
-					},
-					price:3999999999,
-					power:9999999,
-					priceIncrease:1.15
-				},
-				'Tier 11':{
-					order:11,
-					visible:function(){
-						return $scope.player.elements[$scope.current_element].generators['Tier 10'].level > 0;
-					},
-					price:75000000000,
-					power:100000000,
-					priceIncrease:1.15
-				}
-	};
-	
+
 	$scope.reactions = {
 		'H':{
-			'ionization':[
-				{
+			'ionization':{
+				1:{
 					reactant:{
 						'energy':13.5984,
 						'H':1
@@ -2020,9 +2032,9 @@ function loadData($scope) {
 					},
 					order:0
 				}
-			],
-			'electron_affinity':[
-				{
+			},
+			'electron_affinity':{
+				1:{
 					reactant:{
 						'e-':1,
 						'H':1
@@ -2036,9 +2048,9 @@ function loadData($scope) {
 					},
 					order:0
 				}
-			],
-			'binding_energy':[
-				{
+			},
+			'binding_energy':{
+				1:{
 					reactant:{
 						'energy':2224520,
 						'2H':1
@@ -2053,7 +2065,7 @@ function loadData($scope) {
 					},
 					order:0
 				},
-				{
+				2:{
 					reactant:{
 						'energy':2827266,
 						'3H':1
@@ -2068,7 +2080,10 @@ function loadData($scope) {
 					},
 					order:1
 				}
-			],
+			},
+			// We could create a function that checks for every synthesis if 
+			// one of the reactants is an isotope, ion or molecule of the element
+			// However for the sake of a proof of concept that is beyond our scope
 			'synthesis':[
 				'H-p'
 			]
@@ -2101,7 +2116,8 @@ function loadData($scope) {
 			},
 			visible:function(){
 				return $scope.player.resources['H-'].unlocked &&
-						$scope.player.resources['p'].unlocked;
+						$scope.player.resources['p'].unlocked &&
+						$scope.current_element == "H";
 			},
 			order:0
 		},
@@ -2116,7 +2132,8 @@ function loadData($scope) {
 			},
 			visible:function(){
 				return $scope.player.resources['O3'].unlocked &&
-						$scope.player.resources['energy'].unlocked;
+						$scope.player.resources['energy'].unlocked &&
+						$scope.current_element == "O";
 			},
 			order:1
 		}
@@ -2127,6 +2144,14 @@ function loadData($scope) {
 	};
 	
 	$scope.unlocks = {
+		"hydrogen":{
+			check:function(event,data){  
+				//$scope.addToast("Periodic table");
+				$scope.player.unlocks["hydrogen"] = true;
+				$scope.unlocks["hydrogen"].listener();
+			},
+			event:"cycle"
+		},
 		"periodic_table":{
 			check:function(event,data){  
 				if($scope.player.resources['e-'].unlocked &&

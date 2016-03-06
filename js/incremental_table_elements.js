@@ -5,204 +5,28 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		$scope.Math = window.Math;
 		$scope.log = $log;
 		
-		const startPlayer = {
-			unlocks: {	
-				hydrogen:true,
-				oxygen:true,
-				upgrade:true,
-				isotope:true,
-				ion:true,
-				ionization_energy:true,
-				electron_affinity:true,
-				nuclear_binding_energy:true,
-				radioactivity:true,
-				beta_decay:true,
-				molecule:true,
-				allotrope:true,
-				free_radical:true,
-				unstable_compound:true,
-				synthesis:true,
-				electron:true,
-				proton:true,
-				neutron:true,
-				energy:true,
-				half_life:true,
-				periodic_table:true,
-				reactions:true,
-				finished:true
-			},
-			encyclopedia: {
-				'Hydrogen':{is_new:true},
-				'Oxygen':{is_new:true},
-				'Isotope':{is_new:true},
-				'Electron':{is_new:true},
-				'Proton':{is_new:true},
-				'Neutron':{is_new:true},
-				'Radioactivity':{is_new:true},
-				'Half-life':{is_new:true},
-				'Beta decay':{is_new:true},
-				'Energy':{is_new:true},
-				'Electronvolt':{is_new:true},
-				'Ionization energy':{is_new:true},
-				'Electron affinity':{is_new:true},
-				'Nuclear binding energy':{is_new:true},
-				'Synthesis':{is_new:true},
-				'Ion':{is_new:true},
-				'Molecule':{is_new:true},
-				'Free radical':{is_new:true},
-				'Allotrope':{is_new:true},
-				'Unstable compound':{is_new:true},
-				'Water (H2O)':{is_new:true},
-				'A word from the developer':{is_new:true}
-			},
+		// TODO: The startPlayer object can be mostly build by using the data.js structures. That would save a lot of
+		// redundancy and make the code more flexible and dynamic.
+		var startPlayer = {
 			elements_unlocked:2,
-			elements: {
-				'H':{
-					generators: {
-							'Tier 1':{level:1},							
-							'Tier 2':{level:1},
-							'Tier 3':{level:1},
-							'Tier 4':{level:1000000000000},
-							'Tier 5':{level:0},
-							'Tier 6':{level:0},
-							'Tier 7':{level:0},
-							'Tier 8':{level:0},
-							'Tier 9':{level:0},
-							'Tier 10':{level:0},
-							'Tier 11':{level:0}
-					},
-					upgrades:{
-						'Tier 1-1':{
-							bought:false
-						},
-						'Tier 1-2':{
-							bought:false
-						},
-						'Tier 2-1':{
-							bought:false
-						}
-					},
-					synthesis:{
-						'H-p':{
-							number:0,
-							active:0
-						}
-					},
-					unlocked:true
-				},'O':{					
-					generators: {
-							'Tier 1':{level:15},							
-							'Tier 2':{level:1},
-							'Tier 3':{level:10},
-							'Tier 4':{level:10},
-							'Tier 5':{level:100},
-							'Tier 6':{level:0},
-							'Tier 7':{level:0},
-							'Tier 8':{level:0},
-							'Tier 9':{level:0},
-							'Tier 10':{level:0},
-							'Tier 11':{level:0}
-					},
-					upgrades:{
-						'Tier 1-1':{
-							unlocked:true,
-							bought:true
-						},
-						'Tier 1-2':{
-							unlocked:false,
-							bought:false
-						},
-						'Tier 2-1':{
-							unlocked:false,
-							bought:false
-						}
-					},
-					synthesis:{
-						'O3':{
-							number:0,
-							active:0
-						}
-					},
-					unlocked:false
+			synthesis:{
+				'H-p':{
+					number:0,
+					active:0
+				},
+				'O3':{
+					number:0,
+					active:0
 				}
 			},
-			resources:{
-					'H':{ 
-						number:0,
-						is_new:false,
-						unlocked: true
-					},
-					'H-':{ 
-						number:0,
-						is_new:true,
-						unlocked: false
-					},
-					'2H':{ 
-						number:0,
-						is_new:true,
-						unlocked: true
-					},
-					'3H':{ 
-						number:0,
-						is_new:true,		
-						unlocked: true
-					},
-					'H2':{ 
-						number:0,
-						is_new:true,		
-						unlocked: false
-					},
-					'3He+1':{ 
-						number:0,
-						is_new:true,
-						unlocked: false
-					},
-					'O':{ 
-						number:0,
-						is_new:false,
-						unlocked: true
-					},
-					'O2':{ 
-						number:0,
-						is_new:true,
-						unlocked: false
-					},
-					'O3':{ 
-						number:0,
-						is_new:true,
-						unlocked: false
-					},
-					'17O':{ 
-						number:0,
-						is_new:true,	
-						unlocked: true
-					},
-					'18O':{ 
-						number:0,
-						is_new:true,			
-						unlocked: true
-					},
-					'e-':{ 
-						number:0,
-						is_new:false,
-						unlocked: false
-					},
-					'n':{ 
-						number:0,
-						is_new:true,
-						unlocked: false
-					},
-					'p':{ 
-						number:1000,
-						is_new:false,
-						unlocked: true
-					},
-					'energy':{ 
-						number:10000000,
-						is_new:false,
-						unlocked: true
-					}
+			elements: {
+				'H':{					
+					unlocked:true
+				},
+				'O':{
+					unlocked:true
 				}
+			}
 			};
 			
 		cache = {};
@@ -216,6 +40,36 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		$scope.is_toast_visible = false;
 		
         var numberGenerator = new Ziggurat();
+        
+        function populatePlayer(){
+        	for(var element in startPlayer.elements){
+        		startPlayer.elements[element].upgrades = {};
+        		for(var upgrade in $scope.upgrades){
+        			startPlayer.elements[element].upgrades[upgrade] = {bought:false}
+        		}
+        		startPlayer.elements[element].generators = {};
+        		for(var generator in $scope.generators){
+        			startPlayer.elements[element].generators[generator] = {level:100000}
+        		}        		
+        	}
+        	startPlayer.encyclopedia = {};
+        	for(var entry in $scope.encyclopedia){
+        		startPlayer.encyclopedia[entry] = {is_new:true};
+        	}
+        	startPlayer.unlocks = {};
+        	for(var entry in $scope.unlocks){
+        		startPlayer.unlocks[entry] = true;
+        	}
+        	startPlayer.resources = {};
+        	for(var entry in $scope.resources){
+        		startPlayer.resources[entry] = {
+        										number:0,
+												is_new:true,
+												unlocked:false
+											};
+			}
+			startPlayer.resources["H"].number = $scope.generators["Tier 1"].price*1e100;
+        }
         
         $scope.removeToast = function() {
 	        $scope.is_toast_visible = false;
@@ -263,12 +117,12 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		};
 		
 		$scope.synthesisMultiplier = function(element, synthesis) {
-			var level = $scope.player.elements[element].synthesis[synthesis].number;
+			var level = $scope.player.synthesis[synthesis].number;
 			return Math.ceil(Math.pow($scope.synthesis_price_increase, level));
 		};
 		
 		$scope.synthesisPower = function(element, synthesis) {
-			var level = $scope.player.elements[element].synthesis[synthesis].active;
+			var level = $scope.player.synthesis[synthesis].active;
 			return Math.ceil(Math.pow(level, $scope.synthesis_power_increase));
 		};
 		
@@ -298,7 +152,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
             	for(resource in price){
 					$scope.player.resources[resource].number -= price[resource];
 				}
-				$scope.player.elements[$scope.current_element].synthesis[synthesis].number += 1;
+				$scope.player.synthesis[synthesis].number += 1;
             }
 		};	
 		
@@ -649,14 +503,12 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
             }
             
             // We will process the synthesis reactions
-            for(var element in $scope.player.elements){
-            	for(var synthesis in $scope.player.elements[element].synthesis){
-            		var power = $scope.synthesisPower(element, synthesis);
-            		if(power != 0){
-            			$scope.react(power, $scope.synthesis[synthesis]);
-            		}
-            	}
-            }
+        	for(var synthesis in $scope.player.synthesis){
+        		var power = $scope.synthesisPower(element, synthesis);
+        		if(power != 0){
+        			$scope.react(power, $scope.synthesis[synthesis]);
+        		}
+        	}
         };
 
 		/* 
@@ -724,6 +576,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		};   
 		
 		function init(){
+			populatePlayer();
 			$scope.player = angular.copy(startPlayer);
 		};
 				
@@ -791,5 +644,19 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			hash |= 0; // Convert to 32bit integer
 		  }
 		  return hash;
+		};
+		
+		$scope.visible = function(map){
+		    var result = {};
+			for(var key in map){
+				if(map[key].visible()){
+					result[key] = map[key];
+				}
+			}
+			return result;
+		};
+		
+		$scope.keys = function(obj){
+		  return obj? Object.keys(obj) : [];
 		};
 }]);

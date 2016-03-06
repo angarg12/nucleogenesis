@@ -35,10 +35,10 @@
       <div>
         <div class="ng-scope ng-isolate-scope">
           <ul class="nav nav-tabs ng-scope" role="tablist">
-          	<li ng-repeat="tab in filterAndOrder(tabs, tabs)" 
-          		ng-class="{active: current_tab === tab.name}">
-		        <a class="ng-binding" ng-click="updateCurrent('current_tab',tab.name)"> {{tab.name}} 
-		        	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="tab.value.has_new()"></span>
+          	<li class="animif" ng-repeat="tab in keys(visible(tabs))" 
+          		ng-class="{active: current_tab === tab}">
+		        <a class="ng-binding" ng-click="updateCurrent('current_tab',tab)"> {{tab}} 
+		        	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="tabs[tab].has_new()"></span>
 		        </a>
 		    </li>
           </ul>
@@ -53,36 +53,36 @@
               	 <li>
 		          	<span ng-bind-html="trustHTML(getHTML(current_element))"></span>: {{(resources[current_element].ratio*100).toFixed(4)}}%
 		         </li>
-		         <li ng-repeat="isotope in filterAndOrder(elements[current_element].isotopes, resources)">
-		         	<span ng-bind-html="trustHTML(getHTML(isotope.name))"></span>: {{(resources[isotope.name].ratio*100).toFixed(4)}}%
+		         <li class="animif" ng-repeat="isotope in elements[current_element].isotopes" ng-if="resources[isotope].visible()">
+		         	<span ng-bind-html="trustHTML(getHTML(isotope))"></span>: {{(resources[isotope].ratio*100).toFixed(4)}}%
 		         </li>
               </ul>
               <div>
                 <div>
                   <table class="table">
                     <tbody>
-                      <tr ng-repeat="generator in filterAndOrder(generators, generators)">
+                      <tr class="animif" ng-repeat="name in keys(visible(generators))">
                       	<td>
                           <div class="pull-left">
-                           {{generator.name}}: {{generator.value.power}} {{current_element}}/s
+                           {{name}}: {{generators[name].power}} {{current_element}}/s
                           </div>
                         </td>
                         <td>
-                          <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(player.elements[current_element].generators[generator.name].level))"></div>
+                          <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(player.elements[current_element].generators[name].level))"></div>
                         </td>                        
                         <td>
                           <div class="pull-left">
-                            Total <span ng-bind-html="trustHTML(prettifyNumber(tierProduction(generator.name,current_element)))"></span> {{current_element}}/s
+                            Total <span ng-bind-html="trustHTML(prettifyNumber(tierProduction(name,current_element)))"></span> {{current_element}}/s
                           </div>
                         </td>
                         <td>
-                          <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(generatorPrice(generator.name, current_element)))"></div> &nbsp;{{current_element}}
+                          <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(generatorPrice(name, current_element)))"></div> &nbsp;{{current_element}}
                         </td>
                         <td>
                           <div class="pull-left">
                             <button class="btn btn-default"
-                            ng-click="buyGenerator(generator.name, current_element)"
-                            ng-class="{disabled: generatorPrice(generator.name, current_element) > player.resources[current_element].number}">Buy</button>
+                            ng-click="buyGenerator(name, current_element)"
+                            ng-class="{disabled: generatorPrice(name, current_element) > player.resources[current_element].number}">Buy</button>
                           </div>
                         </td>
                       </tr>
@@ -90,36 +90,37 @@
                   </table>
                 </div>
 				
-				<div ng-if="player.unlocks.reactions && 
-				filterAndOrder(reactions[current_element].ionization, reactions[current_element].ionization).length > 0 ||
-filterAndOrder(reactions[current_element].electron_affinity, reactions[current_element].electron_affinity).length > 0 || 
-filterAndOrder(reactions[current_element].binding_energy, reactions[current_element].binding_energy).length > 0 ||
-filterAndOrder(reactions[current_element].synthesis, synthesis).length > 0">
+				<div ng-if="player.unlocks.reactions && (
+					keys(visible(reactions[current_element].ionization)).length > 0 ||
+					keys(visible(reactions[current_element].electron_affinity)).length > 0 || 
+					keys(visible(reactions[current_element].binding_energy)).length > 0 ||
+					keys(visible(synthesis)).length > 0)">
                 <hr>
-                <div ng-if="filterAndOrder(reactions[current_element].ionization, reactions[current_element].ionization).length > 0 ||
-filterAndOrder(reactions[current_element].electron_affinity, reactions[current_element].electron_affinity).length > 0 || 
-filterAndOrder(reactions[current_element].binding_energy, reactions[current_element].binding_energy).length > 0">
+                <div ng-if="keys(visible(reactions[current_element].ionization)).length > 0 ||
+					keys(visible(reactions[current_element].electron_affinity)).length > 0 || 
+					keys(visible(reactions[current_element].binding_energy)).length > 0">
                   <h3>Reactions</h3>
-                  <div ng-if="filterAndOrder(reactions[current_element].ionization, reactions[current_element].ionization).length > 0">
+                  <div ng-if="keys(visible(reactions[current_element].ionization)).length > 0">
                   	  <h4>Ionization</h4>
 		              <table class="table">
 		                <tbody>
-		                  <tr ng-repeat="ionization in filterAndOrder(reactions[current_element].ionization, reactions[current_element].ionization)">
+		                  <tr class="animif" ng-repeat="key in keys(visible(reactions[current_element].ionization))">
 		                    <td width=50%>
 		                      <div class="pull-left">
-		                        <span ng-bind-html="trustHTML(reactionFormat(ionization.value[current_element][$index],ionization.value))"></span>
+		                        <span ng-bind-html="trustHTML(reactionFormat(reactions[current_element].ionization[key].number,reactions[current_element].ionization[key]))"></span>
 		                      </div>
 		                    </td>
 		                    <td>
+		                      <!-- we store the value inside the object itself -->
 		                      <div class="pull-left">
 		                        <input type="number" 
 		                        value="1" 
 		                        min="1"
-		                        ng-init="ionization.value[current_element][$index] = ionization.value[current_element][$index] || 1" 
-		                        ng-model="ionization.value[current_element][$index]">
+		                        ng-init="reactions[current_element].ionization[key].number = reactions[current_element].ionization[key].number || 1" 
+		                        ng-model="reactions[current_element].ionization[key].number">
 		                        	<button class="btn btn-default"
-		                        	ng-click="react(ionization.value[current_element][$index], ionization.value)"
-		                        	ng-class="{disabled: !isReactionCostMet(ionization.value[current_element][$index], ionization.value)}">React</button>
+		                        	ng-click="react(reactions[current_element].ionization[key].number, reactions[current_element].ionization[key])"
+		                        	ng-class="{disabled: !isReactionCostMet(reactions[current_element].ionization[key].number, reactions[current_element].ionization[key])}">React</button>
 		                        </input>
 		                      </div>
 		                    </td>
@@ -127,14 +128,14 @@ filterAndOrder(reactions[current_element].binding_energy, reactions[current_elem
 		                </tbody>
 		              </table>
                   </div>
-                  <div ng-if="filterAndOrder(reactions[current_element].electron_affinity, reactions[current_element].electron_affinity).length > 0">
+                  <div ng-if="keys(visible(reactions[current_element].electron_affinity)).length > 0">
 		              <h4>Electron affinity</h4>
 		              <table class="table">
 		                <tbody>
-		                  <tr ng-repeat="electron_affinity in filterAndOrder(reactions[current_element].electron_affinity, reactions[current_element].electron_affinity)">
+		                  <tr class="animif" ng-repeat="key in keys(visible(reactions[current_element].electron_affinity))">
 		                    <td width=50%>
 		                      <div class="pull-left">
-		                      	<span ng-bind-html="trustHTML(reactionFormat(electron_affinity.value[current_element][$index],electron_affinity.value))"></span>
+		                      	<span ng-bind-html="trustHTML(reactionFormat(reactions[current_element].electron_affinity[key].number,reactions[current_element].electron_affinity[key]))"></span>
 		                      </div>
 		                    </td>
 		                    <td>
@@ -142,11 +143,11 @@ filterAndOrder(reactions[current_element].binding_energy, reactions[current_elem
 		                        <input type="number" 
 		                        value="1" 
 		                        min="1"
-		                        ng-init="electron_affinity.value[current_element][$index] = electron_affinity.value[current_element][$index] || 1" 
-		                        ng-model="electron_affinity.value[current_element][$index]">
+		                        ng-init="reactions[current_element].electron_affinity[key].number = reactions[current_element].electron_affinity[key].number || 1" 
+		                        ng-model="reactions[current_element].electron_affinity[key].number">
 		                        <button class="btn btn-default"
-		                        	ng-click="react(electron_affinity.value[current_element][$index], electron_affinity.value)"
-		                        	ng-class="{disabled: !isReactionCostMet(electron_affinity.value[current_element][$index], electron_affinity.value)}">React</button>
+		                        	ng-click="react(reactions[current_element].electron_affinity[key].number, reactions[current_element].electron_affinity[key])"
+		                        	ng-class="{disabled: !isReactionCostMet(reactions[current_element].electron_affinity[key].number, reactions[current_element].electron_affinity[key])}">React</button>
 		                        </input>
 		                      </div>
 		                    </td>
@@ -154,25 +155,25 @@ filterAndOrder(reactions[current_element].binding_energy, reactions[current_elem
 		                </tbody>
 		              </table>
                   </div>
-                  <div ng-if="filterAndOrder(reactions[current_element].binding_energy, reactions[current_element].binding_energy).length > 0">
+                  <div ng-if="keys(visible(reactions[current_element].binding_energy)).length > 0">
 		              <h4>Binding energy</h4>
 		              <table class="table">
 		                <tbody>
-		                  <tr ng-repeat="binding in filterAndOrder(reactions[current_element].binding_energy, reactions[current_element].binding_energy)">
+		                  <tr class="animif" ng-repeat="key in keys(visible(reactions[current_element].binding_energy))">
 		                    <td width=50%>
 		                      <div class="pull-left">
-		                        <span ng-bind-html="trustHTML(reactionFormat(binding.value[current_element][$index],binding.value))"></span>
+		                        <span ng-bind-html="trustHTML(reactionFormat(reactions[current_element].binding_energy[key].number,reactions[current_element].binding_energy[key]))"></span>
 		                      </div>
 		                    </td>
 		                    <td>
 		                      <div class="pull-left">
 		                        <input type="number" 
 		                        min="1"
-		                        ng-init="binding.value[current_element][$index] = binding.value[current_element][$index] || 1" 
-		                        ng-model="binding.value[current_element][$index]">
+		                        ng-init="reactions[current_element].binding_energy[key].number = reactions[current_element].binding_energy[key].number || 1" 
+		                        ng-model="reactions[current_element].binding_energy[key].number">
 		                        <button class="btn btn-default"
-		                        	ng-click="react(binding.value[current_element][$index], binding.value)"
-		                        	ng-class="{disabled: !isReactionCostMet(binding.value[current_element][$index], binding.value)}">React</button>
+		                        	ng-click="react(reactions[current_element].binding_energy[key].number, reactions[current_element].binding_energy[key])"
+		                        	ng-class="{disabled: !isReactionCostMet(reactions[current_element].binding_energy[key].number, reactions[current_element].binding_energy[key])}">React</button>
 		                        </input>
 		                      </div>
 		                    </td>
@@ -181,44 +182,44 @@ filterAndOrder(reactions[current_element].binding_energy, reactions[current_elem
 		              </table>
                     </div>
                   </div>
-                  <div ng-if="filterAndOrder(reactions[current_element].synthesis, synthesis).length > 0">
+                  <div ng-if="keys(visible(synthesis)).length > 0">
 		              <h3>Synthesis</h3>
 		              <table class="table">
 		                <tbody>
-		                  <tr ng-repeat="syn in filterAndOrder(reactions[current_element].synthesis, synthesis)">
+		                  <tr class="animif" ng-repeat="syn in keys(visible(synthesis))">
 		                    <td width=50%>
 		                      <div class="pull-left"
-									ng-class="{'text-muted': player.elements[current_element].synthesis[syn.name].active <= 0}">
-		                        <span ng-bind-html="trustHTML(reactionFormat(synthesisPower(current_element, syn.name),synthesis[syn.name]))"></span>
+									ng-class="{'text-muted': player.synthesis[syn].active <= 0}">
+		                        <span ng-bind-html="trustHTML(reactionFormat(synthesisPower(current_element, syn),synthesis[syn]))"></span>
 		                      </div>
 		                    </td>
 		                    <td>
-		                      <div class="pull-left" ng-if="player.elements[current_element].synthesis[syn.name].number > 0">
-		                        {{player.elements[current_element].synthesis[syn.name].active}}/{{player.elements[current_element].synthesis[syn.name].number}} 
+		                      <div class="pull-left" ng-if="player.synthesis[syn].number > 0">
+		                        {{player.synthesis[syn].active}}/{{player.synthesis[syn].number}} 
 		                      </div>
 		                    </td>
 		              		<td>
-		                      <div class="pull-left" ng-if="player.elements[current_element].synthesis[syn.name].number > 0">
+		                      <div class="pull-left" ng-if="player.synthesis[syn].number > 0">
 		                        <button class="btn btn-default"
-		                        ng-disabled="player.elements[current_element].synthesis[syn.name].active >= player.elements[current_element].synthesis[syn.name].number"
-		                        ng-click="player.elements[current_element].synthesis[syn.name].active = player.elements[current_element].synthesis[syn.name].active+1"
-		                        ng-class="{disabled: player.elements[current_element].synthesis[syn.name].active >= player.elements[current_element].synthesis[syn.name].number}">+</button>
+		                        ng-disabled="player.synthesis[syn].active >= player.synthesis[syn].number"
+		                        ng-click="player.synthesis[syn].active = player.synthesis[syn].active+1"
+		                        ng-class="{disabled: player.synthesis[syn].active >= player.synthesis[syn].number}">+</button>
 		                        <button class="btn btn-default"
-		                        ng-disabled="player.elements[current_element].synthesis[syn.name].active <= 0"
-		                        ng-click="player.elements[current_element].synthesis[syn.name].active = player.elements[current_element].synthesis[syn.name].active-1"
-		                        ng-class="{disabled: player.elements[current_element].synthesis[syn.name].active <= 0}">-</button>
+		                        ng-disabled="player.synthesis[syn].active <= 0"
+		                        ng-click="player.synthesis[syn].active = player.synthesis[syn].active-1"
+		                        ng-class="{disabled: player.synthesis[syn].active <= 0}">-</button>
 		                      </div>
 		                    </td>
 		                    <td>
 		                      <div class="pull-left">
-		                        <span ng-bind-html="trustHTML(compoundFormat(synthesisMultiplier(current_element, syn.name),synthesis[syn.name].reactant))"></span>
+		                        <span ng-bind-html="trustHTML(compoundFormat(synthesisMultiplier(current_element, syn),synthesis[syn].reactant))"></span>
 		                      </div>
 		                    </td>
 		                    <td>
 		                      <div class="pull-left">
 		                        <button class="btn btn-default"
-		                        ng-click="buySynthesis(current_element, syn.name)"
-		                        ng-class="{disabled: !isSynthesisCostMet(current_element, syn.name)}">Buy</button>
+		                        ng-click="buySynthesis(current_element, syn)"
+		                        ng-class="{disabled: !isSynthesisCostMet(current_element, syn)}">Buy</button>
 		                      </div>
 		                    </td>
 		                  </tr>
@@ -232,27 +233,27 @@ filterAndOrder(reactions[current_element].binding_energy, reactions[current_elem
                   <h4>Upgrades</h4>
                   <table class="table">
                     <tbody>
-                      <tr ng-repeat="upgrade in filterAndOrder(upgrades,upgrades)">
+                      <tr class="animif" ng-repeat="upgrade in keys(visible(upgrades))">
                         <td>
                           <div class="pull-left">
-                            {{upgrade.name}}
+                            {{upgrade}}
                           </div>
                         </td>
                         <td>
                           <div class="pull-left">
-                            {{upgrade.value.description}}
+                            {{upgrades[upgrade].description}}
                           </div>
                         </td>
                         <td>
-                        	<div ng-if="!player.elements[current_element].upgrades[upgrade.name].bought">
-                        		<span class="pull-left" ng-bind-html="trustHTML(prettifyNumber(upgrade.value.price))"></span> &nbsp;{{current_element}}
+                        	<div ng-if="!player.elements[current_element].upgrades[upgrade].bought">
+                        		<span class="pull-left" ng-bind-html="trustHTML(prettifyNumber(upgrades[upgrade].price))"></span> &nbsp;{{current_element}}
                         	</div>
                         </td>
                         <td>
-                          <div class="pull-left" ng-if="!player.elements[current_element].upgrades[upgrade.name].bought">
+                          <div class="pull-left" ng-if="!player.elements[current_element].upgrades[upgrade].bought">
                             <a class="btn btn-default"
-		                        ng-click="buyUpgrade(upgrade.name, current_element)"
-		                        ng-class="{disabled: upgrade.value.price > player.resources[current_element].number}">
+		                        ng-click="buyUpgrade(upgrade, current_element)"
+		                        ng-class="{disabled: upgrades[upgrade].price > player.resources[current_element].number}">
 		                        Buy
 		                    </a>
                           </div>
@@ -266,24 +267,24 @@ filterAndOrder(reactions[current_element].binding_energy, reactions[current_elem
 
             <div class="col-lg-3 col-lg-pull-8">
               <table class="table table-hover element-table no_bottom">
-                <tbody ng-repeat="resource in filterAndOrder(player.resources, resources)" 
-                	ng-mouseover="resource.value.is_new = false"
+                <tbody class="animif" ng-repeat="key in keys(visible(resources))" 
+                	ng-mouseover="player.resources[key].is_new = false"
                 	class="">
                   <tr>
 		            <td width=15%>
-		            	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="resource.value.is_new"></span>
+		            	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.resources[key].is_new"></span>
 		            </td>
 		            <td width=35% colspan="2">
-		              <span class="pull-left by-icon" ng-bind-html="trustHTML(getHTML(resource.name))"></span>&nbsp;
-		              <span ng-if="radioisotopes.indexOf(resource.name) != -1" title="Radioctive" class="pull-left icon">&#9762;</span> &nbsp;
-		              <span ng-if="free_radicals.indexOf(resource.name) != -1" title="Free radical" class="pull-left icon">&bull;</span>&nbsp;
-		              <span ng-if="unstables.indexOf(resource.name) != -1" title="Unstable" class="pull-left icon">&#8967;</span>   
+		              <span class="pull-left by-icon" ng-bind-html="trustHTML(getHTML(key))"></span>&nbsp;
+		              <span ng-if="radioisotopes.indexOf(key) != -1" title="Radioctive" class="pull-left icon">&#9762;</span> &nbsp;
+		              <span ng-if="free_radicals.indexOf(key) != -1" title="Free radical" class="pull-left icon">&bull;</span>&nbsp;
+		              <span ng-if="unstables.indexOf(key) != -1" title="Unstable" class="pull-left icon">&#8967;</span>   
 		            </td>
 		            <td width=50%>
-		              <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(resource.value.number))"></div>
+		              <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(player.resources[key].number))"></div>
 		            </td>
                   </tr>
-                  <tr ng-if="resources[resource.name].decay != null">
+                  <tr ng-if="resources[key].decay != null">
 		            <td width=15%>
 		            </td>
 		            <td width=20%>
@@ -293,23 +294,23 @@ filterAndOrder(reactions[current_element].binding_energy, reactions[current_elem
 		            	t<sub>1/2</sub>
 		            </td>
 		            <td width=50%>
-		        		<div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(resources[resource.name].decay.half_life))"></div> s
+		        		<div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(resources[key].decay.half_life))"></div> s
 		            </td>
                   </tr>
                   <!-- XXX: We tie this unlock to beta decay to avoid introducing a new generic unlock "decay". Since beta
                   decay is the first and only decay type on the game, this works just fine.
                   -->
-                  <tr ng-if="resources[resource.name].decay != null && player.unlocks.beta_decay">
+                  <tr ng-if="resources[key].decay != null && player.unlocks.beta_decay">
 		            <td width=15%>
 		            </td>
 		            <td width=20%>
 		              <div class="pull-right" >&#9495;</div>	              
 		            </td>
 		            <td width=15%>
-		            	<div ng-if="resources[resource.name].decay.decay_type" ng-bind-html="trustHTML(getHTML(resources[resource.name].decay.decay_type))"></div>
+		            	<div ng-if="resources[key].decay.decay_type" ng-bind-html="trustHTML(getHTML(resources[key].decay.decay_type))"></div>
 		            </td>
 		            <td width=50%>
-		            	<div class="pull-left" ng-bind-html="trustHTML(decayFormat(resources[resource.name].decay))"></div>
+		            	<div class="pull-left" ng-bind-html="trustHTML(decayFormat(resources[key].decay))"></div>
 		            </td>
                   </tr>
                 </tbody>
@@ -319,12 +320,12 @@ filterAndOrder(reactions[current_element].binding_energy, reactions[current_elem
             <div class="col-lg-1 col-lg-pull-0 right-box">
               <table class="table table-hover element-table">
                 <tbody>
-                  <tr ng-repeat="element in filterAndOrder(player.elements, elements)" ng-class="{active:current_element===element.name}">
+                  <tr class="animif" ng-repeat="key in keys(visible(elements))" ng-class="{active:current_element===key}">
 					<td>
-                      <div class="pull-left" ng-click="updateCurrent('current_element', element.name)">
+                      <div class="pull-left" ng-click="updateCurrent('current_element', key)">
                         <a>
-                        	{{elements[element.name].name}}
-                        	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="elements[element.name].has_new()"></span>
+                        	{{elements[key].name}}
+                        	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="elements[key].has_new()"></span>
                         </a>
                       </div>
                     </td>
@@ -346,10 +347,10 @@ filterAndOrder(reactions[current_element].binding_energy, reactions[current_elem
             <div class="col-lg-3 col-lg-pull-9">
               <table class="table table-hover element-table no_bottom">
                 <tbody>
-                  <tr ng-repeat="entry in filterAndOrder(encyclopedia, encyclopedia)" ng-mouseover="player.encyclopedia[entry.name].is_new = false" ng-click="updateCurrent('current_entry', entry.name)">
-                  <td width=15%><span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.encyclopedia[entry.name].is_new"></span></td>
+                  <tr class="animif" ng-repeat="entry in keys(visible(encyclopedia))" ng-mouseover="player.encyclopedia[entry].is_new = false" ng-click="updateCurrent('current_entry', entry)">
+                  <td width=15%><span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.encyclopedia[entry].is_new"></span></td>
 
-                    <td><a>{{entry.name}}</a></td>
+                    <td><a>{{entry}}</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -412,13 +413,13 @@ filterAndOrder(reactions[current_element].binding_energy, reactions[current_elem
             </div>            
             <div class="col-lg-2 col-lg-pull-10">
             <table class="table table-hover element-table no_bottom">
-                <tbody ng-repeat="resource in filterAndOrder(player.resources, resources)">
+                <tbody class="animif" ng-repeat="key in keys(visible(resources))">
                   <tr>
 		            <td width=15%>
-		              <span class="pull-left by-icon" ng-bind-html="trustHTML(getHTML(resource.name))"></span>
+		              <span class="pull-left by-icon" ng-bind-html="trustHTML(getHTML(key))"></span>
 		            </td>
 		            <td width=85%>
-		              <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(resource.value.number))"></div>
+		              <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(player.resources[key].number))"></div>
 		            </td>
                   </tr>
                 </tbody>
