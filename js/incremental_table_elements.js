@@ -1,32 +1,19 @@
 angular.module('incremental',['ngAnimate'])
-.controller('IncCtrl',['$scope','$document','$interval', '$sce', '$filter', '$timeout', '$log',
-function($scope,$document,$interval,$sce,$filter,$timeout,$log) { 
+.controller('IncCtrl',['$scope','$document','$interval', '$sce', '$filter', '$timeout', 
+function($scope,$document,$interval,$sce,$filter,$timeout) { 
 		$scope.version = '0.0';
 		$scope.Math = window.Math;
-		$scope.log = $log;
 		
 		// TODO: The startPlayer object can be mostly build by using the data.js structures. That would save a lot of
 		// redundancy and make the code more flexible and dynamic.
 		var startPlayer = {
-			elements_unlocked:2,
-			synthesis:{
-				'H-p':{
-					number:0,
-					active:0
-				},
-				'O3':{
-					number:0,
-					active:0
-				}
+			// properties just for the sake of the intro animation
+			intro:{
+				banner:false,
+				menu:false,
+				content:false
 			},
-			elements: {
-				'H':{					
-					unlocked:true
-				},
-				'O':{
-					unlocked:true
-				}
-			}
+			elements_unlocked:1
 			};
 			
 		cache = {};
@@ -34,7 +21,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		$scope.current_entry = "Hydrogen";
 		$scope.current_element = "H";
 		$scope.hover_element = "";
-		$scope.synthesis_price_increase = 2;
+		$scope.synthesis_price_increase = 1.15;
 		$scope.synthesis_power_increase = 2;
 		$scope.toast = [];
 		$scope.is_toast_visible = false;
@@ -42,24 +29,6 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
         var numberGenerator = new Ziggurat();
         
         function populatePlayer(){
-        	for(var element in startPlayer.elements){
-        		startPlayer.elements[element].upgrades = {};
-        		for(var upgrade in $scope.upgrades){
-        			startPlayer.elements[element].upgrades[upgrade] = {bought:false}
-        		}
-        		startPlayer.elements[element].generators = {};
-        		for(var generator in $scope.generators){
-        			startPlayer.elements[element].generators[generator] = {level:100000}
-        		}        		
-        	}
-        	startPlayer.encyclopedia = {};
-        	for(var entry in $scope.encyclopedia){
-        		startPlayer.encyclopedia[entry] = {is_new:true};
-        	}
-        	startPlayer.unlocks = {};
-        	for(var entry in $scope.unlocks){
-        		startPlayer.unlocks[entry] = true;
-        	}
         	startPlayer.resources = {};
         	for(var entry in $scope.resources){
         		startPlayer.resources[entry] = {
@@ -68,7 +37,43 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 												unlocked:false
 											};
 			}
-			startPlayer.resources["H"].number = $scope.generators["Tier 1"].price*1e100;
+			
+			startPlayer.elements = {};			
+        	for(var element in $scope.elements){
+        		if(!$scope.elements[element].disabled){
+        			startPlayer.elements[element] = {unlocked:false};
+        		}
+        	}
+        	startPlayer.elements["H"].unlocked = true;
+        	
+        	for(var element in startPlayer.elements){
+        		startPlayer.elements[element].upgrades = {};
+        		for(var upgrade in $scope.upgrades){
+        			startPlayer.elements[element].upgrades[upgrade] = {bought:false}
+        		}
+        		startPlayer.elements[element].generators = {};
+        		for(var generator in $scope.generators){
+        			startPlayer.elements[element].generators[generator] = {level:0}
+        		}        		
+        	}
+        	startPlayer.encyclopedia = {};
+        	for(var entry in $scope.encyclopedia){
+        		startPlayer.encyclopedia[entry] = {is_new:true};
+        	}
+        	startPlayer.unlocks = {};
+        	for(var entry in $scope.unlocks){
+        		startPlayer.unlocks[entry] = false;
+        	}
+        	startPlayer.synthesis = {};        	
+        	for(var entry in $scope.synthesis){
+        		startPlayer.synthesis[entry] = {
+												number:0,
+												active:0
+											};
+        	}
+
+			startPlayer.resources["H"].number = $scope.generators["Tier 1"].price;
+			startPlayer.resources["H"].number = 5.5e140;
         }
         
         $scope.removeToast = function() {
@@ -162,40 +167,20 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			if(html == null) return resource;
 			return html;
 		};
-
-		/*
-			Values is a list or map of values that we want to filter and order.
-			Table is the map that contains the information of order and visibility.
-		*/
-		$scope.filterAndOrder = function(values, table) {	
-			if(values == undefined) return;
-			hash = JSON.stringify(values).hashCode();
-			if(cache[hash] != null){
-				return cache[hash];
-			}	
-			var array = [];
-			for(var objectKey in values) {
-				// hack to make it work with reactions. Now we allow table to also be an array
-				// honestly this function is horrible and I would much rather just get rid of 
-				if(Array.isArray(values) && !Array.isArray(table)){
-					objectKey = values[objectKey];
-				}
-				if(objectKey in table && table[objectKey].visible()){
-					var object = {};
-					object.name = objectKey;
-					object.value = values[objectKey];
-					array.push(object);
-				}
-			}
-			array.sort(function(a, b){
-				n = parseInt(table[a.name].order);
-				m = parseInt(table[b.name].order);
-				return n - m;
-			});
-
-			cache[hash] = array;
-			return array;
-		};
+		
+		$scope.buyGenerators = function(name, element, number) {
+        	var price = $scope.generatorPrice(name, element);
+        	var i = 0;
+        	// yes, yes, I know that using a loop is cheap, will refactor...
+        	while(i < number && 
+        			$scope.player.resources[element].number >= price) {
+                $scope.player.resources[element].number -= price;
+                $scope.player.elements[element].generators[name].level++;
+                price = $scope.generatorPrice(name, element);
+        	    i++;
+            }
+			$scope.$emit("upgrade",name);
+        };
 		
         $scope.buyGenerator = function(name, element) {
         	var price = $scope.generatorPrice(name, element);
@@ -220,8 +205,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 				$scope.player.resources['e-'].number -= price;
 				$scope.player.resources['p'].number -= price;
 				$scope.player.resources['n'].number -= price;
-				$scope.$emit("element","Oxygen");
+				$scope.$emit("element",element);
 				$scope.player.elements[element].unlocked = true;
+				$scope.player.elements[element].generators["Tier 1"].level = 1;
 				$scope.player.elements_unlocked++;
         	}
         };
@@ -237,6 +223,19 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 	    	}
 	    	return true;
         };
+        
+        $scope.lastUpgradeTierPrice = function(tier) {
+        	for(var upgrade in $scope.generators[tier].upgrades){
+        		if(!$scope.player.elements[$scope.current_element].upgrades[$scope.generators[tier].upgrades[upgrade]].bought){
+        			return $scope.upgrades[$scope.generators[tier].upgrades[upgrade]].price;
+        		}
+        	}
+        	return null;
+        };
+        
+        $scope.filterUpgrade = function(input) {        	
+			return $scope.player.elements[$scope.current_element].generators[input].level > 0;
+		};
         
         $scope.react = function(number, reaction) {
         	if($scope.isReactionCostMet(number, reaction)){
@@ -333,9 +332,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		        	}
 		        	// we decrease the number of radioactive element
 		        	$scope.player.resources[radioisotope].number -= production;
-				    	// produce energy
+				    // produce energy
 		        	if($scope.resources[radioisotope].decay.decay_energy*production > 0){
-				    	$scope.player.resources["energy"].number += $scope.resources[radioisotope].decay.decay_energy*production;
+				    	$scope.player.resources["energy"].number += Number.parseFloat(($scope.resources[radioisotope].decay.decay_energy*production).toFixed(4));
 			        	$scope.$emit("resource","energy");
 			        	$scope.$emit("decay",$scope.resources[radioisotope].decay.decay_type);
 			        }
@@ -562,9 +561,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			if(number == Infinity){
 				return "&infin;";
 			}
-			if(number > 1e8){
+			if(number > 1e6){
 				// Very ugly way to extract the mantisa and exponent from an exponential string
-				var exponential = number.toPrecision(8).split("e");
+				var exponential = number.toPrecision(6).split("e");
 				var exponent = parseFloat(exponential[1].split("+")[1]);
 				// And it is displayed in with superscript
 				if(exponential[0] == "1"){
@@ -574,6 +573,13 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			}
 			return $filter('number')(number);
 		};   
+		
+		function padCeros(number, length) {
+			while(number.length < length){
+				number += "0";
+			}
+			return number;
+		}
 		
 		function init(){
 			populatePlayer();
@@ -593,9 +599,10 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 			loadData($scope);
 			init();
 			initializeListeners();
-            $interval(update,1000);
+            $interval(update,1000/(24));
             $interval(checkUnlocks,1000);
             $interval(clearCache,3000);
+            intro();
             //$interval($scope.save,60000);
         });	
         
@@ -634,17 +641,6 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
         	}
         	return unlocked;
         };
-        
-        String.prototype.hashCode = function() {
-		  var hash = 0, i, chr, len;
-		  if (this.length == 0) return hash;
-		  for (i = 0, len = this.length; i < len; i++) {
-			chr   = this.charCodeAt(i);
-			hash  = ((hash << 5) - hash) + chr;
-			hash |= 0; // Convert to 32bit integer
-		  }
-		  return hash;
-		};
 		
 		$scope.visible = function(map){
 		    var result = {};
@@ -658,5 +654,18 @@ function($scope,$document,$interval,$sce,$filter,$timeout,$log) {
 		
 		$scope.keys = function(obj){
 		  return obj? Object.keys(obj) : [];
+		};
+		
+		function intro() {
+			$timeout(function(){introStep("banner")}, 3000);
+			$timeout(function(){introStep("menu")}, 6000);
+			$timeout(function(){introStep("content")}, 9000);
+/*				banner:false,
+				menu:false,
+				content:false*/
+		};
+		
+		function introStep(value){
+			$scope.player.intro[value] = true;
 		};
 }]);

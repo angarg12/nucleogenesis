@@ -2,14 +2,19 @@ function loadData($scope) {
 	$scope.elements = {
 			'H':{
 				name:'Hydrogen',
-				isotopes:['2H','3H'],
+				isotopes:['2H','3H'],				
 				visible:function(){
 						return $scope.player.elements.H.unlocked;
 					},
 				has_new:function(){
-						return $scope.player.resources['H'].is_new ||
-								$scope.player.resources['2H'].is_new ||
-								$scope.player.resources['3H'].is_new;
+						var includes = ['H','2H','3H','H-','H2'];
+						for(key in includes){
+							if($scope.player.resources[includes[key]].unlocked &&
+								$scope.player.resources[includes[key]].is_new){
+								return true;
+							}
+						}
+						return false;
 					},
 				order:1
 			},
@@ -92,9 +97,14 @@ function loadData($scope) {
 						return $scope.player.elements.O.unlocked;
 					},
 				has_new:function(){
-						return $scope.player.resources['O'].is_new ||
-								$scope.player.resources['17O'].is_new ||
-								$scope.player.resources['18O'].is_new;
+						var includes = ['O','17O','18O','O2','O3'];
+						for(key in includes){
+							if($scope.player.resources[includes[key]].unlocked &&
+								$scope.player.resources[includes[key]].is_new){
+								return true;
+							}
+						}
+						return false;
 					},
 				order:8
 			},
@@ -1423,112 +1433,149 @@ function loadData($scope) {
 	// TODO: create this programatically
 	$scope.generators = {
 				'Tier 1':{
-					order:1,
 					visible:function(){
 						return true;
 					},
 					price:15,
 					power:1,
-					priceIncrease:1.15
+					priceIncrease:1.05
 				},
 				'Tier 2':{
-					order:2,
 					visible:function(){
 						return $scope.player.elements[$scope.current_element].generators['Tier 1'].level > 0;
 					},
 					price:100,
-					power:5,
-					priceIncrease:1.15
+					power:10,
+					priceIncrease:1.05
 				},
 				'Tier 3':{
-					order:3,
 					visible:function(){
 						return $scope.player.elements[$scope.current_element].generators['Tier 2'].level > 0;
 					},
-					price:500,
-					power:40,
-					priceIncrease:1.15
+					price:1100,
+					power:80,
+					priceIncrease:1.05
 				},
 				'Tier 4':{
-					order:4,
 					visible:function(){
 						return $scope.player.elements[$scope.current_element].generators['Tier 3'].level > 0;
 					},
-					price:3000,
-					power:100,
-					priceIncrease:1.15
+					price:12000,
+					power:470,
+					priceIncrease:1.05
 				},
 				'Tier 5':{
-					order:5,
 					visible:function(){
 						return $scope.player.elements[$scope.current_element].generators['Tier 4'].level > 0;
 					},
-					price:10000,
-					power:400,
-					priceIncrease:1.15
+					price:130000,
+					power:2600,
+					priceIncrease:1.05
 				},
 				'Tier 6':{
-					order:6,
 					visible:function(){
 						return $scope.player.elements[$scope.current_element].generators['Tier 5'].level > 0;
 					},
-					price:40000,
-					power:1000,
-					priceIncrease:1.15
+					price:1400000,
+					power:14000,
+					priceIncrease:1.05
 				},
 				'Tier 7':{
-					order:7,
 					visible:function(){
 						return $scope.player.elements[$scope.current_element].generators['Tier 6'].level > 0;
 					},
-					price:200000,
-					power:4000,
-					priceIncrease:1.15
+					price:2000000,
+					power:78000,
+					priceIncrease:1.05
 				},
 				'Tier 8':{
-					order:8,
 					visible:function(){
 						return $scope.player.elements[$scope.current_element].generators['Tier 7'].level > 0;
 					},
-					price:1666666,
-					power:66666,
-					priceIncrease:1.15
+					price:330000000,
+					power:440000,
+					priceIncrease:1.05
 				},
 				'Tier 9':{
-					order:9,
 					visible:function(){
 						return $scope.player.elements[$scope.current_element].generators['Tier 8'].level > 0;
 					},
-					price:123456789,
-					power:987654,
-					priceIncrease:1.15
+					price:5100000000,
+					power:2600000,
+					priceIncrease:1.05
 				},
 				'Tier 10':{
-					order:10,
 					visible:function(){
 						return $scope.player.elements[$scope.current_element].generators['Tier 9'].level > 0;
 					},
-					price:3999999999,
-					power:9999999,
-					priceIncrease:1.15
+					price:75000000000,
+					power:16000000,
+					priceIncrease:1.05
 				},
 				'Tier 11':{
-					order:11,
 					visible:function(){
 						return $scope.player.elements[$scope.current_element].generators['Tier 10'].level > 0;
 					},
-					price:75000000000,
+					price:1000000000000,
 					power:100000000,
-					priceIncrease:1.15
+					priceIncrease:1.05
+				},
+				'Tier 12':{
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 11'].level > 0;
+					},
+					price:14000000000000,
+					power:650000000,
+					priceIncrease:1.05
+				},
+				'Tier 13':{
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 12'].level > 0;
+					},
+					price:170000000000000,
+					power:4300000000,
+					priceIncrease:1.05
+				},
+				'Tier 14':{
+					visible:function(){
+						return $scope.player.elements[$scope.current_element].generators['Tier 13'].level > 0;
+					},
+					price:2100000000000000,
+					power:2900000000,
+					priceIncrease:1.05
 				}
 	};
 
 	$scope.upgrades = {};
 	
-	var upgradePrice = [[1,10,100],
-						[5,25]];
-	var upgradePower = [[2,2,4],
-						[2,2]];
+	var upgradePrice = [[100,500,10000,100000,10e6,100e6,1e9,10e9],
+					[1000,5000,50000,5e6,500e6,50e9,50e12,50e15],
+					[10000,55000,550000,55e6,5.5e9,550e9,550e12,550e15],
+					[120000,600000,6e6,600e6,60e9,6e12,6e15,6e18],
+					[1.3e6,6.5e6,65e6,6.5e9,650e9,65e12,65e15,65e18],
+					[14e6,70e6,700e6,70e9,7e12,700e12,700e15,700e18],
+					[200e6,1e9,10e9,1e12,100e12,10e15,10e18,10e21],
+					[3.3e9,16.5e9,165e9,16.5e12,1.65e15,165e15,165e18,165e21],
+					[51e9,255e9,2.55e12,255e12,25.5e15,2.55e18,2.55e21,2.55e24],
+					[750e9,3.75e12,37.5e12,3.75e15,375e15,37.5e18,37.5e21,37.5e24],
+					[10e12,50e12,500e12,50e15,5e18,500e18,500e21,500e24],
+					[140e12,700e12,7e15,700e15,70e18,7e21,7e24,7e27],
+					[1.7e15,8.5e15,85e15,8.5e18,850e18,85e21,85e24,85e27],
+					[21e15,105e15,1.05e18,105e18,10.5e21,1.05e24,1.05e27,1.05e30]];
+	var upgradePower = [[2,3,4,5,6,7,8,9],
+						[2,3,4,5,6,7,8,9],
+						[2,3,4,5,6,7,8,9],
+						[2,3,4,5,6,7,8,9],
+						[2,3,4,5,6,7,8,9],
+						[2,3,4,5,6,7,8,9],
+						[2,3,4,5,6,7,8,9],
+						[2,3,4,5,6,7,8,9],
+						[2,3,4,5,6,7,8,9],
+						[2,3,4,5,6,7,8,9],
+						[2,3,4,5,6,7,8,9],
+						[2,3,4,5,6,7,8,9],
+						[2,3,4,5,6,7,8,9],
+						[2,3,4,5,6,7,8,9]];
 
 	for(var i = 0; i < upgradePrice.length; i++){
 		$scope.generators["Tier "+(i+1)].upgrades = [];
@@ -1536,7 +1583,7 @@ function loadData($scope) {
 			$scope.generators["Tier "+(i+1)].upgrades.push("Tier "+(i+1)+"-"+(j+1));
 			$scope.upgrades["Tier "+(i+1)+"-"+(j+1)] = {
 				price:upgradePrice[i][j],
-				description:"Tier "+(i+1)+" production x"+upgradePower[i][j],
+				description:"x"+upgradePower[i][j],
 				order:i*upgradePrice.length+j,
 				apply:createApply(upgradePower[i][j])
 			}
@@ -1626,15 +1673,6 @@ function loadData($scope) {
 					html:'H<sub>2</sub>',
 					type:'allotrope'
 				},
-				'H2O':{ 
-					visible:function(){
-						return $scope.current_tab == "Elements" && 
-								$scope.player.resources['H2O'].unlocked;
-					},
-					order:6,		
-					html:'H<sub>2</sub>O',
-					type:'molecule'
-				},
 				'He':{ 
 					visible:function(){
 						return $scope.current_element === "He" &&
@@ -1662,7 +1700,7 @@ function loadData($scope) {
 					ratio:0.9976,
 					type:'element',
 					free_radical:{
-						reactivity:0.8,
+						reactivity:0.05,
 						reaction:[
 							{reactant:'O',
 							product:'O2',
@@ -1719,6 +1757,16 @@ function loadData($scope) {
 					html:'<sup>18</sup>O',
 					type:'isotope'
 				},
+				'H2O':{ 						
+					visible:function(){
+						return ($scope.current_element === "H" ||
+								$scope.current_element === "O") &&
+								$scope.current_tab == "Elements" && 
+								$scope.player.resources['H2O'].unlocked;
+					},
+					html:'H<sub>2</sub>O',
+					type:'molecule'
+				},
 				'e-':{ 
 					visible:function(){
 						return $scope.player.resources['e-'].unlocked;
@@ -1763,13 +1811,16 @@ function loadData($scope) {
 					},
 					has_new:function(){
 						for(var key in $scope.elements){
-							if($scope.elements[key].has_new()){
+							if($scope.player.elements[key] != undefined &&
+							$scope.player.elements[key].unlocked == true &&
+							$scope.elements[key].has_new()){
 								return true;
 							}
 						}
 						var other = ['e-','n','p','energy'];
 						for(var key in other){
-							if($scope.player.resources[other[key]].is_new){
+							if($scope.player.resources[other[key]].unlocked &&
+							$scope.player.resources[other[key]].is_new){
 								return true;
 							}
 						}
@@ -1779,11 +1830,12 @@ function loadData($scope) {
 			},
 			'Encyclopedia':{
 					visible:function(){
-						return true;
+						return $scope.player.intro.content;
 					},
 					has_new:function(){						
 						for(var key in $scope.player.encyclopedia){
-							if($scope.player.encyclopedia[key].is_new){
+							if($scope.encyclopedia[key].visible() &&
+							$scope.player.encyclopedia[key].is_new){
 								return true;
 							}
 						}
@@ -1803,7 +1855,7 @@ function loadData($scope) {
 			},
 			'Options':{
 					visible:function(){
-						return true;
+						return $scope.player.intro.content;
 					},
 					has_new:function(){
 						return false;
@@ -2028,9 +2080,8 @@ function loadData($scope) {
 						'e-':1
 					},
 					visible:function(){
-						return $scope.player.resources['energy'].unlocked;
-					},
-					order:0
+						return $scope.player.unlocks["ionization_energy"] == true;
+					}
 				}
 			},
 			'electron_affinity':{
@@ -2044,9 +2095,8 @@ function loadData($scope) {
 						'energy':0.7545
 					},
 					visible:function(){
-						return $scope.player.resources['e-'].unlocked;
-					},
-					order:0
+						return $scope.player.unlocks["electron_affinity"] == true;
+					}
 				}
 			},
 			'binding_energy':{
@@ -2061,9 +2111,9 @@ function loadData($scope) {
 						'e-':1
 					},
 					visible:function(){
-						return $scope.player.resources['2H'].unlocked;
-					},
-					order:0
+						return $scope.player.unlocks["nuclear_binding_energy"] == true &&
+							$scope.player.resources['2H'].unlocked;
+					}
 				},
 				2:{
 					reactant:{
@@ -2076,30 +2126,70 @@ function loadData($scope) {
 						'e-':1
 					},
 					visible:function(){
-						return $scope.player.resources['3H'].unlocked;
-					},
-					order:1
+						return $scope.player.unlocks["nuclear_binding_energy"] == true &&
+							$scope.player.resources['3H'].unlocked;
+					}
 				}
 			},
 			// We could create a function that checks for every synthesis if 
 			// one of the reactants is an isotope, ion or molecule of the element
 			// However for the sake of a proof of concept that is beyond our scope
 			'synthesis':[
-				'H-p'
+				'H-p','H2O'
 			]
 		},
 		'O':{
-			'ionization':[
-
-			],
-			'electron_affinity':[
-
-			],
-			'binding_energy':[
-
-			],
+			'ionization':{},
+			'electron_affinity':{},
+			'binding_energy':{
+				1:{
+					reactant:{
+						'energy':128030000,
+						'O':1
+					},
+					product:{
+						'p':8,
+						'n':8,
+						'e-':8
+					},
+					visible:function(){
+						return $scope.player.unlocks["nuclear_binding_energy"] == true &&
+							$scope.player.resources['O'].unlocked;
+					}
+				},
+				2:{
+					reactant:{
+						'energy':131750000,
+						'17O':1
+					},
+					product:{
+						'p':8,
+						'n':9,
+						'e-':8
+					},
+					visible:function(){
+						return $scope.player.unlocks["nuclear_binding_energy"] == true &&
+							$scope.player.resources['17O'].unlocked;
+					}
+				},
+				3:{
+					reactant:{
+						'energy':141170000,
+						'18O':1
+					},
+					product:{
+						'p':8,
+						'n':10,
+						'e-':8
+					},
+					visible:function(){
+						return $scope.player.unlocks["nuclear_binding_energy"] == true &&
+							$scope.player.resources['18O'].unlocked;
+					}
+				}
+			},
 			'synthesis':[
-				'O3'
+				'O3','H2O'
 			]
 		}
 	};
@@ -2115,11 +2205,11 @@ function loadData($scope) {
 				'energy':17.3705
 			},
 			visible:function(){
-				return $scope.player.resources['H-'].unlocked &&
+				return $scope.player.unlocks["synthesis"] == true && 
+						$scope.player.resources['H-'].unlocked &&
 						$scope.player.resources['p'].unlocked &&
 						$scope.current_element == "H";
-			},
-			order:0
+			}
 		},
 		'O3':{
 			reactant:{
@@ -2131,11 +2221,60 @@ function loadData($scope) {
 				'O':1
 			},
 			visible:function(){
-				return $scope.player.resources['O3'].unlocked &&
+				return $scope.player.unlocks["synthesis"] == true && 
+						$scope.player.resources['O3'].unlocked &&
 						$scope.player.resources['energy'].unlocked &&
 						$scope.current_element == "O";
+			}
+		},
+		'O2-OO':{
+			reactant:{
+				'O2':1,
+				'energy':21.4219
 			},
-			order:1
+			product:{
+				'O':2
+			},
+			visible:function(){
+				return $scope.player.unlocks["synthesis"] == true && 
+						$scope.player.resources['O2'].unlocked &&
+						$scope.player.resources['energy'].unlocked &&
+						$scope.current_element == "O";
+			}
+		},
+		'O2O2-O3O':{
+			reactant:{
+				'O2':2,
+				'energy':18
+			},
+			product:{
+				'O3':1,
+				'O':1
+			},
+			visible:function(){
+				return $scope.player.unlocks["synthesis"] == true && 
+						$scope.player.resources['O2'].unlocked &&
+						$scope.player.resources['O3'].unlocked &&
+						$scope.player.resources['energy'].unlocked &&
+						$scope.current_element == "O";
+			}
+		},
+		'H2O':{
+			reactant:{
+				'H2':2,
+				'O2':1
+			},
+			product:{
+				'H2O':2,
+				'energy':5.925
+			},
+			visible:function(){
+				return $scope.player.unlocks["synthesis"] == true && 
+						$scope.player.resources['O'].number > 1e8 &&
+						$scope.player.resources['H'].number > 1e14 &&
+						($scope.current_element == "H" ||
+						$scope.current_element == "O");
+			}
 		}
 	};	
 	
