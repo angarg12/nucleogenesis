@@ -600,6 +600,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		};
 				
 		$timeout(function(){
+			loadData($scope);
 			if(localStorage.getItem("playerStored") !== null){
 				$scope.load();
 			}
@@ -609,7 +610,6 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 			if(typeof $scope.lastSave  === 'undefined'){
 				$scope.lastSave = "None";
 			}
-			loadData($scope);
 			//init();
 			initializeListeners();
             $interval(update,1000);
