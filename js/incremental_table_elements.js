@@ -1,7 +1,7 @@
 angular.module('incremental',['ngAnimate'])
 .controller('IncCtrl',['$scope','$document','$interval', '$sce', '$filter', '$timeout', 
 function($scope,$document,$interval,$sce,$filter,$timeout) { 
-		$scope.version = '0.0';
+		$scope.version = '0.9';
 		$scope.Math = window.Math;
 		
 		// TODO: The startPlayer object can be mostly build by using the data.js structures. That would save a lot of
@@ -68,12 +68,12 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
         	for(var entry in $scope.synthesis){
         		startPlayer.synthesis[entry] = {
 												number:0,
-												active:0
+												active:0,
+												is_new:true
 											};
         	}
 
 			startPlayer.resources["H"].number = $scope.generators["Tier 1"].price;
-			startPlayer.resources["H"].number = 5.5e140;
         }
         
         $scope.removeToast = function() {
@@ -612,11 +612,10 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 			loadData($scope);
 			//init();
 			initializeListeners();
-            $interval(update,1000/(24));
+            $interval(update,1000);
             $interval(checkUnlocks,1000);
             $interval(clearCache,3000);
             intro();
-            //$interval($scope.save,60000);
             $interval($scope.save,10000);
         });	
         
@@ -652,7 +651,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
         		if($scope.player.unlocks[key]){
         			unlocked++;
         		}
-        	}
+       		}
         	return unlocked;
         };
 		

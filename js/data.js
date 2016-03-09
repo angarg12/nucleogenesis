@@ -14,6 +14,12 @@ function loadData($scope) {
 								return true;
 							}
 						}
+						for(key in $scope.reactions['H'].synthesis){
+							if($scope.synthesis[$scope.reactions['H'].synthesis[key]].visible() &&
+								$scope.player.synthesis[$scope.reactions['H'].synthesis[key]].is_new){
+								return true;
+							}
+						}
 						return false;
 					},
 				order:1
@@ -101,6 +107,12 @@ function loadData($scope) {
 						for(key in includes){
 							if($scope.player.resources[includes[key]].unlocked &&
 								$scope.player.resources[includes[key]].is_new){
+								return true;
+							}
+						}
+						for(key in $scope.reactions['O'].synthesis){
+							if($scope.synthesis[$scope.reactions['O'].synthesis[key]].visible() &&
+								$scope.player.synthesis[$scope.reactions['O'].synthesis[key]].is_new){
 								return true;
 							}
 						}
@@ -1562,20 +1574,20 @@ function loadData($scope) {
 					[140e12,700e12,7e15,700e15,70e18,7e21,7e24,7e27],
 					[1.7e15,8.5e15,85e15,8.5e18,850e18,85e21,85e24,85e27],
 					[21e15,105e15,1.05e18,105e18,10.5e21,1.05e24,1.05e27,1.05e30]];
-	var upgradePower = [[2,3,4,5,6,7,8,9],
-						[2,3,4,5,6,7,8,9],
-						[2,3,4,5,6,7,8,9],
-						[2,3,4,5,6,7,8,9],
-						[2,3,4,5,6,7,8,9],
-						[2,3,4,5,6,7,8,9],
-						[2,3,4,5,6,7,8,9],
-						[2,3,4,5,6,7,8,9],
-						[2,3,4,5,6,7,8,9],
-						[2,3,4,5,6,7,8,9],
-						[2,3,4,5,6,7,8,9],
-						[2,3,4,5,6,7,8,9],
-						[2,3,4,5,6,7,8,9],
-						[2,3,4,5,6,7,8,9]];
+	var upgradePower = [[2,2,3,4,6,8,10,12],
+						[2,2,3,4,6,8,10,12],
+						[2,2,3,4,6,8,10,12],
+						[2,2,3,4,6,8,10,12],
+						[2,2,3,4,6,8,10,12],
+						[2,2,3,4,6,8,10,12],
+						[2,2,3,4,6,8,10,12],
+						[2,2,3,4,6,8,10,12],
+						[2,2,3,4,6,8,10,12],
+						[2,2,3,4,6,8,10,12],
+						[2,2,3,4,6,8,10,12],
+						[2,2,3,4,6,8,10,12],
+						[2,2,3,4,6,8,10,12],
+						[2,2,3,4,6,8,10,12]];
 
 	for(var i = 0; i < upgradePrice.length; i++){
 		$scope.generators["Tier "+(i+1)].upgrades = [];
@@ -2189,7 +2201,7 @@ function loadData($scope) {
 				}
 			},
 			'synthesis':[
-				'O3','H2O'
+				'O3','O2-OO','H2O','O2O2-O3O'
 			]
 		}
 	};
@@ -2425,7 +2437,7 @@ function loadData($scope) {
 		},
 		"oxygen":{
 			check:function(event,data){  
-				if("Oxygen" == data){
+				if("O" == data){
 					$scope.addToast("Oxygen");
 					$scope.player.unlocks["oxygen"] = true;
 					$scope.unlocks["oxygen"].listener();

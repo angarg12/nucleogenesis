@@ -12,7 +12,16 @@
   <script type="text/javascript" src="js/ziggurat.js"></script>
   <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="styles/main.css">
-  <title>The Incremental Table of Elements</title>
+  <title>The Incremental Table of Elements</title>  
+  <script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-58136427-5', 'auto');
+	  ga('send', 'pageview');
+  </script>
 </head>
 
 <body class="ng-scope theme-none" ng-app="incremental" ng-controller="IncCtrl">
@@ -201,10 +210,12 @@
 		              <h3>Synthesis</h3>
 		              <table class="table">
 		                <tbody>
-		                  <tr class="animif" ng-repeat="syn in keys(visible(synthesis))">
+		                  <tr class="animif" ng-repeat="syn in keys(visible(synthesis))"
+		                  	ng-mouseover="player.synthesis[syn].is_new = false">
 		                    <td class="col-md-5" width=50%>
 		                      <div class="pull-left"
 									ng-class="{'text-muted': player.synthesis[syn].active <= 0}">
+		                    	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.synthesis[syn].is_new"></span>
 		                        <span ng-bind-html="trustHTML(reactionFormat(synthesisPower(current_element, syn),synthesis[syn]))"></span>
 		                      </div>
 		                    </td>
