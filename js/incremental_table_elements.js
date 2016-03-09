@@ -151,6 +151,20 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 			return true;
 		};	
 		
+		$scope.buySynthesiss = function(element, synthesis, number) {
+        	var i = 0;
+        	// yes, yes, I know that using a loop is cheap, will refactor...
+        	while(i < number && 
+        			$scope.isSynthesisCostMet(element, synthesis)) {
+            	var price = $scope.synthesisPrice(element, synthesis);
+            	for(resource in price){
+					$scope.player.resources[resource].number -= price[resource];
+				}
+				$scope.player.synthesis[synthesis].number += 1;
+        	    i++;
+            }
+        };
+		
 		$scope.buySynthesis = function(element, synthesis) {
             if ($scope.isSynthesisCostMet(element, synthesis)) {
             	var price = $scope.synthesisPrice(element, synthesis);
@@ -306,8 +320,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 			}
 		};
 		
-		function versionControl() {
-            
+		function versionControl() {            
         };
 		
         function update() {        
@@ -597,13 +610,14 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 				$scope.lastSave = "None";
 			}
 			loadData($scope);
-			init();
+			//init();
 			initializeListeners();
             $interval(update,1000/(24));
             $interval(checkUnlocks,1000);
             $interval(clearCache,3000);
             intro();
             //$interval($scope.save,60000);
+            $interval($scope.save,10000);
         });	
         
         function clearCache() {
@@ -660,9 +674,6 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 			$timeout(function(){introStep("banner")}, 3000);
 			$timeout(function(){introStep("menu")}, 6000);
 			$timeout(function(){introStep("content")}, 9000);
-/*				banner:false,
-				menu:false,
-				content:false*/
 		};
 		
 		function introStep(value){
