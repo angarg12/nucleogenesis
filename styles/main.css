@@ -7,6 +7,11 @@
   font-size:85%;
 }
 
+.affix {
+	top:0;
+	width:20%;
+}
+
 .element-table tr:first-child td {
     border: 0px none;
 }
