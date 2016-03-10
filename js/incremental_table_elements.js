@@ -348,19 +348,36 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		
 		function versionControl() {            
         };
+		
+		function simulateDecay (number, halflife){
+			var p = Math.log(2) / half_life;
+			var decay_per_second = 1 - Math.exp(-p);
+			if(decay_per_second < 50){ //using Poisson distribution 
+            	var lambda = decay_per_second * number
+		        production = getPoisson(lambda)				
+			}
+			else{ // Gaussian distribution
+            	var q = 1-p;
+		        var mean = number*p;
+		        var variance = number*p*q;
+		        var std = Math.sqrt(variance);
+		        production = Math.round(numberGenerator.nextGaussian()*std+mean);				
+			}
+			return production
+		}
         
-	function getPoisson(lambda) {
-		 L = Math.exp(-lambda);
-		 p = 1.0;
-		 k = 0;
-		
-		  do {
-		    k++;
-		    p *= Math.random();
-		  } while (p > L);
-		
-		  return k - 1;
-	}
+		function getPoisson(lambda) {
+			 L = Math.exp(-lambda);
+			 p = 1.0;
+			 k = 0;
+			
+			  do {
+				k++;
+				p *= Math.random();
+			  } while (p > L);
+			
+			  return k - 1;
+		}
 		
         function update() {        
             // decay should become first, since we are decaying the products from last step
@@ -370,12 +387,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
             	if($scope.player.resources[radioisotope].unlocked){
             		var number = $scope.player.resources[radioisotope].number;
             		// p is the decay constant
-            		var p = Math.log(2) / $scope.resources[radioisotope].decay.half_life;
-            		
-            		var decay_per_second = 1 - Math.exp(-p)
-            		var lambda = decay_per_second * number
+            		var halflife =  $scope.resources[radioisotope].decay.half_life;           	
 
-		        	production = getPoisson(lambda)
+		        	production = simulateDecay(number, halflife)
 		        	if(production > number){
 		        		production = number;
 		        	}
@@ -407,12 +421,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
             	if($scope.player.resources[unstable].unlocked){
             		var number = $scope.player.resources[unstable].number;
             		// p is the decay constant
-            		var p = Math.log(2) / $scope.resources[unstable].decay.half_life;
-            		var q = 1-p;
-		        	var mean = number*p;
-		        	var variance = number*p*q;
-		        	var std = Math.sqrt(variance);
-		        	production = Math.round(numberGenerator.nextGaussian()*std+mean);
+            		var halflife = $scope.resources[unstable].decay.half_life;
+            		production = simulateDecay(number, halflife)
 		        	if(production > number){
 		        		production = number;
 		        	}
