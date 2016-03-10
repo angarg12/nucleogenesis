@@ -7,6 +7,10 @@
   font-size:85%;
 }
 
+body{
+    padding-bottom:170px;
+}
+
 .affix {
 	top:0;
 	width:20%;
