@@ -1,7 +1,7 @@
 angular.module('incremental',['ngAnimate'])
 .controller('IncCtrl',['$scope','$document','$interval', '$sce', '$filter', '$timeout', 
 function($scope,$document,$interval,$sce,$filter,$timeout) { 
-		$scope.version = '0.9.6';
+		$scope.version = '0.9.7';
 		$scope.Math = window.Math;
 		
 		// Polyfill for some browsers
@@ -282,7 +282,18 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		    	}
         	}
         };
-
+		
+		$scope.generatorProduction = function(name, element) {
+			var baseProduction = $scope.generators[name].power;
+			var upgradedProduction = baseProduction;
+			for(var upgrade in $scope.generators[name].upgrades){
+				if($scope.player.elements[element].upgrades[$scope.generators[name].upgrades[upgrade]].bought){
+					upgradedProduction = $scope.upgrades[$scope.generators[name].upgrades[upgrade]].apply(upgradedProduction);
+				}
+			}
+			return upgradedProduction;
+		};
+		
 		$scope.tierProduction = function(name, element) {
 			var baseProduction = $scope.generators[name].power*$scope.player.elements[element].generators[name].level;
 			var upgradedProduction = baseProduction;

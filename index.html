@@ -79,7 +79,7 @@
                           </span>
                           <span class="pull-left" ng-bind-html="trustHTML(prettifyNumber(generators[name].power))"></span>
                           <span class="pull-left">
-                          &nbsp;{{current_element}}/s
+                          &nbsp;<span ng-bind-html="trustHTML(prettifyNumber(generatorProduction(name,current_element)))"></span> /s
                           </span>
                         </td>
                         <td class="animif col-md-1">
