@@ -349,7 +349,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		function versionControl() {            
         };
 		
-		function simulateDecay (number, halflife){
+		function simulateDecay (number, half_life){
 			var p = Math.log(2) / half_life;
 			var decay_per_second = 1 - Math.exp(-p);
 			if(decay_per_second < 50){ //using Poisson distribution 
@@ -387,9 +387,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
             	if($scope.player.resources[radioisotope].unlocked){
             		var number = $scope.player.resources[radioisotope].number;
             		// p is the decay constant
-            		var halflife =  $scope.resources[radioisotope].decay.half_life;           	
+            		var half_life =  $scope.resources[radioisotope].decay.half_life;           	
 
-		        	production = simulateDecay(number, halflife)
+		        	production = simulateDecay(number, half_life)
 		        	if(production > number){
 		        		production = number;
 		        	}
@@ -421,8 +421,8 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
             	if($scope.player.resources[unstable].unlocked){
             		var number = $scope.player.resources[unstable].number;
             		// p is the decay constant
-            		var halflife = $scope.resources[unstable].decay.half_life;
-            		production = simulateDecay(number, halflife)
+            		var half_life = $scope.resources[unstable].decay.half_life;
+            		production = simulateDecay(number, half_life)
 		        	if(production > number){
 		        		production = number;
 		        	}
