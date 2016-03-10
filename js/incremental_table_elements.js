@@ -349,7 +349,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
             		var decay_per_second = 1 - Math.exp(-p)
             		var lambda = decay_per_second * number
 
-		        	production = decay_per_second(lambda)
+		        	production = getPoisson(lambda)
 		        	if(production > number){
 		        		production = number;
 		        	}
