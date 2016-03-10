@@ -1,8 +1,17 @@
 angular.module('incremental',['ngAnimate'])
 .controller('IncCtrl',['$scope','$document','$interval', '$sce', '$filter', '$timeout', 
 function($scope,$document,$interval,$sce,$filter,$timeout) { 
-		$scope.version = '0.9';
-		$scope.Math = window.Math; 
+
+		$scope.version = '0.9.8';
+		$scope.Math = window.Math;
+		
+		// Polyfill for some browsers
+		Number.parseFloat = parseFloat;
+		Number.isInteger = Number.isInteger || function(value) {
+		  return typeof value === "number" && 
+			isFinite(value) && 
+			Math.floor(value) === value;
+		};
 		
 		// TODO: The startPlayer object can be mostly build by using the data.js structures. That would save a lot of
 		// redundancy and make the code more flexible and dynamic.
@@ -206,6 +215,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
         };
         
         $scope.buyUpgrade = function(name, element) {
+			if($scope.player.elements[element].upgrades[name].bought){
+				return;
+			}
         	var price = $scope.upgrades[name].price;
             if ($scope.player.resources[element].number >= price) {
                 $scope.player.resources[element].number -= price;
@@ -252,6 +264,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		};
         
         $scope.react = function(number, reaction) {
+			if(!Number.isInteger(number) || number <= 0){
+				return;
+			}
         	if($scope.isReactionCostMet(number, reaction)){
 		    	var keys = Object.keys(reaction.reactant);
 		    	for(var i = 0; i < keys.length; i++){
@@ -268,7 +283,18 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		    	}
         	}
         };
-
+		
+		$scope.generatorProduction = function(name, element) {
+			var baseProduction = $scope.generators[name].power;
+			var upgradedProduction = baseProduction;
+			for(var upgrade in $scope.generators[name].upgrades){
+				if($scope.player.elements[element].upgrades[$scope.generators[name].upgrades[upgrade]].bought){
+					upgradedProduction = $scope.upgrades[$scope.generators[name].upgrades[upgrade]].apply(upgradedProduction);
+				}
+			}
+			return upgradedProduction;
+		};
+		
 		$scope.tierProduction = function(name, element) {
 			var baseProduction = $scope.generators[name].power*$scope.player.elements[element].generators[name].level;
 			var upgradedProduction = baseProduction;
@@ -293,14 +319,14 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		};	
 
 		$scope.save = function() {
-			localStorage.setItem("playerStored", JSON.stringify($scope.player));
+			localStorage.setItem("playerStoredITE", JSON.stringify($scope.player));
 			var d = new Date();
 			$scope.lastSave = d.toLocaleTimeString();
 		};
 		
 		$scope.load = function() {
 			try {
-				$scope.player = JSON.parse(localStorage.getItem("playerStored"));
+				$scope.player = JSON.parse(localStorage.getItem("playerStoredITE"));
 			}catch(err){
 				alert("Error loading savegame, reset forced.");
 				$scope.reset(false);
@@ -316,7 +342,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 			
 			if(confirmation === true){
 				init();
-				localStorage.removeItem("playerStored");
+				localStorage.removeItem("playerStoredITE");
 			}
 		};
 		
@@ -614,7 +640,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 				
 		$timeout(function(){
 			loadData($scope);
-			if(localStorage.getItem("playerStored") !== null){
+			if(localStorage.getItem("playerStoredITE") !== null){
 				$scope.load();
 			}
 			if(typeof $scope.player  === 'undefined'){
