@@ -1,7 +1,7 @@
 angular.module('incremental',['ngAnimate'])
 .controller('IncCtrl',['$scope','$document','$interval', '$sce', '$filter', '$timeout', 
 function($scope,$document,$interval,$sce,$filter,$timeout) { 
-		$scope.version = '0.9.1';
+		$scope.version = '0.9.2';
 		$scope.Math = window.Math;
 		
 		// Polyfill for some browsers
@@ -214,6 +214,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
         };
         
         $scope.buyUpgrade = function(name, element) {
+			if($scope.player.elements[element].upgrades[name].bought){
+				return;
+			}
         	var price = $scope.upgrades[name].price;
             if ($scope.player.resources[element].number >= price) {
                 $scope.player.resources[element].number -= price;
