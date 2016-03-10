@@ -2,7 +2,7 @@ angular.module('incremental',['ngAnimate'])
 .controller('IncCtrl',['$scope','$document','$interval', '$sce', '$filter', '$timeout', 
 function($scope,$document,$interval,$sce,$filter,$timeout) { 
 		$scope.version = '0.9';
-		$scope.Math = window.Math;
+		$scope.Math = window.Math; 
 		
 		// TODO: The startPlayer object can be mostly build by using the data.js structures. That would save a lot of
 		// redundancy and make the code more flexible and dynamic.
