@@ -352,7 +352,7 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		function simulateDecay (number, half_life){
 			var p = Math.log(2) / half_life;
 			var decay_per_second = 1 - Math.exp(-p);
-			if(decay_per_second < 50){ //using Poisson distribution 
+			if(decay_per_second < 5){ //using Poisson distribution 
             	var lambda = decay_per_second * number
 		        production = getPoisson(lambda)				
 			}
