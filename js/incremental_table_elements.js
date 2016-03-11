@@ -350,18 +350,19 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
         };
 		
 		function simulateDecay (number, half_life){
+			// p is the decay constant
 			var p = Math.log(2) / half_life;
-			var decay_per_second = 1 - Math.exp(-p);
+			var decay_per_second = (1 - Math.exp(-p)) * number;
 			if(decay_per_second < 5){ //using Poisson distribution 
-            	var lambda = decay_per_second * number
-		        production = getPoisson(lambda)				
+           	
+			        production = getPoisson(decay_per_second)				
 			}
 			else{ // Gaussian distribution
-            	var q = 1-p;
-		        var mean = number*p;
-		        var variance = number*p*q;
-		        var std = Math.sqrt(variance);
-		        production = Math.round(numberGenerator.nextGaussian()*std+mean);				
+            			var q = 1-p;
+			        var mean = number*p;
+			        var variance = number*p*q;
+			        var std = Math.sqrt(variance);
+			        production = Math.round(numberGenerator.nextGaussian()*std+mean);				
 			}
 			return production
 		}
@@ -386,14 +387,14 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
             	var radioisotope = $scope.radioisotopes[i];
             	if($scope.player.resources[radioisotope].unlocked){
             		var number = $scope.player.resources[radioisotope].number;
-            		// p is the decay constant
+           
             		var half_life =  $scope.resources[radioisotope].decay.half_life;           	
 
 		        	production = simulateDecay(number, half_life)
 		        	if(production > number){
 		        		production = number;
 		        	}
-		        	if(production < 0){ //can't happen with Poisson distribution
+		        	if(production < 0){
 		        		production = 0;
 		        	}
 		        	// we decrease the number of radioactive element
