@@ -1,7 +1,7 @@
 angular.module('incremental',['ngAnimate'])
 .controller('IncCtrl',['$scope','$document','$interval', '$sce', '$filter', '$timeout', 
 function($scope,$document,$interval,$sce,$filter,$timeout) { 
-		$scope.version = '0.9.8';
+		$scope.version = '0.9.9';
 		$scope.Math = window.Math;
 		
 		// Polyfill for some browsers
@@ -225,6 +225,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
         };
         
         $scope.buyElement = function(element) {
+			if($scope.player.elements[element].unlocked){
+				return;
+			}			
         	if($scope.isElementCostMet(element)){
         		var price = $scope.elementPrice(element);
 				$scope.player.resources['e-'].number -= price;
@@ -345,7 +348,15 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 			}
 		};
 		
-		function versionControl() {            
+		function versionControl() {
+			// helping poor players who fell for the bug where clicking hydrogen increases unlocked elements
+			if(!$scope.player.elements['O'].unlocked &&
+				$scope.player.elements_unlocked > 1){
+				$scope.player.resources['e-'].number += 256;
+				$scope.player.resources['p'].number += 256;
+				$scope.player.resources['n'].number += 256;
+				$scope.player.elements_unlocked = 1;
+			}
         };
 		
         function update() {        
