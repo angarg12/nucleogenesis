@@ -12,7 +12,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/ziggurat.js"></script>
-  <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/base-bootstrap.min.css" id="theme_css">
   <link rel="stylesheet" type="text/css" href="styles/main.css">
   <title>The Incremental Table of Elements</title>  
   <script>
@@ -473,13 +473,22 @@
         <div class="tab-content ng-scope" id="options">
           <div class="tab-pane row" ng-class="{active: current_tab == 'Options'}">
             <div class="col-lg-2">
-              <h1>Options</h1>              
-              <br>
-              <button class="btn btn-default btn-block"
-                    ng-click="save()">Save</button>
-              <br>
-              <button class="btn btn-default btn-block"
-                    ng-click="reset(true)">Erase save</button>               
+				  <h1>Options</h1>              
+				  <br>
+				  <button class="btn btn-default btn-block"
+						ng-click="save()">Save</button>
+				  <button class="btn btn-default btn-block"
+						ng-click="reset(true)">Erase save</button>  
+				<br>
+				Courtesy of <a target="_blank" href="https://github.com/gzgreg/DerivativeClicker">gzgreg</a>:
+				<br>
+				<button class="btn btn-default btn-block" id="exportSave" ng-click="exportSave()">Export Save</button> 
+				<div id="exportSaveContents" style="display: none">
+					Copy this text:
+					<input id="exportSaveText" type="text" readonly>
+				</div>
+				<br>
+				<button class="btn btn-default btn-block" id="importSave" ng-click="importSave()">Import Save</button>				
             </div>
             <div class="col-lg-12" ng-if="numberUnlocked() > 0">
               <div ng-if="numberUnlocked() < 10">
@@ -491,11 +500,23 @@
 		          Unlocks: {{numberUnlocked()}}/{{numberUnlocks()}}
               </div>   
             </div>
+			<div class="col-lg-12">
+		    <br>
+			Theme
+			<select 
+			ng-model="player.current_theme" 
+			ng-change="updateTheme()">
+			  <option value="base">Base</option>
+			  <option value="cyborg">Cyborg</option>
+			</select> 
+			</div>
             <div class="col-lg-12">
               <br>
-              Github: <a href="https://github.com/angarg12/incremental_table_elements">https://github.com/angarg12/incremental_table_elements</a>   
+              Github: <a target="_blank" href="https://github.com/angarg12/incremental_table_elements">https://github.com/angarg12/incremental_table_elements</a>   
             </div>
-            
+			<div class="col-lg-12">
+              <a target="_blank" href="./changelog.txt">Changelog</a>              
+            </div>            
               <p style="padding-bottom:200px"></p>
             </div>
           </div>
