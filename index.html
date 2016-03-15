@@ -1,544 +1,529 @@
 <!DOCTYPE html>
-
 <html>
-<head>
-  <meta content="text/html; charset=us-ascii" http-equiv=
-  "Content-Type">
-  <meta content="utf-8" http-equiv="encoding">
-  <script type="text/javascript" src="js/angular.min.js"></script>
-  <script type="text/javascript" src="js/angular-animate.min.js"></script>
-  <script type="text/javascript" src="js/data.js" charset="UTF-8"></script>
-  <script type="text/javascript" src="js/incremental_table_elements.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/ziggurat.js"></script>
-  <link rel="stylesheet" type="text/css" href="styles/base-bootstrap.min.css" id="theme_css">
-  <link rel="stylesheet" type="text/css" href="styles/main.css">
-  <title>The Incremental Table of Elements</title>  
-  <script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-	  ga('create', 'UA-58136427-5', 'auto');
-	  ga('send', 'pageview');
-  </script>
-</head>
-
-<body class="ng-scope theme-none" ng-app="incremental" ng-controller="IncCtrl">
-  <div class="container">
-    <div class="navbar navbar-default animif" ng-show="player.intro.banner">
-      <div class="container">
-        <div class="navbar-header">
-          <span class="navbar-brand page-title">
-          	The Incremental Table of Elements <sub>an unfolding experiment</sub>
-          	<small>by angarg12</small>
-          </span> 
-          <span class="navbar-brand">
-          	<span class="text-muted small">v{{version}}</span>
-          </span>
-        </div>         
-      </div>
-    </div>
-
-    <div class="viewwrap">
-      <div>
-        <div class="ng-scope ng-isolate-scope animif" ng-show="player.intro.menu">
-          <ul class="nav nav-tabs ng-scope" role="tablist">
-          	<li class="animif" ng-repeat="tab in keys(visible(tabs))" 
-          		ng-class="{active: current_tab === tab}">
-		        <a class="ng-binding" ng-click="updateCurrent('current_tab',tab)"> {{tab}} 
-		        	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="tabs[tab].has_new()"></span>
-		        </a>
-		    </li>
-          </ul>
+  <head>
+    <meta content="text/html; charset=us-ascii" http-equiv=
+      "Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular-animate.min.js"></script>
+    <script type="text/javascript" src="js/data.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="js/incremental_table_elements.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/ziggurat.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/base-bootstrap.min.css" id="theme_css">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <title>The Incremental Table of Elements</title>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-58136427-5', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body class="ng-scope theme-none" ng-app="incremental" ng-controller="IncCtrl">
+    <div class="container">
+      <div class="navbar navbar-default animif" ng-show="player.intro.banner">
+        <div class="container">
+          <div class="navbar-header">
+            <span class="navbar-brand page-title">
+            The Incremental Table of Elements <sub>an unfolding experiment</sub>
+            <small>by angarg12</small>
+            </span> 
+            <span class="navbar-brand">
+            <span class="text-muted small">v{{version}}</span>
+            </span>
+          </div>
         </div>
-
-        <div class="tab-content ng-scope animif" id="elements" ng-show="player.intro.content">
-          <div class="tab-pane row" ng-class="{active: current_tab == 'Elements'}">
-            <div class="col-lg-8 col-lg-push-3">
-              <h2>{{elements[current_element].name}}</h2>
-              <h3><span ng-bind-html="trustHTML(prettifyNumber(elementProduction(current_element)))"></span> {{current_element}}/s</h3>
-              <ul ng-if="player.unlocks.isotope">
-              	 <li>
-		          	<span ng-bind-html="trustHTML(getHTML(current_element))"></span>: {{(resources[current_element].ratio*100).toFixed(4)}}%
-		         </li>
-		         <li class="animif" ng-repeat="isotope in elements[current_element].isotopes" ng-if="resources[isotope].visible()">
-		         	<span ng-bind-html="trustHTML(getHTML(isotope))"></span>: {{(resources[isotope].ratio*100).toFixed(4)}}%
-		         </li>
-              </ul>
-              <div>
+      </div>
+      <div class="viewwrap">
+        <div>
+          <div class="ng-scope ng-isolate-scope animif" ng-show="player.intro.menu">
+            <ul class="nav nav-tabs ng-scope" role="tablist">
+              <li class="animif" ng-repeat="tab in keys(visible(tabs))" 
+                ng-class="{active: current_tab === tab}">
+                <a class="ng-binding" ng-click="updateCurrent('current_tab',tab)"> {{tab}} 
+                <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="tabs[tab].has_new()"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="tab-content ng-scope animif" id="elements" ng-show="player.intro.content">
+            <div class="tab-pane row" ng-class="{active: current_tab == 'Elements'}">
+              <div class="col-lg-8 col-lg-push-3">
+                <h2>{{elements[current_element].name}}</h2>
+                <h3><span ng-bind-html="trustHTML(prettifyNumber(elementProduction(current_element)))"></span> {{current_element}}/s</h3>
+                <ul ng-if="player.unlocks.isotope">
+                  <li>
+                    <span ng-bind-html="trustHTML(getHTML(current_element))"></span>: {{(resources[current_element].ratio*100).toFixed(4)}}%
+                  </li>
+                  <li class="animif" ng-repeat="isotope in elements[current_element].isotopes" ng-if="resources[isotope].visible()">
+                    <span ng-bind-html="trustHTML(getHTML(isotope))"></span>: {{(resources[isotope].ratio*100).toFixed(4)}}%
+                  </li>
+                </ul>
                 <div>
-                  <table class="table">
-                    <tbody>
-                      <tr class="animif" ng-repeat="name in keys(visible(generators))">
-                      	<td class="animif col-md-3">
-                          <span class="pull-left">
-                           {{name}}:&nbsp;
-                          </span>
-                          <span class="pull-left" ng-bind-html="trustHTML(prettifyNumber(generators[name].power))"></span>
-                          <span class="pull-left">
-                          &nbsp;<span ng-bind-html="trustHTML(prettifyNumber(generatorProduction(name,current_element)))"></span> /s
-                          </span>
-                        </td>
-                        <td class="animif col-md-1">
-                          <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(player.elements[current_element].generators[name].level))"></div>
-                        </td>                        
-                        <td class="animif col-md-3">
-                          <div class="pull-left">
-                            Total <span ng-bind-html="trustHTML(prettifyNumber(tierProduction(name,current_element)))"></span> {{current_element}}/s
-                          </div>
-                        </td>
-                        <td class="animif col-md-3">
-                          <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(generatorPrice(name, current_element)))"></div> &nbsp;{{current_element}}
-                        </td>
-                        <td class="animif col-md-3">
-                          <div class="pull-left">
-                            <button class="btn btn-default button-small"
-                            ng-click="buyGenerator(name, current_element)"
-                            ng-class="{disabled: generatorPrice(name, current_element) > player.resources[current_element].number}">1</button>
-                          </div>
-                          <div class="pull-left">
-                            <button class="btn btn-default button-small"
-                            ng-click="buyGenerators(name, current_element, 10)"
-                            ng-class="{disabled: generatorPrice(name, current_element) > player.resources[current_element].number}">10</button>
-                          </div>
-                          <!-- crappy workaround since it doesn't recognize the literal Infinity -->
-                          <div class="pull-left">
-                            <button class="btn btn-default button-small"
-                            ng-click="buyGenerators(name, current_element, 1/0)"
-                            ng-class="{disabled: generatorPrice(name, current_element) > player.resources[current_element].number}">&#8892;</button>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-				
-				<div ng-if="player.unlocks.reactions && (
-					keys(visible(reactions[current_element].ionization)).length > 0 ||
-					keys(visible(reactions[current_element].electron_affinity)).length > 0 || 
-					keys(visible(reactions[current_element].binding_energy)).length > 0 ||
-					keys(visible(synthesis)).length > 0)">
-                <hr>
-                <div ng-if="keys(visible(reactions[current_element].ionization)).length > 0 ||
-					keys(visible(reactions[current_element].electron_affinity)).length > 0 || 
-					keys(visible(reactions[current_element].binding_energy)).length > 0">
-                  <h3>Reactions</h3>
-                  <div ng-if="keys(visible(reactions[current_element].ionization)).length > 0">
-                  	  <h4>Ionization</h4>
-		              <table class="table">
-		                <tbody>
-		                  <tr class="animif" ng-repeat="key in keys(visible(reactions[current_element].ionization))">
-		                    <td class="col-md-8" width=50%>
-		                      <div class="pull-left">
-		                        <span ng-bind-html="trustHTML(reactionFormat(reactions[current_element].ionization[key].number,reactions[current_element].ionization[key]))"></span>
-		                      </div>
-		                    </td>
-		                    <td class="col-md-4">
-		                      <!-- we store the value inside the object itself -->
-		                      <div class="pull-left">
-		                        <input type="number" 
-		                        value="1" 
-		                        min="1"
-		                        ng-init="reactions[current_element].ionization[key].number = reactions[current_element].ionization[key].number || 1" 
-		                        ng-model="reactions[current_element].ionization[key].number">
-		                        	<button class="btn btn-default"
-		                        	ng-click="react(reactions[current_element].ionization[key].number, reactions[current_element].ionization[key])"
-		                        	ng-class="{disabled: !isReactionCostMet(reactions[current_element].ionization[key].number, reactions[current_element].ionization[key])}">React</button>
-		                        </input>
-		                      </div>
-		                    </td>
-		                  </tr>
-		                </tbody>
-		              </table>
+                  <div>
+                    <table class="table">
+                      <tbody>
+                        <tr class="animif" ng-repeat="name in keys(visible(generators))">
+                          <td class="animif col-md-3">
+                            <span class="pull-left">
+                            {{name}}:&nbsp;
+                            </span>
+                            <span class="pull-left" ng-bind-html="trustHTML(prettifyNumber(generators[name].power))"></span>
+                            <span class="pull-left">
+                            &nbsp;<span ng-bind-html="trustHTML(prettifyNumber(generatorProduction(name,current_element)))"></span> /s
+                            </span>
+                          </td>
+                          <td class="animif col-md-1">
+                            <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(player.elements[current_element].generators[name].level))"></div>
+                          </td>
+                          <td class="animif col-md-3">
+                            <div class="pull-left">
+                              Total <span ng-bind-html="trustHTML(prettifyNumber(tierProduction(name,current_element)))"></span> {{current_element}}/s
+                            </div>
+                          </td>
+                          <td class="animif col-md-3">
+                            <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(generatorPrice(name, current_element)))"></div>
+                            &nbsp;{{current_element}}
+                          </td>
+                          <td class="animif col-md-3">
+                            <div class="pull-left">
+                              <button class="btn btn-default button-small"
+                                ng-click="buyGenerator(name, current_element)"
+                                ng-class="{disabled: generatorPrice(name, current_element) > player.resources[current_element].number}">1</button>
+                            </div>
+                            <div class="pull-left">
+                              <button class="btn btn-default button-small"
+                                ng-click="buyGenerators(name, current_element, 10)"
+                                ng-class="{disabled: generatorPrice(name, current_element) > player.resources[current_element].number}">10</button>
+                            </div>
+                            <!-- crappy workaround since it doesn't recognize the literal Infinity -->
+                            <div class="pull-left">
+                              <button class="btn btn-default button-small"
+                                ng-click="buyGenerators(name, current_element, 1/0)"
+                                ng-class="{disabled: generatorPrice(name, current_element) > player.resources[current_element].number}">&#8892;</button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
-                  <div ng-if="keys(visible(reactions[current_element].electron_affinity)).length > 0">
-		              <h4>Electron affinity</h4>
-		              <table class="table">
-		                <tbody>
-		                  <tr class="animif" ng-repeat="key in keys(visible(reactions[current_element].electron_affinity))">
-		                    <td class="col-md-8" width=50%>
-		                      <div class="pull-left">
-		                      	<span ng-bind-html="trustHTML(reactionFormat(reactions[current_element].electron_affinity[key].number,reactions[current_element].electron_affinity[key]))"></span>
-		                      </div>
-		                    </td>
-		                    <td class="col-md-4">
-		                      <div class="pull-left">
-		                        <input type="number" 
-		                        value="1" 
-		                        min="1"
-		                        ng-init="reactions[current_element].electron_affinity[key].number = reactions[current_element].electron_affinity[key].number || 1" 
-		                        ng-model="reactions[current_element].electron_affinity[key].number">
-		                        <button class="btn btn-default"
-		                        	ng-click="react(reactions[current_element].electron_affinity[key].number, reactions[current_element].electron_affinity[key])"
-		                        	ng-class="{disabled: !isReactionCostMet(reactions[current_element].electron_affinity[key].number, reactions[current_element].electron_affinity[key])}">React</button>
-		                        </input>
-		                      </div>
-		                    </td>
-		                  </tr>
-		                </tbody>
-		              </table>
-                  </div>
-                  <div ng-if="keys(visible(reactions[current_element].binding_energy)).length > 0">
-		              <h4>Binding energy</h4>
-		              <table class="table">
-		                <tbody>
-		                  <tr class="animif" ng-repeat="key in keys(visible(reactions[current_element].binding_energy))">
-		                    <td class="col-md-8" width=50%>
-		                      <div class="pull-left">
-		                        <span ng-bind-html="trustHTML(reactionFormat(reactions[current_element].binding_energy[key].number,reactions[current_element].binding_energy[key]))"></span>
-		                      </div>
-		                    </td>
-		                    <td class="col-md-4">
-		                      <div class="pull-left">
-		                        <input type="number" 
-		                        min="1"
-		                        ng-init="reactions[current_element].binding_energy[key].number = reactions[current_element].binding_energy[key].number || 1" 
-		                        ng-model="reactions[current_element].binding_energy[key].number">
-		                        <button class="btn btn-default"
-		                        	ng-click="react(reactions[current_element].binding_energy[key].number, reactions[current_element].binding_energy[key])"
-		                        	ng-class="{disabled: !isReactionCostMet(reactions[current_element].binding_energy[key].number, reactions[current_element].binding_energy[key])}">React</button>
-		                        </input>
-		                      </div>
-		                    </td>
-		                  </tr>
-		                </tbody>
-		              </table>
+                  <div ng-if="player.unlocks.reactions && (
+                    keys(visible(reactions[current_element].ionization)).length > 0 ||
+                    keys(visible(reactions[current_element].electron_affinity)).length > 0 || 
+                    keys(visible(reactions[current_element].binding_energy)).length > 0 ||
+                    keys(visible(synthesis)).length > 0)">
+                    <hr>
+                    <div ng-if="keys(visible(reactions[current_element].ionization)).length > 0 ||
+                      keys(visible(reactions[current_element].electron_affinity)).length > 0 || 
+                      keys(visible(reactions[current_element].binding_energy)).length > 0">
+                      <h3>Reactions</h3>
+                      <div ng-if="keys(visible(reactions[current_element].ionization)).length > 0">
+                        <h4>Ionization</h4>
+                        <table class="table">
+                          <tbody>
+                            <tr class="animif" ng-repeat="key in keys(visible(reactions[current_element].ionization))">
+                              <td class="col-md-8" width=50%>
+                                <div class="pull-left">
+                                  <span ng-bind-html="trustHTML(reactionFormat(reactions[current_element].ionization[key].number,reactions[current_element].ionization[key]))"></span>
+                                </div>
+                              </td>
+                              <td class="col-md-4">
+                                <!-- we store the value inside the object itself -->
+                                <div class="pull-left">
+                                  <input type="number" 
+                                    value="1" 
+                                    min="1"
+                                    ng-init="reactions[current_element].ionization[key].number = reactions[current_element].ionization[key].number || 1" 
+                                    ng-model="reactions[current_element].ionization[key].number">
+                                  <button class="btn btn-default"
+                                    ng-click="react(reactions[current_element].ionization[key].number, reactions[current_element].ionization[key])"
+                                    ng-class="{disabled: !isReactionCostMet(reactions[current_element].ionization[key].number, reactions[current_element].ionization[key])}">React</button>
+                                  </input>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div ng-if="keys(visible(reactions[current_element].electron_affinity)).length > 0">
+                        <h4>Electron affinity</h4>
+                        <table class="table">
+                          <tbody>
+                            <tr class="animif" ng-repeat="key in keys(visible(reactions[current_element].electron_affinity))">
+                              <td class="col-md-8" width=50%>
+                                <div class="pull-left">
+                                  <span ng-bind-html="trustHTML(reactionFormat(reactions[current_element].electron_affinity[key].number,reactions[current_element].electron_affinity[key]))"></span>
+                                </div>
+                              </td>
+                              <td class="col-md-4">
+                                <div class="pull-left">
+                                  <input type="number" 
+                                    value="1" 
+                                    min="1"
+                                    ng-init="reactions[current_element].electron_affinity[key].number = reactions[current_element].electron_affinity[key].number || 1" 
+                                    ng-model="reactions[current_element].electron_affinity[key].number">
+                                  <button class="btn btn-default"
+                                    ng-click="react(reactions[current_element].electron_affinity[key].number, reactions[current_element].electron_affinity[key])"
+                                    ng-class="{disabled: !isReactionCostMet(reactions[current_element].electron_affinity[key].number, reactions[current_element].electron_affinity[key])}">React</button>
+                                  </input>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div ng-if="keys(visible(reactions[current_element].binding_energy)).length > 0">
+                        <h4>Binding energy</h4>
+                        <table class="table">
+                          <tbody>
+                            <tr class="animif" ng-repeat="key in keys(visible(reactions[current_element].binding_energy))">
+                              <td class="col-md-8" width=50%>
+                                <div class="pull-left">
+                                  <span ng-bind-html="trustHTML(reactionFormat(reactions[current_element].binding_energy[key].number,reactions[current_element].binding_energy[key]))"></span>
+                                </div>
+                              </td>
+                              <td class="col-md-4">
+                                <div class="pull-left">
+                                  <input type="number" 
+                                    min="1"
+                                    ng-init="reactions[current_element].binding_energy[key].number = reactions[current_element].binding_energy[key].number || 1" 
+                                    ng-model="reactions[current_element].binding_energy[key].number">
+                                  <button class="btn btn-default"
+                                    ng-click="react(reactions[current_element].binding_energy[key].number, reactions[current_element].binding_energy[key])"
+                                    ng-class="{disabled: !isReactionCostMet(reactions[current_element].binding_energy[key].number, reactions[current_element].binding_energy[key])}">React</button>
+                                  </input>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div ng-if="keys(visible(synthesis)).length > 0">
+                      <h3>Synthesis</h3>
+                      <table class="table">
+                        <tbody>
+                          <tr class="animif" ng-repeat="syn in keys(visible(synthesis))"
+                            ng-mouseover="player.synthesis[syn].is_new = false">
+                            <td class="col-md-5" width=50%>
+                              <div class="pull-left"
+                                ng-class="{'text-muted': player.synthesis[syn].active <= 0}">
+                                <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.synthesis[syn].is_new"></span>
+                                <span ng-bind-html="trustHTML(reactionFormat(synthesisPower(current_element, syn),synthesis[syn]))"></span>
+                              </div>
+                            </td>
+                            <td class="col-md-1">
+                              <div class="pull-left" ng-if="player.synthesis[syn].number > 0">
+                                {{player.synthesis[syn].active}}/{{player.synthesis[syn].number}} 
+                              </div>
+                            </td>
+                            <td class="col-md-2">
+                              <div class="pull-left" ng-if="player.synthesis[syn].number > 0">
+                                <button class="btn btn-default button-small"
+                                  ng-disabled="player.synthesis[syn].active >= player.synthesis[syn].number"
+                                  ng-click="player.synthesis[syn].active = player.synthesis[syn].number"
+                                  ng-class="{disabled: player.synthesis[syn].active >= player.synthesis[syn].number}">&#8892;</button>
+                                <button class="btn btn-default button-small"
+                                  ng-disabled="player.synthesis[syn].active >= player.synthesis[syn].number"
+                                  ng-click="player.synthesis[syn].active = player.synthesis[syn].active+1"
+                                  ng-class="{disabled: player.synthesis[syn].active >= player.synthesis[syn].number}">+</button>
+                                <br>
+                                <button class="btn btn-default button-small"
+                                  ng-disabled="player.synthesis[syn].active <= 0"
+                                  ng-click="player.synthesis[syn].active = 0"
+                                  ng-class="{disabled: player.synthesis[syn].active <= 0}">&#8891;</button>
+                                <button class="btn btn-default button-small"
+                                  ng-disabled="player.synthesis[syn].active <= 0"
+                                  ng-click="player.synthesis[syn].active = player.synthesis[syn].active-1"
+                                  ng-class="{disabled: player.synthesis[syn].active <= 0}">-</button>
+                              </div>
+                            </td>
+                            <td class="col-md-2">
+                              <div class="pull-left">
+                                <span ng-bind-html="trustHTML(compoundFormat(synthesisMultiplier(current_element, syn),synthesis[syn].reactant))"></span>
+                              </div>
+                            </td>
+                            <td class="col-md-3">
+                              <div class="pull-left">
+                                <button class="btn btn-default button-small"
+                                  ng-click="buySynthesis(current_element, syn)"
+                                  ng-class="{disabled: !isSynthesisCostMet(current_element, syn)}">1</button>
+                              </div>
+                              <div class="pull-left">
+                                <button class="btn btn-default button-small"
+                                  ng-click="buySynthesiss(current_element, syn, 10)"
+                                  ng-class="{disabled: !isSynthesisCostMet(current_element, syn)}">10</button>
+                              </div>
+                              <div class="pull-left">
+                                <button class="btn btn-default button-small"
+                                  ng-click="buySynthesiss(current_element, syn, 1/0)"
+                                  ng-class="{disabled: !isSynthesisCostMet(current_element, syn)}">&#8892;</button>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
-                  <div ng-if="keys(visible(synthesis)).length > 0">
-		              <h3>Synthesis</h3>
-		              <table class="table">
-		                <tbody>
-		                  <tr class="animif" ng-repeat="syn in keys(visible(synthesis))"
-		                  	ng-mouseover="player.synthesis[syn].is_new = false">
-		                    <td class="col-md-5" width=50%>
-		                      <div class="pull-left"
-									ng-class="{'text-muted': player.synthesis[syn].active <= 0}">
-		                    	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.synthesis[syn].is_new"></span>
-		                        <span ng-bind-html="trustHTML(reactionFormat(synthesisPower(current_element, syn),synthesis[syn]))"></span>
-		                      </div>
-		                    </td>
-		                    <td class="col-md-1">
-		                      <div class="pull-left" ng-if="player.synthesis[syn].number > 0">
-		                        {{player.synthesis[syn].active}}/{{player.synthesis[syn].number}} 
-		                      </div>
-		                    </td>
-		              		<td class="col-md-2">
-		                      <div class="pull-left" ng-if="player.synthesis[syn].number > 0">
-		                        <button class="btn btn-default button-small"
-		                        ng-disabled="player.synthesis[syn].active >= player.synthesis[syn].number"
-		                        ng-click="player.synthesis[syn].active = player.synthesis[syn].number"
-		                        ng-class="{disabled: player.synthesis[syn].active >= player.synthesis[syn].number}">&#8892;</button>
-		                        <button class="btn btn-default button-small"
-		                        ng-disabled="player.synthesis[syn].active >= player.synthesis[syn].number"
-		                        ng-click="player.synthesis[syn].active = player.synthesis[syn].active+1"
-		                        ng-class="{disabled: player.synthesis[syn].active >= player.synthesis[syn].number}">+</button>
-		                        <br>
-		                        <button class="btn btn-default button-small"
-		                        ng-disabled="player.synthesis[syn].active <= 0"
-		                        ng-click="player.synthesis[syn].active = 0"
-		                        ng-class="{disabled: player.synthesis[syn].active <= 0}">&#8891;</button>
-		                        <button class="btn btn-default button-small"
-		                        ng-disabled="player.synthesis[syn].active <= 0"
-		                        ng-click="player.synthesis[syn].active = player.synthesis[syn].active-1"
-		                        ng-class="{disabled: player.synthesis[syn].active <= 0}">-</button>
-		                      </div>
-		                    </td>
-		                    <td class="col-md-2">
-		                      <div class="pull-left">
-		                        <span ng-bind-html="trustHTML(compoundFormat(synthesisMultiplier(current_element, syn),synthesis[syn].reactant))"></span>
-		                      </div>
-		                    </td>
-		                    <td class="col-md-3">
-		                      <div class="pull-left">
-		                        <button class="btn btn-default button-small"
-		                        ng-click="buySynthesis(current_element, syn)"
-		                        ng-class="{disabled: !isSynthesisCostMet(current_element, syn)}">1</button>
-		                      </div>
-		                      <div class="pull-left">
-		                        <button class="btn btn-default button-small"
-		                        ng-click="buySynthesiss(current_element, syn, 10)"
-		                        ng-class="{disabled: !isSynthesisCostMet(current_element, syn)}">10</button>
-		                      </div>
-		                      <div class="pull-left">
-		                        <button class="btn btn-default button-small"
-		                        ng-click="buySynthesiss(current_element, syn, 1/0)"
-		                        ng-class="{disabled: !isSynthesisCostMet(current_element, syn)}">&#8892;</button>
-		                      </div>
-		                    </td>
-		                  </tr>
-		                </tbody>
-		              </table>
+                  <div ng-if="player.unlocks.upgrade">
+                    <hr>
+                    <h4>Upgrades</h4>
+                    <table class="table">
+                      <tbody>
+                        <tr class="animif" ng-repeat="generator in keys(visible(generators))|filter:filterUpgrade">
+                          <td class="animif col-md-2">
+                            <div class="pull-left">
+                              {{generator}}
+                            </div>
+                          </td>
+                          <td class="animif col-md-1" ng-repeat="upgrade in generators[generator].upgrades">
+                            <a class="btn btn-default" ng-show="upgrades[upgrade].visible()"
+                              ng-click="buyUpgrade(upgrade, current_element)"
+                              ng-class="{disabled: upgrades[upgrade].price > player.resources[current_element].number && !player.elements[current_element].upgrades[upgrade].bought,
+                              active: player.elements[current_element].upgrades[upgrade].bought}">
+                            {{upgrades[upgrade].description}}
+                            </a>
+                          </td>
+                          <td class="animif col-md-2">
+                            <div ng-show="lastUpgradeTierPrice(generator) != null">
+                              <span class="pull-left" ng-bind-html="trustHTML(prettifyNumber(lastUpgradeTierPrice(generator)))"></span> &nbsp;{{current_element}}
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
-				
-                <div ng-if="player.unlocks.upgrade">
-                <hr>
-                  <h4>Upgrades</h4>
-                  <table class="table">
-                    <tbody>
-                      <tr class="animif" ng-repeat="generator in keys(visible(generators))|filter:filterUpgrade">
-                        <td class="animif col-md-2">
-                          <div class="pull-left">
-                            {{generator}}
-                          </div>
-                        </td>
-                        <td class="animif col-md-1" ng-repeat="upgrade in generators[generator].upgrades">
-                          <a class="btn btn-default" ng-show="upgrades[upgrade].visible()"
-                          	ng-click="buyUpgrade(upgrade, current_element)"
-		                     ng-class="{disabled: upgrades[upgrade].price > player.resources[current_element].number && !player.elements[current_element].upgrades[upgrade].bought,
-		                     			active: player.elements[current_element].upgrades[upgrade].bought}">
-                            {{upgrades[upgrade].description}}
+              </div>
+              <div class="col-lg-3 col-lg-pull-8">
+                <table class="table table-hover element-table no_bottom" data-spy="affix" data-offset-top="150">
+                  <tbody class="animif" ng-repeat="key in keys(visible(resources))" 
+                    ng-mouseover="player.resources[key].is_new = false"
+                    class="">
+                    <tr>
+                      <td width=15%>
+                        <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.resources[key].is_new"></span>
+                      </td>
+                      <td width=35% colspan="2">
+                        <span class="pull-left by-icon" ng-bind-html="trustHTML(getHTML(key))"></span>&nbsp;
+                        <span ng-if="radioisotopes.indexOf(key) != -1" title="Radioctive" class="pull-left icon">&#9762;</span> &nbsp;
+                        <span ng-if="free_radicals.indexOf(key) != -1" title="Free radical" class="pull-left icon">&bull;</span>&nbsp;
+                        <span ng-if="unstables.indexOf(key) != -1" title="Unstable" class="pull-left icon">&#8967;</span>   
+                      </td>
+                      <td width=50%>
+                        <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(player.resources[key].number))"></div>
+                      </td>
+                    </tr>
+                    <tr ng-if="resources[key].decay != null">
+                      <td width=15%></td>
+                      <td width=20%>
+                        <div class="pull-right">&#9495;</div>
+                      </td>
+                      <td width=15%>
+                        t<sub>1/2</sub>
+                      </td>
+                      <td width=50%>
+                        <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(resources[key].decay.half_life))"></div>
+                        s
+                      </td>
+                    </tr>
+                    <!-- XXX: We tie this unlock to beta decay to avoid introducing a new generic unlock "decay". Since beta
+                      decay is the first and only decay type on the game, this works just fine.
+                      -->
+                    <tr ng-if="resources[key].decay != null && player.unlocks.beta_decay">
+                      <td width=15%></td>
+                      <td width=20%>
+                        <div class="pull-right" >&#9495;</div>
+                      </td>
+                      <td width=15%>
+                        <div ng-if="resources[key].decay.decay_type" ng-bind-html="trustHTML(getHTML(resources[key].decay.decay_type))"></div>
+                      </td>
+                      <td width=50%>
+                        <div class="pull-left" ng-bind-html="trustHTML(decayFormat(resources[key].decay))"></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-lg-1 col-lg-pull-0 right-box" ng-if="keys(visible(elements)).length > 1">
+                <table class="table table-hover element-table">
+                  <tbody>
+                    <tr class="animif" ng-repeat="key in keys(visible(elements))" ng-class="{active:current_element===key}">
+                      <td>
+                        <div class="pull-left" ng-click="updateCurrent('current_element', key)">
+                          <a>
+                          {{elements[key].name}}
+                          <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="elements[key].has_new()"></span>
                           </a>
-                        </td>
-                        <td class="animif col-md-2">
-                        	<div ng-show="lastUpgradeTierPrice(generator) != null">
-                        		<span class="pull-left" ng-bind-html="trustHTML(prettifyNumber(lastUpgradeTierPrice(generator)))"></span> &nbsp;{{current_element}}
-                        	</div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="tab-content ng-scope" id="encyclopedia">
+            <div class="tab-pane row" ng-class="{active: current_tab == 'Encyclopedia'}">
+              <div class="col-lg-9 col-lg-push-3">
+                <h3 ng-show="encyclopedia[current_entry].link != null"><a target="_blank" href="{{encyclopedia[current_entry].link}}">{{current_entry}}</a></h3>
+                <h3 ng-show="encyclopedia[current_entry].link == null">{{current_entry}}</h3>
+                <div ng-bind-html="trustHTML(encyclopedia[current_entry].description)"></div>
+              </div>
+              <div class="col-lg-3 col-lg-pull-9">
+                <table class="table table-hover element-table no_bottom">
+                  <tbody>
+                    <tr class="animif" ng-repeat="entry in keys(visible(encyclopedia))" ng-mouseover="player.encyclopedia[entry].is_new = false" ng-click="updateCurrent('current_entry', entry)">
+                      <td width=15%><span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.encyclopedia[entry].is_new"></span></td>
+                      <td><a>{{entry}}</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p style="padding-bottom:200px"></p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-content ng-scope" id="periodic_table">
+            <div class="tab-pane table_tab" ng-class="{active: current_tab == 'Periodic Table'}">
+              <div class="col-lg-10 col-lg-push-2">
+                <div class="title">Periodic Table of Elements</div>
+                <div class="element_table">
+                  <div class="element_info" ng-show="elements[hover_element] != null">
+                    <div class="fl element_basic"
+                      ng-class="{element_purchased: player.elements[hover_element].unlocked === true,
+                      element_unavailable: elements[hover_element].disabled === true,
+                      element_cost_not_met: player.elements[hover_element].unlocked === false && !isElementCostMet(hover_element),
+                      element_cost_met: player.elements[hover_element].unlocked === false && isElementCostMet(hover_element)}">
+                      <div id="symbol" class="element_symbol">{{hover_element}}</div>
+                      <div id="ename" class="symbol_name"
+                        ng-class="{element_purchased_dark: player.elements[hover_element].unlocked == true,
+                        element_unavailable_dark: elements[hover_element].disabled === true,
+                        element_cost_not_met_dark: player.elements[hover_element].unlocked === false && !isElementCostMet(hover_element),
+                        element_cost_met_dark: player.elements[hover_element].unlocked === false && isElementCostMet(hover_element)}" >
+                        {{elements[hover_element].name}}
+                      </div>
+                    </div>
+                    <div class="fl element_details" ng-if="player.elements.hasOwnProperty(hover_element) && player.elements[hover_element].unlocked != true">
+                      <div>Cost</div>
+                      <div><span ng-bind-html="trustHTML(prettifyNumber(elementPrice(hover_element)))"></span> e-</div>
+                      <div><span ng-bind-html="trustHTML(prettifyNumber(elementPrice(hover_element)))"></span> p</div>
+                      <div><span ng-bind-html="trustHTML(prettifyNumber(elementPrice(hover_element)))"></span> n</div>
+                    </div>
+                  </div>
+                  <div ng-repeat="element_row in periodic_table"
+                    class="element_row">
+                    <span ng-repeat="element in element_row track by $index">
+                      <div ng-class="{element_purchased: player.elements[element].unlocked === true,
+                        element_unavailable: elements[element].disabled === true,
+                        element_cost_not_met: player.elements[element].unlocked === false && !isElementCostMet(element),
+                        element_cost_met: player.elements[element].unlocked === false && isElementCostMet(element)}" 
+                        ng-if="element != ''" 
+                        ng-mouseover="updateCurrent('hover_element',element)"
+                        ng-mouseleave="updateCurrent('hover_element','')"
+                        ng-click="buyElement(element)"
+                        class="fl element col-centered">
+                        <div class="clear element_name">{{element}}</div>
+                        <div ng-class="{element_purchased_dark: player.elements[element].unlocked == true,
+                          element_unavailable_dark: elements[element].disabled === true,
+                          element_cost_not_met_dark: player.elements[element].unlocked === false && !isElementCostMet(element),
+                          element_cost_met_dark: player.elements[element].unlocked === false && isElementCostMet(element)}" 
+                          class="clear element_no">{{elements[element].order}}</div>
+                      </div>
+                      <div ng-if="element == ''" class="fl element_blank col-centered"></div>
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div class="col-lg-3 col-lg-pull-8">
-              <table class="table table-hover element-table no_bottom" data-spy="affix" data-offset-top="150">
-                <tbody class="animif" ng-repeat="key in keys(visible(resources))" 
-                	ng-mouseover="player.resources[key].is_new = false"
-                	class="">
-                  <tr>
-		            <td width=15%>
-		            	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.resources[key].is_new"></span>
-		            </td>
-		            <td width=35% colspan="2">
-		              <span class="pull-left by-icon" ng-bind-html="trustHTML(getHTML(key))"></span>&nbsp;
-		              <span ng-if="radioisotopes.indexOf(key) != -1" title="Radioctive" class="pull-left icon">&#9762;</span> &nbsp;
-		              <span ng-if="free_radicals.indexOf(key) != -1" title="Free radical" class="pull-left icon">&bull;</span>&nbsp;
-		              <span ng-if="unstables.indexOf(key) != -1" title="Unstable" class="pull-left icon">&#8967;</span>   
-		            </td>
-		            <td width=50%>
-		              <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(player.resources[key].number))"></div>
-		            </td>
-                  </tr>
-                  <tr ng-if="resources[key].decay != null">
-		            <td width=15%>
-		            </td>
-		            <td width=20%>
-		              <div class="pull-right">&#9495;</div>		              
-		            </td>
-		            <td width=15%>
-		            	t<sub>1/2</sub>
-		            </td>
-		            <td width=50%>
-		        		<div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(resources[key].decay.half_life))"></div> s
-		            </td>
-                  </tr>
-                  <!-- XXX: We tie this unlock to beta decay to avoid introducing a new generic unlock "decay". Since beta
-                  decay is the first and only decay type on the game, this works just fine.
-                  -->
-                  <tr ng-if="resources[key].decay != null && player.unlocks.beta_decay">
-		            <td width=15%>
-		            </td>
-		            <td width=20%>
-		              <div class="pull-right" >&#9495;</div>	              
-		            </td>
-		            <td width=15%>
-		            	<div ng-if="resources[key].decay.decay_type" ng-bind-html="trustHTML(getHTML(resources[key].decay.decay_type))"></div>
-		            </td>
-		            <td width=50%>
-		            	<div class="pull-left" ng-bind-html="trustHTML(decayFormat(resources[key].decay))"></div>
-		            </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            
-            <div class="col-lg-1 col-lg-pull-0 right-box" ng-if="keys(visible(elements)).length > 1">
-              <table class="table table-hover element-table">
-                <tbody>
-                  <tr class="animif" ng-repeat="key in keys(visible(elements))" ng-class="{active:current_element===key}">
-					<td>
-                      <div class="pull-left" ng-click="updateCurrent('current_element', key)">
-                        <a>
-                        	{{elements[key].name}}
-                        	<span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="elements[key].has_new()"></span>
-                        </a>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <div class="tab-content ng-scope" id="encyclopedia">
-          <div class="tab-pane row" ng-class="{active: current_tab == 'Encyclopedia'}">
-            <div class="col-lg-9 col-lg-push-3">
-              <h3 ng-show="encyclopedia[current_entry].link != null"><a target="_blank" href="{{encyclopedia[current_entry].link}}">{{current_entry}}</a></h3>
-              <h3 ng-show="encyclopedia[current_entry].link == null">{{current_entry}}</h3>
-              <div ng-bind-html="trustHTML(encyclopedia[current_entry].description)"></div>
-            </div>
-
-            <div class="col-lg-3 col-lg-pull-9">
-              <table class="table table-hover element-table no_bottom">
-                <tbody>
-                  <tr class="animif" ng-repeat="entry in keys(visible(encyclopedia))" ng-mouseover="player.encyclopedia[entry].is_new = false" ng-click="updateCurrent('current_entry', entry)">
-                  <td width=15%><span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.encyclopedia[entry].is_new"></span></td>
-
-                    <td><a>{{entry}}</a></td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <p style="padding-bottom:200px"></p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="tab-content ng-scope" id="periodic_table">
-          <div class="tab-pane table_tab" ng-class="{active: current_tab == 'Periodic Table'}">
-            <div class="col-lg-10 col-lg-push-2">
-              <div class="title">Periodic Table of Elements</div>
-		      <div class="element_table">
-					<div class="element_info" ng-show="elements[hover_element] != null">
-						<div class="fl element_basic"
-						ng-class="{element_purchased: player.elements[hover_element].unlocked === true,
-				   							element_unavailable: elements[hover_element].disabled === true,
-				   							element_cost_not_met: player.elements[hover_element].unlocked === false && !isElementCostMet(hover_element),
-				   							element_cost_met: player.elements[hover_element].unlocked === false && isElementCostMet(hover_element)}">
-							<div id="symbol" class="element_symbol">{{hover_element}}</div>
-							<div id="ename" class="symbol_name"
-								ng-class="{element_purchased_dark: player.elements[hover_element].unlocked == true,
-				   							element_unavailable_dark: elements[hover_element].disabled === true,
-				   							element_cost_not_met_dark: player.elements[hover_element].unlocked === false && !isElementCostMet(hover_element),
-				   							element_cost_met_dark: player.elements[hover_element].unlocked === false && isElementCostMet(hover_element)}" >
-								{{elements[hover_element].name}}
-							</div>
-						</div>
-						<div class="fl element_details" ng-if="player.elements.hasOwnProperty(hover_element) && player.elements[hover_element].unlocked != true">
-							<div>Cost</div>
-							<div><span ng-bind-html="trustHTML(prettifyNumber(elementPrice(hover_element)))"></span> e-</div> 
-							<div><span ng-bind-html="trustHTML(prettifyNumber(elementPrice(hover_element)))"></span> p</div> 
-							<div><span ng-bind-html="trustHTML(prettifyNumber(elementPrice(hover_element)))"></span> n</div>
-						</div>
-					</div>
-					<div ng-repeat="element_row in periodic_table"
-						class="element_row">
-						<span ng-repeat="element in element_row track by $index">
-				   			<div ng-class="{element_purchased: player.elements[element].unlocked === true,
-				   							element_unavailable: elements[element].disabled === true,
-				   							element_cost_not_met: player.elements[element].unlocked === false && !isElementCostMet(element),
-				   							element_cost_met: player.elements[element].unlocked === false && isElementCostMet(element)}" 
-				   				ng-if="element != ''" 
-				   				ng-mouseover="updateCurrent('hover_element',element)"
-				   				ng-mouseleave="updateCurrent('hover_element','')"
-				   				ng-click="buyElement(element)"
-				   				class="fl element col-centered">
-								<div class="clear element_name">{{element}}</div>
-								<div ng-class="{element_purchased_dark: player.elements[element].unlocked == true,
-				   							element_unavailable_dark: elements[element].disabled === true,
-				   							element_cost_not_met_dark: player.elements[element].unlocked === false && !isElementCostMet(element),
-				   							element_cost_met_dark: player.elements[element].unlocked === false && isElementCostMet(element)}" 
-				   							class="clear element_no">{{elements[element].order}}</div>
-							</div>
-				   			<div ng-if="element == ''" class="fl element_blank col-centered"></div>
-						</span>
-					</div>
-		    	</div>
-            </div>            
-            <div class="col-lg-2 col-lg-pull-10">
-            <table class="table table-hover element-table no_bottom">
-                <tbody class="animif" ng-repeat="key in keys(visible(resources))">
-                  <tr>
-		            <td width=15%>
-		              <span class="pull-left by-icon" ng-bind-html="trustHTML(getHTML(key))"></span>
-		            </td>
-		            <td width=85%>
-		              <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(player.resources[key].number))"></div>
-		            </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>   
-          </div>
-        </div>
-        
-        
-        <div class="tab-content ng-scope" id="options">
-          <div class="tab-pane row" ng-class="{active: current_tab == 'Options'}">
-            <div class="col-lg-2">
-				  <h1>Options</h1>              
-				  <br>
-				  <button class="btn btn-default btn-block"
-						ng-click="save()">Save</button>
-				  <button class="btn btn-default btn-block"
-						ng-click="reset(true)">Erase save</button>  
-				<br>
-				Courtesy of <a target="_blank" href="https://github.com/gzgreg/DerivativeClicker">gzgreg</a>:
-				<br>
-				<button class="btn btn-default btn-block" id="exportSave" ng-click="exportSave()">Export Save</button> 
-				<div id="exportSaveContents" style="display: none">
-					Copy this text:
-					<input id="exportSaveText" type="text" readonly>
-				</div>
-				<br>
-				<button class="btn btn-default btn-block" id="importSave" ng-click="importSave()">Import Save</button>				
-            </div>
-            <div class="col-lg-12" ng-if="numberUnlocked() > 0">
-              <div ng-if="numberUnlocked() < 10">
-		          <br>
-		          Unlocks: {{numberUnlocked()}}/??
+              <div class="col-lg-2 col-lg-pull-10">
+                <table class="table table-hover element-table no_bottom">
+                  <tbody class="animif" ng-repeat="key in keys(visible(resources))">
+                    <tr>
+                      <td width=15%>
+                        <span class="pull-left by-icon" ng-bind-html="trustHTML(getHTML(key))"></span>
+                      </td>
+                      <td width=85%>
+                        <div class="pull-left" ng-bind-html="trustHTML(prettifyNumber(player.resources[key].number))"></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              <div ng-if="numberUnlocked() >= 10">
-		          <br>
-		          Unlocks: {{numberUnlocked()}}/{{numberUnlocks()}}
-              </div>   
             </div>
-			<div class="col-lg-12">
-		    <br>
-			Theme
-			<select 
-			ng-model="player.current_theme" 
-			ng-change="updateTheme()">
-			  <option value="base">Base</option>
-			  <option value="cyborg">Cyborg</option>
-			</select> 
-			</div>
-            <div class="col-lg-12">
-              <br>
-              Github: <a target="_blank" href="https://github.com/angarg12/incremental_table_elements">https://github.com/angarg12/incremental_table_elements</a>   
-            </div>
-			<div class="col-lg-12">
-              <a target="_blank" href="./changelog.txt">Changelog</a>              
-            </div>            
+          </div>
+          <div class="tab-content ng-scope" id="options">
+            <div class="tab-pane row" ng-class="{active: current_tab == 'Options'}">
+              <div class="col-lg-2">
+                <h1>Options</h1>
+                <br>
+                <button class="btn btn-default btn-block"
+                  ng-click="save()">Save</button>
+                <button class="btn btn-default btn-block"
+                  ng-click="reset(true)">Erase save</button>  
+                <br>
+                Courtesy of <a target="_blank" href="https://github.com/gzgreg/DerivativeClicker">gzgreg</a>:
+                <br>
+                <button class="btn btn-default btn-block" id="exportSave" ng-click="exportSave()">Export Save</button> 
+                <div id="exportSaveContents" style="display: none">
+                  Copy this text:
+                  <input id="exportSaveText" type="text" readonly>
+                </div>
+                <br>
+                <button class="btn btn-default btn-block" id="importSave" ng-click="importSave()">Import Save</button>                
+              </div>
+              <div class="col-lg-12" ng-if="numberUnlocked() > 0">
+                <div ng-if="numberUnlocked() < 10">
+                  <br>
+                  Unlocks: {{numberUnlocked()}}/??
+                </div>
+                <div ng-if="numberUnlocked() >= 10">
+                  <br>
+                  Unlocks: {{numberUnlocked()}}/{{numberUnlocks()}}
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <br>
+                Theme
+                <select 
+                  ng-model="player.current_theme" 
+                  ng-change="updateTheme()">
+                  <option value="base">Base</option>
+                  <option value="cyborg">Cyborg</option>
+                </select>
+              </div>
+              <div class="col-lg-12">
+                <br>
+                Github: <a target="_blank" href="https://github.com/angarg12/incremental_table_elements">https://github.com/angarg12/incremental_table_elements</a>   
+              </div>
+              <div class="col-lg-12">
+                <a target="_blank" href="./changelog.txt">Changelog</a>              
+              </div>
               <p style="padding-bottom:200px"></p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div ng-cloak>
-	  <div class="achieve achievealert animif" ng-show="is_toast_visible">
-		<div class="container alert alert-success">
-		    <h3>New unlock:</h3>
-		    <h2>{{toast[0]}}</h2>
-		    <button type="button" 
-		    	class="close" 
-		    	data-dismiss="alert" 
-		    	ng-click="removeToast()"
-		    	ng-disabled="!is_toast_visible">
-		    		<span aria-hidden="true">&times;</span>
-		    		<span class="sr-only">Close</span>
-		    </button>
-		</div>
-	  </div>
-  </div>
-</body>
+    </div>
+    <div ng-cloak>
+      <div class="achieve achievealert animif" ng-show="is_toast_visible">
+        <div class="container alert alert-success">
+          <h3>New unlock:</h3>
+          <h2>{{toast[0]}}</h2>
+          <button type="button" 
+            class="close" 
+            data-dismiss="alert" 
+            ng-click="removeToast()"
+            ng-disabled="!is_toast_visible">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

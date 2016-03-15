@@ -1,12 +1,7 @@
 angular.module('incremental',['ngAnimate'])
 .controller('IncCtrl',['$scope','$document','$interval', '$sce', '$filter', '$timeout', 
 function($scope,$document,$interval,$sce,$filter,$timeout) { 
-<<<<<<< HEAD
-		$scope.version = '0.9.10';
-=======
-
-		$scope.version = '0.9.8';
->>>>>>> refs/remotes/origin/pr/2
+		$scope.version = '0.9.11';
 		$scope.Math = window.Math;
 		
 		// Polyfill for some browsers
@@ -395,12 +390,12 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 			//var decay_per_second = (1 - Math.exp(-p)) * number;  <-no need for this unless p > ~0.05 
 			var decay_per_second = p * number;
 			if(decay_per_second < 5){
-           			 //using Poisson distribution (would get slow for large numbers. there are fast formulas but I don't know how good they are)
+           			 //using Poisson distribution (would get slow for large numbers. 
+					 // there are fast formulas but I don't know how good they are)
 			        production = getPoisson(decay_per_second)				
-			}
-			else{
+			}else{
 				 // Gaussian distribution
-            			var q = 1-p;
+            		var q = 1-p;
 			        var mean = number*p;
 			        var variance = number*p*q;
 			        var std = Math.sqrt(variance);
