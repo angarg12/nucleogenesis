@@ -381,6 +381,9 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 			if($scope.player.version == undefined){
 				$scope.player.version = '0.9.10';
 			}
+			if($scope.player.current_theme == undefined){
+				$scope.player.current_theme = "base";
+			}
         };
 		
 		function simulateDecay (number, half_life){
