@@ -1885,19 +1885,83 @@ function loadData($scope) {
 						link:'https://en.wikipedia.org/wiki/Hydrogen',
 						description:'<b>Hydrogen</b> is a chemical element with chemical symbol <b>H</b> and atomic number 1. With an atomic weight of 1.00794 u, hydrogen is the lightest element on the periodic table. Its monatomic form (H) is the most abundant chemical substance in the Universe, constituting roughly 75% of all baryonic mass. Non-remnant stars are mainly composed of hydrogen in its plasma state. The most common isotope of hydrogen, termed protium, has one proton and no neutrons.'
 						},
+					'Helium':{
+						visible:function(){
+							return $scope.player.unlocks.helium;
+						},
+						order:2,
+						link:'https://en.wikipedia.org/wiki/Helium',
+						description:'<b>Helium</b> is a chemical element with symbol <b>He</b> and atomic number 2. It is a colorless, odorless, tasteless, non-toxic, inert, monatomic gas, the first in the noble gas group in the periodic table. After hydrogen, helium is the second lightest and second most abundant element in the observable universe, being present at about 24% of the total elemental mass. Most helium in the universe is helium-4, and is believed to have been formed during the Big Bang. Large amounts of new helium are being created by nuclear fusion of hydrogen in stars.'
+						},
+					'Lithium':{
+						visible:function(){
+							return $scope.player.unlocks.lithium;
+						},
+						order:3,
+						link:'https://en.wikipedia.org/wiki/Lithium',
+						description:'<b>Lithium</b> (from Greek: λίθος lithos, "stone") is a chemical element with the symbol <b>Li</b> and atomic number 3. It is a soft, silver-white metal belonging to the alkali metal group. Lithium is highly reactive and flammable, and therefore appears in nature only in compounds. The nucleus of the lithium atom verges on instability, having among the lowest binding energies per nucleon. The transmutation of lithium atoms to helium in 1932 was the first fully man-made nuclear reaction, and lithium-6 deuteride serves as a fusion fuel in staged thermonuclear weapons. Lithium and its compounds have several industrial applications, including heat-resistant glass and ceramics, lithium and lithium-ion batteries.'
+						},
+					'Beryllium':{
+						visible:function(){
+							return $scope.player.unlocks.beryllium;
+						},
+						order:4,
+						link:'https://en.wikipedia.org/wiki/Beryllium',
+						description:'Beryllium is a chemical element with symbol Be and atomic number 4. It is a relatively rare element in the universe belonging to the alkaline earth metal group. Within the cores of stars beryllium is depleted as it is fused and creates larger elements. It is a divalent element which occurs naturally only in combination with other elements. Beryllium improves many physical properties when added as an alloying element to aluminium, copper, iron and nickel. The combination of high flexural rigidity, thermal stability, thermal conductivity and low density make beryllium metal a desirable aerospace material. The high thermal conductivities of beryllium and beryllium oxide have led to their use in thermal management applications. The commercial use of beryllium requires the use of appropriate dust control equipment and industrial controls at all times because of the toxicity of inhaled beryllium dusts.'
+						},
+					'Boron':{
+						visible:function(){
+							return $scope.player.unlocks.boron;
+						},
+						order:5,
+						link:'https://en.wikipedia.org/wiki/Boron',
+						description:'Boron is a chemical element with symbol B and atomic number 5. Produced entirely by cosmic ray spallation and supernovae and not by stellar nucleosynthesis, it is a low-abundance element in the Solar system. The primary use of elemental boron is as boron filaments with applications similar to carbon fibers in some high-strength materials. Boron compounds are used as fertilizers in agriculture and in sodium perborate bleaches. In biology, borates have low toxicity in mammals (similar to table salt), but are more toxic to arthropods and are used as insecticides. Boric acid is mildly antimicrobial, and several natural boron-containing organic antibiotics are known. Boron is essential to life. Small amounts of boron compounds play a strengthening role in the cell walls of all plants, making boron a necessary plant nutrient. Boron is involved in the metabolism of calcium in both plants and animals. It is considered an essential nutrient for humans, and boron deficiency is implicated in osteoporosis.'
+						},
+					'Carbon':{
+						visible:function(){
+							return $scope.player.unlocks.carbon;
+						},
+						order:6,
+						link:'https://en.wikipedia.org/wiki/Carbon',
+						description:'Carbon (from Latin: carbo "coal") is a chemical element with symbol C and atomic number 6. It is nonmetallic and tetravalent—making four electrons available to form covalent chemical bonds.  Carbon is the fourth most abundant element in the universe by mass. Carbon\'s abundance, its unique diversity of organic compounds, and its unusual ability to form polymers at the temperatures commonly encountered on Earth enables this element to serve as a common element of all known life. It is the second most abundant element in the human body by mass (about 18.5%) after oxygen. The atoms of carbon can be bonded together in different ways, termed allotropes of carbon. The best known are graphite, diamond, and amorphous carbon. The physical properties of carbon vary widely with the allotropic form. For example, graphite is opaque and black while diamond is highly transparent. Graphite is soft enough to form a streak on paper, while diamond is the hardest naturally-occurring material known. Graphite is a good electrical conductor while diamond has a low electrical conductivity. Under normal conditions, diamond, carbon nanotubes, and graphene have the highest thermal conductivities of all known materials. They are chemically resistant and require high temperature to react even with oxygen. Carbon forms a vast number of compounds, more than any other element, with almost ten million compounds described to date.'
+						},
+					'Nitrogen':{
+						visible:function(){
+							return $scope.player.unlocks.nitrogen;
+						},
+						order:7,
+						link:'https://en.wikipedia.org/wiki/Nitrogen',
+						description:'Nitrogen is a chemical element with symbol N and atomic number 7. Nitrogen is a common element in the universe, estimated at about seventh in total abundance. On Earth, the element forms about 78% of Earth\'s atmosphere. Many industrially important compounds, such as ammonia, nitric acid, organic nitrates (propellants and explosives), and cyanides, contain nitrogen. Synthetically produced ammonia and nitrates are key industrial fertilizers, and fertilizer nitrates are key pollutants in the eutrophication of water systems. Apart from its use in fertilizers and energy-stores, nitrogen is a constituent of organic compounds as diverse as Kevlar fabric and cyanoacrylate "super" glue. Nitrogen is a constituent of every major pharmacological drug class, including antibiotics. Nitrogen occurs in all organisms, primarily in amino acids (and thus proteins), in the nucleic acids (DNA and RNA) and in the energy transfer molecule adenosine triphosphate. The human body contains about 3% by mass of nitrogen, the fourth most abundant element in the body.'
+						},
 					'Oxygen':{
 						visible:function(){
 							return $scope.player.unlocks.oxygen;
 						},
-						order:2,
+						order:8,
 						link:'https://en.wikipedia.org/wiki/Oxygen',
 						description:'<b>Oxygen</b> is a chemical element with symbol <b>O</b> and atomic number 8. It is a member of the chalcogen group on the periodic table and is a highly reactive nonmetal and oxidizing agent that readily forms compounds (notably oxides) with most elements. By mass, oxygen is the third-most abundant element in the universe, after hydrogen and helium. At standard temperature and pressure, two atoms of the element bind to form dioxygen, a colorless and odorless diatomic gas with the formula O<sub>2</sub>. Diatomic oxygen gas constitutes 20.8% of the Earth\'s atmosphere. Oxygen is the most abundant element by mass in the Earth\'s crust as part of oxide compounds such as silicon dioxide, making up almost half of the crust\'s mass.'
+						},
+					'Fluorine':{
+						visible:function(){
+							return $scope.player.unlocks.fluorine;
+						},
+						order:9,
+						link:'https://en.wikipedia.org/wiki/Fluorine',
+						description:'Fluorine is a chemical element with symbol F and atomic number 9. It is the lightest halogen and exists as a highly toxic pale yellow diatomic gas at standard conditions. As the most electronegative element, it is extremely reactive: almost all other elements, including some noble gases, form compounds with fluorine. Owing to the expense of refining pure fluorine, most commercial applications use fluorine compounds, with about half of mined fluorite used in steelmaking. The rest of the fluorite is converted into corrosive hydrogen fluoride en route to various organic fluorides, or into cryolite which plays a key role in aluminium refining. Organic fluorides have very high chemical and thermal stability; their major uses are as refrigerants, electrical insulation and cookware (Teflon). The fluoride ion inhibits dental cavities, and so finds use in toothpaste and water fluoridation.'
+						},
+					'Neon':{
+						visible:function(){
+							return $scope.player.unlocks.neon;
+						},
+						order:10,
+						link:'https://en.wikipedia.org/wiki/Neon',
+						description:'Neon is a chemical element with symbol Ne and atomic number 10. It is in group 18 (noble gases) of the periodic table. Neon is a colorless, odorless, inert monatomic gas under standard conditions. Neon is chemically inert and forms no uncharged chemical compounds. During cosmic nucleogenesis of the elements, large amounts of neon are built up from the alpha-capture fusion process in stars. Although neon is a very common element in the universe and solar system, it is very rare on Earth. The reason for neon\'s relative scarcity on Earth is that neon is highly volatile and forms no compounds to fix it to solids. Neon gives a distinct reddish-orange glow low-voltage neon glow lamps and in high-voltage discharge tubes and neon advertising signs.[ The red emission line from neon also causes the well known red light of helium–neon lasers. Neon is used in some plasma tube and refrigerant applications but has few other commercial uses.'
 						},
 					'Isotope':{
 						visible:function(){
 							return $scope.player.unlocks.isotope;
 						},
-						order:3,
+						order:200,
 						link:'https://en.wikipedia.org/wiki/Isotope',
 						description:'<b>Isotopes</b> are variants of a particular chemical element which differ in neutron number, although all isotopes of a given element have the same number of protons in each atom. The term isotope is formed from the Greek roots isos (ἴσος "equal") and topos (τόπος "place"), meaning "the same place"; thus, the meaning behind the name it is that different isotopes of a single element occupy the same position on the periodic table. The number of protons within the atom\'s nucleus is called atomic number and is equal to the number of electrons in the neutral (non-ionized) atom. Each atomic number identifies a specific element, but not the isotope; an atom of a given element may have a wide range in its number of neutrons. The number of nucleons (both protons and neutrons) in the nucleus is the atom\'s mass number, and each isotope of a given element has a different mass number.'
 						},
@@ -1905,7 +1969,7 @@ function loadData($scope) {
 						visible:function(){
 							return $scope.player.unlocks.electron;
 						},
-						order:4,
+						order:201,
 						link:'https://en.wikipedia.org/wiki/Electron',
 						description:'The <b>electron</b> is a subatomic particle, symbol e−, with a negative elementary electric charge. Electrons belong to the first generation of the lepton particle family, and are generally thought to be elementary particles because they have no known components or substructure. The electron has a mass that is approximately 1/1836 that of the proton. Quantum mechanical properties of the electron include an intrinsic angular momentum (spin) of a half-integer value in units of ħ, which means that it is a fermion. Being fermions, no two electrons can occupy the same quantum state, in accordance with the Pauli exclusion principle.'
 						},
@@ -1913,7 +1977,7 @@ function loadData($scope) {
 						visible:function(){
 							return $scope.player.unlocks.proton;
 						},
-						order:5,
+						order:202,
 						link:'https://en.wikipedia.org/wiki/Proton',
 						description:'The <b>proton</b> is a subatomic particle, symbol p, with a positive electric charge of +1e elementary charge and mass slightly less than that of a neutron. Protons and neutrons, each with mass approximately one atomic mass unit, are collectively referred to as "nucleons". One or more protons are present in the nucleus of every atom. The number of protons in the nucleus is the defining property of an element, and is referred to as the atomic number. Since each element has a unique number of protons, each element has its own unique atomic number.'
 						},
@@ -1921,7 +1985,7 @@ function loadData($scope) {
 						visible:function(){
 							return $scope.player.unlocks.neutron;
 						},
-						order:6,
+						order:203,
 						link:'https://en.wikipedia.org/wiki/Neutron',
 						description:'The <b>neutron</b> is a subatomic particle, symbol n, with no net electric charge and a mass slightly larger than that of a proton. Protons and neutrons, each with mass approximately one atomic mass unit, constitute the nucleus of an atom, and they are collectively referred to as nucleons. Their properties and interactions are described by nuclear physics.<br>Within the nucleus, protons and neutrons are bound together through the nuclear force, and neutrons are required for the stability of nuclei. Neutrons are produced copiously in nuclear fission and fusion. They are a primary contributor to the nucleosynthesis of chemical elements within stars through fission, fusion, and neutron capture processes.'
 						},
@@ -1929,7 +1993,7 @@ function loadData($scope) {
 						visible:function(){
 							return $scope.player.unlocks.radioactivity;
 						},
-						order:8,
+						order:204,
 						link:'https://en.wikipedia.org/wiki/Radioactive_decay',
 						description:'<b>Radioactive decay</b>, also known as <b>nuclear decay</b> or <b>radioactivity</b>, is the process by which a nucleus of an unstable atom loses energy by emitting <b>radiation</b>. A material that spontaneously emits such radiation — which includes alpha particles, beta particles, gamma rays and conversion electrons — is considered radioactive.<br>Radioactive decay is a stochastic (i.e. random) process at the level of single atoms, in that, according to quantum theory, it is impossible to predict when a particular atom will decay. The chance that a given atom will decay never changes, that is, it does not matter how long the atom has existed. For a large collection of atoms however, the decay rate for that collection can be calculated from their measured decay constants or half-lives.<BR>There are many different types of radioactive decay. A decay, or loss of energy from the nucleus, results when an atom with one type of nucleus, called the parent radionuclide (or parent radioisotope), transforms into an atom with a nucleus in a different state, or with a nucleus containing a different number of protons and neutrons. The product is called the daughter nuclide. In some decays, the parent and the daughter nuclides are different chemical elements, and thus the decay process results in the creation of an atom of a different element. This is known as a nuclear transmutation.'
 						},
@@ -1937,7 +2001,7 @@ function loadData($scope) {
 						visible:function(){
 							return $scope.player.unlocks.half_life;
 						},
-						order:9,
+						order:205,
 						link:'https://en.wikipedia.org/wiki/Half-life',
 						description:'<b>Half-life</b> (t<sub>1/2</sub>) is the amount of time required for the amount of something to fall to half its initial value. The term is very commonly used in nuclear physics to describe how quickly unstable atoms undergo radioactive decay, but it is also used more generally for discussing any type of exponential decay. <br>Half-life is used to describe a quantity undergoing exponential decay, and is constant over the lifetime of the decaying quantity. It is a characteristic unit for the exponential decay equation. The term "half-life" may generically be used to refer to any period of time in which a quantity falls by half, even if the decay is not exponential.'
 						},
@@ -1945,7 +2009,7 @@ function loadData($scope) {
 						visible:function(){
 							return $scope.player.unlocks.beta_decay;
 						},
-						order:10,
+						order:206,
 						link:'https://en.wikipedia.org/wiki/Beta_decay',
 						description:'In nuclear physics, <b>beta decay</b> (β-decay) is a type of radioactive decay in which a proton is transformed into a neutron, or vice versa, inside an atomic nucleus. This process allows the atom to move closer to the optimal ratio of protons and neutrons. As a result of this transformation, the nucleus emits a detectable beta particle, which is an electron or positron.<br>Beta decay is mediated by the weak force. There are two types of beta decay, known as beta minus and beta plus. In beta minus (β−) decay a neutron is lost and a proton appears and the process produces an electron and electron antineutrino, while in beta plus (β+) decay a proton is lost and a neutron appears and the process produces a positron and electron neutrino; β+ decay is thus also known as positron emission.'
 						},
@@ -1953,7 +2017,7 @@ function loadData($scope) {
 						visible:function(){
 							return $scope.player.unlocks.energy;
 						},
-						order:11,
+						order:207,
 						link:'https://en.wikipedia.org/wiki/Energy',
 						description:'In physics, <b>energy</b> is a property of objects which can be transferred to other objects or converted into different forms, but cannot be created or destroyed. The "ability of a system to perform work" is a common description, but it is difficult to give one single comprehensive definition of energy because of its many forms. <br>Common energy forms include the kinetic energy of a moving object, the potential energy stored by an object\'s position in a force field (gravitational, electric or magnetic), the elastic energy stored by stretching solid objects, the chemical energy released when a fuel burns, the radiant energy carried by light, and the thermal energy due to an object\'s temperature. All of the many forms of energy are convertible to other kinds of energy, and obey the law of conservation of energy which says that energy can be neither created nor be destroyed; however, it can change from one form to another.'
 						},
@@ -1961,7 +2025,7 @@ function loadData($scope) {
 						visible:function(){
 							return $scope.player.unlocks.energy;
 						},
-						order:12,
+						order:208,
 						link:'https://en.wikipedia.org/wiki/Electronvolt',
 						description:'In physics, the <b>electronvolt</b> (symbol <b>eV</b>; also written <b>electron volt</b>) is a unit of energy equal to approximately 160 zeptojoules (symbol zJ) or 1.6 × 10<sup>−19</sup> joules (symbol J). By definition, it is the amount of energy gained (or lost) by the charge of a single electron moving across an electric potential difference of one volt. <br>The electron volt is not an SI unit, and its definition is empirical, thus its value in SI units must be obtained experimentally.'
 						},
@@ -1969,7 +2033,7 @@ function loadData($scope) {
 						visible:function(){
 							return $scope.player.unlocks.ionization_energy;
 						},
-						order:13,
+						order:209,
 						link:'https://en.wikipedia.org/wiki/Ionization_energy',
 						description:'The <b>ionization energy</b> is qualitatively defined as the amount of energy required to remove the most loosely bound electron of an isolated gaseous atom to form a cation.'
 						},
@@ -1977,7 +2041,7 @@ function loadData($scope) {
 						visible:function(){
 							return $scope.player.unlocks.electron_affinity;
 						},
-						order:14,
+						order:210,
 						link:'https://en.wikipedia.org/wiki/Electron_affinity',
 						description:'In chemistry and atomic physics, the <b>electron affinity</b> of an atom or molecule is defined as the amount of energy released when an electron is added to a neutral atom or molecule in the gaseous state to form a negative ion.'
 						},
@@ -1985,7 +2049,7 @@ function loadData($scope) {
 						visible:function(){
 							return $scope.player.unlocks.nuclear_binding_energy;
 						},
-						order:15,
+						order:211,
 						link:'https://en.wikipedia.org/wiki/Nuclear_binding_energy',
 						description:'<b>Nuclear binding energy</b> is the energy that would be required to disassemble the nucleus of an atom into its component parts. These component parts are neutrons and protons, which are collectively called nucleons. The binding energy of nuclei is due to the attractive forces that hold these nucleons together and this is usually a positive number, since most nuclei would require the expenditure of energy to separate them into individual protons and neutrons. The mass of an atomic nucleus is usually less than the sum of the individual masses of the constituent protons and neutrons (according to Einstein\'s equation E=mc<sup>2</sup>) and this \'missing mass\' is known as the mass defect, and represents the energy that was released when the nucleus was formed.'
 						},
@@ -1993,7 +2057,7 @@ function loadData($scope) {
 						visible:function(){
 							return $scope.player.unlocks.synthesis;
 						},
-						order:16,
+						order:212,
 						link:'https://en.wikipedia.org/wiki/Chemical_synthesis',
 						description:'<b>Chemical synthesis</b> is a purposeful execution of chemical reactions to obtain a product, or several products. This happens by physical and chemical manipulations usually involving one or more reactions.<br>A chemical synthesis begins by selection of compounds that are known as reagents or reactants. Various reaction types can be applied to these to synthesize the product.'
 						},
@@ -2001,7 +2065,7 @@ function loadData($scope) {
 						visible:function(){
 							return $scope.player.unlocks.ion;
 						},
-						order:17,
+						order:213,
 						link:'https://en.wikipedia.org/wiki/Ion',
 						description:'An <b>ion</b> (/ˈaɪən, -ɒn/) is an atom or a molecule in which the total number of electrons is not equal to the total number of protons, giving the atom or molecule a net positive or negative electrical charge. Ions can be created, by either chemical or physical means, via ionization.<br>In chemical terms, if a neutral atom loses one or more electrons, it has a net positive charge and is known as a cation.<br>If an atom gains electrons, it has a net negative charge and is known as an anion.'
 						},
@@ -2009,7 +2073,7 @@ function loadData($scope) {
 						visible:function(){
 							return $scope.player.unlocks.molecule;
 						},
-						order:18,
+						order:214,
 						link:'https://en.wikipedia.org/wiki/Molecule',
 						description:'A <b>molecule</b> (/ˈmɒlɪkjuːl/ from Latin moles "mass") is an electrically neutral group of two or more atoms held together by chemical bonds. Molecules are distinguished from ions by their lack of electrical charge.<br>A molecule may be homonuclear, that is, it consists of atoms of a single chemical element, or it may be heteronuclear, a chemical compound composed of more than one element. Atoms and complexes connected by non-covalent bonds such as hydrogen bonds or ionic bonds are generally not considered single molecules.'
 						},
@@ -2017,7 +2081,7 @@ function loadData($scope) {
 						visible:function(){
 							return $scope.player.unlocks.free_radical;
 						},
-						order:19,
+						order:215,
 						link:'https://en.wikipedia.org/wiki/Radical_%28chemistry%29',
 						description:'In chemistry, a <b>radical</b> (more precisely, a <b>free radical</b>) is an atom, molecule, or ion that has unpaired valence electrons. With some exceptions, these unpaired electrons make free radicals highly chemically reactive towards other substances, or even towards themselves: their molecules will often spontaneously dimerize or polymerize if they come in contact with each other. Most radicals are reasonably stable only at very low concentrations in inert media or in a vacuum.'
 						},
@@ -2025,7 +2089,7 @@ function loadData($scope) {
 						visible:function(){
 							return $scope.player.unlocks.allotrope;
 						},
-						order:20,
+						order:216,
 						link:'https://en.wikipedia.org/wiki/Allotropy',
 						description:'<b>Allotropy</b> or <b>allotropism</b> (from Greek ἄλλος (allos), meaning "other", and τρόπος (tropos), meaning "manner, form") is the property of some chemical elements to exist in two or more different forms, in the same physical state, known as allotropes of these elements. Allotropes are different structural modifications of an element; the atoms of the element are bonded together in a different manner. '
 						},
@@ -2033,48 +2097,9 @@ function loadData($scope) {
 						visible:function(){
 							return $scope.player.unlocks.unstable_compound;
 						},
-						order:21,
+						order:217,
 						link:null,
 						description:'A compound is a group of two or more elements<br>Unstable means it is highly reactive, and can condense, decompose, polymerize, or become self-reactive quite easily due to pressure or temperature'
-						},
-					'Water (H2O)':{
-						visible:function(){
-							return $scope.player.unlocks.finished;
-						},
-						order:22,
-						link:'https://en.wikipedia.org/wiki/Properties_of_water',
-						description:'<b>Water</b> (H<sub>2</sub>O) is the most abundant compound on Earth\'s surface, covering 70 percent of the planet. In nature, water exists in liquid, solid, and gaseous states. It is in dynamic equilibrium between the liquid and gas states at standard temperature and pressure. At room temperature, it is a tasteless and odorless liquid, nearly colorless with a hint of blue. Many substances dissolve in water and it is commonly referred to as the universal solvent. Because of this, water in nature and in use is rarely pure and some properties may vary from those of the pure substance. However, there are also many compounds that are essentially, if not completely, insoluble in water. Water is the only common substance found naturally in all three common states of matter and it is essential for all life on Earth. Water makes up 55% to 78% of the human body.'
-						},
-					'A word from the developer':{
-						visible:function(){
-							return $scope.player.unlocks.finished;
-						},
-						order:23,
-						link:null,
-						description:'Congratulations on finishing The Incremental Table of the Elements prototype!\
-						<br>When you first started playing, did you think this was a simple Cookie Clicker clone? Where your surprised when you saw the first game mechanics unfold? Where you curious about what else the game had to offer? And finally, where you engage by the prospect of managing a large quantity of resources in a complex \'economy simulation\' dictated by a small set of rules? Then this prototype has served its purpose.\
-						<br>The concept for this game started as a discussion about alternatives to current prestige systems. The original idea was a system where each reset introduces a new currency instead of providing a production bonus. This concept introduces several game design challenges such as how different currencies are related in a complex economic simulation. A parallel was drawn between this concept and the way different elements atoms interact, and the focus of the idea shifted to a chemistry-based game.\
-						<br>The first objective of this game is to provide a truly incremental (unfolding) experience where game mechanics are unveiled progressively, and the way the game operates is changed by means of paradign shifts.\
-						<br>The second objective is offering a massive economy simulation experience, in a system with (potentially) thousands of different interconnected resources. However this depth is offered elegantly, via a small and consistent set of rules.\
-						<br>For this prototype we implemented what we consider the fundamental set of rules of the game (isotopes, radioactivity, reactions, etc.) and two elements, just to showcase the potential of the whole system. However, the realization of the whole game doesn\'t come without challenges; implementation challenges, design challenges, and most importantly, game design challenges.\
-						<ul>\
-							<li> Performance is an issue. It is not clear of Javascript can handle a system with thousands of resources and complex calculations. The current prototype has been implemented in the fastest way possible and heavy refactoring would be needed to support a final product.\
-							<il>Display of resources. How can we show to the player the relevant information in a game with thousands of resources? What options should the player have to filter and order the information? How to do this in an efficient (computationally speaking) way?\
-							<li>Limits. There is a (practical) finite amount of elements, isotopes and ions. However, by definition, there is an unlimited amount of molecules that we can create. Therefore we should define an arbitrary limit on what molecules are to be included (e.g. by number of components).\
-							<li>Theme. Incremental games like A Dark Room and Kittens Game have a strong theme and a weak plot to drive the player. This game has a strong theme but no plot at all. Is the theme enough to drive the players? Is it interesting at all?\
-							<li>Balance. So far all numbers except for generators have been lifted from nature. This means that, although by laws of nature, no values will be game breaking, neither will they be finely tuned to make for the best user experience. To put it bold, nature cares about making things work, not about making things fun. This also implies that potentially a large number of resources will be completely useless from a game design point of view, while other will be overpowered. Also some artifacts from the laws of nature introduce huge problems from the game design perspective, that need to be addressed explicitly, yet from within the framework of the system e.g. how free radicals take away control from players and deplete the reserves of an specific, and maybe useful resource.\
-							<li> A second point on balance is the feasibility of balance on the first place. Even if we decide to throw away the accuracy of the game to ignore the values of nature, balancing a system with thousands of interlocked resources is a daunting task indeed.\
-							<li>Lastly, a crucial point remains unanswered: is the game engaging? Even if we manage to solve all the previous challenges, all the effort will go to waste of nobody wants to play the game. On its current state, the game has no purpose other than exploring the spaces of posibilities. The game has no challenge nor goal, and is closer to a toy than a game. Other games actually suffer from a similar problem and solve it by offering the player rewards or setting arbitrary goals. Would this system work for this game? For instance, offering the player a large array of achievements consisting of unlocking a certain part of the game, and then let him explore the massive space of possibilities of the game to find his way to this goal.\
-						</ul>\
-						Finally, the current system could be expanded by lifting even more game mechanics from the laws of nature. The following are some ideas that could extend the system and exponentially increase the complexity of gameplay while maintaining an elegant design.\
-						<ul>\
-							<li>More resource attributes. Currently resources are described by a set of very basic properties. However all elements have far more physical and chemical attributes that can be included in the model.\
-							<li>Control of temperature and pressure. Temperature and pressure change the behaviour of elements. By offering control of temperature and pressure of the system, players would have an exponentially higher possibility space to explore, and some actions would be harder or easier to perform in different scenarios.\
-							<li>Antimatter. Antimatter behaves exactly like matter but with opposite electrical charges. From a game design point of view, the player would start all over again unlocking each resource on its anti-form. However the only interesting property of antimatter is that, in contact with its counterpart, it is destroyed by releasing massive amounts of energy. The gameplay interest of this system remains unclear.\
-							<li>Subatomic resources. We could take a step down from elements and introduce subatomic particles in the system. These particles behave according to a different set of rules. In practice this could be implemented as a different phase in the game.\
-							<li>Molecular behavior. Although molecules are present in the game, no behavior particular to molecules has been implemented as a game system. Just like for subatomic resources, a whole set of game mechanics involving only molecules could be introduces in the system. This would introduce another phase of the game.\
-						</ul>\
-						This concludes the developer thoughs about the game. An eventual version 1.0 would include all elements, isotopes, ions and reactions; however for the time being there is no ETA for the release. Thanks for playing.'
 						}
 	};
 
@@ -2519,15 +2544,85 @@ function loadData($scope) {
 			},
 			event:"cycle"
 		},
-		"finished":{
+		"helium":{
 			check:function(event,data){  
-				if($scope.player.resources['H2O'].unlocked){
-					$scope.addToast("Congratulations! You finished the game");
-					$scope.player.unlocks["finished"] = true;
-					$scope.unlocks["finished"].listener();
+				if("He" == data){
+					$scope.addToast("Helium");
+					$scope.player.unlocks["helium"] = true;
+					$scope.unlocks["helium"].listener();
 				}
 			},
-			event:"cycle"
+			event:"element"
+		},
+		"lithium":{
+			check:function(event,data){  
+				if("Li" == data){
+					$scope.addToast("Lithium");
+					$scope.player.unlocks["lithium"] = true;
+					$scope.unlocks["lithium"].listener();
+				}
+			},
+			event:"element"
+		},
+		"beryllium":{
+			check:function(event,data){  
+				if("Be" == data){
+					$scope.addToast("Beryllium");
+					$scope.player.unlocks["beryllium"] = true;
+					$scope.unlocks["beryllium"].listener();
+				}
+			},
+			event:"element"
+		},
+		"boron":{
+			check:function(event,data){  
+				if("B" == data){
+					$scope.addToast("Boron");
+					$scope.player.unlocks["boron"] = true;
+					$scope.unlocks["boron"].listener();
+				}
+			},
+			event:"element"
+		},
+		"carbon":{
+			check:function(event,data){  
+				if("C" == data){
+					$scope.addToast("Carbon");
+					$scope.player.unlocks["carbon"] = true;
+					$scope.unlocks["carbon"].listener();
+				}
+			},
+			event:"element"
+		},
+		"nitrogen":{
+			check:function(event,data){  
+				if("N" == data){
+					$scope.addToast("Nitrogen");
+					$scope.player.unlocks["nitrogen"] = true;
+					$scope.unlocks["nitrogen"].listener();
+				}
+			},
+			event:"element"
+		},
+		"fluorine":{
+			check:function(event,data){  
+				if("F" == data){
+					$scope.addToast("Fluorine");
+					$scope.player.unlocks["fluorine"] = true;
+					$scope.unlocks["fluorine"].listener();
+				}
+			},
+			event:"element"
+		},
+		"neon":{
+			check:function(event,data){  
+				if("Ne" == data){
+					$scope.addToast("Neon");
+					$scope.player.unlocks["neon"] = true;
+					$scope.unlocks["neon"].listener();
+				}
+			},
+			event:"element"
 		}
 	};
 	
