@@ -33,8 +33,7 @@ function loadData($scope) {
 				has_new:function(){
 						return false;
 					},
-				order:2,
-				disabled:true
+				order:2
 			},
 			'Li':{
 				name:'Lithium',
@@ -45,8 +44,7 @@ function loadData($scope) {
 				has_new:function(){
 						return false;
 					},
-				order:3,
-				disabled:true
+				order:3
 			},
 			'Be':{
 				name:'Beryllium',
@@ -57,8 +55,7 @@ function loadData($scope) {
 				has_new:function(){
 						return false;
 					},
-				order:4,
-				disabled:true
+				order:4
 			},
 			'B':{
 				name:'Boron',
@@ -69,8 +66,7 @@ function loadData($scope) {
 				has_new:function(){
 						return false;
 					},
-				order:5,
-				disabled:true
+				order:5
 			},
 			'C':{
 				name:'Carbon',
@@ -81,8 +77,7 @@ function loadData($scope) {
 				has_new:function(){
 						return false;
 					},
-				order:6,
-				disabled:true
+				order:6
 			},
 			'N':{
 				name:'Nitrogen',
@@ -93,8 +88,7 @@ function loadData($scope) {
 				has_new:function(){
 						return false;
 					},
-				order:7,
-				disabled:true
+				order:7
 			},
 			'O':{
 				name:'Oxygen',
@@ -129,8 +123,7 @@ function loadData($scope) {
 				has_new:function(){
 						return false;
 					},
-				order:9,
-				disabled:true
+				order:9
 			},
 			'Ne':{
 				name:'Neon',
@@ -141,8 +134,7 @@ function loadData($scope) {
 				has_new:function(){
 						return false;
 					},
-				order:10,
-				disabled:true
+				order:10
 			},
 			'Na':{
 				name:'Sodium',
