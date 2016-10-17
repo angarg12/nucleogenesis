@@ -1,7 +1,7 @@
 angular.module('incremental',['ngAnimate'])
 .controller('IncCtrl',['$scope','$document','$interval', '$sce', '$filter', '$timeout', 
 function($scope,$document,$interval,$sce,$filter,$timeout) { 
-		$scope.version = '0.10';
+		$scope.version = '0.11';
 		$scope.Math = window.Math;
 		
 		// Polyfill for some browsers
@@ -377,9 +377,55 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 			}
 		}
 		
-		function versionControl() {
-			if($scope.player.version == undefined){
-				$scope.player.version = '0.9.10';
+		function versionControl() {			
+			if(versionCompare($scope.player.version,"0.11") == -1){
+				for(var entry in $scope.resources){
+					if(typeof $scope.player.resources[entry] == 'undefined'){
+						$scope.player.resources[entry] = {
+							number:0,
+							is_new:true,
+							unlocked:false
+						};
+					}
+				}
+						
+				for(var element in $scope.elements){
+					if(!$scope.elements[element].disabled && typeof $scope.player.elements[element] == 'undefined'){
+						$scope.player.elements[element] = {unlocked:false};
+						
+						$scope.player.elements[element].upgrades = {};
+						for(var upgrade in $scope.upgrades){
+							$scope.player.elements[element].upgrades[upgrade] = {bought:false}
+						}
+						$scope.player.elements[element].generators = {};
+						for(var generator in $scope.generators){
+							$scope.player.elements[element].generators[generator] = {level:0}
+						}   
+					}
+				}
+				
+				for(var entry in $scope.encyclopedia){
+					if(typeof $scope.player.encyclopedia[entry] == 'undefined'){
+						$scope.player.encyclopedia[entry] = {is_new:true};
+					}
+				}
+				
+				for(var entry in $scope.unlocks){
+					if(typeof $scope.player.unlocks[entry] == 'undefined'){
+						$scope.player.unlocks[entry] = false;
+					}
+				}
+				
+				for(var entry in $scope.synthesis){
+					if(typeof $scope.player.synthesis[entry] == 'undefined'){
+						$scope.player.synthesis[entry] = {
+														number:0,
+														active:0,
+														is_new:true
+													};
+					}
+				}
+				
 			}
 			if($scope.player.current_theme == undefined){
 				$scope.player.current_theme = "base";
@@ -794,4 +840,23 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		$scope.updateTheme = function(){
 			document.getElementById('theme_css').href = 'styles/'+$scope.player.current_theme+'-bootstrap.min.css';
 		};
+		
+		function versionCompare(left, right) {
+			if (typeof left + typeof right != 'stringstring')
+				return false;
+			
+			var a = left.split('.')
+			,   b = right.split('.')
+			,   i = 0, len = Math.max(a.length, b.length);
+				
+			for (; i < len; i++) {
+				if ((a[i] && !b[i] && parseInt(a[i]) > 0) || (parseInt(a[i]) > parseInt(b[i]))) {
+					return 1;
+				} else if ((b[i] && !a[i] && parseInt(b[i]) > 0) || (parseInt(a[i]) < parseInt(b[i]))) {
+					return -1;
+				}
+			}
+			
+			return 0;
+		}
 }]);

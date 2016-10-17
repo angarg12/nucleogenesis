@@ -28,7 +28,7 @@ function loadData($scope) {
 				name:'Helium',
 				isotopes:[],
 				visible:function(){
-						return false;
+						return $scope.player.elements.He.unlocked;
 					},
 				has_new:function(){
 						return false;
@@ -39,7 +39,7 @@ function loadData($scope) {
 				name:'Lithium',
 				isotopes:[],
 				visible:function(){
-						return false;
+						return $scope.player.elements.Li.unlocked;
 					},
 				has_new:function(){
 						return false;
@@ -50,7 +50,7 @@ function loadData($scope) {
 				name:'Beryllium',
 				isotopes:[],
 				visible:function(){
-						return false;
+						return $scope.player.elements.Be.unlocked;
 					},
 				has_new:function(){
 						return false;
@@ -61,7 +61,7 @@ function loadData($scope) {
 				name:'Boron',
 				isotopes:[],
 				visible:function(){
-						return false;
+						return $scope.player.elements.B.unlocked;
 					},
 				has_new:function(){
 						return false;
@@ -72,7 +72,7 @@ function loadData($scope) {
 				name:'Carbon',
 				isotopes:[],
 				visible:function(){
-						return false;
+						return $scope.player.elements.C.unlocked;
 					},
 				has_new:function(){
 						return false;
@@ -83,7 +83,7 @@ function loadData($scope) {
 				name:'Nitrogen',
 				isotopes:[],
 				visible:function(){
-						return false;
+						return $scope.player.elements.N.unlocked;
 					},
 				has_new:function(){
 						return false;
@@ -118,7 +118,7 @@ function loadData($scope) {
 				name:'Fluorine',
 				isotopes:[],
 				visible:function(){
-						return false;
+						return $scope.player.elements.F.unlocked;
 					},
 				has_new:function(){
 						return false;
@@ -129,7 +129,7 @@ function loadData($scope) {
 				name:'Neon',
 				isotopes:[],
 				visible:function(){
-						return false;
+						return $scope.player.elements.Ne.unlocked;
 					},
 				has_new:function(){
 						return false;
