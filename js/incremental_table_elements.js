@@ -653,6 +653,12 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
         	}        	
         	return format;
         }
+		
+		$scope.exchangeReaction = function(reaction) {
+        	temp = reaction.reactant;
+			reaction.reactant = reaction.product;
+			reaction.product = temp;
+        }
         
 		$scope.prettifyNumber = function(number){
 			if(typeof number == 'undefined'){
