@@ -1656,7 +1656,7 @@ function loadData($scope) {
 								$scope.current_tab == "Elements" && 
 								$scope.player.resources['3H'].unlocked;
 					},
-					order:4,						
+					order:4,
 					ratio:0.000001,
 					html:'<sup>3</sup>H',
 					type:'isotope',
@@ -1683,7 +1683,19 @@ function loadData($scope) {
 								$scope.current_tab == "Elements";
 					},
 					order:100,
+					ratio:0.999998,
 					type:'element',
+				},
+				'3He':{ 
+					visible:function(){
+						return $scope.current_element === "He" &&
+								$scope.current_tab == "Elements" && 
+								$scope.player.resources['3He'].unlocked;
+					},
+					order:101,
+					ratio:0.000002,
+					html:'<sup>3</sup>He',
+					type:'isotope',
 				},
 				'3He+1':{ 					
 					visible:function(){
@@ -1691,9 +1703,183 @@ function loadData($scope) {
 								$scope.current_tab == "Elements" && 
 								$scope.player.resources['3He+1'].unlocked;
 					},
-					order:101,
+					order:102,
 					html:'<sup>3</sup>He<sup>+</sup>',
 					type:['isotope','ion']
+				},
+				'Li':{ 
+					visible:function(){
+						return $scope.current_element === "Li" &&
+								$scope.current_tab == "Elements";
+					},
+					order:200,
+					ratio:0.95,
+					type:'element',
+				},
+				'7Li':{ 
+					visible:function(){
+						return $scope.current_element === "Li" &&
+								$scope.current_tab == "Elements" && 
+								$scope.player.resources['7Li'].unlocked;
+					},
+					order:201,
+					ratio:0.05,
+					html:'<sup>7</sup>Li',
+					type:'isotope',
+				},
+				'Be':{ 
+					visible:function(){
+						return $scope.current_element === "Be" &&
+								$scope.current_tab == "Elements";
+					},
+					order:300,
+					ratio:0.999998,
+					type:'element',
+				},
+				'7Be':{ 
+					visible:function(){
+						return $scope.current_element === "Be" &&
+								$scope.current_tab == "Elements" && 
+								$scope.player.resources['7Be'].unlocked;
+					},
+					order:310,
+					ratio:0.000001,
+					html:'<sup>7</sup>Be',
+					type:'isotope',
+					decay:{
+						half_life:4589568,
+						decay_energy:862000,
+						decay_type:'electron-capture',
+						decay_product:{'7Li':1}
+					}
+				},
+				'10Be':{ 
+					visible:function(){
+						return $scope.current_element === "Be" &&
+								$scope.current_tab == "Elements" && 
+								$scope.player.resources['10Be'].unlocked;
+					},
+					order:320,
+					ratio:0.000001,
+					type:'isotope',
+					html:'<sup>10</sup>Be',
+					decay:{
+						half_life:4.2917e+14,
+						decay_energy:556000,
+						decay_type:'beta-',
+						decay_product:{'10B':1,'e-':1}
+					}
+				},
+				'B':{ 
+					visible:function(){
+						return $scope.current_element === "B" &&
+								$scope.current_tab == "Elements";
+					},
+					order:400,
+					ratio:0.2,
+					type:'element',
+				},
+				'11B':{ 
+					visible:function(){
+						return $scope.current_element === "B" &&
+								$scope.current_tab == "Elements" && 
+								$scope.player.resources['11B'].unlocked;
+					},
+					order:410,
+					ratio:0.8,
+					html:'<sup>11</sup>B',
+					type:'isotope',
+				},
+				'C':{ 
+					visible:function(){
+						return $scope.current_element === "C" &&
+								$scope.current_tab == "Elements";
+					},
+					order:500,
+					ratio:0.988998,
+					type:'element',
+				},
+				'11C':{ 
+					visible:function(){
+						return $scope.current_element === "C" &&
+								$scope.current_tab == "Elements" && 
+								$scope.player.resources['11C'].unlocked;
+					},
+					order:510,
+					ratio:0.000001,
+					html:'<sup>11</sup>C',
+					type:'isotope',
+					decay:{
+						half_life:1200,
+						decay_energy:96000,
+						decay_type:'beta+',
+						decay_product:{'11B':1,'e+':1}
+					}
+				},
+				'13C':{ 
+					visible:function(){
+						return $scope.current_element === "C" &&
+								$scope.current_tab == "Elements" && 
+								$scope.player.resources['13C'].unlocked;
+					},
+					order:520,
+					ratio:0.011,
+					html:'<sup>13</sup>C',
+					type:'isotope',
+				},
+				'14C':{ 
+					visible:function(){
+						return $scope.current_element === "C" &&
+								$scope.current_tab == "Elements" && 
+								$scope.player.resources['14C'].unlocked;
+					},
+					order:530,
+					ratio:0.000001,
+					html:'<sup>14</sup>C',
+					type:'isotope',
+					decay:{
+						half_life:1.807e+11,
+						decay_energy:156000,
+						decay_type:'beta-',
+						decay_product:{'14N':1,'e-':1}
+					}
+				},
+				'N':{ 
+					visible:function(){
+						return $scope.current_element === "N" &&
+								$scope.current_tab == "Elements";
+					},
+					order:600,
+					ratio:0.959999,
+					type:'element',
+				},
+				'13N':{ 
+					visible:function(){
+						return $scope.current_element === "N" &&
+								$scope.current_tab == "Elements" && 
+								$scope.player.resources['13N'].unlocked;
+					},
+					order:610,
+					ratio:0.000001,
+					html:'<sup>13</sup>N',
+					type:'isotope',
+					decay:{
+						half_life:598,
+						decay_energy:2220000,
+						decay_type:'electron-capture',
+						decay_product:{'13C':1}
+					}
+				},
+				'15N':{ 
+					visible:function(){
+						return $scope.current_element === "N" &&
+								$scope.current_tab == "Elements" && 
+								$scope.player.resources['15N'].unlocked;
+					},
+					order:620,
+					ratio:0.04,
+					html:'<sup>15</sup>N',
+					type:'isotope',
 				},
 				'O':{ 
 					visible:function(){
@@ -1770,6 +1956,63 @@ function loadData($scope) {
 					},
 					html:'H<sub>2</sub>O',
 					type:'molecule'
+				},
+				'F':{ 
+					visible:function(){
+						return $scope.current_element === "F" &&
+								$scope.current_tab == "Elements";
+					},
+					order:800,
+					ratio:0.999998,
+					type:'element',
+				},
+				'18F':{ 
+					visible:function(){
+						return $scope.current_element === "F" &&
+								$scope.current_tab == "Elements" && 
+								$scope.player.resources['18F'].unlocked;
+					},
+					order:810,
+					ratio:0.000001,
+					html:'<sup>18</sup>F',
+					type:'isotope',
+					decay:{
+						half_life:6586,
+						decay_energy:634000,
+						decay_type:'beta+',
+						decay_product:{'18O':1,'e+':1}
+					}
+				},
+				'Ne':{ 
+					visible:function(){
+						return $scope.current_element === "Ne" &&
+								$scope.current_tab == "Elements";
+					},
+					order:900,
+					ratio:0.9048,
+					type:'element',
+				},
+				'21Ne':{ 
+					visible:function(){
+						return $scope.current_element === "Ne" &&
+								$scope.current_tab == "Elements" && 
+								$scope.player.resources['21Ne'].unlocked;
+					},
+					order:910,
+					ratio:0.0027,
+					html:'<sup>21</sup>Ne',
+					type:'isotope',
+				},
+				'22Ne':{ 
+					visible:function(){
+						return $scope.current_element === "Ne" &&
+								$scope.current_tab == "Elements" && 
+								$scope.player.resources['22Ne'].unlocked;
+					},
+					order:920,
+					ratio:0.0925,
+					html:'<sup>22</sup>Ne',
+					type:'isotope',
 				},
 				'e-':{ 
 					visible:function(){
@@ -2095,7 +2338,6 @@ function loadData($scope) {
 						}
 	};
 
-
 	$scope.reactions = {
 		'H':{
 			'ionization':{
@@ -2308,7 +2550,9 @@ function loadData($scope) {
 	};	
 	
 	$scope.html = {
-		'beta-':'&#946;<sup>-</sup>'
+		'beta-':'&#946;<sup>-</sup>',
+		'beta+':'&#946;<sup>+</sup>',
+		'electron-capture':'&#x3B5'
 	};
 	
 	$scope.unlocks = {
