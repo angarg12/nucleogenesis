@@ -1802,7 +1802,7 @@ function loadData($scope) {
 				}
 	};
 	
-	$scope.radioisotopes = ['3H'];
+	$scope.radioisotopes = ['3H','7Be','10Be','11C','14C','13N','18F'];
 	
 	$scope.free_radicals = ['O'];
 	
