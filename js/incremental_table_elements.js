@@ -1,7 +1,7 @@
 angular.module('incremental',['ngAnimate'])
 .controller('IncCtrl',['$scope','$document','$interval', '$sce', '$filter', '$timeout', 
 function($scope,$document,$interval,$sce,$filter,$timeout) { 
-		$scope.version = '0.11';
+		$scope.version = '1.0';
 		$scope.Math = window.Math;
 		
 		// Polyfill for some browsers
@@ -378,58 +378,10 @@ function($scope,$document,$interval,$sce,$filter,$timeout) {
 		}
 		
 		function versionControl() {			
+			/*
 			if(versionCompare($scope.player.version,"0.11") == -1){
-				for(var entry in $scope.resources){
-					if(typeof $scope.player.resources[entry] == 'undefined'){
-						$scope.player.resources[entry] = {
-							number:0,
-							is_new:true,
-							unlocked:false
-						};
-					}
-				}
-						
-				for(var element in $scope.elements){
-					if(!$scope.elements[element].disabled && typeof $scope.player.elements[element] == 'undefined'){
-						$scope.player.elements[element] = {unlocked:false};
-						
-						$scope.player.elements[element].upgrades = {};
-						for(var upgrade in $scope.upgrades){
-							$scope.player.elements[element].upgrades[upgrade] = {bought:false}
-						}
-						$scope.player.elements[element].generators = {};
-						for(var generator in $scope.generators){
-							$scope.player.elements[element].generators[generator] = {level:0}
-						}   
-					}
-				}
-				
-				for(var entry in $scope.encyclopedia){
-					if(typeof $scope.player.encyclopedia[entry] == 'undefined'){
-						$scope.player.encyclopedia[entry] = {is_new:true};
-					}
-				}
-				
-				for(var entry in $scope.unlocks){
-					if(typeof $scope.player.unlocks[entry] == 'undefined'){
-						$scope.player.unlocks[entry] = false;
-					}
-				}
-				
-				for(var entry in $scope.synthesis){
-					if(typeof $scope.player.synthesis[entry] == 'undefined'){
-						$scope.player.synthesis[entry] = {
-														number:0,
-														active:0,
-														is_new:true
-													};
-					}
-				}
-				
-			}
-			if($scope.player.current_theme == undefined){
-				$scope.player.current_theme = "base";
-			}
+				init();
+			}*/
         };
 		
 		function simulateDecay (number, half_life){
