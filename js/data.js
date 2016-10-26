@@ -28,7 +28,8 @@ function loadData($scope) {
 				name:'Helium',
 				isotopes:['3He'],
 				visible:function(){
-						return $scope.player.elements.He.unlocked;
+						return false;
+						//return $scope.player.elements.He.unlocked;
 					},
 				has_new:function(){
 						return false;
@@ -40,7 +41,8 @@ function loadData($scope) {
 				name:'Lithium',
 				isotopes:['7Li'],
 				visible:function(){
-						return $scope.player.elements.Li.unlocked;
+						return false;
+						//return $scope.player.elements.Li.unlocked;
 					},
 				has_new:function(){
 						return false;
@@ -51,8 +53,9 @@ function loadData($scope) {
 			'Be':{
 				name:'Beryllium',
 				isotopes:['7Be','10Be'],
-				visible:function(){
-						return $scope.player.elements.Be.unlocked;
+				visible:function(){						
+						return false;
+						//return $scope.player.elements.Be.unlocked;
 					},
 				has_new:function(){
 						return false;
@@ -64,7 +67,8 @@ function loadData($scope) {
 				name:'Boron',
 				isotopes:['11B'],
 				visible:function(){
-						return $scope.player.elements.B.unlocked;
+						return false;
+						//return $scope.player.elements.B.unlocked;
 					},
 				has_new:function(){
 						return false;
@@ -76,7 +80,8 @@ function loadData($scope) {
 				name:'Carbon',
 				isotopes:['11C','13C','14C'],
 				visible:function(){
-						return $scope.player.elements.C.unlocked;
+						return false;
+						//return $scope.player.elements.C.unlocked;
 					},
 				has_new:function(){
 						return false;
@@ -88,7 +93,8 @@ function loadData($scope) {
 				name:'Nitrogen',
 				isotopes:['13N','15N'],
 				visible:function(){
-						return $scope.player.elements.N.unlocked;
+						return false;
+						//return $scope.player.elements.N.unlocked;
 					},
 				has_new:function(){
 						return false;
@@ -124,7 +130,8 @@ function loadData($scope) {
 				name:'Fluorine',
 				isotopes:['18F'],
 				visible:function(){
-						return $scope.player.elements.F.unlocked;
+						return false;
+						//return $scope.player.elements.F.unlocked;
 					},
 				has_new:function(){
 						return false;
@@ -136,7 +143,8 @@ function loadData($scope) {
 				name:'Neon',
 				isotopes:['21Ne','22Ne'],
 				visible:function(){
-						return $scope.player.elements.Ne.unlocked;
+						return false;
+						//return $scope.player.elements.Ne.unlocked;
 					},
 				has_new:function(){
 						return false;
