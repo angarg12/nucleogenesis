@@ -1,7 +1,7 @@
 angular.module('incremental',['ngAnimate'])
 .controller('IncCtrl',['$scope','$document','$interval', '$sce', '$filter', '$timeout', 
 function($scope,$document,$interval,$sce,$filter,$timeout) { 
-		$scope.version = '1.0.1';
+		$scope.version = '1.0.2';
 		$scope.Math = window.Math;
 		
 		// Polyfill for some browsers
