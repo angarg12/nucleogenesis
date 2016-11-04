@@ -1,0 +1,28 @@
+{
+  "name": "nucleogenesis",
+  "version": "1.0.2",
+  "description": "Chemistry based incremental idle game",
+  "keyword": "incremental idle chemistry game",
+  "homepage": "",
+  "bugs": { 
+    "url" : "https://github.com/angarg12/incremental_table_elements/issues", 
+    "email" : "angarg12@gmail.com"
+  },
+  "license": "GPL-2.0",
+  "repository" :{ 
+  "type" : "git", 
+  "url" : "https://github.com/angarg12/incremental_table_elements.git"
+  },
+  "devDependencies": {
+    "grunt": "~1.0.1",
+    "grunt-contrib-jshint": "~1.0.0",
+    "grunt-karma": "~2.0.0",
+    "karma": "~1.3.0",
+    "karma-coverage": "~1.1.1",
+    "karma-jasmine": "~1.0.2",
+    "karma-phantomjs-launcher": "~1.0.0",
+    "istanbul": "~0.4.5",
+    "jasmine": "~2.5.2",
+    "jasmine-core": "~2.5.2"
+  }
+}
