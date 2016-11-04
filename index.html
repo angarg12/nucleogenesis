@@ -92,7 +92,7 @@
                           <td class="animif col-md-3">
                             <div class="pull-left">
                               <button class="btn btn-default button-small"
-                                ng-click="buyGenerator(name, current_element)"
+                                ng-click="buyGenerators(name, current_element, 1)"
                                 ng-class="{disabled: generatorPrice(name, current_element) > player.resources[current_element].number}">1</button>
                             </div>
                             <div class="pull-left">
@@ -271,7 +271,7 @@
                             <td class="col-md-3">
                               <div class="pull-left">
                                 <button class="btn btn-default button-small"
-                                  ng-click="buySynthesis(current_element, syn)"
+                                  ng-click="buySynthesiss(current_element, syn, 1)"
                                   ng-class="{disabled: !isSynthesisCostMet(current_element, syn)}">1</button>
                               </div>
                               <div class="pull-left">
