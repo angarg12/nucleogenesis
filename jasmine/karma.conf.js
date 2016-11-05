@@ -12,7 +12,7 @@ module.exports = function(config) {
       '../src/*',
       'spec/*.js'
     ],
-    browsers: ['PhantomJS2'],
+    browsers: ['PhantomJS'],
     singleRun: true,
     reporters: ['progress', 'coverage'],
     preprocessors: { '../src/*.js': ['coverage'] }
