@@ -15,6 +15,10 @@ module.exports = function(config) {
     browsers: ['PhantomJS'],
     singleRun: true,
     reporters: ['progress', 'coverage'],
-    preprocessors: { '../src/*.js': ['coverage'] }
+    preprocessors: { '../src/*.js': ['coverage'] },
+    coverageReporter: {
+      type: "lcov",
+      dir: "coverage/"
+    }
   });
 };
