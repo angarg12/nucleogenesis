@@ -3,20 +3,18 @@ module.exports = function(config) {
     basePath: '',
     frameworks: ['jasmine'],
     files: [
-      '../js/jquery.min.js',
-      '../js/angular.min.js',
-      '../js/angular-animate.min.js',
-      '../js/data.js',
-      '../js/bootstrap.min.js',
-      '../js/ziggurat.js',
-      '../js/incremental_table_elements.js',
-      '../js/angular-mocks.js',
+      '../lib/jquery.min.js',
+      '../lib/angular.min.js',
+      '../lib/angular-animate.min.js',
+      '../lib/bootstrap.min.js',
+      '../lib/ziggurat.js',
+      '../lib/angular-mocks.js',
+      '../src/*',
       'spec/*.js'
     ],
     browsers: ['PhantomJS2'],
     singleRun: true,
     reporters: ['progress', 'coverage'],
-    preprocessors: { '../js/incremental_table_elements.js': ['coverage'] ,
-					'../js/data.js': ['coverage'] }
+    preprocessors: { '../src/*.js': ['coverage'] }
   });
 };
