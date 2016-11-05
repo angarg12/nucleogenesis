@@ -458,7 +458,7 @@ describe("Incremental table elements", function() {
     });
     
     it("should load the game", function() {
-      spyOn(localStorage, "getItem");
+      spyOn(localStorage, "getItem").and.returnValue(null);
       
       // flush onload
       $timeout.flush();
