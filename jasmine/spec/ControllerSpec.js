@@ -4,6 +4,8 @@ describe("Incremental table elements", function() {
   var $controller;
   var $rootScope;
   var $timeout;
+  var $scope;
+  var controller;
   
   beforeEach(inject(function(_$rootScope_, _$controller_,_$timeout_){
     // The injector unwraps the underscores (_) from around the parameter names when matching
@@ -11,16 +13,12 @@ describe("Incremental table elements", function() {
     $rootScope = _$rootScope_;
     spyOn($rootScope, '$emit').and.callThrough();
     $timeout = _$timeout_;
+    $scope = $rootScope.$new();
+    controller = $controller('IncCtrl', {$scope:$scope});
+    loadData($scope);
   }));
 
   describe('prettifyNumber', function() {
-    var $scope, controller;
-
-    beforeEach(function() {
-      $scope = $rootScope.$new(),
-      controller = $controller('IncCtrl', {$scope:$scope});
-    });
-
     it("should return inifinity as a symbol", function() {
       value = $scope.prettifyNumber(Infinity);
       expect(value).toEqual("&infin;");
@@ -53,13 +51,6 @@ describe("Incremental table elements", function() {
   });
   
   describe('versionCompare', function() {
-    var $scope, controller;
-
-    beforeEach(function() {
-      $scope = $rootScope.$new(),
-      controller = $controller('IncCtrl', {$scope:$scope});
-    });    
-    
     it("should return undefined if both are non strings", function() {
       value = controller.versionCompare(1,3);
       expect(value).toBeUndefined();
@@ -107,14 +98,7 @@ describe("Incremental table elements", function() {
   });
   
     
-  describe('toast functions', function() {
-    var $scope, controller;
-
-    beforeEach(function() {
-      $scope = $rootScope.$new(),
-      controller = $controller('IncCtrl', {$scope:$scope});
-    }); 
-            
+  describe('toast functions', function() {  
     it("should add toasts to an empty queue", function() {
       $scope.toast = [];
       $scope.is_toast_visible = false;
@@ -122,7 +106,7 @@ describe("Incremental table elements", function() {
       
       expect($scope.toast.length).toEqual(1);
       expect($scope.toast[0]).toEqual('test');
-      expect($scope.is_toast_visible).toBeTruthy();
+      expect($scope.is_toast_visible).toEqual(true);
     });
     
     it("should add toasts to an non empty queue", function() {
@@ -138,7 +122,7 @@ describe("Incremental table elements", function() {
       $scope.is_toast_visible = false;
       $scope.addToast('test');
       
-      expect($scope.is_toast_visible).toBeFalsy();
+      expect($scope.is_toast_visible).toEqual(false);
     });  
     
     it("should remove toasts", function() {
@@ -146,7 +130,7 @@ describe("Incremental table elements", function() {
       $scope.is_toast_visible = true;
       $scope.removeToast();
       
-      expect($scope.is_toast_visible).toBeFalsy();
+      expect($scope.is_toast_visible).toEqual(false);
     });
     
     it("should not flip the visibility when removing toasts", function() {
@@ -154,7 +138,7 @@ describe("Incremental table elements", function() {
       $scope.is_toast_visible = false;
       $scope.removeToast();
       
-      expect($scope.is_toast_visible).toBeFalsy();
+      expect($scope.is_toast_visible).toEqual(false);
     });
     
     it("should not fail on empty toast queues", function() {
@@ -162,7 +146,7 @@ describe("Incremental table elements", function() {
       $scope.is_toast_visible = true;
       $scope.removeToast();
       
-      expect($scope.is_toast_visible).toBeFalsy();
+      expect($scope.is_toast_visible).toEqual(false);
     });
     
     it("should delete toasts", function() {
@@ -184,7 +168,7 @@ describe("Incremental table elements", function() {
       $scope.is_toast_visible = false;
       controller.deleteToast();
       
-      expect($scope.is_toast_visible).toBeTruthy();
+      expect($scope.is_toast_visible).toEqual(true);
     });
     
     it("should not fail on delete empty lists", function() {
@@ -195,17 +179,9 @@ describe("Incremental table elements", function() {
     });
   });
   
-  describe('intro animation', function() {
-    var $scope, controller;
-
-    beforeEach(function() {
-      $scope = $rootScope.$new();
-      controller = $controller('IncCtrl', {$scope:$scope});
-      $scope.player = {};
-      $scope.player.intro = {};
-    });
-        
+  describe('intro animation', function() { 
     it("should call all steps while playing the intro", function() {
+      $scope.player = {intro:{}};
       $scope.player.intro['banner'] = false;
       $scope.player.intro['menu'] = false;
       $scope.player.intro['content'] = false;
@@ -216,38 +192,33 @@ describe("Incremental table elements", function() {
       $timeout.cancel(controller.onload);
       $timeout.flush();
       
-      expect($scope.player.intro['banner']).toBeTruthy();
-      expect($scope.player.intro['menu']).toBeTruthy();
-      expect($scope.player.intro['content']).toBeTruthy();
+      expect($scope.player.intro['banner']).toEqual(true);
+      expect($scope.player.intro['menu']).toEqual(true);
+      expect($scope.player.intro['content']).toEqual(true);
     });
         
     it("should take a step", function() {
+      $scope.player = {intro:{}};
       $scope.player.intro['banner'] = false;
       
       controller.introStep('banner');
       
-      expect($scope.player.intro['banner']).toBeTruthy();
+      expect($scope.player.intro['banner']).toEqual(true);
     });
     
     it("should not flip other states", function() {
+      $scope.player = {intro:{}};
       $scope.player.intro['menu'] = false;
       $scope.player.intro['content'] = true;
       
       controller.introStep('banner');
       
-      expect($scope.player.intro['menu']).toBeFalsy();
-      expect($scope.player.intro['content']).toBeTruthy();
+      expect($scope.player.intro['menu']).toEqual(false);
+      expect($scope.player.intro['content']).toEqual(true);
     });
   });
   
-  describe('filterVisible', function() {
-    var $scope, controller;
-
-    beforeEach(function() {
-      $scope = $rootScope.$new(),
-      controller = $controller('IncCtrl', {$scope:$scope});
-    }); 
-    
+  describe('filterVisible', function() {    
     it("should return only the values that are visible", function() {
       map = {}
       map["a"] = {visible:function(){return true;}}      
@@ -281,89 +252,51 @@ describe("Incremental table elements", function() {
   });
   
   describe('achievements', function() {
-    var $scope, controller;
-
-    beforeEach(function() {
-      $scope = $rootScope.$new(),
-      controller = $controller('IncCtrl', {$scope:$scope});
-    });  
-    
     it("should initialise the listeners of the locked achievements", function() {
-      // create a dummy achievement only for test purposes
       $scope.player = {unlocks:{}};
-      $scope.player.unlocks["test"] = false;
-      $scope.unlocks = {};
-      $scope.unlocks["test"] = {check:function(event,data){},event:"cycle"};
+      $scope.player.unlocks["hydrogen"] = false;
     
       controller.initializeListeners();
       
-      expect($scope.unlocks["test"].listener).not.toBeUndefined();
+      expect($scope.unlocks["hydrogen"].listener).not.toBeUndefined();
     });
       
     it("should not initialise the listeners of the unlocked achievements", function() {
-      // create a dummy achievement only for test purposes
       $scope.player = {unlocks:{}};
-      $scope.player.unlocks["test"] = true;
-      $scope.unlocks = {};
-      $scope.unlocks["test"] = {check:function(event,data){},event:"cycle"};
-    
+      $scope.player.unlocks["hydrogen"] = true;
+
       controller.initializeListeners();
       
-      expect($scope.unlocks["test"].listener).toBeUndefined();
+      expect($scope.unlocks["hydrogen"].listener).toBeUndefined();
     });   
     
     it("should stop running listeners", function() {
-      // create a dummy achievement only for test purposes
-      $scope.unlocks = {};
-      $scope.unlocks["test"] = {listener:$scope.$on("cycle",null)};
-    
       controller.stopListeners();
       
-      expect($scope.unlocks["test"].listener).toBeUndefined();
+      expect($scope.unlocks["hydrogen"].listener).toBeUndefined();
     });
     
-    it("should not start stopped listeners", function() {
-      // create a dummy achievement only for test purposes
-      $scope.unlocks = {};
-      $scope.unlocks["test"] = {};
-    
+    it("should not start stopped listeners", function() {    
       controller.stopListeners();
       
-      expect($scope.unlocks["test"].listener).toBeUndefined();
+      expect($scope.unlocks["hydrogen"].listener).toBeUndefined();
     });
     
     it("should emit a cycle event", function() {    
       controller.checkUnlocks();
       
 			expect($scope.$emit).toHaveBeenCalled();
-    });
+    });   
     
-    it("should return for undefined player when counting total achievements", function() {
+    it("should count the number of achievements", function() {    
       value = $scope.numberUnlocks();
       
-      expect(value).toBeUndefined();
-    });
-    
-    it("should return for undefined player when counting unlocked achievements", function() {
-      value = $scope.numberUnlocked();
-      
-      expect(value).toBeUndefined();
-    });    
-    
-    it("should count the number of achievements", function() {
-      $scope.player = {unlocks:{}};
-      $scope.player.unlocks["test"] = true;      
-      $scope.player.unlocks["test2"] = false;
-      
-      value = $scope.numberUnlocks();
-      
-      expect(value).toEqual(2);
+      expect(value).toEqual(Object.keys($scope.unlocks).length);
     });
     
     it("should count the number of achievements unlocked", function() {
       $scope.player = {unlocks:{}};
-      $scope.player.unlocks["test"] = true;      
-      $scope.player.unlocks["test2"] = false;
+      $scope.player.unlocks["helium"] = true;
       
       value = $scope.numberUnlocked();
       
@@ -371,14 +304,7 @@ describe("Incremental table elements", function() {
     });
   });
   
-  describe('initialization functions', function() {
-    var $scope, controller;
-
-    beforeEach(function() {
-      $scope = $rootScope.$new(),
-      controller = $controller('IncCtrl', {$scope:$scope});
-    });
-    
+  describe('initialization functions', function() {    
     it("should init all the variables", function() {
       spyOn(controller, "populatePlayer");
       
@@ -389,19 +315,12 @@ describe("Incremental table elements", function() {
 			expect($scope.current_element).toEqual("H");
 			expect($scope.hover_element).toEqual("");
 			expect($scope.toast).toEqual([]);
-			expect($scope.is_toast_visible).toBeFalsy();
+			expect($scope.is_toast_visible).toEqual(false);
 			expect(controller.populatePlayer).toHaveBeenCalled();
     });
   });
   
   describe('misc functions', function() {
-    var $scope, controller;
-
-    beforeEach(function() {
-      $scope = $rootScope.$new(),
-      controller = $controller('IncCtrl', {$scope:$scope});
-    }); 
-    
     it("should catch resource event", function() {
       $scope.player = {resources:{}};
       $scope.player.resources['H'] = {unlocked:false}
@@ -409,46 +328,30 @@ describe("Incremental table elements", function() {
       
       controller.checkUnlocks();
       
-      expect($scope.player.resources['H'].unlocked).toBeTruthy();
+      expect($scope.player.resources['H'].unlocked).toEqual(true);
     });
 
     it("should return globally defined HTML code", function() {
-      $scope.html = {'beta-':'&#946;<sup>-</sup>'}
-      $scope.resources = {}      
-      
       value = $scope.getHTML('beta-');
       
       expect(value).toEqual('&#946;<sup>-</sup>');
     });
     
     it("should return resource defined HTML code", function() {
-      $scope.html = {}
-      $scope.resources = {}    
-      $scope.resources['2H'] = {html:'<sub>2</sub>H'}
-      
       value = $scope.getHTML('2H');
       
-      expect(value).toEqual('<sub>2</sub>H');
+      expect(value).toEqual('<sup>2</sup>H');
     });
     
     it("should return resources that don't have defined HTML code", function() {
-      $scope.html = {};
-      $scope.resources = {'eV':{}} 
+      value = $scope.getHTML('p');
       
-      value = $scope.getHTML('eV');
-      
-      expect(value).toEqual('eV');
+      expect(value).toEqual('p');
     });
   });
   
   describe('onload', function() {
-    var $scope, controller;
-
     beforeEach(function() {
-      $scope = $rootScope.$new();
-      
-      controller = $controller('IncCtrl', {$scope:$scope});
-    
       spyOn(window, "loadData");
 			spyOn($scope, "load");
 			spyOn(controller, "init");
@@ -501,13 +404,9 @@ describe("Incremental table elements", function() {
   });
   
   describe('save and load', function() {
-    var $scope, controller;
     var getItemSpy
     
     beforeEach(function() {
-      $scope = $rootScope.$new(),
-      controller = $controller('IncCtrl', {$scope:$scope});
-      
       getItemSpy = spyOn(localStorage, "getItem");
       spyOn(localStorage, "setItem");
       spyOn(localStorage, "removeItem");
@@ -661,136 +560,50 @@ describe("Incremental table elements", function() {
     });
   });
     
-  describe('formatting functions', function() {
-    var $scope, controller;
-
-    beforeEach(function() {
-      $scope = $rootScope.$new(),
-      controller = $controller('IncCtrl', {$scope:$scope});
-    });
-    
+  describe('formatting functions', function() {    
     it("should format reactions", function() {
-      $scope.html = {energy:'eV'};
-      $scope.resources = {};
-      $scope.resources['H2'] = {html:'H<sub>2</sub>'}
-      $scope.resources['H-'] = {html:'H<sup>-</sup>'}
-      $scope.resources['p'] = {}
-      
-			reaction = {
-        reactant:{
-          'H-':1,
-          'p':1
-        },
-        product:{
-          'H2':1,
-          'energy':17.3705
-        }
-      }
-      
-      value = $scope.reactionFormat(1, reaction);
+      value = $scope.reactionFormat(1, $scope.synthesis['H-p']);
       
       expect(value).toEqual('H<sup>-</sup> + p <span class=\"icon\">&#8594;</span> H<sub>2</sub> + 17.3705 eV');
     });
       
     it("should format multiple reactions", function() {
-      $scope.html = {energy:'eV'};
-      $scope.resources = {};
-      $scope.resources['H2'] = {html:'H<sub>2</sub>'}
-      $scope.resources['H-'] = {html:'H<sup>-</sup>'}
-      $scope.resources['p'] = {}
-      
-			reaction = {
-        reactant:{
-          'H-':1,
-          'p':1
-        },
-        product:{
-          'H2':1,
-          'energy':17.3705
-        }
-      }
-      
-      value = $scope.reactionFormat(10, reaction);
+      value = $scope.reactionFormat(10, $scope.synthesis['H-p']);
       
       expect(value).toEqual('10 H<sup>-</sup> + 10 p <span class=\"icon\">&#8594;</span> 10 H<sub>2</sub> + 173.705 eV');
     });
     
     it("should format single compounds", function() {
-      $scope.html = {energy:'eV'};
-      $scope.resources = {};
-      $scope.resources['H2'] = {html:'H<sub>2</sub>'}
-      
-			product={
-				'H2':1,
-				'energy':17.3705
-			}
-      
-      value = $scope.compoundFormat(1, product);
+      value = $scope.compoundFormat(1, $scope.synthesis['H-p'].product);
       
       expect(value).toEqual('H<sub>2</sub> + 17.3705 eV');
     });
     
     it("should format mutiple compounds", function() {
-      $scope.html = {energy:'eV'};
-      $scope.resources = {};
-      $scope.resources['H2'] = {html:'H<sub>2</sub>'}
-			product={
-				'H2':1,
-				'energy':17.3705
-			}
-      
-      value = $scope.compoundFormat(10, product);
+      value = $scope.compoundFormat(10, $scope.synthesis['H-p'].product);
       
       expect(value).toEqual('10 H<sub>2</sub> + 173.705 eV');
     });
   
     it("should format decay", function() {
-      $scope.html = {energy:'eV'};
-      $scope.resources = {};
-      $scope.resources['3He+1'] = {html:'3He<sup>+</sup>'}
-      $scope.resources['e-'] = {}
-      decay = {
-						half_life:3.8852e+8,
-						decay_energy:18610,
-						decay_type:'beta-',
-						decay_product:{'3He+1':1,'e-':1}
-					}
-    
-      value = $scope.decayFormat(decay);
+      value = $scope.decayFormat($scope.resources['3H'].decay);
       
-      expect(value).toEqual('<span class="icon">&#8594;</span>3He<sup>+</sup> + e- + 18,610 eV');
+      expect(value).toEqual('<span class="icon">&#8594;</span><sup>3</sup>He<sup>+</sup> + e- + 18,610 eV');
     }); 
     
     it("should format decay without energy", function() {
-      $scope.html = {};
-      $scope.resources = {};
-      $scope.resources['3He+1'] = {html:'3He<sup>+</sup>'}
-      $scope.resources['e-'] = {}
-      decay = {
-						half_life:3.8852e+8,
-						decay_type:'beta-',
-						decay_product:{'3He+1':1,'e-':1}
-					}
+      $scope.resources['3H'].decay.decay_energy = undefined;
     
-      value = $scope.decayFormat(decay);
+      value = $scope.decayFormat($scope.resources['3H'].decay);
       
-      expect(value).toEqual('<span class="icon">&#8594;</span>3He<sup>+</sup> + e-');
+      expect(value).toEqual('<span class="icon">&#8594;</span><sup>3</sup>He<sup>+</sup> + e-');
     });
   });
     
   describe('prices and cost', function() {
-    var $scope, controller;
-
-    beforeEach(function() {
-      $scope = $rootScope.$new(),
-      controller = $controller('IncCtrl', {$scope:$scope});
-    });
-    
     it("should calculate element price", function() {  
       $scope.player = {};
       $scope.player.elements_unlocked = 1;
-      $scope.elements = {'O':{}};
-      $scope.elements['O'].order = 8;
     
       value = $scope.elementPrice('O');
       
@@ -800,8 +613,6 @@ describe("Incremental table elements", function() {
     it("should calculate element price 2", function() {
       $scope.player = {};
       $scope.player.elements_unlocked = 5;
-      $scope.elements = {'Sn':{}};
-      $scope.elements['Sn'].order = 50;
     
       value = $scope.elementPrice('Sn');
 
@@ -815,11 +626,11 @@ describe("Incremental table elements", function() {
       $scope.player.resources['e-'] = {number:0};
 			$scope.player.resources['p'] = {number:300};
 			$scope.player.resources['n'] = {number:300};
-      spyOn($scope,'elementPrice').and.returnValue(256);
+      //$scope.player.elements_unlocked = 1;
     
       value = $scope.isElementCostMet('O');
       
-      expect(value).toBeFalsy();
+      expect(value).toEqual(false);
     });    
     
     it("should check if the cost of an element is met 2", function() {  
@@ -828,11 +639,11 @@ describe("Incremental table elements", function() {
       $scope.player.resources['e-'] = {number:300};
 			$scope.player.resources['p'] = {number:0};
 			$scope.player.resources['n'] = {number:300};
-      spyOn($scope,'elementPrice').and.returnValue(256);
+      $scope.player.elements_unlocked = 1;
     
       value = $scope.isElementCostMet('O');
       
-      expect(value).toBeFalsy();
+      expect(value).toEqual(false);
     }); 
     
     it("should check if the cost of an element is met 3", function() {  
@@ -841,11 +652,11 @@ describe("Incremental table elements", function() {
       $scope.player.resources['e-'] = {number:300};
 			$scope.player.resources['p'] = {number:300};
 			$scope.player.resources['n'] = {number:0};
-      spyOn($scope,'elementPrice').and.returnValue(256);
+      $scope.player.elements_unlocked = 1;
     
       value = $scope.isElementCostMet('O');
       
-      expect(value).toBeFalsy();
+      expect(value).toEqual(false);
     });
         
     it("should check if the cost of an element is met 4", function() {  
@@ -854,190 +665,108 @@ describe("Incremental table elements", function() {
       $scope.player.resources['e-'] = {number:300};
 			$scope.player.resources['p'] = {number:300};
 			$scope.player.resources['n'] = {number:300};
-      spyOn($scope,'elementPrice').and.returnValue(256);
+      $scope.player.elements_unlocked = 1;
     
       value = $scope.isElementCostMet('O');
       
-      expect(value).toBeTruthy();
+      expect(value).toEqual(true);
     });
     
     it("should check if the cost of a synthesis is met", function() {  
       $scope.player = {};
       $scope.player.resources = {};
-      $scope.player.resources['H'] = {number:0};
-			$scope.player.resources['eV'] = {number:10};
-      spyOn($scope,'synthesisPrice').and.returnValue({'H':1,'eV':10});
-    	
-      reaction = {
-        reactant:{
-          'H':1,
-          'eV':10
-        },
-        product:{
-          'H2':1,
-          'eV':17.3705
-        }
-      }
+      $scope.player.resources['H-'] = {number:0};
+			$scope.player.resources['p'] = {number:10};
+			$scope.player.synthesis = {};
+      $scope.player.synthesis['H-p'] = {};
+      $scope.player.synthesis['H-p'].number = 0;
       
-      value = $scope.isSynthesisCostMet('H', reaction);
+      value = $scope.isSynthesisCostMet('H', 'H-p');
       
-      expect(value).toBeFalsy();
+      expect(value).toEqual(false);
     });  
     
     it("should check if the cost of a synthesis is met 2", function() {  
       $scope.player = {};
       $scope.player.resources = {};
-      $scope.player.resources['H'] = {number:2};
-			$scope.player.resources['eV'] = {number:5};
-      spyOn($scope,'synthesisPrice').and.returnValue({'H':1,'eV':10});
-    	
-      reaction = {
-        reactant:{
-          'H':1,
-          'eV':10
-        },
-        product:{
-          'H2':1,
-          'eV':17.3705
-        }
-      }
+      $scope.player.resources['H-'] = {number:2};
+			$scope.player.resources['p'] = {number:0};
+      $scope.player.synthesis = {};
+      $scope.player.synthesis['H-p'] = {};
+      $scope.player.synthesis['H-p'].number = 0;
       
-      value = $scope.isSynthesisCostMet('H', reaction);
+      value = $scope.isSynthesisCostMet('H', 'H-p');
       
-      expect(value).toBeFalsy();
+      expect(value).toEqual(false);
     });
     
     it("should check if the cost of a synthesis is met 3", function() {  
       $scope.player = {};
       $scope.player.resources = {};
-      $scope.player.resources['H'] = {number:2};
-			$scope.player.resources['eV'] = {number:10};
-      spyOn($scope,'synthesisPrice').and.returnValue({'H':1,'eV':10});
-    	
-      reaction = {
-        reactant:{
-          'H':1,
-          'eV':10
-        },
-        product:{
-          'H2':1,
-          'eV':17.3705
-        }
-      }
+      $scope.player.resources['H-'] = {number:2};
+			$scope.player.resources['p'] = {number:10};
+      $scope.player.synthesis = {};
+      $scope.player.synthesis['H-p'] = {};
+      $scope.player.synthesis['H-p'].number = 0;
       
-      value = $scope.isSynthesisCostMet('H', reaction);
+      value = $scope.isSynthesisCostMet('H', 'H-p');
       
-      expect(value).toBeTruthy();
+      expect(value).toEqual(true);
     });
     
     it("should check if the cost of a reaction is met", function() {  
       $scope.player = {};
       $scope.player.resources = {};
       $scope.player.resources['H'] = {number:0};
-			$scope.player.resources['eV'] = {number:10};
-    	
-      reaction = {
-        reactant:{
-          'H':1,
-          'eV':10
-        },
-        product:{
-          'H2':1,
-          'eV':17.3705
-        }
-      }
+			$scope.player.resources['energy'] = {number:15};
+
+      value = $scope.isReactionCostMet(1, $scope.reactions.H.ionization['1']);
       
-      value = $scope.isReactionCostMet(1, reaction);
-      
-      expect(value).toBeFalsy();
+      expect(value).toEqual(false);
     });   
     
     it("should check if the cost of a reaction is met 2", function() {  
       $scope.player = {};
       $scope.player.resources = {};
       $scope.player.resources['H'] = {number:5};
-			$scope.player.resources['eV'] = {number:5};
-    	
-      reaction = {
-        reactant:{
-          'H':1,
-          'eV':10
-        },
-        product:{
-          'H2':1,
-          'eV':17.3705
-        }
-      }
+			$scope.player.resources['energy'] = {number:5};
       
-      value = $scope.isReactionCostMet(1, reaction);
+      value = $scope.isReactionCostMet(1, $scope.reactions.H.ionization['1']);
       
-      expect(value).toBeFalsy();
+      expect(value).toEqual(false);
     });
     
     it("should check if the cost of a reaction is met 3", function() {  
       $scope.player = {};
       $scope.player.resources = {};
       $scope.player.resources['H'] = {number:50};
-			$scope.player.resources['eV'] = {number:50};
-    	
-      reaction = {
-        reactant:{
-          'H':1,
-          'eV':10
-        },
-        product:{
-          'H2':1,
-          'eV':17.3705
-        }
-      }
+			$scope.player.resources['energy'] = {number:50};
+
+      value = $scope.isReactionCostMet(10, $scope.reactions.H.ionization['1']);
       
-      value = $scope.isReactionCostMet(10, reaction);
-      
-      expect(value).toBeFalsy();
+      expect(value).toEqual(false);
     });
     
     it("should check if the cost of a reaction is met 4", function() {  
       $scope.player = {};
       $scope.player.resources = {};
       $scope.player.resources['H'] = {number:5};
-			$scope.player.resources['eV'] = {number:50};
-    	
-      reaction = {
-        reactant:{
-          'H':1,
-          'eV':10
-        },
-        product:{
-          'H2':1,
-          'eV':17.3705
-        }
-      }
+			$scope.player.resources['energy'] = {number:50};
       
-      value = $scope.isReactionCostMet(1, reaction);
+      value = $scope.isReactionCostMet(1, $scope.reactions.H.ionization['1']);
       
-      expect(value).toBeTruthy();
+      expect(value).toEqual(true);
     });  
     
     it("should check if the cost of a reaction is met 5", function() {  
       $scope.player = {};
       $scope.player.resources = {};
       $scope.player.resources['H'] = {number:50};
-			$scope.player.resources['eV'] = {number:500};
-    	
-      reaction = {
-        reactant:{
-          'H':1,
-          'eV':10
-        },
-        product:{
-          'H2':1,
-          'eV':17.3705
-        }
-      }
+			$scope.player.resources['energy'] = {number:500};
+
+      value = $scope.isReactionCostMet(10, $scope.reactions.H.ionization['1']);
       
-      value = $scope.isReactionCostMet(10, reaction);
-      
-      expect(value).toBeTruthy();
+      expect(value).toEqual(true);
     });
     
     it("should return the price of a generator", function() {  
@@ -1045,10 +774,7 @@ describe("Incremental table elements", function() {
       $scope.player.elements = {'H':{}};
       $scope.player.elements['H'] = {'generators':{}};
       $scope.player.elements['H'].generators['Tier 1'] = {'level':5};
-      $scope.generators = {'Tier 1':{}};
-      $scope.generators['Tier 1'].price = 15;
-      $scope.generators['Tier 1'].priceIncrease = 1.05;
-    
+
       value = $scope.generatorPrice('Tier 1','H');
       
       expect(value).toEqual(20);
@@ -1059,62 +785,53 @@ describe("Incremental table elements", function() {
       $scope.player.elements = {'H':{}};
       $scope.player.elements['H'] = {'generators':{}};
       $scope.player.elements['H'].generators['Tier 3'] = {'level':10};
-      $scope.generators = {'Tier 3':{}};
-      $scope.generators['Tier 3'].price = 1100;
-      $scope.generators['Tier 3'].priceIncrease = 1.1;
     
       value = $scope.generatorPrice('Tier 3','H');
       
-      expect(value).toEqual(2854);
+      expect(value).toEqual(1792);
     });
-    
-    it("should return the price of a synthesis", function() {  
-      $scope.synthesis = {'H2O':{}};
-      $scope.synthesis['H2O'] = {
-        reactant:{
-          'H2':1,
-          'O2':1
-        },
-        product:{
-          'H2O':1,
-          'O':1
-        }
-      }
-      spyOn($scope,'synthesisMultiplier').and.returnValue(2);
+
+    it("should return the price of a synthesis", function() {
+      $scope.player = {synthesis:{}};      
+      $scope.player.synthesis.H2O = {};    
+      $scope.player.synthesis.H2O.number = 2;
     
       value = $scope.synthesisPrice('H','H2O');
       
-      expect(value).toEqual({'H2':2,'O2':2});
+      expect(value).toEqual({'H2':4,'O2':2});
     });
     
     it("should return the las tier upgrade price", function() {  
-      $scope.generators = {'Tier 1':{}};
-      $scope.generators['Tier 1'].upgrades = ['Tier 1-1','Tier 1-2','Tier 1-3'];
       $scope.player = {elements:{}};
       $scope.player.elements['H'] = {upgrades:{}};
       $scope.player.elements['H'].upgrades['Tier 1-1'] = {bought:true};      
       $scope.player.elements['H'].upgrades['Tier 1-2'] = {bought:true};
       $scope.player.elements['H'].upgrades['Tier 1-3'] = {bought:false};
       $scope.current_element = 'H';
-      $scope.upgrades = {};
-      $scope.upgrades['Tier 1-3'] = {price:1001};
     
       value = $scope.lastUpgradeTierPrice('Tier 1');
       
-      expect(value).toEqual(1001);
+      expect(value).toEqual(10000);
     });    
     
     it("should return null if all upgrades are bought", function() {  
-      $scope.generators = {'Tier 1':{}};
-      $scope.generators['Tier 1'].upgrades = ['Tier 1-1','Tier 1-2','Tier 1-3'];
       $scope.player = {elements:{}};
       $scope.player.elements['H'] = {upgrades:{}};
       $scope.player.elements['H'].upgrades['Tier 1-1'] = {bought:true};      
       $scope.player.elements['H'].upgrades['Tier 1-2'] = {bought:true};
       $scope.player.elements['H'].upgrades['Tier 1-3'] = {bought:true};
+      $scope.player.elements['H'].upgrades['Tier 1-4'] = {bought:true};
+      $scope.player.elements['H'].upgrades['Tier 1-5'] = {bought:true};
+      $scope.player.elements['H'].upgrades['Tier 1-6'] = {bought:true};
+      $scope.player.elements['H'].upgrades['Tier 1-7'] = {bought:true};
+      $scope.player.elements['H'].upgrades['Tier 1-8'] = {bought:true};
+      $scope.player.elements['H'].upgrades['Tier 1-9'] = {bought:true};
+      $scope.player.elements['H'].upgrades['Tier 1-10'] = {bought:true};
+      $scope.player.elements['H'].upgrades['Tier 1-11'] = {bought:true};
+      $scope.player.elements['H'].upgrades['Tier 1-12'] = {bought:true};
+      $scope.player.elements['H'].upgrades['Tier 1-13'] = {bought:true};
+      $scope.player.elements['H'].upgrades['Tier 1-14'] = {bought:true};
       $scope.current_element = 'H';
-      $scope.upgrades = {};
-      $scope.upgrades['Tier 1-3'] = {price:1001};
     
       value = $scope.lastUpgradeTierPrice('Tier 1');
       
@@ -1123,17 +840,8 @@ describe("Incremental table elements", function() {
   });
   
   describe('purchase functions', function() {
-    var $scope, controller;
-
-    beforeEach(function() {
-      $scope = $rootScope.$new(),
-      controller = $controller('IncCtrl', {$scope:$scope});
-    });
-    
-    it("should purchase element if cost is met", function() {      
-      spyOn($scope,'isElementCostMet').and.returnValue(true);    
-      spyOn($scope,'elementPrice').and.returnValue(256);
-      $scope.player = {elements:{},resources:{},elements_unlocked:2};
+    it("should purchase element if cost is met", function() {
+      $scope.player = {elements:{},resources:{},elements_unlocked:1};
       $scope.player.resources['e-'] = {number:256};
       $scope.player.resources['p'] = {number:257};
       $scope.player.resources['n'] = {number:258};
@@ -1145,15 +853,13 @@ describe("Incremental table elements", function() {
       expect($scope.player.resources['e-'].number).toEqual(0);
       expect($scope.player.resources['p'].number).toEqual(1);
       expect($scope.player.resources['n'].number).toEqual(2);
-      expect($scope.player.elements['O'].unlocked).toBeTruthy();
+      expect($scope.player.elements['O'].unlocked).toEqual(true);
       expect($scope.player.elements['O'].generators["Tier 1"].level).toEqual(1);
-      expect($scope.player.elements_unlocked).toEqual(3);
+      expect($scope.player.elements_unlocked).toEqual(2);
       expect($scope.$emit).toHaveBeenCalled();
     });
     
-    it("should not purchase element if cost is not met", function() {  
-      spyOn($scope,'isElementCostMet').and.returnValue(false);    
-      spyOn($scope,'elementPrice').and.returnValue(333);
+    it("should not purchase element if cost is not met", function() {
       $scope.player = {elements:{},resources:{},elements_unlocked:2};
       $scope.player.resources['e-'] = {number:256};
       $scope.player.resources['p'] = {number:257};
@@ -1166,7 +872,7 @@ describe("Incremental table elements", function() {
       expect($scope.player.resources['e-'].number).toEqual(256);
       expect($scope.player.resources['p'].number).toEqual(257);
       expect($scope.player.resources['n'].number).toEqual(258);
-      expect($scope.player.elements['O'].unlocked).toBeFalsy();
+      expect($scope.player.elements['O'].unlocked).toEqual(false);
       expect($scope.player.elements['O'].generators["Tier 1"].level).toEqual(0);
       expect($scope.player.elements_unlocked).toEqual(2);
       expect($scope.$emit).not.toHaveBeenCalled();
@@ -1184,16 +890,14 @@ describe("Incremental table elements", function() {
     
     it("should purchase an upgrade if cost is met", function() {      
       $scope.player = {elements:{},resources:{}};
-      $scope.player.resources['H'] = {number:10};
+      $scope.player.resources['H'] = {number:110};
       $scope.player.elements['H'] = {upgrades:{}};
       $scope.player.elements['H'].upgrades["Tier 1-1"] = {bought:false};
-      $scope.upgrades = {'Tier 1-1':{}};
-      $scope.upgrades['Tier 1-1'].price = 5;
       
       $scope.buyUpgrade("Tier 1-1",'H');
       
-      expect($scope.player.resources['H'].number).toEqual(5);
-      expect($scope.player.elements['H'].upgrades["Tier 1-1"].bought).toBeTruthy();
+      expect($scope.player.resources['H'].number).toEqual(10);
+      expect($scope.player.elements['H'].upgrades["Tier 1-1"].bought).toEqual(true);
     });
     
     it("should not purchase an upgrade if cost is not met", function() {      
@@ -1201,13 +905,11 @@ describe("Incremental table elements", function() {
       $scope.player.resources['H'] = {number:10};
       $scope.player.elements['H'] = {upgrades:{}};
       $scope.player.elements['H'].upgrades["Tier 1-1"] = {bought:false};
-      $scope.upgrades = {'Tier 1-1':{}};
-      $scope.upgrades['Tier 1-1'].price = 15;
       
       $scope.buyUpgrade("Tier 1-1",'H');
       
       expect($scope.player.resources['H'].number).toEqual(10);
-      expect($scope.player.elements['H'].upgrades["Tier 1-1"].bought).toBeFalsy();
+      expect($scope.player.elements['H'].upgrades["Tier 1-1"].bought).toEqual(false);
     });
     
     it("should skip if the upgrade is already bought", function() {
@@ -1215,45 +917,40 @@ describe("Incremental table elements", function() {
       $scope.player.resources['H'] = {number:10};
       $scope.player.elements['H'] = {upgrades:{}};
       $scope.player.elements['H'].upgrades["Tier 1-1"] = {bought:true};
-      $scope.upgrades = {'Tier 1-1':{}};
-      $scope.upgrades['Tier 1-1'].price = 5;
       
       $scope.buyUpgrade("Tier 1-1",'H');
       
       expect($scope.player.resources['H'].number).toEqual(10);
-      expect($scope.player.elements['H'].upgrades["Tier 1-1"].bought).toBeTruthy();
+      expect($scope.player.elements['H'].upgrades["Tier 1-1"].bought).toEqual(true);
     });  
-                
+
     it("should purchase as many generators as requested", function() {
-      spyOn($scope,'generatorPrice').and.returnValues(5,6,7,8);
       $scope.player = {elements:{},resources:{}};
-      $scope.player.resources['H'] = {number:30};
+      $scope.player.resources['H'] = {number:65};
       $scope.player.elements['H'] = {generators:{}};
       $scope.player.elements['H'].generators["Tier 1"] = {level:5};
       
       $scope.buyGenerators("Tier 1",'H',3);
       
-      expect($scope.player.resources['H'].number).toEqual(12);
+      expect($scope.player.resources['H'].number).toEqual(2);
       expect($scope.player.elements['H'].generators["Tier 1"].level).toEqual(8);
       expect($scope.$emit).toHaveBeenCalled();
     });    
     
     it("should purchase as many generators as possible until money runs out requested", function() {
-      spyOn($scope,'generatorPrice').and.returnValues(5,6,7);
       $scope.player = {elements:{},resources:{}};
-      $scope.player.resources['H'] = {number:12};
+      $scope.player.resources['H'] = {number:45};
       $scope.player.elements['H'] = {generators:{}};
       $scope.player.elements['H'].generators["Tier 1"] = {level:5};
       
       $scope.buyGenerators("Tier 1",'H',3);
       
-      expect($scope.player.resources['H'].number).toEqual(1);
+      expect($scope.player.resources['H'].number).toEqual(4);
       expect($scope.player.elements['H'].generators["Tier 1"].level).toEqual(7);
       expect($scope.$emit).toHaveBeenCalled();
     });
     
     it("should not purchase negative generators", function() {
-      spyOn($scope,'generatorPrice').and.returnValue(5);
       $scope.player = {elements:{},resources:{}};
       $scope.player.resources['H'] = {number:10};
       $scope.player.elements['H'] = {generators:{}};
@@ -1267,7 +964,6 @@ describe("Incremental table elements", function() {
     });
     
     it("should not purchase generator if cost is not met", function() {
-      spyOn($scope,'generatorPrice').and.returnValue(20);
       $scope.player = {elements:{},resources:{}};
       $scope.player.resources['H'] = {number:10};
       $scope.player.elements['H'] = {generators:{}};
@@ -1281,258 +977,186 @@ describe("Incremental table elements", function() {
     });    
     
     it("should purchase as many synthesis as requested", function() {
-      spyOn($scope,'isSynthesisCostMet').and.returnValues(true,true,true,true);
-      spyOn($scope,'synthesisPrice').and.returnValues({'H':2,'e-':1},{'H':4,'e-':2},{'H':8,'e-':3},{'H':16,'e-':4});
       $scope.player = {synthesis:{},resources:{}};
-      $scope.player.resources['H'] = {number:32};
-      $scope.player.resources['e-'] = {number:32};
-      $scope.player.synthesis['He-'] = {number:1};
+      $scope.player.resources['H2'] = {number:32};
+      $scope.player.resources['O2'] = {number:32};
+      $scope.player.synthesis['H2O'] = {number:1};
       
-      $scope.buySynthesiss("H",'He-',3);
+      $scope.buySynthesiss("H",'H2O',3);
       
-      expect($scope.player.resources['H'].number).toEqual(18);
-      expect($scope.player.resources['e-'].number).toEqual(26);
-      expect($scope.player.synthesis['He-'].number).toEqual(4);
+      expect($scope.player.resources['H2'].number).toEqual(20);
+      expect($scope.player.resources['O2'].number).toEqual(26);
+      expect($scope.player.synthesis['H2O'].number).toEqual(4);
       //expect($scope.$emit).toHaveBeenCalled();
     });
     
     it("should purchase as many synthesis as possible", function() {
-      spyOn($scope,'isSynthesisCostMet').and.returnValues(true,true,false,false);
-      spyOn($scope,'synthesisPrice').and.returnValues({'H':2,'e-':1},{'H':4,'e-':2},{'H':8,'e-':3},{'H':16,'e-':4});
       $scope.player = {synthesis:{},resources:{}};
-      $scope.player.resources['H'] = {number:10};
-      $scope.player.resources['e-'] = {number:32};
-      $scope.player.synthesis['He-'] = {number:1};
+      $scope.player.resources['H2'] = {number:10};
+      $scope.player.resources['O2'] = {number:32};
+      $scope.player.synthesis['H2O'] = {number:1};
       
-      $scope.buySynthesiss("H",'He-',3);
+      $scope.buySynthesiss("H",'H2O',3);
       
-      expect($scope.player.resources['H'].number).toEqual(4);
-      expect($scope.player.resources['e-'].number).toEqual(29);
-      expect($scope.player.synthesis['He-'].number).toEqual(3);
+      expect($scope.player.resources['H2'].number).toEqual(2);
+      expect($scope.player.resources['O2'].number).toEqual(28);
+      expect($scope.player.synthesis['H2O'].number).toEqual(3);
       //expect($scope.$emit).toHaveBeenCalled();
     });  
     
     it("should not purchase negative synthesis", function() {
-      spyOn($scope,'isSynthesisCostMet').and.returnValues(true,true,false,false);
-      spyOn($scope,'synthesisPrice').and.returnValues({'H':2,'e-':1},{'H':4,'e-':2},{'H':8,'e-':3},{'H':16,'e-':4});
       $scope.player = {synthesis:{},resources:{}};
-      $scope.player.resources['H'] = {number:10};
-      $scope.player.resources['e-'] = {number:32};
-      $scope.player.synthesis['He-'] = {number:1};
+      $scope.player.resources['H2'] = {number:32};
+      $scope.player.resources['O2'] = {number:32};
+      $scope.player.synthesis['H2O'] = {number:1};
       
-      $scope.buySynthesiss("H",'He-',-3);
+      $scope.buySynthesiss("H",'H2O',-3);
       
-      expect($scope.player.resources['H'].number).toEqual(10);
-      expect($scope.player.resources['e-'].number).toEqual(32);
-      expect($scope.player.synthesis['He-'].number).toEqual(1);
+      expect($scope.player.resources['H2'].number).toEqual(32);
+      expect($scope.player.resources['O2'].number).toEqual(32);
+      expect($scope.player.synthesis['H2O'].number).toEqual(1);
       //expect($scope.$emit).toHaveBeenCalled();
     });   
     
     it("should not purchase synthesis if the cost is not met", function() {
-      spyOn($scope,'isSynthesisCostMet').and.returnValues(false);
-      spyOn($scope,'synthesisPrice').and.returnValues({'H':2,'e-':1});
       $scope.player = {synthesis:{},resources:{}};
-      $scope.player.resources['H'] = {number:10};
-      $scope.player.resources['e-'] = {number:32};
-      $scope.player.synthesis['He-'] = {number:1};
+      $scope.player.resources['H2'] = {number:2};
+      $scope.player.resources['O2'] = {number:32};
+      $scope.player.synthesis['H2O'] = {number:1};
       
-      $scope.buySynthesiss("H",'He-',-3);
+      $scope.buySynthesiss("H",'H2O',3);
       
-      expect($scope.player.resources['H'].number).toEqual(10);
-      expect($scope.player.resources['e-'].number).toEqual(32);
-      expect($scope.player.synthesis['He-'].number).toEqual(1);
+      expect($scope.player.resources['H2'].number).toEqual(2);
+      expect($scope.player.resources['O2'].number).toEqual(32);
+      expect($scope.player.synthesis['H2O'].number).toEqual(1);
       //expect($scope.$emit).toHaveBeenCalled();
     });
   });
   
   describe('production functions', function() {
-    var $scope, controller;
-
-    beforeEach(function() {
-      $scope = $rootScope.$new(),
-      controller = $controller('IncCtrl', {$scope:$scope});
-    });
-    
     it("should calculate the generator production", function() {
-      $scope.generators = {'Tier 1':{}};
-      $scope.generators['Tier 1'].power = 10;
-      $scope.generators['Tier 1'].upgrades = ['1','2','3'];
-      $scope.player = {'elements':{}};      
+      $scope.generators['Tier 1'].upgrades = ['Tier 1-1','Tier 1-2','Tier 1-3'];
+      $scope.player = {elements:{}};
       $scope.player.elements['H'] = {upgrades:{}};
-      $scope.player.elements['H'].upgrades['1'] = {bought:true};
-      $scope.player.elements['H'].upgrades['2'] = {bought:true};
-      $scope.player.elements['H'].upgrades['3'] = {bought:false};
-      $scope.upgrades = {};
-      $scope.upgrades['1'] = {apply:function(prod){return prod*2;}};
-      $scope.upgrades['2'] = {apply:function(prod){return prod*3;}};
+      $scope.player.elements['H'].upgrades['Tier 1-1'] = {bought:true};
+      $scope.player.elements['H'].upgrades['Tier 1-2'] = {bought:true};
+      $scope.player.elements['H'].upgrades['Tier 1-3'] = {bought:false};
     
       value = $scope.generatorProduction('Tier 1','H');
       
-      expect(value).toEqual(60);
+      expect(value).toEqual(6);
     });
     
     it("should calculate the tier production", function() {
-      $scope.generators = {'Tier 1':{}};
-      $scope.generators['Tier 1'].power = 10;
-      $scope.generators['Tier 1'].upgrades = ['1','2','3'];
-      $scope.player = {'elements':{}};      
+      $scope.generators['Tier 1'].upgrades = ['Tier 1-1','Tier 1-2','Tier 1-3'];
+      $scope.player = {elements:{}};
       $scope.player.elements['H'] = {upgrades:{},generators:{}};
-      $scope.player.elements['H'].generators['Tier 1'] = {level:5};
-      $scope.player.elements['H'].upgrades['1'] = {bought:true};
-      $scope.player.elements['H'].upgrades['2'] = {bought:true};
-      $scope.player.elements['H'].upgrades['3'] = {bought:false};
-      $scope.upgrades = {};
-      $scope.upgrades['1'] = {apply:function(prod){return prod*2;}};
-      $scope.upgrades['2'] = {apply:function(prod){return prod*3;}};
+      $scope.player.elements['H'].upgrades['Tier 1-1'] = {bought:true};
+      $scope.player.elements['H'].upgrades['Tier 1-2'] = {bought:true};
+      $scope.player.elements['H'].upgrades['Tier 1-3'] = {bought:false};
+      $scope.player.elements['H'].generators['Tier 1'] = {level:10};
+
     
       value = $scope.tierProduction('Tier 1','H');
       
-      expect(value).toEqual(300);
+      expect(value).toEqual(60);
     });    
     
     it("should calculate the element production", function() {
-      $scope.generators = {'Tier 1':{},'Tier 2':{},'Tier 3':{}};
-      spyOn($scope,'tierProduction').and.returnValues(1,10,100);
-    
+      $scope.generators['Tier 1'].upgrades = [];
+      $scope.generators['Tier 2'].upgrades = [];
+      $scope.generators['Tier 3'].upgrades = [];
+      temp1 = $scope.generators['Tier 1'];
+      temp2 = $scope.generators['Tier 2'];
+      temp3 = $scope.generators['Tier 3'];
+      $scope.generators = {};
+      $scope.generators['Tier 1'] = temp1;
+      $scope.generators['Tier 2'] = temp2;
+      $scope.generators['Tier 3'] = temp3;
+      
+      $scope.player = {elements:{}};
+      $scope.player.elements['H'] = {generators:{}};
+      $scope.player.elements['H'].generators['Tier 1'] = {level:1};
+      $scope.player.elements['H'].generators['Tier 2'] = {level:1};
+      $scope.player.elements['H'].generators['Tier 3'] = {level:1};
+      
       value = $scope.elementProduction('H');
       
-      expect(value).toEqual(111);
+      expect(value).toEqual(91);
     });
   });
     
   describe('react', function() {
-    var $scope, controller;
-
-    beforeEach(function() {
-      $scope = $rootScope.$new(),
-      controller = $controller('IncCtrl', {$scope:$scope});
-    });
-    
     it("should react the number specified", function() {
       $scope.player = {};
       $scope.player.resources = {};
-      $scope.player.resources['H2'] = {number:50};
-      $scope.player.resources['O2'] = {number:25};
-			$scope.player.resources['H2O'] = {number:0};
-			$scope.player.resources['O'] = {number:1};
-      spyOn($scope,'isReactionCostMet').and.returnValue(true);
-    	
-      reaction = {
-        reactant:{
-          'H2':1,
-          'O2':1
-        },
-        product:{
-          'H2O':2,
-          'O':1
-        }
-      }
+      $scope.player.resources['H'] = {number:50};
+      $scope.player.resources['energy'] = {number:200};
+      $scope.player.resources['p'] = {number:1};
+			$scope.player.resources['e-'] = {number:0};
+
+      $scope.react(10,$scope.reactions.H.ionization['1']);
       
-      $scope.react(10,reaction);
-      
-      expect($scope.player.resources['H2'].number).toEqual(40);
-      expect($scope.player.resources['O2'].number).toEqual(15);
-      expect($scope.player.resources['H2O'].number).toEqual(20);
-      expect($scope.player.resources['O'].number).toEqual(11);
+      expect($scope.player.resources['H'].number).toEqual(40);
+      expect($scope.player.resources['energy'].number).toEqual(64.016);
+      expect($scope.player.resources['p'].number).toEqual(11);
+      expect($scope.player.resources['e-'].number).toEqual(10);
       expect($scope.$emit).toHaveBeenCalled();
     });
     
     it("should return if the number specified is invalid", function() {
       $scope.player = {};
       $scope.player.resources = {};
-      $scope.player.resources['H2'] = {number:50};
-      $scope.player.resources['O2'] = {number:25};
-			$scope.player.resources['H2O'] = {number:0};
-			$scope.player.resources['O'] = {number:1};
-      spyOn($scope,'isReactionCostMet').and.returnValue(true);
-    	
-      reaction = {
-        reactant:{
-          'H2':1,
-          'O2':1
-        },
-        product:{
-          'H2O':2,
-          'O':1
-        }
-      }
+      $scope.player.resources['H'] = {number:50};
+      $scope.player.resources['energy'] = {number:200};
+      $scope.player.resources['p'] = {number:1};
+      $scope.player.resources['e-'] = {number:0};
       
-      $scope.react(0.5,reaction);
+      $scope.react(0.5,$scope.reactions.H.ionization['1']);
       
-      expect($scope.player.resources['H2'].number).toEqual(50);
-      expect($scope.player.resources['O2'].number).toEqual(25);
-      expect($scope.player.resources['H2O'].number).toEqual(0);
-      expect($scope.player.resources['O'].number).toEqual(1);
+      expect($scope.player.resources['H'].number).toEqual(50);
+      expect($scope.player.resources['energy'].number).toEqual(200);
+      expect($scope.player.resources['p'].number).toEqual(1);
+      expect($scope.player.resources['e-'].number).toEqual(0);
       expect($scope.$emit).not.toHaveBeenCalled();
     });    
 	
     it("should return if the number specified is negative", function() {
       $scope.player = {};
       $scope.player.resources = {};
-      $scope.player.resources['H2'] = {number:50};
-      $scope.player.resources['O2'] = {number:25};
-			$scope.player.resources['H2O'] = {number:0};
-			$scope.player.resources['O'] = {number:1};
-      spyOn($scope,'isReactionCostMet').and.returnValue(true);
-    	
-      reaction = {
-        reactant:{
-          'H2':1,
-          'O2':1
-        },
-        product:{
-          'H2O':2,
-          'O':1
-        }
-      }
+      $scope.player.resources['H'] = {number:50};
+      $scope.player.resources['energy'] = {number:200};
+      $scope.player.resources['p'] = {number:1};
+      $scope.player.resources['e-'] = {number:0};
+
+      $scope.react(-10,$scope.reactions.H.ionization['1']);
       
-      $scope.react(-10,reaction);
-      
-      expect($scope.player.resources['H2'].number).toEqual(50);
-      expect($scope.player.resources['O2'].number).toEqual(25);
-      expect($scope.player.resources['H2O'].number).toEqual(0);
-      expect($scope.player.resources['O'].number).toEqual(1);
+      expect($scope.player.resources['H'].number).toEqual(50);
+      expect($scope.player.resources['energy'].number).toEqual(200);
+      expect($scope.player.resources['p'].number).toEqual(1);
+      expect($scope.player.resources['e-'].number).toEqual(0);
       expect($scope.$emit).not.toHaveBeenCalled();
     });   
 	
     it("should return if the cost is not met", function() {
       $scope.player = {};
       $scope.player.resources = {};
-      $scope.player.resources['H2'] = {number:50};
-      $scope.player.resources['O2'] = {number:25};
-			$scope.player.resources['H2O'] = {number:0};
-			$scope.player.resources['O'] = {number:1};
-      spyOn($scope,'isReactionCostMet').and.returnValue(false);
-    	
-      reaction = {
-        reactant:{
-          'H2':1,
-          'O2':1
-        },
-        product:{
-          'H2O':2,
-          'O':1
-        }
-      }
+      $scope.player.resources['H'] = {number:50};
+      $scope.player.resources['energy'] = {number:10};
+      $scope.player.resources['p'] = {number:1};
+      $scope.player.resources['e-'] = {number:0};
       
-      $scope.react(5,reaction);
-      
-      expect($scope.player.resources['H2'].number).toEqual(50);
-      expect($scope.player.resources['O2'].number).toEqual(25);
-      expect($scope.player.resources['H2O'].number).toEqual(0);
-      expect($scope.player.resources['O'].number).toEqual(1);
+      $scope.react(5,$scope.reactions.H.ionization['1']);
+
+      expect($scope.player.resources['H'].number).toEqual(50);
+      expect($scope.player.resources['energy'].number).toEqual(10);
+      expect($scope.player.resources['p'].number).toEqual(1);
+      expect($scope.player.resources['e-'].number).toEqual(0);
       expect($scope.$emit).not.toHaveBeenCalled();
     });
   });
 
-  describe('xxxxxxxxxxxxxxxx', function() {
-    var $scope, controller;
-
-    beforeEach(function() {
-      $scope = $rootScope.$new(),
-      controller = $controller('IncCtrl', {$scope:$scope});
-    });
-    
+  describe('xxxxxxxxxxxxxxxx', function() {   
     it("should ", function() {      
       //value = $scope.xxxxxx();
       
