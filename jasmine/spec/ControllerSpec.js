@@ -1156,6 +1156,375 @@ describe("Incremental table elements", function() {
     });
   });
 
+  describe('populate player', function() {   
+    it("should populate a new player", function() {      
+      controller.populatePlayer();
+      
+      expect(controller.startPlayer.resources.H).toEqual({
+        number : 15,
+        is_new : true,
+        unlocked : false
+      });
+      expect(controller.startPlayer.elements.H.unlocked).toEqual(true);
+      expect(controller.startPlayer.elements.H.upgrades['Tier 1-1'].bought).toEqual(false);
+      expect(controller.startPlayer.encyclopedia.Hydrogen.is_new).toEqual(true);
+      expect(controller.startPlayer.unlocks.hydrogen).toEqual(false);
+      expect(controller.startPlayer.synthesis.H2O).toEqual({
+        number : 0,
+        active : 0,
+        is_new : true
+      });
+    });
+  });
+  
+  describe('poisson', function() {
+    it("should generate numbers according to a poisson", function() {      
+      spyOn(Math,'random').and.returnValue(0.1);
+      
+      value = controller.getPoisson(1);
+
+      expect(value).toEqual(0);
+    });
+
+    it("should generate numbers according to a poisson 2", function() {      
+      spyOn(Math,'random').and.returnValues(1,0.1);
+      
+      value = controller.getPoisson(1);
+
+      expect(value).toEqual(1);
+    });
+
+    it("should generate numbers according to a poisson 3", function() {      
+      spyOn(Math,'random').and.returnValues(0.8,0.4,0.2,0.1);
+      
+      value = controller.getPoisson(4);
+
+      expect(value).toEqual(3);
+    });
+  });
+  
+  describe('simulate decay', function() {
+    it("should simulate decay", function() {
+      spyOn(Math,'random').and.returnValues(0.4,0.2);
+      
+      value = controller.simulateDecay(100, 50);
+      
+      expect(value).toEqual(1);
+    });
+    
+    it("should simulate decay 2", function() {
+      spyOn(controller.numberGenerator,'nextGaussian').and.returnValues(0.5);
+      
+      value = controller.simulateDecay(1000, 50);
+      
+      expect(value).toEqual(16);
+    });
+  });
+  
+  describe('update', function() {
+    it("should not update player if nothing is purchased", function() {
+      controller.populatePlayer();
+      $scope.player = angular.copy(controller.startPlayer);
+      
+      controller.update();
+      
+      expect($scope.player).toEqual(controller.startPlayer);
+    });
+
+    it("should generate isotopes", function() {
+      controller.populatePlayer();
+      $scope.player = controller.startPlayer;
+      $scope.player.elements.O.generators['Tier 1'].level = 200;
+      spyOn(controller.numberGenerator,'nextGaussian').and.returnValue(0);
+      
+      controller.update();
+      
+      expect($scope.player.resources.O.number).toEqual(200);
+      expect($scope.player.resources['17O'].number).toEqual(0);
+      expect($scope.player.resources['18O'].number).toEqual(0);
+    });
+    
+    it("should generate isotopes 2", function() {
+      controller.populatePlayer();
+      $scope.player = controller.startPlayer;
+      $scope.player.elements.O.generators['Tier 1'].level = 1200;
+      spyOn(controller.numberGenerator,'nextGaussian').and.returnValue(0);
+      
+      controller.update();
+      
+      expect($scope.player.resources.O.number).toEqual(1197);
+      expect($scope.player.resources['17O'].number).toEqual(0);
+      expect($scope.player.resources['18O'].number).toEqual(3);
+    });
+    
+    it("should generate isotopes 3", function() {
+      controller.populatePlayer();
+      $scope.player = controller.startPlayer;
+      $scope.player.elements.O.generators['Tier 1'].level = 32000;
+      spyOn(controller.numberGenerator,'nextGaussian').and.returnValue(0);
+      
+      controller.update();
+      
+      expect($scope.player.resources.O.number).toEqual(31923);
+      expect($scope.player.resources['17O'].number).toEqual(13);
+      expect($scope.player.resources['18O'].number).toEqual(64);
+    });
+    
+    it("should not allow negative production", function() {
+      controller.populatePlayer();
+      $scope.player = controller.startPlayer;
+      $scope.player.elements.O.generators['Tier 1'].level = 100;
+      spyOn(controller.numberGenerator,'nextGaussian').and.returnValue(-1e100);
+      
+      controller.update();
+      
+      expect($scope.player.resources.O.number).toEqual(0);
+      expect($scope.player.resources['17O'].number).toEqual(0);
+      expect($scope.player.resources['18O'].number).toEqual(100);
+    });
+    
+    it("should not allow overproduction", function() {
+      controller.populatePlayer();
+      $scope.player = controller.startPlayer;
+      $scope.player.elements.O.generators['Tier 1'].level = 100;
+      spyOn(controller.numberGenerator,'nextGaussian').and.returnValue(1e100);
+      
+      controller.update();
+      
+      expect($scope.player.resources.O.number).toEqual(100);
+      expect($scope.player.resources['17O'].number).toEqual(0);
+      expect($scope.player.resources['18O'].number).toEqual(0);
+    });
+    
+    it("should process synthesis", function() {
+      controller.populatePlayer();
+      $scope.player = controller.startPlayer;
+      $scope.player.synthesis.H2O.number = 2;
+      $scope.player.synthesis.H2O.active = 2;
+      $scope.player.resources.H2.number = 10;
+      $scope.player.resources.O2.number = 5;
+      
+      controller.update();
+      
+      expect($scope.player.resources.H2.number).toEqual(2);
+      expect($scope.player.resources.O2.number).toEqual(1);
+      expect($scope.player.resources.H2O.number).toEqual(8);
+      expect($scope.player.resources.energy.number).toEqual(23.7);
+    });
+    
+    it("should process radioactivity", function() {
+      controller.populatePlayer();
+      $scope.player = controller.startPlayer;
+      $scope.player.resources['3H'].unlocked = true;
+      $scope.player.resources['3H'].number = 1000;
+      spyOn(controller, 'simulateDecay').and.returnValue(0);
+      
+      controller.update();
+      
+      expect($scope.player.resources['3H'].number).toEqual(1000);
+      expect($scope.player.resources['3He+1'].number).toEqual(0);
+      expect($scope.player.resources['e-'].number).toEqual(0);
+      expect($scope.player.resources.energy.number).toEqual(0);
+    });
+    
+    it("should process radioactivity 2", function() {
+      controller.populatePlayer();
+      $scope.player = controller.startPlayer;
+      $scope.player.resources['3H'].unlocked = true;
+      $scope.player.resources['3H'].number = 1000;
+      spyOn(controller, 'simulateDecay').and.returnValue(500);
+      
+      controller.update();
+      
+      expect($scope.player.resources['3H'].number).toEqual(500);
+      expect($scope.player.resources['3He+1'].number).toEqual(500);
+      expect($scope.player.resources['e-'].number).toEqual(500);
+      expect($scope.player.resources.energy.number).toEqual(9305000);
+    });
+    
+    it("should not process negative production", function() {
+      controller.populatePlayer();
+      $scope.player = controller.startPlayer;
+      $scope.player.resources['3H'].unlocked = true;
+      $scope.player.resources['3H'].number = 1000;
+      spyOn(controller, 'simulateDecay').and.returnValue(-100);
+      
+      controller.update();
+      
+      expect($scope.player.resources['3H'].number).toEqual(1000);
+      expect($scope.player.resources['3He+1'].number).toEqual(0);
+      expect($scope.player.resources['e-'].number).toEqual(0);
+      expect($scope.player.resources.energy.number).toEqual(0);
+    });
+    
+    it("should not process over production", function() {
+      controller.populatePlayer();
+      $scope.player = controller.startPlayer;
+      $scope.player.resources['3H'].unlocked = true;
+      $scope.player.resources['3H'].number = 1000;
+      spyOn(controller, 'simulateDecay').and.returnValue(10000);
+      
+      controller.update();
+      
+      expect($scope.player.resources['3H'].number).toEqual(0);
+      expect($scope.player.resources['3He+1'].number).toEqual(1000);
+      expect($scope.player.resources['e-'].number).toEqual(1000);
+      expect($scope.player.resources.energy.number).toEqual(18610000);
+    });
+    
+    it("should process unstables", function() {
+      controller.populatePlayer();
+      $scope.player = controller.startPlayer;
+      $scope.player.resources.O3.unlocked = true;
+      $scope.player.resources.O3.number = 1000;
+      spyOn(controller, 'simulateDecay').and.returnValue(0);
+      
+      controller.update();
+      
+      expect($scope.player.resources.O3.number).toEqual(1000);
+      expect($scope.player.resources.O2.number).toEqual(0);
+      expect($scope.player.resources.O.number).toEqual(0);
+    });
+    
+    it("should process unstables 2", function() {
+      controller.populatePlayer();
+      $scope.player = controller.startPlayer;
+      $scope.player.resources.O3.unlocked = true;
+      $scope.player.resources.O3.number = 1000;
+      spyOn(controller, 'simulateDecay').and.returnValue(500);
+      // clear this subscriber to avoid side effects
+      controller.checkUnlock();
+      
+      controller.update();
+      
+      expect($scope.player.resources.O3.number).toEqual(500);
+      expect($scope.player.resources.O2.number).toEqual(500);
+      expect($scope.player.resources.O.number).toEqual(500);
+    });
+    
+    it("should not process negative production", function() {
+      controller.populatePlayer();
+      $scope.player = controller.startPlayer;
+      $scope.player.resources.O3.unlocked = true;
+      $scope.player.resources.O3.number = 1000;
+      spyOn(controller, 'simulateDecay').and.returnValue(-100);
+      
+      controller.update();
+      
+      expect($scope.player.resources.O3.number).toEqual(1000);
+      expect($scope.player.resources.O2.number).toEqual(0);
+      expect($scope.player.resources.O.number).toEqual(0);
+    });
+    
+    it("should not process over production", function() {
+      controller.populatePlayer();
+      $scope.player = controller.startPlayer;
+      $scope.player.resources.O3.unlocked = true;
+      $scope.player.resources.O3.number = 1000;
+      spyOn(controller, 'simulateDecay').and.returnValue(10000);
+      // clear this subscriber to avoid side effects
+      controller.checkUnlock();
+      
+      controller.update();
+      
+      expect($scope.player.resources.O3.number).toEqual(0);
+      expect($scope.player.resources.O2.number).toEqual(1000);
+      expect($scope.player.resources.O.number).toEqual(1000);
+    });
+    
+    it("should process radicals", function() {
+      controller.populatePlayer();
+      $scope.player = controller.startPlayer;
+      $scope.player.resources.O.unlocked = true;
+      $scope.player.resources.O.number = 1000;
+      $scope.player.resources.O.unlocked = true;
+      $scope.player.resources.O2.number = 1e8;
+      spyOn(controller.numberGenerator, 'nextGaussian').and.returnValue(0);
+      
+      controller.update();
+      
+      // the logic is the following
+      // we start with 1000 O. Out of those, 5% react (50)
+      // the reactants are in total 1000 O and 100 O2, 1100
+      // for O2 we react around 90%, which is 45. However 45 is odd
+      // so we adjust down to 44. 44 O generate 22 O2.
+      // then we have 5 reactions of O with O2. We substract them
+      // and obtain the final values.
+      expect($scope.player.resources.O.number).toEqual(951);
+      expect($scope.player.resources.O2.number).toEqual(100000017);
+      expect($scope.player.resources.O3.number).toEqual(5);
+    });    
+    
+    it("should not process negative production", function() {
+      controller.populatePlayer();
+      $scope.player = controller.startPlayer;
+      $scope.player.resources.O.unlocked = true;
+      $scope.player.resources.O.number = 1000;
+      $scope.player.resources.O.unlocked = true;
+      $scope.player.resources.O2.number = 1000;
+      spyOn(controller.numberGenerator, 'nextGaussian').and.returnValue(-1e10);
+      
+      controller.update();
+      
+      // the logic is the following
+      // we start with 1000 O. Out of those, 5% react (50)
+      // the reactants are in total 1000 O and 100 O2, 1100
+      // for O2 we react around 90%, which is 45. However 45 is odd
+      // so we adjust down to 44. 44 O generate 22 O2.
+      // then we have 5 reactions of O with O2. We substract them
+      // and obtain the final values.
+      expect($scope.player.resources.O.number).toEqual(1000);
+      expect($scope.player.resources.O2.number).toEqual(1000);
+      expect($scope.player.resources.O3.number).toEqual(0);
+    });
+    
+    it("should not process negative production 2", function() {
+      controller.populatePlayer();
+      $scope.player = controller.startPlayer;
+      $scope.player.resources.O.unlocked = true;
+      $scope.player.resources.O.number = 1000;
+      $scope.player.resources.O.unlocked = true;
+      $scope.player.resources.O2.number = 1000;
+      spyOn(controller.numberGenerator, 'nextGaussian').and.returnValues(0,-1e10);
+      
+      controller.update();
+      
+      // the logic is the following
+      // we start with 1000 O. Out of those, 5% react (50)
+      // the reactants are in total 1000 O and 100 O2, 1100
+      // for O2 we react around 90%, which is 45. However 45 is odd
+      // so we adjust down to 44. 44 O generate 22 O2.
+      // then we have 5 reactions of O with O2. We substract them
+      // and obtain the final values.
+      expect($scope.player.resources.O.number).toEqual(950);
+      expect($scope.player.resources.O2.number).toEqual(950);
+      expect($scope.player.resources.O3.number).toEqual(50);
+    });
+    
+    it("should not process over production", function() {
+      controller.populatePlayer();
+      $scope.player = controller.startPlayer;
+      $scope.player.resources.O.unlocked = true;
+      $scope.player.resources.O.number = 1000;
+      $scope.player.resources.O.unlocked = true;
+      $scope.player.resources.O2.number = 1000;
+      spyOn(controller.numberGenerator, 'nextGaussian').and.returnValue(1e10);
+      
+      controller.update();
+      
+      // the logic is the following
+      // we start with 1000 O. Out of those, 5% react (50)
+      // the reactants are in total 1000 O and 100 O2, 1100
+      // for O2 we react around 90%, which is 45. However 45 is odd
+      // so we adjust down to 44. 44 O generate 22 O2.
+      // then we have 5 reactions of O with O2. We substract them
+      // and obtain the final values.
+      expect($scope.player.resources.O.number).toEqual(0);
+      expect($scope.player.resources.O2.number).toEqual(1500);
+      expect($scope.player.resources.O3.number).toEqual(0);
+    });
+  });
+  
   describe('xxxxxxxxxxxxxxxx', function() {   
     it("should ", function() {      
       //value = $scope.xxxxxx();

@@ -1,3 +1,4 @@
+pretest/
 node_modules/
 jasmine/coverage
 *~

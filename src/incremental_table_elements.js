@@ -45,7 +45,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
   $scope.toast = [];
   $scope.is_toast_visible = false;
 
-  var numberGenerator = new Ziggurat();
+  self.numberGenerator = new Ziggurat();
 
   self.populatePlayer = function () {
     this.startPlayer.resources = {};
@@ -122,7 +122,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     }
   };
 
-  $scope.$on("resource", function checkUnlock(event, item) {
+  self.checkUnlock = $scope.$on("resource", function (event, item) {
     $scope.player.resources[item].unlocked = true;
   });
 
@@ -389,6 +389,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
      */
   };
 
+  // TODO: the contract of this function should be that it doesn't produce numbers 
+  // above number or under 0, so that we remove that check from the caller
   self.simulateDecay = function (number, half_life) {
     // p is the decay constant
     var p = Math.log(2) / half_life;
@@ -401,14 +403,15 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
       // slow for large numbers.
       // there are fast formulas but I don't know
       // how good they are)
-      production = getPoisson(decay_per_second);
+      production = self.getPoisson(decay_per_second);
     } else {
       // Gaussian distribution
       var q = 1 - p;
+      // TODO repeated from before
       var mean = number * p;
       var variance = number * p * q;
       var std = Math.sqrt(variance);
-      production = Math.round(numberGenerator.nextGaussian() * std + mean);
+      production = Math.round(self.numberGenerator.nextGaussian() * std + mean);
     }
     return production;
   };
@@ -437,7 +440,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
         var half_life = $scope.resources[radioisotope].decay.half_life;
 
-        production = simulateDecay(number, half_life);
+        production = self.simulateDecay(number, half_life);
         if (production > number) {
           production = number;
         }
@@ -474,7 +477,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
         var number = $scope.player.resources[unstable].number;
         // p is the decay constant
         var half_life = $scope.resources[unstable].decay.half_life;
-        production = simulateDecay(number, half_life);
+        production = self.simulateDecay(number, half_life);
         if (production > number) {
           production = number;
         }
@@ -506,7 +509,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
         var mean = number * p;
         var variance = number * p * q;
         var std = Math.sqrt(variance);
-        production = Math.round(numberGenerator.nextGaussian() * std + mean);
+        production = Math.round(self.numberGenerator.nextGaussian() * std + mean);
 
         if (production > number) {
           production = number;
@@ -517,7 +520,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
         var reacted = {};
         var remaining_production = production;
-
         for (var j = 0; j < $scope.resources[radical].free_radical.reaction.length - 1; j++) {
           reaction = $scope.resources[radical].free_radical.reaction[j];
           var product = reaction.product;
@@ -530,6 +532,9 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
             var chance = $scope.resources[radical].free_radical.reaction[k].chance;
             reactants_number += $scope.player.resources[reactant].number * chance;
           }
+          // I think per the game semantics this can't happen. If this number
+          // is 0 its because a) there are no more reactions, and therefore it 
+          // would be out of the loop, or the probabilities are 0, which is nonsense
           if (reactants_number === 0) {
             var p = 0;
           } else {
@@ -543,7 +548,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
           var mean = remaining_production * p;
           var variance = remaining_production * p * q;
           var std = Math.sqrt(variance);
-          reacted[product] = Math.round(numberGenerator.nextGaussian() * std + mean);
+
+          reacted[product] = Math.round(self.numberGenerator.nextGaussian() * std + mean);
           if (reacted[product] > remaining_production) {
             reacted[product] = remaining_production;
           }
@@ -617,7 +623,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
         var mean = remaining_N * p;
         var variance = remaining_N * p * q;
         var std = Math.sqrt(variance);
-        production = Math.round(numberGenerator.nextGaussian() * std + mean);
+        production = Math.round(self.numberGenerator.nextGaussian() * std + mean);
+
         if (production > remaining_N) {
           production = remaining_N;
         }

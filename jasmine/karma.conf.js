@@ -15,7 +15,7 @@ module.exports = function(config) {
     browsers: ['PhantomJS'],
     singleRun: true,
     reporters: ['progress', 'coverage'],
-    preprocessors: { '../src/*.js': ['coverage'] },
+    preprocessors: { '../src/incremental_table_elements.js': ['coverage'] },
     coverageReporter: {
       type: "lcov",
       dir: "coverage/"
