@@ -143,18 +143,18 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     return Math.ceil(price);
   };
 
-  $scope.synthesisMultiplier = function (element, synthesis) {
+  $scope.synthesisMultiplier = function (synthesis) {
     var level = $scope.player.synthesis[synthesis].number;
     return Math.ceil(Math.pow($scope.synthesis_price_increase, level));
   };
 
-  $scope.synthesisPower = function (element, synthesis) {
+  $scope.synthesisPower = function (synthesis) {
     var level = $scope.player.synthesis[synthesis].active;
     return Math.ceil(Math.pow(level, $scope.synthesis_power_increase));
   };
 
-  $scope.synthesisPrice = function (element, synthesis) {
-    var multiplier = $scope.synthesisMultiplier(element, synthesis);
+  $scope.synthesisPrice = function (synthesis) {
+    var multiplier = $scope.synthesisMultiplier(synthesis);
     var price = {};
     var reactant = $scope.synthesis[synthesis].reactant;
     for ( var resource in reactant) {
@@ -165,8 +165,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
   // this can be refactored and merged into reaction
   // cost
-  $scope.isSynthesisCostMet = function (element, synthesis) {
-    var price = $scope.synthesisPrice(element, synthesis);
+  $scope.isSynthesisCostMet = function (synthesis) {
+    var price = $scope.synthesisPrice(synthesis);
     for ( var resource in price) {
       if ($scope.player.resources[resource].number < price[resource]) {
         return false;
@@ -175,13 +175,11 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     return true;
   };
 
-  // merge the single one into this
-  $scope.buySynthesiss = function (element, synthesis, number) {
+  $scope.buySynthesis = function (synthesis, number) {
     var i = 0;
-    // yes, yes, I know that using a loop is cheap,
-    // will refactor...
-    while (i < number && $scope.isSynthesisCostMet(element, synthesis)) {
-      var price = $scope.synthesisPrice(element, synthesis);
+    // We need a loop since we use the ceil operator
+    while (i < number && $scope.isSynthesisCostMet(synthesis)) {
+      var price = $scope.synthesisPrice(synthesis);
       for ( var resource in price) {
         $scope.player.resources[resource].number -= price[resource];
       }
@@ -199,12 +197,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     return html;
   };
 
-  // merge the single one into this
   $scope.buyGenerators = function (name, element, number) {
     var price = $scope.generatorPrice(name, element);
     var i = 0;
-    // yes, yes, I know that using a loop is cheap,
-    // will refactor...
+ // We need a loop since we use the ceil operator
     while (i < number && $scope.player.resources[element].number >= price) {
       $scope.player.resources[element].number -= price;
       $scope.player.elements[element].generators[name].level++;
@@ -357,7 +353,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     }
   };
 
-  $scope.exportSave = function exportSave() {
+  $scope.exportSave = function () {
     var exportText = btoa(JSON.stringify($scope.player));
 
     $("#exportSaveContents").toggle();
@@ -365,7 +361,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     $("#exportSaveText").select();
   };
 
-  $scope.importSave = function importSave() {
+  $scope.importSave = function () {
     var importText = prompt("Paste the text you were given by the export save dialog here.\n" + 
         "Warning: this will erase your current save!");
     if (importText) {
@@ -398,6 +394,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     // var decay_per_second = (1 - Math.exp(-p)) *
     // number; <-no need for this unless p > ~0.05
     var decay_per_second = p * number;
+    var production = 0;
     if (decay_per_second < 5) {
       // using Poisson distribution (would get
       // slow for large numbers.
@@ -540,10 +537,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
           } else {
             var p = $scope.player.resources[reaction.reactant].number / reactants_number;
           }
-          // weight the probability by the
-          // chance of the reaction
-          // p =
-          // p*$scope.resources[radical].free_radical.reaction[j].chance;
           var q = 1 - p;
           var mean = remaining_production * p;
           var variance = remaining_production * p * q;
@@ -647,7 +640,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
     // We will process the synthesis reactions
     for ( var synthesis in $scope.player.synthesis) {
-      var power = $scope.synthesisPower(element, synthesis);
+      var power = $scope.synthesisPower(synthesis);
       if (power !== 0) {
         $scope.react(power, $scope.synthesis[synthesis]);
       }
@@ -818,6 +811,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
                                                 '-bootstrap.min.css';
   };
 
+  self.logn = function(number, base){
+    return Math.log(number)/Math.log(base);
+  };
+  
   /**
    * Simply compares two string version values.
    * 

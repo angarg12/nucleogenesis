@@ -681,7 +681,7 @@ describe("Incremental table elements", function() {
       $scope.player.synthesis['H-p'] = {};
       $scope.player.synthesis['H-p'].number = 0;
       
-      value = $scope.isSynthesisCostMet('H', 'H-p');
+      value = $scope.isSynthesisCostMet('H-p');
       
       expect(value).toEqual(false);
     });  
@@ -695,7 +695,7 @@ describe("Incremental table elements", function() {
       $scope.player.synthesis['H-p'] = {};
       $scope.player.synthesis['H-p'].number = 0;
       
-      value = $scope.isSynthesisCostMet('H', 'H-p');
+      value = $scope.isSynthesisCostMet('H-p');
       
       expect(value).toEqual(false);
     });
@@ -709,7 +709,7 @@ describe("Incremental table elements", function() {
       $scope.player.synthesis['H-p'] = {};
       $scope.player.synthesis['H-p'].number = 0;
       
-      value = $scope.isSynthesisCostMet('H', 'H-p');
+      value = $scope.isSynthesisCostMet('H-p');
       
       expect(value).toEqual(true);
     });
@@ -796,7 +796,7 @@ describe("Incremental table elements", function() {
       $scope.player.synthesis.H2O = {};    
       $scope.player.synthesis.H2O.number = 2;
     
-      value = $scope.synthesisPrice('H','H2O');
+      value = $scope.synthesisPrice('H2O');
       
       expect(value).toEqual({'H2':4,'O2':2});
     });
@@ -982,7 +982,7 @@ describe("Incremental table elements", function() {
       $scope.player.resources['O2'] = {number:32};
       $scope.player.synthesis['H2O'] = {number:1};
       
-      $scope.buySynthesiss("H",'H2O',3);
+      $scope.buySynthesis('H2O',3);
       
       expect($scope.player.resources['H2'].number).toEqual(20);
       expect($scope.player.resources['O2'].number).toEqual(26);
@@ -996,7 +996,7 @@ describe("Incremental table elements", function() {
       $scope.player.resources['O2'] = {number:32};
       $scope.player.synthesis['H2O'] = {number:1};
       
-      $scope.buySynthesiss("H",'H2O',3);
+      $scope.buySynthesis('H2O',3);
       
       expect($scope.player.resources['H2'].number).toEqual(2);
       expect($scope.player.resources['O2'].number).toEqual(28);
@@ -1010,7 +1010,7 @@ describe("Incremental table elements", function() {
       $scope.player.resources['O2'] = {number:32};
       $scope.player.synthesis['H2O'] = {number:1};
       
-      $scope.buySynthesiss("H",'H2O',-3);
+      $scope.buySynthesis('H2O',-3);
       
       expect($scope.player.resources['H2'].number).toEqual(32);
       expect($scope.player.resources['O2'].number).toEqual(32);
@@ -1024,7 +1024,7 @@ describe("Incremental table elements", function() {
       $scope.player.resources['O2'] = {number:32};
       $scope.player.synthesis['H2O'] = {number:1};
       
-      $scope.buySynthesiss("H",'H2O',3);
+      $scope.buySynthesis('H2O',3);
       
       expect($scope.player.resources['H2'].number).toEqual(2);
       expect($scope.player.resources['O2'].number).toEqual(32);
@@ -1524,9 +1524,9 @@ describe("Incremental table elements", function() {
       expect($scope.player.resources.O3.number).toEqual(0);
     });
   });
-  
-  describe('xxxxxxxxxxxxxxxx', function() {   
-    it("should ", function() {      
+
+  describe('xxxxxxxxxxxxxxxx', function() {
+    it("should ", function() {
       //value = $scope.xxxxxx();
       
       //expect(value).toEqual('xxxxxx');

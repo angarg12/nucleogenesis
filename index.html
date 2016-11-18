@@ -234,7 +234,7 @@
                               <div class="pull-left"
                                 ng-class="{'text-muted': player.synthesis[syn].active <= 0}">
                                 <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.synthesis[syn].is_new"></span>
-                                <span ng-bind-html="trustHTML(reactionFormat(synthesisPower(current_element, syn),synthesis[syn]))"></span>
+                                <span ng-bind-html="trustHTML(reactionFormat(synthesisPower(syn),synthesis[syn]))"></span>
                               </div>
                             </td>
                             <td class="col-md-1">
@@ -265,24 +265,24 @@
                             </td>
                             <td class="col-md-2">
                               <div class="pull-left">
-                                <span ng-bind-html="trustHTML(compoundFormat(synthesisMultiplier(current_element, syn),synthesis[syn].reactant))"></span>
+                                <span ng-bind-html="trustHTML(compoundFormat(synthesisMultiplier(syn),synthesis[syn].reactant))"></span>
                               </div>
                             </td>
                             <td class="col-md-3">
                               <div class="pull-left">
                                 <button class="btn btn-default button-small"
-                                  ng-click="buySynthesiss(current_element, syn, 1)"
-                                  ng-class="{disabled: !isSynthesisCostMet(current_element, syn)}">1</button>
+                                  ng-click="buySynthesis(syn, 1)"
+                                  ng-class="{disabled: !isSynthesisCostMet(syn)}">1</button>
                               </div>
                               <div class="pull-left">
                                 <button class="btn btn-default button-small"
-                                  ng-click="buySynthesiss(current_element, syn, 10)"
-                                  ng-class="{disabled: !isSynthesisCostMet(current_element, syn)}">10</button>
+                                  ng-click="buySynthesis(syn, 10)"
+                                  ng-class="{disabled: !isSynthesisCostMet(syn)}">10</button>
                               </div>
                               <div class="pull-left">
                                 <button class="btn btn-default button-small"
-                                  ng-click="buySynthesiss(current_element, syn, 1/0)"
-                                  ng-class="{disabled: !isSynthesisCostMet(current_element, syn)}">&#8892;</button>
+                                  ng-click="buySynthesis(syn, 1/0)"
+                                  ng-class="{disabled: !isSynthesisCostMet(syn)}">&#8892;</button>
                               </div>
                             </td>
                           </tr>
