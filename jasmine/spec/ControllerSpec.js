@@ -1219,6 +1219,22 @@ describe("Incremental table elements", function() {
       
       expect(value).toEqual(16);
     });
+    
+    it("should not return negative value", function() {
+      spyOn(controller.numberGenerator,'nextGaussian').and.returnValues(-1000);
+      
+      value = controller.simulateDecay(1000, 50);
+      
+      expect(value).toEqual(0);
+    });
+    
+    it("should not return overproduction", function() {
+      spyOn(controller.numberGenerator,'nextGaussian').and.returnValues(1000);
+      
+      value = controller.simulateDecay(1000, 50);
+      
+      expect(value).toEqual(1000);
+    });
   });
   
   describe('update', function() {
@@ -1342,36 +1358,6 @@ describe("Incremental table elements", function() {
       expect($scope.player.resources.eV.number).toEqual(9305000);
     });
     
-    it("should not process negative production", function() {
-      controller.populatePlayer();
-      $scope.player = controller.startPlayer;
-      $scope.player.resources['3H'].unlocked = true;
-      $scope.player.resources['3H'].number = 1000;
-      spyOn(controller, 'simulateDecay').and.returnValue(-100);
-      
-      controller.update();
-      
-      expect($scope.player.resources['3H'].number).toEqual(1000);
-      expect($scope.player.resources['3He+1'].number).toEqual(0);
-      expect($scope.player.resources['e-'].number).toEqual(0);
-      expect($scope.player.resources.eV.number).toEqual(0);
-    });
-    
-    it("should not process over production", function() {
-      controller.populatePlayer();
-      $scope.player = controller.startPlayer;
-      $scope.player.resources['3H'].unlocked = true;
-      $scope.player.resources['3H'].number = 1000;
-      spyOn(controller, 'simulateDecay').and.returnValue(10000);
-      
-      controller.update();
-      
-      expect($scope.player.resources['3H'].number).toEqual(0);
-      expect($scope.player.resources['3He+1'].number).toEqual(1000);
-      expect($scope.player.resources['e-'].number).toEqual(1000);
-      expect($scope.player.resources.eV.number).toEqual(18610000);
-    });
-    
     it("should process unstables", function() {
       controller.populatePlayer();
       $scope.player = controller.startPlayer;
@@ -1400,36 +1386,6 @@ describe("Incremental table elements", function() {
       expect($scope.player.resources.O3.number).toEqual(500);
       expect($scope.player.resources.O2.number).toEqual(500);
       expect($scope.player.resources.O.number).toEqual(500);
-    });
-    
-    it("should not process negative production", function() {
-      controller.populatePlayer();
-      $scope.player = controller.startPlayer;
-      $scope.player.resources.O3.unlocked = true;
-      $scope.player.resources.O3.number = 1000;
-      spyOn(controller, 'simulateDecay').and.returnValue(-100);
-      
-      controller.update();
-      
-      expect($scope.player.resources.O3.number).toEqual(1000);
-      expect($scope.player.resources.O2.number).toEqual(0);
-      expect($scope.player.resources.O.number).toEqual(0);
-    });
-    
-    it("should not process over production", function() {
-      controller.populatePlayer();
-      $scope.player = controller.startPlayer;
-      $scope.player.resources.O3.unlocked = true;
-      $scope.player.resources.O3.number = 1000;
-      spyOn(controller, 'simulateDecay').and.returnValue(10000);
-      // clear this subscriber to avoid side effects
-      controller.checkUnlock();
-      
-      controller.update();
-      
-      expect($scope.player.resources.O3.number).toEqual(0);
-      expect($scope.player.resources.O2.number).toEqual(1000);
-      expect($scope.player.resources.O.number).toEqual(1000);
     });
     
     it("should process radicals", function() {

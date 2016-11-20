@@ -385,8 +385,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
      */
   };
 
-  // TODO: the contract of this function should be that it doesn't produce numbers 
-  // above number or under 0, so that we remove that check from the caller
   self.simulateDecay = function (number, half_life) {
     // p is the decay constant
     var p = Math.log(2) / half_life;
@@ -394,7 +392,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     // var decay_per_second = (1 - Math.exp(-p)) *
     // number; <-no need for this unless p > ~0.05
     var decay_per_second = p * number;
-    var production = 0;
+    var production;
     if (decay_per_second < 5) {
       // using Poisson distribution (would get
       // slow for large numbers.
@@ -404,11 +402,15 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     } else {
       // Gaussian distribution
       var q = 1 - p;
-      // TODO repeated from before
-      var mean = number * p;
       var variance = number * p * q;
       var std = Math.sqrt(variance);
-      production = Math.round(self.numberGenerator.nextGaussian() * std + mean);
+      production = Math.round(self.numberGenerator.nextGaussian() * std + decay_per_second);
+    }
+    if (production > number) {
+      production = number;
+    }
+    if (production < 0) {
+      production = 0;
     }
     return production;
   };
@@ -438,12 +440,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
         var half_life = $scope.resources[radioisotope].decay.half_life;
 
         production = self.simulateDecay(number, half_life);
-        if (production > number) {
-          production = number;
-        }
-        if (production < 0) {
-          production = 0;
-        }
         // we decrease the number of radioactive
         // element
         $scope.player.resources[radioisotope].number -= production;
@@ -475,12 +471,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
         // p is the decay constant
         var half_life = $scope.resources[unstable].decay.half_life;
         production = self.simulateDecay(number, half_life);
-        if (production > number) {
-          production = number;
-        }
-        if (production < 0) {
-          production = 0;
-        }
         // we decrease the number of unstable
         // element
         $scope.player.resources[unstable].number -= production;
