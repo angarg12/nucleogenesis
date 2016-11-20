@@ -760,25 +760,16 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     return unlocked;
   };
 
-  // these two functions are always called together
-  // and therefore can be merged
-  $scope.visible = function (map) {
+  $scope.visibleKeys = function (map) {
     var result = {};
     for ( var key in map) {
       if (map[key].visible()) {
         result[key] = map[key];
       }
     }
-    return result;
+    return Object.keys(result);
   };
 
-  $scope.keys = function (obj) {
-    return obj ? Object.keys(obj) : [];
-  };
-
-  // We need to double define this functions to be
-  // available in the controller and
-  // inside of the timeout closure
   self.introAnimation = function () {
     $timeout(function () {
       self.introStep("banner");

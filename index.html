@@ -43,7 +43,7 @@
         <div>
           <div class="ng-scope ng-isolate-scope animif" ng-show="player.intro.menu">
             <ul class="nav nav-tabs ng-scope" role="tablist">
-              <li class="animif" ng-repeat="tab in keys(visible(tabs))" 
+              <li class="animif" ng-repeat="tab in visibleKeys(tabs))" 
                 ng-class="{active: current_tab === tab}">
                 <a class="ng-binding" ng-click="updateCurrent('current_tab',tab)"> {{tab}} 
                 <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="tabs[tab].has_new()"></span>
@@ -68,7 +68,7 @@
                   <div>
                     <table class="table">
                       <tbody>
-                        <tr class="animif" ng-repeat="name in keys(visible(generators))">
+                        <tr class="animif" ng-repeat="name in visibleKeys(generators))">
                           <td class="animif col-md-3">
                             <span class="pull-left">
                             {{name}}:&nbsp;
@@ -112,20 +112,20 @@
                     </table>
                   </div>
                   <div ng-if="player.unlocks.reactions && (
-                    keys(visible(reactions[current_element].ionization)).length > 0 ||
-                    keys(visible(reactions[current_element].electron_affinity)).length > 0 || 
-                    keys(visible(reactions[current_element].binding_energy)).length > 0 ||
-                    keys(visible(synthesis)).length > 0)">
+                    visibleKeys(reactions[current_element].ionization)).length > 0 ||
+                    visibleKeys(reactions[current_element].electron_affinity)).length > 0 || 
+                    visibleKeys(reactions[current_element].binding_energy)).length > 0 ||
+                    visibleKeys(synthesis)).length > 0)">
                     <hr>
-                    <div ng-if="keys(visible(reactions[current_element].ionization)).length > 0 ||
-                      keys(visible(reactions[current_element].electron_affinity)).length > 0 || 
-                      keys(visible(reactions[current_element].binding_energy)).length > 0">
+                    <div ng-if="visibleKeys(reactions[current_element].ionization)).length > 0 ||
+                      visibleKeys(reactions[current_element].electron_affinity)).length > 0 || 
+                      visibleKeys(reactions[current_element].binding_energy)).length > 0">
                       <h3>Reactions</h3>
-                      <div ng-if="keys(visible(reactions[current_element].ionization)).length > 0">
+                      <div ng-if="visibleKeys(reactions[current_element].ionization)).length > 0">
                         <h4>Ionization</h4>
                         <table class="table">
                           <tbody>
-                            <tr class="animif" ng-repeat="key in keys(visible(reactions[current_element].ionization))">
+                            <tr class="animif" ng-repeat="key in visibleKeys(reactions[current_element].ionization))">
 							  <td class="col-md-1">							
 								<div class="pull-left">
 								  <button class="btn btn-default button-small glyphicon glyphicon-refresh" 
@@ -156,11 +156,11 @@
                           </tbody>
                         </table>
                       </div>
-                      <div ng-if="keys(visible(reactions[current_element].electron_affinity)).length > 0">
+                      <div ng-if="visibleKeys(reactions[current_element].electron_affinity)).length > 0">
                         <h4>Electron affinity</h4>
                         <table class="table">
                           <tbody>
-                            <tr class="animif" ng-repeat="key in keys(visible(reactions[current_element].electron_affinity))">
+                            <tr class="animif" ng-repeat="key in visibleKeys(reactions[current_element].electron_affinity))">
 							  <td class="col-md-1">							
 								<div class="pull-left">
 								  <button class="btn btn-default button-small glyphicon glyphicon-refresh" 
@@ -190,11 +190,11 @@
                           </tbody>
                         </table>
                       </div>
-                      <div ng-if="keys(visible(reactions[current_element].binding_energy)).length > 0">
+                      <div ng-if="visibleKeys(reactions[current_element].binding_energy)).length > 0">
                         <h4>Binding energy</h4>
                         <table class="table">
                           <tbody>
-                            <tr class="animif" ng-repeat="key in keys(visible(reactions[current_element].binding_energy))">
+                            <tr class="animif" ng-repeat="key in visibleKeys(reactions[current_element].binding_energy))">
                               <td class="col-md-8" width=50%>
                                 <div class="pull-left">
                                   <span ng-bind-html="trustHTML(reactionFormat(reactions[current_element].binding_energy[key].number,reactions[current_element].binding_energy[key]))"></span>
@@ -217,11 +217,11 @@
                         </table>
                       </div>
                     </div>
-                    <div ng-if="keys(visible(synthesis)).length > 0">
+                    <div ng-if="visibleKeys(synthesis)).length > 0">
                       <h3>Synthesis</h3>
                       <table class="table">
                         <tbody>
-                          <tr class="animif" ng-repeat="syn in keys(visible(synthesis))"
+                          <tr class="animif" ng-repeat="syn in visibleKeys(synthesis))"
                             ng-mouseover="player.synthesis[syn].is_new = false">
                             <td class="col-md-1">							
                               <div class="pull-left">
@@ -295,7 +295,7 @@
                     <h4>Upgrades</h4>
                     <table class="table">
                       <tbody>
-                        <tr class="animif" ng-repeat="generator in keys(visible(generators))|filter:filterUpgrade">
+                        <tr class="animif" ng-repeat="generator in visibleKeys(generators))|filter:filterUpgrade">
                           <td class="animif col-md-2">
                             <div class="pull-left">
                               {{generator}}
@@ -322,7 +322,7 @@
               </div>
               <div class="col-lg-3 col-lg-pull-8">
                 <table class="table table-hover element-table no_bottom" data-spy="affix" data-offset-top="150">
-                  <tbody class="animif" ng-repeat="key in keys(visible(resources))" 
+                  <tbody class="animif" ng-repeat="key in visibleKeys(resources))" 
                     ng-mouseover="player.resources[key].is_new = false"
                     class="">
                     <tr>
@@ -370,10 +370,10 @@
                   </tbody>
                 </table>
               </div>
-              <div class="col-lg-1 col-lg-pull-0 right-box" ng-if="keys(visible(elements)).length > 1">
+              <div class="col-lg-1 col-lg-pull-0 right-box" ng-if="visibleKeys(elements)).length > 1">
                 <table class="table table-hover element-table">
                   <tbody>
-                    <tr class="animif" ng-repeat="key in keys(visible(elements))" ng-class="{active:current_element===key}">
+                    <tr class="animif" ng-repeat="key in visibleKeys(elements))" ng-class="{active:current_element===key}">
                       <td>
                         <div class="pull-left" ng-click="updateCurrent('current_element', key)">
                           <a>
@@ -398,7 +398,7 @@
               <div class="col-lg-3 col-lg-pull-9">
                 <table class="table table-hover element-table no_bottom">
                   <tbody>
-                    <tr class="animif" ng-repeat="entry in keys(visible(encyclopedia))" ng-mouseover="player.encyclopedia[entry].is_new = false" ng-click="updateCurrent('current_entry', entry)">
+                    <tr class="animif" ng-repeat="entry in visibleKeys(encyclopedia))" ng-mouseover="player.encyclopedia[entry].is_new = false" ng-click="updateCurrent('current_entry', entry)">
                       <td width=15%><span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.encyclopedia[entry].is_new"></span></td>
                       <td><a>{{entry}}</a></td>
                     </tr>
@@ -461,7 +461,7 @@
               </div>
               <div class="col-lg-2 col-lg-pull-10">
                 <table class="table table-hover element-table no_bottom">
-                  <tbody class="animif" ng-repeat="key in keys(visible(resources))">
+                  <tbody class="animif" ng-repeat="key in visibleKeys(resources))">
                     <tr>
                       <td width=15%>
                         <span class="pull-left by-icon" ng-bind-html="trustHTML(getHTML(key))"></span>
