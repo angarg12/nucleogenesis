@@ -163,8 +163,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     return price;
   };
 
-  // this can be refactored and merged into reaction
-  // cost
   $scope.isSynthesisCostMet = function (synthesis) {
     var price = $scope.synthesisPrice(synthesis);
     for ( var resource in price) {
@@ -177,7 +175,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
   $scope.buySynthesis = function (synthesis, number) {
     var i = 0;
-    // We need a loop since we use the ceil operator
+    // we need a loop since we use the ceil operator
     while (i < number && $scope.isSynthesisCostMet(synthesis)) {
       var price = $scope.synthesisPrice(synthesis);
       for ( var resource in price) {
@@ -190,17 +188,19 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
   $scope.getHTML = function (resource) {
     var html = $scope.html[resource];
-    if (html === undefined)
+    if (html === undefined){
       html = $scope.resources[resource].html;
-    if (html === undefined)
+    }
+    if (html === undefined){
       return resource;
+    }
     return html;
   };
 
   $scope.buyGenerators = function (name, element, number) {
     var price = $scope.generatorPrice(name, element);
     var i = 0;
- // We need a loop since we use the ceil operator
+    // we need a loop since we use the ceil operator
     while (i < number && $scope.player.resources[element].number >= price) {
       $scope.player.resources[element].number -= price;
       $scope.player.elements[element].generators[name].level++;
@@ -269,19 +269,19 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
       return;
     }
     if ($scope.isReactionCostMet(number, reaction)) {
-      var keys = Object.keys(reaction.reactant);
-      for (var i = 0; i < keys.length; i++) {
-        var required = Number.parseFloat((number * reaction.reactant[keys[i]]).toFixed(4));
-        $scope.player.resources[keys[i]].number -= required;
-        $scope.player.resources[keys[i]].number = Number.parseFloat($scope.player.resources[keys[i]].number
+      var reactant = Object.keys(reaction.reactant);
+      for (var i = 0; i < reactant.length; i++) {
+        var required = Number.parseFloat((number * reaction.reactant[reactant[i]]).toFixed(4));
+        $scope.player.resources[reactant[i]].number -= required;
+        $scope.player.resources[reactant[i]].number = Number.parseFloat($scope.player.resources[reactant[i]].number
             .toFixed(4));
       }
-      var keys = Object.keys(reaction.product);
-      for (var i = 0; i < keys.length; i++) {
-        var produced = number * reaction.product[keys[i]];
-        var current = $scope.player.resources[keys[i]].number;
-        $scope.player.resources[keys[i]].number = Number.parseFloat((current + produced).toFixed(4));
-        $scope.$emit("resource", keys[i]);
+      var product = Object.keys(reaction.product);
+      for (var i = 0; i < product.length; i++) {
+        var produced = number * reaction.product[product[i]];
+        var current = $scope.player.resources[product[i]].number;
+        $scope.player.resources[product[i]].number = Number.parseFloat((current + produced).toFixed(4));
+        $scope.$emit("resource", product[i]);
       }
     }
   };
@@ -449,9 +449,9 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
         $scope.player.resources[radioisotope].number -= production;
         // produce energy
         if ($scope.resources[radioisotope].decay.decay_energy * production > 0) {
-          $scope.player.resources.energy.number += Number
+          $scope.player.resources.eV.number += Number
               .parseFloat(($scope.resources[radioisotope].decay.decay_energy * production).toFixed(4));
-          $scope.$emit("resource", "energy");
+          $scope.$emit("resource", "eV");
           $scope.$emit("decay", $scope.resources[radioisotope].decay.decay_type);
         }
         // and decay products
@@ -685,7 +685,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     var format = '<span class="icon">&#8594;</span>';
     format += $scope.compoundFormat(1, decay.decay_product);
     if (decay.decay_energy) {
-      format += " + " + $scope.prettifyNumber(decay.decay_energy) + ' ' + $scope.getHTML('energy');
+      format += " + " + $scope.prettifyNumber(decay.decay_energy) + ' ' + $scope.getHTML('eV');
     }
     return format;
   };

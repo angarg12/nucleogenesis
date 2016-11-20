@@ -323,12 +323,12 @@ describe("Incremental table elements", function() {
   describe('misc functions', function() {
     it("should catch resource event", function() {
       $scope.player = {resources:{}};
-      $scope.player.resources['H'] = {unlocked:false}
+      $scope.player.resources.H = {unlocked:false}
       $scope.$emit("resource","H");    
       
       controller.checkUnlocks();
       
-      expect($scope.player.resources['H'].unlocked).toEqual(true);
+      expect($scope.player.resources.H.unlocked).toEqual(true);
     });
 
     it("should return globally defined HTML code", function() {
@@ -624,8 +624,8 @@ describe("Incremental table elements", function() {
       $scope.player = {};
       $scope.player.resources = {};
       $scope.player.resources['e-'] = {number:0};
-			$scope.player.resources['p'] = {number:300};
-			$scope.player.resources['n'] = {number:300};
+			$scope.player.resources.p = {number:300};
+			$scope.player.resources.n = {number:300};
       //$scope.player.elements_unlocked = 1;
     
       value = $scope.isElementCostMet('O');
@@ -637,8 +637,8 @@ describe("Incremental table elements", function() {
       $scope.player = {};
       $scope.player.resources = {};
       $scope.player.resources['e-'] = {number:300};
-			$scope.player.resources['p'] = {number:0};
-			$scope.player.resources['n'] = {number:300};
+			$scope.player.resources.p = {number:0};
+			$scope.player.resources.n = {number:300};
       $scope.player.elements_unlocked = 1;
     
       value = $scope.isElementCostMet('O');
@@ -650,8 +650,8 @@ describe("Incremental table elements", function() {
       $scope.player = {};
       $scope.player.resources = {};
       $scope.player.resources['e-'] = {number:300};
-			$scope.player.resources['p'] = {number:300};
-			$scope.player.resources['n'] = {number:0};
+			$scope.player.resources.p = {number:300};
+			$scope.player.resources.n = {number:0};
       $scope.player.elements_unlocked = 1;
     
       value = $scope.isElementCostMet('O');
@@ -663,8 +663,8 @@ describe("Incremental table elements", function() {
       $scope.player = {};
       $scope.player.resources = {};
       $scope.player.resources['e-'] = {number:300};
-			$scope.player.resources['p'] = {number:300};
-			$scope.player.resources['n'] = {number:300};
+			$scope.player.resources.p = {number:300};
+			$scope.player.resources.n = {number:300};
       $scope.player.elements_unlocked = 1;
     
       value = $scope.isElementCostMet('O');
@@ -676,7 +676,7 @@ describe("Incremental table elements", function() {
       $scope.player = {};
       $scope.player.resources = {};
       $scope.player.resources['H-'] = {number:0};
-			$scope.player.resources['p'] = {number:10};
+			$scope.player.resources.p = {number:10};
 			$scope.player.synthesis = {};
       $scope.player.synthesis['H-p'] = {};
       $scope.player.synthesis['H-p'].number = 0;
@@ -690,7 +690,7 @@ describe("Incremental table elements", function() {
       $scope.player = {};
       $scope.player.resources = {};
       $scope.player.resources['H-'] = {number:2};
-			$scope.player.resources['p'] = {number:0};
+			$scope.player.resources.p = {number:0};
       $scope.player.synthesis = {};
       $scope.player.synthesis['H-p'] = {};
       $scope.player.synthesis['H-p'].number = 0;
@@ -704,7 +704,7 @@ describe("Incremental table elements", function() {
       $scope.player = {};
       $scope.player.resources = {};
       $scope.player.resources['H-'] = {number:2};
-			$scope.player.resources['p'] = {number:10};
+			$scope.player.resources.p = {number:10};
       $scope.player.synthesis = {};
       $scope.player.synthesis['H-p'] = {};
       $scope.player.synthesis['H-p'].number = 0;
@@ -717,8 +717,8 @@ describe("Incremental table elements", function() {
     it("should check if the cost of a reaction is met", function() {  
       $scope.player = {};
       $scope.player.resources = {};
-      $scope.player.resources['H'] = {number:0};
-			$scope.player.resources['energy'] = {number:15};
+      $scope.player.resources.H = {number:0};
+			$scope.player.resources.eV = {number:15};
 
       value = $scope.isReactionCostMet(1, $scope.reactions.H.ionization['1']);
       
@@ -728,8 +728,8 @@ describe("Incremental table elements", function() {
     it("should check if the cost of a reaction is met 2", function() {  
       $scope.player = {};
       $scope.player.resources = {};
-      $scope.player.resources['H'] = {number:5};
-			$scope.player.resources['energy'] = {number:5};
+      $scope.player.resources.H = {number:5};
+			$scope.player.resources.eV = {number:5};
       
       value = $scope.isReactionCostMet(1, $scope.reactions.H.ionization['1']);
       
@@ -739,8 +739,8 @@ describe("Incremental table elements", function() {
     it("should check if the cost of a reaction is met 3", function() {  
       $scope.player = {};
       $scope.player.resources = {};
-      $scope.player.resources['H'] = {number:50};
-			$scope.player.resources['energy'] = {number:50};
+      $scope.player.resources.H = {number:50};
+			$scope.player.resources.eV = {number:50};
 
       value = $scope.isReactionCostMet(10, $scope.reactions.H.ionization['1']);
       
@@ -750,8 +750,8 @@ describe("Incremental table elements", function() {
     it("should check if the cost of a reaction is met 4", function() {  
       $scope.player = {};
       $scope.player.resources = {};
-      $scope.player.resources['H'] = {number:5};
-			$scope.player.resources['energy'] = {number:50};
+      $scope.player.resources.H = {number:5};
+			$scope.player.resources.eV = {number:50};
       
       value = $scope.isReactionCostMet(1, $scope.reactions.H.ionization['1']);
       
@@ -761,8 +761,8 @@ describe("Incremental table elements", function() {
     it("should check if the cost of a reaction is met 5", function() {  
       $scope.player = {};
       $scope.player.resources = {};
-      $scope.player.resources['H'] = {number:50};
-			$scope.player.resources['energy'] = {number:500};
+      $scope.player.resources.H = {number:50};
+			$scope.player.resources.eV = {number:500};
 
       value = $scope.isReactionCostMet(10, $scope.reactions.H.ionization['1']);
       
@@ -772,8 +772,8 @@ describe("Incremental table elements", function() {
     it("should return the price of a generator", function() {  
       $scope.player = {};
       $scope.player.elements = {'H':{}};
-      $scope.player.elements['H'] = {'generators':{}};
-      $scope.player.elements['H'].generators['Tier 1'] = {'level':5};
+      $scope.player.elements.H = {'generators':{}};
+      $scope.player.elements.H.generators['Tier 1'] = {'level':5};
 
       value = $scope.generatorPrice('Tier 1','H');
       
@@ -783,8 +783,8 @@ describe("Incremental table elements", function() {
     it("should return the price of a generator 2", function() {  
       $scope.player = {};
       $scope.player.elements = {'H':{}};
-      $scope.player.elements['H'] = {'generators':{}};
-      $scope.player.elements['H'].generators['Tier 3'] = {'level':10};
+      $scope.player.elements.H = {'generators':{}};
+      $scope.player.elements.H.generators['Tier 3'] = {'level':10};
     
       value = $scope.generatorPrice('Tier 3','H');
       
@@ -803,10 +803,10 @@ describe("Incremental table elements", function() {
     
     it("should return the las tier upgrade price", function() {  
       $scope.player = {elements:{}};
-      $scope.player.elements['H'] = {upgrades:{}};
-      $scope.player.elements['H'].upgrades['Tier 1-1'] = {bought:true};      
-      $scope.player.elements['H'].upgrades['Tier 1-2'] = {bought:true};
-      $scope.player.elements['H'].upgrades['Tier 1-3'] = {bought:false};
+      $scope.player.elements.H = {upgrades:{}};
+      $scope.player.elements.H.upgrades['Tier 1-1'] = {bought:true};      
+      $scope.player.elements.H.upgrades['Tier 1-2'] = {bought:true};
+      $scope.player.elements.H.upgrades['Tier 1-3'] = {bought:false};
       $scope.current_element = 'H';
     
       value = $scope.lastUpgradeTierPrice('Tier 1');
@@ -816,21 +816,21 @@ describe("Incremental table elements", function() {
     
     it("should return null if all upgrades are bought", function() {  
       $scope.player = {elements:{}};
-      $scope.player.elements['H'] = {upgrades:{}};
-      $scope.player.elements['H'].upgrades['Tier 1-1'] = {bought:true};      
-      $scope.player.elements['H'].upgrades['Tier 1-2'] = {bought:true};
-      $scope.player.elements['H'].upgrades['Tier 1-3'] = {bought:true};
-      $scope.player.elements['H'].upgrades['Tier 1-4'] = {bought:true};
-      $scope.player.elements['H'].upgrades['Tier 1-5'] = {bought:true};
-      $scope.player.elements['H'].upgrades['Tier 1-6'] = {bought:true};
-      $scope.player.elements['H'].upgrades['Tier 1-7'] = {bought:true};
-      $scope.player.elements['H'].upgrades['Tier 1-8'] = {bought:true};
-      $scope.player.elements['H'].upgrades['Tier 1-9'] = {bought:true};
-      $scope.player.elements['H'].upgrades['Tier 1-10'] = {bought:true};
-      $scope.player.elements['H'].upgrades['Tier 1-11'] = {bought:true};
-      $scope.player.elements['H'].upgrades['Tier 1-12'] = {bought:true};
-      $scope.player.elements['H'].upgrades['Tier 1-13'] = {bought:true};
-      $scope.player.elements['H'].upgrades['Tier 1-14'] = {bought:true};
+      $scope.player.elements.H = {upgrades:{}};
+      $scope.player.elements.H.upgrades['Tier 1-1'] = {bought:true};      
+      $scope.player.elements.H.upgrades['Tier 1-2'] = {bought:true};
+      $scope.player.elements.H.upgrades['Tier 1-3'] = {bought:true};
+      $scope.player.elements.H.upgrades['Tier 1-4'] = {bought:true};
+      $scope.player.elements.H.upgrades['Tier 1-5'] = {bought:true};
+      $scope.player.elements.H.upgrades['Tier 1-6'] = {bought:true};
+      $scope.player.elements.H.upgrades['Tier 1-7'] = {bought:true};
+      $scope.player.elements.H.upgrades['Tier 1-8'] = {bought:true};
+      $scope.player.elements.H.upgrades['Tier 1-9'] = {bought:true};
+      $scope.player.elements.H.upgrades['Tier 1-10'] = {bought:true};
+      $scope.player.elements.H.upgrades['Tier 1-11'] = {bought:true};
+      $scope.player.elements.H.upgrades['Tier 1-12'] = {bought:true};
+      $scope.player.elements.H.upgrades['Tier 1-13'] = {bought:true};
+      $scope.player.elements.H.upgrades['Tier 1-14'] = {bought:true};
       $scope.current_element = 'H';
     
       value = $scope.lastUpgradeTierPrice('Tier 1');
@@ -843,18 +843,18 @@ describe("Incremental table elements", function() {
     it("should purchase element if cost is met", function() {
       $scope.player = {elements:{},resources:{},elements_unlocked:1};
       $scope.player.resources['e-'] = {number:256};
-      $scope.player.resources['p'] = {number:257};
-      $scope.player.resources['n'] = {number:258};
-      $scope.player.elements['O'] = {unlocked:false,generators:{}};
-      $scope.player.elements['O'].generators["Tier 1"] = {level:0};
+      $scope.player.resources.p = {number:257};
+      $scope.player.resources.n = {number:258};
+      $scope.player.elements.O = {unlocked:false,generators:{}};
+      $scope.player.elements.O.generators["Tier 1"] = {level:0};
       
       $scope.buyElement('O');
       
       expect($scope.player.resources['e-'].number).toEqual(0);
-      expect($scope.player.resources['p'].number).toEqual(1);
-      expect($scope.player.resources['n'].number).toEqual(2);
-      expect($scope.player.elements['O'].unlocked).toEqual(true);
-      expect($scope.player.elements['O'].generators["Tier 1"].level).toEqual(1);
+      expect($scope.player.resources.p.number).toEqual(1);
+      expect($scope.player.resources.n.number).toEqual(2);
+      expect($scope.player.elements.O.unlocked).toEqual(true);
+      expect($scope.player.elements.O.generators["Tier 1"].level).toEqual(1);
       expect($scope.player.elements_unlocked).toEqual(2);
       expect($scope.$emit).toHaveBeenCalled();
     });
@@ -862,18 +862,18 @@ describe("Incremental table elements", function() {
     it("should not purchase element if cost is not met", function() {
       $scope.player = {elements:{},resources:{},elements_unlocked:2};
       $scope.player.resources['e-'] = {number:256};
-      $scope.player.resources['p'] = {number:257};
-      $scope.player.resources['n'] = {number:258};
-      $scope.player.elements['O'] = {unlocked:false,generators:{}};
-      $scope.player.elements['O'].generators["Tier 1"] = {level:0};
+      $scope.player.resources.p = {number:257};
+      $scope.player.resources.n = {number:258};
+      $scope.player.elements.O = {unlocked:false,generators:{}};
+      $scope.player.elements.O.generators["Tier 1"] = {level:0};
       
       $scope.buyElement('O');
       
       expect($scope.player.resources['e-'].number).toEqual(256);
-      expect($scope.player.resources['p'].number).toEqual(257);
-      expect($scope.player.resources['n'].number).toEqual(258);
-      expect($scope.player.elements['O'].unlocked).toEqual(false);
-      expect($scope.player.elements['O'].generators["Tier 1"].level).toEqual(0);
+      expect($scope.player.resources.p.number).toEqual(257);
+      expect($scope.player.resources.n.number).toEqual(258);
+      expect($scope.player.elements.O.unlocked).toEqual(false);
+      expect($scope.player.elements.O.generators["Tier 1"].level).toEqual(0);
       expect($scope.player.elements_unlocked).toEqual(2);
       expect($scope.$emit).not.toHaveBeenCalled();
     }); 
@@ -881,7 +881,7 @@ describe("Incremental table elements", function() {
     it("should skip if the element is already purchased", function() {
       spyOn($scope,'isElementCostMet');
       $scope.player = {elements:{}};
-      $scope.player.elements['O'] = {unlocked:true};   
+      $scope.player.elements.O = {unlocked:true};   
 
       $scope.buyElement('O');
       
@@ -890,89 +890,89 @@ describe("Incremental table elements", function() {
     
     it("should purchase an upgrade if cost is met", function() {      
       $scope.player = {elements:{},resources:{}};
-      $scope.player.resources['H'] = {number:110};
-      $scope.player.elements['H'] = {upgrades:{}};
-      $scope.player.elements['H'].upgrades["Tier 1-1"] = {bought:false};
+      $scope.player.resources.H = {number:110};
+      $scope.player.elements.H = {upgrades:{}};
+      $scope.player.elements.H.upgrades["Tier 1-1"] = {bought:false};
       
       $scope.buyUpgrade("Tier 1-1",'H');
       
-      expect($scope.player.resources['H'].number).toEqual(10);
-      expect($scope.player.elements['H'].upgrades["Tier 1-1"].bought).toEqual(true);
+      expect($scope.player.resources.H.number).toEqual(10);
+      expect($scope.player.elements.H.upgrades["Tier 1-1"].bought).toEqual(true);
     });
     
     it("should not purchase an upgrade if cost is not met", function() {      
       $scope.player = {elements:{},resources:{}};
-      $scope.player.resources['H'] = {number:10};
-      $scope.player.elements['H'] = {upgrades:{}};
-      $scope.player.elements['H'].upgrades["Tier 1-1"] = {bought:false};
+      $scope.player.resources.H = {number:10};
+      $scope.player.elements.H = {upgrades:{}};
+      $scope.player.elements.H.upgrades["Tier 1-1"] = {bought:false};
       
       $scope.buyUpgrade("Tier 1-1",'H');
       
-      expect($scope.player.resources['H'].number).toEqual(10);
-      expect($scope.player.elements['H'].upgrades["Tier 1-1"].bought).toEqual(false);
+      expect($scope.player.resources.H.number).toEqual(10);
+      expect($scope.player.elements.H.upgrades["Tier 1-1"].bought).toEqual(false);
     });
     
     it("should skip if the upgrade is already bought", function() {
       $scope.player = {elements:{},resources:{}};
-      $scope.player.resources['H'] = {number:10};
-      $scope.player.elements['H'] = {upgrades:{}};
-      $scope.player.elements['H'].upgrades["Tier 1-1"] = {bought:true};
+      $scope.player.resources.H = {number:10};
+      $scope.player.elements.H = {upgrades:{}};
+      $scope.player.elements.H.upgrades["Tier 1-1"] = {bought:true};
       
       $scope.buyUpgrade("Tier 1-1",'H');
       
-      expect($scope.player.resources['H'].number).toEqual(10);
-      expect($scope.player.elements['H'].upgrades["Tier 1-1"].bought).toEqual(true);
+      expect($scope.player.resources.H.number).toEqual(10);
+      expect($scope.player.elements.H.upgrades["Tier 1-1"].bought).toEqual(true);
     });  
 
     it("should purchase as many generators as requested", function() {
       $scope.player = {elements:{},resources:{}};
-      $scope.player.resources['H'] = {number:65};
-      $scope.player.elements['H'] = {generators:{}};
-      $scope.player.elements['H'].generators["Tier 1"] = {level:5};
+      $scope.player.resources.H = {number:65};
+      $scope.player.elements.H = {generators:{}};
+      $scope.player.elements.H.generators["Tier 1"] = {level:5};
       
       $scope.buyGenerators("Tier 1",'H',3);
       
-      expect($scope.player.resources['H'].number).toEqual(2);
-      expect($scope.player.elements['H'].generators["Tier 1"].level).toEqual(8);
+      expect($scope.player.resources.H.number).toEqual(2);
+      expect($scope.player.elements.H.generators["Tier 1"].level).toEqual(8);
       expect($scope.$emit).toHaveBeenCalled();
     });    
     
     it("should purchase as many generators as possible until money runs out requested", function() {
       $scope.player = {elements:{},resources:{}};
-      $scope.player.resources['H'] = {number:45};
-      $scope.player.elements['H'] = {generators:{}};
-      $scope.player.elements['H'].generators["Tier 1"] = {level:5};
+      $scope.player.resources.H = {number:45};
+      $scope.player.elements.H = {generators:{}};
+      $scope.player.elements.H.generators["Tier 1"] = {level:5};
       
       $scope.buyGenerators("Tier 1",'H',3);
       
-      expect($scope.player.resources['H'].number).toEqual(4);
-      expect($scope.player.elements['H'].generators["Tier 1"].level).toEqual(7);
+      expect($scope.player.resources.H.number).toEqual(4);
+      expect($scope.player.elements.H.generators["Tier 1"].level).toEqual(7);
       expect($scope.$emit).toHaveBeenCalled();
     });
     
     it("should not purchase negative generators", function() {
       $scope.player = {elements:{},resources:{}};
-      $scope.player.resources['H'] = {number:10};
-      $scope.player.elements['H'] = {generators:{}};
-      $scope.player.elements['H'].generators["Tier 1"] = {level:5};
+      $scope.player.resources.H = {number:10};
+      $scope.player.elements.H = {generators:{}};
+      $scope.player.elements.H.generators["Tier 1"] = {level:5};
       
       $scope.buyGenerators("Tier 1",'H',-10);
       
-      expect($scope.player.resources['H'].number).toEqual(10);
-      expect($scope.player.elements['H'].generators["Tier 1"].level).toEqual(5);
+      expect($scope.player.resources.H.number).toEqual(10);
+      expect($scope.player.elements.H.generators["Tier 1"].level).toEqual(5);
       expect($scope.$emit).not.toHaveBeenCalled();
     });
     
     it("should not purchase generator if cost is not met", function() {
       $scope.player = {elements:{},resources:{}};
-      $scope.player.resources['H'] = {number:10};
-      $scope.player.elements['H'] = {generators:{}};
-      $scope.player.elements['H'].generators["Tier 1"] = {level:5};
+      $scope.player.resources.H = {number:10};
+      $scope.player.elements.H = {generators:{}};
+      $scope.player.elements.H.generators["Tier 1"] = {level:5};
       
       $scope.buyGenerators("Tier 1",'H',10);
       
-      expect($scope.player.resources['H'].number).toEqual(10);
-      expect($scope.player.elements['H'].generators["Tier 1"].level).toEqual(5);
+      expect($scope.player.resources.H.number).toEqual(10);
+      expect($scope.player.elements.H.generators["Tier 1"].level).toEqual(5);
       expect($scope.$emit).not.toHaveBeenCalled();
     });    
     
@@ -1037,10 +1037,10 @@ describe("Incremental table elements", function() {
     it("should calculate the generator production", function() {
       $scope.generators['Tier 1'].upgrades = ['Tier 1-1','Tier 1-2','Tier 1-3'];
       $scope.player = {elements:{}};
-      $scope.player.elements['H'] = {upgrades:{}};
-      $scope.player.elements['H'].upgrades['Tier 1-1'] = {bought:true};
-      $scope.player.elements['H'].upgrades['Tier 1-2'] = {bought:true};
-      $scope.player.elements['H'].upgrades['Tier 1-3'] = {bought:false};
+      $scope.player.elements.H = {upgrades:{}};
+      $scope.player.elements.H.upgrades['Tier 1-1'] = {bought:true};
+      $scope.player.elements.H.upgrades['Tier 1-2'] = {bought:true};
+      $scope.player.elements.H.upgrades['Tier 1-3'] = {bought:false};
     
       value = $scope.generatorProduction('Tier 1','H');
       
@@ -1050,11 +1050,11 @@ describe("Incremental table elements", function() {
     it("should calculate the tier production", function() {
       $scope.generators['Tier 1'].upgrades = ['Tier 1-1','Tier 1-2','Tier 1-3'];
       $scope.player = {elements:{}};
-      $scope.player.elements['H'] = {upgrades:{},generators:{}};
-      $scope.player.elements['H'].upgrades['Tier 1-1'] = {bought:true};
-      $scope.player.elements['H'].upgrades['Tier 1-2'] = {bought:true};
-      $scope.player.elements['H'].upgrades['Tier 1-3'] = {bought:false};
-      $scope.player.elements['H'].generators['Tier 1'] = {level:10};
+      $scope.player.elements.H = {upgrades:{},generators:{}};
+      $scope.player.elements.H.upgrades['Tier 1-1'] = {bought:true};
+      $scope.player.elements.H.upgrades['Tier 1-2'] = {bought:true};
+      $scope.player.elements.H.upgrades['Tier 1-3'] = {bought:false};
+      $scope.player.elements.H.generators['Tier 1'] = {level:10};
 
     
       value = $scope.tierProduction('Tier 1','H');
@@ -1075,10 +1075,10 @@ describe("Incremental table elements", function() {
       $scope.generators['Tier 3'] = temp3;
       
       $scope.player = {elements:{}};
-      $scope.player.elements['H'] = {generators:{}};
-      $scope.player.elements['H'].generators['Tier 1'] = {level:1};
-      $scope.player.elements['H'].generators['Tier 2'] = {level:1};
-      $scope.player.elements['H'].generators['Tier 3'] = {level:1};
+      $scope.player.elements.H = {generators:{}};
+      $scope.player.elements.H.generators['Tier 1'] = {level:1};
+      $scope.player.elements.H.generators['Tier 2'] = {level:1};
+      $scope.player.elements.H.generators['Tier 3'] = {level:1};
       
       value = $scope.elementProduction('H');
       
@@ -1090,16 +1090,16 @@ describe("Incremental table elements", function() {
     it("should react the number specified", function() {
       $scope.player = {};
       $scope.player.resources = {};
-      $scope.player.resources['H'] = {number:50};
-      $scope.player.resources['energy'] = {number:200};
-      $scope.player.resources['p'] = {number:1};
+      $scope.player.resources.H = {number:50};
+      $scope.player.resources.eV = {number:200};
+      $scope.player.resources.p = {number:1};
 			$scope.player.resources['e-'] = {number:0};
 
       $scope.react(10,$scope.reactions.H.ionization['1']);
       
-      expect($scope.player.resources['H'].number).toEqual(40);
-      expect($scope.player.resources['energy'].number).toEqual(64.016);
-      expect($scope.player.resources['p'].number).toEqual(11);
+      expect($scope.player.resources.H.number).toEqual(40);
+      expect($scope.player.resources.eV.number).toEqual(64.016);
+      expect($scope.player.resources.p.number).toEqual(11);
       expect($scope.player.resources['e-'].number).toEqual(10);
       expect($scope.$emit).toHaveBeenCalled();
     });
@@ -1107,16 +1107,16 @@ describe("Incremental table elements", function() {
     it("should return if the number specified is invalid", function() {
       $scope.player = {};
       $scope.player.resources = {};
-      $scope.player.resources['H'] = {number:50};
-      $scope.player.resources['energy'] = {number:200};
-      $scope.player.resources['p'] = {number:1};
+      $scope.player.resources.H = {number:50};
+      $scope.player.resources.eV = {number:200};
+      $scope.player.resources.p = {number:1};
       $scope.player.resources['e-'] = {number:0};
       
       $scope.react(0.5,$scope.reactions.H.ionization['1']);
       
-      expect($scope.player.resources['H'].number).toEqual(50);
-      expect($scope.player.resources['energy'].number).toEqual(200);
-      expect($scope.player.resources['p'].number).toEqual(1);
+      expect($scope.player.resources.H.number).toEqual(50);
+      expect($scope.player.resources.eV.number).toEqual(200);
+      expect($scope.player.resources.p.number).toEqual(1);
       expect($scope.player.resources['e-'].number).toEqual(0);
       expect($scope.$emit).not.toHaveBeenCalled();
     });    
@@ -1124,16 +1124,16 @@ describe("Incremental table elements", function() {
     it("should return if the number specified is negative", function() {
       $scope.player = {};
       $scope.player.resources = {};
-      $scope.player.resources['H'] = {number:50};
-      $scope.player.resources['energy'] = {number:200};
-      $scope.player.resources['p'] = {number:1};
+      $scope.player.resources.H = {number:50};
+      $scope.player.resources.eV = {number:200};
+      $scope.player.resources.p = {number:1};
       $scope.player.resources['e-'] = {number:0};
 
       $scope.react(-10,$scope.reactions.H.ionization['1']);
       
-      expect($scope.player.resources['H'].number).toEqual(50);
-      expect($scope.player.resources['energy'].number).toEqual(200);
-      expect($scope.player.resources['p'].number).toEqual(1);
+      expect($scope.player.resources.H.number).toEqual(50);
+      expect($scope.player.resources.eV.number).toEqual(200);
+      expect($scope.player.resources.p.number).toEqual(1);
       expect($scope.player.resources['e-'].number).toEqual(0);
       expect($scope.$emit).not.toHaveBeenCalled();
     });   
@@ -1141,16 +1141,16 @@ describe("Incremental table elements", function() {
     it("should return if the cost is not met", function() {
       $scope.player = {};
       $scope.player.resources = {};
-      $scope.player.resources['H'] = {number:50};
-      $scope.player.resources['energy'] = {number:10};
-      $scope.player.resources['p'] = {number:1};
+      $scope.player.resources.H = {number:50};
+      $scope.player.resources.eV = {number:10};
+      $scope.player.resources.p = {number:1};
       $scope.player.resources['e-'] = {number:0};
       
       $scope.react(5,$scope.reactions.H.ionization['1']);
 
-      expect($scope.player.resources['H'].number).toEqual(50);
-      expect($scope.player.resources['energy'].number).toEqual(10);
-      expect($scope.player.resources['p'].number).toEqual(1);
+      expect($scope.player.resources.H.number).toEqual(50);
+      expect($scope.player.resources.eV.number).toEqual(10);
+      expect($scope.player.resources.p.number).toEqual(1);
       expect($scope.player.resources['e-'].number).toEqual(0);
       expect($scope.$emit).not.toHaveBeenCalled();
     });
@@ -1309,7 +1309,7 @@ describe("Incremental table elements", function() {
       expect($scope.player.resources.H2.number).toEqual(2);
       expect($scope.player.resources.O2.number).toEqual(1);
       expect($scope.player.resources.H2O.number).toEqual(8);
-      expect($scope.player.resources.energy.number).toEqual(23.7);
+      expect($scope.player.resources.eV.number).toEqual(23.7);
     });
     
     it("should process radioactivity", function() {
@@ -1324,7 +1324,7 @@ describe("Incremental table elements", function() {
       expect($scope.player.resources['3H'].number).toEqual(1000);
       expect($scope.player.resources['3He+1'].number).toEqual(0);
       expect($scope.player.resources['e-'].number).toEqual(0);
-      expect($scope.player.resources.energy.number).toEqual(0);
+      expect($scope.player.resources.eV.number).toEqual(0);
     });
     
     it("should process radioactivity 2", function() {
@@ -1339,7 +1339,7 @@ describe("Incremental table elements", function() {
       expect($scope.player.resources['3H'].number).toEqual(500);
       expect($scope.player.resources['3He+1'].number).toEqual(500);
       expect($scope.player.resources['e-'].number).toEqual(500);
-      expect($scope.player.resources.energy.number).toEqual(9305000);
+      expect($scope.player.resources.eV.number).toEqual(9305000);
     });
     
     it("should not process negative production", function() {
@@ -1354,7 +1354,7 @@ describe("Incremental table elements", function() {
       expect($scope.player.resources['3H'].number).toEqual(1000);
       expect($scope.player.resources['3He+1'].number).toEqual(0);
       expect($scope.player.resources['e-'].number).toEqual(0);
-      expect($scope.player.resources.energy.number).toEqual(0);
+      expect($scope.player.resources.eV.number).toEqual(0);
     });
     
     it("should not process over production", function() {
@@ -1369,7 +1369,7 @@ describe("Incremental table elements", function() {
       expect($scope.player.resources['3H'].number).toEqual(0);
       expect($scope.player.resources['3He+1'].number).toEqual(1000);
       expect($scope.player.resources['e-'].number).toEqual(1000);
-      expect($scope.player.resources.energy.number).toEqual(18610000);
+      expect($scope.player.resources.eV.number).toEqual(18610000);
     });
     
     it("should process unstables", function() {

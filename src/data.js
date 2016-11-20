@@ -2051,13 +2051,12 @@ function loadData($scope) {
       order : 20002,
       type : 'subatomic'
     },
-    'energy' : {
+    'eV' : {
       visible : function () {
-        return $scope.player.resources.energy.unlocked;
+        return $scope.player.resources.eV.unlocked;
       },
       order : 20003,
-      html : 'eV',
-      type : 'energy'
+      type : 'eV'
     }
   };
 
@@ -2080,7 +2079,7 @@ function loadData($scope) {
             return true;
           }
         }
-        var other = [ 'e-', 'n', 'p', 'energy' ];
+        var other = [ 'e-', 'n', 'p', 'eV' ];
         for ( var key in other) {
           if ($scope.player.resources[other[key]].unlocked && $scope.player.resources[other[key]].is_new) {
             return true;
@@ -2357,7 +2356,7 @@ function loadData($scope) {
       'ionization' : {
         1 : {
           reactant : {
-            'energy' : 13.5984,
+            'eV' : 13.5984,
             'H' : 1
           },
           product : {
@@ -2377,7 +2376,7 @@ function loadData($scope) {
           },
           product : {
             'H-' : 1,
-            'energy' : 0.7545
+            'eV' : 0.7545
           },
           visible : function () {
             return $scope.player.unlocks.electron_affinity;
@@ -2387,7 +2386,7 @@ function loadData($scope) {
       'binding_energy' : {
         1 : {
           reactant : {
-            'energy' : 2224520,
+            'eV' : 2224520,
             '2H' : 1
           },
           product : {
@@ -2401,7 +2400,7 @@ function loadData($scope) {
         },
         2 : {
           reactant : {
-            'energy' : 2827266,
+            'eV' : 2827266,
             '3H' : 1
           },
           product : {
@@ -2425,7 +2424,7 @@ function loadData($scope) {
       'binding_energy' : {
         1 : {
           reactant : {
-            'energy' : 128030000,
+            'eV' : 128030000,
             'O' : 1
           },
           product : {
@@ -2439,7 +2438,7 @@ function loadData($scope) {
         },
         2 : {
           reactant : {
-            'energy' : 131750000,
+            'eV' : 131750000,
             '17O' : 1
           },
           product : {
@@ -2453,7 +2452,7 @@ function loadData($scope) {
         },
         3 : {
           reactant : {
-            'energy' : 141170000,
+            'eV' : 141170000,
             '18O' : 1
           },
           product : {
@@ -2478,7 +2477,7 @@ function loadData($scope) {
       },
       product : {
         'H2' : 1,
-        'energy' : 17.3705
+        'eV' : 17.3705
       },
       visible : function () {
         return $scope.player.unlocks.synthesis &&
@@ -2490,7 +2489,7 @@ function loadData($scope) {
     'O3' : {
       reactant : {
         'O3' : 1,
-        'energy' : 4.43
+        'eV' : 4.43
       },
       product : {
         'O2' : 1,
@@ -2499,14 +2498,14 @@ function loadData($scope) {
       visible : function () {
         return $scope.player.unlocks.synthesis &&
                $scope.player.resources.O3.unlocked &&
-               $scope.player.resources.energy.unlocked &&
+               $scope.player.resources.eV.unlocked &&
                $scope.current_element == "O";
       }
     },
     'O2-OO' : {
       reactant : {
         'O2' : 1,
-        'energy' : 21.4219
+        'eV' : 21.4219
       },
       product : {
         'O' : 2
@@ -2514,14 +2513,14 @@ function loadData($scope) {
       visible : function () {
         return $scope.player.unlocks.synthesis &&
                $scope.player.resources.O2.unlocked &&
-               $scope.player.resources.energy.unlocked &&
+               $scope.player.resources.eV.unlocked &&
                $scope.current_element == "O";
       }
     },
     'O2O2-O3O' : {
       reactant : {
         'O2' : 2,
-        'energy' : 18
+        'eV' : 18
       },
       product : {
         'O3' : 1,
@@ -2531,7 +2530,7 @@ function loadData($scope) {
         return $scope.player.unlocks.synthesis &&
                $scope.player.resources.O2.unlocked &&
                $scope.player.resources.O3.unlocked &&
-               $scope.player.resources.energy.unlocked &&
+               $scope.player.resources.eV.unlocked &&
                $scope.current_element == "O";
       }
     },
@@ -2542,7 +2541,7 @@ function loadData($scope) {
       },
       product : {
         'H2O' : 2,
-        'energy' : 5.925
+        'eV' : 5.925
       },
       visible : function () {
         return $scope.player.unlocks.synthesis &&
@@ -2682,7 +2681,7 @@ function loadData($scope) {
     },
     "energy" : {
       check : function (event, data) {
-        if ("energy" == data) {
+        if ("eV" == data) {
           $scope.addToast("Energy");
           $scope.player.unlocks.energy = true;
           $scope.unlocks.energy.listener();
