@@ -383,26 +383,21 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
      */
   };
 
-  self.simulateDecay = function (number, half_life) {
-    // p is the decay constant
-    var p = Math.log(2) / half_life;
-
-    // var decay_per_second = (1 - Math.exp(-p)) *
-    // number; <-no need for this unless p > ~0.05
-    var decay_per_second = p * number;
+  self.randomDraw = function (number, p) {
+    var mean = p * number;
     var production;
-    if (decay_per_second < 5) {
+    if (mean < 5) {
       // using Poisson distribution (would get
       // slow for large numbers.
       // there are fast formulas but I don't know
       // how good they are)
-      production = self.getPoisson(decay_per_second);
+      production = self.getPoisson(mean);
     } else {
       // Gaussian distribution
       var q = 1 - p;
       var variance = number * p * q;
       var std = Math.sqrt(variance);
-      production = Math.round(self.numberGenerator.nextGaussian() * std + decay_per_second);
+      production = Math.round(self.numberGenerator.nextGaussian() * std + mean);
     }
     if (production > number) {
       production = number;
@@ -437,7 +432,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
         var half_life = $scope.resources[radioisotope].decay.half_life;
 
-        var production = self.simulateDecay(number, half_life);
+        var production = self.randomDraw(number, Math.log(2) / half_life);
         // we decrease the number of radioactive
         // element
         $scope.player.resources[radioisotope].number -= production;
@@ -466,9 +461,9 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
       var unstable = $scope.unstables[i];
       if ($scope.player.resources[unstable].unlocked) {
         var number = $scope.player.resources[unstable].number;
-        // p is the decay constant
         var half_life = $scope.resources[unstable].decay.half_life;
-        production = self.simulateDecay(number, half_life);
+        production = self.randomDraw(number, Math.log(2) / half_life);
+        
         // we decrease the number of unstable
         // element
         $scope.player.resources[unstable].number -= production;
@@ -488,7 +483,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     for (var i = 0; i < $scope.free_radicals.length; i++) {
       var radical = $scope.free_radicals[i];
       if ($scope.player.resources[radical].unlocked) {
-        production = self.simulateDecay($scope.player.resources[radical].number, 
+        production = self.randomDraw($scope.player.resources[radical].number, 
             $scope.resources[radical].free_radical.reactivity);
 
         var reacted = {};
@@ -507,8 +502,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
           }
 
           var p = $scope.player.resources[reaction.reactant].number / reactants_number;
-          reacted[product] = self.simulateDecay(remaining_production, 
-              p);
+          reacted[product] = self.randomDraw(remaining_production, p);
 
           remaining_production -= reacted[product];
           // This is complicated...
@@ -551,16 +545,16 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     // We will simulate the production of isotopes
     // proportional to their ratio
     for ( var element in $scope.player.elements) {
+      if($scope.player.elements[element].unlocked === false){
+        continue;
+      }
       // Prepare an array with the isotopes
       var isotopes = [ element ];
       isotopes = isotopes.concat($scope.elements[element].isotopes);
       // N is the total production for this
       // element
-      var N = $scope.elementProduction(element);
-      var remaining_N = N;
-      // We will create a random draw from a
-      // Gaussian with mean N*p and std
-      // based on a binomial
+      var remaining = $scope.elementProduction(element);
+      // We will create a random draw
       // On each consecutive draw we subtract the
       // number generated to the total and
       // recalculate the mean and std
@@ -573,28 +567,18 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
         }
 
         var p = $scope.resources[isotopes[i]].ratio / remaining_ratio_sum;
-        var q = 1 - p;
-        var mean = remaining_N * p;
-        var variance = remaining_N * p * q;
-        var std = Math.sqrt(variance);
-        production = Math.round(self.numberGenerator.nextGaussian() * std + mean);
+        production = self.randomDraw(remaining, p);
 
-        if (production > remaining_N) {
-          production = remaining_N;
-        }
-        if (production < 0) {
-          production = 0;
-        }
         if (production > 0) {
           $scope.player.resources[isotopes[i]].number += production;
           $scope.$emit("resource", isotopes[i]);
         }
-        remaining_N -= production;
+        remaining -= production;
       }
       // The last isotope is just the remaining
       // production that hasn't been consumed
-      if (remaining_N > 0) {
-        $scope.player.resources[isotopes[isotopes.length - 1]].number += remaining_N;
+      if (remaining > 0) {
+        $scope.player.resources[isotopes[isotopes.length - 1]].number += remaining;
         $scope.$emit("resource", isotopes[isotopes.length - 1]);
       }
     }

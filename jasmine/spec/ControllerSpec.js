@@ -1194,19 +1194,19 @@ describe("Incremental table elements", function() {
     });
   });
   
-  describe('simulate decay', function() {
-    it("should simulate decay", function() {
+  describe('random draw', function() {
+    it("should return a normally distributed random number", function() {
       spyOn(Math,'random').and.returnValues(0.4,0.2);
       
-      value = controller.simulateDecay(100, 50);
+      value = controller.randomDraw(100, Math.log(2)/50);
       
       expect(value).toEqual(1);
     });
     
-    it("should simulate decay 2", function() {
+    it("should return a normally distributed random number 2", function() {
       spyOn(controller.numberGenerator,'nextGaussian').and.returnValues(0.5);
       
-      value = controller.simulateDecay(1000, 50);
+      value = controller.randomDraw(1000, Math.log(2)/50);
       
       expect(value).toEqual(16);
     });
@@ -1214,7 +1214,7 @@ describe("Incremental table elements", function() {
     it("should not return negative value", function() {
       spyOn(controller.numberGenerator,'nextGaussian').and.returnValues(-1000);
       
-      value = controller.simulateDecay(1000, 50);
+      value = controller.randomDraw(1000, Math.log(2)/50);
       
       expect(value).toEqual(0);
     });
@@ -1222,7 +1222,7 @@ describe("Incremental table elements", function() {
     it("should not return overproduction", function() {
       spyOn(controller.numberGenerator,'nextGaussian').and.returnValues(1000);
       
-      value = controller.simulateDecay(1000, 50);
+      value = controller.randomDraw(1000, Math.log(2)/50);
       
       expect(value).toEqual(1000);
     });
@@ -1241,8 +1241,10 @@ describe("Incremental table elements", function() {
     it("should generate isotopes", function() {
       controller.populatePlayer();
       $scope.player = controller.startPlayer;
+      $scope.player.elements.O.unlocked = true;
       $scope.player.elements.O.generators['Tier 1'].level = 200;
       spyOn(controller.numberGenerator,'nextGaussian').and.returnValue(0);
+      spyOn(controller,'getPoisson').and.returnValue(0);
       
       controller.update();
       
@@ -1254,8 +1256,10 @@ describe("Incremental table elements", function() {
     it("should generate isotopes 2", function() {
       controller.populatePlayer();
       $scope.player = controller.startPlayer;
+      $scope.player.elements.O.unlocked = true;
       $scope.player.elements.O.generators['Tier 1'].level = 1200;
       spyOn(controller.numberGenerator,'nextGaussian').and.returnValue(0);
+      spyOn(controller,'getPoisson').and.returnValue(0);
       
       controller.update();
       
@@ -1267,40 +1271,16 @@ describe("Incremental table elements", function() {
     it("should generate isotopes 3", function() {
       controller.populatePlayer();
       $scope.player = controller.startPlayer;
+      $scope.player.elements.O.unlocked = true;
       $scope.player.elements.O.generators['Tier 1'].level = 32000;
       spyOn(controller.numberGenerator,'nextGaussian').and.returnValue(0);
+      spyOn(controller,'getPoisson').and.returnValue(0);
       
       controller.update();
       
       expect($scope.player.resources.O.number).toEqual(31923);
       expect($scope.player.resources['17O'].number).toEqual(13);
       expect($scope.player.resources['18O'].number).toEqual(64);
-    });
-    
-    it("should not allow negative production", function() {
-      controller.populatePlayer();
-      $scope.player = controller.startPlayer;
-      $scope.player.elements.O.generators['Tier 1'].level = 100;
-      spyOn(controller.numberGenerator,'nextGaussian').and.returnValue(-1e100);
-      
-      controller.update();
-      
-      expect($scope.player.resources.O.number).toEqual(0);
-      expect($scope.player.resources['17O'].number).toEqual(0);
-      expect($scope.player.resources['18O'].number).toEqual(100);
-    });
-    
-    it("should not allow overproduction", function() {
-      controller.populatePlayer();
-      $scope.player = controller.startPlayer;
-      $scope.player.elements.O.generators['Tier 1'].level = 100;
-      spyOn(controller.numberGenerator,'nextGaussian').and.returnValue(1e100);
-      
-      controller.update();
-      
-      expect($scope.player.resources.O.number).toEqual(100);
-      expect($scope.player.resources['17O'].number).toEqual(0);
-      expect($scope.player.resources['18O'].number).toEqual(0);
     });
     
     it("should process synthesis", function() {
@@ -1324,7 +1304,7 @@ describe("Incremental table elements", function() {
       $scope.player = controller.startPlayer;
       $scope.player.resources['3H'].unlocked = true;
       $scope.player.resources['3H'].number = 1000;
-      spyOn(controller, 'simulateDecay').and.returnValue(0);
+      spyOn(controller, 'randomDraw').and.returnValue(0);
       
       controller.update();
       
@@ -1339,7 +1319,7 @@ describe("Incremental table elements", function() {
       $scope.player = controller.startPlayer;
       $scope.player.resources['3H'].unlocked = true;
       $scope.player.resources['3H'].number = 1000;
-      spyOn(controller, 'simulateDecay').and.returnValue(500);
+      spyOn(controller, 'randomDraw').and.returnValue(500);
       
       controller.update();
       
@@ -1354,7 +1334,7 @@ describe("Incremental table elements", function() {
       $scope.player = controller.startPlayer;
       $scope.player.resources.O3.unlocked = true;
       $scope.player.resources.O3.number = 1000;
-      spyOn(controller, 'simulateDecay').and.returnValue(0);
+      spyOn(controller, 'randomDraw').and.returnValue(0);
       
       controller.update();
       
@@ -1368,7 +1348,7 @@ describe("Incremental table elements", function() {
       $scope.player = controller.startPlayer;
       $scope.player.resources.O3.unlocked = true;
       $scope.player.resources.O3.number = 1000;
-      spyOn(controller, 'simulateDecay').and.returnValue(500);
+      spyOn(controller, 'randomDraw').and.returnValue(500);
       // clear this subscriber to avoid side effects
       controller.checkUnlock();
       
@@ -1387,7 +1367,7 @@ describe("Incremental table elements", function() {
       $scope.player.resources.O.unlocked = true;
       $scope.player.resources.O2.number = 1e8;
       spyOn(controller.numberGenerator, 'nextGaussian').and.returnValue(0);
-      spyOn(controller, 'simulateDecay').and.returnValues(50,45);
+      spyOn(controller, 'randomDraw').and.returnValues(50,45);
       
       controller.update();
       
