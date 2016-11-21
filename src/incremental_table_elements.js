@@ -49,7 +49,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
   self.populatePlayer = function () {
     this.startPlayer.resources = {};
-    for ( var entry in $scope.resources) {
+    for(var entry in $scope.resources) {
       this.startPlayer.resources[entry] = {
         number : 0,
         is_new : true,
@@ -58,8 +58,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     }
 
     this.startPlayer.elements = {};
-    for ( var element in $scope.elements) {
-      if (!$scope.elements[element].disabled) {
+    for(var element in $scope.elements) {
+      if(!$scope.elements[element].disabled) {
         this.startPlayer.elements[element] = {
           unlocked : false
         };
@@ -67,32 +67,32 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     }
     this.startPlayer.elements.H.unlocked = true;
 
-    for ( var element in this.startPlayer.elements) {
+    for(var element in this.startPlayer.elements) {
       this.startPlayer.elements[element].upgrades = {};
-      for ( var upgrade in $scope.upgrades) {
+      for(var upgrade in $scope.upgrades) {
         this.startPlayer.elements[element].upgrades[upgrade] = {
           bought : false
         };
       }
       this.startPlayer.elements[element].generators = {};
-      for ( var generator in $scope.generators) {
+      for(var generator in $scope.generators) {
         this.startPlayer.elements[element].generators[generator] = {
           level : 0
         };
       }
     }
     this.startPlayer.encyclopedia = {};
-    for ( var entry in $scope.encyclopedia) {
+    for(var entry in $scope.encyclopedia) {
       this.startPlayer.encyclopedia[entry] = {
         is_new : true
       };
     }
     this.startPlayer.unlocks = {};
-    for ( var entry in $scope.unlocks) {
+    for(var entry in $scope.unlocks) {
       this.startPlayer.unlocks[entry] = false;
     }
     this.startPlayer.synthesis = {};
-    for ( var entry in $scope.synthesis) {
+    for(var entry in $scope.synthesis) {
       this.startPlayer.synthesis[entry] = {
         number : 0,
         active : 0,
@@ -110,14 +110,14 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
   self.deleteToast = function () {
     $scope.toast.shift();
-    if ($scope.toast.length > 0) {
+    if($scope.toast.length > 0) {
       $scope.is_toast_visible = true;
     }
   };
 
   $scope.addToast = function (toast) {
     $scope.toast.push(toast);
-    if ($scope.toast.length == 1) {
+    if($scope.toast.length == 1) {
       $scope.is_toast_visible = true;
     }
   };
@@ -157,7 +157,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     var multiplier = $scope.synthesisMultiplier(synthesis);
     var price = {};
     var reactant = $scope.synthesis[synthesis].reactant;
-    for ( var resource in reactant) {
+    for(var resource in reactant) {
       price[resource] = reactant[resource] * multiplier;
     }
     return price;
@@ -165,8 +165,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
   $scope.isSynthesisCostMet = function (synthesis) {
     var price = $scope.synthesisPrice(synthesis);
-    for ( var resource in price) {
-      if ($scope.player.resources[resource].number < price[resource]) {
+    for(var resource in price) {
+      if($scope.player.resources[resource].number < price[resource]) {
         return false;
       }
     }
@@ -178,7 +178,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     // we need a loop since we use the ceil operator
     while (i < number && $scope.isSynthesisCostMet(synthesis)) {
       var price = $scope.synthesisPrice(synthesis);
-      for ( var resource in price) {
+      for(var resource in price) {
         $scope.player.resources[resource].number -= price[resource];
       }
       $scope.player.synthesis[synthesis].number += 1;
@@ -188,10 +188,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
   $scope.getHTML = function (resource) {
     var html = $scope.html[resource];
-    if (html === undefined){
+    if(html === undefined){
       html = $scope.resources[resource].html;
     }
-    if (html === undefined){
+    if(html === undefined){
       return resource;
     }
     return html;
@@ -207,27 +207,27 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
       price = $scope.generatorPrice(name, element);
       i++;
     }
-    if (i > 0) {
+    if(i > 0) {
       $scope.$emit("generator", name);
     }
   };
 
   $scope.buyUpgrade = function (name, element) {
-    if ($scope.player.elements[element].upgrades[name].bought) {
+    if($scope.player.elements[element].upgrades[name].bought) {
       return;
     }
     var price = $scope.upgrades[name].price;
-    if ($scope.player.resources[element].number >= price) {
+    if($scope.player.resources[element].number >= price) {
       $scope.player.resources[element].number -= price;
       $scope.player.elements[element].upgrades[name].bought = true;
     }
   };
 
   $scope.buyElement = function (element) {
-    if ($scope.player.elements[element].unlocked) {
+    if($scope.player.elements[element].unlocked) {
       return;
     }
-    if ($scope.isElementCostMet(element)) {
+    if($scope.isElementCostMet(element)) {
       var price = $scope.elementPrice(element);
       $scope.player.resources['e-'].number -= price;
       $scope.player.resources.p.number -= price;
@@ -241,10 +241,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
   $scope.isReactionCostMet = function (number, reaction) {
     var keys = Object.keys(reaction.reactant);
-    for (var i = 0; i < keys.length; i++) {
+    for(var i = 0; i < keys.length; i++) {
       var available = $scope.player.resources[keys[i]].number;
       var required = Number.parseFloat((number * reaction.reactant[keys[i]]).toFixed(4));
-      if (required > available) {
+      if(required > available) {
         return false;
       }
     }
@@ -252,8 +252,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
   };
 
   $scope.lastUpgradeTierPrice = function (tier) {
-    for ( var upgrade in $scope.generators[tier].upgrades) {
-      if (!$scope.player.elements[$scope.current_element].upgrades[$scope.generators[tier].upgrades[upgrade]].bought) {
+    for(var upgrade in $scope.generators[tier].upgrades) {
+      if(!$scope.player.elements[$scope.current_element].upgrades[$scope.generators[tier].upgrades[upgrade]].bought) {
         return $scope.upgrades[$scope.generators[tier].upgrades[upgrade]].price;
       }
     }
@@ -265,19 +265,19 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
   };
 
   $scope.react = function (number, reaction) {
-    if (!Number.isInteger(number) || number <= 0) {
+    if(!Number.isInteger(number) || number <= 0) {
       return;
     }
-    if ($scope.isReactionCostMet(number, reaction)) {
+    if($scope.isReactionCostMet(number, reaction)) {
       var reactant = Object.keys(reaction.reactant);
-      for (var i = 0; i < reactant.length; i++) {
+      for(var i = 0; i < reactant.length; i++) {
         var required = Number.parseFloat((number * reaction.reactant[reactant[i]]).toFixed(4));
         $scope.player.resources[reactant[i]].number -= required;
         $scope.player.resources[reactant[i]].number = Number.parseFloat($scope.player.resources[reactant[i]].number
             .toFixed(4));
       }
       var product = Object.keys(reaction.product);
-      for (var i = 0; i < product.length; i++) {
+      for(var i = 0; i < product.length; i++) {
         var produced = number * reaction.product[product[i]];
         var current = $scope.player.resources[product[i]].number;
         $scope.player.resources[product[i]].number = Number.parseFloat((current + produced).toFixed(4));
@@ -289,8 +289,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
   $scope.generatorProduction = function (name, element) {
     var baseProduction = $scope.generators[name].power;
     var upgradedProduction = baseProduction;
-    for ( var upgrade in $scope.generators[name].upgrades) {
-      if ($scope.player.elements[element].upgrades[$scope.generators[name].upgrades[upgrade]].bought) {
+    for(var upgrade in $scope.generators[name].upgrades) {
+      if($scope.player.elements[element].upgrades[$scope.generators[name].upgrades[upgrade]].bought) {
         upgradedProduction = $scope.upgrades[$scope.generators[name].upgrades[upgrade]]
             .apply(upgradedProduction);
       }
@@ -302,8 +302,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     var baseProduction = $scope.generators[name].power *
                          $scope.player.elements[element].generators[name].level;
     var upgradedProduction = baseProduction;
-    for ( var upgrade in $scope.generators[name].upgrades) {
-      if ($scope.player.elements[element].upgrades[$scope.generators[name].upgrades[upgrade]].bought) {
+    for(var upgrade in $scope.generators[name].upgrades) {
+      if($scope.player.elements[element].upgrades[$scope.generators[name].upgrades[upgrade]].bought) {
         upgradedProduction = $scope.upgrades[$scope.generators[name].upgrades[upgrade]]
             .apply(upgradedProduction);
       }
@@ -313,7 +313,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
   $scope.elementProduction = function (element) {
     var total = 0;
-    for ( var tier in $scope.generators) {
+    for(var tier in $scope.generators) {
       total += $scope.tierProduction(tier, element);
     }
     return total;
@@ -341,11 +341,11 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
   $scope.reset = function (ask) {
     var confirmation = true;
-    if (ask) {
+    if(ask) {
       confirmation = confirm("Are you sure you want to reset? This will permanently erase your progress.");
     }
 
-    if (confirmation === true) {
+    if(confirmation === true) {
       localStorage.removeItem("playerStoredITE");
       self.init();
       self.introAnimation();
@@ -363,7 +363,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
   $scope.importSave = function () {
     var importText = prompt("Paste the text you were given by the export save dialog here.\n" + 
         "Warning: this will erase your current save!");
-    if (importText) {
+    if(importText) {
       try {
         $scope.player = JSON.parse(atob(importText));
         self.stopListeners();
@@ -386,10 +386,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
   self.randomDraw = function (number, p) {
     var mean = p * number;
     var production;
-    if (mean < 5) {
-      // using Poisson distribution (would get
-      // slow for large numbers.
-      // there are fast formulas but I don't know
+    if(mean < 5) {
+      // using Poisson distribution (would get slow for large numbers. there are fast formulas but I don't know
       // how good they are)
       production = self.getPoisson(mean);
     } else {
@@ -399,10 +397,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
       var std = Math.sqrt(variance);
       production = Math.round(self.numberGenerator.nextGaussian() * std + mean);
     }
-    if (production > number) {
+    if(production > number) {
       production = number;
     }
-    if (production < 0) {
+    if(production < 0) {
       production = 0;
     }
     return production;
@@ -422,12 +420,11 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
   };
 
   self.update = function () {
-    // decay should become first, since we are
-    // decaying the products from last step
+    // decay should become first, since we are decaying the products from last step
     // We will process the radioactive decay
-    for (var i = 0; i < $scope.radioisotopes.length; i++) {
+    for(var i = 0; i < $scope.radioisotopes.length; i++) {
       var radioisotope = $scope.radioisotopes[i];
-      if ($scope.player.resources[radioisotope].unlocked) {
+      if($scope.player.resources[radioisotope].unlocked) {
         var number = $scope.player.resources[radioisotope].number;
 
         var half_life = $scope.resources[radioisotope].decay.half_life;
@@ -437,15 +434,15 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
         // element
         $scope.player.resources[radioisotope].number -= production;
         // produce energy
-        if ($scope.resources[radioisotope].decay.decay_energy * production > 0) {
+        if($scope.resources[radioisotope].decay.decay_energy * production > 0) {
           $scope.player.resources.eV.number += Number
               .parseFloat(($scope.resources[radioisotope].decay.decay_energy * production).toFixed(4));
           $scope.$emit("resource", "eV");
           $scope.$emit("decay", $scope.resources[radioisotope].decay.decay_type);
         }
         // and decay products
-        for ( var product in $scope.resources[radioisotope].decay.decay_product) {
-          if (production > 0) {
+        for(var product in $scope.resources[radioisotope].decay.decay_product) {
+          if(production > 0) {
             $scope.player.resources[product].number += $scope.resources[radioisotope].decay.decay_product[product] *
                                                        production;
             $scope.$emit("resource", product);
@@ -454,22 +451,20 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
       }
     }
 
-    // decomposition comes second since it is very
-    // similar to radioactivity
+    // decomposition comes second since it is very similar to radioactivity
     // We will process the decompositions
-    for (var i = 0; i < $scope.unstables.length; i++) {
+    for(var i = 0; i < $scope.unstables.length; i++) {
       var unstable = $scope.unstables[i];
-      if ($scope.player.resources[unstable].unlocked) {
+      if($scope.player.resources[unstable].unlocked) {
         var number = $scope.player.resources[unstable].number;
         var half_life = $scope.resources[unstable].decay.half_life;
         production = self.randomDraw(number, Math.log(2) / half_life);
         
-        // we decrease the number of unstable
-        // element
+        // we decrease the number of unstable element
         $scope.player.resources[unstable].number -= production;
         // produce decay products
-        for ( var product in $scope.resources[unstable].decay.decay_product) {
-          if (production > 0) {
+        for(var product in $scope.resources[unstable].decay.decay_product) {
+          if(production > 0) {
             $scope.player.resources[product].number += $scope.resources[unstable].decay.decay_product[product] *
                                                        production;
             $scope.$emit("resource", product);
@@ -478,24 +473,21 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
       }
     }
 
-    // We will simulate the reactivity of free
-    // radicals
-    for (var i = 0; i < $scope.free_radicals.length; i++) {
+    // We will simulate the reactivity of free radicals
+    for(var i = 0; i < $scope.free_radicals.length; i++) {
       var radical = $scope.free_radicals[i];
-      if ($scope.player.resources[radical].unlocked) {
+      if($scope.player.resources[radical].unlocked) {
         production = self.randomDraw($scope.player.resources[radical].number, 
             $scope.resources[radical].free_radical.reactivity);
 
         var reacted = {};
         var remaining_production = production;
-        for (var j = 0; j < $scope.resources[radical].free_radical.reaction.length - 1; j++) {
+        for(var j = 0; j < $scope.resources[radical].free_radical.reaction.length - 1; j++) {
           var reaction = $scope.resources[radical].free_radical.reaction[j];
           var product = reaction.product;
           var reactants_number = 0;
-          // we have to calculate how many
-          // reactants are there so that we
-          // get the proportions right
-          for (var k = j; k < $scope.resources[radical].free_radical.reaction.length; k++) {
+          // we have to calculate how many reactants are there so that we get the proportions right
+          for(var k = j; k < $scope.resources[radical].free_radical.reaction.length; k++) {
             var reactant = $scope.resources[radical].free_radical.reaction[k].reactant;
             var chance = $scope.resources[radical].free_radical.reaction[k].chance;
             reactants_number += $scope.player.resources[reactant].number * chance;
@@ -505,36 +497,26 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
           reacted[product] = self.randomDraw(remaining_production, p);
 
           remaining_production -= reacted[product];
-          // This is complicated...
-          // when an element reacts with
-          // itself, we are not producing the
-          // full amount, but half of it
-          // e.g. if you react 30 atoms with
-          // itself, they will form 15 pairs
-          // also if the production number is
-          // even, there will be one leftover
-          // atom, that must be put back into
+          // This is complicated... when an element reacts with itself, we are not producing the
+          // full amount, but half of it e.g. if you react 30 atoms with itself, they will form 15 pairs
+          // also if the production number is even, there will be one leftover atom, that must be put back into
           // the pool
-          // finally to avoid double counting,
-          // we need to refill the atoms by
-          // half of the production
-          if (reaction.reactant == radical) {
+          // finally to avoid double counting, we need to refill the atoms by half of the production
+          if(reaction.reactant == radical) {
             var adjusted_production = Math.floor(reacted[product] / 2);
             $scope.player.resources[radical].number += reacted[product] % 2 + adjusted_production;
             reacted[product] = adjusted_production;
           }
         }
-        // The last reaction is just the
-        // remaining production that hasn't been
-        // consumed
+        // The last reaction is just the remaining production that hasn't been consumed
         reacted[$scope.resources[radical].free_radical.reaction[$scope.resources[radical].free_radical.reaction.length - 1].product] = remaining_production;
 
-        for ( var reaction in $scope.resources[radical].free_radical.reaction) {
+        for(var reaction in $scope.resources[radical].free_radical.reaction) {
           var reactant = $scope.resources[radical].free_radical.reaction[reaction].reactant;
           product = $scope.resources[radical].free_radical.reaction[reaction].product;
           $scope.player.resources[reactant].number -= reacted[product];
           $scope.player.resources[product].number += reacted[product];
-          if ($scope.player.resources[product].number > 0) {
+          if($scope.player.resources[product].number > 0) {
             $scope.$emit("resource", product);
           }
         }
@@ -542,51 +524,43 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
       }
     }
 
-    // We will simulate the production of isotopes
-    // proportional to their ratio
-    for ( var element in $scope.player.elements) {
+    // We will simulate the production of isotopes proportional to their ratio
+    for(var element in $scope.player.elements) {
       if($scope.player.elements[element].unlocked === false){
         continue;
       }
       // Prepare an array with the isotopes
       var isotopes = [ element ];
       isotopes = isotopes.concat($scope.elements[element].isotopes);
-      // N is the total production for this
-      // element
       var remaining = $scope.elementProduction(element);
-      // We will create a random draw
-      // On each consecutive draw we subtract the
-      // number generated to the total and
-      // recalculate the mean and std
-      for (var i = 0; i < isotopes.length - 1; i++) {
-        // First we need to adjust the ratio for
-        // the remaining isotopes
+      // We will create a random draw recalculate the mean and std
+      for(var i = 0; i < isotopes.length - 1; i++) {
+        // First we need to adjust the ratio for the remaining isotopes
         var remaining_ratio_sum = 0;
-        for (var j = i; j < isotopes.length; j++) {
+        for(var j = i; j < isotopes.length; j++) {
           remaining_ratio_sum += $scope.resources[isotopes[j]].ratio;
         }
 
         var p = $scope.resources[isotopes[i]].ratio / remaining_ratio_sum;
         production = self.randomDraw(remaining, p);
 
-        if (production > 0) {
+        if(production > 0) {
           $scope.player.resources[isotopes[i]].number += production;
           $scope.$emit("resource", isotopes[i]);
         }
         remaining -= production;
       }
-      // The last isotope is just the remaining
-      // production that hasn't been consumed
-      if (remaining > 0) {
+      // The last isotope is just the remaining production that hasn't been consumed
+      if(remaining > 0) {
         $scope.player.resources[isotopes[isotopes.length - 1]].number += remaining;
         $scope.$emit("resource", isotopes[isotopes.length - 1]);
       }
     }
 
     // We will process the synthesis reactions
-    for ( var synthesis in $scope.player.synthesis) {
+    for(var synthesis in $scope.player.synthesis) {
       var power = $scope.synthesisPower(synthesis);
-      if (power !== 0) {
+      if(power !== 0) {
         $scope.react(power, $scope.synthesis[synthesis]);
       }
     }
@@ -611,15 +585,15 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
   $scope.compoundFormat = function (number, compound) {
     var compoundHTML = "";
     var keys = Object.keys(compound);
-    for (var i = 0; i < keys.length; i++) {
-      if (Number.isInteger(number) && number > 1) {
+    for(var i = 0; i < keys.length; i++) {
+      if(Number.isInteger(number) && number > 1) {
         compoundHTML += $scope.prettifyNumber(Number.parseFloat((number * compound[keys[i]]).toFixed(4))) +
                         " ";
-      } else if (compound[keys[i]] != 1) {
+      } else if(compound[keys[i]] != 1) {
         compoundHTML += $scope.prettifyNumber(compound[keys[i]]) + " ";
       }
       compoundHTML += $scope.getHTML(keys[i]) + " ";
-      if (i < keys.length - 1) {
+      if(i < keys.length - 1) {
         compoundHTML += "+ ";
       }
     }
@@ -629,7 +603,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
   $scope.decayFormat = function (decay) {
     var format = '<span class="icon">&#8594;</span>';
     format += $scope.compoundFormat(1, decay.decay_product);
-    if (decay.decay_energy) {
+    if(decay.decay_energy) {
       format += " + " + $scope.prettifyNumber(decay.decay_energy) + ' ' + $scope.getHTML('eV');
     }
     return format;
@@ -642,18 +616,17 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
   };
 
   $scope.prettifyNumber = function (number) {
-    if (typeof number == 'undefined') {
+    if(typeof number == 'undefined') {
       return;
     }
-    if (number === "") {
+    if(number === "") {
       return "";
     }
-    if (number == Infinity) {
+    if(number == Infinity) {
       return "&infin;";
     }
-    if (number > 1e6) {
-      // Very ugly way to extract the mantisa and
-      // exponent from an exponential string
+    if(number > 1e6) {
+      // Very ugly way to extract the mantisa and exponent from an exponential string
       var exponential = number.toPrecision(6).split("e");
       var exponent = parseFloat(exponential[1].split("+")[1]);
       // And it is displayed in with superscript
@@ -677,16 +650,16 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
   };
 
   self.initializeListeners = function () {
-    for ( var key in $scope.unlocks) {
-      if (!$scope.player.unlocks[key]) {
+    for(var key in $scope.unlocks) {
+      if(!$scope.player.unlocks[key]) {
         $scope.unlocks[key].listener = $scope.$on($scope.unlocks[key].event, $scope.unlocks[key].check);
       }
     }
   };
 
   self.stopListeners = function () {
-    for ( var key in $scope.unlocks) {
-      if ($scope.unlocks[key].listener) {
+    for(var key in $scope.unlocks) {
+      if($scope.unlocks[key].listener) {
         $scope.unlocks[key].listener();
         $scope.unlocks[key].listener = undefined;
       }
@@ -707,8 +680,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
   $scope.numberUnlocked = function () {
     var unlocked = 0;
-    for ( var key in $scope.player.unlocks) {
-      if ($scope.player.unlocks[key]) {
+    for(var key in $scope.player.unlocks) {
+      if($scope.player.unlocks[key]) {
         unlocked++;
       }
     }
@@ -717,8 +690,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
   $scope.visibleKeys = function (map) {
     var result = {};
-    for ( var key in map) {
-      if (map[key].visible()) {
+    for(var key in map) {
+      if(map[key].visible()) {
         result[key] = map[key];
       }
     }
@@ -766,7 +739,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
    * @since 2011-07-14
    */
   self.versionCompare = function (left, right) {
-    if (typeof left != 'string' || typeof right != 'string') {
+    if(typeof left != 'string' || typeof right != 'string') {
       return;
     }
 
@@ -774,10 +747,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     var b = right.split('.');
     var len = Math.max(a.length, b.length);
 
-    for (var i = 0; i < len; i++) {
-      if ((a[i] && !b[i] && parseInt(a[i]) > 0) || (parseInt(a[i]) > parseInt(b[i]))) {
+    for(var i = 0; i < len; i++) {
+      if((a[i] && !b[i] && parseInt(a[i]) > 0) || (parseInt(a[i]) > parseInt(b[i]))) {
         return 'bigger';
-      } else if ((b[i] && !a[i] && parseInt(b[i]) > 0) || (parseInt(a[i]) < parseInt(b[i]))) {
+      } else if((b[i] && !a[i] && parseInt(b[i]) > 0) || (parseInt(a[i]) < parseInt(b[i]))) {
         return 'smaller';
       }
     }
@@ -787,13 +760,13 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
   self.onload = $timeout(function () {
     loadData($scope);
-    if (localStorage.getItem("playerStoredITE") !== null) {
+    if(localStorage.getItem("playerStoredITE") !== null) {
       $scope.load();
     }
-    if ($scope.player === undefined) {
+    if($scope.player === undefined) {
       self.init();
     }
-    if ($scope.lastSave === undefined) {
+    if($scope.lastSave === undefined) {
       $scope.lastSave = "None";
     }
     // init();
