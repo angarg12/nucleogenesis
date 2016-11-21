@@ -357,7 +357,6 @@ describe("Incremental table elements", function() {
 			spyOn(controller, "init");
 			spyOn(controller, "introAnimation");
 			spyOn(controller, "initializeListeners");
-      spyOn($scope, "updateTheme");
     });
     
     it("should load the game", function() {
@@ -451,7 +450,6 @@ describe("Incremental table elements", function() {
       $scope.lastSave = undefined;
       spyOn(controller, "init");
       spyOn(controller, "introAnimation");
-      spyOn($scope, "updateTheme");
     
       $scope.reset(false);
 
@@ -465,7 +463,6 @@ describe("Incremental table elements", function() {
       spyOn(window, "confirm").and.returnValue(true);
       spyOn(controller, "init");
       spyOn(controller, "introAnimation");
-      spyOn($scope, "updateTheme");
     
       $scope.reset(true);
 
@@ -501,7 +498,6 @@ describe("Incremental table elements", function() {
       spyOn(controller, "stopListeners");
       spyOn(controller, "versionControl");
       spyOn($scope, "save");
-      spyOn($scope, "updateTheme");
       spyOn(controller, "initializeListeners");
     
       $scope.importSave();
@@ -511,7 +507,6 @@ describe("Incremental table elements", function() {
       expect(controller.stopListeners).toHaveBeenCalled();
       expect(controller.versionControl).toHaveBeenCalled();
       expect($scope.save).toHaveBeenCalled();
-      expect($scope.updateTheme).toHaveBeenCalled();
       expect(controller.initializeListeners).toHaveBeenCalled();
     });
     
@@ -521,7 +516,6 @@ describe("Incremental table elements", function() {
       spyOn(controller, "stopListeners");
       spyOn(controller, "versionControl");
       spyOn($scope, "save");
-      spyOn($scope, "updateTheme");
       spyOn(controller, "initializeListeners");
     
       $scope.importSave();
@@ -531,7 +525,6 @@ describe("Incremental table elements", function() {
       expect(controller.stopListeners).not.toHaveBeenCalled();
       expect(controller.versionControl).not.toHaveBeenCalled();
       expect($scope.save).not.toHaveBeenCalled();
-      expect($scope.updateTheme).not.toHaveBeenCalled();
       expect(controller.initializeListeners).not.toHaveBeenCalled();
     });
     
@@ -541,7 +534,6 @@ describe("Incremental table elements", function() {
       spyOn(controller, "stopListeners");
       spyOn(controller, "versionControl");
       spyOn($scope, "save");
-      spyOn($scope, "updateTheme");
       spyOn(controller, "initializeListeners");
     
       $scope.importSave();
@@ -551,7 +543,6 @@ describe("Incremental table elements", function() {
       expect(controller.stopListeners).not.toHaveBeenCalled();
       expect(controller.versionControl).not.toHaveBeenCalled();
       expect($scope.save).not.toHaveBeenCalled();
-      expect($scope.updateTheme).not.toHaveBeenCalled();
       expect(controller.initializeListeners).not.toHaveBeenCalled();
     });
       
@@ -1396,6 +1387,7 @@ describe("Incremental table elements", function() {
       $scope.player.resources.O.unlocked = true;
       $scope.player.resources.O2.number = 1e8;
       spyOn(controller.numberGenerator, 'nextGaussian').and.returnValue(0);
+      spyOn(controller, 'simulateDecay').and.returnValues(50,45);
       
       controller.update();
       
@@ -1409,75 +1401,6 @@ describe("Incremental table elements", function() {
       expect($scope.player.resources.O.number).toEqual(951);
       expect($scope.player.resources.O2.number).toEqual(100000017);
       expect($scope.player.resources.O3.number).toEqual(5);
-    });    
-    
-    it("should not process negative production", function() {
-      controller.populatePlayer();
-      $scope.player = controller.startPlayer;
-      $scope.player.resources.O.unlocked = true;
-      $scope.player.resources.O.number = 1000;
-      $scope.player.resources.O.unlocked = true;
-      $scope.player.resources.O2.number = 1000;
-      spyOn(controller.numberGenerator, 'nextGaussian').and.returnValue(-1e10);
-      
-      controller.update();
-      
-      // the logic is the following
-      // we start with 1000 O. Out of those, 5% react (50)
-      // the reactants are in total 1000 O and 100 O2, 1100
-      // for O2 we react around 90%, which is 45. However 45 is odd
-      // so we adjust down to 44. 44 O generate 22 O2.
-      // then we have 5 reactions of O with O2. We substract them
-      // and obtain the final values.
-      expect($scope.player.resources.O.number).toEqual(1000);
-      expect($scope.player.resources.O2.number).toEqual(1000);
-      expect($scope.player.resources.O3.number).toEqual(0);
-    });
-    
-    it("should not process negative production 2", function() {
-      controller.populatePlayer();
-      $scope.player = controller.startPlayer;
-      $scope.player.resources.O.unlocked = true;
-      $scope.player.resources.O.number = 1000;
-      $scope.player.resources.O.unlocked = true;
-      $scope.player.resources.O2.number = 1000;
-      spyOn(controller.numberGenerator, 'nextGaussian').and.returnValues(0,-1e10);
-      
-      controller.update();
-      
-      // the logic is the following
-      // we start with 1000 O. Out of those, 5% react (50)
-      // the reactants are in total 1000 O and 100 O2, 1100
-      // for O2 we react around 90%, which is 45. However 45 is odd
-      // so we adjust down to 44. 44 O generate 22 O2.
-      // then we have 5 reactions of O with O2. We substract them
-      // and obtain the final values.
-      expect($scope.player.resources.O.number).toEqual(950);
-      expect($scope.player.resources.O2.number).toEqual(950);
-      expect($scope.player.resources.O3.number).toEqual(50);
-    });
-    
-    it("should not process over production", function() {
-      controller.populatePlayer();
-      $scope.player = controller.startPlayer;
-      $scope.player.resources.O.unlocked = true;
-      $scope.player.resources.O.number = 1000;
-      $scope.player.resources.O.unlocked = true;
-      $scope.player.resources.O2.number = 1000;
-      spyOn(controller.numberGenerator, 'nextGaussian').and.returnValue(1e10);
-      
-      controller.update();
-      
-      // the logic is the following
-      // we start with 1000 O. Out of those, 5% react (50)
-      // the reactants are in total 1000 O and 100 O2, 1100
-      // for O2 we react around 90%, which is 45. However 45 is odd
-      // so we adjust down to 44. 44 O generate 22 O2.
-      // then we have 5 reactions of O with O2. We substract them
-      // and obtain the final values.
-      expect($scope.player.resources.O.number).toEqual(0);
-      expect($scope.player.resources.O2.number).toEqual(1500);
-      expect($scope.player.resources.O3.number).toEqual(0);
     });
   });
 

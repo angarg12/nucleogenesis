@@ -349,7 +349,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
       localStorage.removeItem("playerStoredITE");
       self.init();
       self.introAnimation();
-      $scope.updateTheme();
     }
   };
 
@@ -370,7 +369,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
         self.stopListeners();
         self.versionControl();
         $scope.save();
-        $scope.updateTheme();
         self.initializeListeners();
       } catch (error) {
         alert("Invalid save file.");
@@ -439,7 +437,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
         var half_life = $scope.resources[radioisotope].decay.half_life;
 
-        production = self.simulateDecay(number, half_life);
+        var production = self.simulateDecay(number, half_life);
         // we decrease the number of radioactive
         // element
         $scope.player.resources[radioisotope].number -= production;
@@ -490,25 +488,13 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     for (var i = 0; i < $scope.free_radicals.length; i++) {
       var radical = $scope.free_radicals[i];
       if ($scope.player.resources[radical].unlocked) {
-        var number = $scope.player.resources[radical].number;
-        var p = $scope.resources[radical].free_radical.reactivity;
-        var q = 1 - p;
-        var mean = number * p;
-        var variance = number * p * q;
-        var std = Math.sqrt(variance);
-        production = Math.round(self.numberGenerator.nextGaussian() * std + mean);
-
-        if (production > number) {
-          production = number;
-        }
-        if (production < 0) {
-          production = 0;
-        }
+        production = self.simulateDecay($scope.player.resources[radical].number, 
+            $scope.resources[radical].free_radical.reactivity);
 
         var reacted = {};
         var remaining_production = production;
         for (var j = 0; j < $scope.resources[radical].free_radical.reaction.length - 1; j++) {
-          reaction = $scope.resources[radical].free_radical.reaction[j];
+          var reaction = $scope.resources[radical].free_radical.reaction[j];
           var product = reaction.product;
           var reactants_number = 0;
           // we have to calculate how many
@@ -519,26 +505,11 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
             var chance = $scope.resources[radical].free_radical.reaction[k].chance;
             reactants_number += $scope.player.resources[reactant].number * chance;
           }
-          // I think per the game semantics this can't happen. If this number
-          // is 0 its because a) there are no more reactions, and therefore it 
-          // would be out of the loop, or the probabilities are 0, which is nonsense
-          if (reactants_number === 0) {
-            var p = 0;
-          } else {
-            var p = $scope.player.resources[reaction.reactant].number / reactants_number;
-          }
-          var q = 1 - p;
-          var mean = remaining_production * p;
-          var variance = remaining_production * p * q;
-          var std = Math.sqrt(variance);
 
-          reacted[product] = Math.round(self.numberGenerator.nextGaussian() * std + mean);
-          if (reacted[product] > remaining_production) {
-            reacted[product] = remaining_production;
-          }
-          if (reacted[product] < 0) {
-            reacted[product] = 0;
-          }
+          var p = $scope.player.resources[reaction.reactant].number / reactants_number;
+          reacted[product] = self.simulateDecay(remaining_production, 
+              p);
+
           remaining_production -= reacted[product];
           // This is complicated...
           // when an element reacts with
@@ -786,12 +757,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     $scope.player.intro[value] = true;
   };
 
-  $scope.updateTheme = function () {
-    document.getElementById('theme_css').href = 'styles/' +
-                                                $scope.player.current_theme +
-                                                '-bootstrap.min.css';
-  };
-
   self.logn = function(number, base){
     return Math.log(number)/Math.log(base);
   };
@@ -853,6 +818,5 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     $interval(self.update, 1000);
     $interval(self.checkUnlocks, 1000);
     $interval($scope.save, 10000);
-    $scope.updateTheme();
   });
 } ]);
