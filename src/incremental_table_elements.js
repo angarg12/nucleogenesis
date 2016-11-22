@@ -419,53 +419,37 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     return k - 1;
   };
 
+  self.processDecay = function (resources) {
+    for(var i = 0; i < resources.length; i++) {
+      var resource = resources[i];
+      if($scope.player.resources[resource].unlocked) {
+        var number = $scope.player.resources[resource].number;
+        var half_life = $scope.resources[resource].decay.half_life;
+        var production = self.randomDraw(number, Math.log(2) / half_life);
+        
+        // we decrease the number of radioactive element
+        $scope.player.resources[resource].number -= production;
+        
+        // and decay products
+        for(var product in $scope.resources[resource].decay.decay_product) {
+          if(production > 0) {
+            $scope.player.resources[product].number += $scope.resources[resource].decay.decay_product[product] *
+                                                       production;
+            $scope.$emit("resource", product);
+            var decay_type = $scope.resources[resource].decay.decay_type;
+            if(decay_type){
+              $scope.$emit("decay", decay_type);
+            }
+          }
+        }
+      }
+    }
+  };
+  
   self.update = function () {
     // decay should become first, since we are decaying the products from last step
-    // We will process the radioactive decay
-    for(var i = 0; i < $scope.radioisotopes.length; i++) {
-      var radioisotope = $scope.radioisotopes[i];
-      if($scope.player.resources[radioisotope].unlocked) {
-        var number = $scope.player.resources[radioisotope].number;
-
-        var half_life = $scope.resources[radioisotope].decay.half_life;
-
-        var production = self.randomDraw(number, Math.log(2) / half_life);
-        // we decrease the number of radioactive
-        // element
-        $scope.player.resources[radioisotope].number -= production;
-        // and decay products
-        for(var product in $scope.resources[radioisotope].decay.decay_product) {
-          if(production > 0) {
-            $scope.player.resources[product].number += $scope.resources[radioisotope].decay.decay_product[product] *
-                                                       production;
-            $scope.$emit("resource", product);
-            $scope.$emit("decay", $scope.resources[radioisotope].decay.decay_type);
-          }
-        }
-      }
-    }
-
-    // decomposition comes second since it is very similar to radioactivity
-    // We will process the decompositions
-    for(var i = 0; i < $scope.unstables.length; i++) {
-      var unstable = $scope.unstables[i];
-      if($scope.player.resources[unstable].unlocked) {
-        var number = $scope.player.resources[unstable].number;
-        var half_life = $scope.resources[unstable].decay.half_life;
-        production = self.randomDraw(number, Math.log(2) / half_life);
-        
-        // we decrease the number of unstable element
-        $scope.player.resources[unstable].number -= production;
-        // produce decay products
-        for(var product in $scope.resources[unstable].decay.decay_product) {
-          if(production > 0) {
-            $scope.player.resources[product].number += $scope.resources[unstable].decay.decay_product[product] *
-                                                       production;
-            $scope.$emit("resource", product);
-          }
-        }
-      }
-    }
+    self.processDecay($scope.radioisotopes);
+    self.processDecay($scope.unstables);
 
     // We will simulate the reactivity of free radicals
     for(var i = 0; i < $scope.free_radicals.length; i++) {
