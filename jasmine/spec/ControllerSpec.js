@@ -1304,7 +1304,8 @@ describe("Incremental table elements", function() {
       $scope.player = controller.startPlayer;
       $scope.player.resources['3H'].unlocked = true;
       $scope.player.resources['3H'].number = 1000;
-      spyOn(controller, 'randomDraw').and.returnValue(0);
+      spyOn(controller.numberGenerator,'nextGaussian').and.returnValue(0);
+      spyOn(controller,'getPoisson').and.returnValue(0);
       
       controller.update();
       
@@ -1318,15 +1319,16 @@ describe("Incremental table elements", function() {
       controller.populatePlayer();
       $scope.player = controller.startPlayer;
       $scope.player.resources['3H'].unlocked = true;
-      $scope.player.resources['3H'].number = 1000;
-      spyOn(controller, 'randomDraw').and.returnValue(500);
+      $scope.player.resources['3H'].number = 1e+10;
+      spyOn(controller.numberGenerator,'nextGaussian').and.returnValue(0);
+      spyOn(controller,'getPoisson').and.returnValue(0);
       
       controller.update();
       
-      expect($scope.player.resources['3H'].number).toEqual(500);
-      expect($scope.player.resources['3He+1'].number).toEqual(500);
-      expect($scope.player.resources['e-'].number).toEqual(500);
-      expect($scope.player.resources.eV.number).toEqual(9305000);
+      expect($scope.player.resources['3H'].number).toEqual(9999999982);
+      expect($scope.player.resources['3He+1'].number).toEqual(18);
+      expect($scope.player.resources['e-'].number).toEqual(18);
+      expect($scope.player.resources.eV.number).toEqual(334980);
     });
     
     it("should process unstables", function() {
@@ -1334,7 +1336,8 @@ describe("Incremental table elements", function() {
       $scope.player = controller.startPlayer;
       $scope.player.resources.O3.unlocked = true;
       $scope.player.resources.O3.number = 1000;
-      spyOn(controller, 'randomDraw').and.returnValue(0);
+      spyOn(controller.numberGenerator,'nextGaussian').and.returnValue(0);
+      spyOn(controller,'getPoisson').and.returnValue(0);
       
       controller.update();
       
@@ -1347,16 +1350,17 @@ describe("Incremental table elements", function() {
       controller.populatePlayer();
       $scope.player = controller.startPlayer;
       $scope.player.resources.O3.unlocked = true;
-      $scope.player.resources.O3.number = 1000;
-      spyOn(controller, 'randomDraw').and.returnValue(500);
+      $scope.player.resources.O3.number = 1e6;
+      spyOn(controller.numberGenerator,'nextGaussian').and.returnValue(0);
+      spyOn(controller,'getPoisson').and.returnValue(0);
       // clear this subscriber to avoid side effects
       controller.checkUnlock();
       
       controller.update();
       
-      expect($scope.player.resources.O3.number).toEqual(500);
-      expect($scope.player.resources.O2.number).toEqual(500);
-      expect($scope.player.resources.O.number).toEqual(500);
+      expect($scope.player.resources.O3.number).toEqual(999992);
+      expect($scope.player.resources.O2.number).toEqual(8);
+      expect($scope.player.resources.O.number).toEqual(8);
     });
     
     it("should process radicals", function() {
@@ -1366,8 +1370,8 @@ describe("Incremental table elements", function() {
       $scope.player.resources.O.number = 1000;
       $scope.player.resources.O.unlocked = true;
       $scope.player.resources.O2.number = 1e8;
-      spyOn(controller.numberGenerator, 'nextGaussian').and.returnValue(0);
-      spyOn(controller, 'randomDraw').and.returnValues(50,45);
+      spyOn(controller.numberGenerator,'nextGaussian').and.returnValue(0);
+      spyOn(controller,'getPoisson').and.returnValue(0);
       
       controller.update();
       
@@ -1376,7 +1380,7 @@ describe("Incremental table elements", function() {
       // the reactants are in total 1000 O and 100 O2, 1100
       // for O2 we react around 90%, which is 45. However 45 is odd
       // so we adjust down to 44. 44 O generate 22 O2.
-      // then we have 5 reactions of O with O2. We substract them
+      // then we have 5 reactions of O with O2. We subtract them
       // and obtain the final values.
       expect($scope.player.resources.O.number).toEqual(951);
       expect($scope.player.resources.O2.number).toEqual(100000017);
