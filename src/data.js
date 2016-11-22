@@ -1665,11 +1665,11 @@ function loadData($scope) {
       type : 'isotope',
       decay : {
         half_life : 3.8852e+8,
-        decay_energy : 18610,
         decay_type : 'beta-',
         decay_product : {
           '3He+1' : 1,
-          'e-' : 1
+          'e-' : 1,
+          'eV' : 18610
         }
       }
     },
@@ -1751,10 +1751,10 @@ function loadData($scope) {
       type : 'isotope',
       decay : {
         half_life : 4589568,
-        decay_energy : 862000,
         decay_type : 'electron-capture',
         decay_product : {
-          '7Li' : 1
+          '7Li' : 1,
+          'eV' : 862000
         }
       }
     },
@@ -1770,11 +1770,11 @@ function loadData($scope) {
       html : '<sup>10</sup>Be',
       decay : {
         half_life : 4.2917e+14,
-        decay_energy : 556000,
         decay_type : 'beta-',
         decay_product : {
           '10B' : 1,
-          'e-' : 1
+          'e-' : 1,
+          'eV' : 556000
         }
       }
     },
@@ -1817,11 +1817,11 @@ function loadData($scope) {
       type : 'isotope',
       decay : {
         half_life : 1200,
-        decay_energy : 96000,
         decay_type : 'beta+',
         decay_product : {
           '11B' : 1,
-          'e+' : 1
+          'e+' : 1,
+          'eV' : 96000
         }
       }
     },
@@ -1848,11 +1848,11 @@ function loadData($scope) {
       type : 'isotope',
       decay : {
         half_life : 1.807e+11,
-        decay_energy : 156000,
         decay_type : 'beta-',
         decay_product : {
           '14N' : 1,
-          'e-' : 1
+          'e-' : 1,
+          'eV' : 156000
         }
       }
     },
@@ -1876,10 +1876,10 @@ function loadData($scope) {
       type : 'isotope',
       decay : {
         half_life : 598,
-        decay_energy : 2220000,
         decay_type : 'electron-capture',
         decay_product : {
-          '13C' : 1
+          '13C' : 1,
+          'eV' : 2220000
         }
       }
     },
@@ -1992,11 +1992,11 @@ function loadData($scope) {
       type : 'isotope',
       decay : {
         half_life : 6586,
-        decay_energy : 634000,
         decay_type : 'beta+',
         decay_product : {
           '18O' : 1,
-          'e+' : 1
+          'e+' : 1,
+          'eV' : 634000
         }
       }
     },

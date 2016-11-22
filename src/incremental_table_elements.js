@@ -433,19 +433,13 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
         // we decrease the number of radioactive
         // element
         $scope.player.resources[radioisotope].number -= production;
-        // produce energy
-        if($scope.resources[radioisotope].decay.decay_energy * production > 0) {
-          $scope.player.resources.eV.number += Number
-              .parseFloat(($scope.resources[radioisotope].decay.decay_energy * production).toFixed(4));
-          $scope.$emit("resource", "eV");
-          $scope.$emit("decay", $scope.resources[radioisotope].decay.decay_type);
-        }
         // and decay products
         for(var product in $scope.resources[radioisotope].decay.decay_product) {
           if(production > 0) {
             $scope.player.resources[product].number += $scope.resources[radioisotope].decay.decay_product[product] *
                                                        production;
             $scope.$emit("resource", product);
+            $scope.$emit("decay", $scope.resources[radioisotope].decay.decay_type);
           }
         }
       }
@@ -603,9 +597,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
   $scope.decayFormat = function (decay) {
     var format = '<span class="icon">&#8594;</span>';
     format += $scope.compoundFormat(1, decay.decay_product);
-    if(decay.decay_energy) {
-      format += " + " + $scope.prettifyNumber(decay.decay_energy) + ' ' + $scope.getHTML('eV');
-    }
     return format;
   };
 

@@ -583,11 +583,11 @@ describe("Incremental table elements", function() {
     }); 
     
     it("should format decay without energy", function() {
-      $scope.resources['3H'].decay.decay_energy = undefined;
+      $scope.resources['3H'].decay.decay_product.eV = undefined;
     
-      value = $scope.decayFormat($scope.resources['3H'].decay);
+      value = $scope.decayFormat($scope.resources['O3'].decay);
       
-      expect(value).toEqual('<span class="icon">&#8594;</span><sup>3</sup>He<sup>+</sup> + e-');
+      expect(value).toEqual('<span class="icon">&#8594;</span>O<sub>2</sub> + O');
     });
   });
     
