@@ -403,7 +403,7 @@ describe("Incremental table elements", function() {
   });
   
   describe('save and load', function() {
-    var getItemSpy
+    var getItemSpy;
     
     beforeEach(function() {
       getItemSpy = spyOn(localStorage, "getItem");
@@ -617,7 +617,6 @@ describe("Incremental table elements", function() {
       $scope.player.resources['e-'] = {number:0};
 			$scope.player.resources.p = {number:300};
 			$scope.player.resources.n = {number:300};
-      //$scope.player.elements_unlocked = 1;
     
       value = $scope.isElementCostMet('O');
       
@@ -978,7 +977,6 @@ describe("Incremental table elements", function() {
       expect($scope.player.resources['H2'].number).toEqual(20);
       expect($scope.player.resources['O2'].number).toEqual(26);
       expect($scope.player.synthesis['H2O'].number).toEqual(4);
-      //expect($scope.$emit).toHaveBeenCalled();
     });
     
     it("should purchase as many synthesis as possible", function() {
@@ -992,7 +990,6 @@ describe("Incremental table elements", function() {
       expect($scope.player.resources['H2'].number).toEqual(2);
       expect($scope.player.resources['O2'].number).toEqual(28);
       expect($scope.player.synthesis['H2O'].number).toEqual(3);
-      //expect($scope.$emit).toHaveBeenCalled();
     });  
     
     it("should not purchase negative synthesis", function() {
@@ -1006,7 +1003,6 @@ describe("Incremental table elements", function() {
       expect($scope.player.resources['H2'].number).toEqual(32);
       expect($scope.player.resources['O2'].number).toEqual(32);
       expect($scope.player.synthesis['H2O'].number).toEqual(1);
-      //expect($scope.$emit).toHaveBeenCalled();
     });   
     
     it("should not purchase synthesis if the cost is not met", function() {
@@ -1020,7 +1016,6 @@ describe("Incremental table elements", function() {
       expect($scope.player.resources['H2'].number).toEqual(2);
       expect($scope.player.resources['O2'].number).toEqual(32);
       expect($scope.player.synthesis['H2O'].number).toEqual(1);
-      //expect($scope.$emit).toHaveBeenCalled();
     });
   });
   
@@ -1377,8 +1372,10 @@ describe("Incremental table elements", function() {
       
       // the logic is the following
       // we start with 1000 O. Out of those, 5% react (50)
-      // the reactants are in total 1000 O and 100 O2, 1100
-      // for O2 we react around 90%, which is 45. However 45 is odd
+      // the reactants are in total 1000 O and 1e8 O2
+      // with reactivity 1e-6, 100 of O2 react with O
+      // the sum is 1100, so we split 1000/1100 and 100/1100
+      // for O we react around 90.9%, which is 45. However 45 is odd
       // so we adjust down to 44. 44 O generate 22 O2.
       // then we have 5 reactions of O with O2. We subtract them
       // and obtain the final values.

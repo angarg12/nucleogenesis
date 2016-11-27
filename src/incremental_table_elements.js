@@ -427,21 +427,107 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
         var half_life = $scope.resources[resource].decay.half_life;
         var production = self.randomDraw(number, Math.log(2) / half_life);
         
+        if(production <= 0) {
+          return;
+        }
+        
         // we decrease the number of radioactive element
         $scope.player.resources[resource].number -= production;
         
         // and decay products
         for(var product in $scope.resources[resource].decay.decay_product) {
-          if(production > 0) {
-            $scope.player.resources[product].number += $scope.resources[resource].decay.decay_product[product] *
-                                                       production;
-            $scope.$emit("resource", product);
-            var decay_type = $scope.resources[resource].decay.decay_type;
-            if(decay_type){
-              $scope.$emit("decay", decay_type);
-            }
+          $scope.player.resources[product].number += $scope.resources[resource].decay.decay_product[product] *
+                                                     production;
+          $scope.$emit("resource", product);
+          var decay_type = $scope.resources[resource].decay.decay_type;
+          if(decay_type){
+            $scope.$emit("decay", decay_type);
           }
         }
+      }
+    }
+  };
+
+  // We will simulate the reactivity of free radicals
+  self.processUnstable = function () {
+    for(var i = 0; i < $scope.free_radicals.length; i++) {
+      var radical = $scope.free_radicals[i];
+      if($scope.player.resources[radical].unlocked) {
+        var production = self.randomDraw($scope.player.resources[radical].number, 
+            $scope.resources[radical].free_radical.reactivity);
+        
+        var proportions = self.calculateProportions(radical);        
+        var reacted = self.calculateReacted(radical, production, proportions);
+        self.adjustResources(radical, production, reacted);
+      }
+    }
+  };
+  
+  self.calculateProportions = function (radical) {
+    var reactants_number = [];
+    var reactants_total = 0;
+    // we have to calculate how many reactants are there so that we get the proportions right
+    for(var j = 0; j < $scope.resources[radical].free_radical.reaction.length; j++) {
+      var reactant = $scope.resources[radical].free_radical.reaction[j].reactant;
+      var chance = $scope.resources[radical].free_radical.reaction[j].chance;
+      reactants_number[j] = Math.floor($scope.player.resources[reactant].number * chance);
+      reactants_total += reactants_number[j];
+    }
+    
+    var proportions = [];
+    for(var j = 0; j < reactants_number.length; j++) {
+      proportions[j] = reactants_number[j]/reactants_total;
+    }
+    
+    return proportions;
+  };
+  
+  self.calculateReacted = function (radical, production, proportions) {
+    var reacted = {};
+    for(var j = 0; j < $scope.resources[radical].free_radical.reaction.length - 1; j++) {
+      var reaction = $scope.resources[radical].free_radical.reaction[j];
+      var reacted_number = self.randomDraw(production, proportions[j]);
+
+      if(reacted_number <= 0){
+        continue;
+      }
+      var product = reaction.product;
+      reacted[product] = reacted_number;
+      
+      production -= reacted[product];
+      // This is complicated... when an element reacts with itself, we are not producing the
+      // full amount, but half of it e.g. if you react 30 atoms with itself, they will form 15 pairs
+      // also if the production number is even, there will be one leftover atom, that must be put back into
+      // the pool
+      // finally to avoid double counting, we need to refill the atoms by half of the production
+      if(reaction.reactant == radical) {
+        var adjusted_production = Math.floor(reacted[product] / 2);
+        $scope.player.resources[radical].number += reacted[product] % 2 + adjusted_production;
+        reacted[product] = adjusted_production;
+      }
+    }
+    // The last reaction is just the remaining production that hasn't been consumed
+    reacted[$scope.resources[radical].free_radical.reaction[$scope.resources[radical].free_radical.reaction.length - 1].product] = production;
+    return reacted;
+  };
+  
+  self.adjustResources = function (radical, production, reacted){
+    for(var reaction in $scope.resources[radical].free_radical.reaction) {
+      var reactant = $scope.resources[radical].free_radical.reaction[reaction].reactant;
+      var product = $scope.resources[radical].free_radical.reaction[reaction].product;
+      $scope.player.resources[reactant].number -= reacted[product];
+      $scope.player.resources[product].number += reacted[product];
+      $scope.$emit("resource", product);
+    }
+    $scope.player.resources[radical].number -= production;
+  };
+  
+  self.processSynthesis = function () {
+    // We will process the synthesis reactions
+    for(var synthesis in $scope.player.synthesis) {
+      var power = $scope.synthesisPower(synthesis);
+      if(power !== 0) {
+        $scope.react(power, $scope.synthesis[synthesis]);
       }
     }
   };
@@ -450,57 +536,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     // decay should become first, since we are decaying the products from last step
     self.processDecay($scope.radioisotopes);
     self.processDecay($scope.unstables);
-
-    // We will simulate the reactivity of free radicals
-    for(var i = 0; i < $scope.free_radicals.length; i++) {
-      var radical = $scope.free_radicals[i];
-      if($scope.player.resources[radical].unlocked) {
-        production = self.randomDraw($scope.player.resources[radical].number, 
-            $scope.resources[radical].free_radical.reactivity);
-
-        var reacted = {};
-        var remaining_production = production;
-        for(var j = 0; j < $scope.resources[radical].free_radical.reaction.length - 1; j++) {
-          var reaction = $scope.resources[radical].free_radical.reaction[j];
-          var product = reaction.product;
-          var reactants_number = 0;
-          // we have to calculate how many reactants are there so that we get the proportions right
-          for(var k = j; k < $scope.resources[radical].free_radical.reaction.length; k++) {
-            var reactant = $scope.resources[radical].free_radical.reaction[k].reactant;
-            var chance = $scope.resources[radical].free_radical.reaction[k].chance;
-            reactants_number += $scope.player.resources[reactant].number * chance;
-          }
-
-          var p = $scope.player.resources[reaction.reactant].number / reactants_number;
-          reacted[product] = self.randomDraw(remaining_production, p);
-
-          remaining_production -= reacted[product];
-          // This is complicated... when an element reacts with itself, we are not producing the
-          // full amount, but half of it e.g. if you react 30 atoms with itself, they will form 15 pairs
-          // also if the production number is even, there will be one leftover atom, that must be put back into
-          // the pool
-          // finally to avoid double counting, we need to refill the atoms by half of the production
-          if(reaction.reactant == radical) {
-            var adjusted_production = Math.floor(reacted[product] / 2);
-            $scope.player.resources[radical].number += reacted[product] % 2 + adjusted_production;
-            reacted[product] = adjusted_production;
-          }
-        }
-        // The last reaction is just the remaining production that hasn't been consumed
-        reacted[$scope.resources[radical].free_radical.reaction[$scope.resources[radical].free_radical.reaction.length - 1].product] = remaining_production;
-
-        for(var reaction in $scope.resources[radical].free_radical.reaction) {
-          var reactant = $scope.resources[radical].free_radical.reaction[reaction].reactant;
-          product = $scope.resources[radical].free_radical.reaction[reaction].product;
-          $scope.player.resources[reactant].number -= reacted[product];
-          $scope.player.resources[product].number += reacted[product];
-          if($scope.player.resources[product].number > 0) {
-            $scope.$emit("resource", product);
-          }
-        }
-        $scope.player.resources[radical].number -= production;
-      }
-    }
+    self.processUnstable();
 
     // We will simulate the production of isotopes proportional to their ratio
     for(var element in $scope.player.elements) {
@@ -535,13 +571,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
       }
     }
 
-    // We will process the synthesis reactions
-    for(var synthesis in $scope.player.synthesis) {
-      var power = $scope.synthesisPower(synthesis);
-      if(power !== 0) {
-        $scope.react(power, $scope.synthesis[synthesis]);
-      }
-    }
+    self.processSynthesis();
   };
 
   /*
@@ -582,12 +612,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     var format = '<span class="icon">&#8594;</span>';
     format += $scope.compoundFormat(1, decay.decay_product);
     return format;
-  };
-
-  $scope.exchangeReaction = function (reaction) {
-    var temp = reaction.reactant;
-    reaction.reactant = reaction.product;
-    reaction.product = temp;
   };
 
   $scope.prettifyNumber = function (number) {
@@ -687,10 +711,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
   self.introStep = function (value) {
     $scope.player.intro[value] = true;
-  };
-
-  self.logn = function(number, base){
-    return Math.log(number)/Math.log(base);
   };
   
   /**

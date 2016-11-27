@@ -126,13 +126,6 @@
                         <table class="table">
                           <tbody>
                             <tr class="animif" ng-repeat="key in visibleKeys(reactions[current_element].ionization))">
-							  <td class="col-md-1">							
-								<div class="pull-left">
-								  <button class="btn btn-default button-small glyphicon glyphicon-refresh" 
-								  title="Exchange"
-							  	  ng-click="exchangeReaction(reactions[current_element].ionization[key])"></button>
-							    </div>
-							  </td>
                               <td class="col-md-7" width=50%>
                                 <div class="pull-left">
                                   <span ng-bind-html="trustHTML(reactionFormat(reactions[current_element].ionization[key].number,reactions[current_element].ionization[key]))"></span>
@@ -161,13 +154,6 @@
                         <table class="table">
                           <tbody>
                             <tr class="animif" ng-repeat="key in visibleKeys(reactions[current_element].electron_affinity))">
-							  <td class="col-md-1">							
-								<div class="pull-left">
-								  <button class="btn btn-default button-small glyphicon glyphicon-refresh" 
-								  title="Exchange"
-							  	  ng-click="exchangeReaction(reactions[current_element].electron_affinity[key])"></button>
-							    </div>
-							  </td>
                               <td class="col-md-7" width=50%>
                                 <div class="pull-left">
                                   <span ng-bind-html="trustHTML(reactionFormat(reactions[current_element].electron_affinity[key].number,reactions[current_element].electron_affinity[key]))"></span>
@@ -223,13 +209,6 @@
                         <tbody>
                           <tr class="animif" ng-repeat="syn in visibleKeys(synthesis))"
                             ng-mouseover="player.synthesis[syn].is_new = false">
-                            <td class="col-md-1">							
-                              <div class="pull-left">
-								<button class="btn btn-default button-small glyphicon glyphicon-refresh" 
-								title="Exchange"
-								ng-click="exchangeReaction(synthesis[syn])"></button>
-                              </div>
-                            </td>
                             <td class="col-md-4" width=50%>
                               <div class="pull-left"
                                 ng-class="{'text-muted': player.synthesis[syn].active <= 0}">
