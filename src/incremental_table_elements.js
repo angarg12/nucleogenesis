@@ -522,22 +522,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     $scope.player.resources[radical].number -= production;
   };
   
-  self.processSynthesis = function () {
-    // We will process the synthesis reactions
-    for(var synthesis in $scope.player.synthesis) {
-      var power = $scope.synthesisPower(synthesis);
-      if(power !== 0) {
-        $scope.react(power, $scope.synthesis[synthesis]);
-      }
-    }
-  };
-  
-  self.update = function () {
-    // decay should become first, since we are decaying the products from last step
-    self.processDecay($scope.radioisotopes);
-    self.processDecay($scope.unstables);
-    self.processUnstable();
-
+  self.processIsotopes = function () {
     // We will simulate the production of isotopes proportional to their ratio
     for(var element in $scope.player.elements) {
       if($scope.player.elements[element].unlocked === false){
@@ -556,7 +541,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
         }
 
         var p = $scope.resources[isotopes[i]].ratio / remaining_ratio_sum;
-        production = self.randomDraw(remaining, p);
+        var production = self.randomDraw(remaining, p);
 
         if(production > 0) {
           $scope.player.resources[isotopes[i]].number += production;
@@ -570,7 +555,24 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
         $scope.$emit("resource", isotopes[isotopes.length - 1]);
       }
     }
-
+  };
+  
+  self.processSynthesis = function () {
+    // We will process the synthesis reactions
+    for(var synthesis in $scope.player.synthesis) {
+      var power = $scope.synthesisPower(synthesis);
+      if(power !== 0) {
+        $scope.react(power, $scope.synthesis[synthesis]);
+      }
+    }
+  };
+  
+  self.update = function () {
+    // decay should become first, since we are decaying the products from last step
+    self.processDecay($scope.radioisotopes);
+    self.processDecay($scope.unstables);
+    self.processUnstable();
+    self.processIsotopes();
     self.processSynthesis();
   };
 
