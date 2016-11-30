@@ -1,20 +1,22 @@
 describe("Incremental table elements", function() {
-  beforeEach(module('incremental'));
+  beforeEach(angular.mock.module('incremental'));
 
   var $controller;
   var $rootScope;
   var $timeout;
   var $scope;
   var controller;
+  var achievements;
   
-  beforeEach(inject(function(_$rootScope_, _$controller_,_$timeout_){
+  beforeEach(inject(function(_$rootScope_, _$controller_,_$timeout_, $injector){
     // The injector unwraps the underscores (_) from around the parameter names when matching
     $controller = _$controller_;
     $rootScope = _$rootScope_;
     spyOn($rootScope, '$emit').and.callThrough();
     $timeout = _$timeout_;
     $scope = $rootScope.$new();
-    controller = $controller('IncCtrl', {$scope:$scope});
+    achievements = $injector.get('achievements');
+    controller = $controller('IncCtrl', {$scope:$scope, achievements:achievements});
     loadData($scope);
   }));
 
@@ -97,88 +99,6 @@ describe("Incremental table elements", function() {
     });
   });
   
-    
-  describe('toast functions', function() {  
-    it("should add toasts to an empty queue", function() {
-      $scope.toast = [];
-      $scope.is_toast_visible = false;
-      $scope.addToast('test');
-      
-      expect($scope.toast.length).toEqual(1);
-      expect($scope.toast[0]).toEqual('test');
-      expect($scope.is_toast_visible).toEqual(true);
-    });
-    
-    it("should add toasts to an non empty queue", function() {
-      $scope.toast = ['a'];
-      $scope.addToast('test');
-      
-      expect($scope.toast.length).toEqual(2);
-      expect($scope.toast[1]).toEqual('test');
-    });
-    
-    it("should not change the visibility of non empty queue", function() {
-      $scope.toast = ['a'];
-      $scope.is_toast_visible = false;
-      $scope.addToast('test');
-      
-      expect($scope.is_toast_visible).toEqual(false);
-    });  
-    
-    it("should remove toasts", function() {
-      $scope.toast = ['test'];
-      $scope.is_toast_visible = true;
-      $scope.removeToast();
-      
-      expect($scope.is_toast_visible).toEqual(false);
-    });
-    
-    it("should not flip the visibility when removing toasts", function() {
-      $scope.toast = ['test'];
-      $scope.is_toast_visible = false;
-      $scope.removeToast();
-      
-      expect($scope.is_toast_visible).toEqual(false);
-    });
-    
-    it("should not fail on empty toast queues", function() {
-      $scope.toast = [];
-      $scope.is_toast_visible = true;
-      $scope.removeToast();
-      
-      expect($scope.is_toast_visible).toEqual(false);
-    });
-    
-    it("should delete toasts", function() {
-      $scope.toast = ['test'];
-      controller.deleteToast();
-      
-      expect($scope.toast).toEqual([]);
-    });
-    
-    it("should shift toasts", function() {
-      $scope.toast = ['test','test2'];
-      controller.deleteToast();
-      
-      expect($scope.toast).toEqual(['test2']);
-    });
-    
-    it("should make upcoming toasts visible", function() {
-      $scope.toast = ['test','test2'];
-      $scope.is_toast_visible = false;
-      controller.deleteToast();
-      
-      expect($scope.is_toast_visible).toEqual(true);
-    });
-    
-    it("should not fail on delete empty lists", function() {
-      $scope.toast = [];
-      controller.deleteToast();
-      
-      expect($scope.toast).toEqual([]);
-    });
-  });
-  
   describe('intro animation', function() { 
     it("should call all steps while playing the intro", function() {
       $scope.player = {intro:{}};
@@ -251,59 +171,6 @@ describe("Incremental table elements", function() {
     });
   });
   
-  describe('achievements', function() {
-    it("should initialise the listeners of the locked achievements", function() {
-      $scope.player = {unlocks:{}};
-      $scope.player.unlocks["hydrogen"] = false;
-    
-      controller.initializeListeners();
-      
-      expect($scope.unlocks["hydrogen"].listener).not.toBeUndefined();
-    });
-      
-    it("should not initialise the listeners of the unlocked achievements", function() {
-      $scope.player = {unlocks:{}};
-      $scope.player.unlocks["hydrogen"] = true;
-
-      controller.initializeListeners();
-      
-      expect($scope.unlocks["hydrogen"].listener).toBeUndefined();
-    });   
-    
-    it("should stop running listeners", function() {
-      controller.stopListeners();
-      
-      expect($scope.unlocks["hydrogen"].listener).toBeUndefined();
-    });
-    
-    it("should not start stopped listeners", function() {    
-      controller.stopListeners();
-      
-      expect($scope.unlocks["hydrogen"].listener).toBeUndefined();
-    });
-    
-    it("should emit a cycle event", function() {    
-      controller.checkUnlocks();
-      
-			expect($scope.$emit).toHaveBeenCalled();
-    });   
-    
-    it("should count the number of achievements", function() {    
-      value = $scope.numberUnlocks();
-      
-      expect(value).toEqual(Object.keys($scope.unlocks).length);
-    });
-    
-    it("should count the number of achievements unlocked", function() {
-      $scope.player = {unlocks:{}};
-      $scope.player.unlocks["helium"] = true;
-      
-      value = $scope.numberUnlocked();
-      
-      expect(value).toEqual(1);
-    });
-  });
-  
   describe('initialization functions', function() {    
     it("should init all the variables", function() {
       spyOn(controller, "populatePlayer");
@@ -314,8 +181,8 @@ describe("Incremental table elements", function() {
 			expect($scope.current_entry).toEqual("Hydrogen");
 			expect($scope.current_element).toEqual("H");
 			expect($scope.hover_element).toEqual("");
-			expect($scope.toast).toEqual([]);
-			expect($scope.is_toast_visible).toEqual(false);
+			expect(achievements.toast).toEqual([]);
+			expect(achievements.is_toast_visible).toEqual(false);
 			expect(controller.populatePlayer).toHaveBeenCalled();
     });
   });
@@ -326,7 +193,7 @@ describe("Incremental table elements", function() {
       $scope.player.resources.H = {unlocked:false}
       $scope.$emit("resource","H");    
       
-      controller.checkUnlocks();
+      controller.checkUnlock();
       
       expect($scope.player.resources.H.unlocked).toEqual(true);
     });
@@ -356,7 +223,7 @@ describe("Incremental table elements", function() {
 			spyOn($scope, "load");
 			spyOn(controller, "init");
 			spyOn(controller, "introAnimation");
-			spyOn(controller, "initializeListeners");
+			spyOn(achievements, "initializeListeners");
     });
     
     it("should load the game", function() {
@@ -370,7 +237,7 @@ describe("Incremental table elements", function() {
 			expect(localStorage.getItem).toHaveBeenCalled();
 			expect(controller.init).toHaveBeenCalled();
 			expect(controller.introAnimation).toHaveBeenCalled();
-			expect(controller.initializeListeners).toHaveBeenCalled();
+			expect(achievements.initializeListeners).toHaveBeenCalled();
 			expect($scope.lastSave).toEqual("None");
     });
     
@@ -495,55 +362,55 @@ describe("Incremental table elements", function() {
     it("should import save", function() {
       spyOn(window, "prompt").and.returnValue("test");
       spyOn(window, "atob").and.returnValue("{}");
-      spyOn(controller, "stopListeners");
+      spyOn(achievements, "stopListeners");
       spyOn(controller, "versionControl");
       spyOn($scope, "save");
-      spyOn(controller, "initializeListeners");
+      spyOn(achievements, "initializeListeners");
     
       $scope.importSave();
 
       expect(window.prompt).toHaveBeenCalled();
       expect(window.atob).toHaveBeenCalled();
-      expect(controller.stopListeners).toHaveBeenCalled();
+      expect(achievements.stopListeners).toHaveBeenCalled();
       expect(controller.versionControl).toHaveBeenCalled();
       expect($scope.save).toHaveBeenCalled();
-      expect(controller.initializeListeners).toHaveBeenCalled();
+      expect(achievements.initializeListeners).toHaveBeenCalled();
     });
     
     it("should not import if save is not presented", function() {
       spyOn(window, "prompt").and.returnValue("");
       spyOn(window, "atob").and.returnValue("{}");
-      spyOn(controller, "stopListeners");
+      spyOn(achievements, "stopListeners");
       spyOn(controller, "versionControl");
       spyOn($scope, "save");
-      spyOn(controller, "initializeListeners");
+      spyOn(achievements, "initializeListeners");
     
       $scope.importSave();
 
       expect(window.prompt).toHaveBeenCalled();
       expect(window.atob).not.toHaveBeenCalled();
-      expect(controller.stopListeners).not.toHaveBeenCalled();
+      expect(achievements.stopListeners).not.toHaveBeenCalled();
       expect(controller.versionControl).not.toHaveBeenCalled();
       expect($scope.save).not.toHaveBeenCalled();
-      expect(controller.initializeListeners).not.toHaveBeenCalled();
+      expect(achievements.initializeListeners).not.toHaveBeenCalled();
     });
     
     it("should not import if save is invalid", function() {
       spyOn(window, "prompt").and.returnValue("test");
       spyOn(window, "atob");
-      spyOn(controller, "stopListeners");
+      spyOn(achievements, "stopListeners");
       spyOn(controller, "versionControl");
       spyOn($scope, "save");
-      spyOn(controller, "initializeListeners");
+      spyOn(achievements, "initializeListeners");
     
       $scope.importSave();
 
       expect(window.prompt).toHaveBeenCalled();
       expect(window.atob).toHaveBeenCalled();
-      expect(controller.stopListeners).not.toHaveBeenCalled();
+      expect(achievements.stopListeners).not.toHaveBeenCalled();
       expect(controller.versionControl).not.toHaveBeenCalled();
       expect($scope.save).not.toHaveBeenCalled();
-      expect(controller.initializeListeners).not.toHaveBeenCalled();
+      expect(achievements.initializeListeners).not.toHaveBeenCalled();
     });
       
     it("should version control", function() {

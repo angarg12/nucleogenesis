@@ -9,7 +9,9 @@
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript" src="lib/bootstrap.min.js"></script>
     <script type="text/javascript" src="lib/ziggurat.js"></script>
+    <script type="text/javascript" src="src/module.js"></script>
     <script type="text/javascript" src="src/data.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/achievements.js"></script>
     <script type="text/javascript" src="src/incremental_table_elements.js"></script>
     <link rel="stylesheet" type="text/css" href="styles/base-bootstrap.min.css" id="theme_css">
     <link rel="stylesheet" type="text/css" href="styles/main.css">
@@ -474,14 +476,14 @@
                 <br>
                 <button class="btn btn-default btn-block" id="importSave" ng-click="importSave()">Import Save</button>                
               </div>
-              <div class="col-lg-12" ng-if="numberUnlocked() > 0">
-                <div ng-if="numberUnlocked() < 10">
+              <div class="col-lg-12" ng-if="achievements.numberUnlocked() > 0">
+                <div ng-if="achievements.numberUnlocked() < 10">
                   <br>
-                  Unlocks: {{numberUnlocked()}}/??
+                  Unlocks: {{achievements.numberUnlocked()}}/??
                 </div>
-                <div ng-if="numberUnlocked() >= 10">
+                <div ng-if="achievements.numberUnlocked() >= 10">
                   <br>
-                  Unlocks: {{numberUnlocked()}}/{{numberUnlocks()}}
+                  Unlocks: {{achievements.numberUnlocked()}}/{{achievements.numberUnlocks()}}
                 </div>
               </div>
               <div class="col-lg-12">
@@ -499,15 +501,15 @@
     </div>
     </div>
     <div ng-cloak>
-      <div class="achieve achievealert animif" ng-show="is_toast_visible">
+      <div class="achieve achievealert animif" ng-show="achievements.is_toast_visible">
         <div class="container alert alert-success">
           <h3>New unlock:</h3>
-          <h2>{{toast[0]}}</h2>
+          <h2>{{achievements.toast[0]}}</h2>
           <button type="button" 
             class="close" 
             data-dismiss="alert" 
-            ng-click="removeToast()"
-            ng-disabled="!is_toast_visible">
+            ng-click="achievements.removeToast()"
+            ng-disabled="!achievements.is_toast_visible">
           <span aria-hidden="true">&times;</span>
           <span class="sr-only">Close</span>
           </button>

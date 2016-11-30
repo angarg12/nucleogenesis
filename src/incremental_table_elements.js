@@ -1,5 +1,5 @@
 angular
-.module('incremental', [ 'ngAnimate' ])
+.module('incremental')
 .controller('IncCtrl',
 ['$scope',
 '$document',
@@ -7,11 +7,15 @@ angular
 '$sce',
 '$filter',
 '$timeout',
-function ($scope, $document, $interval, $sce, $filter, $timeout) {
+'achievements',
+function ($scope, $document, $interval, $sce, $filter, $timeout, achievements) {
   $scope.version = '1.0.2';
   $scope.Math = window.Math;
+  $scope.achievements = achievements;
   var self = this;
 
+  achievements.setScope($scope);
+  
   // Polyfill for some browsers
   Number.parseFloat = parseFloat;
   Number.isInteger = Number.isInteger || function (value) {
@@ -42,8 +46,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
   $scope.hover_element = "";
   $scope.synthesis_price_increase = 1.15;
   $scope.synthesis_power_increase = 2;
-  $scope.toast = [];
-  $scope.is_toast_visible = false;
 
   self.numberGenerator = new Ziggurat();
 
@@ -102,29 +104,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
 
     this.startPlayer.resources.H.number = $scope.generators["Tier 1"].price;
   };
-
-  $scope.removeToast = function () {
-    $scope.is_toast_visible = false;
-    $timeout(self.deleteToast, 1100);
-  };
-
-  self.deleteToast = function () {
-    $scope.toast.shift();
-    if($scope.toast.length > 0) {
-      $scope.is_toast_visible = true;
-    }
-  };
-
-  $scope.addToast = function (toast) {
-    $scope.toast.push(toast);
-    if($scope.toast.length == 1) {
-      $scope.is_toast_visible = true;
-    }
-  };
-
-  self.checkUnlock = $scope.$on("resource", function (event, item) {
-    $scope.player.resources[item].unlocked = true;
-  });
 
   $scope.elementPrice = function (element) {
     return Math.pow($scope.player.elements_unlocked + 1, $scope.elements[element].order);
@@ -366,10 +345,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     if(importText) {
       try {
         $scope.player = JSON.parse(atob(importText));
-        self.stopListeners();
+        achievements.stopListeners();
         self.versionControl();
         $scope.save();
-        self.initializeListeners();
+        achievements.initializeListeners();
       } catch (error) {
         alert("Invalid save file.");
       }
@@ -574,6 +553,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     self.processUnstable();
     self.processIsotopes();
     self.processSynthesis();
+
+    $scope.$emit("cycle", null);
   };
 
   /*
@@ -644,49 +625,13 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     $scope.current_entry = "Hydrogen";
     $scope.current_element = "H";
     $scope.hover_element = "";
-    $scope.toast = [];
-    $scope.is_toast_visible = false;
+    achievements.init();
     self.populatePlayer();
     $scope.player = angular.copy(this.startPlayer);
   };
 
-  self.initializeListeners = function () {
-    for(var key in $scope.unlocks) {
-      if(!$scope.player.unlocks[key]) {
-        $scope.unlocks[key].listener = $scope.$on($scope.unlocks[key].event, $scope.unlocks[key].check);
-      }
-    }
-  };
-
-  self.stopListeners = function () {
-    for(var key in $scope.unlocks) {
-      if($scope.unlocks[key].listener) {
-        $scope.unlocks[key].listener();
-        $scope.unlocks[key].listener = undefined;
-      }
-    }
-  };
-
-  self.checkUnlocks = function () {
-    $scope.$emit("cycle", null);
-  };
-
   $scope.trustHTML = function (html) {
     return $sce.trustAsHtml(html);
-  };
-
-  $scope.numberUnlocks = function () {
-    return Object.keys($scope.unlocks).length;
-  };
-
-  $scope.numberUnlocked = function () {
-    var unlocked = 0;
-    for(var key in $scope.player.unlocks) {
-      if($scope.player.unlocks[key]) {
-        unlocked++;
-      }
-    }
-    return unlocked;
   };
 
   $scope.visibleKeys = function (map) {
@@ -755,6 +700,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
     return 'equal';
   };
 
+  self.checkUnlock = $scope.$on("resource", function (event, item) {
+    $scope.player.resources[item].unlocked = true;
+  });
+  
   self.onload = $timeout(function () {
     loadData($scope);
     if(localStorage.getItem("playerStoredITE") !== null) {
@@ -767,10 +716,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout) {
       $scope.lastSave = "None";
     }
     // init();
+    achievements.init();
+    achievements.initializeListeners();
     self.introAnimation();
-    self.initializeListeners();
     $interval(self.update, 1000);
-    $interval(self.checkUnlocks, 1000);
     $interval($scope.save, 10000);
   });
 } ]);

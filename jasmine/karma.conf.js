@@ -9,7 +9,10 @@ module.exports = function(config) {
       '../lib/bootstrap.min.js',
       '../lib/ziggurat.js',
       '../lib/angular-mocks.js',
-      '../src/*',
+      '../src/module.js',
+      '../src/data.js',
+      '../src/achievements.js',
+      '../src/incremental_table_elements.js',
       'spec/*.js'
     ],
     browsers: ['PhantomJS'],
