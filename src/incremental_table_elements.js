@@ -27,7 +27,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievements) {
   // a lot of
   // redundancy and make the code more flexible and
   // dynamic.
-  this.startPlayer = {
+  self.startPlayer = {
     // properties just for the sake of the intro
     // animation
     intro : {
@@ -50,59 +50,59 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievements) {
   self.numberGenerator = new Ziggurat();
 
   self.populatePlayer = function () {
-    this.startPlayer.resources = {};
+    self.startPlayer.resources = {};
     for(var entry in $scope.resources) {
-      this.startPlayer.resources[entry] = {
+      self.startPlayer.resources[entry] = {
         number : 0,
         is_new : true,
         unlocked : false
       };
     }
 
-    this.startPlayer.elements = {};
+    self.startPlayer.elements = {};
     for(var element in $scope.elements) {
       if(!$scope.elements[element].disabled) {
-        this.startPlayer.elements[element] = {
+        self.startPlayer.elements[element] = {
           unlocked : false
         };
       }
     }
-    this.startPlayer.elements.H.unlocked = true;
+    self.startPlayer.elements.H.unlocked = true;
 
-    for(var element in this.startPlayer.elements) {
-      this.startPlayer.elements[element].upgrades = {};
+    for(var element in self.startPlayer.elements) {
+      self.startPlayer.elements[element].upgrades = {};
       for(var upgrade in $scope.upgrades) {
-        this.startPlayer.elements[element].upgrades[upgrade] = {
+        self.startPlayer.elements[element].upgrades[upgrade] = {
           bought : false
         };
       }
-      this.startPlayer.elements[element].generators = {};
+      self.startPlayer.elements[element].generators = {};
       for(var generator in $scope.generators) {
-        this.startPlayer.elements[element].generators[generator] = {
+        self.startPlayer.elements[element].generators[generator] = {
           level : 0
         };
       }
     }
-    this.startPlayer.encyclopedia = {};
+    self.startPlayer.encyclopedia = {};
     for(var entry in $scope.encyclopedia) {
-      this.startPlayer.encyclopedia[entry] = {
+      self.startPlayer.encyclopedia[entry] = {
         is_new : true
       };
     }
-    this.startPlayer.unlocks = {};
+    self.startPlayer.unlocks = {};
     for(var entry in $scope.unlocks) {
-      this.startPlayer.unlocks[entry] = false;
+      self.startPlayer.unlocks[entry] = false;
     }
-    this.startPlayer.synthesis = {};
+    self.startPlayer.synthesis = {};
     for(var entry in $scope.synthesis) {
-      this.startPlayer.synthesis[entry] = {
+      self.startPlayer.synthesis[entry] = {
         number : 0,
         active : 0,
         is_new : true
       };
     }
 
-    this.startPlayer.resources.H.number = $scope.generators["Tier 1"].price;
+    self.startPlayer.resources.H.number = $scope.generators["Tier 1"].price;
   };
 
   $scope.elementPrice = function (element) {
@@ -627,7 +627,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievements) {
     $scope.hover_element = "";
     achievements.init();
     self.populatePlayer();
-    $scope.player = angular.copy(this.startPlayer);
+    $scope.player = angular.copy(self.startPlayer);
   };
 
   $scope.trustHTML = function (html) {
