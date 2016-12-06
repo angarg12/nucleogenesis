@@ -44,4 +44,5 @@ module.exports = function(grunt) {
   
   grunt.registerTask('e2e-test', ['connect', 'protractor']);
   grunt.registerTask('unit-test', ['karma','coveralls']);
+  grunt.registerTask('test', ['unit-test','e2e-test']);
 };
