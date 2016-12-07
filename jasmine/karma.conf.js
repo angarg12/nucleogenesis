@@ -9,16 +9,16 @@ module.exports = function(config) {
       '../lib/bootstrap.min.js',
       '../lib/ziggurat.js',
       '../lib/angular-mocks.js',
-      '../src/module.js',
+      '../src/modules/module.js',
       '../src/data.js',
-      '../src/achievements.js',
-      '../src/incremental_table_elements.js',
+      '../src/services/achievement.js',
+      '../src/controllers/main.js',
       'spec/*.js'
     ],
     browsers: ['PhantomJS'],
     singleRun: true,
     reporters: ['progress', 'coverage'],
-    preprocessors: { '../src/incremental_table_elements.js': ['coverage'] },
+    preprocessors: { '../src/controllers/main.js': ['coverage'] },
     coverageReporter: {
       type: "lcov",
       dir: "coverage/"

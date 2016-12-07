@@ -6,7 +6,7 @@ describe("Incremental table elements", function() {
   var $timeout;
   var $scope;
   var controller;
-  var achievements;
+  var achievement;
   
   beforeEach(inject(function(_$rootScope_, _$controller_,_$timeout_, $injector){
     // The injector unwraps the underscores (_) from around the parameter names when matching
@@ -15,8 +15,8 @@ describe("Incremental table elements", function() {
     spyOn($rootScope, '$emit').and.callThrough();
     $timeout = _$timeout_;
     $scope = $rootScope.$new();
-    achievements = $injector.get('achievements');
-    controller = $controller('IncCtrl', {$scope:$scope, achievements:achievements});
+    achievement = $injector.get('achievement');
+    controller = $controller('IncCtrl', {$scope:$scope, achievement:achievement});
     loadData($scope);
   }));
 
@@ -181,8 +181,8 @@ describe("Incremental table elements", function() {
 			expect($scope.current_entry).toEqual("Hydrogen");
 			expect($scope.current_element).toEqual("H");
 			expect($scope.hover_element).toEqual("");
-			expect(achievements.toast).toEqual([]);
-			expect(achievements.is_toast_visible).toEqual(false);
+			expect(achievement.toast).toEqual([]);
+			expect(achievement.is_toast_visible).toEqual(false);
 			expect(controller.populatePlayer).toHaveBeenCalled();
     });
   });
@@ -223,7 +223,7 @@ describe("Incremental table elements", function() {
 			spyOn($scope, "load");
 			spyOn(controller, "init");
 			spyOn(controller, "introAnimation");
-			spyOn(achievements, "initializeListeners");
+			spyOn(achievement, "initializeListeners");
     });
     
     it("should load the game", function() {
@@ -237,7 +237,7 @@ describe("Incremental table elements", function() {
 			expect(localStorage.getItem).toHaveBeenCalled();
 			expect(controller.init).toHaveBeenCalled();
 			expect(controller.introAnimation).toHaveBeenCalled();
-			expect(achievements.initializeListeners).toHaveBeenCalled();
+			expect(achievement.initializeListeners).toHaveBeenCalled();
 			expect($scope.lastSave).toEqual("None");
     });
     
@@ -362,55 +362,55 @@ describe("Incremental table elements", function() {
     it("should import save", function() {
       spyOn(window, "prompt").and.returnValue("test");
       spyOn(window, "atob").and.returnValue("{}");
-      spyOn(achievements, "stopListeners");
+      spyOn(achievement, "stopListeners");
       spyOn(controller, "versionControl");
       spyOn($scope, "save");
-      spyOn(achievements, "initializeListeners");
+      spyOn(achievement, "initializeListeners");
     
       $scope.importSave();
 
       expect(window.prompt).toHaveBeenCalled();
       expect(window.atob).toHaveBeenCalled();
-      expect(achievements.stopListeners).toHaveBeenCalled();
+      expect(achievement.stopListeners).toHaveBeenCalled();
       expect(controller.versionControl).toHaveBeenCalled();
       expect($scope.save).toHaveBeenCalled();
-      expect(achievements.initializeListeners).toHaveBeenCalled();
+      expect(achievement.initializeListeners).toHaveBeenCalled();
     });
     
     it("should not import if save is not presented", function() {
       spyOn(window, "prompt").and.returnValue("");
       spyOn(window, "atob").and.returnValue("{}");
-      spyOn(achievements, "stopListeners");
+      spyOn(achievement, "stopListeners");
       spyOn(controller, "versionControl");
       spyOn($scope, "save");
-      spyOn(achievements, "initializeListeners");
+      spyOn(achievement, "initializeListeners");
     
       $scope.importSave();
 
       expect(window.prompt).toHaveBeenCalled();
       expect(window.atob).not.toHaveBeenCalled();
-      expect(achievements.stopListeners).not.toHaveBeenCalled();
+      expect(achievement.stopListeners).not.toHaveBeenCalled();
       expect(controller.versionControl).not.toHaveBeenCalled();
       expect($scope.save).not.toHaveBeenCalled();
-      expect(achievements.initializeListeners).not.toHaveBeenCalled();
+      expect(achievement.initializeListeners).not.toHaveBeenCalled();
     });
     
     it("should not import if save is invalid", function() {
       spyOn(window, "prompt").and.returnValue("test");
       spyOn(window, "atob");
-      spyOn(achievements, "stopListeners");
+      spyOn(achievement, "stopListeners");
       spyOn(controller, "versionControl");
       spyOn($scope, "save");
-      spyOn(achievements, "initializeListeners");
+      spyOn(achievement, "initializeListeners");
     
       $scope.importSave();
 
       expect(window.prompt).toHaveBeenCalled();
       expect(window.atob).toHaveBeenCalled();
-      expect(achievements.stopListeners).not.toHaveBeenCalled();
+      expect(achievement.stopListeners).not.toHaveBeenCalled();
       expect(controller.versionControl).not.toHaveBeenCalled();
       expect($scope.save).not.toHaveBeenCalled();
-      expect(achievements.initializeListeners).not.toHaveBeenCalled();
+      expect(achievement.initializeListeners).not.toHaveBeenCalled();
     });
       
     it("should version control", function() {

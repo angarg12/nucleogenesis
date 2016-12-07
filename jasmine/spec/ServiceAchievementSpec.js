@@ -1,10 +1,10 @@
-describe("Achievements service", function() {
+describe("Achievement service", function() {
   beforeEach(angular.mock.module('incremental'));
 
   var $controller;
   var $rootScope;
   var $scope;
-  var achievements;
+  var achievement;
   
   beforeEach(inject(function(_$rootScope_, _$controller_,_$timeout_, $injector){
     // The injector unwraps the underscores (_) from around the parameter names when matching
@@ -12,99 +12,99 @@ describe("Achievements service", function() {
     $rootScope = _$rootScope_;
     spyOn($rootScope, '$emit').and.callThrough();
     $scope = $rootScope.$new();
-    achievements = $injector.get('achievements');
-    $controller('IncCtrl', {$scope:$scope, achievements:achievements});
+    achievement = $injector.get('achievement');
+    $controller('IncCtrl', {$scope:$scope, achievement:achievement});
     loadData($scope);
   }));
 
   describe('toast functions', function() {  
     it("should add toasts to an empty queue", function() {
-      achievements.toast = [];
-      achievements.is_toast_visible = false;
+      achievement.toast = [];
+      achievement.is_toast_visible = false;
       
-      achievements.addToast('test');
+      achievement.addToast('test');
       
-      expect(achievements.toast.length).toEqual(1);
-      expect(achievements.toast[0]).toEqual('test');
-      expect(achievements.is_toast_visible).toEqual(true);
+      expect(achievement.toast.length).toEqual(1);
+      expect(achievement.toast[0]).toEqual('test');
+      expect(achievement.is_toast_visible).toEqual(true);
     });
     
     it("should add toasts to an non empty queue", function() {
-      achievements.toast = ['a'];
+      achievement.toast = ['a'];
       
-      achievements.addToast('test');
+      achievement.addToast('test');
       
-      expect(achievements.toast.length).toEqual(2);
-      expect(achievements.toast[1]).toEqual('test');
+      expect(achievement.toast.length).toEqual(2);
+      expect(achievement.toast[1]).toEqual('test');
     });
     
     it("should not change the visibility of non empty queue", function() {
-      achievements.toast = ['a'];
-      achievements.is_toast_visible = false;
+      achievement.toast = ['a'];
+      achievement.is_toast_visible = false;
       
-      achievements.addToast('test');
+      achievement.addToast('test');
       
-      expect(achievements.is_toast_visible).toEqual(false);
+      expect(achievement.is_toast_visible).toEqual(false);
     });  
     
     it("should remove toasts", function() {
-      achievements.toast = ['test'];
-      achievements.is_toast_visible = true;
+      achievement.toast = ['test'];
+      achievement.is_toast_visible = true;
       
-      achievements.removeToast();
+      achievement.removeToast();
       
-      expect(achievements.is_toast_visible).toEqual(false);
+      expect(achievement.is_toast_visible).toEqual(false);
     });
     
     it("should not flip the visibility when removing toasts", function() {
-      achievements.toast = ['test'];
-      achievements.is_toast_visible = false;
+      achievement.toast = ['test'];
+      achievement.is_toast_visible = false;
       
-      achievements.removeToast();
+      achievement.removeToast();
       
-      expect(achievements.is_toast_visible).toEqual(false);
+      expect(achievement.is_toast_visible).toEqual(false);
     });
     
     it("should not fail on empty toast queues", function() {
-      achievements.toast = [];
-      achievements.is_toast_visible = true;
+      achievement.toast = [];
+      achievement.is_toast_visible = true;
       
-      achievements.removeToast();
+      achievement.removeToast();
       
-      expect(achievements.is_toast_visible).toEqual(false);
+      expect(achievement.is_toast_visible).toEqual(false);
     });
     
     it("should delete toasts", function() {
-      achievements.toast = ['test'];
+      achievement.toast = ['test'];
       
-      achievements.deleteToast();
+      achievement.deleteToast();
       
-      expect(achievements.toast).toEqual([]);
+      expect(achievement.toast).toEqual([]);
     });
     
     it("should shift toasts", function() {
-      achievements.toast = ['test','test2'];
+      achievement.toast = ['test','test2'];
       
-      achievements.deleteToast();
+      achievement.deleteToast();
       
-      expect(achievements.toast).toEqual(['test2']);
+      expect(achievement.toast).toEqual(['test2']);
     });
     
     it("should make upcoming toasts visible", function() {
-      achievements.toast = ['test','test2'];
-      achievements.is_toast_visible = false;
+      achievement.toast = ['test','test2'];
+      achievement.is_toast_visible = false;
       
-      achievements.deleteToast();
+      achievement.deleteToast();
       
-      expect(achievements.is_toast_visible).toEqual(true);
+      expect(achievement.is_toast_visible).toEqual(true);
     });
     
     it("should not fail on delete empty lists", function() {
-      achievements.toast = [];
+      achievement.toast = [];
       
-      achievements.deleteToast();
+      achievement.deleteToast();
       
-      expect(achievements.toast).toEqual([]);
+      expect(achievement.toast).toEqual([]);
     });
   });
   
@@ -113,7 +113,7 @@ describe("Achievements service", function() {
       $scope.player = {unlocks:{}};
       $scope.player.unlocks["hydrogen"] = false;
     
-      achievements.initializeListeners();
+      achievement.initializeListeners();
       
       expect($scope.unlocks["hydrogen"].listener).not.toBeUndefined();
     });
@@ -122,25 +122,25 @@ describe("Achievements service", function() {
       $scope.player = {unlocks:{}};
       $scope.player.unlocks["hydrogen"] = true;
 
-      achievements.initializeListeners();
+      achievement.initializeListeners();
       
       expect($scope.unlocks["hydrogen"].listener).toBeUndefined();
     });   
     
     it("should stop running listeners", function() {
-      achievements.stopListeners();
+      achievement.stopListeners();
       
       expect($scope.unlocks["hydrogen"].listener).toBeUndefined();
     });
     
     it("should not start stopped listeners", function() {    
-      achievements.stopListeners();
+      achievement.stopListeners();
       
       expect($scope.unlocks["hydrogen"].listener).toBeUndefined();
     });  
     
     it("should count the number of achievements", function() {    
-      value = achievements.numberUnlocks();
+      value = achievement.numberUnlocks();
       
       expect(value).toEqual(Object.keys($scope.unlocks).length);
     });
@@ -149,7 +149,7 @@ describe("Achievements service", function() {
       $scope.player = {unlocks:{}};
       $scope.player.unlocks["helium"] = true;
       
-      value = achievements.numberUnlocked();
+      value = achievement.numberUnlocked();
       
       expect(value).toEqual(1);
     });

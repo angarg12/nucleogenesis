@@ -1,6 +1,6 @@
 angular
 .module('incremental')
-.service('achievements',
+.service('achievement',
 ['$timeout',
 '$rootScope',
 function($timeout, $rootScope) {

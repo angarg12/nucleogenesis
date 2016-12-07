@@ -7,14 +7,14 @@ angular
 '$sce',
 '$filter',
 '$timeout',
-'achievements',
-function ($scope, $document, $interval, $sce, $filter, $timeout, achievements) {
+'achievement',
+function ($scope, $document, $interval, $sce, $filter, $timeout, achievement) {
   $scope.version = '1.0.2';
   $scope.Math = window.Math;
-  $scope.achievements = achievements;
+  $scope.achievement = achievement;
   var self = this;
 
-  achievements.setScope($scope);
+  achievement.setScope($scope);
   
   // Polyfill for some browsers
   Number.parseFloat = parseFloat;
@@ -345,10 +345,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievements) {
     if(importText) {
       try {
         $scope.player = JSON.parse(atob(importText));
-        achievements.stopListeners();
+        achievement.stopListeners();
         self.versionControl();
         $scope.save();
-        achievements.initializeListeners();
+        achievement.initializeListeners();
       } catch (error) {
         alert("Invalid save file.");
       }
@@ -625,7 +625,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievements) {
     $scope.current_entry = "Hydrogen";
     $scope.current_element = "H";
     $scope.hover_element = "";
-    achievements.init();
+    achievement.init();
     self.populatePlayer();
     $scope.player = angular.copy(self.startPlayer);
   };
@@ -716,8 +716,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievements) {
       $scope.lastSave = "None";
     }
     // init();
-    achievements.init();
-    achievements.initializeListeners();
+    achievement.init();
+    achievement.initializeListeners();
     self.introAnimation();
     $interval(self.update, 1000);
     $interval($scope.save, 10000);

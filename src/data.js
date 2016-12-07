@@ -2561,7 +2561,7 @@ function loadData($scope) {
   $scope.unlocks = {
     "hydrogen" : {
       check : function (event, data) {
-        // achievements.addToast("Periodic table");
+        // achievement.addToast("Periodic table");
         $scope.player.unlocks.hydrogen = true;
         $scope.unlocks.hydrogen.listener();
       },
@@ -2572,7 +2572,7 @@ function loadData($scope) {
         if ($scope.player.resources['e-'].unlocked &&
             $scope.player.resources.p.unlocked &&
             $scope.player.resources.n.unlocked) {
-          achievements.addToast("Periodic table");
+          achievement.addToast("Periodic table");
           $scope.player.unlocks.periodic_table = true;
           $scope.unlocks.periodic_table.listener();
         }
@@ -2582,7 +2582,7 @@ function loadData($scope) {
     "isotope" : {
       check : function (event, data) {
         if ([ '2H', '3H' ].indexOf(data) != -1) {
-          achievements.addToast("Isotope");
+          achievement.addToast("Isotope");
           $scope.player.unlocks.isotope = true;
           $scope.unlocks.isotope.listener();
         }
@@ -2592,7 +2592,7 @@ function loadData($scope) {
     "ion" : {
       check : function (event, data) {
         if ("H-" == data) {
-          achievements.addToast("Ion");
+          achievement.addToast("Ion");
           $scope.player.unlocks.ion = true;
           $scope.unlocks.ion.listener();
         }
@@ -2602,7 +2602,7 @@ function loadData($scope) {
     "radioactivity" : {
       check : function (event, data) {
         if ("3H" == data) {
-          achievements.addToast("Radioactivity");
+          achievement.addToast("Radioactivity");
           $scope.player.unlocks.radioactivity = true;
           $scope.unlocks.radioactivity.listener();
         }
@@ -2612,7 +2612,7 @@ function loadData($scope) {
     "allotrope" : {
       check : function (event, data) {
         if ([ 'O2', 'O3' ].indexOf(data) != -1) {
-          achievements.addToast("Allotrope");
+          achievement.addToast("Allotrope");
           $scope.player.unlocks.allotrope = true;
           $scope.unlocks.allotrope.listener();
         }
@@ -2622,7 +2622,7 @@ function loadData($scope) {
     "free_radical" : {
       check : function (event, data) {
         if ("O" == data) {
-          achievements.addToast("Free radical");
+          achievement.addToast("Free radical");
           $scope.player.unlocks.free_radical = true;
           $scope.unlocks.free_radical.listener();
         }
@@ -2632,7 +2632,7 @@ function loadData($scope) {
     "unstable_compound" : {
       check : function (event, data) {
         if ("O3" == data) {
-          achievements.addToast("Unstable compound");
+          achievement.addToast("Unstable compound");
           $scope.player.unlocks.unstable_compound = true;
           $scope.unlocks.unstable_compound.listener();
         }
@@ -2642,7 +2642,7 @@ function loadData($scope) {
     "reactions" : {
       check : function (event, data) {
         if ("e-" == data) {
-          achievements.addToast("Reactions");
+          achievement.addToast("Reactions");
           $scope.player.unlocks.reactions = true;
           $scope.unlocks.reactions.listener();
         }
@@ -2652,7 +2652,7 @@ function loadData($scope) {
     "electron" : {
       check : function (event, data) {
         if ("e-" == data) {
-          achievements.addToast("Electron");
+          achievement.addToast("Electron");
           $scope.player.unlocks.electron = true;
           $scope.unlocks.electron.listener();
         }
@@ -2662,7 +2662,7 @@ function loadData($scope) {
     "proton" : {
       check : function (event, data) {
         if ("p" == data) {
-          achievements.addToast("Proton");
+          achievement.addToast("Proton");
           $scope.player.unlocks.proton = true;
           $scope.unlocks.proton.listener();
         }
@@ -2672,7 +2672,7 @@ function loadData($scope) {
     "neutron" : {
       check : function (event, data) {
         if ("n" == data) {
-          achievements.addToast("Neutron");
+          achievement.addToast("Neutron");
           $scope.player.unlocks.neutron = true;
           $scope.unlocks.neutron.listener();
         }
@@ -2682,7 +2682,7 @@ function loadData($scope) {
     "energy" : {
       check : function (event, data) {
         if ("eV" == data) {
-          achievements.addToast("Energy");
+          achievement.addToast("Energy");
           $scope.player.unlocks.energy = true;
           $scope.unlocks.energy.listener();
         }
@@ -2692,7 +2692,7 @@ function loadData($scope) {
     "half_life" : {
       check : function (event, data) {
         if ("3H" == data) {
-          achievements.addToast("Half-life");
+          achievement.addToast("Half-life");
           $scope.player.unlocks.half_life = true;
           $scope.unlocks.half_life.listener();
         }
@@ -2702,7 +2702,7 @@ function loadData($scope) {
     "oxygen" : {
       check : function (event, data) {
         if ("O" == data) {
-          achievements.addToast("Oxygen");
+          achievement.addToast("Oxygen");
           $scope.player.unlocks.oxygen = true;
           $scope.unlocks.oxygen.listener();
         }
@@ -2712,7 +2712,7 @@ function loadData($scope) {
     "upgrade" : {
       check : function (event, data) {
         if ("Tier 3" == data) {
-          achievements.addToast("Upgrades");
+          achievement.addToast("Upgrades");
           $scope.player.unlocks.upgrade = true;
           $scope.unlocks.upgrade.listener();
         }
@@ -2722,7 +2722,7 @@ function loadData($scope) {
     "ionization_energy" : {
       check : function (event, data) {
         if ("e-" == data) {
-          achievements.addToast("Ionization energy");
+          achievement.addToast("Ionization energy");
           $scope.player.unlocks.ionization_energy = true;
           $scope.unlocks.ionization_energy.listener();
         }
@@ -2732,7 +2732,7 @@ function loadData($scope) {
     "electron_affinity" : {
       check : function (event, data) {
         if ($scope.player.resources['e-'].number >= 10 && $scope.player.resources.p.number >= 10) {
-          achievements.addToast("Electron affinity");
+          achievement.addToast("Electron affinity");
           $scope.player.unlocks.electron_affinity = true;
           $scope.unlocks.electron_affinity.listener();
         }
@@ -2742,7 +2742,7 @@ function loadData($scope) {
     "nuclear_binding_energy" : {
       check : function (event, data) {
         if ($scope.player.resources['e-'].number >= 100 && $scope.player.resources.p.number >= 100) {
-          achievements.addToast("Nuclear binding energy");
+          achievement.addToast("Nuclear binding energy");
           $scope.player.unlocks.nuclear_binding_energy = true;
           $scope.unlocks.nuclear_binding_energy.listener();
         }
@@ -2752,7 +2752,7 @@ function loadData($scope) {
     "beta_decay" : {
       check : function (event, data) {
         if ("beta-" == data) {
-          achievements.addToast("Beta decay");
+          achievement.addToast("Beta decay");
           $scope.player.unlocks.beta_decay = true;
           $scope.unlocks.beta_decay.listener();
         }
@@ -2762,7 +2762,7 @@ function loadData($scope) {
     "molecule" : {
       check : function (event, data) {
         if ("H2" == data || "O2" == data || "O3" == data) {
-          achievements.addToast("Molecule");
+          achievement.addToast("Molecule");
           $scope.player.unlocks.molecule = true;
           $scope.unlocks.molecule.listener();
         }
@@ -2772,7 +2772,7 @@ function loadData($scope) {
     "synthesis" : {
       check : function (event, data) {
         if ($scope.player.resources['H-'].number >= 10) {
-          achievements.addToast("Synthesis");
+          achievement.addToast("Synthesis");
           $scope.player.unlocks.synthesis = true;
           $scope.unlocks.synthesis.listener();
         }
@@ -2782,7 +2782,7 @@ function loadData($scope) {
     "helium" : {
       check : function (event, data) {
         if ("He" == data) {
-          achievements.addToast("Helium");
+          achievement.addToast("Helium");
           $scope.player.unlocks.helium = true;
           $scope.unlocks.helium.listener();
         }
@@ -2792,7 +2792,7 @@ function loadData($scope) {
     "lithium" : {
       check : function (event, data) {
         if ("Li" == data) {
-          achievements.addToast("Lithium");
+          achievement.addToast("Lithium");
           $scope.player.unlocks.lithium = true;
           $scope.unlocks.lithium.listener();
         }
@@ -2802,7 +2802,7 @@ function loadData($scope) {
     "beryllium" : {
       check : function (event, data) {
         if ("Be" == data) {
-          achievements.addToast("Beryllium");
+          achievement.addToast("Beryllium");
           $scope.player.unlocks.beryllium = true;
           $scope.unlocks.beryllium.listener();
         }
@@ -2812,7 +2812,7 @@ function loadData($scope) {
     "boron" : {
       check : function (event, data) {
         if ("B" == data) {
-          achievements.addToast("Boron");
+          achievement.addToast("Boron");
           $scope.player.unlocks.boron = true;
           $scope.unlocks.boron.listener();
         }
@@ -2822,7 +2822,7 @@ function loadData($scope) {
     "carbon" : {
       check : function (event, data) {
         if ("C" == data) {
-          achievements.addToast("Carbon");
+          achievement.addToast("Carbon");
           $scope.player.unlocks.carbon = true;
           $scope.unlocks.carbon.listener();
         }
@@ -2832,7 +2832,7 @@ function loadData($scope) {
     "nitrogen" : {
       check : function (event, data) {
         if ("N" == data) {
-          achievements.addToast("Nitrogen");
+          achievement.addToast("Nitrogen");
           $scope.player.unlocks.nitrogen = true;
           $scope.unlocks.nitrogen.listener();
         }
@@ -2842,7 +2842,7 @@ function loadData($scope) {
     "fluorine" : {
       check : function (event, data) {
         if ("F" == data) {
-          achievements.addToast("Fluorine");
+          achievement.addToast("Fluorine");
           $scope.player.unlocks.fluorine = true;
           $scope.unlocks.fluorine.listener();
         }
@@ -2852,7 +2852,7 @@ function loadData($scope) {
     "neon" : {
       check : function (event, data) {
         if ("Ne" == data) {
-          achievements.addToast("Neon");
+          achievement.addToast("Neon");
           $scope.player.unlocks.neon = true;
           $scope.unlocks.neon.listener();
         }
