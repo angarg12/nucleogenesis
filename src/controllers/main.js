@@ -8,20 +8,17 @@ angular
 '$filter',
 '$timeout',
 'achievement',
-function ($scope, $document, $interval, $sce, $filter, $timeout, achievement) {
+'util',
+function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util) {
   $scope.version = '1.0.2';
   $scope.Math = window.Math;
   $scope.achievement = achievement;
+  $scope.util = util;
   var self = this;
 
   achievement.setScope($scope);
+  util.setScope($scope);
   
-  // Polyfill for some browsers
-  Number.parseFloat = parseFloat;
-  Number.isInteger = Number.isInteger || function (value) {
-    return typeof value === "number" && isFinite(value) && Math.floor(value) === value;
-  };
-
   // TODO: The startPlayer object can be mostly build
   // by using the data.js structures. That would save
   // a lot of
@@ -165,17 +162,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement) {
     }
   };
 
-  $scope.getHTML = function (resource) {
-    var html = $scope.html[resource];
-    if(html === undefined){
-      html = $scope.resources[resource].html;
-    }
-    if(html === undefined){
-      return resource;
-    }
-    return html;
-  };
-
   $scope.buyGenerators = function (name, element, number) {
     var price = $scope.generatorPrice(name, element);
     var i = 0;
@@ -298,10 +284,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement) {
     return total;
   };
 
-  $scope.updateCurrent = function (variable, new_value) {
-    $scope[variable] = new_value;
-  };
-
   $scope.save = function () {
     localStorage.setItem("playerStoredITE", JSON.stringify($scope.player));
     var d = new Date();
@@ -357,8 +339,9 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement) {
 
   self.versionControl = function () {
     /*
-     * if(versionCompare($scope.player.version,"0.11") == -1){
-     * init(); }
+     * if(util.versionCompare($scope.player.version,"0.11") == -1){
+     *   init(); 
+     * }
      */
   };
 
@@ -578,12 +561,12 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement) {
     var keys = Object.keys(compound);
     for(var i = 0; i < keys.length; i++) {
       if(Number.isInteger(number) && number > 1) {
-        compoundHTML += $scope.prettifyNumber(Number.parseFloat((number * compound[keys[i]]).toFixed(4))) +
+        compoundHTML += util.prettifyNumber(Number.parseFloat((number * compound[keys[i]]).toFixed(4))) +
                         " ";
       } else if(compound[keys[i]] != 1) {
-        compoundHTML += $scope.prettifyNumber(compound[keys[i]]) + " ";
+        compoundHTML += util.prettifyNumber(compound[keys[i]]) + " ";
       }
-      compoundHTML += $scope.getHTML(keys[i]) + " ";
+      compoundHTML += util.getHTML(keys[i]) + " ";
       if(i < keys.length - 1) {
         compoundHTML += "+ ";
       }
@@ -597,29 +580,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement) {
     return format;
   };
 
-  $scope.prettifyNumber = function (number) {
-    if(typeof number == 'undefined') {
-      return;
-    }
-    if(number === "") {
-      return "";
-    }
-    if(number == Infinity) {
-      return "&infin;";
-    }
-    if(number > 1e6) {
-      // Very ugly way to extract the mantisa and exponent from an exponential string
-      var exponential = number.toPrecision(6).split("e");
-      var exponent = parseFloat(exponential[1].split("+")[1]);
-      // And it is displayed in with superscript
-      return $filter('number')(exponential[0]) +
-             " &#215; 10<sup>" +
-             $scope.prettifyNumber(exponent) +
-             "</sup>";
-    }
-    return $filter('number')(number);
-  };
-
   self.init = function () {
     $scope.current_tab = "Elements";
     $scope.current_entry = "Hydrogen";
@@ -628,20 +588,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement) {
     achievement.init();
     self.populatePlayer();
     $scope.player = angular.copy(self.startPlayer);
-  };
-
-  $scope.trustHTML = function (html) {
-    return $sce.trustAsHtml(html);
-  };
-
-  $scope.visibleKeys = function (map) {
-    var result = {};
-    for(var key in map) {
-      if(map[key].visible()) {
-        result[key] = map[key];
-      }
-    }
-    return Object.keys(result);
   };
 
   self.introAnimation = function () {
@@ -658,46 +604,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement) {
 
   self.introStep = function (value) {
     $scope.player.intro[value] = true;
-  };
-  
-  /**
-   * Simply compares two string version values.
-   * 
-   * Example: versionCompare('1.1', '1.2') => smaller
-   * versionCompare('1.1', '1.1') => equal versionCompare('1.2',
-   * '1.1') => bigger versionCompare('2.23.3', '2.22.3') => bigger
-   * 
-   * Returns: smaller = left is LOWER than right equal = they are
-   * equal bigger = left is GREATER = right is LOWER And FALSE if
-   * one of input versions are not valid
-   * 
-   * @function
-   * @param {String}
-   *          left Version #1
-   * @param {String}
-   *          right Version #2
-   * @return {Integer|Boolean}
-   * @author Alexey Bass (albass)
-   * @since 2011-07-14
-   */
-  self.versionCompare = function (left, right) {
-    if(typeof left != 'string' || typeof right != 'string') {
-      return;
-    }
-
-    var a = left.split('.');
-    var b = right.split('.');
-    var len = Math.max(a.length, b.length);
-
-    for(var i = 0; i < len; i++) {
-      if((a[i] && !b[i] && parseInt(a[i]) > 0) || (parseInt(a[i]) > parseInt(b[i]))) {
-        return 'bigger';
-      } else if((b[i] && !a[i] && parseInt(b[i]) > 0) || (parseInt(a[i]) < parseInt(b[i]))) {
-        return 'smaller';
-      }
-    }
-
-    return 'equal';
   };
 
   self.checkUnlock = $scope.$on("resource", function (event, item) {

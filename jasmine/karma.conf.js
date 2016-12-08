@@ -12,6 +12,7 @@ module.exports = function(config) {
       '../src/modules/module.js',
       '../src/data.js',
       '../src/services/achievement.js',
+      '../src/services/util.js',
       '../src/controllers/main.js',
       'spec/*.js'
     ],
