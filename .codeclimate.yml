@@ -18,7 +18,7 @@ ratings:
   - "**.js"
   - "**.md"
 exclude_paths:
-  - "jasmine/**"
-  - "lib/**"
-  - "node_modules/**"
-  - "protractor/**"
+  - "jasmine/"
+  - "lib/"
+  - "node_modules/"
+  - "protractor/"
