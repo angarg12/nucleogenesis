@@ -450,9 +450,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
       var reaction = $scope.resources[radical].free_radical.reaction[j];
       var reacted_number = self.randomDraw(production, proportions[j]);
 
-      if(reacted_number <= 0){
-        continue;
-      }
       var product = reaction.product;
       reacted[product] = reacted_number;
       
@@ -470,6 +467,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     }
     // The last reaction is just the remaining production that hasn't been consumed
     reacted[$scope.resources[radical].free_radical.reaction[$scope.resources[radical].free_radical.reaction.length - 1].product] = production;
+
     return reacted;
   };
   

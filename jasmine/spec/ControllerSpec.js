@@ -1094,7 +1094,7 @@ describe("Incremental table elements", function() {
       expect($scope.player.resources.O2.number).toEqual(8);
       expect($scope.player.resources.O.number).toEqual(8);
     });
-    
+
     it("should process radicals", function() {
       controller.populatePlayer();
       $scope.player = controller.startPlayer;
