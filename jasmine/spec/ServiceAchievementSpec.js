@@ -5,6 +5,7 @@ describe("Achievement service", function() {
   var $rootScope;
   var $scope;
   var achievement;
+  var player;
   
   beforeEach(inject(function(_$rootScope_, _$controller_,_$timeout_, $injector){
     // The injector unwraps the underscores (_) from around the parameter names when matching
@@ -13,7 +14,9 @@ describe("Achievement service", function() {
     spyOn($rootScope, '$emit').and.callThrough();
     $scope = $rootScope.$new();
     achievement = $injector.get('achievement');
-    $controller('IncCtrl', {$scope:$scope, achievement:achievement});
+    util = $injector.get('util');
+    player = $injector.get('player');
+    controller  = $controller('IncCtrl', {$scope:$scope, achievement:achievement, util:util, player:player});
     loadData($scope);
   }));
 
@@ -110,8 +113,8 @@ describe("Achievement service", function() {
   
   describe('achievements', function() {
     it("should initialise the listeners of the locked achievements", function() {
-      $scope.player = {unlocks:{}};
-      $scope.player.unlocks["hydrogen"] = false;
+      player.player = {unlocks:{}};
+      player.player.unlocks["hydrogen"] = false;
     
       achievement.initializeListeners();
       
@@ -119,8 +122,8 @@ describe("Achievement service", function() {
     });
       
     it("should not initialise the listeners of the unlocked achievements", function() {
-      $scope.player = {unlocks:{}};
-      $scope.player.unlocks["hydrogen"] = true;
+      player.player = {unlocks:{}};
+      player.player.unlocks["hydrogen"] = true;
 
       achievement.initializeListeners();
       
@@ -146,8 +149,8 @@ describe("Achievement service", function() {
     });
     
     it("should count the number of achievements unlocked", function() {
-      $scope.player = {unlocks:{}};
-      $scope.player.unlocks["helium"] = true;
+      player.player = {unlocks:{}};
+      player.player.unlocks["helium"] = true;
       
       value = achievement.numberUnlocked();
       

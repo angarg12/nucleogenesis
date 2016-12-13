@@ -3,7 +3,8 @@ angular
 .service('achievement',
 ['$timeout',
 '$rootScope',
-function($timeout, $rootScope) {
+'player',
+function($timeout, $rootScope, player) {
   this.toast;
   this.is_toast_visible;
   var $scope;
@@ -42,8 +43,8 @@ function($timeout, $rootScope) {
 
   this.numberUnlocked = function () {
     var unlocked = 0;
-    for(var key in $scope.player.unlocks) {
-      if($scope.player.unlocks[key]) {
+    for(var key in player.player.unlocks) {
+      if(player.player.unlocks[key]) {
         unlocked++;
       }
     }
@@ -52,7 +53,7 @@ function($timeout, $rootScope) {
 
   this.initializeListeners = function () {
     for(var key in $scope.unlocks) {
-      if(!$scope.player.unlocks[key]) {
+      if(!player.player.unlocks[key]) {
         $scope.unlocks[key].listener = $rootScope.$on($scope.unlocks[key].event, $scope.unlocks[key].check);
       }
     }

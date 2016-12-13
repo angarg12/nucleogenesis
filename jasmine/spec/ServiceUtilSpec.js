@@ -12,9 +12,10 @@ describe("Achievement service", function() {
     $rootScope = _$rootScope_;
     spyOn($rootScope, '$emit').and.callThrough();
     $scope = $rootScope.$new();
-    var achievement = $injector.get('achievement');
+    achievement = $injector.get('achievement');
     util = $injector.get('util');
-    $controller('IncCtrl', {$scope:$scope, achievement:achievement, util:util});
+    player = $injector.get('player');
+    controller  = $controller('IncCtrl', {$scope:$scope, achievement:achievement, util:util, player:player});
     loadData($scope);
   }));
 

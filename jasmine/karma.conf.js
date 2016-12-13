@@ -11,6 +11,7 @@ module.exports = function(config) {
       '../lib/angular-mocks.js',
       '../src/modules/module.js',
       '../src/data.js',
+      '../src/services/player.js',
       '../src/services/achievement.js',
       '../src/services/util.js',
       '../src/controllers/main.js',
