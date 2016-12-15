@@ -14,7 +14,9 @@ module.exports = function(config) {
       '../src/services/player.js',
       '../src/services/achievement.js',
       '../src/services/util.js',
+      '../src/services/savegame.js',
       '../src/controllers/main.js',
+      'common.js',
       'spec/*.js'
     ],
     browsers: ['PhantomJS'],

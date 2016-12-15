@@ -10,17 +10,20 @@ angular
 'achievement',
 'util',
 'player',
-function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player) {
+'savegame',
+function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame) {
   $scope.version = '1.0.2';
   $scope.Math = window.Math;
   $scope.achievement = achievement;
   $scope.util = util;
   $scope.player = player;
+  $scope.savegame = savegame;
   var self = this;
 
+  player.setScope($scope);
   achievement.setScope($scope);
   util.setScope($scope);
-  player.setScope($scope);
+  savegame.setScope($scope);
 
   $scope.current_tab = "Elements";
   $scope.current_entry = "Hydrogen";
@@ -32,29 +35,29 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   self.numberGenerator = new Ziggurat();
 
   $scope.elementPrice = function (element) {
-    return Math.pow(player.player.elements_unlocked + 1, $scope.elements[element].order);
+    return Math.pow(player.data.elements_unlocked + 1, $scope.elements[element].order);
   };
 
   $scope.isElementCostMet = function (element) {
     var price = $scope.elementPrice(element);
-    return player.player.resources['e-'].number >= price &&
-           player.player.resources.p.number >= price &&
-           player.player.resources.n.number >= price;
+    return player.data.resources['e-'].number >= price &&
+           player.data.resources.p.number >= price &&
+           player.data.resources.n.number >= price;
   };
 
   $scope.generatorPrice = function (name, element) {
-    var level = player.player.elements[element].generators[name].level;
+    var level = player.data.elements[element].generators[name].level;
     var price = $scope.generators[name].price * Math.pow($scope.generators[name].priceIncrease, level);
     return Math.ceil(price);
   };
 
   $scope.synthesisMultiplier = function (synthesis) {
-    var level = player.player.synthesis[synthesis].number;
+    var level = player.data.synthesis[synthesis].number;
     return Math.ceil(Math.pow($scope.synthesis_price_increase, level));
   };
 
   $scope.synthesisPower = function (synthesis) {
-    var level = player.player.synthesis[synthesis].active;
+    var level = player.data.synthesis[synthesis].active;
     return Math.ceil(Math.pow(level, $scope.synthesis_power_increase));
   };
 
@@ -71,7 +74,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   $scope.isSynthesisCostMet = function (synthesis) {
     var price = $scope.synthesisPrice(synthesis);
     for(var resource in price) {
-      if(player.player.resources[resource].number < price[resource]) {
+      if(player.data.resources[resource].number < price[resource]) {
         return false;
       }
     }
@@ -84,9 +87,9 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     while (i < number && $scope.isSynthesisCostMet(synthesis)) {
       var price = $scope.synthesisPrice(synthesis);
       for(var resource in price) {
-        player.player.resources[resource].number -= price[resource];
+        player.data.resources[resource].number -= price[resource];
       }
-      player.player.synthesis[synthesis].number += 1;
+      player.data.synthesis[synthesis].number += 1;
       i++;
     }
   };
@@ -95,9 +98,9 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     var price = $scope.generatorPrice(name, element);
     var i = 0;
     // we need a loop since we use the ceil operator
-    while (i < number && player.player.resources[element].number >= price) {
-      player.player.resources[element].number -= price;
-      player.player.elements[element].generators[name].level++;
+    while (i < number && player.data.resources[element].number >= price) {
+      player.data.resources[element].number -= price;
+      player.data.elements[element].generators[name].level++;
       price = $scope.generatorPrice(name, element);
       i++;
     }
@@ -107,36 +110,36 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   };
 
   $scope.buyUpgrade = function (name, element) {
-    if(player.player.elements[element].upgrades[name].bought) {
+    if(player.data.elements[element].upgrades[name].bought) {
       return;
     }
     var price = $scope.upgrades[name].price;
-    if(player.player.resources[element].number >= price) {
-      player.player.resources[element].number -= price;
-      player.player.elements[element].upgrades[name].bought = true;
+    if(player.data.resources[element].number >= price) {
+      player.data.resources[element].number -= price;
+      player.data.elements[element].upgrades[name].bought = true;
     }
   };
 
   $scope.buyElement = function (element) {
-    if(player.player.elements[element].unlocked) {
+    if(player.data.elements[element].unlocked) {
       return;
     }
     if($scope.isElementCostMet(element)) {
       var price = $scope.elementPrice(element);
-      player.player.resources['e-'].number -= price;
-      player.player.resources.p.number -= price;
-      player.player.resources.n.number -= price;
+      player.data.resources['e-'].number -= price;
+      player.data.resources.p.number -= price;
+      player.data.resources.n.number -= price;
       $scope.$emit("element", element);
-      player.player.elements[element].unlocked = true;
-      player.player.elements[element].generators["Tier 1"].level = 1;
-      player.player.elements_unlocked++;
+      player.data.elements[element].unlocked = true;
+      player.data.elements[element].generators["Tier 1"].level = 1;
+      player.data.elements_unlocked++;
     }
   };
 
   $scope.isReactionCostMet = function (number, reaction) {
     var keys = Object.keys(reaction.reactant);
     for(var i = 0; i < keys.length; i++) {
-      var available = player.player.resources[keys[i]].number;
+      var available = player.data.resources[keys[i]].number;
       var required = Number.parseFloat((number * reaction.reactant[keys[i]]).toFixed(4));
       if(required > available) {
         return false;
@@ -147,7 +150,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
 
   $scope.lastUpgradeTierPrice = function (tier) {
     for(var upgrade in $scope.generators[tier].upgrades) {
-      if(!player.player.elements[$scope.current_element].upgrades[$scope.generators[tier].upgrades[upgrade]].bought) {
+      if(!player.data.elements[$scope.current_element].upgrades[$scope.generators[tier].upgrades[upgrade]].bought) {
         return $scope.upgrades[$scope.generators[tier].upgrades[upgrade]].price;
       }
     }
@@ -155,7 +158,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   };
 
   $scope.filterUpgrade = function (input) {
-    return player.player.elements[$scope.current_element].generators[input].level > 0;
+    return player.data.elements[$scope.current_element].generators[input].level > 0;
   };
 
   $scope.react = function (number, reaction) {
@@ -166,15 +169,15 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
       var reactant = Object.keys(reaction.reactant);
       for(var i = 0; i < reactant.length; i++) {
         var required = Number.parseFloat((number * reaction.reactant[reactant[i]]).toFixed(4));
-        player.player.resources[reactant[i]].number -= required;
-        player.player.resources[reactant[i]].number = Number.parseFloat(player.player.resources[reactant[i]].number
+        player.data.resources[reactant[i]].number -= required;
+        player.data.resources[reactant[i]].number = Number.parseFloat(player.data.resources[reactant[i]].number
             .toFixed(4));
       }
       var product = Object.keys(reaction.product);
       for(var i = 0; i < product.length; i++) {
         var produced = number * reaction.product[product[i]];
-        var current = player.player.resources[product[i]].number;
-        player.player.resources[product[i]].number = Number.parseFloat((current + produced).toFixed(4));
+        var current = player.data.resources[product[i]].number;
+        player.data.resources[product[i]].number = Number.parseFloat((current + produced).toFixed(4));
         $scope.$emit("resource", product[i]);
       }
     }
@@ -184,7 +187,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     var baseProduction = $scope.generators[name].power;
     var upgradedProduction = baseProduction;
     for(var upgrade in $scope.generators[name].upgrades) {
-      if(player.player.elements[element].upgrades[$scope.generators[name].upgrades[upgrade]].bought) {
+      if(player.data.elements[element].upgrades[$scope.generators[name].upgrades[upgrade]].bought) {
         upgradedProduction = $scope.upgrades[$scope.generators[name].upgrades[upgrade]]
             .apply(upgradedProduction);
       }
@@ -194,10 +197,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
 
   $scope.tierProduction = function (name, element) {
     var baseProduction = $scope.generators[name].power *
-                         player.player.elements[element].generators[name].level;
+                         player.data.elements[element].generators[name].level;
     var upgradedProduction = baseProduction;
     for(var upgrade in $scope.generators[name].upgrades) {
-      if(player.player.elements[element].upgrades[$scope.generators[name].upgrades[upgrade]].bought) {
+      if(player.data.elements[element].upgrades[$scope.generators[name].upgrades[upgrade]].bought) {
         upgradedProduction = $scope.upgrades[$scope.generators[name].upgrades[upgrade]]
             .apply(upgradedProduction);
       }
@@ -252,8 +255,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   self.processDecay = function (resources) {
     for(var i = 0; i < resources.length; i++) {
       var resource = resources[i];
-      if(player.player.resources[resource].unlocked) {
-        var number = player.player.resources[resource].number;
+      if(player.data.resources[resource].unlocked) {
+        var number = player.data.resources[resource].number;
         var half_life = $scope.resources[resource].decay.half_life;
         var production = self.randomDraw(number, Math.log(2) / half_life);
         
@@ -262,11 +265,11 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         }
         
         // we decrease the number of radioactive element
-        player.player.resources[resource].number -= production;
+        player.data.resources[resource].number -= production;
         
         // and decay products
         for(var product in $scope.resources[resource].decay.decay_product) {
-          player.player.resources[product].number += $scope.resources[resource].decay.decay_product[product] *
+          player.data.resources[product].number += $scope.resources[resource].decay.decay_product[product] *
                                                      production;
           $scope.$emit("resource", product);
           var decay_type = $scope.resources[resource].decay.decay_type;
@@ -282,8 +285,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   self.processUnstable = function () {
     for(var i = 0; i < $scope.free_radicals.length; i++) {
       var radical = $scope.free_radicals[i];
-      if(player.player.resources[radical].unlocked) {
-        var production = self.randomDraw(player.player.resources[radical].number, 
+      if(player.data.resources[radical].unlocked) {
+        var production = self.randomDraw(player.data.resources[radical].number, 
             $scope.resources[radical].free_radical.reactivity);
         
         var proportions = self.calculateProportions(radical);        
@@ -300,7 +303,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     for(var j = 0; j < $scope.resources[radical].free_radical.reaction.length; j++) {
       var reactant = $scope.resources[radical].free_radical.reaction[j].reactant;
       var chance = $scope.resources[radical].free_radical.reaction[j].chance;
-      reactants_number[j] = Math.floor(player.player.resources[reactant].number * chance);
+      reactants_number[j] = Math.floor(player.data.resources[reactant].number * chance);
       reactants_total += reactants_number[j];
     }
     
@@ -329,7 +332,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
       // finally to avoid double counting, we need to refill the atoms by half of the production
       if(reaction.reactant == radical) {
         var adjusted_production = Math.floor(reacted[product] / 2);
-        player.player.resources[radical].number += reacted[product] % 2 + adjusted_production;
+        player.data.resources[radical].number += reacted[product] % 2 + adjusted_production;
         reacted[product] = adjusted_production;
       }
     }
@@ -343,17 +346,17 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     for(var reaction in $scope.resources[radical].free_radical.reaction) {
       var reactant = $scope.resources[radical].free_radical.reaction[reaction].reactant;
       var product = $scope.resources[radical].free_radical.reaction[reaction].product;
-      player.player.resources[reactant].number -= reacted[product];
-      player.player.resources[product].number += reacted[product];
+      player.data.resources[reactant].number -= reacted[product];
+      player.data.resources[product].number += reacted[product];
       $scope.$emit("resource", product);
     }
-    player.player.resources[radical].number -= production;
+    player.data.resources[radical].number -= production;
   };
   
   self.processIsotopes = function () {
     // We will simulate the production of isotopes proportional to their ratio
-    for(var element in player.player.elements) {
-      if(player.player.elements[element].unlocked === false){
+    for(var element in player.data.elements) {
+      if(player.data.elements[element].unlocked === false){
         continue;
       }
       // Prepare an array with the isotopes
@@ -372,14 +375,14 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         var production = self.randomDraw(remaining, p);
 
         if(production > 0) {
-          player.player.resources[isotopes[i]].number += production;
+          player.data.resources[isotopes[i]].number += production;
           $scope.$emit("resource", isotopes[i]);
         }
         remaining -= production;
       }
       // The last isotope is just the remaining production that hasn't been consumed
       if(remaining > 0) {
-        player.player.resources[isotopes[isotopes.length - 1]].number += remaining;
+        player.data.resources[isotopes[isotopes.length - 1]].number += remaining;
         $scope.$emit("resource", isotopes[isotopes.length - 1]);
       }
     }
@@ -387,7 +390,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   
   self.processSynthesis = function () {
     // We will process the synthesis reactions
-    for(var synthesis in player.player.synthesis) {
+    for(var synthesis in player.data.synthesis) {
       var power = $scope.synthesisPower(synthesis);
       if(power !== 0) {
         $scope.react(power, $scope.synthesis[synthesis]);
@@ -468,20 +471,19 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   };
 
   self.introStep = function (value) {
-    player.player.intro[value] = true;
+    player.data.intro[value] = true;
   };
 
   self.checkUnlock = $scope.$on("resource", function (event, item) {
-    player.player.resources[item].unlocked = true;
+    player.data.resources[item].unlocked = true;
   });
   
   self.onload = $timeout(function () {
     loadData($scope);
     if(localStorage.getItem("playerStoredITE") !== null) {
-      player.load();
+      savegame.load();
     }
-    alert(player.player);
-    if(player.player === undefined) {
+    if(player.data === undefined) {
       $scope.init();
     }
     if($scope.lastSave === undefined) {
@@ -492,6 +494,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     achievement.initializeListeners();
     $scope.introAnimation();
     $interval(self.update, 1000);
-    $interval(player.save, 10000);
+    $interval(savegame.save, 10000);
   });
 } ]);

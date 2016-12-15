@@ -4,18 +4,18 @@ function loadData($scope) {
       name : 'Hydrogen',
       isotopes : [ '2H', '3H' ],
       visible : function () {
-        return $scope.player.elements.H.unlocked;
+        return $scope.player.data.elements.H.unlocked;
       },
       has_new : function () {
         var includes = [ 'H', '2H', '3H', 'H-', 'H2' ];
         for ( var key in includes) {
-          if ($scope.player.resources[includes[key]].unlocked && $scope.player.resources[includes[key]].is_new) {
+          if ($scope.player.data.resources[includes[key]].unlocked && $scope.player.data.resources[includes[key]].is_new) {
             return true;
           }
         }
         for ( var key in $scope.reactions.H.synthesis) {
           if ($scope.synthesis[$scope.reactions.H.synthesis[key]].visible() &&
-              $scope.player.synthesis[$scope.reactions.H.synthesis[key]].is_new) {
+              $scope.player.data.synthesis[$scope.reactions.H.synthesis[key]].is_new) {
             return true;
           }
         }
@@ -28,7 +28,7 @@ function loadData($scope) {
       isotopes : [ '3He' ],
       visible : function () {
         return false;
-        // return $scope.player.elements.He.unlocked;
+        // return $scope.player.data.elements.He.unlocked;
       },
       has_new : function () {
         return false;
@@ -41,7 +41,7 @@ function loadData($scope) {
       isotopes : [ '7Li' ],
       visible : function () {
         return false;
-        // return $scope.player.elements.Li.unlocked;
+        // return $scope.player.data.elements.Li.unlocked;
       },
       has_new : function () {
         return false;
@@ -54,7 +54,7 @@ function loadData($scope) {
       isotopes : [ '7Be', '10Be' ],
       visible : function () {
         return false;
-        // return $scope.player.elements.Be.unlocked;
+        // return $scope.player.data.elements.Be.unlocked;
       },
       has_new : function () {
         return false;
@@ -67,7 +67,7 @@ function loadData($scope) {
       isotopes : [ '11B' ],
       visible : function () {
         return false;
-        // return $scope.player.elements.B.unlocked;
+        // return $scope.player.data.elements.B.unlocked;
       },
       has_new : function () {
         return false;
@@ -80,7 +80,7 @@ function loadData($scope) {
       isotopes : [ '11C', '13C', '14C' ],
       visible : function () {
         return false;
-        // return $scope.player.elements.C.unlocked;
+        // return $scope.player.data.elements.C.unlocked;
       },
       has_new : function () {
         return false;
@@ -93,7 +93,7 @@ function loadData($scope) {
       isotopes : [ '13N', '15N' ],
       visible : function () {
         return false;
-        // return $scope.player.elements.N.unlocked;
+        // return $scope.player.data.elements.N.unlocked;
       },
       has_new : function () {
         return false;
@@ -105,18 +105,18 @@ function loadData($scope) {
       name : 'Oxygen',
       isotopes : [ '17O', '18O' ],
       visible : function () {
-        return $scope.player.elements.O.unlocked;
+        return $scope.player.data.elements.O.unlocked;
       },
       has_new : function () {
         var includes = [ 'O', '17O', '18O', 'O2', 'O3' ];
         for ( var key in includes) {
-          if ($scope.player.resources[includes[key]].unlocked && $scope.player.resources[includes[key]].is_new) {
+          if ($scope.player.data.resources[includes[key]].unlocked && $scope.player.data.resources[includes[key]].is_new) {
             return true;
           }
         }
         for ( var key in $scope.reactions.O.synthesis) {
           if ($scope.synthesis[$scope.reactions.O.synthesis[key]].visible() &&
-              $scope.player.synthesis[$scope.reactions.O.synthesis[key]].is_new) {
+              $scope.player.data.synthesis[$scope.reactions.O.synthesis[key]].is_new) {
             return true;
           }
         }
@@ -129,7 +129,7 @@ function loadData($scope) {
       isotopes : [ '18F' ],
       visible : function () {
         return false;
-        // return $scope.player.elements.F.unlocked;
+        // return $scope.player.data.elements.F.unlocked;
       },
       has_new : function () {
         return false;
@@ -142,7 +142,7 @@ function loadData($scope) {
       isotopes : [ '21Ne', '22Ne' ],
       visible : function () {
         return false;
-        // return $scope.player.elements.Ne.unlocked;
+        // return $scope.player.data.elements.Ne.unlocked;
       },
       has_new : function () {
         return false;
@@ -1460,7 +1460,7 @@ function loadData($scope) {
     },
     'Tier 2' : {
       visible : function () {
-        return $scope.player.elements[$scope.current_element].generators['Tier 1'].level > 0;
+        return $scope.player.data.elements[$scope.current_element].generators['Tier 1'].level > 0;
       },
       price : 100,
       power : 10,
@@ -1468,7 +1468,7 @@ function loadData($scope) {
     },
     'Tier 3' : {
       visible : function () {
-        return $scope.player.elements[$scope.current_element].generators['Tier 2'].level > 0;
+        return $scope.player.data.elements[$scope.current_element].generators['Tier 2'].level > 0;
       },
       price : 1100,
       power : 80,
@@ -1476,7 +1476,7 @@ function loadData($scope) {
     },
     'Tier 4' : {
       visible : function () {
-        return $scope.player.elements[$scope.current_element].generators['Tier 3'].level > 0;
+        return $scope.player.data.elements[$scope.current_element].generators['Tier 3'].level > 0;
       },
       price : 12000,
       power : 470,
@@ -1484,7 +1484,7 @@ function loadData($scope) {
     },
     'Tier 5' : {
       visible : function () {
-        return $scope.player.elements[$scope.current_element].generators['Tier 4'].level > 0;
+        return $scope.player.data.elements[$scope.current_element].generators['Tier 4'].level > 0;
       },
       price : 130000,
       power : 2600,
@@ -1492,7 +1492,7 @@ function loadData($scope) {
     },
     'Tier 6' : {
       visible : function () {
-        return $scope.player.elements[$scope.current_element].generators['Tier 5'].level > 0;
+        return $scope.player.data.elements[$scope.current_element].generators['Tier 5'].level > 0;
       },
       price : 1400000,
       power : 14000,
@@ -1500,7 +1500,7 @@ function loadData($scope) {
     },
     'Tier 7' : {
       visible : function () {
-        return $scope.player.elements[$scope.current_element].generators['Tier 6'].level > 0;
+        return $scope.player.data.elements[$scope.current_element].generators['Tier 6'].level > 0;
       },
       price : 2000000,
       power : 78000,
@@ -1508,7 +1508,7 @@ function loadData($scope) {
     },
     'Tier 8' : {
       visible : function () {
-        return $scope.player.elements[$scope.current_element].generators['Tier 7'].level > 0;
+        return $scope.player.data.elements[$scope.current_element].generators['Tier 7'].level > 0;
       },
       price : 330000000,
       power : 440000,
@@ -1516,7 +1516,7 @@ function loadData($scope) {
     },
     'Tier 9' : {
       visible : function () {
-        return $scope.player.elements[$scope.current_element].generators['Tier 8'].level > 0;
+        return $scope.player.data.elements[$scope.current_element].generators['Tier 8'].level > 0;
       },
       price : 5100000000,
       power : 2600000,
@@ -1524,7 +1524,7 @@ function loadData($scope) {
     },
     'Tier 10' : {
       visible : function () {
-        return $scope.player.elements[$scope.current_element].generators['Tier 9'].level > 0;
+        return $scope.player.data.elements[$scope.current_element].generators['Tier 9'].level > 0;
       },
       price : 75000000000,
       power : 16000000,
@@ -1532,7 +1532,7 @@ function loadData($scope) {
     },
     'Tier 11' : {
       visible : function () {
-        return $scope.player.elements[$scope.current_element].generators['Tier 10'].level > 0;
+        return $scope.player.data.elements[$scope.current_element].generators['Tier 10'].level > 0;
       },
       price : 1000000000000,
       power : 100000000,
@@ -1540,7 +1540,7 @@ function loadData($scope) {
     },
     'Tier 12' : {
       visible : function () {
-        return $scope.player.elements[$scope.current_element].generators['Tier 11'].level > 0;
+        return $scope.player.data.elements[$scope.current_element].generators['Tier 11'].level > 0;
       },
       price : 14000000000000,
       power : 650000000,
@@ -1548,7 +1548,7 @@ function loadData($scope) {
     },
     'Tier 13' : {
       visible : function () {
-        return $scope.player.elements[$scope.current_element].generators['Tier 12'].level > 0;
+        return $scope.player.data.elements[$scope.current_element].generators['Tier 12'].level > 0;
       },
       price : 170000000000000,
       power : 4300000000,
@@ -1556,7 +1556,7 @@ function loadData($scope) {
     },
     'Tier 14' : {
       visible : function () {
-        return $scope.player.elements[$scope.current_element].generators['Tier 13'].level > 0;
+        return $scope.player.data.elements[$scope.current_element].generators['Tier 13'].level > 0;
       },
       price : 2100000000000000,
       power : 2900000000,
@@ -1611,14 +1611,14 @@ function loadData($scope) {
 
   function createIsVisible0(i) {
     return function () {
-      return $scope.player.unlocks.upgrade &&
-             $scope.player.elements[$scope.current_element].generators["Tier " + (i + 1)].level > 0;
+      return $scope.player.data.unlocks.upgrade &&
+             $scope.player.data.elements[$scope.current_element].generators["Tier " + (i + 1)].level > 0;
     };
   }
 
   function createIsVisible(i, j) {
     return function () {
-      return $scope.player.elements[$scope.current_element].upgrades["Tier " + (i + 1) + "-" + j].bought;
+      return $scope.player.data.elements[$scope.current_element].upgrades["Tier " + (i + 1) + "-" + j].bought;
     };
   }
 
@@ -1635,7 +1635,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "H" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['H-'].unlocked;
+               $scope.player.data.resources['H-'].unlocked;
       },
       order : 1,
       html : 'H<sup>-</sup>',
@@ -1646,7 +1646,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "H" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['2H'].unlocked;
+               $scope.player.data.resources['2H'].unlocked;
       },
       order : 2,
       ratio : 0.000115,
@@ -1657,7 +1657,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "H" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['3H'].unlocked;
+               $scope.player.data.resources['3H'].unlocked;
       },
       order : 4,
       ratio : 0.000001,
@@ -1677,7 +1677,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "H" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources.H2.unlocked;
+               $scope.player.data.resources.H2.unlocked;
       },
       order : 5,
       html : 'H<sub>2</sub>',
@@ -1695,7 +1695,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "He" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['3He'].unlocked;
+               $scope.player.data.resources['3He'].unlocked;
       },
       order : 101,
       ratio : 0.000002,
@@ -1706,7 +1706,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "He" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['3He+1'].unlocked;
+               $scope.player.data.resources['3He+1'].unlocked;
       },
       order : 102,
       html : '<sup>3</sup>He<sup>+</sup>',
@@ -1724,7 +1724,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "Li" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['7Li'].unlocked;
+               $scope.player.data.resources['7Li'].unlocked;
       },
       order : 201,
       ratio : 0.05,
@@ -1743,7 +1743,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "Be" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['7Be'].unlocked;
+               $scope.player.data.resources['7Be'].unlocked;
       },
       order : 310,
       ratio : 0.000001,
@@ -1762,7 +1762,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "Be" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['10Be'].unlocked;
+               $scope.player.data.resources['10Be'].unlocked;
       },
       order : 320,
       ratio : 0.000001,
@@ -1790,7 +1790,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "B" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['11B'].unlocked;
+               $scope.player.data.resources['11B'].unlocked;
       },
       order : 410,
       ratio : 0.8,
@@ -1809,7 +1809,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "C" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['11C'].unlocked;
+               $scope.player.data.resources['11C'].unlocked;
       },
       order : 510,
       ratio : 0.000001,
@@ -1829,7 +1829,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "C" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['13C'].unlocked;
+               $scope.player.data.resources['13C'].unlocked;
       },
       order : 520,
       ratio : 0.011,
@@ -1840,7 +1840,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "C" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['14C'].unlocked;
+               $scope.player.data.resources['14C'].unlocked;
       },
       order : 530,
       ratio : 0.000001,
@@ -1868,7 +1868,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "N" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['13N'].unlocked;
+               $scope.player.data.resources['13N'].unlocked;
       },
       order : 610,
       ratio : 0.000001,
@@ -1887,7 +1887,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "N" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['15N'].unlocked;
+               $scope.player.data.resources['15N'].unlocked;
       },
       order : 620,
       ratio : 0.04,
@@ -1918,7 +1918,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "O" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources.O2.unlocked;
+               $scope.player.data.resources.O2.unlocked;
       },
       order : 701,
       html : 'O<sub>2</sub>',
@@ -1928,7 +1928,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "O" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources.O3.unlocked;
+               $scope.player.data.resources.O3.unlocked;
       },
       order : 702,
       html : 'O<sub>3</sub>',
@@ -1945,7 +1945,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "O" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['17O'].unlocked;
+               $scope.player.data.resources['17O'].unlocked;
       },
       order : 710,
       ratio : 0.00039,
@@ -1956,7 +1956,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "O" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['18O'].unlocked;
+               $scope.player.data.resources['18O'].unlocked;
       },
       order : 720,
       ratio : 0.00201,
@@ -1967,7 +1967,7 @@ function loadData($scope) {
       visible : function () {
         return ($scope.current_element === "H" || $scope.current_element === "O") &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources.H2O.unlocked;
+               $scope.player.data.resources.H2O.unlocked;
       },
       html : 'H<sub>2</sub>O',
       type : 'molecule'
@@ -1984,7 +1984,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "F" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['18F'].unlocked;
+               $scope.player.data.resources['18F'].unlocked;
       },
       order : 810,
       ratio : 0.000001,
@@ -2012,7 +2012,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "Ne" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['21Ne'].unlocked;
+               $scope.player.data.resources['21Ne'].unlocked;
       },
       order : 910,
       ratio : 0.0027,
@@ -2023,7 +2023,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.current_element === "Ne" &&
                $scope.current_tab == "Elements" &&
-               $scope.player.resources['22Ne'].unlocked;
+               $scope.player.data.resources['22Ne'].unlocked;
       },
       order : 920,
       ratio : 0.0925,
@@ -2032,28 +2032,28 @@ function loadData($scope) {
     },
     'e-' : {
       visible : function () {
-        return $scope.player.resources['e-'].unlocked;
+        return $scope.player.data.resources['e-'].unlocked;
       },
       order : 20000,
       type : 'subatomic'
     },
     'n' : {
       visible : function () {
-        return $scope.player.resources.n.unlocked;
+        return $scope.player.data.resources.n.unlocked;
       },
       order : 20001,
       type : 'subatomic'
     },
     'p' : {
       visible : function () {
-        return $scope.player.resources.p.unlocked;
+        return $scope.player.data.resources.p.unlocked;
       },
       order : 20002,
       type : 'subatomic'
     },
     'eV' : {
       visible : function () {
-        return $scope.player.resources.eV.unlocked;
+        return $scope.player.data.resources.eV.unlocked;
       },
       order : 20003,
       type : 'eV'
@@ -2073,15 +2073,15 @@ function loadData($scope) {
       },
       has_new : function () {
         for ( var key in $scope.elements) {
-          if ($scope.player.elements[key] !== undefined &&
-              $scope.player.elements[key].unlocked &&
+          if ($scope.player.data.elements[key] !== undefined &&
+              $scope.player.data.elements[key].unlocked &&
               $scope.elements[key].has_new()) {
             return true;
           }
         }
         var other = [ 'e-', 'n', 'p', 'eV' ];
         for ( var key in other) {
-          if ($scope.player.resources[other[key]].unlocked && $scope.player.resources[other[key]].is_new) {
+          if ($scope.player.data.resources[other[key]].unlocked && $scope.player.data.resources[other[key]].is_new) {
             return true;
           }
         }
@@ -2091,11 +2091,11 @@ function loadData($scope) {
     },
     'Encyclopedia' : {
       visible : function () {
-        return $scope.player.intro.content;
+        return $scope.player.data.intro.content;
       },
       has_new : function () {
-        for ( var key in $scope.player.encyclopedia) {
-          if ($scope.encyclopedia[key].visible() && $scope.player.encyclopedia[key].is_new) {
+        for ( var key in $scope.player.data.encyclopedia) {
+          if ($scope.encyclopedia[key].visible() && $scope.player.data.encyclopedia[key].is_new) {
             return true;
           }
         }
@@ -2106,7 +2106,7 @@ function loadData($scope) {
     },
     'Periodic Table' : {
       visible : function () {
-        return $scope.player.unlocks.periodic_table;
+        return $scope.player.data.unlocks.periodic_table;
       },
       has_new : function () {
         return false;
@@ -2115,7 +2115,7 @@ function loadData($scope) {
     },
     'Options' : {
       visible : function () {
-        return $scope.player.intro.content;
+        return $scope.player.data.intro.content;
       },
       has_new : function () {
         return false;
@@ -2135,7 +2135,7 @@ function loadData($scope) {
     },
     'Helium' : {
       visible : function () {
-        return $scope.player.unlocks.helium;
+        return $scope.player.data.unlocks.helium;
       },
       order : 2,
       link : 'https://en.wikipedia.org/wiki/Helium',
@@ -2143,7 +2143,7 @@ function loadData($scope) {
     },
     'Lithium' : {
       visible : function () {
-        return $scope.player.unlocks.lithium;
+        return $scope.player.data.unlocks.lithium;
       },
       order : 3,
       link : 'https://en.wikipedia.org/wiki/Lithium',
@@ -2151,7 +2151,7 @@ function loadData($scope) {
     },
     'Beryllium' : {
       visible : function () {
-        return $scope.player.unlocks.beryllium;
+        return $scope.player.data.unlocks.beryllium;
       },
       order : 4,
       link : 'https://en.wikipedia.org/wiki/Beryllium',
@@ -2159,7 +2159,7 @@ function loadData($scope) {
     },
     'Boron' : {
       visible : function () {
-        return $scope.player.unlocks.boron;
+        return $scope.player.data.unlocks.boron;
       },
       order : 5,
       link : 'https://en.wikipedia.org/wiki/Boron',
@@ -2167,7 +2167,7 @@ function loadData($scope) {
     },
     'Carbon' : {
       visible : function () {
-        return $scope.player.unlocks.carbon;
+        return $scope.player.data.unlocks.carbon;
       },
       order : 6,
       link : 'https://en.wikipedia.org/wiki/Carbon',
@@ -2175,7 +2175,7 @@ function loadData($scope) {
     },
     'Nitrogen' : {
       visible : function () {
-        return $scope.player.unlocks.nitrogen;
+        return $scope.player.data.unlocks.nitrogen;
       },
       order : 7,
       link : 'https://en.wikipedia.org/wiki/Nitrogen',
@@ -2183,7 +2183,7 @@ function loadData($scope) {
     },
     'Oxygen' : {
       visible : function () {
-        return $scope.player.unlocks.oxygen;
+        return $scope.player.data.unlocks.oxygen;
       },
       order : 8,
       link : 'https://en.wikipedia.org/wiki/Oxygen',
@@ -2191,7 +2191,7 @@ function loadData($scope) {
     },
     'Fluorine' : {
       visible : function () {
-        return $scope.player.unlocks.fluorine;
+        return $scope.player.data.unlocks.fluorine;
       },
       order : 9,
       link : 'https://en.wikipedia.org/wiki/Fluorine',
@@ -2199,7 +2199,7 @@ function loadData($scope) {
     },
     'Neon' : {
       visible : function () {
-        return $scope.player.unlocks.neon;
+        return $scope.player.data.unlocks.neon;
       },
       order : 10,
       link : 'https://en.wikipedia.org/wiki/Neon',
@@ -2207,7 +2207,7 @@ function loadData($scope) {
     },
     'Isotope' : {
       visible : function () {
-        return $scope.player.unlocks.isotope;
+        return $scope.player.data.unlocks.isotope;
       },
       order : 200,
       link : 'https://en.wikipedia.org/wiki/Isotope',
@@ -2215,7 +2215,7 @@ function loadData($scope) {
     },
     'Electron' : {
       visible : function () {
-        return $scope.player.unlocks.electron;
+        return $scope.player.data.unlocks.electron;
       },
       order : 201,
       link : 'https://en.wikipedia.org/wiki/Electron',
@@ -2223,7 +2223,7 @@ function loadData($scope) {
     },
     'Proton' : {
       visible : function () {
-        return $scope.player.unlocks.proton;
+        return $scope.player.data.unlocks.proton;
       },
       order : 202,
       link : 'https://en.wikipedia.org/wiki/Proton',
@@ -2231,7 +2231,7 @@ function loadData($scope) {
     },
     'Neutron' : {
       visible : function () {
-        return $scope.player.unlocks.neutron;
+        return $scope.player.data.unlocks.neutron;
       },
       order : 203,
       link : 'https://en.wikipedia.org/wiki/Neutron',
@@ -2239,7 +2239,7 @@ function loadData($scope) {
     },
     'Radioactivity' : {
       visible : function () {
-        return $scope.player.unlocks.radioactivity;
+        return $scope.player.data.unlocks.radioactivity;
       },
       order : 204,
       link : 'https://en.wikipedia.org/wiki/Radioactive_decay',
@@ -2247,7 +2247,7 @@ function loadData($scope) {
     },
     'Half-life' : {
       visible : function () {
-        return $scope.player.unlocks.half_life;
+        return $scope.player.data.unlocks.half_life;
       },
       order : 205,
       link : 'https://en.wikipedia.org/wiki/Half-life',
@@ -2255,7 +2255,7 @@ function loadData($scope) {
     },
     'Beta decay' : {
       visible : function () {
-        return $scope.player.unlocks.beta_decay;
+        return $scope.player.data.unlocks.beta_decay;
       },
       order : 206,
       link : 'https://en.wikipedia.org/wiki/Beta_decay',
@@ -2263,7 +2263,7 @@ function loadData($scope) {
     },
     'Energy' : {
       visible : function () {
-        return $scope.player.unlocks.energy;
+        return $scope.player.data.unlocks.energy;
       },
       order : 207,
       link : 'https://en.wikipedia.org/wiki/Energy',
@@ -2271,7 +2271,7 @@ function loadData($scope) {
     },
     'Electronvolt' : {
       visible : function () {
-        return $scope.player.unlocks.energy;
+        return $scope.player.data.unlocks.energy;
       },
       order : 208,
       link : 'https://en.wikipedia.org/wiki/Electronvolt',
@@ -2279,7 +2279,7 @@ function loadData($scope) {
     },
     'Ionization energy' : {
       visible : function () {
-        return $scope.player.unlocks.ionization_energy;
+        return $scope.player.data.unlocks.ionization_energy;
       },
       order : 209,
       link : 'https://en.wikipedia.org/wiki/Ionization_energy',
@@ -2287,7 +2287,7 @@ function loadData($scope) {
     },
     'Electron affinity' : {
       visible : function () {
-        return $scope.player.unlocks.electron_affinity;
+        return $scope.player.data.unlocks.electron_affinity;
       },
       order : 210,
       link : 'https://en.wikipedia.org/wiki/Electron_affinity',
@@ -2295,7 +2295,7 @@ function loadData($scope) {
     },
     'Nuclear binding energy' : {
       visible : function () {
-        return $scope.player.unlocks.nuclear_binding_energy;
+        return $scope.player.data.unlocks.nuclear_binding_energy;
       },
       order : 211,
       link : 'https://en.wikipedia.org/wiki/Nuclear_binding_energy',
@@ -2303,7 +2303,7 @@ function loadData($scope) {
     },
     'Synthesis' : {
       visible : function () {
-        return $scope.player.unlocks.synthesis;
+        return $scope.player.data.unlocks.synthesis;
       },
       order : 212,
       link : 'https://en.wikipedia.org/wiki/Chemical_synthesis',
@@ -2311,7 +2311,7 @@ function loadData($scope) {
     },
     'Ion' : {
       visible : function () {
-        return $scope.player.unlocks.ion;
+        return $scope.player.data.unlocks.ion;
       },
       order : 213,
       link : 'https://en.wikipedia.org/wiki/Ion',
@@ -2319,7 +2319,7 @@ function loadData($scope) {
     },
     'Molecule' : {
       visible : function () {
-        return $scope.player.unlocks.molecule;
+        return $scope.player.data.unlocks.molecule;
       },
       order : 214,
       link : 'https://en.wikipedia.org/wiki/Molecule',
@@ -2327,7 +2327,7 @@ function loadData($scope) {
     },
     'Free radical' : {
       visible : function () {
-        return $scope.player.unlocks.free_radical;
+        return $scope.player.data.unlocks.free_radical;
       },
       order : 215,
       link : 'https://en.wikipedia.org/wiki/Radical_%28chemistry%29',
@@ -2335,7 +2335,7 @@ function loadData($scope) {
     },
     'Allotrope' : {
       visible : function () {
-        return $scope.player.unlocks.allotrope;
+        return $scope.player.data.unlocks.allotrope;
       },
       order : 216,
       link : 'https://en.wikipedia.org/wiki/Allotropy',
@@ -2343,7 +2343,7 @@ function loadData($scope) {
     },
     'Unstable compound' : {
       visible : function () {
-        return $scope.player.unlocks.unstable_compound;
+        return $scope.player.data.unlocks.unstable_compound;
       },
       order : 217,
       link : null,
@@ -2364,7 +2364,7 @@ function loadData($scope) {
             'e-' : 1
           },
           visible : function () {
-            return $scope.player.unlocks.ionization_energy;
+            return $scope.player.data.unlocks.ionization_energy;
           }
         }
       },
@@ -2379,7 +2379,7 @@ function loadData($scope) {
             'eV' : 0.7545
           },
           visible : function () {
-            return $scope.player.unlocks.electron_affinity;
+            return $scope.player.data.unlocks.electron_affinity;
           }
         }
       },
@@ -2395,7 +2395,7 @@ function loadData($scope) {
             'e-' : 1
           },
           visible : function () {
-            return $scope.player.unlocks.nuclear_binding_energy && $scope.player.resources['2H'].unlocked;
+            return $scope.player.data.unlocks.nuclear_binding_energy && $scope.player.data.resources['2H'].unlocked;
           }
         },
         2 : {
@@ -2409,7 +2409,7 @@ function loadData($scope) {
             'e-' : 1
           },
           visible : function () {
-            return $scope.player.unlocks.nuclear_binding_energy && $scope.player.resources['3H'].unlocked;
+            return $scope.player.data.unlocks.nuclear_binding_energy && $scope.player.data.resources['3H'].unlocked;
           }
         }
       },
@@ -2433,7 +2433,7 @@ function loadData($scope) {
             'e-' : 8
           },
           visible : function () {
-            return $scope.player.unlocks.nuclear_binding_energy && $scope.player.resources.O.unlocked;
+            return $scope.player.data.unlocks.nuclear_binding_energy && $scope.player.data.resources.O.unlocked;
           }
         },
         2 : {
@@ -2447,7 +2447,7 @@ function loadData($scope) {
             'e-' : 8
           },
           visible : function () {
-            return $scope.player.unlocks.nuclear_binding_energy && $scope.player.resources['17O'].unlocked;
+            return $scope.player.data.unlocks.nuclear_binding_energy && $scope.player.data.resources['17O'].unlocked;
           }
         },
         3 : {
@@ -2461,7 +2461,7 @@ function loadData($scope) {
             'e-' : 8
           },
           visible : function () {
-            return $scope.player.unlocks.nuclear_binding_energy && $scope.player.resources['18O'].unlocked;
+            return $scope.player.data.unlocks.nuclear_binding_energy && $scope.player.data.resources['18O'].unlocked;
           }
         }
       },
@@ -2480,9 +2480,9 @@ function loadData($scope) {
         'eV' : 17.3705
       },
       visible : function () {
-        return $scope.player.unlocks.synthesis &&
-               $scope.player.resources['H-'].unlocked &&
-               $scope.player.resources.p.unlocked &&
+        return $scope.player.data.unlocks.synthesis &&
+               $scope.player.data.resources['H-'].unlocked &&
+               $scope.player.data.resources.p.unlocked &&
                $scope.current_element == "H";
       }
     },
@@ -2496,9 +2496,9 @@ function loadData($scope) {
         'O' : 1
       },
       visible : function () {
-        return $scope.player.unlocks.synthesis &&
-               $scope.player.resources.O3.unlocked &&
-               $scope.player.resources.eV.unlocked &&
+        return $scope.player.data.unlocks.synthesis &&
+               $scope.player.data.resources.O3.unlocked &&
+               $scope.player.data.resources.eV.unlocked &&
                $scope.current_element == "O";
       }
     },
@@ -2511,9 +2511,9 @@ function loadData($scope) {
         'O' : 2
       },
       visible : function () {
-        return $scope.player.unlocks.synthesis &&
-               $scope.player.resources.O2.unlocked &&
-               $scope.player.resources.eV.unlocked &&
+        return $scope.player.data.unlocks.synthesis &&
+               $scope.player.data.resources.O2.unlocked &&
+               $scope.player.data.resources.eV.unlocked &&
                $scope.current_element == "O";
       }
     },
@@ -2527,10 +2527,10 @@ function loadData($scope) {
         'O' : 1
       },
       visible : function () {
-        return $scope.player.unlocks.synthesis &&
-               $scope.player.resources.O2.unlocked &&
-               $scope.player.resources.O3.unlocked &&
-               $scope.player.resources.eV.unlocked &&
+        return $scope.player.data.unlocks.synthesis &&
+               $scope.player.data.resources.O2.unlocked &&
+               $scope.player.data.resources.O3.unlocked &&
+               $scope.player.data.resources.eV.unlocked &&
                $scope.current_element == "O";
       }
     },
@@ -2544,9 +2544,9 @@ function loadData($scope) {
         'eV' : 5.925
       },
       visible : function () {
-        return $scope.player.unlocks.synthesis &&
-               $scope.player.resources.O.number > 1e8 &&
-               $scope.player.resources.H.number > 1e14 &&
+        return $scope.player.data.unlocks.synthesis &&
+               $scope.player.data.resources.O.number > 1e8 &&
+               $scope.player.data.resources.H.number > 1e14 &&
                ($scope.current_element == "H" || $scope.current_element == "O");
       }
     }
@@ -2561,19 +2561,19 @@ function loadData($scope) {
   $scope.unlocks = {
     "hydrogen" : {
       check : function (event, data) {
-        // achievement.addToast("Periodic table");
-        $scope.player.unlocks.hydrogen = true;
+        // $scope.achievement.addToast("Periodic table");
+        $scope.player.data.unlocks.hydrogen = true;
         $scope.unlocks.hydrogen.listener();
       },
       event : "cycle"
     },
     "periodic_table" : {
       check : function (event, data) {
-        if ($scope.player.resources['e-'].unlocked &&
-            $scope.player.resources.p.unlocked &&
-            $scope.player.resources.n.unlocked) {
-          achievement.addToast("Periodic table");
-          $scope.player.unlocks.periodic_table = true;
+        if ($scope.player.data.resources['e-'].unlocked &&
+            $scope.player.data.resources.p.unlocked &&
+            $scope.player.data.resources.n.unlocked) {
+          $scope.achievement.addToast("Periodic table");
+          $scope.player.data.unlocks.periodic_table = true;
           $scope.unlocks.periodic_table.listener();
         }
       },
@@ -2582,8 +2582,8 @@ function loadData($scope) {
     "isotope" : {
       check : function (event, data) {
         if ([ '2H', '3H' ].indexOf(data) != -1) {
-          achievement.addToast("Isotope");
-          $scope.player.unlocks.isotope = true;
+          $scope.achievement.addToast("Isotope");
+          $scope.player.data.unlocks.isotope = true;
           $scope.unlocks.isotope.listener();
         }
       },
@@ -2592,8 +2592,8 @@ function loadData($scope) {
     "ion" : {
       check : function (event, data) {
         if ("H-" == data) {
-          achievement.addToast("Ion");
-          $scope.player.unlocks.ion = true;
+          $scope.achievement.addToast("Ion");
+          $scope.player.data.unlocks.ion = true;
           $scope.unlocks.ion.listener();
         }
       },
@@ -2602,8 +2602,8 @@ function loadData($scope) {
     "radioactivity" : {
       check : function (event, data) {
         if ("3H" == data) {
-          achievement.addToast("Radioactivity");
-          $scope.player.unlocks.radioactivity = true;
+          $scope.achievement.addToast("Radioactivity");
+          $scope.player.data.unlocks.radioactivity = true;
           $scope.unlocks.radioactivity.listener();
         }
       },
@@ -2612,8 +2612,8 @@ function loadData($scope) {
     "allotrope" : {
       check : function (event, data) {
         if ([ 'O2', 'O3' ].indexOf(data) != -1) {
-          achievement.addToast("Allotrope");
-          $scope.player.unlocks.allotrope = true;
+          $scope.achievement.addToast("Allotrope");
+          $scope.player.data.unlocks.allotrope = true;
           $scope.unlocks.allotrope.listener();
         }
       },
@@ -2622,8 +2622,8 @@ function loadData($scope) {
     "free_radical" : {
       check : function (event, data) {
         if ("O" == data) {
-          achievement.addToast("Free radical");
-          $scope.player.unlocks.free_radical = true;
+          $scope.achievement.addToast("Free radical");
+          $scope.player.data.unlocks.free_radical = true;
           $scope.unlocks.free_radical.listener();
         }
       },
@@ -2632,8 +2632,8 @@ function loadData($scope) {
     "unstable_compound" : {
       check : function (event, data) {
         if ("O3" == data) {
-          achievement.addToast("Unstable compound");
-          $scope.player.unlocks.unstable_compound = true;
+          $scope.achievement.addToast("Unstable compound");
+          $scope.player.data.unlocks.unstable_compound = true;
           $scope.unlocks.unstable_compound.listener();
         }
       },
@@ -2642,8 +2642,8 @@ function loadData($scope) {
     "reactions" : {
       check : function (event, data) {
         if ("e-" == data) {
-          achievement.addToast("Reactions");
-          $scope.player.unlocks.reactions = true;
+          $scope.achievement.addToast("Reactions");
+          $scope.player.data.unlocks.reactions = true;
           $scope.unlocks.reactions.listener();
         }
       },
@@ -2652,8 +2652,8 @@ function loadData($scope) {
     "electron" : {
       check : function (event, data) {
         if ("e-" == data) {
-          achievement.addToast("Electron");
-          $scope.player.unlocks.electron = true;
+          $scope.achievement.addToast("Electron");
+          $scope.player.data.unlocks.electron = true;
           $scope.unlocks.electron.listener();
         }
       },
@@ -2662,8 +2662,8 @@ function loadData($scope) {
     "proton" : {
       check : function (event, data) {
         if ("p" == data) {
-          achievement.addToast("Proton");
-          $scope.player.unlocks.proton = true;
+          $scope.achievement.addToast("Proton");
+          $scope.player.data.unlocks.proton = true;
           $scope.unlocks.proton.listener();
         }
       },
@@ -2672,8 +2672,8 @@ function loadData($scope) {
     "neutron" : {
       check : function (event, data) {
         if ("n" == data) {
-          achievement.addToast("Neutron");
-          $scope.player.unlocks.neutron = true;
+          $scope.achievement.addToast("Neutron");
+          $scope.player.data.unlocks.neutron = true;
           $scope.unlocks.neutron.listener();
         }
       },
@@ -2682,8 +2682,8 @@ function loadData($scope) {
     "energy" : {
       check : function (event, data) {
         if ("eV" == data) {
-          achievement.addToast("Energy");
-          $scope.player.unlocks.energy = true;
+          $scope.achievement.addToast("Energy");
+          $scope.player.data.unlocks.energy = true;
           $scope.unlocks.energy.listener();
         }
       },
@@ -2692,8 +2692,8 @@ function loadData($scope) {
     "half_life" : {
       check : function (event, data) {
         if ("3H" == data) {
-          achievement.addToast("Half-life");
-          $scope.player.unlocks.half_life = true;
+          $scope.achievement.addToast("Half-life");
+          $scope.player.data.unlocks.half_life = true;
           $scope.unlocks.half_life.listener();
         }
       },
@@ -2702,8 +2702,8 @@ function loadData($scope) {
     "oxygen" : {
       check : function (event, data) {
         if ("O" == data) {
-          achievement.addToast("Oxygen");
-          $scope.player.unlocks.oxygen = true;
+          $scope.achievement.addToast("Oxygen");
+          $scope.player.data.unlocks.oxygen = true;
           $scope.unlocks.oxygen.listener();
         }
       },
@@ -2712,8 +2712,8 @@ function loadData($scope) {
     "upgrade" : {
       check : function (event, data) {
         if ("Tier 3" == data) {
-          achievement.addToast("Upgrades");
-          $scope.player.unlocks.upgrade = true;
+          $scope.achievement.addToast("Upgrades");
+          $scope.player.data.unlocks.upgrade = true;
           $scope.unlocks.upgrade.listener();
         }
       },
@@ -2722,8 +2722,8 @@ function loadData($scope) {
     "ionization_energy" : {
       check : function (event, data) {
         if ("e-" == data) {
-          achievement.addToast("Ionization energy");
-          $scope.player.unlocks.ionization_energy = true;
+          $scope.achievement.addToast("Ionization energy");
+          $scope.player.data.unlocks.ionization_energy = true;
           $scope.unlocks.ionization_energy.listener();
         }
       },
@@ -2731,9 +2731,9 @@ function loadData($scope) {
     },
     "electron_affinity" : {
       check : function (event, data) {
-        if ($scope.player.resources['e-'].number >= 10 && $scope.player.resources.p.number >= 10) {
-          achievement.addToast("Electron affinity");
-          $scope.player.unlocks.electron_affinity = true;
+        if ($scope.player.data.resources['e-'].number >= 10 && $scope.player.data.resources.p.number >= 10) {
+          $scope.achievement.addToast("Electron affinity");
+          $scope.player.data.unlocks.electron_affinity = true;
           $scope.unlocks.electron_affinity.listener();
         }
       },
@@ -2741,9 +2741,9 @@ function loadData($scope) {
     },
     "nuclear_binding_energy" : {
       check : function (event, data) {
-        if ($scope.player.resources['e-'].number >= 100 && $scope.player.resources.p.number >= 100) {
-          achievement.addToast("Nuclear binding energy");
-          $scope.player.unlocks.nuclear_binding_energy = true;
+        if ($scope.player.data.resources['e-'].number >= 100 && $scope.player.data.resources.p.number >= 100) {
+          $scope.achievement.addToast("Nuclear binding energy");
+          $scope.player.data.unlocks.nuclear_binding_energy = true;
           $scope.unlocks.nuclear_binding_energy.listener();
         }
       },
@@ -2752,8 +2752,8 @@ function loadData($scope) {
     "beta_decay" : {
       check : function (event, data) {
         if ("beta-" == data) {
-          achievement.addToast("Beta decay");
-          $scope.player.unlocks.beta_decay = true;
+          $scope.achievement.addToast("Beta decay");
+          $scope.player.data.unlocks.beta_decay = true;
           $scope.unlocks.beta_decay.listener();
         }
       },
@@ -2762,8 +2762,8 @@ function loadData($scope) {
     "molecule" : {
       check : function (event, data) {
         if ("H2" == data || "O2" == data || "O3" == data) {
-          achievement.addToast("Molecule");
-          $scope.player.unlocks.molecule = true;
+          $scope.achievement.addToast("Molecule");
+          $scope.player.data.unlocks.molecule = true;
           $scope.unlocks.molecule.listener();
         }
       },
@@ -2771,9 +2771,9 @@ function loadData($scope) {
     },
     "synthesis" : {
       check : function (event, data) {
-        if ($scope.player.resources['H-'].number >= 10) {
-          achievement.addToast("Synthesis");
-          $scope.player.unlocks.synthesis = true;
+        if ($scope.player.data.resources['H-'].number >= 10) {
+          $scope.achievement.addToast("Synthesis");
+          $scope.player.data.unlocks.synthesis = true;
           $scope.unlocks.synthesis.listener();
         }
       },
@@ -2782,8 +2782,8 @@ function loadData($scope) {
     "helium" : {
       check : function (event, data) {
         if ("He" == data) {
-          achievement.addToast("Helium");
-          $scope.player.unlocks.helium = true;
+          $scope.achievement.addToast("Helium");
+          $scope.player.data.unlocks.helium = true;
           $scope.unlocks.helium.listener();
         }
       },
@@ -2792,8 +2792,8 @@ function loadData($scope) {
     "lithium" : {
       check : function (event, data) {
         if ("Li" == data) {
-          achievement.addToast("Lithium");
-          $scope.player.unlocks.lithium = true;
+          $scope.achievement.addToast("Lithium");
+          $scope.player.data.unlocks.lithium = true;
           $scope.unlocks.lithium.listener();
         }
       },
@@ -2802,8 +2802,8 @@ function loadData($scope) {
     "beryllium" : {
       check : function (event, data) {
         if ("Be" == data) {
-          achievement.addToast("Beryllium");
-          $scope.player.unlocks.beryllium = true;
+          $scope.achievement.addToast("Beryllium");
+          $scope.player.data.unlocks.beryllium = true;
           $scope.unlocks.beryllium.listener();
         }
       },
@@ -2812,8 +2812,8 @@ function loadData($scope) {
     "boron" : {
       check : function (event, data) {
         if ("B" == data) {
-          achievement.addToast("Boron");
-          $scope.player.unlocks.boron = true;
+          $scope.achievement.addToast("Boron");
+          $scope.player.data.unlocks.boron = true;
           $scope.unlocks.boron.listener();
         }
       },
@@ -2822,8 +2822,8 @@ function loadData($scope) {
     "carbon" : {
       check : function (event, data) {
         if ("C" == data) {
-          achievement.addToast("Carbon");
-          $scope.player.unlocks.carbon = true;
+          $scope.achievement.addToast("Carbon");
+          $scope.player.data.unlocks.carbon = true;
           $scope.unlocks.carbon.listener();
         }
       },
@@ -2832,8 +2832,8 @@ function loadData($scope) {
     "nitrogen" : {
       check : function (event, data) {
         if ("N" == data) {
-          achievement.addToast("Nitrogen");
-          $scope.player.unlocks.nitrogen = true;
+          $scope.achievement.addToast("Nitrogen");
+          $scope.player.data.unlocks.nitrogen = true;
           $scope.unlocks.nitrogen.listener();
         }
       },
@@ -2842,8 +2842,8 @@ function loadData($scope) {
     "fluorine" : {
       check : function (event, data) {
         if ("F" == data) {
-          achievement.addToast("Fluorine");
-          $scope.player.unlocks.fluorine = true;
+          $scope.achievement.addToast("Fluorine");
+          $scope.player.data.unlocks.fluorine = true;
           $scope.unlocks.fluorine.listener();
         }
       },
@@ -2852,8 +2852,8 @@ function loadData($scope) {
     "neon" : {
       check : function (event, data) {
         if ("Ne" == data) {
-          achievement.addToast("Neon");
-          $scope.player.unlocks.neon = true;
+          $scope.achievement.addToast("Neon");
+          $scope.player.data.unlocks.neon = true;
           $scope.unlocks.neon.listener();
         }
       },

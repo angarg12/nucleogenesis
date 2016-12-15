@@ -43,8 +43,8 @@ function($timeout, $rootScope, player) {
 
   this.numberUnlocked = function () {
     var unlocked = 0;
-    for(var key in player.player.unlocks) {
-      if(player.player.unlocks[key]) {
+    for(var key in player.data.unlocks) {
+      if(player.data.unlocks[key]) {
         unlocked++;
       }
     }
@@ -53,7 +53,7 @@ function($timeout, $rootScope, player) {
 
   this.initializeListeners = function () {
     for(var key in $scope.unlocks) {
-      if(!player.player.unlocks[key]) {
+      if(!player.data.unlocks[key]) {
         $scope.unlocks[key].listener = $rootScope.$on($scope.unlocks[key].event, $scope.unlocks[key].check);
       }
     }
