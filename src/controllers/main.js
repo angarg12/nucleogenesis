@@ -11,20 +11,32 @@ angular
 'util',
 'player',
 'savegame',
-function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame) {
+'generator',
+'upgrade',
+'animation',
+'format',
+function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame, generator, upgrade, animation, format) {
   $scope.version = '1.0.2';
   $scope.Math = window.Math;
+  $scope.player = player;
   $scope.achievement = achievement;
   $scope.util = util;
-  $scope.player = player;
   $scope.savegame = savegame;
+  $scope.generator = generator;
+  $scope.upgrade = upgrade;
+  $scope.animation = animation;
+  $scope.format = format;
   var self = this;
 
   player.setScope($scope);
   achievement.setScope($scope);
   util.setScope($scope);
   savegame.setScope($scope);
-
+  generator.setScope($scope);
+  upgrade.setScope($scope);
+  animation.setScope($scope);
+  format.setScope($scope);
+  
   $scope.current_tab = "Elements";
   $scope.current_entry = "Hydrogen";
   $scope.current_element = "H";
@@ -43,12 +55,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     return player.data.resources['e-'].number >= price &&
            player.data.resources.p.number >= price &&
            player.data.resources.n.number >= price;
-  };
-
-  $scope.generatorPrice = function (name, element) {
-    var level = player.data.elements[element].generators[name].level;
-    var price = $scope.generators[name].price * Math.pow($scope.generators[name].priceIncrease, level);
-    return Math.ceil(price);
   };
 
   $scope.synthesisMultiplier = function (synthesis) {
@@ -91,21 +97,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
       }
       player.data.synthesis[synthesis].number += 1;
       i++;
-    }
-  };
-
-  $scope.buyGenerators = function (name, element, number) {
-    var price = $scope.generatorPrice(name, element);
-    var i = 0;
-    // we need a loop since we use the ceil operator
-    while (i < number && player.data.resources[element].number >= price) {
-      player.data.resources[element].number -= price;
-      player.data.elements[element].generators[name].level++;
-      price = $scope.generatorPrice(name, element);
-      i++;
-    }
-    if(i > 0) {
-      $scope.$emit("generator", name);
     }
   };
 
@@ -181,39 +172,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         $scope.$emit("resource", product[i]);
       }
     }
-  };
-
-  $scope.generatorProduction = function (name, element) {
-    var baseProduction = $scope.generators[name].power;
-    var upgradedProduction = baseProduction;
-    for(var upgrade in $scope.generators[name].upgrades) {
-      if(player.data.elements[element].upgrades[$scope.generators[name].upgrades[upgrade]].bought) {
-        upgradedProduction = $scope.upgrades[$scope.generators[name].upgrades[upgrade]]
-            .apply(upgradedProduction);
-      }
-    }
-    return upgradedProduction;
-  };
-
-  $scope.tierProduction = function (name, element) {
-    var baseProduction = $scope.generators[name].power *
-                         player.data.elements[element].generators[name].level;
-    var upgradedProduction = baseProduction;
-    for(var upgrade in $scope.generators[name].upgrades) {
-      if(player.data.elements[element].upgrades[$scope.generators[name].upgrades[upgrade]].bought) {
-        upgradedProduction = $scope.upgrades[$scope.generators[name].upgrades[upgrade]]
-            .apply(upgradedProduction);
-      }
-    }
-    return upgradedProduction;
-  };
-
-  $scope.elementProduction = function (element) {
-    var total = 0;
-    for(var tier in $scope.generators) {
-      total += $scope.tierProduction(tier, element);
-    }
-    return total;
   };
 
   self.randomDraw = function (number, p) {
@@ -362,7 +320,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
       // Prepare an array with the isotopes
       var isotopes = [ element ];
       isotopes = isotopes.concat($scope.elements[element].isotopes);
-      var remaining = $scope.elementProduction(element);
+      var remaining = generator.elementProduction(element);
       // We will create a random draw recalculate the mean and std
       for(var i = 0; i < isotopes.length - 1; i++) {
         // First we need to adjust the ratio for the remaining isotopes

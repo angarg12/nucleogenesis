@@ -10,7 +10,11 @@ var commonSpec = function(spec) {
     spec.util = $injector.get('util');
     spec.player = $injector.get('player');
     spec.savegame = $injector.get('savegame');
-    spec.controller  = _$controller_('IncCtrl', {$scope:spec.$scope, achievement:spec.achievement, util:spec.util, player:spec.player, savegame:spec.savegame});
+    spec.generator = $injector.get('generator');
+    spec.upgrade = $injector.get('upgrade');
+    spec.animation = $injector.get('animation');
+    spec.format = $injector.get('format');
+    spec.controller  = _$controller_('IncCtrl', {$scope:spec.$scope, achievement:spec.achievement, util:spec.util, player:spec.player, savegame:spec.savegame, generator:spec.generator, upgrade:spec.upgrade, animation:spec.animation, format:spec.format});
     loadData(spec.$scope);
   }));
 };
