@@ -3,45 +3,6 @@ describe("Incremental table elements", function() {
   
   commonSpec(spec);
 
-  describe('intro animation', function() { 
-    it("should call all steps while playing the intro", function() {
-      spec.player.data = {intro:{}};
-      spec.player.data.intro['banner'] = false;
-      spec.player.data.intro['menu'] = false;
-      spec.player.data.intro['content'] = false;
-      
-      spec.$scope.introAnimation();
-      
-      // we need spec to simplify the test
-      spec.$timeout.cancel(spec.controller.onload);
-      spec.$timeout.flush();
-      
-      expect(spec.player.data.intro['banner']).toEqual(true);
-      expect(spec.player.data.intro['menu']).toEqual(true);
-      expect(spec.player.data.intro['content']).toEqual(true);
-    });
-        
-    it("should take a step", function() {
-      spec.player.data = {intro:{}};
-      spec.player.data.intro['banner'] = false;
-      
-      spec.controller.introStep('banner');
-      
-      expect(spec.player.data.intro['banner']).toEqual(true);
-    });
-    
-    it("should not flip other states", function() {
-      spec.player.data = {intro:{}};
-      spec.player.data.intro['menu'] = false;
-      spec.player.data.intro['content'] = true;
-      
-      spec.controller.introStep('banner');
-      
-      expect(spec.player.data.intro['menu']).toEqual(false);
-      expect(spec.player.data.intro['content']).toEqual(true);
-    });
-  });
-  
   describe('initialization functions', function() {    
     it("should init all the variables", function() {
       spyOn(spec.player, "populatePlayer");
@@ -75,7 +36,7 @@ describe("Incremental table elements", function() {
       spyOn(window, "loadData");
 			spyOn(spec.savegame, "load");
 			spyOn(spec.$scope, "init");
-			spyOn(spec.$scope, "introAnimation");
+			spyOn(spec.animation, "introAnimation");
 			spyOn(spec.achievement, "initializeListeners");
     });
     
@@ -89,7 +50,7 @@ describe("Incremental table elements", function() {
 			expect(loadData).toHaveBeenCalled();
 			expect(localStorage.getItem).toHaveBeenCalled();
 			expect(spec.$scope.init).toHaveBeenCalled();
-			expect(spec.$scope.introAnimation).toHaveBeenCalled();
+			expect(spec.animation.introAnimation).toHaveBeenCalled();
 			expect(spec.achievement.initializeListeners).toHaveBeenCalled();
 			expect(spec.$scope.lastSave).toEqual("None");
     });
@@ -122,46 +83,6 @@ describe("Incremental table elements", function() {
     });
   });
   
-  describe('formatting functions', function() {    
-    it("should format reactions", function() {
-      value = spec.$scope.reactionFormat(1, spec.$scope.synthesis['H-p']);
-      
-      expect(value).toEqual('H<sup>-</sup> + p <span class=\"icon\">&#8594;</span> H<sub>2</sub> + 17.3705 eV');
-    });
-      
-    it("should format multiple reactions", function() {
-      value = spec.$scope.reactionFormat(10, spec.$scope.synthesis['H-p']);
-      
-      expect(value).toEqual('10 H<sup>-</sup> + 10 p <span class=\"icon\">&#8594;</span> 10 H<sub>2</sub> + 173.705 eV');
-    });
-    
-    it("should format single compounds", function() {
-      value = spec.$scope.compoundFormat(1, spec.$scope.synthesis['H-p'].product);
-      
-      expect(value).toEqual('H<sub>2</sub> + 17.3705 eV');
-    });
-    
-    it("should format mutiple compounds", function() {
-      value = spec.$scope.compoundFormat(10, spec.$scope.synthesis['H-p'].product);
-      
-      expect(value).toEqual('10 H<sub>2</sub> + 173.705 eV');
-    });
-  
-    it("should format decay", function() {
-      value = spec.$scope.decayFormat(spec.$scope.resources['3H'].decay);
-      
-      expect(value).toEqual('<span class="icon">&#8594;</span><sup>3</sup>He<sup>+</sup> + e- + 18,610 eV');
-    }); 
-    
-    it("should format decay without energy", function() {
-      spec.$scope.resources['3H'].decay.decay_product.eV = undefined;
-    
-      value = spec.$scope.decayFormat(spec.$scope.resources['O3'].decay);
-      
-      expect(value).toEqual('<span class="icon">&#8594;</span>O<sub>2</sub> + O');
-    });
-  });
-    
   describe('prices and cost', function() {
     it("should calculate element price", function() {  
       spec.player.data = {};
@@ -338,44 +259,7 @@ describe("Incremental table elements", function() {
       value = spec.$scope.synthesisPrice('H2O');
       
       expect(value).toEqual({'H2':4,'O2':2});
-    });
-    
-    it("should return the las tier upgrade price", function() {  
-      spec.player.data = {elements:{}};
-      spec.player.data.elements.H = {upgrades:{}};
-      spec.player.data.elements.H.upgrades['Tier 1-1'] = {bought:true};      
-      spec.player.data.elements.H.upgrades['Tier 1-2'] = {bought:true};
-      spec.player.data.elements.H.upgrades['Tier 1-3'] = {bought:false};
-      spec.$scope.current_element = 'H';
-    
-      value = spec.$scope.lastUpgradeTierPrice('Tier 1');
-      
-      expect(value).toEqual(10000);
     });    
-    
-    it("should return null if all upgrades are bought", function() {  
-      spec.player.data = {elements:{}};
-      spec.player.data.elements.H = {upgrades:{}};
-      spec.player.data.elements.H.upgrades['Tier 1-1'] = {bought:true};      
-      spec.player.data.elements.H.upgrades['Tier 1-2'] = {bought:true};
-      spec.player.data.elements.H.upgrades['Tier 1-3'] = {bought:true};
-      spec.player.data.elements.H.upgrades['Tier 1-4'] = {bought:true};
-      spec.player.data.elements.H.upgrades['Tier 1-5'] = {bought:true};
-      spec.player.data.elements.H.upgrades['Tier 1-6'] = {bought:true};
-      spec.player.data.elements.H.upgrades['Tier 1-7'] = {bought:true};
-      spec.player.data.elements.H.upgrades['Tier 1-8'] = {bought:true};
-      spec.player.data.elements.H.upgrades['Tier 1-9'] = {bought:true};
-      spec.player.data.elements.H.upgrades['Tier 1-10'] = {bought:true};
-      spec.player.data.elements.H.upgrades['Tier 1-11'] = {bought:true};
-      spec.player.data.elements.H.upgrades['Tier 1-12'] = {bought:true};
-      spec.player.data.elements.H.upgrades['Tier 1-13'] = {bought:true};
-      spec.player.data.elements.H.upgrades['Tier 1-14'] = {bought:true};
-      spec.$scope.current_element = 'H';
-    
-      value = spec.$scope.lastUpgradeTierPrice('Tier 1');
-      
-      expect(value).toBeNull();
-    });
   });
   
   describe('purchase functions', function() {
@@ -427,42 +311,6 @@ describe("Incremental table elements", function() {
       expect(spec.$scope.isElementCostMet).not.toHaveBeenCalled();
     });
     
-    it("should purchase an upgrade if cost is met", function() {      
-      spec.player.data = {elements:{},resources:{}};
-      spec.player.data.resources.H = {number:110};
-      spec.player.data.elements.H = {upgrades:{}};
-      spec.player.data.elements.H.upgrades["Tier 1-1"] = {bought:false};
-      
-      spec.$scope.buyUpgrade("Tier 1-1",'H');
-      
-      expect(spec.player.data.resources.H.number).toEqual(10);
-      expect(spec.player.data.elements.H.upgrades["Tier 1-1"].bought).toEqual(true);
-    });
-    
-    it("should not purchase an upgrade if cost is not met", function() {      
-      spec.player.data = {elements:{},resources:{}};
-      spec.player.data.resources.H = {number:10};
-      spec.player.data.elements.H = {upgrades:{}};
-      spec.player.data.elements.H.upgrades["Tier 1-1"] = {bought:false};
-      
-      spec.$scope.buyUpgrade("Tier 1-1",'H');
-      
-      expect(spec.player.data.resources.H.number).toEqual(10);
-      expect(spec.player.data.elements.H.upgrades["Tier 1-1"].bought).toEqual(false);
-    });
-    
-    it("should skip if the upgrade is already bought", function() {
-      spec.player.data = {elements:{},resources:{}};
-      spec.player.data.resources.H = {number:10};
-      spec.player.data.elements.H = {upgrades:{}};
-      spec.player.data.elements.H.upgrades["Tier 1-1"] = {bought:true};
-      
-      spec.$scope.buyUpgrade("Tier 1-1",'H');
-      
-      expect(spec.player.data.resources.H.number).toEqual(10);
-      expect(spec.player.data.elements.H.upgrades["Tier 1-1"].bought).toEqual(true);
-    });  
-
     it("should purchase as many synthesis as requested", function() {
       spec.player.data = {synthesis:{},resources:{}};
       spec.player.data.resources['H2'] = {number:32};

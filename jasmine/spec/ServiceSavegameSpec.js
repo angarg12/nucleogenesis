@@ -1,4 +1,4 @@
-describe("Player service", function() {
+describe("Savegame service", function() {
   var spec = {};
   
   commonSpec(spec);
@@ -50,39 +50,35 @@ describe("Player service", function() {
     it("should reset player without confirmation", function() {
       spec.$scope.lastSave = undefined;
       spyOn(spec.$scope, "init");
-      spyOn(spec.$scope, "introAnimation");
     
       spec.savegame.reset(false);
 
       expect(localStorage.removeItem).toHaveBeenCalled();
       expect(spec.$scope.init).toHaveBeenCalled();
-      expect(spec.$scope.introAnimation).toHaveBeenCalled();
     });
     
     it("should reset player with confirmation", function() {
       spec.$scope.lastSave = undefined;
       spyOn(window, "confirm").and.returnValue(true);
       spyOn(spec.$scope, "init");
-      spyOn(spec.$scope, "introAnimation");
     
       spec.savegame.reset(true);
 
       expect(localStorage.removeItem).toHaveBeenCalled();
       expect(spec.$scope.init).toHaveBeenCalled();
-      expect(spec.$scope.introAnimation).toHaveBeenCalled();
     });
     
     it("should not reset player if the confirmation rejets", function() {
       spec.$scope.lastSave = undefined;
       spyOn(window, "confirm").and.returnValue(false);
       spyOn(spec.$scope, "init");
-      spyOn(spec.$scope, "introAnimation");
+      spyOn(spec.animation, "introAnimation");
     
       spec.savegame.reset(true);
 
       expect(localStorage.removeItem).not.toHaveBeenCalled();
       expect(spec.$scope.init).not.toHaveBeenCalled();
-      expect(spec.$scope.introAnimation).not.toHaveBeenCalled();
+      expect(spec.animation.introAnimation).not.toHaveBeenCalled();
     });
         
     it("should export save", function() {

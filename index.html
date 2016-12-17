@@ -137,7 +137,7 @@
                             <tr class="animif" ng-repeat="key in util.visibleKeys(reactions[current_element].ionization)">
                               <td class="col-md-7" width=50%>
                                 <div class="pull-left">
-                                  <span ng-bind-html="util.trustHTML(reactionFormat(reactions[current_element].ionization[key].number,reactions[current_element].ionization[key]))"></span>
+                                  <span ng-bind-html="util.trustHTML(format.reactionFormat(reactions[current_element].ionization[key].number,reactions[current_element].ionization[key]))"></span>
                                 </div>
                               </td>
                               <td class="col-md-4">
@@ -165,7 +165,7 @@
                             <tr class="animif" ng-repeat="key in util.visibleKeys(reactions[current_element].electron_affinity)">
                               <td class="col-md-7" width=50%>
                                 <div class="pull-left">
-                                  <span ng-bind-html="util.trustHTML(reactionFormat(reactions[current_element].electron_affinity[key].number,reactions[current_element].electron_affinity[key]))"></span>
+                                  <span ng-bind-html="util.trustHTML(format.reactionFormat(reactions[current_element].electron_affinity[key].number,reactions[current_element].electron_affinity[key]))"></span>
                                 </div>
                               </td>
                               <td class="col-md-4">
@@ -192,7 +192,7 @@
                             <tr class="animif" ng-repeat="key in util.visibleKeys(reactions[current_element].binding_energy)">
                               <td class="col-md-8" width=50%>
                                 <div class="pull-left">
-                                  <span ng-bind-html="util.trustHTML(reactionFormat(reactions[current_element].binding_energy[key].number,reactions[current_element].binding_energy[key]))"></span>
+                                  <span ng-bind-html="util.trustHTML(format.reactionFormat(reactions[current_element].binding_energy[key].number,reactions[current_element].binding_energy[key]))"></span>
                                 </div>
                               </td>
                               <td class="col-md-4">
@@ -222,7 +222,7 @@
                               <div class="pull-left"
                                 ng-class="{'text-muted': player.data.synthesis[syn].active <= 0}">
                                 <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.data.synthesis[syn].is_new"></span>
-                                <span ng-bind-html="util.trustHTML(reactionFormat(synthesisPower(syn),synthesis[syn]))"></span>
+                                <span ng-bind-html="util.trustHTML(format.reactionFormat(synthesisPower(syn),synthesis[syn]))"></span>
                               </div>
                             </td>
                             <td class="col-md-1">
@@ -253,7 +253,7 @@
                             </td>
                             <td class="col-md-2">
                               <div class="pull-left">
-                                <span ng-bind-html="util.trustHTML(compoundFormat(synthesisMultiplier(syn),synthesis[syn].reactant))"></span>
+                                <span ng-bind-html="util.trustHTML(format.compoundFormat(synthesisMultiplier(syn),synthesis[syn].reactant))"></span>
                               </div>
                             </td>
                             <td class="col-md-3">
@@ -283,7 +283,7 @@
                     <h4>Upgrades</h4>
                     <table class="table">
                       <tbody>
-                        <tr class="animif" ng-repeat="generator in util.visibleKeys(generators)|filter:filterUpgrade">
+                        <tr class="animif" ng-repeat="generator in util.visibleKeys(generators)|filter:upgrade.filterUpgrade">
                           <td class="animif col-md-2">
                             <div class="pull-left">
                               {{generator}}
@@ -291,15 +291,15 @@
                           </td>
                           <td class="animif col-md-1" ng-repeat="upgrade in generators[generator].upgrades">
                             <a class="btn btn-default" ng-show="upgrades[upgrade].visible()"
-                              ng-click="buyUpgrade(upgrade, current_element)"
+                              ng-click="upgrade.buyUpgrade(upgrade, current_element)"
                               ng-class="{disabled: upgrades[upgrade].price > player.data.resources[current_element].number && !player.data.elements[current_element].upgrades[upgrade].bought,
                               active: player.data.elements[current_element].upgrades[upgrade].bought}">
                             {{upgrades[upgrade].description}}
                             </a>
                           </td>
                           <td class="animif col-md-2">
-                            <div ng-show="lastUpgradeTierPrice(generator) != null">
-                              <span class="pull-left" ng-bind-html="util.trustHTML(util.prettifyNumber(lastUpgradeTierPrice(generator)))"></span> &nbsp;{{current_element}}
+                            <div ng-show="upgrade.lastUpgradeTierPrice(generator) != null">
+                              <span class="pull-left" ng-bind-html="util.trustHTML(util.prettifyNumber(upgrade.lastUpgradeTierPrice(generator)))"></span> &nbsp;{{current_element}}
                             </div>
                           </td>
                         </tr>
@@ -352,7 +352,7 @@
                         <div ng-if="resources[key].decay.decay_type" ng-bind-html="util.trustHTML(util.getHTML(resources[key].decay.decay_type))"></div>
                       </td>
                       <td width=50%>
-                        <div class="pull-left" ng-bind-html="util.trustHTML(decayFormat(resources[key].decay))"></div>
+                        <div class="pull-left" ng-bind-html="util.trustHTML(format.decayFormat(resources[key].decay))"></div>
                       </td>
                     </tr>
                   </tbody>

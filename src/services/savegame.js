@@ -35,7 +35,6 @@ function(player, achievement) {
     if(confirmation === true) {
       localStorage.removeItem("playerStoredITE");
       $scope.init();
-      $scope.introAnimation();
     }
   };
 

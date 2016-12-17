@@ -100,17 +100,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     }
   };
 
-  $scope.buyUpgrade = function (name, element) {
-    if(player.data.elements[element].upgrades[name].bought) {
-      return;
-    }
-    var price = $scope.upgrades[name].price;
-    if(player.data.resources[element].number >= price) {
-      player.data.resources[element].number -= price;
-      player.data.elements[element].upgrades[name].bought = true;
-    }
-  };
-
   $scope.buyElement = function (element) {
     if(player.data.elements[element].unlocked) {
       return;
@@ -137,19 +126,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
       }
     }
     return true;
-  };
-
-  $scope.lastUpgradeTierPrice = function (tier) {
-    for(var upgrade in $scope.generators[tier].upgrades) {
-      if(!player.data.elements[$scope.current_element].upgrades[$scope.generators[tier].upgrades[upgrade]].bought) {
-        return $scope.upgrades[$scope.generators[tier].upgrades[upgrade]].price;
-      }
-    }
-    return null;
-  };
-
-  $scope.filterUpgrade = function (input) {
-    return player.data.elements[$scope.current_element].generators[input].level > 0;
   };
 
   $scope.react = function (number, reaction) {
@@ -367,46 +343,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     $scope.$emit("cycle", null);
   };
 
-  /*
-   * Formats a reaction i.e. a transformation from one compound to
-   * another
-   */
-  $scope.reactionFormat = function (number, reaction) {
-    var reactionHTML = "";
-    reactionHTML += $scope.compoundFormat(number, reaction.reactant);
-    reactionHTML += " <span class=\"icon\">&#8594;</span> ";
-    reactionHTML += $scope.compoundFormat(number, reaction.product);
-    return reactionHTML;
-  };
-
-  /*
-   * Formats in HTML a compound i.e. a collection of resources of
-   * the form x + y + z
-   */
-  $scope.compoundFormat = function (number, compound) {
-    var compoundHTML = "";
-    var keys = Object.keys(compound);
-    for(var i = 0; i < keys.length; i++) {
-      if(Number.isInteger(number) && number > 1) {
-        compoundHTML += util.prettifyNumber(Number.parseFloat((number * compound[keys[i]]).toFixed(4))) +
-                        " ";
-      } else if(compound[keys[i]] != 1) {
-        compoundHTML += util.prettifyNumber(compound[keys[i]]) + " ";
-      }
-      compoundHTML += util.getHTML(keys[i]) + " ";
-      if(i < keys.length - 1) {
-        compoundHTML += "+ ";
-      }
-    }
-    return compoundHTML.trim();
-  };
-
-  $scope.decayFormat = function (decay) {
-    var format = '<span class="icon">&#8594;</span>';
-    format += $scope.compoundFormat(1, decay.decay_product);
-    return format;
-  };
-
   $scope.init = function () {
     $scope.current_tab = "Elements";
     $scope.current_entry = "Hydrogen";
@@ -414,24 +350,9 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     $scope.hover_element = "";
     achievement.init();
     player.populatePlayer();
+    animation.introAnimation();
   };
-
-  $scope.introAnimation = function () {
-    $timeout(function () {
-      self.introStep("banner");
-    }, 3000);
-    $timeout(function () {
-      self.introStep("menu");
-    }, 6000);
-    $timeout(function () {
-      self.introStep("content");
-    }, 9000);
-  };
-
-  self.introStep = function (value) {
-    player.data.intro[value] = true;
-  };
-
+  
   self.checkUnlock = $scope.$on("resource", function (event, item) {
     player.data.resources[item].unlocked = true;
   });
@@ -450,8 +371,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     // init();
     achievement.init();
     achievement.initializeListeners();
-    $scope.introAnimation();
+    animation.introAnimation();
     $interval(self.update, 1000);
     $interval(savegame.save, 10000);
   });
-} ]);
+}]);
