@@ -15,7 +15,8 @@ angular
 'upgrade',
 'animation',
 'format',
-function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame, generator, upgrade, animation, format) {
+'synthesis',
+function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame, generator, upgrade, animation, format, synthesis) {
   $scope.version = '1.0.2';
   $scope.Math = window.Math;
   $scope.player = player;
@@ -26,6 +27,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   $scope.upgrade = upgrade;
   $scope.animation = animation;
   $scope.format = format;
+  $scope.synthesis = synthesis;
   var self = this;
 
   player.setScope($scope);
@@ -36,13 +38,12 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   upgrade.setScope($scope);
   animation.setScope($scope);
   format.setScope($scope);
+  synthesis.setScope($scope);
   
   $scope.current_tab = "Elements";
   $scope.current_entry = "Hydrogen";
   $scope.current_element = "H";
   $scope.hover_element = "";
-  $scope.synthesis_price_increase = 1.15;
-  $scope.synthesis_power_increase = 2;
 
   self.numberGenerator = new Ziggurat();
 
@@ -55,49 +56,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     return player.data.resources['e-'].number >= price &&
            player.data.resources.p.number >= price &&
            player.data.resources.n.number >= price;
-  };
-
-  $scope.synthesisMultiplier = function (synthesis) {
-    var level = player.data.synthesis[synthesis].number;
-    return Math.ceil(Math.pow($scope.synthesis_price_increase, level));
-  };
-
-  $scope.synthesisPower = function (synthesis) {
-    var level = player.data.synthesis[synthesis].active;
-    return Math.ceil(Math.pow(level, $scope.synthesis_power_increase));
-  };
-
-  $scope.synthesisPrice = function (synthesis) {
-    var multiplier = $scope.synthesisMultiplier(synthesis);
-    var price = {};
-    var reactant = $scope.synthesis[synthesis].reactant;
-    for(var resource in reactant) {
-      price[resource] = reactant[resource] * multiplier;
-    }
-    return price;
-  };
-
-  $scope.isSynthesisCostMet = function (synthesis) {
-    var price = $scope.synthesisPrice(synthesis);
-    for(var resource in price) {
-      if(player.data.resources[resource].number < price[resource]) {
-        return false;
-      }
-    }
-    return true;
-  };
-
-  $scope.buySynthesis = function (synthesis, number) {
-    var i = 0;
-    // we need a loop since we use the ceil operator
-    while (i < number && $scope.isSynthesisCostMet(synthesis)) {
-      var price = $scope.synthesisPrice(synthesis);
-      for(var resource in price) {
-        player.data.resources[resource].number -= price[resource];
-      }
-      player.data.synthesis[synthesis].number += 1;
-      i++;
-    }
   };
 
   $scope.buyElement = function (element) {
@@ -250,21 +208,11 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     }
   };
   
-  self.processSynthesis = function () {
-    // We will process the synthesis reactions
-    for(var synthesis in player.data.synthesis) {
-      var power = $scope.synthesisPower(synthesis);
-      if(power !== 0) {
-        $scope.react(power, $scope.synthesis[synthesis]);
-      }
-    }
-  };
-  
   self.update = function () {
     // decay should become first, since we are decaying the products from last step
     self.processDecay($scope.radioisotopes);
     self.processIsotopes();
-    self.processSynthesis();
+    synthesis.processSynthesis();
 
     $scope.$emit("cycle", null);
   };

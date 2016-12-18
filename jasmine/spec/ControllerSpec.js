@@ -154,48 +154,6 @@ describe("Incremental table elements", function() {
       expect(value).toEqual(true);
     });
     
-    it("should check if the cost of a synthesis is met", function() {  
-      spec.player.data = {};
-      spec.player.data.resources = {};
-      spec.player.data.resources['H-'] = {number:0};
-			spec.player.data.resources.p = {number:10};
-			spec.player.data.synthesis = {};
-      spec.player.data.synthesis['H-p'] = {};
-      spec.player.data.synthesis['H-p'].number = 0;
-      
-      value = spec.$scope.isSynthesisCostMet('H-p');
-      
-      expect(value).toEqual(false);
-    });  
-    
-    it("should check if the cost of a synthesis is met 2", function() {  
-      spec.player.data = {};
-      spec.player.data.resources = {};
-      spec.player.data.resources['H-'] = {number:2};
-			spec.player.data.resources.p = {number:0};
-      spec.player.data.synthesis = {};
-      spec.player.data.synthesis['H-p'] = {};
-      spec.player.data.synthesis['H-p'].number = 0;
-      
-      value = spec.$scope.isSynthesisCostMet('H-p');
-      
-      expect(value).toEqual(false);
-    });
-    
-    it("should check if the cost of a synthesis is met 3", function() {  
-      spec.player.data = {};
-      spec.player.data.resources = {};
-      spec.player.data.resources['H-'] = {number:2};
-			spec.player.data.resources.p = {number:10};
-      spec.player.data.synthesis = {};
-      spec.player.data.synthesis['H-p'] = {};
-      spec.player.data.synthesis['H-p'].number = 0;
-      
-      value = spec.$scope.isSynthesisCostMet('H-p');
-      
-      expect(value).toEqual(true);
-    });
-    
     it("should check if the cost of a reaction is met", function() {  
       spec.player.data = {};
       spec.player.data.resources = {};
@@ -249,17 +207,7 @@ describe("Incremental table elements", function() {
       value = spec.$scope.isReactionCostMet(10, spec.$scope.reactions.H.ionization['1']);
       
       expect(value).toEqual(true);
-    });    
-
-    it("should return the price of a synthesis", function() {
-      spec.player.data = {synthesis:{}};      
-      spec.player.data.synthesis.H2O = {};    
-      spec.player.data.synthesis.H2O.number = 2;
-    
-      value = spec.$scope.synthesisPrice('H2O');
-      
-      expect(value).toEqual({'H2':4,'O2':2});
-    });    
+    });  
   });
   
   describe('purchase functions', function() {
@@ -309,59 +257,7 @@ describe("Incremental table elements", function() {
       spec.$scope.buyElement('O');
       
       expect(spec.$scope.isElementCostMet).not.toHaveBeenCalled();
-    });
-    
-    it("should purchase as many synthesis as requested", function() {
-      spec.player.data = {synthesis:{},resources:{}};
-      spec.player.data.resources['H2'] = {number:32};
-      spec.player.data.resources['O2'] = {number:32};
-      spec.player.data.synthesis['H2O'] = {number:1};
-      
-      spec.$scope.buySynthesis('H2O',3);
-      
-      expect(spec.player.data.resources['H2'].number).toEqual(20);
-      expect(spec.player.data.resources['O2'].number).toEqual(26);
-      expect(spec.player.data.synthesis['H2O'].number).toEqual(4);
-    });
-    
-    it("should purchase as many synthesis as possible", function() {
-      spec.player.data = {synthesis:{},resources:{}};
-      spec.player.data.resources['H2'] = {number:10};
-      spec.player.data.resources['O2'] = {number:32};
-      spec.player.data.synthesis['H2O'] = {number:1};
-      
-      spec.$scope.buySynthesis('H2O',3);
-      
-      expect(spec.player.data.resources['H2'].number).toEqual(2);
-      expect(spec.player.data.resources['O2'].number).toEqual(28);
-      expect(spec.player.data.synthesis['H2O'].number).toEqual(3);
-    });  
-    
-    it("should not purchase negative synthesis", function() {
-      spec.player.data = {synthesis:{},resources:{}};
-      spec.player.data.resources['H2'] = {number:32};
-      spec.player.data.resources['O2'] = {number:32};
-      spec.player.data.synthesis['H2O'] = {number:1};
-      
-      spec.$scope.buySynthesis('H2O',-3);
-      
-      expect(spec.player.data.resources['H2'].number).toEqual(32);
-      expect(spec.player.data.resources['O2'].number).toEqual(32);
-      expect(spec.player.data.synthesis['H2O'].number).toEqual(1);
-    });   
-    
-    it("should not purchase synthesis if the cost is not met", function() {
-      spec.player.data = {synthesis:{},resources:{}};
-      spec.player.data.resources['H2'] = {number:2};
-      spec.player.data.resources['O2'] = {number:32};
-      spec.player.data.synthesis['H2O'] = {number:1};
-      
-      spec.$scope.buySynthesis('H2O',3);
-      
-      expect(spec.player.data.resources['H2'].number).toEqual(2);
-      expect(spec.player.data.resources['O2'].number).toEqual(32);
-      expect(spec.player.data.synthesis['H2O'].number).toEqual(1);
-    });
+    });    
   });
   
   describe('react', function() {
@@ -547,23 +443,7 @@ describe("Incremental table elements", function() {
       expect(spec.player.data.resources.O.number).toEqual(31923);
       expect(spec.player.data.resources['17O'].number).toEqual(13);
       expect(spec.player.data.resources['18O'].number).toEqual(64);
-    });
-    
-    it("should process synthesis", function() {
-      spec.player.populatePlayer();
-      spec.player.data = spec.player.startPlayer;
-      spec.player.data.synthesis.H2O.number = 2;
-      spec.player.data.synthesis.H2O.active = 2;
-      spec.player.data.resources.H2.number = 10;
-      spec.player.data.resources.O2.number = 5;
-      
-      spec.controller.update();
-      
-      expect(spec.player.data.resources.H2.number).toEqual(2);
-      expect(spec.player.data.resources.O2.number).toEqual(1);
-      expect(spec.player.data.resources.H2O.number).toEqual(8);
-      expect(spec.player.data.resources.eV.number).toEqual(23.7);
-    });
+    });  
     
     it("should process radioactivity", function() {
       spec.player.populatePlayer();
