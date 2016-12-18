@@ -321,7 +321,6 @@
                         <span class="pull-left by-icon" ng-bind-html="util.trustHTML(util.getHTML(key))"></span>&nbsp;
                         <span ng-if="radioisotopes.indexOf(key) != -1" title="Radioctive" class="pull-left icon">&#9762;</span> &nbsp;
                         <span ng-if="free_radicals.indexOf(key) != -1" title="Free radical" class="pull-left icon">&bull;</span>&nbsp;
-                        <span ng-if="unstables.indexOf(key) != -1" title="Unstable" class="pull-left icon">&#8967;</span>   
                       </td>
                       <td width=50%>
                         <div class="pull-left" ng-bind-html="util.trustHTML(util.prettifyNumber(player.data.resources[key].number))"></div>

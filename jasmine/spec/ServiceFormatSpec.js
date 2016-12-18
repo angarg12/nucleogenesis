@@ -35,11 +35,11 @@ describe("Format service", function() {
     }); 
     
     it("should format decay without energy", function() {
-      spec.$scope.resources['3H'].decay.decay_product.eV = undefined;
+      delete spec.$scope.resources['3H'].decay.decay_product.eV;
     
-      value = spec.format.decayFormat(spec.$scope.resources['O3'].decay);
+      value = spec.format.decayFormat(spec.$scope.resources['3H'].decay);
       
-      expect(value).toEqual('<span class="icon">&#8594;</span>O<sub>2</sub> + O');
+      expect(value).toEqual('<span class="icon">&#8594;</span><sup>3</sup>He<sup>+</sup> + e-');
     });
   });
 });

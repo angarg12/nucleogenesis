@@ -596,38 +596,6 @@ describe("Incremental table elements", function() {
       expect(spec.player.data.resources['e-'].number).toEqual(18);
       expect(spec.player.data.resources.eV.number).toEqual(334980);
     });
-    
-    it("should process unstables", function() {
-      spec.player.populatePlayer();
-      spec.player.data = spec.player.startPlayer;
-      spec.player.data.resources.O3.unlocked = true;
-      spec.player.data.resources.O3.number = 1000;
-      spyOn(spec.controller.numberGenerator,'nextGaussian').and.returnValue(0);
-      spyOn(spec.controller,'getPoisson').and.returnValue(0);
-      
-      spec.controller.update();
-      
-      expect(spec.player.data.resources.O3.number).toEqual(1000);
-      expect(spec.player.data.resources.O2.number).toEqual(0);
-      expect(spec.player.data.resources.O.number).toEqual(0);
-    });
-    
-    it("should process unstables 2", function() {
-      spec.player.populatePlayer();
-      spec.player.data = spec.player.startPlayer;
-      spec.player.data.resources.O3.unlocked = true;
-      spec.player.data.resources.O3.number = 1e6;
-      spyOn(spec.controller.numberGenerator,'nextGaussian').and.returnValue(0);
-      spyOn(spec.controller,'getPoisson').and.returnValue(0);
-      // clear spec subscriber to avoid side effects
-      spec.controller.checkUnlock();
-      
-      spec.controller.update();
-      
-      expect(spec.player.data.resources.O3.number).toEqual(999992);
-      expect(spec.player.data.resources.O2.number).toEqual(8);
-      expect(spec.player.data.resources.O.number).toEqual(8);
-    });
 
     it("should process radicals", function() {
       spec.player.populatePlayer();

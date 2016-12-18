@@ -1932,14 +1932,7 @@ function loadData($scope) {
       },
       order : 702,
       html : 'O<sub>3</sub>',
-      type : 'molecule',
-      decay : {
-        half_life : 86400,
-        decay_product : {
-          'O2' : 1,
-          'O' : 1
-        }
-      }
+      type : 'molecule'
     },
     '17O' : {
       visible : function () {
@@ -2063,8 +2056,6 @@ function loadData($scope) {
   $scope.radioisotopes = [ '3H' ];// ,'7Be','10Be','11C','14C','13N','18F'];
 
   $scope.free_radicals = [ 'O' ];
-
-  $scope.unstables = [ 'O3' ];
 
   $scope.tabs = {
     'Elements' : {
@@ -2340,14 +2331,6 @@ function loadData($scope) {
       order : 216,
       link : 'https://en.wikipedia.org/wiki/Allotropy',
       description : '<b>Allotropy</b> or <b>allotropism</b> (from Greek ἄλλος (allos), meaning "other", and τρόπος (tropos), meaning "manner, form") is the property of some chemical elements to exist in two or more different forms, in the same physical state, known as allotropes of these elements. Allotropes are different structural modifications of an element; the atoms of the element are bonded together in a different manner. '
-    },
-    'Unstable compound' : {
-      visible : function () {
-        return $scope.player.data.unlocks.unstable_compound;
-      },
-      order : 217,
-      link : null,
-      description : 'A compound is a group of two or more elements<br>Unstable means it is highly reactive, and can condense, decompose, polymerize, or become self-reactive quite easily due to pressure or temperature'
     }
   };
 
@@ -2625,16 +2608,6 @@ function loadData($scope) {
           $scope.achievement.addToast("Free radical");
           $scope.player.data.unlocks.free_radical = true;
           $scope.unlocks.free_radical.listener();
-        }
-      },
-      event : "resource"
-    },
-    "unstable_compound" : {
-      check : function (event, data) {
-        if ("O3" == data) {
-          $scope.achievement.addToast("Unstable compound");
-          $scope.player.data.unlocks.unstable_compound = true;
-          $scope.unlocks.unstable_compound.listener();
         }
       },
       event : "resource"

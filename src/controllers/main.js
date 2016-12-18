@@ -335,7 +335,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   self.update = function () {
     // decay should become first, since we are decaying the products from last step
     self.processDecay($scope.radioisotopes);
-    self.processDecay($scope.unstables);
     self.processUnstable();
     self.processIsotopes();
     self.processSynthesis();
