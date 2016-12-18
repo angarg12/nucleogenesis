@@ -19,7 +19,11 @@ module.exports = function(config) {
     browsers: ['PhantomJS'],
     singleRun: true,
     reporters: ['progress', 'coverage'],
-    preprocessors: { '../src/controllers/main.js': ['coverage'] },
+    preprocessors: { 
+      '../src/controllers/*.js': ['coverage'] ,
+      '../src/services/*.js': ['coverage'],
+      '../src/data.js': ['coverage']
+    },    
     coverageReporter: {
       type: "lcov",
       dir: "coverage/"

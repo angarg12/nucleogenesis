@@ -1900,19 +1900,7 @@ function loadData($scope) {
       },
       order : 700,
       ratio : 0.9976,
-      type : 'element',
-      free_radical : {
-        reactivity : 0.05,
-        reaction : [ {
-          reactant : 'O',
-          product : 'O2',
-          chance : 1
-        }, {
-          reactant : 'O2',
-          product : 'O3',
-          chance : 1e-6
-        } ]
-      }
+      type : 'element'
     },
     'O2' : {
       visible : function () {
@@ -2054,8 +2042,6 @@ function loadData($scope) {
   };
 
   $scope.radioisotopes = [ '3H' ];// ,'7Be','10Be','11C','14C','13N','18F'];
-
-  $scope.free_radicals = [ 'O' ];
 
   $scope.tabs = {
     'Elements' : {
@@ -2315,14 +2301,6 @@ function loadData($scope) {
       order : 214,
       link : 'https://en.wikipedia.org/wiki/Molecule',
       description : 'A <b>molecule</b> (/ˈmɒlɪkjuːl/ from Latin moles "mass") is an electrically neutral group of two or more atoms held together by chemical bonds. Molecules are distinguished from ions by their lack of electrical charge.<br>A molecule may be homonuclear, that is, it consists of atoms of a single chemical element, or it may be heteronuclear, a chemical compound composed of more than one element. Atoms and complexes connected by non-covalent bonds such as hydrogen bonds or ionic bonds are generally not considered single molecules.'
-    },
-    'Free radical' : {
-      visible : function () {
-        return $scope.player.data.unlocks.free_radical;
-      },
-      order : 215,
-      link : 'https://en.wikipedia.org/wiki/Radical_%28chemistry%29',
-      description : 'In chemistry, a <b>radical</b> (more precisely, a <b>free radical</b>) is an atom, molecule, or ion that has unpaired valence electrons. With some exceptions, these unpaired electrons make free radicals highly chemically reactive towards other substances, or even towards themselves: their molecules will often spontaneously dimerize or polymerize if they come in contact with each other. Most radicals are reasonably stable only at very low concentrations in inert media or in a vacuum.'
     },
     'Allotrope' : {
       visible : function () {
@@ -2598,16 +2576,6 @@ function loadData($scope) {
           $scope.achievement.addToast("Allotrope");
           $scope.player.data.unlocks.allotrope = true;
           $scope.unlocks.allotrope.listener();
-        }
-      },
-      event : "resource"
-    },
-    "free_radical" : {
-      check : function (event, data) {
-        if ("O" == data) {
-          $scope.achievement.addToast("Free radical");
-          $scope.player.data.unlocks.free_radical = true;
-          $scope.unlocks.free_radical.listener();
         }
       },
       event : "resource"

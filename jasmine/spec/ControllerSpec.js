@@ -596,32 +596,6 @@ describe("Incremental table elements", function() {
       expect(spec.player.data.resources['e-'].number).toEqual(18);
       expect(spec.player.data.resources.eV.number).toEqual(334980);
     });
-
-    it("should process radicals", function() {
-      spec.player.populatePlayer();
-      spec.player.data = spec.player.startPlayer;
-      spec.player.data.resources.O.unlocked = true;
-      spec.player.data.resources.O.number = 1000;
-      spec.player.data.resources.O.unlocked = true;
-      spec.player.data.resources.O2.number = 1e8;
-      spyOn(spec.controller.numberGenerator,'nextGaussian').and.returnValue(0);
-      spyOn(spec.controller,'getPoisson').and.returnValue(0);
-      
-      spec.controller.update();
-      
-      // the logic is the following
-      // we start with 1000 O. Out of those, 5% react (50)
-      // the reactants are in total 1000 O and 1e8 O2
-      // with reactivity 1e-6, 100 of O2 react with O
-      // the sum is 1100, so we split 1000/1100 and 100/1100
-      // for O we react around 90.9%, which is 45. However 45 is odd
-      // so we adjust down to 44. 44 O generate 22 O2.
-      // then we have 5 reactions of O with O2. We subtract them
-      // and obtain the final values.
-      expect(spec.player.data.resources.O.number).toEqual(951);
-      expect(spec.player.data.resources.O2.number).toEqual(100000017);
-      expect(spec.player.data.resources.O3.number).toEqual(5);
-    });
   });
 
   describe('xxxxxxxxxxxxxxxx', function() {
