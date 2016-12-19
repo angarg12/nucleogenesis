@@ -1,4 +1,4 @@
-describe("Achievement service", function() {
+describe("Util service", function() {
   var spec = {};
   
   commonSpec(spec);
@@ -134,4 +134,64 @@ describe("Achievement service", function() {
       expect(value).toEqual('p');
     });
   });
+
+  describe('poisson', function() {
+    it("should generate numbers according to a poisson", function() {      
+      spyOn(Math,'random').and.returnValue(0.1);
+
+      value = spec.util.getPoisson(1);
+
+      expect(value).toEqual(0);
+    });
+
+    it("should generate numbers according to a poisson 2", function() {      
+      spyOn(Math,'random').and.returnValues(1,0.1);
+      
+      value = spec.util.getPoisson(1);
+
+      expect(value).toEqual(1);
+    });
+
+    it("should generate numbers according to a poisson 3", function() {      
+      spyOn(Math,'random').and.returnValues(0.8,0.4,0.2,0.1);
+      
+      value = spec.util.getPoisson(4);
+
+      expect(value).toEqual(3);
+    });
+  });
+  
+  describe('random draw', function() {
+    it("should return a normally distributed random number", function() {
+      spyOn(Math,'random').and.returnValues(0.4,0.2);
+      
+      value = spec.util.randomDraw(100, Math.log(2)/50);
+      
+      expect(value).toEqual(1);
+    });
+    
+    it("should return a normally distributed random number 2", function() {
+      spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValues(0.5);
+      
+      value = spec.util.randomDraw(1000, Math.log(2)/50);
+      
+      expect(value).toEqual(16);
+    });
+    
+    it("should not return negative value", function() {
+      spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValues(-1000);
+      
+      value = spec.util.randomDraw(1000, Math.log(2)/50);
+      
+      expect(value).toEqual(0);
+    });
+    
+    it("should not return overproduction", function() {
+      spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValues(1000);
+      
+      value = spec.util.randomDraw(1000, Math.log(2)/50);
+      
+      expect(value).toEqual(1000);
+    });
+  });  
 });

@@ -330,66 +330,6 @@ describe("Incremental table elements", function() {
     });
   });
 
-  describe('poisson', function() {
-    it("should generate numbers according to a poisson", function() {      
-      spyOn(Math,'random').and.returnValue(0.1);
-
-      value = spec.controller.getPoisson(1);
-
-      expect(value).toEqual(0);
-    });
-
-    it("should generate numbers according to a poisson 2", function() {      
-      spyOn(Math,'random').and.returnValues(1,0.1);
-      
-      value = spec.controller.getPoisson(1);
-
-      expect(value).toEqual(1);
-    });
-
-    it("should generate numbers according to a poisson 3", function() {      
-      spyOn(Math,'random').and.returnValues(0.8,0.4,0.2,0.1);
-      
-      value = spec.controller.getPoisson(4);
-
-      expect(value).toEqual(3);
-    });
-  });
-  
-  describe('random draw', function() {
-    it("should return a normally distributed random number", function() {
-      spyOn(Math,'random').and.returnValues(0.4,0.2);
-      
-      value = spec.controller.randomDraw(100, Math.log(2)/50);
-      
-      expect(value).toEqual(1);
-    });
-    
-    it("should return a normally distributed random number 2", function() {
-      spyOn(spec.controller.numberGenerator,'nextGaussian').and.returnValues(0.5);
-      
-      value = spec.controller.randomDraw(1000, Math.log(2)/50);
-      
-      expect(value).toEqual(16);
-    });
-    
-    it("should not return negative value", function() {
-      spyOn(spec.controller.numberGenerator,'nextGaussian').and.returnValues(-1000);
-      
-      value = spec.controller.randomDraw(1000, Math.log(2)/50);
-      
-      expect(value).toEqual(0);
-    });
-    
-    it("should not return overproduction", function() {
-      spyOn(spec.controller.numberGenerator,'nextGaussian').and.returnValues(1000);
-      
-      value = spec.controller.randomDraw(1000, Math.log(2)/50);
-      
-      expect(value).toEqual(1000);
-    });
-  });
-  
   describe('update', function() {
     it("should not update player if nothing is purchased", function() {
       spec.player.populatePlayer();
@@ -405,8 +345,8 @@ describe("Incremental table elements", function() {
       spec.player.data = spec.player.startPlayer;
       spec.player.data.elements.O.unlocked = true;
       spec.player.data.elements.O.generators['Tier 1'].level = 200;
-      spyOn(spec.controller.numberGenerator,'nextGaussian').and.returnValue(0);
-      spyOn(spec.controller,'getPoisson').and.returnValue(0);
+      spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
+      spyOn(spec.util,'getPoisson').and.returnValue(0);
       
       spec.controller.update();
       
@@ -420,8 +360,8 @@ describe("Incremental table elements", function() {
       spec.player.data = spec.player.startPlayer;
       spec.player.data.elements.O.unlocked = true;
       spec.player.data.elements.O.generators['Tier 1'].level = 1200;
-      spyOn(spec.controller.numberGenerator,'nextGaussian').and.returnValue(0);
-      spyOn(spec.controller,'getPoisson').and.returnValue(0);
+      spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
+      spyOn(spec.util,'getPoisson').and.returnValue(0);
       
       spec.controller.update();
       
@@ -435,8 +375,8 @@ describe("Incremental table elements", function() {
       spec.player.data = spec.player.startPlayer;
       spec.player.data.elements.O.unlocked = true;
       spec.player.data.elements.O.generators['Tier 1'].level = 32000;
-      spyOn(spec.controller.numberGenerator,'nextGaussian').and.returnValue(0);
-      spyOn(spec.controller,'getPoisson').and.returnValue(0);
+      spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
+      spyOn(spec.util,'getPoisson').and.returnValue(0);
       
       spec.controller.update();
       
@@ -450,8 +390,8 @@ describe("Incremental table elements", function() {
       spec.player.data = spec.player.startPlayer;
       spec.player.data.resources['3H'].unlocked = true;
       spec.player.data.resources['3H'].number = 1000;
-      spyOn(spec.controller.numberGenerator,'nextGaussian').and.returnValue(0);
-      spyOn(spec.controller,'getPoisson').and.returnValue(0);
+      spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
+      spyOn(spec.util,'getPoisson').and.returnValue(0);
       
       spec.controller.update();
       
@@ -466,8 +406,8 @@ describe("Incremental table elements", function() {
       spec.player.data = spec.player.startPlayer;
       spec.player.data.resources['3H'].unlocked = true;
       spec.player.data.resources['3H'].number = 1e+10;
-      spyOn(spec.controller.numberGenerator,'nextGaussian').and.returnValue(0);
-      spyOn(spec.controller,'getPoisson').and.returnValue(0);
+      spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
+      spyOn(spec.util,'getPoisson').and.returnValue(0);
       
       spec.controller.update();
       

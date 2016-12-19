@@ -44,9 +44,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   $scope.current_entry = "Hydrogen";
   $scope.current_element = "H";
   $scope.hover_element = "";
-
-  self.numberGenerator = new Ziggurat();
-
+  
   $scope.elementPrice = function (element) {
     return Math.pow(player.data.elements_unlocked + 1, $scope.elements[element].order);
   };
@@ -108,49 +106,13 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     }
   };
 
-  self.randomDraw = function (number, p) {
-    var mean = p * number;
-    var production;
-    if(mean < 5) {
-      // using Poisson distribution (would get slow for large numbers. there are fast formulas but I don't know
-      // how good they are)
-      production = self.getPoisson(mean);
-    } else {
-      // Gaussian distribution
-      var q = 1 - p;
-      var variance = number * p * q;
-      var std = Math.sqrt(variance);
-      production = Math.round(self.numberGenerator.nextGaussian() * std + mean);
-    }
-    if(production > number) {
-      production = number;
-    }
-    if(production < 0) {
-      production = 0;
-    }
-    return production;
-  };
-
-  self.getPoisson = function (lambda) {
-    var L = Math.exp(-lambda);
-    var p = 1.0;
-    var k = 0;
-
-    do {
-      k++;
-      p *= Math.random();
-    } while (p > L);
-
-    return k - 1;
-  };
-
   self.processDecay = function (resources) {
     for(var i = 0; i < resources.length; i++) {
       var resource = resources[i];
       if(player.data.resources[resource].unlocked) {
         var number = player.data.resources[resource].number;
         var half_life = $scope.resources[resource].decay.half_life;
-        var production = self.randomDraw(number, Math.log(2) / half_life);
+        var production = util.randomDraw(number, Math.log(2) / half_life);
         
         if(production <= 0) {
           return;
@@ -192,7 +154,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         }
 
         var p = $scope.resources[isotopes[i]].ratio / remaining_ratio_sum;
-        var production = self.randomDraw(remaining, p);
+        var production = util.randomDraw(remaining, p);
 
         if(production > 0) {
           player.data.resources[isotopes[i]].number += production;

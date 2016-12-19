@@ -3,7 +3,7 @@ angular
 .service('util',
 ['$filter',
 '$sce',
-function($filter, $sce) {  
+function($filter, $sce) {
   // Polyfill for some browsers
   Number.parseFloat = parseFloat;
   Number.isInteger = Number.isInteger || function (value) {
@@ -11,6 +11,7 @@ function($filter, $sce) {
   };
   
   var $scope;
+  this.numberGenerator = new Ziggurat();
 
   this.setScope = function (scope){
     $scope = scope;
@@ -54,6 +55,42 @@ function($filter, $sce) {
     return $filter('number')(number);
   };
 
+  this.randomDraw = function (number, p) {
+    var mean = p * number;
+    var production;
+    if(mean < 5) {
+      // using Poisson distribution (would get slow for large numbers. there are fast formulas but I don't know
+      // how good they are)
+      production = this.getPoisson(mean);
+    } else {
+      // Gaussian distribution
+      var q = 1 - p;
+      var variance = number * p * q;
+      var std = Math.sqrt(variance);
+      production = Math.round(this.numberGenerator.nextGaussian() * std + mean);
+    }
+    if(production > number) {
+      production = number;
+    }
+    if(production < 0) {
+      production = 0;
+    }
+    return production;
+  };
+
+  this.getPoisson = function (lambda) {
+    var L = Math.exp(-lambda);
+    var p = 1.0;
+    var k = 0;
+
+    do {
+      k++;
+      p *= Math.random();
+    } while (p > L);
+
+    return k - 1;
+  };
+  
   this.trustHTML = function (html) {
     return $sce.trustAsHtml(html);
   };
