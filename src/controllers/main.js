@@ -16,7 +16,8 @@ angular
 'animation',
 'format',
 'synthesis',
-function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame, generator, upgrade, animation, format, synthesis) {
+'reaction',
+function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame, generator, upgrade, animation, format, synthesis, reaction) {
   $scope.version = '1.0.2';
   $scope.Math = window.Math;
   $scope.player = player;
@@ -28,6 +29,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   $scope.animation = animation;
   $scope.format = format;
   $scope.synthesis = synthesis;
+  $scope.reaction = reaction;
   var self = this;
 
   player.setScope($scope);
@@ -39,6 +41,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   animation.setScope($scope);
   format.setScope($scope);
   synthesis.setScope($scope);
+  reaction.setScope($scope);
   
   $scope.current_tab = "Elements";
   $scope.current_entry = "Hydrogen";
@@ -69,40 +72,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
       player.data.elements[element].unlocked = true;
       player.data.elements[element].generators["Tier 1"].level = 1;
       player.data.elements_unlocked++;
-    }
-  };
-
-  $scope.isReactionCostMet = function (number, reaction) {
-    var keys = Object.keys(reaction.reactant);
-    for(var i = 0; i < keys.length; i++) {
-      var available = player.data.resources[keys[i]].number;
-      var required = Number.parseFloat((number * reaction.reactant[keys[i]]).toFixed(4));
-      if(required > available) {
-        return false;
-      }
-    }
-    return true;
-  };
-
-  $scope.react = function (number, reaction) {
-    if(!Number.isInteger(number) || number <= 0) {
-      return;
-    }
-    if($scope.isReactionCostMet(number, reaction)) {
-      var reactant = Object.keys(reaction.reactant);
-      for(var i = 0; i < reactant.length; i++) {
-        var required = Number.parseFloat((number * reaction.reactant[reactant[i]]).toFixed(4));
-        player.data.resources[reactant[i]].number -= required;
-        player.data.resources[reactant[i]].number = Number.parseFloat(player.data.resources[reactant[i]].number
-            .toFixed(4));
-      }
-      var product = Object.keys(reaction.product);
-      for(var i = 0; i < product.length; i++) {
-        var produced = number * reaction.product[product[i]];
-        var current = player.data.resources[product[i]].number;
-        player.data.resources[product[i]].number = Number.parseFloat((current + produced).toFixed(4));
-        $scope.$emit("resource", product[i]);
-      }
     }
   };
 

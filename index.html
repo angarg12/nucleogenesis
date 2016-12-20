@@ -16,6 +16,7 @@
     <script type="text/javascript" src="src/services/format.js"></script>
     <script type="text/javascript" src="src/services/generator.js"></script>
     <script type="text/javascript" src="src/services/player.js"></script>
+    <script type="text/javascript" src="src/services/reaction.js"></script>
     <script type="text/javascript" src="src/services/savegame.js"></script>
     <script type="text/javascript" src="src/services/synthesis.js"></script>
     <script type="text/javascript" src="src/services/upgrade.js"></script>
@@ -150,8 +151,8 @@
                                     ng-init="reactions[current_element].ionization[key].number = reactions[current_element].ionization[key].number || 1" 
                                     ng-model="reactions[current_element].ionization[key].number">
                                   <button class="btn btn-default"
-                                    ng-click="react(reactions[current_element].ionization[key].number, reactions[current_element].ionization[key])"
-                                    ng-class="{disabled: !isReactionCostMet(reactions[current_element].ionization[key].number, reactions[current_element].ionization[key])}">React</button>
+                                    ng-click="reaction.react(reactions[current_element].ionization[key].number, reactions[current_element].ionization[key])"
+                                    ng-class="{disabled: !reaction.isReactionCostMet(reactions[current_element].ionization[key].number, reactions[current_element].ionization[key])}">React</button>
                                   </input>
                                 </div>
                               </td>
@@ -177,8 +178,8 @@
                                     ng-init="reactions[current_element].electron_affinity[key].number = reactions[current_element].electron_affinity[key].number || 1" 
                                     ng-model="reactions[current_element].electron_affinity[key].number">
                                   <button class="btn btn-default"
-                                    ng-click="react(reactions[current_element].electron_affinity[key].number, reactions[current_element].electron_affinity[key])"
-                                    ng-class="{disabled: !isReactionCostMet(reactions[current_element].electron_affinity[key].number, reactions[current_element].electron_affinity[key])}">React</button>
+                                    ng-click="reaction.react(reactions[current_element].electron_affinity[key].number, reactions[current_element].electron_affinity[key])"
+                                    ng-class="{disabled: !reaction.isReactionCostMet(reactions[current_element].electron_affinity[key].number, reactions[current_element].electron_affinity[key])}">React</button>
                                   </input>
                                 </div>
                               </td>
@@ -203,8 +204,8 @@
                                     ng-init="reactions[current_element].binding_energy[key].number = reactions[current_element].binding_energy[key].number || 1" 
                                     ng-model="reactions[current_element].binding_energy[key].number">
                                   <button class="btn btn-default"
-                                    ng-click="react(reactions[current_element].binding_energy[key].number, reactions[current_element].binding_energy[key])"
-                                    ng-class="{disabled: !isReactionCostMet(reactions[current_element].binding_energy[key].number, reactions[current_element].binding_energy[key])}">React</button>
+                                    ng-click="reaction.react(reactions[current_element].binding_energy[key].number, reactions[current_element].binding_energy[key])"
+                                    ng-class="{disabled: !reaction.isReactionCostMet(reactions[current_element].binding_energy[key].number, reactions[current_element].binding_energy[key])}">React</button>
                                   </input>
                                 </div>
                               </td>

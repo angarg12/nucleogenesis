@@ -15,7 +15,8 @@ var commonSpec = function(spec) {
     spec.animation = $injector.get('animation');
     spec.format = $injector.get('format');
     spec.synthesis = $injector.get('synthesis');
-    spec.controller  = _$controller_('IncCtrl', {$scope:spec.$scope, achievement:spec.achievement, util:spec.util, player:spec.player, savegame:spec.savegame, generator:spec.generator, upgrade:spec.upgrade, animation:spec.animation, format:spec.format, synthesis:spec.synthesis});
+    spec.reaction = $injector.get('reaction');
+    spec.controller  = _$controller_('IncCtrl', {$scope:spec.$scope, achievement:spec.achievement, util:spec.util, player:spec.player, savegame:spec.savegame, generator:spec.generator, upgrade:spec.upgrade, animation:spec.animation, format:spec.format, synthesis:spec.synthesis, reaction:spec.reaction});
     loadData(spec.$scope);
   }));
 };

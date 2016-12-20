@@ -2,7 +2,8 @@ angular
 .module('incremental')
 .service('synthesis',
 ['player',
-function(player) {  
+ 'reaction',
+function(player, reaction) {  
   var $scope;
   var synthesis_price_increase = 1.15;
   var synthesis_power_increase = 2;
@@ -59,7 +60,7 @@ function(player) {
     for(var synthesis in player.data.synthesis) {
       var power = this.synthesisPower(synthesis);
       if(power !== 0) {
-        $scope.react(power, $scope.synthesis[synthesis]);
+        reaction.react(power, $scope.synthesis[synthesis]);
       }
     }
   };
