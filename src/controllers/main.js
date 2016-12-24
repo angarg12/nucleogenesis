@@ -123,6 +123,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         }
 
         var p = $scope.resources[isotopes[i]].ratio / remaining_ratio_sum;
+        //alert(remaining+" "+p);
         var production = util.randomDraw(remaining, p);
 
         if(production > 0) {

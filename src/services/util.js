@@ -54,11 +54,12 @@ function($filter, $sce) {
     }
     return $filter('number')(number);
   };
-
+// FIXME: poisson give bad results for small isotopes amount production
+  // it should be based in p not in mean
   this.randomDraw = function (number, p) {
-    var mean = p * number;
     var production;
-    if(mean < 5) {
+    var mean = number * p;
+    if(p < 0.01) {
       // using Poisson distribution (would get slow for large numbers. there are fast formulas but I don't know
       // how good they are)
       production = this.getPoisson(mean);
