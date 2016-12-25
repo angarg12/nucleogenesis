@@ -282,7 +282,7 @@ describe("Incremental table elements", function() {
       spec.player.data.resources['3H'].unlocked = true;
       spec.player.data.resources['3H'].number = 1e+10;
       spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
-      spyOn(spec.util,'getPoisson').and.returnValue(0);
+      spyOn(spec.util,'getPoisson').and.returnValue(18);
       
       spec.controller.update();
       

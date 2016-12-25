@@ -83,7 +83,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         var half_life = $scope.resources[resource].decay.half_life;
         var production = util.randomDraw(number, Math.log(2) / half_life);
         
-        if(production <= 0) {
+        if(production === 0) {
           return;
         }
         
@@ -123,7 +123,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         }
 
         var p = $scope.resources[isotopes[i]].ratio / remaining_ratio_sum;
-        //alert(remaining+" "+p);
         var production = util.randomDraw(remaining, p);
 
         if(production > 0) {

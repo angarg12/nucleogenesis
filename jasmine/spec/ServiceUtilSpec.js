@@ -163,7 +163,7 @@ describe("Util service", function() {
   
   describe('random draw', function() {
     it("should return a normally distributed random number", function() {
-      spyOn(Math,'random').and.returnValues(0.4,0.2);
+      spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValues(0);
       
       value = spec.util.randomDraw(100, Math.log(2)/50);
       
