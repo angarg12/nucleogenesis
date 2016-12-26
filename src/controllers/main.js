@@ -17,7 +17,8 @@ angular
 'format',
 'synthesis',
 'reaction',
-function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame, generator, upgrade, animation, format, synthesis, reaction) {
+'element',
+function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame, generator, upgrade, animation, format, synthesis, reaction, element) {
   $scope.version = '1.0.2';
   $scope.Math = window.Math;
   $scope.player = player;
@@ -30,6 +31,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   $scope.format = format;
   $scope.synthesis = synthesis;
   $scope.reaction = reaction;
+  $scope.element = element;
   var self = this;
 
   player.setScope($scope);
@@ -42,39 +44,13 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   format.setScope($scope);
   synthesis.setScope($scope);
   reaction.setScope($scope);
+  element.setScope($scope);
   
   $scope.current_tab = "Elements";
   $scope.current_entry = "Hydrogen";
   $scope.current_element = "H";
   $scope.hover_element = "";
   
-  $scope.elementPrice = function (element) {
-    return Math.pow(player.data.elements_unlocked + 1, $scope.elements[element].order);
-  };
-
-  $scope.isElementCostMet = function (element) {
-    var price = $scope.elementPrice(element);
-    return player.data.resources['e-'].number >= price &&
-           player.data.resources.p.number >= price &&
-           player.data.resources.n.number >= price;
-  };
-
-  $scope.buyElement = function (element) {
-    if(player.data.elements[element].unlocked) {
-      return;
-    }
-    if($scope.isElementCostMet(element)) {
-      var price = $scope.elementPrice(element);
-      player.data.resources['e-'].number -= price;
-      player.data.resources.p.number -= price;
-      player.data.resources.n.number -= price;
-      $scope.$emit("element", element);
-      player.data.elements[element].unlocked = true;
-      player.data.elements[element].generators["Tier 1"].level = 1;
-      player.data.elements_unlocked++;
-    }
-  };
-
   self.processDecay = function (resources) {
     for(var i = 0; i < resources.length; i++) {
       var resource = resources[i];

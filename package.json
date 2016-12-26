@@ -13,8 +13,10 @@
     "type" : "git", 
     "url" : "https://github.com/angarg12/incremental_table_elements.git"
   },
+  "dependencies": {
+    "grunt": "~1.0.1"
+  },
   "devDependencies": {
-    "grunt": "~1.0.1",
     "grunt-contrib-jshint": "~1.0.0",
     "grunt-protractor-runner": "~4.0.0",
     "grunt-contrib-connect": "~1.0.2",
