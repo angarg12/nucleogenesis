@@ -140,6 +140,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   
   self.onload = $timeout(function () {
     loadData($scope);
+    $scope.current_encyclopedia_url = $sce.trustAsResourceUrl($scope.encyclopedia[$scope.current_entry].link);
     if(localStorage.getItem("playerStoredITE") !== null) {
       savegame.load();
     }

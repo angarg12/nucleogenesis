@@ -52,6 +52,12 @@ body{
 	margin-top: 20px;
 }
 
+iframe {
+    display:block;
+    height:600px;
+    width:100%;
+}
+
 .achievealert {
   position:fixed;
   bottom:0;

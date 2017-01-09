@@ -380,14 +380,12 @@
           <div class="tab-content ng-scope" id="encyclopedia">
             <div class="tab-pane row" ng-class="{active: current_tab == 'Encyclopedia'}">
               <div class="col-lg-9 col-lg-push-3">
-                <h3 ng-show="encyclopedia[current_entry].link != null"><a target="_blank" href="{{encyclopedia[current_entry].link}}">{{current_entry}}</a></h3>
-                <h3 ng-show="encyclopedia[current_entry].link == null">{{current_entry}}</h3>
-                <div ng-bind-html="util.trustHTML(encyclopedia[current_entry].description)"></div>
+                 <iframe ng-src="{{current_encyclopedia_url}}"></iframe> 
               </div>
               <div class="col-lg-3 col-lg-pull-9">
                 <table class="table table-hover element-table no_bottom">
                   <tbody>
-                    <tr class="animif" ng-repeat="entry in util.visibleKeys(encyclopedia)" ng-mouseover="player.data.encyclopedia[entry].is_new = false" ng-click="util.updateCurrent('current_entry', entry)">
+                    <tr class="animif" ng-repeat="entry in util.visibleKeys(encyclopedia)" ng-mouseover="player.data.encyclopedia[entry].is_new = false" ng-click="util.updateEncyclopediaEntry('current_entry', entry)">
                       <td width=15%><span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.data.encyclopedia[entry].is_new"></span></td>
                       <td><a>{{entry}}</a></td>
                     </tr>

@@ -32,6 +32,11 @@ function($filter, $sce) {
     $scope[variable] = new_value;
   };
 
+  this.updateEncyclopediaEntry = function (variable, new_value) {
+    $scope[variable] = new_value;
+    $scope.current_encyclopedia_url = $sce.trustAsResourceUrl($scope.encyclopedia[new_value].link);
+  };
+  
   this.prettifyNumber = function (number) {
     if(typeof number == 'undefined') {
       return;
@@ -54,7 +59,8 @@ function($filter, $sce) {
     }
     return $filter('number')(number);
   };
-// FIXME: poisson give bad results for small isotopes amount production
+  
+  // FIXME: poisson give bad results for small isotopes amount production
   // it should be based in p not in mean
   this.randomDraw = function (number, p) {
     var production;
