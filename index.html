@@ -439,7 +439,7 @@
                           element_unavailable_dark: elements[element].disabled === true,
                           element_cost_not_met_dark: player.data.elements[element].unlocked === false && !element.isElementCostMet(element),
                           element_cost_met_dark: player.data.elements[element].unlocked === false && element.isElementCostMet(element)}" 
-                          class="clear element_no">{{elements[element].order}}</div>
+                          class="clear element_no">{{elements[element].number}}</div>
                       </div>
                       <div ng-if="element == ''" class="fl element_blank col-centered"></div>
                     </span>

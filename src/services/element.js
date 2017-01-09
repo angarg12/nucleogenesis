@@ -10,7 +10,7 @@ function(player) {
 	};
 
 	this.elementPrice = function (element) {
-		return Math.pow(player.data.elements_unlocked + 1, $scope.elements[element].order);
+		return Math.pow(player.data.elements_unlocked + 1, $scope.elements[element].number);
 	};
 	
 	this.isElementCostMet = function (element) {
