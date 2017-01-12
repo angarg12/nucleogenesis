@@ -1453,7 +1453,7 @@ function loadData($scope) {
         visible : function () {
             return true;
           },
-      "price": 15,
+      price: 15,
       "power": 1,
       "priceIncrease": 1.05,
       "upgrades": [
@@ -1471,7 +1471,7 @@ function loadData($scope) {
         visible : function () {
             return $scope.player.data.elements[$scope.current_element].generators['Tier 1'].level > 0;
           },
-      "price": 100,
+      price: 100,
       "power": 10,
       "priceIncrease": 1.05,
       "upgrades": [
@@ -1489,7 +1489,7 @@ function loadData($scope) {
         visible : function () {
             return $scope.player.data.elements[$scope.current_element].generators['Tier 2'].level > 0;
           },
-      "price": 1100,
+      price: 1100,
       "power": 80,
       "priceIncrease": 1.05,
       "upgrades": [
@@ -1507,7 +1507,7 @@ function loadData($scope) {
         visible : function () {
             return $scope.player.data.elements[$scope.current_element].generators['Tier 3'].level > 0;
           },
-      "price": 12000,
+      price: 12000,
       "power": 470,
       "priceIncrease": 1.05,
       "upgrades": [
@@ -1525,7 +1525,7 @@ function loadData($scope) {
         visible : function () {
             return $scope.player.data.elements[$scope.current_element].generators['Tier 4'].level > 0;
           },
-      "price": 130000,
+      price: 130000,
       "power": 2600,
       "priceIncrease": 1.05,
       "upgrades": [
@@ -1543,7 +1543,7 @@ function loadData($scope) {
         visible : function () {
             return $scope.player.data.elements[$scope.current_element].generators['Tier 5'].level > 0;
           },
-      "price": 1400000,
+      price: 1400000,
       "power": 14000,
       "priceIncrease": 1.05,
       "upgrades": [
@@ -1561,7 +1561,7 @@ function loadData($scope) {
         visible : function () {
             return $scope.player.data.elements[$scope.current_element].generators['Tier 6'].level > 0;
           },
-      "price": 2000000,
+      price: 2000000,
       "power": 78000,
       "priceIncrease": 1.05,
       "upgrades": [
@@ -1579,7 +1579,7 @@ function loadData($scope) {
         visible : function () {
             return $scope.player.data.elements[$scope.current_element].generators['Tier 7'].level > 0;
           },
-      "price": 330000000,
+      price: 330000000,
       "power": 440000,
       "priceIncrease": 1.05,
       "upgrades": [
@@ -1597,7 +1597,7 @@ function loadData($scope) {
         visible : function () {
             return $scope.player.data.elements[$scope.current_element].generators['Tier 8'].level > 0;
           },
-      "price": 5100000000,
+      price: 5100000000,
       "power": 2600000,
       "priceIncrease": 1.05,
       "upgrades": [
@@ -1615,7 +1615,7 @@ function loadData($scope) {
         visible : function () {
             return $scope.player.data.elements[$scope.current_element].generators['Tier 9'].level > 0;
           },
-      "price": 75000000000,
+      price: 75000000000,
       "power": 16000000,
       "priceIncrease": 1.05,
       "upgrades": [
@@ -1633,7 +1633,7 @@ function loadData($scope) {
         visible : function () {
             return $scope.player.data.elements[$scope.current_element].generators['Tier 10'].level > 0;
           },
-      "price": 1000000000000,
+      price: 1000000000000,
       "power": 100000000,
       "priceIncrease": 1.05,
       "upgrades": [
@@ -1651,7 +1651,7 @@ function loadData($scope) {
         visible : function () {
             return $scope.player.data.elements[$scope.current_element].generators['Tier 11'].level > 0;
           },
-      "price": 14000000000000,
+      price: 14000000000000,
       "power": 650000000,
       "priceIncrease": 1.05,
       "upgrades": [
@@ -1669,7 +1669,7 @@ function loadData($scope) {
         visible : function () {
             return $scope.player.data.elements[$scope.current_element].generators['Tier 12'].level > 0;
           },
-      "price": 1.7e+14,
+      price: 1.7e+14,
       "power": 4300000000,
       "priceIncrease": 1.05,
       "upgrades": [
@@ -1687,7 +1687,7 @@ function loadData($scope) {
         visible : function () {
             return $scope.player.data.elements[$scope.current_element].generators['Tier 13'].level > 0;
           },
-      "price": 2.1e+15,
+      price: 2.1e+15,
       "power": 2900000000,
       "priceIncrease": 1.05,
       "upgrades": [
@@ -1703,788 +1703,694 @@ function loadData($scope) {
     }
   };
 
+  $scope.visibleUpgrade = function(name){
+	  var upgrade = $scope.upgrades[name];
+	  var condition = "";
+	  for(var pre in upgrade.preconditions){
+		  condition += upgrade.preconditions[pre]+" && ";
+	  }
+	  for(var dep in upgrade.dependencies){
+		  condition += "$scope.player.data.elements[$scope.current_element].upgrades['"+upgrade.dependencies[dep]+"'].bought"+" && ";
+	  }
+	  condition += "true";
+	  alert(condition);
+	  return eval(condition);
+  }
+  
   $scope.upgrades = {
 		  "Tier 1-1": {
-			    "price": 100,
-			    "description": "x2",
-			    "order": 0,
-			    apply: function (resource) {return resource * 2;},
-			    visible: function () {return $scope.player.data.unlocks.upgrade && $scope.player.data.elements[$scope.current_element].generators['Tier 1'].level > 0;}
-			  },
+		    price: 100,
+		    description: "x2",
+		    preconditions: ["$scope.player.data.unlocks.upgrade", "$scope.player.data.elements[$scope.current_element].generators['Tier 1'].level > 0"],
+		    dependencies: [],
+		    apply: function (resource) {return resource * 2;},
+		    visible: function () {return $scope.visibleUpgrade("Tier 1-1")}
+		  },
 		  "Tier 1-2": {
-		    "price": 500,
-		    "description": "x3",
-		    "order": 1,
+		    price: 500,
+		    description: "x3",
+		    preconditions: [],
+		    dependencies: ["Tier 1-1"],
 		    apply: function (resource) {return resource * 3;},
-		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 1-1'].bought;}
+		    visible: function () {return $scope.visibleUpgrade("Tier 1-2")}
 		  },
 		  "Tier 1-3": {
-		    "price": 10000,
-		    "description": "x4",
-		    "order": 2,
+		    price: 10000,
+		    description: "x4",
 		    apply: function (resource) {return resource * 4;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 1-2'].bought;}
 		  },
 		  "Tier 1-4": {
-		    "price": 100000,
-		    "description": "x5",
-		    "order": 3,
+		    price: 100000,
+		    description: "x5",
 		    apply: function (resource) {return resource * 5;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 1-3'].bought;}
 		  },
 		  "Tier 1-5": {
-		    "price": 10000000,
-		    "description": "x6",
-		    "order": 4,
+		    price: 10000000,
+		    description: "x6",
 		    apply: function (resource) {return resource * 6;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 1-4'].bought;}
 		  },
 		  "Tier 1-6": {
-		    "price": 100000000,
-		    "description": "x7",
-		    "order": 5,
+		    price: 100000000,
+		    description: "x7",
 		    apply: function (resource) {return resource * 7;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 1-5'].bought;}
 		  },
 		  "Tier 1-7": {
-		    "price": 1000000000,
-		    "description": "x8",
-		    "order": 6,
+		    price: 1000000000,
+		    description: "x8",
 		    apply: function (resource) {return resource * 8;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 1-6'].bought;}
 		  },
 		  "Tier 1-8": {
-		    "price": 10000000000,
-		    "description": "x9",
-		    "order": 7,
+		    price: 10000000000,
+		    description: "x9",
 		    apply: function (resource) {return resource * 9;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 1-7'].bought;}
 		  },
 		  "Tier 2-1": {
-		    "price": 1000,
-		    "description": "x2",
-		    "order": 14,
+		    price: 1000,
+		    description: "x2",
 		    apply: function (resource) {return resource * 2;},
 		    visible: function () {return $scope.player.data.unlocks.upgrade && $scope.player.data.elements[$scope.current_element].generators['Tier 2'].level > 0;}
 		  },
 		  "Tier 2-2": {
-		    "price": 5000,
-		    "description": "x3",
-		    "order": 15,
+		    price: 5000,
+		    description: "x3",
 		    apply: function (resource) {return resource * 3;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 2-1'].bought;}
 		  },
 		  "Tier 2-3": {
-		    "price": 50000,
-		    "description": "x4",
-		    "order": 16,
+		    price: 50000,
+		    description: "x4",
 		    apply: function (resource) {return resource * 4;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 2-2'].bought;}
 		  },
 		  "Tier 2-4": {
-		    "price": 5000000,
-		    "description": "x5",
-		    "order": 17,
+		    price: 5000000,
+		    description: "x5",
 		    apply: function (resource) {return resource * 5;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 2-3'].bought;}
 		  },
 		  "Tier 2-5": {
-		    "price": 500000000,
-		    "description": "x6",
-		    "order": 18,
+		    price: 500000000,
+		    description: "x6",
 		    apply: function (resource) {return resource * 6;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 2-4'].bought;}
 		  },
 		  "Tier 2-6": {
-		    "price": 50000000000,
-		    "description": "x7",
-		    "order": 19,
+		    price: 50000000000,
+		    description: "x7",
 		    apply: function (resource) {return resource * 7;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 2-5'].bought;}
 		  },
 		  "Tier 2-7": {
-		    "price": 50000000000000,
-		    "description": "x8",
-		    "order": 20,
+		    price: 50000000000000,
+		    description: "x8",
 		    apply: function (resource) {return resource * 8;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 2-6'].bought;}
 		  },
 		  "Tier 2-8": {
-		    "price": 5.0e+16,
-		    "description": "x9",
-		    "order": 21,
+		    price: 5.0e+16,
+		    description: "x9",
 		    apply: function (resource) {return resource * 9;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 2-7'].bought;}
 		  },
 		  "Tier 3-1": {
-		    "price": 10000,
-		    "description": "x2",
-		    "order": 28,
+		    price: 10000,
+		    description: "x2",
 		    apply: function (resource) {return resource * 2;},
 		    visible: function () {return $scope.player.data.unlocks.upgrade && $scope.player.data.elements[$scope.current_element].generators['Tier 3'].level > 0;}
 		  },
 		  "Tier 3-2": {
-		    "price": 55000,
-		    "description": "x3",
-		    "order": 29,
+		    price: 55000,
+		    description: "x3",
 		    apply: function (resource) {return resource * 3;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 3-1'].bought;}
 		  },
 		  "Tier 3-3": {
-		    "price": 550000,
-		    "description": "x4",
-		    "order": 30,
+		    price: 550000,
+		    description: "x4",
 		    apply: function (resource) {return resource * 4;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 3-2'].bought;}
 		  },
 		  "Tier 3-4": {
-		    "price": 55000000,
-		    "description": "x5",
-		    "order": 31,
+		    price: 55000000,
+		    description: "x5",
 		    apply: function (resource) {return resource * 5;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 3-3'].bought;}
 		  },
 		  "Tier 3-5": {
-		    "price": 5500000000,
-		    "description": "x6",
-		    "order": 32,
+		    price: 5500000000,
+		    description: "x6",
 		    apply: function (resource) {return resource * 6;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 3-4'].bought;}
 		  },
 		  "Tier 3-6": {
-		    "price": 550000000000,
-		    "description": "x7",
-		    "order": 33,
+		    price: 550000000000,
+		    description: "x7",
 		    apply: function (resource) {return resource * 7;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 3-5'].bought;}
 		  },
 		  "Tier 3-7": {
-		    "price": 5.5e+14,
-		    "description": "x8",
-		    "order": 34,
+		    price: 5.5e+14,
+		    description: "x8",
 		    apply: function (resource) {return resource * 8;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 3-6'].bought;}
 		  },
 		  "Tier 3-8": {
-		    "price": 5.5e+17,
-		    "description": "x9",
-		    "order": 35,
+		    price: 5.5e+17,
+		    description: "x9",
 		    apply: function (resource) {return resource * 9;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 3-7'].bought;}
 		  },
 		  "Tier 4-1": {
-		    "price": 120000,
-		    "description": "x2",
-		    "order": 42,
+		    price: 120000,
+		    description: "x2",
 		    apply: function (resource) {return resource * 2;},
 		    visible: function () {return $scope.player.data.unlocks.upgrade && $scope.player.data.elements[$scope.current_element].generators['Tier 4'].level > 0;}
 		  },
 		  "Tier 4-2": {
-		    "price": 600000,
-		    "description": "x3",
-		    "order": 43,
+		    price: 600000,
+		    description: "x3",
 		    apply: function (resource) {return resource * 3;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 4-1'].bought;}
 		  },
 		  "Tier 4-3": {
-		    "price": 6000000,
-		    "description": "x4",
-		    "order": 44,
+		    price: 6000000,
+		    description: "x4",
 		    apply: function (resource) {return resource * 4;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 4-2'].bought;}
 		  },
 		  "Tier 4-4": {
-		    "price": 600000000,
-		    "description": "x5",
-		    "order": 45,
+		    price: 600000000,
+		    description: "x5",
 		    apply: function (resource) {return resource * 5;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 4-3'].bought;}
 		  },
 		  "Tier 4-5": {
-		    "price": 60000000000,
-		    "description": "x6",
-		    "order": 46,
+		    price: 60000000000,
+		    description: "x6",
 		    apply: function (resource) {return resource * 6;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 4-4'].bought;}
 		  },
 		  "Tier 4-6": {
-		    "price": 6000000000000,
-		    "description": "x7",
-		    "order": 47,
+		    price: 6000000000000,
+		    description: "x7",
 		    apply: function (resource) {return resource * 7;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 4-5'].bought;}
 		  },
 		  "Tier 4-7": {
-		    "price": 6.0e+15,
-		    "description": "x8",
-		    "order": 48,
+		    price: 6.0e+15,
+		    description: "x8",
 		    apply: function (resource) {return resource * 8;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 4-6'].bought;}
 		  },
 		  "Tier 4-8": {
-		    "price": 6.0e+18,
-		    "description": "x9",
-		    "order": 49,
+		    price: 6.0e+18,
+		    description: "x9",
 		    apply: function (resource) {return resource * 9;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 4-7'].bought;}
 		  },
 		  "Tier 5-1": {
-		    "price": 1300000,
-		    "description": "x2",
-		    "order": 56,
+		    price: 1300000,
+		    description: "x2",
 		    apply: function (resource) {return resource * 2;},
 		    visible: function () {return $scope.player.data.unlocks.upgrade && $scope.player.data.elements[$scope.current_element].generators['Tier 5'].level > 0;}
 		  },
 		  "Tier 5-2": {
-		    "price": 6500000,
-		    "description": "x3",
-		    "order": 57,
+		    price: 6500000,
+		    description: "x3",
 		    apply: function (resource) {return resource * 3;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 5-1'].bought;}
 		  },
 		  "Tier 5-3": {
-		    "price": 65000000,
-		    "description": "x4",
-		    "order": 58,
+		    price: 65000000,
+		    description: "x4",
 		    apply: function (resource) {return resource * 4;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 5-2'].bought;}
 		  },
 		  "Tier 5-4": {
-		    "price": 6500000000,
-		    "description": "x5",
-		    "order": 59,
+		    price: 6500000000,
+		    description: "x5",
 		    apply: function (resource) {return resource * 5;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 5-3'].bought;}
 		  },
 		  "Tier 5-5": {
-		    "price": 650000000000,
-		    "description": "x6",
-		    "order": 60,
+		    price: 650000000000,
+		    description: "x6",
 		    apply: function (resource) {return resource * 6;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 5-4'].bought;}
 		  },
 		  "Tier 5-6": {
-		    "price": 65000000000000,
-		    "description": "x7",
-		    "order": 61,
+		    price: 65000000000000,
+		    description: "x7",
 		    apply: function (resource) {return resource * 7;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 5-5'].bought;}
 		  },
 		  "Tier 5-7": {
-		    "price": 6.5e+16,
-		    "description": "x8",
-		    "order": 62,
+		    price: 6.5e+16,
+		    description: "x8",
 		    apply: function (resource) {return resource * 8;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 5-6'].bought;}
 		  },
 		  "Tier 5-8": {
-		    "price": 6.5e+19,
-		    "description": "x9",
-		    "order": 63,
+		    price: 6.5e+19,
+		    description: "x9",
 		    apply: function (resource) {return resource * 9;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 5-7'].bought;}
 		  },
 		  "Tier 6-1": {
-		    "price": 14000000,
-		    "description": "x2",
-		    "order": 70,
+		    price: 14000000,
+		    description: "x2",
 		    apply: function (resource) {return resource * 2;},
 		    visible: function () {return $scope.player.data.unlocks.upgrade && $scope.player.data.elements[$scope.current_element].generators['Tier 6'].level > 0;}
 		  },
 		  "Tier 6-2": {
-		    "price": 70000000,
-		    "description": "x3",
-		    "order": 71,
+		    price: 70000000,
+		    description: "x3",
 		    apply: function (resource) {return resource * 3;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 6-1'].bought;}
 		  },
 		  "Tier 6-3": {
-		    "price": 700000000,
-		    "description": "x4",
-		    "order": 72,
+		    price: 700000000,
+		    description: "x4",
 		    apply: function (resource) {return resource * 4;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 6-2'].bought;}
 		  },
 		  "Tier 6-4": {
-		    "price": 70000000000,
-		    "description": "x5",
-		    "order": 73,
+		    price: 70000000000,
+		    description: "x5",
 		    apply: function (resource) {return resource * 5;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 6-3'].bought;}
 		  },
 		  "Tier 6-5": {
-		    "price": 7000000000000,
-		    "description": "x6",
-		    "order": 74,
+		    price: 7000000000000,
+		    description: "x6",
 		    apply: function (resource) {return resource * 6;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 6-4'].bought;}
 		  },
 		  "Tier 6-6": {
-		    "price": 7.0e+14,
-		    "description": "x7",
-		    "order": 75,
+		    price: 7.0e+14,
+		    description: "x7",
 		    apply: function (resource) {return resource * 7;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 6-5'].bought;}
 		  },
 		  "Tier 6-7": {
-		    "price": 7.0e+17,
-		    "description": "x8",
-		    "order": 76,
+		    price: 7.0e+17,
+		    description: "x8",
 		    apply: function (resource) {return resource * 8;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 6-6'].bought;}
 		  },
 		  "Tier 6-8": {
-		    "price": 7.0e+20,
-		    "description": "x9",
-		    "order": 77,
+		    price: 7.0e+20,
+		    description: "x9",
 		    apply: function (resource) {return resource * 9;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 6-7'].bought;}
 		  },
 		  "Tier 7-1": {
-		    "price": 200000000,
-		    "description": "x2",
-		    "order": 84,
+		    price: 200000000,
+		    description: "x2",
 		    apply: function (resource) {return resource * 2;},
 		    visible: function () {return $scope.player.data.unlocks.upgrade && $scope.player.data.elements[$scope.current_element].generators['Tier 7'].level > 0;}
 		  },
 		  "Tier 7-2": {
-		    "price": 1000000000,
-		    "description": "x3",
-		    "order": 85,
+		    price: 1000000000,
+		    description: "x3",
 		    apply: function (resource) {return resource * 3;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 7-1'].bought;}
 		  },
 		  "Tier 7-3": {
-		    "price": 10000000000,
-		    "description": "x4",
-		    "order": 86,
+		    price: 10000000000,
+		    description: "x4",
 		    apply: function (resource) {return resource * 4;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 7-2'].bought;}
 		  },
 		  "Tier 7-4": {
-		    "price": 1000000000000,
-		    "description": "x5",
-		    "order": 87,
+		    price: 1000000000000,
+		    description: "x5",
 		    apply: function (resource) {return resource * 5;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 7-3'].bought;}
 		  },
 		  "Tier 7-5": {
-		    "price": 1.0e+14,
-		    "description": "x6",
-		    "order": 88,
+		    price: 1.0e+14,
+		    description: "x6",
 		    apply: function (resource) {return resource * 6;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 7-4'].bought;}
 		  },
 		  "Tier 7-6": {
-		    "price": 1.0e+16,
-		    "description": "x7",
-		    "order": 89,
+		    price: 1.0e+16,
+		    description: "x7",
 		    apply: function (resource) {return resource * 7;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 7-5'].bought;}
 		  },
 		  "Tier 7-7": {
-		    "price": 1.0e+19,
-		    "description": "x8",
-		    "order": 90,
+		    price: 1.0e+19,
+		    description: "x8",
 		    apply: function (resource) {return resource * 8;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 7-6'].bought;}
 		  },
 		  "Tier 7-8": {
-		    "price": 1.0e+22,
-		    "description": "x9",
-		    "order": 91,
+		    price: 1.0e+22,
+		    description: "x9",
 		    apply: function (resource) {return resource * 9;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 7-7'].bought;}
 		  },
 		  "Tier 8-1": {
-		    "price": 3300000000,
-		    "description": "x2",
-		    "order": 98,
+		    price: 3300000000,
+		    description: "x2",
 		    apply: function (resource) {return resource * 2;},
 		    visible: function () {return $scope.player.data.unlocks.upgrade && $scope.player.data.elements[$scope.current_element].generators['Tier 8'].level > 0;}
 		  },
 		  "Tier 8-2": {
-		    "price": 16500000000,
-		    "description": "x3",
-		    "order": 99,
+		    price: 16500000000,
+		    description: "x3",
 		    apply: function (resource) {return resource * 3;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 8-1'].bought;}
 		  },
 		  "Tier 8-3": {
-		    "price": 165000000000,
-		    "description": "x4",
-		    "order": 100,
+		    price: 165000000000,
+		    description: "x4",
 		    apply: function (resource) {return resource * 4;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 8-2'].bought;}
 		  },
 		  "Tier 8-4": {
-		    "price": 16500000000000,
-		    "description": "x5",
-		    "order": 101,
+		    price: 16500000000000,
+		    description: "x5",
 		    apply: function (resource) {return resource * 5;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 8-3'].bought;}
 		  },
 		  "Tier 8-5": {
-		    "price": 1.65e+15,
-		    "description": "x6",
-		    "order": 102,
+		    price: 1.65e+15,
+		    description: "x6",
 		    apply: function (resource) {return resource * 6;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 8-4'].bought;}
 		  },
 		  "Tier 8-6": {
-		    "price": 1.65e+17,
-		    "description": "x7",
-		    "order": 103,
+		    price: 1.65e+17,
+		    description: "x7",
 		    apply: function (resource) {return resource * 7;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 8-5'].bought;}
 		  },
 		  "Tier 8-7": {
-		    "price": 1.65e+20,
-		    "description": "x8",
-		    "order": 104,
+		    price: 1.65e+20,
+		    description: "x8",
 		    apply: function (resource) {return resource * 8;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 8-6'].bought;}
 		  },
 		  "Tier 8-8": {
-		    "price": 1.65e+23,
-		    "description": "x9",
-		    "order": 105,
+		    price: 1.65e+23,
+		    description: "x9",
 		    apply: function (resource) {return resource * 9;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 8-7'].bought;}
 		  },
 		  "Tier 9-1": {
-		    "price": 51000000000,
-		    "description": "x2",
-		    "order": 112,
+		    price: 51000000000,
+		    description: "x2",
 		    apply: function (resource) {return resource * 2;},
 		    visible: function () {return $scope.player.data.unlocks.upgrade && $scope.player.data.elements[$scope.current_element].generators['Tier 9'].level > 0;}
 		  },
 		  "Tier 9-2": {
-		    "price": 255000000000,
-		    "description": "x3",
-		    "order": 113,
+		    price: 255000000000,
+		    description: "x3",
 		    apply: function (resource) {return resource * 3;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 9-1'].bought;}
 		  },
 		  "Tier 9-3": {
-		    "price": 2550000000000,
-		    "description": "x4",
-		    "order": 114,
+		    price: 2550000000000,
+		    description: "x4",
 		    apply: function (resource) {return resource * 4;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 9-2'].bought;}
 		  },
 		  "Tier 9-4": {
-		    "price": 2.55e+14,
-		    "description": "x5",
-		    "order": 115,
+		    price: 2.55e+14,
+		    description: "x5",
 		    apply: function (resource) {return resource * 5;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 9-3'].bought;}
 		  },
 		  "Tier 9-5": {
-		    "price": 2.55e+16,
-		    "description": "x6",
-		    "order": 116,
+		    price: 2.55e+16,
+		    description: "x6",
 		    apply: function (resource) {return resource * 6;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 9-4'].bought;}
 		  },
 		  "Tier 9-6": {
-		    "price": 2.55e+18,
-		    "description": "x7",
-		    "order": 117,
+		    price: 2.55e+18,
+		    description: "x7",
 		    apply: function (resource) {return resource * 7;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 9-5'].bought;}
 		  },
 		  "Tier 9-7": {
-		    "price": 2.55e+21,
-		    "description": "x8",
-		    "order": 118,
+		    price: 2.55e+21,
+		    description: "x8",
 		    apply: function (resource) {return resource * 8;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 9-6'].bought;}
 		  },
 		  "Tier 9-8": {
-		    "price": 2.55e+24,
-		    "description": "x9",
-		    "order": 119,
+		    price: 2.55e+24,
+		    description: "x9",
 		    apply: function (resource) {return resource * 9;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 9-7'].bought;}
 		  },
 		  "Tier 10-1": {
-		    "price": 750000000000,
-		    "description": "x2",
-		    "order": 126,
+		    price: 750000000000,
+		    description: "x2",
 		    apply: function (resource) {return resource * 2;},
 		    visible: function () {return $scope.player.data.unlocks.upgrade && $scope.player.data.elements[$scope.current_element].generators['Tier 10'].level > 0;}
 		  },
 		  "Tier 10-2": {
-		    "price": 3750000000000,
-		    "description": "x3",
-		    "order": 127,
+		    price: 3750000000000,
+		    description: "x3",
 		    apply: function (resource) {return resource * 3;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 10-1'].bought;}
 		  },
 		  "Tier 10-3": {
-		    "price": 37500000000000,
-		    "description": "x4",
-		    "order": 128,
+		    price: 37500000000000,
+		    description: "x4",
 		    apply: function (resource) {return resource * 4;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 10-2'].bought;}
 		  },
 		  "Tier 10-4": {
-		    "price": 3.75e+15,
-		    "description": "x5",
-		    "order": 129,
+		    price: 3.75e+15,
+		    description: "x5",
 		    apply: function (resource) {return resource * 5;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 10-3'].bought;}
 		  },
 		  "Tier 10-5": {
-		    "price": 3.75e+17,
-		    "description": "x6",
-		    "order": 130,
+		    price: 3.75e+17,
+		    description: "x6",
 		    apply: function (resource) {return resource * 6;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 10-4'].bought;}
 		  },
 		  "Tier 10-6": {
-		    "price": 3.75e+19,
-		    "description": "x7",
-		    "order": 131,
+		    price: 3.75e+19,
+		    description: "x7",
 		    apply: function (resource) {return resource * 7;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 10-5'].bought;}
 		  },
 		  "Tier 10-7": {
-		    "price": 3.75e+22,
-		    "description": "x8",
-		    "order": 132,
+		    price: 3.75e+22,
+		    description: "x8",
 		    apply: function (resource) {return resource * 8;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 10-6'].bought;}
 		  },
 		  "Tier 10-8": {
-		    "price": 3.75e+25,
-		    "description": "x9",
-		    "order": 133,
+		    price: 3.75e+25,
+		    description: "x9",
 		    apply: function (resource) {return resource * 9;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 10-7'].bought;}
 		  },
 		  "Tier 11-1": {
-		    "price": 10000000000000,
-		    "description": "x2",
-		    "order": 140,
+		    price: 10000000000000,
+		    description: "x2",
 		    apply: function (resource) {return resource * 2;},
 		    visible: function () {return $scope.player.data.unlocks.upgrade && $scope.player.data.elements[$scope.current_element].generators['Tier 11'].level > 0;}
 		  },
 		  "Tier 11-2": {
-		    "price": 50000000000000,
-		    "description": "x3",
-		    "order": 141,
+		    price: 50000000000000,
+		    description: "x3",
 		    apply: function (resource) {return resource * 3;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 11-1'].bought;}
 		  },
 		  "Tier 11-3": {
-		    "price": 5.0e+14,
-		    "description": "x4",
-		    "order": 142,
+		    price: 5.0e+14,
+		    description: "x4",
 		    apply: function (resource) {return resource * 4;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 11-2'].bought;}
 		  },
 		  "Tier 11-4": {
-		    "price": 5.0e+16,
-		    "description": "x5",
-		    "order": 143,
+		    price: 5.0e+16,
+		    description: "x5",
 		    apply: function (resource) {return resource * 5;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 11-3'].bought;}
 		  },
 		  "Tier 11-5": {
-		    "price": 5.0e+18,
-		    "description": "x6",
-		    "order": 144,
+		    price: 5.0e+18,
+		    description: "x6",
 		    apply: function (resource) {return resource * 6;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 11-4'].bought;}
 		  },
 		  "Tier 11-6": {
-		    "price": 5.0e+20,
-		    "description": "x7",
-		    "order": 145,
+		    price: 5.0e+20,
+		    description: "x7",
 		    apply: function (resource) {return resource * 7;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 11-5'].bought;}
 		  },
 		  "Tier 11-7": {
-		    "price": 5.0e+23,
-		    "description": "x8",
-		    "order": 146,
+		    price: 5.0e+23,
+		    description: "x8",
 		    apply: function (resource) {return resource * 8;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 11-6'].bought;}
 		  },
 		  "Tier 11-8": {
-		    "price": 5.0e+26,
-		    "description": "x9",
-		    "order": 147,
+		    price: 5.0e+26,
+		    description: "x9",
 		    apply: function (resource) {return resource * 9;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 11-7'].bought;}
 		  },
 		  "Tier 12-1": {
-		    "price": 1.4e+14,
-		    "description": "x2",
-		    "order": 154,
+		    price: 1.4e+14,
+		    description: "x2",
 		    apply: function (resource) {return resource * 2;},
 		    visible: function () {return $scope.player.data.unlocks.upgrade && $scope.player.data.elements[$scope.current_element].generators['Tier 12'].level > 0;}
 		  },
 		  "Tier 12-2": {
-		    "price": 7.0e+14,
-		    "description": "x3",
-		    "order": 155,
+		    price: 7.0e+14,
+		    description: "x3",
 		    apply: function (resource) {return resource * 3;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 12-1'].bought;}
 		  },
 		  "Tier 12-3": {
-		    "price": 7.0e+15,
-		    "description": "x4",
-		    "order": 156,
+		    price: 7.0e+15,
+		    description: "x4",
 		    apply: function (resource) {return resource * 4;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 12-2'].bought;}
 		  },
 		  "Tier 12-4": {
-		    "price": 7.0e+17,
-		    "description": "x5",
-		    "order": 157,
+		    price: 7.0e+17,
+		    description: "x5",
 		    apply: function (resource) {return resource * 5;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 12-3'].bought;}
 		  },
 		  "Tier 12-5": {
-		    "price": 7.0e+19,
-		    "description": "x6",
-		    "order": 158,
+		    price: 7.0e+19,
+		    description: "x6",
 		    apply: function (resource) {return resource * 6;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 12-4'].bought;}
 		  },
 		  "Tier 12-6": {
-		    "price": 7.0e+21,
-		    "description": "x7",
-		    "order": 159,
+		    price: 7.0e+21,
+		    description: "x7",
 		    apply: function (resource) {return resource * 7;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 12-5'].bought;}
 		  },
 		  "Tier 12-7": {
-		    "price": 7.0e+24,
-		    "description": "x8",
-		    "order": 160,
+		    price: 7.0e+24,
+		    description: "x8",
 		    apply: function (resource) {return resource * 8;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 12-6'].bought;}
 		  },
 		  "Tier 12-8": {
-		    "price": 7.0e+27,
-		    "description": "x9",
-		    "order": 161,
+		    price: 7.0e+27,
+		    description: "x9",
 		    apply: function (resource) {return resource * 9;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 12-7'].bought;}
 		  },
 		  "Tier 13-1": {
-		    "price": 1.7e+15,
-		    "description": "x2",
-		    "order": 168,
+		    price: 1.7e+15,
+		    description: "x2",
 		    apply: function (resource) {return resource * 2;},
 		    visible: function () {return $scope.player.data.unlocks.upgrade && $scope.player.data.elements[$scope.current_element].generators['Tier 13'].level > 0;}
 		  },
 		  "Tier 13-2": {
-		    "price": 8.5e+15,
-		    "description": "x3",
-		    "order": 169,
+		    price: 8.5e+15,
+		    description: "x3",
 		    apply: function (resource) {return resource * 3;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 13-1'].bought;}
 		  },
 		  "Tier 13-3": {
-		    "price": 8.5e+16,
-		    "description": "x4",
-		    "order": 170,
+		    price: 8.5e+16,
+		    description: "x4",
 		    apply: function (resource) {return resource * 4;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 13-2'].bought;}
 		  },
 		  "Tier 13-4": {
-		    "price": 8.5e+18,
-		    "description": "x5",
-		    "order": 171,
+		    price: 8.5e+18,
+		    description: "x5",
 		    apply: function (resource) {return resource * 5;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 13-3'].bought;}
 		  },
 		  "Tier 13-5": {
-		    "price": 8.5e+20,
-		    "description": "x6",
-		    "order": 172,
+		    price: 8.5e+20,
+		    description: "x6",
 		    apply: function (resource) {return resource * 6;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 13-4'].bought;}
 		  },
 		  "Tier 13-6": {
-		    "price": 8.5e+22,
-		    "description": "x7",
-		    "order": 173,
+		    price: 8.5e+22,
+		    description: "x7",
 		    apply: function (resource) {return resource * 7;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 13-5'].bought;}
 		  },
 		  "Tier 13-7": {
-		    "price": 8.5e+25,
-		    "description": "x8",
-		    "order": 174,
+		    price: 8.5e+25,
+		    description: "x8",
 		    apply: function (resource) {return resource * 8;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 13-6'].bought;}
 		  },
 		  "Tier 13-8": {
-		    "price": 8.5e+28,
-		    "description": "x9",
-		    "order": 175,
+		    price: 8.5e+28,
+		    description: "x9",
 		    apply: function (resource) {return resource * 9;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 13-7'].bought;}
 		  },
 		  "Tier 14-1": {
-		    "price": 2.1e+16,
-		    "description": "x2",
-		    "order": 182,
+		    price: 2.1e+16,
+		    description: "x2",
 		    apply: function (resource) {return resource * 2;},
 		    visible: function () {return $scope.player.data.unlocks.upgrade && $scope.player.data.elements[$scope.current_element].generators['Tier 14'].level > 0;}
 		  },
 		  "Tier 14-2": {
-		    "price": 1.05e+17,
-		    "description": "x3",
-		    "order": 183,
+		    price: 1.05e+17,
+		    description: "x3",
 		    apply: function (resource) {return resource * 3;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 14-1'].bought;}
 		  },
 		  "Tier 14-3": {
-		    "price": 1.05e+18,
-		    "description": "x4",
-		    "order": 184,
+		    price: 1.05e+18,
+		    description: "x4",
 		    apply: function (resource) {return resource * 4;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 14-2'].bought;}
 		  },
 		  "Tier 14-4": {
-		    "price": 1.05e+20,
-		    "description": "x5",
-		    "order": 185,
+		    price: 1.05e+20,
+		    description: "x5",
 		    apply: function (resource) {return resource * 5;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 14-3'].bought;}
 		  },
 		  "Tier 14-5": {
-		    "price": 1.05e+22,
-		    "description": "x6",
-		    "order": 186,
+		    price: 1.05e+22,
+		    description: "x6",
 		    apply: function (resource) {return resource * 6;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 14-4'].bought;}
 		  },
 		  "Tier 14-6": {
-		    "price": 1.05e+24,
-		    "description": "x7",
-		    "order": 187,
+		    price: 1.05e+24,
+		    description: "x7",
 		    apply: function (resource) {return resource * 7;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 14-5'].bought;}
 		  },
 		  "Tier 14-7": {
-		    "price": 1.05e+27,
-		    "description": "x8",
-		    "order": 188,
+		    price: 1.05e+27,
+		    description: "x8",
 		    apply: function (resource) {return resource * 8;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 14-6'].bought;}
 		  },
 		  "Tier 14-8": {
-		    "price": 1.05e+30,
-		    "description": "x9",
-		    "order": 189,
+		    price: 1.05e+30,
+		    description: "x9",
 		    apply: function (resource) {return resource * 9;},
 		    visible: function () {return $scope.player.data.elements[$scope.current_element].upgrades['Tier 14-7'].bought;}
 		  }
@@ -3434,7 +3340,7 @@ function loadData($scope) {
           $scope.unlocks.upgrade.listener();
         }
       },
-      event : "upgrade"
+      event : "generator"
     },
     "ionization_energy" : {
       check : function (event, data) {
