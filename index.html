@@ -292,12 +292,12 @@
                               {{generator}}
                             </div>
                           </td>
-                          <td class="animif col-md-1" ng-repeat="upgrade in generators[generator].upgrades">
-                            <a class="btn btn-default" ng-show="upgrades[upgrade].visible()"
-                              ng-click="upgrade.buyUpgrade(upgrade, current_element)"
-                              ng-class="{disabled: upgrades[upgrade].price > player.data.resources[current_element].number && !player.data.elements[current_element].upgrades[upgrade].bought,
-                              active: player.data.elements[current_element].upgrades[upgrade].bought}">
-                            {{upgrades[upgrade].description}}
+                          <td class="animif col-md-1" ng-repeat="up in generators[generator].upgrades">
+                            <a class="btn btn-default" ng-show="upgrades[up].visible()"
+                              ng-click="upgrade.buyUpgrade(up, current_element)"
+                              ng-class="{disabled: upgrades[up].price > player.data.resources[current_element].number && !player.data.elements[current_element].upgrades[up].bought,
+                              active: player.data.elements[current_element].upgrades[up].bought}">
+                            {{upgrades[up].description}}
                             </a>
                           </td>
                           <td class="animif col-md-2">

@@ -10,6 +10,7 @@ function(player) {
   };
 
   this.buyUpgrade = function (name, element) {
+	  alert(name+" "+element);
     if(player.data.elements[element].upgrades[name].bought) {
       return;
     }
