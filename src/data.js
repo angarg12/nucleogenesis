@@ -1448,15 +1448,33 @@ function loadData($scope) {
     }
   };
 
+  $scope.visibleGenerators = function(){
+	  generators = [];
+	  for(var generator in $scope.generators){
+		  if(isGeneratorVisible(generator)){
+			  generators.push(generator);
+		  }
+	  }
+	  return generators;
+  };
+  
+  isGeneratorVisible = function (name){
+	  var generator = $scope.generators[name];
+	  var condition = "";
+	  for(var dep in generator.dependencies){
+		  condition += "$scope.player.data.elements[$scope.current_element].generators['"+generator.dependencies[dep]+"'].level > 0"+" && ";
+	  }
+	  condition += "true";
+	  return eval(condition);	  
+  };
+  
   $scope.generators = {
     "Tier 1": {
-        visible : function () {
-            return true;
-          },
       price: 15,
-      "power": 1,
-      "priceIncrease": 1.05,
-      "upgrades": [
+      power: 1,
+      priceIncrease: 1.05,
+      dependencies: [],
+      upgrades: [
         "Tier 1-1",
         "Tier 1-2",
         "Tier 1-3",
@@ -1468,13 +1486,13 @@ function loadData($scope) {
       ]
     },
     "Tier 2": {
-        visible : function () {
-            return $scope.player.data.elements[$scope.current_element].generators['Tier 1'].level > 0;
-          },
       price: 100,
-      "power": 10,
-      "priceIncrease": 1.05,
-      "upgrades": [
+      power: 10,
+      priceIncrease: 1.05,
+      dependencies: [
+               	    "Tier 1"
+               	  ],
+      upgrades: [
         "Tier 2-1",
         "Tier 2-2",
         "Tier 2-3",
@@ -1486,13 +1504,13 @@ function loadData($scope) {
       ]
     },
     "Tier 3": {
-        visible : function () {
-            return $scope.player.data.elements[$scope.current_element].generators['Tier 2'].level > 0;
-          },
       price: 1100,
-      "power": 80,
-      "priceIncrease": 1.05,
-      "upgrades": [
+      power: 80,
+      priceIncrease: 1.05,
+      dependencies: [
+               	    "Tier 2"
+               	  ],
+      upgrades: [
         "Tier 3-1",
         "Tier 3-2",
         "Tier 3-3",
@@ -1504,13 +1522,13 @@ function loadData($scope) {
       ]
     },
     "Tier 4": {
-        visible : function () {
-            return $scope.player.data.elements[$scope.current_element].generators['Tier 3'].level > 0;
-          },
       price: 12000,
-      "power": 470,
-      "priceIncrease": 1.05,
-      "upgrades": [
+      power: 470,
+      priceIncrease: 1.05,
+      dependencies: [
+               	    "Tier 3"
+               	  ],
+      upgrades: [
         "Tier 4-1",
         "Tier 4-2",
         "Tier 4-3",
@@ -1522,13 +1540,13 @@ function loadData($scope) {
       ]
     },
     "Tier 5": {
-        visible : function () {
-            return $scope.player.data.elements[$scope.current_element].generators['Tier 4'].level > 0;
-          },
       price: 130000,
-      "power": 2600,
-      "priceIncrease": 1.05,
-      "upgrades": [
+      power: 2600,
+      priceIncrease: 1.05,
+      dependencies: [
+               	    "Tier 4"
+               	  ],
+      upgrades: [
         "Tier 5-1",
         "Tier 5-2",
         "Tier 5-3",
@@ -1540,13 +1558,13 @@ function loadData($scope) {
       ]
     },
     "Tier 6": {
-        visible : function () {
-            return $scope.player.data.elements[$scope.current_element].generators['Tier 5'].level > 0;
-          },
       price: 1400000,
-      "power": 14000,
-      "priceIncrease": 1.05,
-      "upgrades": [
+      power: 14000,
+      priceIncrease: 1.05,
+      dependencies: [
+               	    "Tier 5"
+               	  ],
+      upgrades: [
         "Tier 6-1",
         "Tier 6-2",
         "Tier 6-3",
@@ -1558,13 +1576,13 @@ function loadData($scope) {
       ]
     },
     "Tier 7": {
-        visible : function () {
-            return $scope.player.data.elements[$scope.current_element].generators['Tier 6'].level > 0;
-          },
       price: 2000000,
-      "power": 78000,
-      "priceIncrease": 1.05,
-      "upgrades": [
+      power: 78000,
+      priceIncrease: 1.05,
+      dependencies: [
+               	    "Tier 6"
+               	  ],
+      upgrades: [
         "Tier 7-1",
         "Tier 7-2",
         "Tier 7-3",
@@ -1576,13 +1594,13 @@ function loadData($scope) {
       ]
     },
     "Tier 8": {
-        visible : function () {
-            return $scope.player.data.elements[$scope.current_element].generators['Tier 7'].level > 0;
-          },
       price: 330000000,
-      "power": 440000,
-      "priceIncrease": 1.05,
-      "upgrades": [
+      power: 440000,
+      priceIncrease: 1.05,
+      dependencies: [
+               	    "Tier 7"
+               	  ],
+      upgrades: [
         "Tier 8-1",
         "Tier 8-2",
         "Tier 8-3",
@@ -1594,13 +1612,13 @@ function loadData($scope) {
       ]
     },
     "Tier 9": {
-        visible : function () {
-            return $scope.player.data.elements[$scope.current_element].generators['Tier 8'].level > 0;
-          },
       price: 5100000000,
-      "power": 2600000,
-      "priceIncrease": 1.05,
-      "upgrades": [
+      power: 2600000,
+      priceIncrease: 1.05,
+      dependencies: [
+               	    "Tier 8"
+               	  ],
+      upgrades: [
         "Tier 9-1",
         "Tier 9-2",
         "Tier 9-3",
@@ -1612,13 +1630,13 @@ function loadData($scope) {
       ]
     },
     "Tier 10": {
-        visible : function () {
-            return $scope.player.data.elements[$scope.current_element].generators['Tier 9'].level > 0;
-          },
       price: 75000000000,
-      "power": 16000000,
-      "priceIncrease": 1.05,
-      "upgrades": [
+      power: 16000000,
+      priceIncrease: 1.05,
+      dependencies: [
+	    "Tier 9"
+	  ],
+      upgrades: [
         "Tier 10-1",
         "Tier 10-2",
         "Tier 10-3",
@@ -1650,734 +1668,734 @@ function loadData($scope) {
   
   $scope.upgrades = {
     "Tier 1-1": {
-      "price": 100,
-      "description": "x2",
-      "preconditions": [
+      price: 100,
+      description: "x2",
+      preconditions: [
         "$scope.player.data.unlocks.upgrade",
         "$scope.player.data.elements[$scope.current_element].generators['Tier 1'].level > 0"
       ],
-      "dependencies": [],
-      "power": 2
+      dependencies: [],
+      power: 2
     },
     "Tier 1-2": {
-      "price": 500,
-      "description": "x3",
-      "preconditions": [],
-      "dependencies": [
+      price: 500,
+      description: "x3",
+      preconditions: [],
+      dependencies: [
         "Tier 1-1"
       ],
-      "power": 3
+      power: 3
     },
     "Tier 1-3": {
-      "price": 10000,
-      "description": "x4",
-      "preconditions": [],
-      "dependencies": [
+      price: 10000,
+      description: "x4",
+      preconditions: [],
+      dependencies: [
         "Tier 1-2"
       ],
-      "power": 4
+      power: 4
     },
     "Tier 1-4": {
-      "price": 100000,
-      "description": "x5",
-      "preconditions": [],
-      "dependencies": [
+      price: 100000,
+      description: "x5",
+      preconditions: [],
+      dependencies: [
         "Tier 1-3"
       ],
-      "power": 5
+      power: 5
     },
     "Tier 1-5": {
-      "price": 10000000,
-      "description": "x6",
-      "preconditions": [],
-      "dependencies": [
+      price: 10000000,
+      description: "x6",
+      preconditions: [],
+      dependencies: [
         "Tier 1-4"
       ],
-      "power": 6
+      power: 6
     },
     "Tier 1-6": {
-      "price": 100000000,
-      "description": "x7",
-      "preconditions": [],
-      "dependencies": [
+      price: 100000000,
+      description: "x7",
+      preconditions: [],
+      dependencies: [
         "Tier 1-5"
       ],
-      "power": 7
+      power: 7
     },
     "Tier 1-7": {
-      "price": 1000000000,
-      "description": "x8",
-      "preconditions": [],
-      "dependencies": [
+      price: 1000000000,
+      description: "x8",
+      preconditions: [],
+      dependencies: [
         "Tier 1-6"
       ],
-      "power": 8
+      power: 8
     },
     "Tier 1-8": {
-      "price": 10000000000,
-      "description": "x9",
-      "preconditions": [],
-      "dependencies": [
+      price: 10000000000,
+      description: "x9",
+      preconditions: [],
+      dependencies: [
         "Tier 1-7"
       ],
-      "power": 9
+      power: 9
     },
     "Tier 2-1": {
-      "price": 1000,
-      "description": "x2",
-      "preconditions": [
+      price: 1000,
+      description: "x2",
+      preconditions: [
         "$scope.player.data.unlocks.upgrade",
         "$scope.player.data.elements[$scope.current_element].generators['Tier 2'].level > 0"
       ],
-      "dependencies": [],
-      "power": 2
+      dependencies: [],
+      power: 2
     },
     "Tier 2-2": {
-      "price": 5000,
-      "description": "x3",
-      "preconditions": [],
-      "dependencies": [
+      price: 5000,
+      description: "x3",
+      preconditions: [],
+      dependencies: [
         "Tier 2-1"
       ],
-      "power": 3
+      power: 3
     },
     "Tier 2-3": {
-      "price": 50000,
-      "description": "x4",
-      "preconditions": [],
-      "dependencies": [
+      price: 50000,
+      description: "x4",
+      preconditions: [],
+      dependencies: [
         "Tier 2-2"
       ],
-      "power": 4
+      power: 4
     },
     "Tier 2-4": {
-      "price": 5000000,
-      "description": "x5",
-      "preconditions": [],
-      "dependencies": [
+      price: 5000000,
+      description: "x5",
+      preconditions: [],
+      dependencies: [
         "Tier 2-3"
       ],
-      "power": 5
+      power: 5
     },
     "Tier 2-5": {
-      "price": 500000000,
-      "description": "x6",
-      "preconditions": [],
-      "dependencies": [
+      price: 500000000,
+      description: "x6",
+      preconditions: [],
+      dependencies: [
         "Tier 2-4"
       ],
-      "power": 6
+      power: 6
     },
     "Tier 2-6": {
-      "price": 50000000000,
-      "description": "x7",
-      "preconditions": [],
-      "dependencies": [
+      price: 50000000000,
+      description: "x7",
+      preconditions: [],
+      dependencies: [
         "Tier 2-5"
       ],
-      "power": 7
+      power: 7
     },
     "Tier 2-7": {
-      "price": 50000000000000,
-      "description": "x8",
-      "preconditions": [],
-      "dependencies": [
+      price: 50000000000000,
+      description: "x8",
+      preconditions: [],
+      dependencies: [
         "Tier 2-6"
       ],
-      "power": 8
+      power: 8
     },
     "Tier 2-8": {
-      "price": 5.0e+16,
-      "description": "x9",
-      "preconditions": [],
-      "dependencies": [
+      price: 5.0e+16,
+      description: "x9",
+      preconditions: [],
+      dependencies: [
         "Tier 2-7"
       ],
-      "power": 9
+      power: 9
     },
     "Tier 3-1": {
-      "price": 10000,
-      "description": "x2",
-      "preconditions": [
+      price: 10000,
+      description: "x2",
+      preconditions: [
         "$scope.player.data.unlocks.upgrade",
         "$scope.player.data.elements[$scope.current_element].generators['Tier 3'].level > 0"
       ],
-      "dependencies": [],
-      "power": 2
+      dependencies: [],
+      power: 2
     },
     "Tier 3-2": {
-      "price": 55000,
-      "description": "x3",
-      "preconditions": [],
-      "dependencies": [
+      price: 55000,
+      description: "x3",
+      preconditions: [],
+      dependencies: [
         "Tier 3-1"
       ],
-      "power": 3
+      power: 3
     },
     "Tier 3-3": {
-      "price": 550000,
-      "description": "x4",
-      "preconditions": [],
-      "dependencies": [
+      price: 550000,
+      description: "x4",
+      preconditions: [],
+      dependencies: [
         "Tier 3-2"
       ],
-      "power": 4
+      power: 4
     },
     "Tier 3-4": {
-      "price": 55000000,
-      "description": "x5",
-      "preconditions": [],
-      "dependencies": [
+      price: 55000000,
+      description: "x5",
+      preconditions: [],
+      dependencies: [
         "Tier 3-3"
       ],
-      "power": 5
+      power: 5
     },
     "Tier 3-5": {
-      "price": 5500000000,
-      "description": "x6",
-      "preconditions": [],
-      "dependencies": [
+      price: 5500000000,
+      description: "x6",
+      preconditions: [],
+      dependencies: [
         "Tier 3-4"
       ],
-      "power": 6
+      power: 6
     },
     "Tier 3-6": {
-      "price": 550000000000,
-      "description": "x7",
-      "preconditions": [],
-      "dependencies": [
+      price: 550000000000,
+      description: "x7",
+      preconditions: [],
+      dependencies: [
         "Tier 3-5"
       ],
-      "power": 7
+      power: 7
     },
     "Tier 3-7": {
-      "price": 5.5e+14,
-      "description": "x8",
-      "preconditions": [],
-      "dependencies": [
+      price: 5.5e+14,
+      description: "x8",
+      preconditions: [],
+      dependencies: [
         "Tier 3-6"
       ],
-      "power": 8
+      power: 8
     },
     "Tier 3-8": {
-      "price": 5.5e+17,
-      "description": "x9",
-      "preconditions": [],
-      "dependencies": [
+      price: 5.5e+17,
+      description: "x9",
+      preconditions: [],
+      dependencies: [
         "Tier 3-7"
       ],
-      "power": 9
+      power: 9
     },
     "Tier 4-1": {
-      "price": 120000,
-      "description": "x2",
-      "preconditions": [
+      price: 120000,
+      description: "x2",
+      preconditions: [
         "$scope.player.data.unlocks.upgrade",
         "$scope.player.data.elements[$scope.current_element].generators['Tier 4'].level > 0"
       ],
-      "dependencies": [],
-      "power": 2
+      dependencies: [],
+      power: 2
     },
     "Tier 4-2": {
-      "price": 600000,
-      "description": "x3",
-      "preconditions": [],
-      "dependencies": [
+      price: 600000,
+      description: "x3",
+      preconditions: [],
+      dependencies: [
         "Tier 4-1"
       ],
-      "power": 3
+      power: 3
     },
     "Tier 4-3": {
-      "price": 6000000,
-      "description": "x4",
-      "preconditions": [],
-      "dependencies": [
+      price: 6000000,
+      description: "x4",
+      preconditions: [],
+      dependencies: [
         "Tier 4-2"
       ],
-      "power": 4
+      power: 4
     },
     "Tier 4-4": {
-      "price": 600000000,
-      "description": "x5",
-      "preconditions": [],
-      "dependencies": [
+      price: 600000000,
+      description: "x5",
+      preconditions: [],
+      dependencies: [
         "Tier 4-3"
       ],
-      "power": 5
+      power: 5
     },
     "Tier 4-5": {
-      "price": 60000000000,
-      "description": "x6",
-      "preconditions": [],
-      "dependencies": [
+      price: 60000000000,
+      description: "x6",
+      preconditions: [],
+      dependencies: [
         "Tier 4-4"
       ],
-      "power": 6
+      power: 6
     },
     "Tier 4-6": {
-      "price": 6000000000000,
-      "description": "x7",
-      "preconditions": [],
-      "dependencies": [
+      price: 6000000000000,
+      description: "x7",
+      preconditions: [],
+      dependencies: [
         "Tier 4-5"
       ],
-      "power": 7
+      power: 7
     },
     "Tier 4-7": {
-      "price": 6.0e+15,
-      "description": "x8",
-      "preconditions": [],
-      "dependencies": [
+      price: 6.0e+15,
+      description: "x8",
+      preconditions: [],
+      dependencies: [
         "Tier 4-6"
       ],
-      "power": 8
+      power: 8
     },
     "Tier 4-8": {
-      "price": 6.0e+18,
-      "description": "x9",
-      "preconditions": [],
-      "dependencies": [
+      price: 6.0e+18,
+      description: "x9",
+      preconditions: [],
+      dependencies: [
         "Tier 4-7"
       ],
-      "power": 9
+      power: 9
     },
     "Tier 5-1": {
-      "price": 1300000,
-      "description": "x2",
-      "preconditions": [
+      price: 1300000,
+      description: "x2",
+      preconditions: [
         "$scope.player.data.unlocks.upgrade",
         "$scope.player.data.elements[$scope.current_element].generators['Tier 5'].level > 0"
       ],
-      "dependencies": [],
-      "power": 2
+      dependencies: [],
+      power: 2
     },
     "Tier 5-2": {
-      "price": 6500000,
-      "description": "x3",
-      "preconditions": [],
-      "dependencies": [
+      price: 6500000,
+      description: "x3",
+      preconditions: [],
+      dependencies: [
         "Tier 5-1"
       ],
-      "power": 3
+      power: 3
     },
     "Tier 5-3": {
-      "price": 65000000,
-      "description": "x4",
-      "preconditions": [],
-      "dependencies": [
+      price: 65000000,
+      description: "x4",
+      preconditions: [],
+      dependencies: [
         "Tier 5-2"
       ],
-      "power": 4
+      power: 4
     },
     "Tier 5-4": {
-      "price": 6500000000,
-      "description": "x5",
-      "preconditions": [],
-      "dependencies": [
+      price: 6500000000,
+      description: "x5",
+      preconditions: [],
+      dependencies: [
         "Tier 5-3"
       ],
-      "power": 5
+      power: 5
     },
     "Tier 5-5": {
-      "price": 650000000000,
-      "description": "x6",
-      "preconditions": [],
-      "dependencies": [
+      price: 650000000000,
+      description: "x6",
+      preconditions: [],
+      dependencies: [
         "Tier 5-4"
       ],
-      "power": 6
+      power: 6
     },
     "Tier 5-6": {
-      "price": 65000000000000,
-      "description": "x7",
-      "preconditions": [],
-      "dependencies": [
+      price: 65000000000000,
+      description: "x7",
+      preconditions: [],
+      dependencies: [
         "Tier 5-5"
       ],
-      "power": 7
+      power: 7
     },
     "Tier 5-7": {
-      "price": 6.5e+16,
-      "description": "x8",
-      "preconditions": [],
-      "dependencies": [
+      price: 6.5e+16,
+      description: "x8",
+      preconditions: [],
+      dependencies: [
         "Tier 5-6"
       ],
-      "power": 8
+      power: 8
     },
     "Tier 5-8": {
-      "price": 6.5e+19,
-      "description": "x9",
-      "preconditions": [],
-      "dependencies": [
+      price: 6.5e+19,
+      description: "x9",
+      preconditions: [],
+      dependencies: [
         "Tier 5-7"
       ],
-      "power": 9
+      power: 9
     },
     "Tier 6-1": {
-      "price": 14000000,
-      "description": "x2",
-      "preconditions": [
+      price: 14000000,
+      description: "x2",
+      preconditions: [
         "$scope.player.data.unlocks.upgrade",
         "$scope.player.data.elements[$scope.current_element].generators['Tier 6'].level > 0"
       ],
-      "dependencies": [],
-      "power": 2
+      dependencies: [],
+      power: 2
     },
     "Tier 6-2": {
-      "price": 70000000,
-      "description": "x3",
-      "preconditions": [],
-      "dependencies": [
+      price: 70000000,
+      description: "x3",
+      preconditions: [],
+      dependencies: [
         "Tier 6-1"
       ],
-      "power": 3
+      power: 3
     },
     "Tier 6-3": {
-      "price": 700000000,
-      "description": "x4",
-      "preconditions": [],
-      "dependencies": [
+      price: 700000000,
+      description: "x4",
+      preconditions: [],
+      dependencies: [
         "Tier 6-2"
       ],
-      "power": 4
+      power: 4
     },
     "Tier 6-4": {
-      "price": 70000000000,
-      "description": "x5",
-      "preconditions": [],
-      "dependencies": [
+      price: 70000000000,
+      description: "x5",
+      preconditions: [],
+      dependencies: [
         "Tier 6-3"
       ],
-      "power": 5
+      power: 5
     },
     "Tier 6-5": {
-      "price": 7000000000000,
-      "description": "x6",
-      "preconditions": [],
-      "dependencies": [
+      price: 7000000000000,
+      description: "x6",
+      preconditions: [],
+      dependencies: [
         "Tier 6-4"
       ],
-      "power": 6
+      power: 6
     },
     "Tier 6-6": {
-      "price": 7.0e+14,
-      "description": "x7",
-      "preconditions": [],
-      "dependencies": [
+      price: 7.0e+14,
+      description: "x7",
+      preconditions: [],
+      dependencies: [
         "Tier 6-5"
       ],
-      "power": 7
+      power: 7
     },
     "Tier 6-7": {
-      "price": 7.0e+17,
-      "description": "x8",
-      "preconditions": [],
-      "dependencies": [
+      price: 7.0e+17,
+      description: "x8",
+      preconditions: [],
+      dependencies: [
         "Tier 6-6"
       ],
-      "power": 8
+      power: 8
     },
     "Tier 6-8": {
-      "price": 7.0e+20,
-      "description": "x9",
-      "preconditions": [],
-      "dependencies": [
+      price: 7.0e+20,
+      description: "x9",
+      preconditions: [],
+      dependencies: [
         "Tier 6-7"
       ],
-      "power": 9
+      power: 9
     },
     "Tier 7-1": {
-      "price": 200000000,
-      "description": "x2",
-      "preconditions": [
+      price: 200000000,
+      description: "x2",
+      preconditions: [
         "$scope.player.data.unlocks.upgrade",
         "$scope.player.data.elements[$scope.current_element].generators['Tier 7'].level > 0"
       ],
-      "dependencies": [],
-      "power": 2
+      dependencies: [],
+      power: 2
     },
     "Tier 7-2": {
-      "price": 1000000000,
-      "description": "x3",
-      "preconditions": [],
-      "dependencies": [
+      price: 1000000000,
+      description: "x3",
+      preconditions: [],
+      dependencies: [
         "Tier 7-1"
       ],
-      "power": 3
+      power: 3
     },
     "Tier 7-3": {
-      "price": 10000000000,
-      "description": "x4",
-      "preconditions": [],
-      "dependencies": [
+      price: 10000000000,
+      description: "x4",
+      preconditions: [],
+      dependencies: [
         "Tier 7-2"
       ],
-      "power": 4
+      power: 4
     },
     "Tier 7-4": {
-      "price": 1000000000000,
-      "description": "x5",
-      "preconditions": [],
-      "dependencies": [
+      price: 1000000000000,
+      description: "x5",
+      preconditions: [],
+      dependencies: [
         "Tier 7-3"
       ],
-      "power": 5
+      power: 5
     },
     "Tier 7-5": {
-      "price": 1.0e+14,
-      "description": "x6",
-      "preconditions": [],
-      "dependencies": [
+      price: 1.0e+14,
+      description: "x6",
+      preconditions: [],
+      dependencies: [
         "Tier 7-4"
       ],
-      "power": 6
+      power: 6
     },
     "Tier 7-6": {
-      "price": 1.0e+16,
-      "description": "x7",
-      "preconditions": [],
-      "dependencies": [
+      price: 1.0e+16,
+      description: "x7",
+      preconditions: [],
+      dependencies: [
         "Tier 7-5"
       ],
-      "power": 7
+      power: 7
     },
     "Tier 7-7": {
-      "price": 1.0e+19,
-      "description": "x8",
-      "preconditions": [],
-      "dependencies": [
+      price: 1.0e+19,
+      description: "x8",
+      preconditions: [],
+      dependencies: [
         "Tier 7-6"
       ],
-      "power": 8
+      power: 8
     },
     "Tier 7-8": {
-      "price": 1.0e+22,
-      "description": "x9",
-      "preconditions": [],
-      "dependencies": [
+      price: 1.0e+22,
+      description: "x9",
+      preconditions: [],
+      dependencies: [
         "Tier 7-7"
       ],
-      "power": 9
+      power: 9
     },
     "Tier 8-1": {
-      "price": 3300000000,
-      "description": "x2",
-      "preconditions": [
+      price: 3300000000,
+      description: "x2",
+      preconditions: [
         "$scope.player.data.unlocks.upgrade",
         "$scope.player.data.elements[$scope.current_element].generators['Tier 8'].level > 0"
       ],
-      "dependencies": [],
-      "power": 2
+      dependencies: [],
+      power: 2
     },
     "Tier 8-2": {
-      "price": 16500000000,
-      "description": "x3",
-      "preconditions": [],
-      "dependencies": [
+      price: 16500000000,
+      description: "x3",
+      preconditions: [],
+      dependencies: [
         "Tier 8-1"
       ],
-      "power": 3
+      power: 3
     },
     "Tier 8-3": {
-      "price": 165000000000,
-      "description": "x4",
-      "preconditions": [],
-      "dependencies": [
+      price: 165000000000,
+      description: "x4",
+      preconditions: [],
+      dependencies: [
         "Tier 8-2"
       ],
-      "power": 4
+      power: 4
     },
     "Tier 8-4": {
-      "price": 16500000000000,
-      "description": "x5",
-      "preconditions": [],
-      "dependencies": [
+      price: 16500000000000,
+      description: "x5",
+      preconditions: [],
+      dependencies: [
         "Tier 8-3"
       ],
-      "power": 5
+      power: 5
     },
     "Tier 8-5": {
-      "price": 1.65e+15,
-      "description": "x6",
-      "preconditions": [],
-      "dependencies": [
+      price: 1.65e+15,
+      description: "x6",
+      preconditions: [],
+      dependencies: [
         "Tier 8-4"
       ],
-      "power": 6
+      power: 6
     },
     "Tier 8-6": {
-      "price": 1.65e+17,
-      "description": "x7",
-      "preconditions": [],
-      "dependencies": [
+      price: 1.65e+17,
+      description: "x7",
+      preconditions: [],
+      dependencies: [
         "Tier 8-5"
       ],
-      "power": 7
+      power: 7
     },
     "Tier 8-7": {
-      "price": 1.65e+20,
-      "description": "x8",
-      "preconditions": [],
-      "dependencies": [
+      price: 1.65e+20,
+      description: "x8",
+      preconditions: [],
+      dependencies: [
         "Tier 8-6"
       ],
-      "power": 8
+      power: 8
     },
     "Tier 8-8": {
-      "price": 1.65e+23,
-      "description": "x9",
-      "preconditions": [],
-      "dependencies": [
+      price: 1.65e+23,
+      description: "x9",
+      preconditions: [],
+      dependencies: [
         "Tier 8-7"
       ],
-      "power": 9
+      power: 9
     },
     "Tier 9-1": {
-      "price": 51000000000,
-      "description": "x2",
-      "preconditions": [
+      price: 51000000000,
+      description: "x2",
+      preconditions: [
         "$scope.player.data.unlocks.upgrade",
         "$scope.player.data.elements[$scope.current_element].generators['Tier 9'].level > 0"
       ],
-      "dependencies": [],
-      "power": 2
+      dependencies: [],
+      power: 2
     },
     "Tier 9-2": {
-      "price": 255000000000,
-      "description": "x3",
-      "preconditions": [],
-      "dependencies": [
+      price: 255000000000,
+      description: "x3",
+      preconditions: [],
+      dependencies: [
         "Tier 9-1"
       ],
-      "power": 3
+      power: 3
     },
     "Tier 9-3": {
-      "price": 2550000000000,
-      "description": "x4",
-      "preconditions": [],
-      "dependencies": [
+      price: 2550000000000,
+      description: "x4",
+      preconditions: [],
+      dependencies: [
         "Tier 9-2"
       ],
-      "power": 4
+      power: 4
     },
     "Tier 9-4": {
-      "price": 2.55e+14,
-      "description": "x5",
-      "preconditions": [],
-      "dependencies": [
+      price: 2.55e+14,
+      description: "x5",
+      preconditions: [],
+      dependencies: [
         "Tier 9-3"
       ],
-      "power": 5
+      power: 5
     },
     "Tier 9-5": {
-      "price": 2.55e+16,
-      "description": "x6",
-      "preconditions": [],
-      "dependencies": [
+      price: 2.55e+16,
+      description: "x6",
+      preconditions: [],
+      dependencies: [
         "Tier 9-4"
       ],
-      "power": 6
+      power: 6
     },
     "Tier 9-6": {
-      "price": 2.55e+18,
-      "description": "x7",
-      "preconditions": [],
-      "dependencies": [
+      price: 2.55e+18,
+      description: "x7",
+      preconditions: [],
+      dependencies: [
         "Tier 9-5"
       ],
-      "power": 7
+      power: 7
     },
     "Tier 9-7": {
-      "price": 2.55e+21,
-      "description": "x8",
-      "preconditions": [],
-      "dependencies": [
+      price: 2.55e+21,
+      description: "x8",
+      preconditions: [],
+      dependencies: [
         "Tier 9-6"
       ],
-      "power": 8
+      power: 8
     },
     "Tier 9-8": {
-      "price": 2.55e+24,
-      "description": "x9",
-      "preconditions": [],
-      "dependencies": [
+      price: 2.55e+24,
+      description: "x9",
+      preconditions: [],
+      dependencies: [
         "Tier 9-7"
       ],
-      "power": 9
+      power: 9
     },
     "Tier 10-1": {
-      "price": 750000000000,
-      "description": "x2",
-      "preconditions": [
+      price: 750000000000,
+      description: "x2",
+      preconditions: [
         "$scope.player.data.unlocks.upgrade",
         "$scope.player.data.elements[$scope.current_element].generators['Tier 10'].level > 0"
       ],
-      "dependencies": [],
-      "power": 2
+      dependencies: [],
+      power: 2
     },
     "Tier 10-2": {
-      "price": 3750000000000,
-      "description": "x3",
-      "preconditions": [],
-      "dependencies": [
+      price: 3750000000000,
+      description: "x3",
+      preconditions: [],
+      dependencies: [
         "Tier 10-1"
       ],
-      "power": 3
+      power: 3
     },
     "Tier 10-3": {
-      "price": 37500000000000,
-      "description": "x4",
-      "preconditions": [],
-      "dependencies": [
+      price: 37500000000000,
+      description: "x4",
+      preconditions: [],
+      dependencies: [
         "Tier 10-2"
       ],
-      "power": 4
+      power: 4
     },
     "Tier 10-4": {
-      "price": 3.75e+15,
-      "description": "x5",
-      "preconditions": [],
-      "dependencies": [
+      price: 3.75e+15,
+      description: "x5",
+      preconditions: [],
+      dependencies: [
         "Tier 10-3"
       ],
-      "power": 5
+      power: 5
     },
     "Tier 10-5": {
-      "price": 3.75e+17,
-      "description": "x6",
-      "preconditions": [],
-      "dependencies": [
+      price: 3.75e+17,
+      description: "x6",
+      preconditions: [],
+      dependencies: [
         "Tier 10-4"
       ],
-      "power": 6
+      power: 6
     },
     "Tier 10-6": {
-      "price": 3.75e+19,
-      "description": "x7",
-      "preconditions": [],
-      "dependencies": [
+      price: 3.75e+19,
+      description: "x7",
+      preconditions: [],
+      dependencies: [
         "Tier 10-5"
       ],
-      "power": 7
+      power: 7
     },
     "Tier 10-7": {
-      "price": 3.75e+22,
-      "description": "x8",
-      "preconditions": [],
-      "dependencies": [
+      price: 3.75e+22,
+      description: "x8",
+      preconditions: [],
+      dependencies: [
         "Tier 10-6"
       ],
-      "power": 8
+      power: 8
     },
     "Tier 10-8": {
-      "price": 3.75e+25,
-      "description": "x9",
-      "preconditions": [],
-      "dependencies": [
+      price: 3.75e+25,
+      description: "x9",
+      preconditions: [],
+      dependencies: [
         "Tier 10-7"
       ],
-      "power": 9
+      power: 9
     }
   };
 

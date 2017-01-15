@@ -80,7 +80,7 @@
                   <div>
                     <table class="table">
                       <tbody>
-                        <tr class="animif" ng-repeat="name in util.visibleKeys(generators)">
+                        <tr class="animif" ng-repeat="name in visibleGenerators()">
                           <td class="animif col-md-3">
                             <span class="pull-left">
                             {{name}}:&nbsp;
@@ -286,7 +286,7 @@
                     <h4>Upgrades</h4>
                     <table class="table">
                       <tbody>
-                        <tr class="animif" ng-repeat="generator in util.visibleKeys(generators)|filter:upgrade.filterUpgrade">
+                        <tr class="animif" ng-repeat="generator in visibleGenerators()|filter:upgrade.filterUpgrade">
                           <td class="animif col-md-2">
                             <div class="pull-left">
                               {{generator}}
