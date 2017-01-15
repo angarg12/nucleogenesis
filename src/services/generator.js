@@ -32,29 +32,25 @@ function(player) {
   
   this.generatorProduction = function (name, element) {
     var baseProduction = $scope.generators[name].power;
-    var upgradedProduction = baseProduction;
-    for(var upgrade in $scope.generators[name].upgrades) {
-      if(player.data.elements[element].upgrades[$scope.generators[name].upgrades[upgrade]].bought) {
-        upgradedProduction = $scope.upgrades[$scope.generators[name].upgrades[upgrade]]
-            .apply(upgradedProduction);
-      }
-    }
-    return upgradedProduction;
+    return this.upgradedProduction(baseProduction, name, element);
   };
 
   this.tierProduction = function (name, element) {
     var baseProduction = $scope.generators[name].power *
                          player.data.elements[element].generators[name].level;
-    var upgradedProduction = baseProduction;
-    for(var upgrade in $scope.generators[name].upgrades) {
-      if(player.data.elements[element].upgrades[$scope.generators[name].upgrades[upgrade]].bought) {
-        upgradedProduction = $scope.upgrades[$scope.generators[name].upgrades[upgrade]]
-            .apply(upgradedProduction);
-      }
-    }
-    return upgradedProduction;
+    return this.upgradedProduction(baseProduction, name, element);
   };
 
+  this.upgradedProduction = function (production, name, element) {
+    for(var upgrade in $scope.generators[name].upgrades) {
+        if(player.data.elements[element].upgrades[$scope.generators[name].upgrades[upgrade]].bought) {
+          power = $scope.upgrades[$scope.generators[name].upgrades[upgrade]].power;
+          production = $scope.upgradeApply(production, power);
+        }
+      }
+      return production;
+  };
+  
   this.elementProduction = function (element) {
     var total = 0;
     for(var tier in $scope.generators) {
