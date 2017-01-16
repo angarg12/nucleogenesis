@@ -1,11 +1,45 @@
 function loadData($scope) {
-  $scope.elements = {
+	$scope.visibleElements = function (){
+	  elements = [];
+	  for(var element in $scope.elements){
+		  if(isElementVisible(element)){
+			  elements.push(element);
+		  }
+	  }
+	  return elements;
+	};
+	
+	isElementVisible = function (element){
+		if($scope.elements[element].disabled){
+			return false;
+		}
+	    return $scope.player.data.elements[element].unlocked;
+	};
+	
+	$scope.elementHasNew = function (element){
+        var includes = $scope.elements[element].includes;
+        for ( var key in includes) {
+          if ($scope.player.data.resources[includes[key]].unlocked && $scope.player.data.resources[includes[key]].is_new) {
+            return true;
+          }
+        }
+        for ( var key in $scope.reactions[element].synthesis) {
+          if ($scope.synthesis[$scope.reactions[element].synthesis[key]].visible() &&
+              $scope.player.data.synthesis[$scope.reactions[element].synthesis[key]].is_new) {
+            return true;
+          }
+        }
+        return false;
+	};
+	
+	$scope.elements = {
     'H' : {
       name : 'Hydrogen',
       isotopes : [ '2H', '3H' ],
       visible : function () {
         return $scope.player.data.elements.H.unlocked;
       },
+      includes: [ 'H', '2H', '3H', 'H-', 'H2' ],
       has_new : function () {
         var includes = [ 'H', '2H', '3H', 'H-', 'H2' ];
         for ( var key in includes) {
@@ -107,6 +141,7 @@ function loadData($scope) {
       visible : function () {
         return $scope.player.data.elements.O.unlocked;
       },
+      includes: [ 'O', '17O', '18O', 'O2', 'O3' ],
       has_new : function () {
         var includes = [ 'O', '17O', '18O', 'O2', 'O3' ];
         for ( var key in includes) {
@@ -2792,8 +2827,8 @@ function loadData($scope) {
       has_new : function () {
         for ( var key in $scope.elements) {
           if ($scope.player.data.elements[key] !== undefined &&
-              $scope.player.data.elements[key].unlocked &&
-              $scope.elements[key].has_new()) {
+        	  $scope.player.data.elements[key].unlocked &&
+              $scope.elementHasNew(key)) {
             return true;
           }
         }

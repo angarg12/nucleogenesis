@@ -359,15 +359,15 @@
                   </tbody>
                 </table>
               </div>
-              <div class="col-lg-1 col-lg-pull-0 right-box" ng-if="visibleElements.length > 1">
+              <div class="col-lg-1 col-lg-pull-0 right-box" ng-if="visibleElements().length > 1">
                 <table class="table table-hover element-table">
                   <tbody>
-                    <tr class="animif" ng-repeat="key in visibleElements" ng-class="{active:current_element===key}">
+                    <tr class="animif" ng-repeat="key in visibleElements()" ng-class="{active:current_element===key}">
                       <td>
                         <div class="pull-left" ng-click="util.updateCurrent('current_element', key)">
                           <a>
                           {{elements[key].name}}
-                          <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="elements[key].has_new()"></span>
+                          <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="elementHasNew(key)"></span>
                           </a>
                         </div>
                       </td>
