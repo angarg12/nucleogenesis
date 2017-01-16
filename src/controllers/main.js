@@ -116,7 +116,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   };
   
   self.update = function () {
-    // decay should become first, since we are decaying the products from last step
     self.processDecay($scope.radioisotopes);
     self.processIsotopes();
     synthesis.processSynthesis();
@@ -129,8 +128,9 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     $scope.current_entry = "Hydrogen";
     $scope.current_element = "H";
     $scope.hover_element = "";
-    achievement.init();
     player.populatePlayer();
+    achievement.init();
+    achievement.initializeListeners();
     animation.introAnimation();
   };
   
