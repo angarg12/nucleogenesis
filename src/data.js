@@ -36,1448 +36,708 @@ function loadData($scope) {
     'H' : {
       name : 'Hydrogen',
       isotopes : [ '2H', '3H' ],
-      visible : function () {
-        return $scope.player.data.elements.H.unlocked;
-      },
       includes: [ 'H', '2H', '3H', 'H-', 'H2' ],
-      has_new : function () {
-        var includes = [ 'H', '2H', '3H', 'H-', 'H2' ];
-        for ( var key in includes) {
-          if ($scope.player.data.resources[includes[key]].unlocked && $scope.player.data.resources[includes[key]].is_new) {
-            return true;
-          }
-        }
-        for ( var key in $scope.reactions.H.synthesis) {
-          if ($scope.synthesis[$scope.reactions.H.synthesis[key]].visible() &&
-              $scope.player.data.synthesis[$scope.reactions.H.synthesis[key]].is_new) {
-            return true;
-          }
-        }
-        return false;
-      },
       number : 1
     },
     'He' : {
       name : 'Helium',
       isotopes : [ '3He' ],
-      visible : function () {
-        return false;
-        // return $scope.player.data.elements.He.unlocked;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 2,
       disabled : true
     },
     'Li' : {
       name : 'Lithium',
       isotopes : [ '7Li' ],
-      visible : function () {
-        return false;
-        // return $scope.player.data.elements.Li.unlocked;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 3,
       disabled : true
     },
     'Be' : {
       name : 'Beryllium',
       isotopes : [ '7Be', '10Be' ],
-      visible : function () {
-        return false;
-        // return $scope.player.data.elements.Be.unlocked;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 4,
       disabled : true
     },
     'B' : {
       name : 'Boron',
       isotopes : [ '11B' ],
-      visible : function () {
-        return false;
-        // return $scope.player.data.elements.B.unlocked;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 5,
       disabled : true
     },
     'C' : {
       name : 'Carbon',
       isotopes : [ '11C', '13C', '14C' ],
-      visible : function () {
-        return false;
-        // return $scope.player.data.elements.C.unlocked;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 6,
       disabled : true
     },
     'N' : {
       name : 'Nitrogen',
       isotopes : [ '13N', '15N' ],
-      visible : function () {
-        return false;
-        // return $scope.player.data.elements.N.unlocked;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 7,
       disabled : true
     },
     'O' : {
       name : 'Oxygen',
       isotopes : [ '17O', '18O' ],
-      visible : function () {
-        return $scope.player.data.elements.O.unlocked;
-      },
       includes: [ 'O', '17O', '18O', 'O2', 'O3' ],
-      has_new : function () {
-        var includes = [ 'O', '17O', '18O', 'O2', 'O3' ];
-        for ( var key in includes) {
-          if ($scope.player.data.resources[includes[key]].unlocked && $scope.player.data.resources[includes[key]].is_new) {
-            return true;
-          }
-        }
-        for ( var key in $scope.reactions.O.synthesis) {
-          if ($scope.synthesis[$scope.reactions.O.synthesis[key]].visible() &&
-              $scope.player.data.synthesis[$scope.reactions.O.synthesis[key]].is_new) {
-            return true;
-          }
-        }
-        return false;
-      },
       number : 8
     },
     'F' : {
       name : 'Fluorine',
       isotopes : [ '18F' ],
-      visible : function () {
-        return false;
-        // return $scope.player.data.elements.F.unlocked;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 9,
       disabled : true
     },
     'Ne' : {
       name : 'Neon',
       isotopes : [ '21Ne', '22Ne' ],
-      visible : function () {
-        return false;
-        // return $scope.player.data.elements.Ne.unlocked;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 10,
       disabled : true
     },
     'Na' : {
       name : 'Sodium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 11,
       disabled : true
     },
     'Mg' : {
       name : 'Magnesium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 12,
       disabled : true
     },
     'Al' : {
       name : 'Aluminium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 13,
       disabled : true
     },
     'Si' : {
       name : 'Silicon',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 14,
       disabled : true
     },
     'P' : {
       name : 'Phosphorus',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 15,
       disabled : true
     },
     'S' : {
       name : 'Sulfur',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 16,
       disabled : true
     },
     'Cl' : {
       name : 'Chlorine',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 17,
       disabled : true
     },
     'Ar' : {
       name : 'Argon',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 18,
       disabled : true
     },
     'K' : {
       name : 'Potassium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 19,
       disabled : true
     },
     'Ca' : {
       name : 'Calcium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 20,
       disabled : true
     },
     'Sc' : {
       name : 'Scandium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 21,
       disabled : true
     },
     'Ti' : {
       name : 'Titanium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 22,
       disabled : true
     },
     'V' : {
       name : 'Vanadium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 23,
       disabled : true
     },
     'Cr' : {
       name : 'Chromium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 24,
       disabled : true
     },
     'Mn' : {
       name : 'Manganese',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 25,
       disabled : true
     },
     'Fe' : {
       name : 'Iron',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 26,
       disabled : true
     },
     'Co' : {
       name : 'Cobalt',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 27,
       disabled : true
     },
     'Ni' : {
       name : 'Nickel',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 28,
       disabled : true
     },
     'Cu' : {
       name : 'Copper',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 29,
       disabled : true
     },
     'Zn' : {
       name : 'Zinc',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 30,
       disabled : true
     },
     'Ga' : {
       name : 'Gallium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 31,
       disabled : true
     },
     'Ge' : {
       name : 'Germanium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 32,
       disabled : true
     },
     'As' : {
       name : 'Arsenic',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 33,
       disabled : true
     },
     'Se' : {
       name : 'Selenium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 34,
       disabled : true
     },
     'Br' : {
       name : 'Bromine',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 35,
       disabled : true
     },
     'Kr' : {
       name : 'Krypton',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 36,
       disabled : true
     },
     'Rb' : {
       name : 'Rubidium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 37,
       disabled : true
     },
     'Sr' : {
       name : 'Strontium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 38,
       disabled : true
     },
     'Y' : {
       name : 'Yttrium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 39,
       disabled : true
     },
     'Zr' : {
       name : 'Zirconium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 40,
       disabled : true
     },
     'Nb' : {
       name : 'Niobium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 41,
       disabled : true
     },
     'Mo' : {
       name : 'Molybdenum',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 42,
       disabled : true
     },
     'Tc' : {
       name : 'Technetium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 43,
       disabled : true
     },
     'Ru' : {
       name : 'Ruthenium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 44,
       disabled : true
     },
     'Rh' : {
       name : 'Rhodium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 45,
       disabled : true
     },
     'Pd' : {
       name : 'Palladium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 46,
       disabled : true
     },
     'Ag' : {
       name : 'Silver',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 47,
       disabled : true
     },
     'Cd' : {
       name : 'Cadmium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 48,
       disabled : true
     },
     'In' : {
       name : 'Indium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 49,
       disabled : true
     },
     'Sn' : {
       name : 'Tin',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 50,
       disabled : true
     },
     'Sb' : {
       name : 'Antimony',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 51,
       disabled : true
     },
     'Te' : {
       name : 'Tellurium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 52,
       disabled : true
     },
     'I' : {
       name : 'Iodine',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 53,
       disabled : true
     },
     'Xe' : {
       name : 'Xenon',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 54,
       disabled : true
     },
     'Cs' : {
       name : 'Caesium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 55,
       disabled : true
     },
     'Ba' : {
       name : 'Barium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 56,
       disabled : true
     },
     'La' : {
       name : 'Lanthanum',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 57,
       disabled : true
     },
     'Ce' : {
       name : 'Cerium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 58,
       disabled : true
     },
     'Pr' : {
       name : 'Praseodymium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 59,
       disabled : true
     },
     'Nd' : {
       name : 'Neodymium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 60,
       disabled : true
     },
     'Pm' : {
       name : 'Promethium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 61,
       disabled : true
     },
     'Sm' : {
       name : 'Samarium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 62,
       disabled : true
     },
     'Eu' : {
       name : 'Europium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 63,
       disabled : true
     },
     'Gd' : {
       name : 'Gadolinium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 64,
       disabled : true
     },
     'Tb' : {
       name : 'Terbium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 65,
       disabled : true
     },
     'Dy' : {
       name : 'Dysprosium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 66,
       disabled : true
     },
     'Ho' : {
       name : 'Holmium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 67,
       disabled : true
     },
     'Er' : {
       name : 'Erbium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 68,
       disabled : true
     },
     'Tm' : {
       name : 'Thulium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 69,
       disabled : true
     },
     'Yb' : {
       name : 'Ytterbium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 70,
       disabled : true
     },
     'Lu' : {
       name : 'Lutetium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 71,
       disabled : true
     },
     'Hf' : {
       name : 'Hafnium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 72,
       disabled : true
     },
     'Ta' : {
       name : 'Tantalum',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 73,
       disabled : true
     },
     'W' : {
       name : 'Tungsten',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 74,
       disabled : true
     },
     'Re' : {
       name : 'Rhenium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 75,
       disabled : true
     },
     'Os' : {
       name : 'Osmium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 76,
       disabled : true
     },
     'Ir' : {
       name : 'Iridium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 77,
       disabled : true
     },
     'Pt' : {
       name : 'Platinum',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 78,
       disabled : true
     },
     'Au' : {
       name : 'Gold',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 79,
       disabled : true
     },
     'Hg' : {
       name : 'Mercury',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 80,
       disabled : true
     },
     'Tl' : {
       name : 'Thallium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 81,
       disabled : true
     },
     'Pb' : {
       name : 'Lead',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 82,
       disabled : true
     },
     'Bi' : {
       name : 'Bismuth',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 83,
       disabled : true
     },
     'Po' : {
       name : 'Polonium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 84,
       disabled : true
     },
     'At' : {
       name : 'Astatine',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 85,
       disabled : true
     },
     'Rn' : {
       name : 'Radon',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 86,
       disabled : true
     },
     'Fr' : {
       name : 'Francium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 87,
       disabled : true
     },
     'Ra' : {
       name : 'Radium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 88,
       disabled : true
     },
     'Ac' : {
       name : 'Actinium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 89,
       disabled : true
     },
     'Th' : {
       name : 'Thorium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 90,
       disabled : true
     },
     'Pa' : {
       name : 'Protactinium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 91,
       disabled : true
     },
     'U' : {
       name : 'Uranium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 92,
       disabled : true
     },
     'Np' : {
       name : 'Neptunium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 93,
       disabled : true
     },
     'Pu' : {
       name : 'Plutonium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 94,
       disabled : true
     },
     'Am' : {
       name : 'Americium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 95,
       disabled : true
     },
     'Cm' : {
       name : 'Curium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 96,
       disabled : true
     },
     'Bk' : {
       name : 'Berkelium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 97,
       disabled : true
     },
     'Cf' : {
       name : 'Californium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 98,
       disabled : true
     },
     'Es' : {
       name : 'Einsteinium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 99,
       disabled : true
     },
     'Fm' : {
       name : 'Fermium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 100,
       disabled : true
     },
     'Md' : {
       name : 'Mendelevium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 101,
       disabled : true
     },
     'No' : {
       name : 'Nobelium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 102,
       disabled : true
     },
     'Lr' : {
       name : 'Lawrencium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 103,
       disabled : true
     },
     'Rf' : {
       name : 'Rutherfordium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 104,
       disabled : true
     },
     'Db' : {
       name : 'Dubnium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 105,
       disabled : true
     },
     'Sg' : {
       name : 'Seaborgium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 106,
       disabled : true
     },
     'Bh' : {
       name : 'Bohrium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 107,
       disabled : true
     },
     'Hs' : {
       name : 'Hassium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 108,
       disabled : true
     },
     'Mt' : {
       name : 'Meitnerium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 109,
       disabled : true
     },
     'Ds' : {
       name : 'Darmstadtium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 110,
       disabled : true
     },
     'Rg' : {
       name : 'Roentgenium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 111,
       disabled : true
     },
     'Cn' : {
       name : 'Copernicium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 112,
       disabled : true
     },
     'Nh' : {
       name : 'Nihonium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 113,
       disabled : true
     },
     'Fl' : {
       name : 'Flerovium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 114,
       disabled : true
     },
     'Mc' : {
       name : 'Moscovium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 115,
       disabled : true
     },
     'Lv' : {
       name : 'Livermorium',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 116,
       disabled : true
     },
     'Ts' : {
       name : 'Tennessine',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 117,
       disabled : true
     },
     'Og' : {
       name : 'Oganesson',
       isotopes : [],
-      visible : function () {
-        return false;
-      },
-      has_new : function () {
-        return false;
-      },
       number : 118,
       disabled : true
     }
