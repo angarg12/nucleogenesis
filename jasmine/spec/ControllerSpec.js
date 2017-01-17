@@ -6,16 +6,18 @@ describe("Incremental table elements", function() {
   describe('initialization functions', function() {    
     it("should init all the variables", function() {
       spyOn(spec.player, "populatePlayer");
+      spyOn(spec.achievement, "initializeListeners");
       
       spec.$scope.init();
       
-			expect(spec.$scope.current_tab).toEqual("Elements");
-			expect(spec.$scope.current_entry).toEqual("Hydrogen");
-			expect(spec.$scope.current_element).toEqual("H");
-			expect(spec.$scope.hover_element).toEqual("");
-			expect(spec.achievement.toast).toEqual([]);
-			expect(spec.achievement.is_toast_visible).toEqual(false);
-			expect(spec.player.populatePlayer).toHaveBeenCalled();
+	  expect(spec.$scope.current_tab).toEqual("Elements");
+	  expect(spec.$scope.current_entry).toEqual("Hydrogen");
+	  expect(spec.$scope.current_element).toEqual("H");
+	  expect(spec.$scope.hover_element).toEqual("");
+	  expect(spec.achievement.toast).toEqual([]);
+	  expect(spec.achievement.is_toast_visible).toEqual(false);
+	  expect(spec.player.populatePlayer).toHaveBeenCalled();
+	  expect(spec.achievement.initializeListeners).toHaveBeenCalled();
     });
   });
   
