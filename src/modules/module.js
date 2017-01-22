@@ -4,6 +4,10 @@ var module = angular.module('incremental', [ 'ngAnimate' ])
 
     var formats = $locale.NUMBER_FORMATS;
     return function(input, fractionSize) {
+      
+      if(input === null){
+    	  return "";
+      }
       //Get formatted value
       var formattedValue = number(input, fractionSize);
 

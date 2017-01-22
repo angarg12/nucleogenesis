@@ -65,7 +65,7 @@ function($http) {
 		  condition += "self.$scope.player.data.elements[self.$scope.current_element].generators['"+generator.dependencies[dep]+"'].level > 0"+" && ";
 	  }
 	  condition += "true";
-	  eval(condition);	  
+	  return eval(condition);	  
   };
   
   $http.get('src/data/generators.json').then(function(response) {
@@ -87,7 +87,8 @@ function($http) {
 		  condition += "self.$scope.player.data.elements[self.$scope.current_element].upgrades['"+upgrade.dependencies[dep]+"'].bought"+" && ";
 	  }
 	  condition += "true";
-	 eval(condition);
+
+	 return eval(condition);
   }
   
   self.$scope.upgradeApply = function(resource, power){
