@@ -52,12 +52,12 @@ function($filter, $sce) {
       var exponential = number.toPrecision(6).split("e");
       var exponent = parseFloat(exponential[1].split("+")[1]);
       // And it is displayed in with superscript
-      return $filter('number')(exponential[0]) +
+      return $filter('numberEx')(exponential[0], 4) +
              " &#215; 10<sup>" +
              this.prettifyNumber(exponent) +
              "</sup>";
     }
-    return $filter('number')(number);
+    return $filter('numberEx')(number, 4);
   };
   
   // FIXME: poisson give bad results for small isotopes amount production

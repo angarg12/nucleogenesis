@@ -1,6 +1,7 @@
 pretest/
 node_modules/
 jasmine/coverage
+coverage/
 *~
 */*~
 .settings

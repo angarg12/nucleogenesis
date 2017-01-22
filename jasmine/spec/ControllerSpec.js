@@ -35,7 +35,6 @@ describe("Incremental table elements", function() {
   
   describe('onload', function() {
     beforeEach(function() {
-      spyOn(window, "loadData");
 			spyOn(spec.savegame, "load");
 			spyOn(spec.$scope, "init");
 			spyOn(spec.animation, "introAnimation");
@@ -49,7 +48,6 @@ describe("Incremental table elements", function() {
       spec.$timeout.flush();
       
 			expect(spec.savegame.load).not.toHaveBeenCalled();
-			expect(loadData).toHaveBeenCalled();
 			expect(localStorage.getItem).toHaveBeenCalled();
 			expect(spec.$scope.init).toHaveBeenCalled();
 			expect(spec.animation.introAnimation).toHaveBeenCalled();

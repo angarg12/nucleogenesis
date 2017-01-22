@@ -18,9 +18,12 @@ angular
 'synthesis',
 'reaction',
 'element',
-function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame, generator, upgrade, animation, format, synthesis, reaction, element) {
+'data',
+function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame, generator, upgrade, animation, format, synthesis, reaction, element, data) {
   $scope.version = '1.0.2';
   $scope.Math = window.Math;
+  
+  $scope.data = data;
   $scope.player = player;
   $scope.achievement = achievement;
   $scope.util = util;
@@ -34,6 +37,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   $scope.element = element;
   var self = this;
 
+  data.setScope($scope);
   player.setScope($scope);
   achievement.setScope($scope);
   util.setScope($scope);
@@ -139,7 +143,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   });
   
   self.onload = $timeout(function () {
-    loadData($scope);
     $scope.current_encyclopedia_url = $sce.trustAsResourceUrl($scope.encyclopedia[$scope.current_entry].link);
     if(localStorage.getItem("playerStoredITE") !== null) {
       savegame.load();
