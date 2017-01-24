@@ -29,6 +29,9 @@ var commonSpec = function(spec) {
     _$httpBackend_.whenGET('src/data/elements.json').respond(
     		getJSONFixture('elements.json')
         );
+    _$httpBackend_.whenGET('src/data/encyclopedia.json').respond(
+    		getJSONFixture('encyclopedia.json')
+        );
     _$httpBackend_.whenGET('src/data/periodic_table.json').respond(
     		getJSONFixture('periodic_table.json')
         );

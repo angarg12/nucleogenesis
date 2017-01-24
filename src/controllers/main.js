@@ -36,7 +36,14 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   $scope.reaction = reaction;
   $scope.element = element;
   var self = this;
-
+  
+  $scope.current_tab = "Elements";
+  // FIXME these keys couple the controller to the data in non-obvious ways
+  // e.g. if the keys change, the controller breaks. to fix, point them to the first element
+  $scope.current_entry = "hydrogen";
+  $scope.current_element = "H";
+  $scope.hover_element = "";
+  
   // since load calls are asynchronous, we need to do this to make sure that the data
   // is loaded before the services
   data.loadData().then(function() {
@@ -52,13 +59,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
 	  synthesis.setScope($scope);
 	  reaction.setScope($scope);
 	  element.setScope($scope);
-	  
-	  $scope.current_tab = "Elements";
-	  // FIXME these keys couple the controller to the data in non-obvious ways
-	  // e.g. if the keys change, the controller breaks. to fix, point them to the first element
-	  $scope.current_entry = "hydrogen";
-	  $scope.current_element = "H";
-	  $scope.hover_element = "";
 	  
 	  self.processDecay = function (resources) {
 	    for(var i = 0; i < resources.length; i++) {

@@ -11,7 +11,7 @@ describe("Incremental table elements", function() {
       spec.$scope.init();
       
 	  expect(spec.$scope.current_tab).toEqual("Elements");
-	  expect(spec.$scope.current_entry).toEqual("Hydrogen");
+	  expect(spec.$scope.current_entry).toEqual("hydrogen");
 	  expect(spec.$scope.current_element).toEqual("H");
 	  expect(spec.$scope.hover_element).toEqual("");
 	  expect(spec.achievement.toast).toEqual([]);
