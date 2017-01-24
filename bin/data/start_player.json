@@ -1042,12 +1042,6 @@
     "Molecule": {
       "is_new": true
     },
-    "Free radical": {
-      "is_new": true
-    },
-    "Allotrope": {
-      "is_new": true
-    },
     "Unstable compound": {
       "is_new": true
     }
@@ -1058,8 +1052,6 @@
     "isotope": false,
     "ion": false,
     "radioactivity": false,
-    "allotrope": false,
-    "free_radical": false,
     "unstable_compound": false,
     "reactions": false,
     "electron": false,

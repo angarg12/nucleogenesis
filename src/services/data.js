@@ -2,12 +2,53 @@ angular
 .module('incremental')
 .service('data',
 ['$http',
-function($http) {
+'$q',
+function($http, $q) {
 	var self = this;
 	self.$scope;
 
+	this.loadData = function(){
+	  var elements = $http.get('src/data/elements.json').then(function(response) {
+	    self.$scope.elements = response.data;
+	  },function errorCallback(response) {
+		    // called asynchronously if an error occurs
+		    // or server returns response with an error status.
+		  });
+	  
+	  var generators = $http.get('src/data/generators.json').then(function(response) {
+		    self.$scope.generators = response.data;
+	  },function errorCallback(response) {
+		  	    // called asynchronously if an error occurs
+		  	    // or server returns response with an error status.
+		  	  });
+	  
+	  var upgrades = $http.get('src/data/upgrades.json').then(function(response) {
+		    self.$scope.upgrades = response.data;
+	  },function errorCallback(response) {
+		  	    // called asynchronously if an error occurs
+		  	    // or server returns response with an error status.
+		  	  });
+
+	  var encyclopedia = $http.get('src/data/encyclopedia.json').then(function(response) {
+		    self.$scope.encyclopedia = response.data;
+		  },function errorCallback(response) {
+			    // called asynchronously if an error occurs
+			    // or server returns response with an error status.
+			  });
+	  
+	  var periodic_table = $http.get('src/data/periodic_table.json').then(function(response) {
+		    self.$scope.periodic_table = response.data;
+	  },function errorCallback(response) {
+		  	    // called asynchronously if an error occurs
+		  	    // or server returns response with an error status.
+		  	  });
+	  return $q.all(elements,generators,upgrades,encyclopedia,periodic_table);
+	};
+	
+	// FIXME: temporary until we get rid of scope
 	this.setScope = function (scope){
 	  self.$scope = scope;
+	  
 	self.$scope.visibleElements = function (){
 	  elements = [];
 	  for(var element in self.$scope.elements){
@@ -41,13 +82,6 @@ function($http) {
         return false;
 	};
 
-  $http.get('src/data/elements.json').then(function(response) {
-    self.$scope.elements = response.data;
-  },function errorCallback(response) {
-	    // called asynchronously if an error occurs
-	    // or server returns response with an error status.
-	  });
-
   self.$scope.visibleGenerators = function(){
 	  generators = [];
 	  for(var generator in self.$scope.generators){
@@ -67,13 +101,6 @@ function($http) {
 	  condition += "true";
 	  return eval(condition);	  
   };
-  
-  $http.get('src/data/generators.json').then(function(response) {
-	    self.$scope.generators = response.data;
-  },function errorCallback(response) {
-	  	    // called asynchronously if an error occurs
-	  	    // or server returns response with an error status.
-	  	  });
 
   // FIXME use eval for the time being, refactor to preprocess conditional functions
   
@@ -94,13 +121,6 @@ function($http) {
   self.$scope.upgradeApply = function(resource, power){
 	  return resource * power;
   };
-  
-  $http.get('src/data/upgrades.json').then(function(response) {
-	    self.$scope.upgrades = response.data;
-  },function errorCallback(response) {
-	  	    // called asynchronously if an error occurs
-	  	    // or server returns response with an error status.
-	  	  });
 
   self.$scope.resources = {
     'H' : {
@@ -156,7 +176,7 @@ function($http) {
                self.$scope.player.data.resources.H2.unlocked;
       },
       html : 'H<sub>2</sub>',
-      type : 'allotrope'
+      type : 'molecule'
     },
     'He' : {
       visible : function () {
@@ -514,8 +534,8 @@ function($http) {
         return self.$scope.player.data.intro.content;
       },
       has_new : function () {
-        for ( var key in self.$scope.player.data.encyclopedia) {
-          if (self.$scope.encyclopedia[key].visible() && self.$scope.player.data.encyclopedia[key].is_new) {
+        for ( var entry in self.$scope.player.data.encyclopedia) {
+          if (isEncyclopediaEntryVisible(entry) && self.$scope.player.data.encyclopedia[entry].is_new) {
             return true;
           }
         }
@@ -541,165 +561,20 @@ function($http) {
     }
   };
 
-  self.$scope.encyclopedia = {
-    'Hydrogen' : {
-      visible : function () {
-        return true;
-      },
-      link : 'https://en.wikipedia.org/wiki/Hydrogen',
-    },
-    'Helium' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.helium;
-      },
-      link : 'https://en.wikipedia.org/wiki/Helium',
-    },
-    'Lithium' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.lithium;
-      },
-      link : 'https://en.wikipedia.org/wiki/Lithium',
-    },
-    'Beryllium' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.beryllium;
-      },
-      link : 'https://en.wikipedia.org/wiki/Beryllium',
-    },
-    'Boron' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.boron;
-      },
-      link : 'https://en.wikipedia.org/wiki/Boron',
-    },
-    'Carbon' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.carbon;
-      },
-      link : 'https://en.wikipedia.org/wiki/Carbon',
-    },
-    'Nitrogen' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.nitrogen;
-      },
-      link : 'https://en.wikipedia.org/wiki/Nitrogen',
-    },
-    'Oxygen' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.oxygen;
-      },
-      link : 'https://en.wikipedia.org/wiki/Oxygen',
-    },
-    'Fluorine' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.fluorine;
-      },
-      link : 'https://en.wikipedia.org/wiki/Fluorine',
-    },
-    'Neon' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.neon;
-      },
-      link : 'https://en.wikipedia.org/wiki/Neon',
-    },
-    'Isotope' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.isotope;
-      },
-      link : 'https://en.wikipedia.org/wiki/Isotope',
-    },
-    'Electron' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.electron;
-      },
-      link : 'https://en.wikipedia.org/wiki/Electron',
-    },
-    'Proton' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.proton;
-      },
-      link : 'https://en.wikipedia.org/wiki/Proton',
-    },
-    'Neutron' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.neutron;
-      },
-      link : 'https://en.wikipedia.org/wiki/Neutron',
-    },
-    'Radioactivity' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.radioactivity;
-      },
-      link : 'https://en.wikipedia.org/wiki/Radioactive_decay',
-    },
-    'Half-life' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.half_life;
-      },
-      link : 'https://en.wikipedia.org/wiki/Half-life',
-    },
-    'Beta decay' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.beta_decay;
-      },
-      link : 'https://en.wikipedia.org/wiki/Beta_decay',
-    },
-    'Energy' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.energy;
-      },
-      link : 'https://en.wikipedia.org/wiki/Energy',
-    },
-    'Electronvolt' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.energy;
-      },
-      link : 'https://en.wikipedia.org/wiki/Electronvolt',
-    },
-    'Ionization energy' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.ionization_energy;
-      },
-      link : 'https://en.wikipedia.org/wiki/Ionization_energy',
-    },
-    'Electron affinity' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.electron_affinity;
-      },
-      link : 'https://en.wikipedia.org/wiki/Electron_affinity',
-    },
-    'Nuclear binding energy' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.nuclear_binding_energy;
-      },
-      link : 'https://en.wikipedia.org/wiki/Nuclear_binding_energy',
-    },
-    'Synthesis' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.synthesis;
-      },
-      link : 'https://en.wikipedia.org/wiki/Chemical_synthesis',
-    },
-    'Ion' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.ion;
-      },
-      link : 'https://en.wikipedia.org/wiki/Ion',
-    },
-    'Molecule' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.molecule;
-      },
-      link : 'https://en.wikipedia.org/wiki/Molecule',
-    },
-    'Allotrope' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.allotrope;
-      },
-      link : 'https://en.wikipedia.org/wiki/Allotropy',
-    }
-  };
-
+  self.$scope.visibleEncyclopediaEntries = function (){
+		  entries = [];
+		  for(var entry in self.$scope.encyclopedia){
+			  if(isEncyclopediaEntryVisible(entry)){
+				  entries.push(entry);
+			  }
+		  }
+		  return entries;
+		};
+		
+	  isEncyclopediaEntryVisible = function (entry){
+	    return self.$scope.player.data.unlocks[entry];
+	};
+	
   self.$scope.reactions = {
     'H' : {
       'ionization' : {
@@ -958,16 +833,6 @@ function($http) {
       },
       event : "resource"
     },
-    "allotrope" : {
-      check : function (event, data) {
-        if ([ 'O2', 'O3' ].indexOf(data) != -1) {
-          self.$scope.achievement.addToast("Allotrope");
-          self.$scope.player.data.unlocks.allotrope = true;
-          self.$scope.unlocks.allotrope.listener();
-        }
-      },
-      event : "resource"
-    },
     "reactions" : {
       check : function (event, data) {
         if ("e-" == data) {
@@ -1188,14 +1053,6 @@ function($http) {
       },
       event : "element"
     }
-  };
-  
-  $http.get('src/data/periodic_table.json').then(function(response) {
-	    self.$scope.periodic_table = response.data;
-  },function errorCallback(response) {
-	  	    // called asynchronously if an error occurs
-	  	    // or server returns response with an error status.
-	  	  });
-  
+  };  
 	};	
 }]);

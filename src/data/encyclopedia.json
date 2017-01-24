@@ -1,0 +1,98 @@
+{
+    "hydrogen" : {
+      "name" : "Hydrogen",
+      "link" : "https://en.wikipedia.org/wiki/Hydrogen"
+    },
+    "helium" : {
+      "name" : "Helium",
+      "link" : "https://en.wikipedia.org/wiki/Helium"
+    },
+    "lithium" : {
+      "name" : "Lithium",
+      "link" : "https://en.wikipedia.org/wiki/Lithium"
+    },
+    "beryllium" : {
+      "name" : "Beryllium",
+      "link" : "https://en.wikipedia.org/wiki/Beryllium"
+    },
+    "boron" : {
+      "name" : "Boron",
+      "link" : "https://en.wikipedia.org/wiki/Boron"
+    },
+    "carbon" : {
+      "name" : "Carbon",
+      "link" : "https://en.wikipedia.org/wiki/Carbon"
+    },
+    "nitrogen" : {
+      "name" : "Nitrogen",
+      "link" : "https://en.wikipedia.org/wiki/Nitrogen"
+    },
+    "oxygen" : {
+      "name" : "Oxygen",
+      "link" : "https://en.wikipedia.org/wiki/Oxygen"
+    },
+    "fluorine" : {
+      "name" : "Fluorine",
+      "link" : "https://en.wikipedia.org/wiki/Fluorine"
+    },
+    "neon" : {
+      "name" : "Neon",
+      "link" : "https://en.wikipedia.org/wiki/Neon"
+    },
+    "isotope" : {
+      "name" : "Isotope",
+      "link" : "https://en.wikipedia.org/wiki/Isotope"
+    },
+    "electron" : {
+      "name" : "Electron",
+      "link" : "https://en.wikipedia.org/wiki/Electron"
+    },
+    "proton" : {
+      "name" : "Proton",
+      "link" : "https://en.wikipedia.org/wiki/Proton"
+    },
+    "neutron" : {
+      "name" : "Neutron",
+      "link" : "https://en.wikipedia.org/wiki/Neutron"
+    },
+    "radioactivity" : {
+      "name" : "Radioactivity",
+      "link" : "https://en.wikipedia.org/wiki/Radioactive_decay"
+    },
+    "half_life" : {
+      "name" : "Half-life",
+      "link" : "https://en.wikipedia.org/wiki/Half-life"
+    },
+    "beta_decay" : {
+      "name" : "Beta decay",
+      "link" : "https://en.wikipedia.org/wiki/Beta_decay"
+    },
+    "energy" : {
+      "name" : "Electronvolt",
+      "link" : "https://en.wikipedia.org/wiki/Electronvolt"
+    },
+    "ionization_energy" : {
+      "name" : "Ionization energy",
+      "link" : "https://en.wikipedia.org/wiki/Ionization_energy"
+    },
+    "electron_affinity" : {
+      "name" : "Electron affinity",
+      "link" : "https://en.wikipedia.org/wiki/Electron_affinity"
+    },
+    "nuclear_binding_energy" : {
+      "name" : "Nuclear binding energy",
+      "link" : "https://en.wikipedia.org/wiki/Nuclear_binding_energy"
+    },
+    "synthesis" : {
+      "name" : "Synthesis",
+      "link" : "https://en.wikipedia.org/wiki/Chemical_synthesis"
+    },
+    "ion" : {
+      "name" : "Ion",
+      "link" : "https://en.wikipedia.org/wiki/Ion"
+    },
+    "molecule" : {
+      "name" : "Molecule",
+      "link" : "https://en.wikipedia.org/wiki/Molecule"
+    }
+  }
