@@ -10,38 +10,24 @@ function($http, $q) {
 	this.loadData = function(){
 	  var elements = $http.get('src/data/elements.json').then(function(response) {
 	    self.$scope.elements = response.data;
-	  },function errorCallback(response) {
-		    // called asynchronously if an error occurs
-		    // or server returns response with an error status.
-		  });
+	  });
 	  
 	  var generators = $http.get('src/data/generators.json').then(function(response) {
 		    self.$scope.generators = response.data;
-	  },function errorCallback(response) {
-		  	    // called asynchronously if an error occurs
-		  	    // or server returns response with an error status.
-		  	  });
+	  });
 	  
 	  var upgrades = $http.get('src/data/upgrades.json').then(function(response) {
 		    self.$scope.upgrades = response.data;
-	  },function errorCallback(response) {
-		  	    // called asynchronously if an error occurs
-		  	    // or server returns response with an error status.
-		  	  });
+	  });
 
 	  var encyclopedia = $http.get('src/data/encyclopedia.json').then(function(response) {
 		    self.$scope.encyclopedia = response.data;
-		  },function errorCallback(response) {
-			    // called asynchronously if an error occurs
-			    // or server returns response with an error status.
-			  });
+		  });
 	  
 	  var periodic_table = $http.get('src/data/periodic_table.json').then(function(response) {
 		    self.$scope.periodic_table = response.data;
-	  },function errorCallback(response) {
-		  	    // called asynchronously if an error occurs
-		  	    // or server returns response with an error status.
-		  	  });
+	  });
+	  
 	  return $q.all(elements,generators,upgrades,encyclopedia,periodic_table);
 	};
 	
@@ -507,12 +493,7 @@ function($http, $q) {
 
   self.$scope.radioisotopes = [ '3H' ];// ,'7Be','10Be','11C','14C','13N','18F'];
 
-  self.$scope.tabs = {
-    'Elements' : {
-      visible : function () {
-        return true;
-      },
-      has_new : function () {
+      self.$scope.elementsHasNew = function () {
         for ( var key in self.$scope.elements) {
           if (self.$scope.player.data.elements[key] !== undefined &&
         	  self.$scope.player.data.elements[key].unlocked &&
@@ -527,39 +508,16 @@ function($http, $q) {
           }
         }
         return false;
-      },
-    },
-    'Encyclopedia' : {
-      visible : function () {
-        return self.$scope.player.data.intro.content;
-      },
-      has_new : function () {
+      };
+
+      self.$scope.encyclopediaHasNew = function () {
         for ( var entry in self.$scope.player.data.encyclopedia) {
           if (isEncyclopediaEntryVisible(entry) && self.$scope.player.data.encyclopedia[entry].is_new) {
             return true;
           }
         }
+      };
 
-        return false;
-      },
-    },
-    'Periodic Table' : {
-      visible : function () {
-        return self.$scope.player.data.unlocks.periodic_table;
-      },
-      has_new : function () {
-        return false;
-      },
-    },
-    'Options' : {
-      visible : function () {
-        return self.$scope.player.data.intro.content;
-      },
-      has_new : function () {
-        return false;
-      },
-    }
-  };
 
   self.$scope.visibleEncyclopediaEntries = function (){
 		  entries = [];
