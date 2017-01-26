@@ -94,37 +94,7 @@ describe("Achievement service", function() {
     });
   });
   
-  describe('achievements', function() {
-    it("should initialise the listeners of the locked achievements", function() {
-      spec.player.data = {unlocks:{}};
-      spec.player.data.unlocks["hydrogen"] = false;
-    
-      spec.achievement.initializeListeners();
-      
-      expect(spec.$scope.unlocks["hydrogen"].listener).not.toBeUndefined();
-    });
-      
-    it("should not initialise the listeners of the unlocked achievements", function() {
-      spec.player.data = {unlocks:{}};
-      spec.player.data.unlocks["hydrogen"] = true;
-
-      spec.achievement.initializeListeners();
-      
-      expect(spec.$scope.unlocks["hydrogen"].listener).toBeUndefined();
-    });   
-    
-    it("should stop running listeners", function() {
-      spec.achievement.stopListeners();
-      
-      expect(spec.$scope.unlocks["hydrogen"].listener).toBeUndefined();
-    });
-    
-    it("should not start stopped listeners", function() {    
-      spec.achievement.stopListeners();
-      
-      expect(spec.$scope.unlocks["hydrogen"].listener).toBeUndefined();
-    });  
-    
+  describe('achievements', function() {  
     it("should count the number of achievements", function() {    
       value = spec.achievement.numberUnlocks();
       

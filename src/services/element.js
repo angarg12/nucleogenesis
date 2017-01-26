@@ -29,7 +29,7 @@ function(player) {
 			player.data.resources['e-'].number -= price;
 			player.data.resources.p.number -= price;
 			player.data.resources.n.number -= price;
-			$scope.$emit("element", element);
+			$scope.$emit("unlocks", element);
 			player.data.elements[element].unlocked = true;
 			player.data.elements[element].generators["Tier 1"].level = 1;
 			player.data.elements_unlocked++;

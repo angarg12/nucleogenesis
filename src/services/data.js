@@ -41,6 +41,13 @@ function($http, $q) {
     self.$scope.radioisotopes = [ "3H" ];// ,"7Be","10Be","11C","14C","13N","18F"];
 
     self.$scope.table_resources = [ "e-", "n", "p" ];
+
+
+    self.$scope.html = {
+      'beta-': '&#946;<sup>-</sup>',
+      'beta+': '&#946;<sup>+</sup>',
+      'electron-capture': '&#x3B5'
+    };
     
     self.$scope.visibleElements = function() {
       elements = [];
@@ -382,283 +389,131 @@ function($http, $q) {
       }
     };
 
-    self.$scope.html = {
-      'beta-': '&#946;<sup>-</sup>',
-      'beta+': '&#946;<sup>+</sup>',
-      'electron-capture': '&#x3B5'
-    };
-
+    self.$scope.checkUnlock = self.$scope.$on("unlocks", function (event, data){
+      for(var unlock in self.$scope.unlocks){
+        alert(unlock)
+        if(!self.$scope.player.unlocks[unlock]){
+          item = self.$scope.unlocks[unlock];
+          if(eval(item.condition)){
+            self.$scope.achievement.addToast(item.name);
+            self.$scope.player.data.unlocks[unlock] = true;
+          }
+        }
+      }
+    });
+    
     self.$scope.unlocks = {
       "hydrogen": {
+        name: "Hydrogen",
+        condition: "'H-' == data",
         check: function(event, data) {
-          // self.$scope.achievement.addToast("Periodic table");
+          self.$scope.achievement.addToast("Hydrogen");
           self.$scope.player.data.unlocks.hydrogen = true;
-          self.$scope.unlocks.hydrogen.listener();
         },
-        event: "cycle"
       },
       "periodic_table": {
-        check: function(event, data) {
-          if(self.$scope.player.data.resources['e-'].unlocked && self.$scope.player.data.resources.p.unlocked
-              && self.$scope.player.data.resources.n.unlocked) {
-            self.$scope.achievement.addToast("Periodic table");
-            self.$scope.player.data.unlocks.periodic_table = true;
-            self.$scope.unlocks.periodic_table.listener();
-          }
-        },
-        event: "cycle"
+        name: "Periodic table",
+        condition: "self.$scope.player.data.resources['e-'].unlocked && self.$scope.player.data.resources.p.unlocked && self.$scope.player.data.resources.n.unlocked"
       },
       "isotope": {
-        check: function(event, data) {
-          if([ '2H', '3H' ].indexOf(data) != -1) {
-            self.$scope.achievement.addToast("Isotope");
-            self.$scope.player.data.unlocks.isotope = true;
-            self.$scope.unlocks.isotope.listener();
-          }
-        },
-        event: "resource"
+        name: "Isotope",
+        condition: "[ '2H', '3H' ].indexOf(data) != -1"
       },
       "ion": {
-        check: function(event, data) {
-          if("H-" == data) {
-            self.$scope.achievement.addToast("Ion");
-            self.$scope.player.data.unlocks.ion = true;
-            self.$scope.unlocks.ion.listener();
-          }
-        },
-        event: "resource"
+        name: "Ion",
+        condition: "'H-' == data"
       },
       "radioactivity": {
-        check: function(event, data) {
-          if("3H" == data) {
-            self.$scope.achievement.addToast("Radioactivity");
-            self.$scope.player.data.unlocks.radioactivity = true;
-            self.$scope.unlocks.radioactivity.listener();
-          }
-        },
-        event: "resource"
+        name: "Radioactivity",
+        condition: "'3H' == data"
       },
       "reactions": {
-        check: function(event, data) {
-          if("e-" == data) {
-            self.$scope.achievement.addToast("Reactions");
-            self.$scope.player.data.unlocks.reactions = true;
-            self.$scope.unlocks.reactions.listener();
-          }
-        },
-        event: "resource"
+        name: "Reactions",
+        condition: "'e-' == data"
       },
       "electron": {
-        check: function(event, data) {
-          if("e-" == data) {
-            self.$scope.achievement.addToast("Electron");
-            self.$scope.player.data.unlocks.electron = true;
-            self.$scope.unlocks.electron.listener();
-          }
-        },
-        event: "resource"
+        name: "Electron",
+        condition: "'e-' == data"
       },
       "proton": {
-        check: function(event, data) {
-          if("p" == data) {
-            self.$scope.achievement.addToast("Proton");
-            self.$scope.player.data.unlocks.proton = true;
-            self.$scope.unlocks.proton.listener();
-          }
-        },
-        event: "resource"
+        name: "Proton",
+        condition: "'p' == data"
       },
       "neutron": {
-        check: function(event, data) {
-          if("n" == data) {
-            self.$scope.achievement.addToast("Neutron");
-            self.$scope.player.data.unlocks.neutron = true;
-            self.$scope.unlocks.neutron.listener();
-          }
-        },
-        event: "resource"
+        name: "Neutron",
+        condition: "'n' == data"
       },
       "energy": {
-        check: function(event, data) {
-          if("eV" == data) {
-            self.$scope.achievement.addToast("Energy");
-            self.$scope.player.data.unlocks.energy = true;
-            self.$scope.unlocks.energy.listener();
-          }
-        },
-        event: "resource"
+        name: "Energy",
+        condition: "'eV' == data"
       },
       "half_life": {
-        check: function(event, data) {
-          if("3H" == data) {
-            self.$scope.achievement.addToast("Half-life");
-            self.$scope.player.data.unlocks.half_life = true;
-            self.$scope.unlocks.half_life.listener();
-          }
-        },
-        event: "resource"
+        name: "Half-life",
+        condition: "'3H' == data"
       },
       "oxygen": {
-        check: function(event, data) {
-          if("O" == data) {
-            self.$scope.achievement.addToast("Oxygen");
-            self.$scope.player.data.unlocks.oxygen = true;
-            self.$scope.unlocks.oxygen.listener();
-          }
-        },
-        event: "element"
+        name: "Oxygen",
+        condition: "'O' == data"
       },
       "upgrade": {
-        check: function(event, data) {
-          if("Tier 3" == data) {
-            self.$scope.achievement.addToast("Upgrades");
-            self.$scope.player.data.unlocks.upgrade = true;
-            self.$scope.unlocks.upgrade.listener();
-          }
-        },
-        event: "generator"
+        name: "Upgrades",
+        condition: "'Tier 3' == data"
       },
       "ionization_energy": {
-        check: function(event, data) {
-          if("e-" == data) {
-            self.$scope.achievement.addToast("Ionization energy");
-            self.$scope.player.data.unlocks.ionization_energy = true;
-            self.$scope.unlocks.ionization_energy.listener();
-          }
-        },
-        event: "resource"
+        name: "Ionization energy",
+        condition: "'e-'' == data"
       },
       "electron_affinity": {
-        check: function(event, data) {
-          if(self.$scope.player.data.resources['e-'].number >= 10
-              && self.$scope.player.data.resources.p.number >= 10) {
-            self.$scope.achievement.addToast("Electron affinity");
-            self.$scope.player.data.unlocks.electron_affinity = true;
-            self.$scope.unlocks.electron_affinity.listener();
-          }
-        },
-        event: "cycle"
+        name: "Electron affinity",
+        condition: "self.$scope.player.data.resources['e-'].number >= 10 && self.$scope.player.data.resources.p.number >= 10"
       },
       "nuclear_binding_energy": {
-        check: function(event, data) {
-          if(self.$scope.player.data.resources['e-'].number >= 100
-              && self.$scope.player.data.resources.p.number >= 100) {
-            self.$scope.achievement.addToast("Nuclear binding energy");
-            self.$scope.player.data.unlocks.nuclear_binding_energy = true;
-            self.$scope.unlocks.nuclear_binding_energy.listener();
-          }
-        },
-        event: "cycle"
+        name: "Nuclear binding energy",
+        condition: "self.$scope.player.data.resources['e-'].number >= 100 && self.$scope.player.data.resources.p.number >= 100"
       },
       "beta_decay": {
-        check: function(event, data) {
-          if("beta-" == data) {
-            self.$scope.achievement.addToast("Beta decay");
-            self.$scope.player.data.unlocks.beta_decay = true;
-            self.$scope.unlocks.beta_decay.listener();
-          }
-        },
-        event: "decay"
+        name: "Beta decay",
+        condition: "'beta-' == data"
       },
       "molecule": {
-        check: function(event, data) {
-          if("H2" == data || "O2" == data || "O3" == data) {
-            self.$scope.achievement.addToast("Molecule");
-            self.$scope.player.data.unlocks.molecule = true;
-            self.$scope.unlocks.molecule.listener();
-          }
-        },
-        event: "resource"
+        name: "Molecule",
+        condition: "[ 'H2', 'O2' ,'O3' ].indexOf(data) != -1"
       },
       "synthesis": {
-        check: function(event, data) {
-          if(self.$scope.player.data.resources['H-'].number >= 10) {
-            self.$scope.achievement.addToast("Synthesis");
-            self.$scope.player.data.unlocks.synthesis = true;
-            self.$scope.unlocks.synthesis.listener();
-          }
-        },
-        event: "cycle"
+        name: "Synthesis",
+        condition: "self.$scope.player.data.resources['H-'].number >= 10"
       },
       "helium": {
-        check: function(event, data) {
-          if("He" == data) {
-            self.$scope.achievement.addToast("Helium");
-            self.$scope.player.data.unlocks.helium = true;
-            self.$scope.unlocks.helium.listener();
-          }
-        },
-        event: "element"
+        name: "Helium",
+        condition: "'He' == data"
       },
       "lithium": {
-        check: function(event, data) {
-          if("Li" == data) {
-            self.$scope.achievement.addToast("Lithium");
-            self.$scope.player.data.unlocks.lithium = true;
-            self.$scope.unlocks.lithium.listener();
-          }
-        },
-        event: "element"
+        name: "Lithium",
+        condition: "'Li' == data"
       },
       "beryllium": {
-        check: function(event, data) {
-          if("Be" == data) {
-            self.$scope.achievement.addToast("Beryllium");
-            self.$scope.player.data.unlocks.beryllium = true;
-            self.$scope.unlocks.beryllium.listener();
-          }
-        },
-        event: "element"
+        name: "Beryllium",
+        condition: "'Be' == data"
       },
       "boron": {
-        check: function(event, data) {
-          if("B" == data) {
-            self.$scope.achievement.addToast("Boron");
-            self.$scope.player.data.unlocks.boron = true;
-            self.$scope.unlocks.boron.listener();
-          }
-        },
-        event: "element"
+        name: "Boron",
+        condition: "'B' == data"
       },
       "carbon": {
-        check: function(event, data) {
-          if("C" == data) {
-            self.$scope.achievement.addToast("Carbon");
-            self.$scope.player.data.unlocks.carbon = true;
-            self.$scope.unlocks.carbon.listener();
-          }
-        },
-        event: "element"
+        name: "Carbon",
+        condition: "'C' == data"
       },
       "nitrogen": {
-        check: function(event, data) {
-          if("N" == data) {
-            self.$scope.achievement.addToast("Nitrogen");
-            self.$scope.player.data.unlocks.nitrogen = true;
-            self.$scope.unlocks.nitrogen.listener();
-          }
-        },
-        event: "element"
+        name: "Nitrogen",
+        condition: "'N' == data"
       },
       "fluorine": {
-        check: function(event, data) {
-          if("F" == data) {
-            self.$scope.achievement.addToast("Fluorine");
-            self.$scope.player.data.unlocks.fluorine = true;
-            self.$scope.unlocks.fluorine.listener();
-          }
-        },
-        event: "element"
+        name: "Fluorine",
+        condition: "'F' == data"
       },
       "neon": {
-        check: function(event, data) {
-          if("Ne" == data) {
-            self.$scope.achievement.addToast("Neon");
-            self.$scope.player.data.unlocks.neon = true;
-            self.$scope.unlocks.neon.listener();
-          }
-        },
-        event: "element"
+        name: "Neon",
+        condition: "'Ne' == data"
       }
     };
   };

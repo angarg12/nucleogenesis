@@ -82,10 +82,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         for(var product in $scope.resources[resource].decay.decay_product) {
           player.data.resources[product].number += $scope.resources[resource].decay.decay_product[product] *
                                                      production;
-          $scope.$emit("resource", product);
+          $scope.$emit("unlocks", product);
           var decay_type = $scope.resources[resource].decay.decay_type;
           if(decay_type){
-            $scope.$emit("decay", decay_type);
+            $scope.$emit("unlocks", decay_type);
           }
         }
       }
@@ -115,14 +115,14 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
 
         if(production > 0) {
           player.data.resources[isotopes[i]].number += production;
-          $scope.$emit("resource", isotopes[i]);
+          $scope.$emit("unlocks", isotopes[i]);
         }
         remaining -= production;
       }
       // The last isotope is just the remaining production that hasn't been consumed
       if(remaining > 0) {
         player.data.resources[isotopes[isotopes.length - 1]].number += remaining;
-        $scope.$emit("resource", isotopes[isotopes.length - 1]);
+        $scope.$emit("unlocks", isotopes[isotopes.length - 1]);
       }
     }
   };
@@ -132,7 +132,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     self.processIsotopes();
     synthesis.processSynthesis();
 
-    $scope.$emit("cycle", null);
+    $scope.$emit("unlocks", null);
   };
 
   $scope.init = function () {
@@ -142,12 +142,11 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     $scope.hover_element = "";
     player.populatePlayer();
     achievement.init();
-    achievement.initializeListeners();
     animation.introAnimation();
   };
   
-  self.checkUnlock = $scope.$on("resource", function (event, item) {
-    player.data.resources[item].unlocked = true;
+  self.checkUnlock = $scope.$on("unlocks", function (event, item) {
+
   });
   
   self.startup = function () {
@@ -163,7 +162,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     }
     // init();
     achievement.init();
-    achievement.initializeListeners();
     animation.introAnimation();
     $interval(self.update, 1000);
     $interval(savegame.save, 10000);

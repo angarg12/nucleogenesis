@@ -92,55 +92,43 @@ describe("Savegame service", function() {
     it("should import save", function() {
       spyOn(window, "prompt").and.returnValue("test");
       spyOn(JSON, "parse").and.returnValue("{}");
-      spyOn(spec.achievement, "stopListeners");
       spyOn(spec.savegame, "versionControl");
       spyOn(spec.savegame, "save");
-      spyOn(spec.achievement, "initializeListeners");
     
       spec.savegame.importSave();
 
       expect(window.prompt).toHaveBeenCalled();
       expect(JSON.parse).toHaveBeenCalled();
-      expect(spec.achievement.stopListeners).toHaveBeenCalled();
       expect(spec.savegame.versionControl).toHaveBeenCalled();
       expect(spec.savegame.save).toHaveBeenCalled();
-      expect(spec.achievement.initializeListeners).toHaveBeenCalled();
     });
     
     it("should not import if save is not presented", function() {
       spyOn(window, "prompt").and.returnValue("");
       spyOn(window, "atob").and.returnValue("{}");
-      spyOn(spec.achievement, "stopListeners");
       spyOn(spec.savegame, "versionControl");
       spyOn(spec.savegame, "save");
-      spyOn(spec.achievement, "initializeListeners");
     
       spec.savegame.importSave();
 
       expect(window.prompt).toHaveBeenCalled();
       expect(window.atob).not.toHaveBeenCalled();
-      expect(spec.achievement.stopListeners).not.toHaveBeenCalled();
       expect(spec.savegame.versionControl).not.toHaveBeenCalled();
       expect(spec.savegame.save).not.toHaveBeenCalled();
-      expect(spec.achievement.initializeListeners).not.toHaveBeenCalled();
     });
     
     it("should not import if save is invalid", function() {
       spyOn(window, "prompt").and.returnValue("test");
       spyOn(window, "atob");
-      spyOn(spec.achievement, "stopListeners");
       spyOn(spec.savegame, "versionControl");
       spyOn(spec.savegame, "save");
-      spyOn(spec.achievement, "initializeListeners");
     
       spec.savegame.importSave();
 
       expect(window.prompt).toHaveBeenCalled();
       expect(window.atob).toHaveBeenCalled();
-      expect(spec.achievement.stopListeners).not.toHaveBeenCalled();
       expect(spec.savegame.versionControl).not.toHaveBeenCalled();
       expect(spec.savegame.save).not.toHaveBeenCalled();
-      expect(spec.achievement.initializeListeners).not.toHaveBeenCalled();
     });
       
     it("should version control", function() {

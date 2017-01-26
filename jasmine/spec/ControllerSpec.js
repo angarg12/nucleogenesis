@@ -6,7 +6,6 @@ describe("Incremental table elements", function() {
   describe('initialization functions', function() {    
     it("should init all the variables", function() {
       spyOn(spec.player, "populatePlayer");
-      spyOn(spec.achievement, "initializeListeners");
       
       spec.$scope.init();
       
@@ -17,19 +16,6 @@ describe("Incremental table elements", function() {
 	  expect(spec.achievement.toast).toEqual([]);
 	  expect(spec.achievement.is_toast_visible).toEqual(false);
 	  expect(spec.player.populatePlayer).toHaveBeenCalled();
-	  expect(spec.achievement.initializeListeners).toHaveBeenCalled();
-    });
-  });
-  
-  describe('misc functions', function() {
-    it("should catch resource event", function() {
-      spec.player.data = {resources:{}};
-      spec.player.data.resources.H = {unlocked:false}
-      spec.$scope.$emit("resource","H");    
-      
-      spec.controller.checkUnlock();
-      
-      expect(spec.player.data.resources.H.unlocked).toEqual(true);
     });
   });
   
@@ -38,7 +24,6 @@ describe("Incremental table elements", function() {
 			spyOn(spec.savegame, "load");
 			spyOn(spec.$scope, "init");
 			spyOn(spec.animation, "introAnimation");
-			spyOn(spec.achievement, "initializeListeners");
     });
     
     it("should load the game", function() {
@@ -47,12 +32,11 @@ describe("Incremental table elements", function() {
       // flush onload
       spec.$timeout.flush();
       
-			expect(spec.savegame.load).not.toHaveBeenCalled();
-			expect(localStorage.getItem).toHaveBeenCalled();
-			expect(spec.$scope.init).toHaveBeenCalled();
-			expect(spec.animation.introAnimation).toHaveBeenCalled();
-			expect(spec.achievement.initializeListeners).toHaveBeenCalled();
-			expect(spec.$scope.lastSave).toEqual("None");
+      expect(spec.savegame.load).not.toHaveBeenCalled();
+      expect(localStorage.getItem).toHaveBeenCalled();
+      expect(spec.$scope.init).toHaveBeenCalled();
+      expect(spec.animation.introAnimation).toHaveBeenCalled();
+      expect(spec.$scope.lastSave).toEqual("None");
     });
     
     it("should load the player", function() {

@@ -26,7 +26,7 @@ function(player) {
       i++;
     }
     if(i > 0) {
-      $scope.$emit("generator", name);
+      $scope.$emit("unlocks", name);
     }
   };
   

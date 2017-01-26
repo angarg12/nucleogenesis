@@ -51,21 +51,4 @@ function($timeout, $rootScope, player) {
     }
     return unlocked;
   };
-
-  this.initializeListeners = function () {
-    for(var key in $scope.unlocks) {
-      if(!player.data.unlocks[key]) {
-        $scope.unlocks[key].listener = $rootScope.$on($scope.unlocks[key].event, $scope.unlocks[key].check);
-      }
-    }
-  };
-
-  this.stopListeners = function () {
-    for(var key in $scope.unlocks) {
-      if($scope.unlocks[key].listener) {
-        $scope.unlocks[key].listener();
-        $scope.unlocks[key].listener = undefined;
-      }
-    }
-  };
 }]);

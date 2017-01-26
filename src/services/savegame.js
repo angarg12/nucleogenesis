@@ -52,10 +52,8 @@ function(player, achievement) {
     if(importText) {
       try {
         player.data = JSON.parse(atob(importText));
-        achievement.stopListeners();
         this.versionControl();
         this.save();
-        achievement.initializeListeners();
       } catch (error) {
         alert("Invalid save file.");
       }
