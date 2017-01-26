@@ -1,0 +1,332 @@
+{
+	"H": {
+		"ratio": 0.999884,
+		"elements": [
+			"H"
+		],
+		"type": "element"
+	},
+	"H-": {
+		"html": "H<sup>-</sup>",
+		"type": "ion",
+		"elements": [
+			"H"
+		],
+		"charge": -1
+	},
+	"2H": {
+		"ratio": 0.000115,
+		"html": "<sup>2</sup>H",
+		"elements": [
+			"H"
+		],
+		"type": "isotope"
+	},
+	"3H": {
+		"ratio": 0.000001,
+		"html": "<sup>3</sup>H",
+		"elements": [
+			"H"
+		],
+		"type": "isotope",
+		"decay": {
+			"half_life": 3.8852e+8,
+			"decay_type": "beta-",
+			"decay_product": {
+				"3He+1": 1,
+				"e-": 1,
+				"eV": 18610
+			}
+		}
+	},
+	"H2": {
+		"html": "H<sub>2</sub>",
+		"elements": [
+			"H"
+		],
+		"type": "molecule"
+	},
+	"He": {
+		"ratio": 0.999998,
+		"elements": [
+			"He"
+		],
+		"type": "element"
+	},
+	"3He": {
+		"ratio": 0.000002,
+		"html": "<sup>3</sup>He",
+		"elements": [
+			"He"
+		],
+		"type": "isotope"
+	},
+	"3He+1": {
+		"html": "<sup>3</sup>He<sup>+</sup>",
+		"elements": [
+			"He"
+		],
+		"type": [
+			"isotope",
+			"ion"
+		]
+	},
+	"Li": {
+		"ratio": 0.95,
+		"elements": [
+			"Li"
+		],
+		"type": "element"
+	},
+	"7Li": {
+		"ratio": 0.05,
+		"html": "<sup>7</sup>Li",
+		"elements": [
+			"Li"
+		],
+		"type": "isotope"
+	},
+	"Be": {
+		"ratio": 0.999998,
+		"elements": [
+			"Be"
+		],
+		"type": "element"
+	},
+	"7Be": {
+		"ratio": 0.000001,
+		"html": "<sup>7</sup>Be",
+		"elements": [
+			"Be"
+		],
+		"type": "isotope",
+		"decay": {
+			"half_life": 4589568,
+			"decay_type": "electron-capture",
+			"decay_product": {
+				"7Li": 1,
+				"eV": 862000
+			}
+		}
+	},
+	"10Be": {
+		"ratio": 0.000001,
+		"elements": [
+			"Be"
+		],
+		"type": "isotope",
+		"html": "<sup>10</sup>Be",
+		"decay": {
+			"half_life": 4.2917e+14,
+			"decay_type": "beta-",
+			"decay_product": {
+				"10B": 1,
+				"e-": 1,
+				"eV": 556000
+			}
+		}
+	},
+	"B": {
+		"ratio": 0.2,
+		"elements": [
+			"B"
+		],
+		"type": "element"
+	},
+	"11B": {
+		"ratio": 0.8,
+		"elements": [
+			"B"
+		],
+		"html": "<sup>11</sup>B",
+		"type": "isotope"
+	},
+	"C": {
+		"ratio": 0.988998,
+		"elements": [
+			"C"
+		],
+		"type": "element"
+	},
+	"11C": {
+		"ratio": 0.000001,
+		"html": "<sup>11</sup>C",
+		"elements": [
+			"C"
+		],
+		"type": "isotope",
+		"decay": {
+			"half_life": 1200,
+			"decay_type": "beta+",
+			"decay_product": {
+				"11B": 1,
+				"e+": 1,
+				"eV": 96000
+			}
+		}
+	},
+	"13C": {
+		"ratio": 0.011,
+		"html": "<sup>13</sup>C",
+		"elements": [
+			"C"
+		],
+		"type": "isotope"
+	},
+	"14C": {
+		"ratio": 0.000001,
+		"html": "<sup>14</sup>C",
+		"elements": [
+			"C"
+		],
+		"type": "isotope",
+		"decay": {
+			"half_life": 1.807e+11,
+			"decay_type": "beta-",
+			"decay_product": {
+				"14N": 1,
+				"e-": 1,
+				"eV": 156000
+			}
+		}
+	},
+	"N": {
+		"ratio": 0.959999,
+		"elements": [
+			"N"
+		],
+		"type": "element"
+	},
+	"13N": {
+		"ratio": 0.000001,
+		"elements": [
+			"N"
+		],
+		"html": "<sup>13</sup>N",
+		"type": "isotope",
+		"decay": {
+			"half_life": 598,
+			"decay_type": "electron-capture",
+			"decay_product": {
+				"13C": 1,
+				"eV": 2220000
+			}
+		}
+	},
+	"15N": {
+		"ratio": 0.04,
+		"elements": [
+			"N"
+		],
+		"html": "<sup>15</sup>N",
+		"type": "isotope"
+	},
+	"O": {
+		"ratio": 0.9976,
+		"elements": [
+			"O"
+		],
+		"type": "element"
+	},
+	"O2": {
+		"html": "O<sub>2</sub>",
+		"elements": [
+			"O"
+		],
+		"type": "molecule"
+	},
+	"O3": {
+		"html": "O<sub>3</sub>",
+		"elements": [
+			"O"
+		],
+		"type": "molecule"
+	},
+	"17O": {
+		"ratio": 0.00039,
+		"html": "<sup>17</sup>O",
+		"elements": [
+			"O"
+		],
+		"type": "isotope"
+	},
+	"18O": {
+		"ratio": 0.00201,
+		"html": "<sup>18</sup>O",
+		"elements": [
+			"O"
+		],
+		"type": "isotope"
+	},
+	"H2O": {
+		"html": "H<sub>2</sub>O",
+		"elements": [
+			"H",
+			"O"
+		],
+		"type": "molecule"
+	},
+	"F": {
+		"ratio": 0.999998,
+		"elements": [
+			"F"
+		],
+		"type": "element"
+	},
+	"18F": {
+		"ratio": 0.000001,
+		"html": "<sup>18</sup>F",
+		"elements": [
+			"F"
+		],
+		"type": "isotope",
+		"decay": {
+			"half_life": 6586,
+			"decay_type": "beta+",
+			"decay_product": {
+				"18O": 1,
+				"e+": 1,
+				"eV": 634000
+			}
+		}
+	},
+	"Ne": {
+		"ratio": 0.9048,
+		"elements": [
+			"Ne"
+		],
+		"type": "element"
+	},
+	"21Ne": {
+		"ratio": 0.0027,
+		"html": "<sup>21</sup>Ne",
+		"elements": [
+			"Ne"
+		],
+		"type": "isotope"
+	},
+	"22Ne": {
+		"ratio": 0.0925,
+		"html": "<sup>22</sup>Ne",
+		"elements": [
+			"Ne"
+		],
+		"type": "isotope"
+	},
+	"e-": {
+		"elements": [],
+		"type": "subatomic"
+	},
+	"n": {
+		"elements": [],
+		"type": "subatomic"
+	},
+	"p": {
+		"elements": [],
+		"type": "subatomic"
+	},
+	"eV": {
+		"elements": [],
+		"type": "energy"
+	}
+}

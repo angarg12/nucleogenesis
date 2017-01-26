@@ -21,20 +21,23 @@ var commonSpec = function(spec) {
 
     jasmine.getJSONFixtures().fixturesPath = 'base/src/data/';
     _$httpBackend_.whenGET('src/data/generators.json').respond(
-    		getJSONFixture('generators.json')
-        );
+        getJSONFixture('generators.json')
+    );
     _$httpBackend_.whenGET('src/data/upgrades.json').respond(
-    		getJSONFixture('upgrades.json')
-        );
+        getJSONFixture('upgrades.json')
+    );
     _$httpBackend_.whenGET('src/data/elements.json').respond(
-    		getJSONFixture('elements.json')
-        );
+        getJSONFixture('elements.json')
+     );
     _$httpBackend_.whenGET('src/data/encyclopedia.json').respond(
-    		getJSONFixture('encyclopedia.json')
-        );
+        getJSONFixture('encyclopedia.json')
+    );
     _$httpBackend_.whenGET('src/data/periodic_table.json').respond(
-    		getJSONFixture('periodic_table.json')
-        );
+        getJSONFixture('periodic_table.json')
+    );
+    _$httpBackend_.whenGET('src/data/resources.json').respond(
+        getJSONFixture('resources.json')
+    );
     
     spec.controller  = _$controller_('IncCtrl', {$scope:spec.$scope, achievement:spec.achievement, util:spec.util, player:spec.player, savegame:spec.savegame, generator:spec.generator, upgrade:spec.upgrade, animation:spec.animation, format:spec.format, synthesis:spec.synthesis, reaction:spec.reaction, element:spec.element, data:spec.data});
     _$httpBackend_.flush();
