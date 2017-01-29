@@ -46,8 +46,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   
   // since load calls are asynchronous, we need to do this to make sure that the data
   // is loaded before the services
+  data.setScope($scope);
   data.loadData().then(function() {
-	  data.setScope($scope);
 	  player.setScope($scope);
 	  achievement.setScope($scope);
 	  util.setScope($scope);

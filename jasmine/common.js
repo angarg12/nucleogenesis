@@ -21,25 +21,14 @@ var commonSpec = function(spec) {
     spec.data = $injector.get('data');
 
     jasmine.getJSONFixtures().fixturesPath = 'base/src/data/';
-    _$httpBackend_.whenGET('src/data/generators.json').respond(
-        getJSONFixture('generators.json')
-    );
-    _$httpBackend_.whenGET('src/data/upgrades.json').respond(
-        getJSONFixture('upgrades.json')
-    );
-    _$httpBackend_.whenGET('src/data/elements.json').respond(
-        getJSONFixture('elements.json')
-     );
-    _$httpBackend_.whenGET('src/data/encyclopedia.json').respond(
-        getJSONFixture('encyclopedia.json')
-    );
-    _$httpBackend_.whenGET('src/data/periodic_table.json').respond(
-        getJSONFixture('periodic_table.json')
-    );
-    _$httpBackend_.whenGET('src/data/resources.json').respond(
-        getJSONFixture('resources.json')
-    );
-    
+        
+    for(var index in spec.data.files){
+      var file = spec.data.files[index];
+      _$httpBackend_.whenGET('src/data/'+file+'.json').respond(
+        getJSONFixture(file+'.json')
+      );
+    };
+      
     spec.controller  = _$controller_('IncCtrl', {$scope:spec.$scope, achievement:spec.achievement, util:spec.util, player:spec.player, savegame:spec.savegame, generator:spec.generator, upgrade:spec.upgrade, animation:spec.animation, format:spec.format, synthesis:spec.synthesis, reaction:spec.reaction, element:spec.element, data:spec.data});
     _$httpBackend_.flush();
   }));

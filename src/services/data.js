@@ -6,48 +6,32 @@ function($http, $q) {
   var self = this;
   self.$scope;
 
+  this.files = ["elements",
+              "generators",
+              "upgrades",
+              "encyclopedia",
+              "periodic_table",
+              "resources",
+              "unlocks",
+              "radioisotopes",
+              "html"
+              ];
+  
   this.loadData = function() {
-    var elements = $http.get('src/data/elements.json').then(function(response) {
-      self.$scope.elements = response.data;
-    });
-
-    var generators = $http.get('src/data/generators.json').then(function(response) {
-      self.$scope.generators = response.data;
-    });
-
-    var upgrades = $http.get('src/data/upgrades.json').then(function(response) {
-      self.$scope.upgrades = response.data;
-    });
-
-    var encyclopedia = $http.get('src/data/encyclopedia.json').then(function(response) {
-      self.$scope.encyclopedia = response.data;
-    });
-
-    var periodic_table = $http.get('src/data/periodic_table.json').then(function(response) {
-      self.$scope.periodic_table = response.data;
-    });
-
-    var resources = $http.get('src/data/resources.json').then(function(response) {
-      self.$scope.resources = response.data;
+    var promises = this.files.map(function(file){
+      return $http.get('src/data/'+file+'.json').then(function(response) {
+        self.$scope[file] = response.data;
+      });
     });
     
-    return $q.all(elements, generators, upgrades, encyclopedia, periodic_table, resources);
+    return $q.all(promises);
   };
 
   // FIXME: temporary until we get rid of scope
   this.setScope = function(scope) {
     self.$scope = scope;
 
-    self.$scope.radioisotopes = [ "3H" ];// ,"7Be","10Be","11C","14C","13N","18F"];
-
     self.$scope.table_resources = [ "e-", "n", "p" ];
-
-
-    self.$scope.html = {
-      'beta-': '&#946;<sup>-</sup>',
-      'beta+': '&#946;<sup>+</sup>',
-      'electron-capture': '&#x3B5'
-    };
     
     self.$scope.visibleElements = function() {
       elements = [];
@@ -401,120 +385,5 @@ function($http, $q) {
         }
       }
     });
-    
-    self.$scope.unlocks = {
-      "hydrogen": {
-        name: "Hydrogen",
-        condition: "'H-' == data",
-        check: function(event, data) {
-          self.$scope.achievement.addToast("Hydrogen");
-          self.$scope.player.data.unlocks.hydrogen = true;
-        },
-      },
-      "periodic_table": {
-        name: "Periodic table",
-        condition: "self.$scope.player.data.resources['e-'].unlocked && self.$scope.player.data.resources.p.unlocked && self.$scope.player.data.resources.n.unlocked"
-      },
-      "isotope": {
-        name: "Isotope",
-        condition: "[ '2H', '3H' ].indexOf(data) != -1"
-      },
-      "ion": {
-        name: "Ion",
-        condition: "'H-' == data"
-      },
-      "radioactivity": {
-        name: "Radioactivity",
-        condition: "'3H' == data"
-      },
-      "reactions": {
-        name: "Reactions",
-        condition: "'e-' == data"
-      },
-      "electron": {
-        name: "Electron",
-        condition: "'e-' == data"
-      },
-      "proton": {
-        name: "Proton",
-        condition: "'p' == data"
-      },
-      "neutron": {
-        name: "Neutron",
-        condition: "'n' == data"
-      },
-      "energy": {
-        name: "Energy",
-        condition: "'eV' == data"
-      },
-      "half_life": {
-        name: "Half-life",
-        condition: "'3H' == data"
-      },
-      "oxygen": {
-        name: "Oxygen",
-        condition: "'O' == data"
-      },
-      "upgrade": {
-        name: "Upgrades",
-        condition: "'Tier 3' == data"
-      },
-      "ionization_energy": {
-        name: "Ionization energy",
-        condition: "'e-'' == data"
-      },
-      "electron_affinity": {
-        name: "Electron affinity",
-        condition: "self.$scope.player.data.resources['e-'].number >= 10 && self.$scope.player.data.resources.p.number >= 10"
-      },
-      "nuclear_binding_energy": {
-        name: "Nuclear binding energy",
-        condition: "self.$scope.player.data.resources['e-'].number >= 100 && self.$scope.player.data.resources.p.number >= 100"
-      },
-      "beta_decay": {
-        name: "Beta decay",
-        condition: "'beta-' == data"
-      },
-      "molecule": {
-        name: "Molecule",
-        condition: "[ 'H2', 'O2' ,'O3' ].indexOf(data) != -1"
-      },
-      "synthesis": {
-        name: "Synthesis",
-        condition: "self.$scope.player.data.resources['H-'].number >= 10"
-      },
-      "helium": {
-        name: "Helium",
-        condition: "'He' == data"
-      },
-      "lithium": {
-        name: "Lithium",
-        condition: "'Li' == data"
-      },
-      "beryllium": {
-        name: "Beryllium",
-        condition: "'Be' == data"
-      },
-      "boron": {
-        name: "Boron",
-        condition: "'B' == data"
-      },
-      "carbon": {
-        name: "Carbon",
-        condition: "'C' == data"
-      },
-      "nitrogen": {
-        name: "Nitrogen",
-        condition: "'N' == data"
-      },
-      "fluorine": {
-        name: "Fluorine",
-        condition: "'F' == data"
-      },
-      "neon": {
-        name: "Neon",
-        condition: "'Ne' == data"
-      }
-    };
   };
 } ]);

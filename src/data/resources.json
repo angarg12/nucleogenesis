@@ -102,7 +102,7 @@
 		"type": "isotope",
 		"decay": {
 			"half_life": 4589568,
-			"decay_type": "electron-capture",
+			"decay_type": "electron_capture",
 			"decay_product": {
 				"7Li": 1,
 				"eV": 862000
@@ -206,7 +206,7 @@
 		"type": "isotope",
 		"decay": {
 			"half_life": 598,
-			"decay_type": "electron-capture",
+			"decay_type": "electron_capture",
 			"decay_product": {
 				"13C": 1,
 				"eV": 2220000
