@@ -1,0 +1,56 @@
+{
+      "H-p": {
+        "reactant": {
+          "H-": 1,
+          "p": 1
+        },
+        "product": {
+          "H2": 1,
+          "eV": 17.3705
+        },
+        "elements": [ "H" ]
+      },
+      "O3": {
+        "reactant": {
+          "O3": 1,
+          "eV": 4.43
+        },
+        "product": {
+          "O2": 1,
+          "O": 1
+        },
+        "elements": [ "O" ]
+      },
+      "O2-OO": {
+        "reactant": {
+          "O2": 1,
+          "eV": 21.4219
+        },
+        "product": {
+          "O": 2
+        },
+        "elements": [ "O" ]
+      },
+      "O2O2-O3O": {
+        "reactant": {
+          "O2": 2,
+          "eV": 18
+        },
+        "product": {
+          "O3": 1,
+          "O": 1
+        },
+        "elements": [ "O" ]
+      },
+      "H2O": {
+        "reactant": {
+          "H2": 2,
+          "O2": 1
+        },
+        "product": {
+          "H2O": 2,
+          "eV": 5.925
+        },
+        "elements": [ "H", "O" ]
+      }
+    }

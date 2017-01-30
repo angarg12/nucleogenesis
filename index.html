@@ -143,7 +143,7 @@
                     util.visibleKeys(reactions[current_element].ionization).length > 0 ||
                     util.visibleKeys(reactions[current_element].electron_affinity).length > 0 || 
                     util.visibleKeys(reactions[current_element].binding_energy).length > 0 ||
-                    util.visibleKeys(synthesis).length > 0)">
+                    visibleSyntheses().length > 0)">
                     <hr>
                     <div ng-if="util.visibleKeys(reactions[current_element].ionization).length > 0 ||
                       util.visibleKeys(reactions[current_element].electron_affinity).length > 0 || 
@@ -231,48 +231,48 @@
                         </table>
                       </div>
                     </div>
-                    <div ng-if="util.visibleKeys(synthesis).length > 0">
-                      <h3>Synthesis</h3>
+                    <div ng-if="visibleSyntheses().length > 0">
+                      <h3>Syntheses</h3>
                       <table class="table">
                         <tbody>
-                          <tr class="animif" ng-repeat="syn in util.visibleKeys(synthesis)"
-                            ng-mouseover="player.data.synthesis[syn].is_new = false">
+                          <tr class="animif" ng-repeat="syn in visibleSyntheses()"
+                            ng-mouseover="player.data.syntheses[syn].is_new = false">
                             <td class="col-md-4" width=50%>
                               <div class="pull-left"
-                                ng-class="{'text-muted': player.data.synthesis[syn].active <= 0}">
-                                <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.data.synthesis[syn].is_new"></span>
-                                <span ng-bind-html="util.trustHTML(format.reactionFormat(synthesis.synthesisPower(syn),synthesis[syn]))"></span>
+                                ng-class="{'text-muted': player.data.syntheses[syn].active <= 0}">
+                                <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.data.syntheses[syn].is_new"></span>
+                                <span ng-bind-html="util.trustHTML(format.reactionFormat(synthesis.synthesisPower(syn),syntheses[syn]))"></span>
                               </div>
                             </td>
                             <td class="col-md-1">
-                              <div class="pull-left" ng-if="player.data.synthesis[syn].number > 0">
-                                {{player.data.synthesis[syn].active}}/{{player.data.synthesis[syn].number}} 
+                              <div class="pull-left" ng-if="player.data.syntheses[syn].number > 0">
+                                {{player.data.syntheses[syn].active}}/{{player.data.syntheses[syn].number}} 
                               </div>
                             </td>
                             <td class="col-md-2">
-                              <div class="pull-left" ng-if="player.data.synthesis[syn].number > 0">
+                              <div class="pull-left" ng-if="player.data.syntheses[syn].number > 0">
                                 <button class="btn btn-default button-small"
-                                  ng-disabled="player.data.synthesis[syn].active >= player.data.synthesis[syn].number"
-                                  ng-click="player.data.synthesis[syn].active = player.data.synthesis[syn].number"
-                                  ng-class="{disabled: player.data.synthesis[syn].active >= player.data.synthesis[syn].number}">&#8892;</button>
+                                  ng-disabled="player.data.syntheses[syn].active >= player.data.syntheses[syn].number"
+                                  ng-click="player.data.syntheses[syn].active = player.data.syntheses[syn].number"
+                                  ng-class="{disabled: player.data.syntheses[syn].active >= player.data.syntheses[syn].number}">&#8892;</button>
                                 <button class="btn btn-default button-small"
-                                  ng-disabled="player.data.synthesis[syn].active >= player.data.synthesis[syn].number"
-                                  ng-click="player.data.synthesis[syn].active = player.data.synthesis[syn].active+1"
-                                  ng-class="{disabled: player.data.synthesis[syn].active >= player.data.synthesis[syn].number}">+</button>
+                                  ng-disabled="player.data.syntheses[syn].active >= player.data.syntheses[syn].number"
+                                  ng-click="player.data.syntheses[syn].active = player.data.syntheses[syn].active+1"
+                                  ng-class="{disabled: player.data.syntheses[syn].active >= player.data.syntheses[syn].number}">+</button>
                                 <br>
                                 <button class="btn btn-default button-small"
-                                  ng-disabled="player.data.synthesis[syn].active <= 0"
-                                  ng-click="player.data.synthesis[syn].active = 0"
-                                  ng-class="{disabled: player.data.synthesis[syn].active <= 0}">&#8891;</button>
+                                  ng-disabled="player.data.syntheses[syn].active <= 0"
+                                  ng-click="player.data.syntheses[syn].active = 0"
+                                  ng-class="{disabled: player.data.syntheses[syn].active <= 0}">&#8891;</button>
                                 <button class="btn btn-default button-small"
-                                  ng-disabled="player.data.synthesis[syn].active <= 0"
-                                  ng-click="player.data.synthesis[syn].active = player.data.synthesis[syn].active-1"
-                                  ng-class="{disabled: player.data.synthesis[syn].active <= 0}">-</button>
+                                  ng-disabled="player.data.syntheses[syn].active <= 0"
+                                  ng-click="player.data.syntheses[syn].active = player.data.syntheses[syn].active-1"
+                                  ng-class="{disabled: player.data.syntheses[syn].active <= 0}">-</button>
                               </div>
                             </td>
                             <td class="col-md-2">
                               <div class="pull-left">
-                                <span ng-bind-html="util.trustHTML(format.compoundFormat(synthesis.synthesisMultiplier(syn),synthesis[syn].reactant))"></span>
+                                <span ng-bind-html="util.trustHTML(format.compoundFormat(synthesis.synthesisMultiplier(syn),syntheses[syn].reactant))"></span>
                               </div>
                             </td>
                             <td class="col-md-3">

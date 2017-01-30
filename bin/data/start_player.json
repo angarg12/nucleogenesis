@@ -1076,7 +1076,7 @@
     "fluorine": false,
     "neon": false
   },
-  "synthesis": {
+  "syntheses": {
     "H-p": {
       "number": 0,
       "active": 0,

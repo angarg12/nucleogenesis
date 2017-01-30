@@ -149,7 +149,7 @@ describe("Savegame service", function() {
       expect(spec.player.startPlayer.elements.H.upgrades['Tier 1-1'].bought).toEqual(false);
       expect(spec.player.startPlayer.encyclopedia.hydrogen.is_new).toEqual(true);
       expect(spec.player.startPlayer.unlocks.hydrogen).toEqual(false);
-      expect(spec.player.startPlayer.synthesis.H2O).toEqual({
+      expect(spec.player.startPlayer.syntheses.H2O).toEqual({
         number : 0,
         active : 0,
         is_new : true

@@ -72,9 +72,9 @@ function() {
     for(var entry in $scope.unlocks) {
       this.startPlayer.unlocks[entry] = false;
     }
-    this.startPlayer.synthesis = {};
-    for(var entry in $scope.synthesis) {
-      this.startPlayer.synthesis[entry] = {
+    this.startPlayer.syntheses = {};
+    for(var entry in $scope.syntheses) {
+      this.startPlayer.syntheses[entry] = {
         number : 0,
         active : 0,
         is_new : true

@@ -14,8 +14,8 @@ function($http, $q) {
               "resources",
               "unlocks",
               "radioisotopes",
-              "html"
-              ];
+              "html",
+              "syntheses"];
   
   this.loadData = function() {
     var promises = this.files.map(function(file){
@@ -58,9 +58,9 @@ function($http, $q) {
           return true;
         }
       }
-      for( var key in self.$scope.reactions[element].synthesis) {
-        if(self.$scope.synthesis[self.$scope.reactions[element].synthesis[key]].visible()
-            && self.$scope.player.data.synthesis[self.$scope.reactions[element].synthesis[key]].is_new) {
+      for( var key in self.$scope.reactions[element].syntheses) {
+        if(self.$scope.syntheses[self.$scope.reactions[element].syntheses[key]].visible()
+            && self.$scope.player.data.syntheses[self.$scope.reactions[element].syntheses[key]].is_new) {
           return true;
         }
       }
@@ -145,9 +145,9 @@ function($http, $q) {
           return true;
         }
       }
-      for( var key in table_resources) {
-        if(self.$scope.player.data.resources[table_resources[key]].unlocked
-            && self.$scope.player.data.resources[table_resources[key]].is_new) {
+      for( var key in self.$scope.table_resources) {
+        if(self.$scope.player.data.resources[self.$scope.table_resources[key]].unlocked
+            && self.$scope.player.data.resources[self.$scope.table_resources[key]].is_new) {
           return true;
         }
       }
@@ -243,7 +243,7 @@ function($http, $q) {
         // We could create a function that checks for every synthesis if
         // one of the reactants is an isotope, ion or molecule of the element
         // However for the sake of a proof of concept that is beyond our scope
-        'synthesis': [ 'H-p', 'H2O' ]
+        'syntheses': [ 'H-p', 'H2O' ]
       },
       'O': {
         'ionization': {},
@@ -295,87 +295,42 @@ function($http, $q) {
             }
           }
         },
-        'synthesis': [ 'O3', 'O2-OO', 'H2O', 'O2O2-O3O' ]
+        'syntheses': [ 'O3', 'O2-OO', 'H2O', 'O2O2-O3O' ]
       }
     };
 
-    self.$scope.synthesis = {
-      'H-p': {
-        reactant: {
-          'H-': 1,
-          'p': 1
-        },
-        product: {
-          'H2': 1,
-          'eV': 17.3705
-        },
-        visible: function() {
-          return self.$scope.player.data.unlocks.synthesis && self.$scope.player.data.resources['H-'].unlocked
-              && self.$scope.player.data.resources.p.unlocked && self.$scope.current_element == "H";
-        }
-      },
-      'O3': {
-        reactant: {
-          'O3': 1,
-          'eV': 4.43
-        },
-        product: {
-          'O2': 1,
-          'O': 1
-        },
-        visible: function() {
-          return self.$scope.player.data.unlocks.synthesis && self.$scope.player.data.resources.O3.unlocked
-              && self.$scope.player.data.resources.eV.unlocked && self.$scope.current_element == "O";
-        }
-      },
-      'O2-OO': {
-        reactant: {
-          'O2': 1,
-          'eV': 21.4219
-        },
-        product: {
-          'O': 2
-        },
-        visible: function() {
-          return self.$scope.player.data.unlocks.synthesis && self.$scope.player.data.resources.O2.unlocked
-              && self.$scope.player.data.resources.eV.unlocked && self.$scope.current_element == "O";
-        }
-      },
-      'O2O2-O3O': {
-        reactant: {
-          'O2': 2,
-          'eV': 18
-        },
-        product: {
-          'O3': 1,
-          'O': 1
-        },
-        visible: function() {
-          return self.$scope.player.data.unlocks.synthesis && self.$scope.player.data.resources.O2.unlocked
-              && self.$scope.player.data.resources.O3.unlocked && self.$scope.player.data.resources.eV.unlocked
-              && self.$scope.current_element == "O";
-        }
-      },
-      'H2O': {
-        reactant: {
-          'H2': 2,
-          'O2': 1
-        },
-        product: {
-          'H2O': 2,
-          'eV': 5.925
-        },
-        visible: function() {
-          return self.$scope.player.data.unlocks.synthesis && self.$scope.player.data.resources.O.number > 1e8
-              && self.$scope.player.data.resources.H.number > 1e14
-              && (self.$scope.current_element == "H" || self.$scope.current_element == "O");
+    self.$scope.visibleSyntheses = function() {
+      syntheses = [];
+      for( var entry in self.$scope.syntheses) {
+        if(isSynthesisVisible(self.$scope.syntheses[entry])) {
+          syntheses.push(entry);
         }
       }
+      return syntheses;
+    };
+
+    isSynthesisVisible = function(entry) {
+      if(!self.$scope.player.data.unlocks.synthesis){
+        return false;
+      }
+
+      for(var reactant in entry.reactant){
+        if(!self.$scope.player.data.resources[reactant].unlocked){
+          return false;
+        }
+      }
+      
+      for(var element in entry.elements){
+        if(self.$scope.current_element === entry.elements[element]){
+          return true;
+        }
+      };
+      
+      return false;
     };
 
     self.$scope.checkUnlock = self.$scope.$on("unlocks", function (event, data){
       for(var unlock in self.$scope.unlocks){
-        alert(unlock)
         if(!self.$scope.player.unlocks[unlock]){
           item = self.$scope.unlocks[unlock];
           if(eval(item.condition)){
