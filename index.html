@@ -140,23 +140,21 @@
                     </table>
                   </div>
                   <div ng-if="player.data.unlocks.reactions && (
-                    util.visibleKeys(reactions[current_element].ionization).length > 0 ||
-                    util.visibleKeys(reactions[current_element].electron_affinity).length > 0 || 
-                    util.visibleKeys(reactions[current_element].binding_energy).length > 0 ||
+                    visibleRedox().length > 0 ||
+                    visibleBindings().length > 0 ||
                     visibleSyntheses().length > 0)">
                     <hr>
-                    <div ng-if="util.visibleKeys(reactions[current_element].ionization).length > 0 ||
-                      util.visibleKeys(reactions[current_element].electron_affinity).length > 0 || 
-                      util.visibleKeys(reactions[current_element].binding_energy).length > 0">
+                    <div ng-if="visibleRedox().length > 0 ||
+                      visibleBindings().length > 0">
                       <h3>Reactions</h3>
-                      <div ng-if="util.visibleKeys(reactions[current_element].ionization).length > 0">
-                        <h4>Ionization</h4>
+                      <div ng-if="visibleRedox().length > 0">
+                        <h4>Redox</h4>
                         <table class="table">
                           <tbody>
-                            <tr class="animif" ng-repeat="key in util.visibleKeys(reactions[current_element].ionization)">
+                            <tr class="animif" ng-repeat="key in visibleRedox()">
                               <td class="col-md-7" width=50%>
                                 <div class="pull-left">
-                                  <span ng-bind-html="util.trustHTML(format.reactionFormat(reactions[current_element].ionization[key].number,reactions[current_element].ionization[key]))"></span>
+                                  <span ng-bind-html="util.trustHTML(format.reactionFormat(redox[key].number,redox[key]))"></span>
                                 </div>
                               </td>
                               <td class="col-md-4">
@@ -165,11 +163,11 @@
                                   <input type="number" 
                                     value="1" 
                                     min="1"
-                                    ng-init="reactions[current_element].ionization[key].number = reactions[current_element].ionization[key].number || 1" 
-                                    ng-model="reactions[current_element].ionization[key].number">
+                                    ng-init="redox[key].number = redox[key].number || 1" 
+                                    ng-model="redox[key].number">
                                   <button class="btn btn-default"
-                                    ng-click="reaction.react(reactions[current_element].ionization[key].number, reactions[current_element].ionization[key])"
-                                    ng-class="{disabled: !reaction.isReactionCostMet(reactions[current_element].ionization[key].number, reactions[current_element].ionization[key])}">React</button>
+                                    ng-click="redox[key].number, redox[key])"
+                                    ng-class="{disabled: !reaction.isReactionCostMet(redox[key].number, redox[key])}">React</button>
                                   </input>
                                 </div>
                               </td>
@@ -177,52 +175,25 @@
                           </tbody>
                         </table>
                       </div>
-                      <div ng-if="util.visibleKeys(reactions[current_element].electron_affinity).length > 0">
-                        <h4>Electron affinity</h4>
-                        <table class="table">
-                          <tbody>
-                            <tr class="animif" ng-repeat="key in util.visibleKeys(reactions[current_element].electron_affinity)">
-                              <td class="col-md-7" width=50%>
-                                <div class="pull-left">
-                                  <span ng-bind-html="util.trustHTML(format.reactionFormat(reactions[current_element].electron_affinity[key].number,reactions[current_element].electron_affinity[key]))"></span>
-                                </div>
-                              </td>
-                              <td class="col-md-4">
-                                <div class="pull-left">
-                                  <input type="number" 
-                                    value="1" 
-                                    min="1"
-                                    ng-init="reactions[current_element].electron_affinity[key].number = reactions[current_element].electron_affinity[key].number || 1" 
-                                    ng-model="reactions[current_element].electron_affinity[key].number">
-                                  <button class="btn btn-default"
-                                    ng-click="reaction.react(reactions[current_element].electron_affinity[key].number, reactions[current_element].electron_affinity[key])"
-                                    ng-class="{disabled: !reaction.isReactionCostMet(reactions[current_element].electron_affinity[key].number, reactions[current_element].electron_affinity[key])}">React</button>
-                                  </input>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div ng-if="util.visibleKeys(reactions[current_element].binding_energy).length > 0">
+                      <div ng-if="visibleBindings().length > 0">
                         <h4>Binding energy</h4>
                         <table class="table">
                           <tbody>
-                            <tr class="animif" ng-repeat="key in util.visibleKeys(reactions[current_element].binding_energy)">
+                            <tr class="animif" ng-repeat="key in visibleBindings()">
                               <td class="col-md-8" width=50%>
                                 <div class="pull-left">
-                                  <span ng-bind-html="util.trustHTML(format.reactionFormat(reactions[current_element].binding_energy[key].number,reactions[current_element].binding_energy[key]))"></span>
+                                  <span ng-bind-html="util.trustHTML(format.reactionFormat(binding_energy[key].number,binding_energy[key]))"></span>
                                 </div>
                               </td>
                               <td class="col-md-4">
                                 <div class="pull-left">
                                   <input type="number" 
                                     min="1"
-                                    ng-init="reactions[current_element].binding_energy[key].number = reactions[current_element].binding_energy[key].number || 1" 
-                                    ng-model="reactions[current_element].binding_energy[key].number">
+                                    ng-init="binding_energy[key].number = binding_energy[key].number || 1" 
+                                    ng-model="binding_energy[key].number">
                                   <button class="btn btn-default"
-                                    ng-click="reaction.react(reactions[current_element].binding_energy[key].number, reactions[current_element].binding_energy[key])"
-                                    ng-class="{disabled: !reaction.isReactionCostMet(reactions[current_element].binding_energy[key].number, reactions[current_element].binding_energy[key])}">React</button>
+                                    ng-click="reaction.react(binding_energy[key].number, binding_energy[key])"
+                                    ng-class="{disabled: !reaction.isReactionCostMet(binding_energy[key].number, binding_energy[key])}">React</button>
                                   </input>
                                 </div>
                               </td>

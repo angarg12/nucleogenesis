@@ -10,7 +10,7 @@ describe("Reaction service", function() {
       spec.player.data.resources.H = {number:0};
       spec.player.data.resources.eV = {number:15};
 
-      value = spec.reaction.isReactionCostMet(1, spec.$scope.reactions.H.ionization['1']);
+      value = spec.reaction.isReactionCostMet(1, spec.$scope.redox['H+1']);
       
       expect(value).toEqual(false);
     });   
@@ -21,7 +21,7 @@ describe("Reaction service", function() {
       spec.player.data.resources.H = {number:5};
       spec.player.data.resources.eV = {number:5};
       
-      value = spec.reaction.isReactionCostMet(1, spec.$scope.reactions.H.ionization['1']);
+      value = spec.reaction.isReactionCostMet(1, spec.$scope.redox['H+1']);
       
       expect(value).toEqual(false);
     });
@@ -32,7 +32,7 @@ describe("Reaction service", function() {
       spec.player.data.resources.H = {number:50};
       spec.player.data.resources.eV = {number:50};
 
-      value = spec.reaction.isReactionCostMet(10, spec.$scope.reactions.H.ionization['1']);
+      value = spec.reaction.isReactionCostMet(10, spec.$scope.redox['H+1']);
       
       expect(value).toEqual(false);
     });
@@ -43,7 +43,7 @@ describe("Reaction service", function() {
       spec.player.data.resources.H = {number:5};
       spec.player.data.resources.eV = {number:50};
       
-      value = spec.reaction.isReactionCostMet(1, spec.$scope.reactions.H.ionization['1']);
+      value = spec.reaction.isReactionCostMet(1, spec.$scope.redox['H+1']);
       
       expect(value).toEqual(true);
     });  
@@ -54,7 +54,7 @@ describe("Reaction service", function() {
       spec.player.data.resources.H = {number:50};
       spec.player.data.resources.eV = {number:500};
 
-      value = spec.reaction.isReactionCostMet(10, spec.$scope.reactions.H.ionization['1']);
+      value = spec.reaction.isReactionCostMet(10, spec.$scope.redox['H+1']);
       
       expect(value).toEqual(true);
     });
@@ -69,7 +69,7 @@ describe("Reaction service", function() {
       spec.player.data.resources.p = {number:1};
       spec.player.data.resources['e-'] = {number:0};
 
-      spec.reaction.react(10,spec.$scope.reactions.H.ionization['1']);
+      spec.reaction.react(10,spec.$scope.redox['H+1']);
       
       expect(spec.player.data.resources.H.number).toEqual(40);
       expect(spec.player.data.resources.eV.number).toEqual(64.016);
@@ -86,7 +86,7 @@ describe("Reaction service", function() {
       spec.player.data.resources.p = {number:1};
       spec.player.data.resources['e-'] = {number:0};
       
-      spec.reaction.react(0.5,spec.$scope.reactions.H.ionization['1']);
+      spec.reaction.react(0.5,spec.$scope.redox['H+1']);
       
       expect(spec.player.data.resources.H.number).toEqual(50);
       expect(spec.player.data.resources.eV.number).toEqual(200);
@@ -103,7 +103,7 @@ describe("Reaction service", function() {
       spec.player.data.resources.p = {number:1};
       spec.player.data.resources['e-'] = {number:0};
 
-      spec.reaction.react(-10,spec.$scope.reactions.H.ionization['1']);
+      spec.reaction.react(-10,spec.$scope.redox['H+1']);
       
       expect(spec.player.data.resources.H.number).toEqual(50);
       expect(spec.player.data.resources.eV.number).toEqual(200);
@@ -120,7 +120,7 @@ describe("Reaction service", function() {
       spec.player.data.resources.p = {number:1};
       spec.player.data.resources['e-'] = {number:0};
       
-      spec.reaction.react(5,spec.$scope.reactions.H.ionization['1']);
+      spec.reaction.react(5,spec.$scope.redox['H+1']);
 
       expect(spec.player.data.resources.H.number).toEqual(50);
       expect(spec.player.data.resources.eV.number).toEqual(10);

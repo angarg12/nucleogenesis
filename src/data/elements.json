@@ -3,6 +3,8 @@
       "name" : "Hydrogen",
       "isotopes" : [ "2H", "3H" ],
       "includes" : [ "H", "2H", "3H", "H-", "H2" ],
+      "syntheses": [ "H-p", "H2O" ],
+      "redox": ["H+1", "H-1"],
       "number" : 1
     },
     "He" : {
@@ -45,6 +47,7 @@
       "name" : "Oxygen",
       "isotopes" : [ "17O", "18O" ],
       "includes" : [ "O", "17O", "18O", "O2", "O3" ],
+      "syntheses": [ "O3", "O2-OO", "H2O", "O2O2-O3O" ],
       "number" : 8
     },
     "F" : {

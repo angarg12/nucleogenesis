@@ -71,13 +71,9 @@
       "name" : "Electronvolt",
       "link" : "https://en.wikipedia.org/wiki/Electronvolt"
     },
-    "ionization_energy" : {
-      "name" : "Ionization energy",
-      "link" : "https://en.wikipedia.org/wiki/Ionization_energy"
-    },
-    "electron_affinity" : {
-      "name" : "Electron affinity",
-      "link" : "https://en.wikipedia.org/wiki/Electron_affinity"
+    "redox" : {
+      "name" : "Reduction/Oxidation",
+      "link" : "https://en.wikipedia.org/wiki/Redox"
     },
     "nuclear_binding_energy" : {
       "name" : "Nuclear binding energy",

@@ -51,13 +51,9 @@
         "name": "Upgrades",
         "condition": "'Tier 3' == data"
       },
-      "ionization_energy": {
-        "name": "Ionization energy",
-        "condition": "'e-'' == data"
-      },
-      "electron_affinity": {
-        "name": "Electron affinity",
-        "condition": "self.$scope.player.data.resources['e-'].number >= 10 && self.$scope.player.data.resources.p.number >= 10"
+      "redox": {
+        "name": "Redox",
+        "condition": "'e-' == data"
       },
       "nuclear_binding_energy": {
         "name": "Nuclear binding energy",

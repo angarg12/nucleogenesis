@@ -15,7 +15,9 @@ function($http, $q) {
               "unlocks",
               "radioisotopes",
               "html",
-              "syntheses"];
+              "syntheses",
+              "binding_energy",
+              "redox"];
   
   this.loadData = function() {
     var promises = this.files.map(function(file){
@@ -58,9 +60,10 @@ function($http, $q) {
           return true;
         }
       }
-      for( var key in self.$scope.reactions[element].syntheses) {
-        if(self.$scope.syntheses[self.$scope.reactions[element].syntheses[key]].visible()
-            && self.$scope.player.data.syntheses[self.$scope.reactions[element].syntheses[key]].is_new) {
+      for( var index in self.$scope.elements[element].syntheses) {
+        var synthesis = self.$scope.elements[element].syntheses[index];
+        if(isSynthesisVisible(synthesis)
+            && self.$scope.player.data.syntheses[synthesis].is_new) {
           return true;
         }
       }
@@ -176,129 +179,66 @@ function($http, $q) {
       return self.$scope.player.data.unlocks[entry];
     };
 
-    self.$scope.reactions = {
-      'H': {
-        'ionization': {
-          1: {
-            reactant: {
-              'eV': 13.5984,
-              'H': 1
-            },
-            product: {
-              'p': 1,
-              'e-': 1
-            },
-            visible: function() {
-              return self.$scope.player.data.unlocks.ionization_energy;
-            }
-          }
-        },
-        'electron_affinity': {
-          1: {
-            reactant: {
-              'e-': 1,
-              'H': 1
-            },
-            product: {
-              'H-': 1,
-              'eV': 0.7545
-            },
-            visible: function() {
-              return self.$scope.player.data.unlocks.electron_affinity;
-            }
-          }
-        },
-        'binding_energy': {
-          1: {
-            reactant: {
-              'eV': 2224520,
-              '2H': 1
-            },
-            product: {
-              'p': 1,
-              'n': 1,
-              'e-': 1
-            },
-            visible: function() {
-              return self.$scope.player.data.unlocks.nuclear_binding_energy
-                  && self.$scope.player.data.resources['2H'].unlocked;
-            }
-          },
-          2: {
-            reactant: {
-              'eV': 2827266,
-              '3H': 1
-            },
-            product: {
-              'p': 1,
-              'n': 2,
-              'e-': 1
-            },
-            visible: function() {
-              return self.$scope.player.data.unlocks.nuclear_binding_energy
-                  && self.$scope.player.data.resources['3H'].unlocked;
-            }
-          }
-        },
-        // We could create a function that checks for every synthesis if
-        // one of the reactants is an isotope, ion or molecule of the element
-        // However for the sake of a proof of concept that is beyond our scope
-        'syntheses': [ 'H-p', 'H2O' ]
-      },
-      'O': {
-        'ionization': {},
-        'electron_affinity': {},
-        'binding_energy': {
-          1: {
-            reactant: {
-              'eV': 128030000,
-              'O': 1
-            },
-            product: {
-              'p': 8,
-              'n': 8,
-              'e-': 8
-            },
-            visible: function() {
-              return self.$scope.player.data.unlocks.nuclear_binding_energy
-                  && self.$scope.player.data.resources.O.unlocked;
-            }
-          },
-          2: {
-            reactant: {
-              'eV': 131750000,
-              '17O': 1
-            },
-            product: {
-              'p': 8,
-              'n': 9,
-              'e-': 8
-            },
-            visible: function() {
-              return self.$scope.player.data.unlocks.nuclear_binding_energy
-                  && self.$scope.player.data.resources['17O'].unlocked;
-            }
-          },
-          3: {
-            reactant: {
-              'eV': 141170000,
-              '18O': 1
-            },
-            product: {
-              'p': 8,
-              'n': 10,
-              'e-': 8
-            },
-            visible: function() {
-              return self.$scope.player.data.unlocks.nuclear_binding_energy
-                  && self.$scope.player.data.resources['18O'].unlocked;
-            }
-          }
-        },
-        'syntheses': [ 'O3', 'O2-OO', 'H2O', 'O2O2-O3O' ]
+    self.$scope.visibleRedox = function() {
+      redox = [];
+      for( var entry in self.$scope.redox) {
+        if(isRedoxVisible(self.$scope.redox[entry])) {
+          redox.push(entry);
+        }
       }
+      return redox;
     };
 
+    isRedoxVisible = function(entry) {
+      if(!self.$scope.player.data.unlocks.redox){
+        return false;
+      }
+
+      for(var reactant in entry.reactant){
+        if(!self.$scope.player.data.resources[reactant].unlocked){
+          return false;
+        }
+      }
+      
+      for(var element in entry.elements){
+        if(self.$scope.current_element === entry.elements[element]){
+          return true;
+        }
+      }
+      
+      return false;
+    };
+    
+    self.$scope.visibleBindings = function() {
+      binding = [];
+      for( var entry in self.$scope.binding) {
+        if(isBindingVisible(self.$scope.binding[entry])) {
+          binding.push(entry);
+        }
+      }
+      return binding;
+    };
+
+    isBindingVisible = function(entry) {
+      if(!self.$scope.player.data.unlocks.nuclear_binding_energy){
+        return false;
+      }
+
+      for(var reactant in entry.reactant){
+        if(!self.$scope.player.data.resources[reactant].unlocked){
+          return false;
+        }
+      }
+      
+      for(var element in entry.elements){
+        if(self.$scope.current_element === entry.elements[element]){
+          return true;
+        }
+      }
+      
+      return false;
+    };
+    
     self.$scope.visibleSyntheses = function() {
       syntheses = [];
       for( var entry in self.$scope.syntheses) {

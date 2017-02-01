@@ -56,7 +56,7 @@ function(player, reaction) {
   };
   
   this.processSynthesis = function () {
-    // We will process the synthesis reactions
+    // We will process the synthesis
     for(var synthesis in player.data.syntheses) {
       var power = this.synthesisPower(synthesis);
       if(power !== 0) {
