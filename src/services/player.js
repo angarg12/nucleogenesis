@@ -82,6 +82,7 @@ function() {
 
     this.startPlayer.elements.H.unlocked = true;
     this.startPlayer.resources.H.unlocked = true;
+    this.startPlayer.resources.H.number = $scope.generators["Tier 1"].price;
     this.data = angular.copy(this.startPlayer);
   };
 }]);
