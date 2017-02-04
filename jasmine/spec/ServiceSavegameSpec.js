@@ -1,4 +1,4 @@
-describe("Savegame service", function() {
+describe("Player service", function() {
   var spec = {};
   
   commonSpec(spec);
@@ -143,7 +143,7 @@ describe("Savegame service", function() {
       expect(spec.player.startPlayer.resources.H).toEqual({
         number : 15,
         is_new : true,
-        unlocked : false
+        unlocked : true
       });
       expect(spec.player.startPlayer.elements.H.unlocked).toEqual(true);
       expect(spec.player.startPlayer.elements.H.upgrades['Tier 1-1'].bought).toEqual(false);
