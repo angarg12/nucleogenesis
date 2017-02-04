@@ -3,8 +3,8 @@
       "price" : 100,
       "description" : "x2",
       "preconditions" : [
-        "self.$scope.player.data.unlocks.upgrade",
-        "self.$scope.player.data.elements[self.$scope.current_element].generators['Tier 1'].level > 0"
+        "$scope.player.data.unlocks.upgrade",
+        "$scope.player.data.elements[$scope.current_element].generators['Tier 1'].level > 0"
       ],
       "dependencies" : [],
       "power" : 2
@@ -76,8 +76,8 @@
       "price" : 1000,
       "description" : "x2",
       "preconditions" : [
-        "self.$scope.player.data.unlocks.upgrade",
-        "self.$scope.player.data.elements[self.$scope.current_element].generators['Tier 2'].level > 0"
+        "$scope.player.data.unlocks.upgrade",
+        "$scope.player.data.elements[$scope.current_element].generators['Tier 2'].level > 0"
       ],
       "dependencies" : [],
       "power" : 2
@@ -149,8 +149,8 @@
       "price" : 10000,
       "description" : "x2",
       "preconditions" : [
-        "self.$scope.player.data.unlocks.upgrade",
-        "self.$scope.player.data.elements[self.$scope.current_element].generators['Tier 3'].level > 0"
+        "$scope.player.data.unlocks.upgrade",
+        "$scope.player.data.elements[$scope.current_element].generators['Tier 3'].level > 0"
       ],
       "dependencies" : [],
       "power" : 2
@@ -222,8 +222,8 @@
       "price" : 120000,
       "description" : "x2",
       "preconditions" : [
-        "self.$scope.player.data.unlocks.upgrade",
-        "self.$scope.player.data.elements[self.$scope.current_element].generators['Tier 4'].level > 0"
+        "$scope.player.data.unlocks.upgrade",
+        "$scope.player.data.elements[$scope.current_element].generators['Tier 4'].level > 0"
       ],
       "dependencies" : [],
       "power" : 2
@@ -295,8 +295,8 @@
       "price" : 1300000,
       "description" : "x2",
       "preconditions" : [
-        "self.$scope.player.data.unlocks.upgrade",
-        "self.$scope.player.data.elements[self.$scope.current_element].generators['Tier 5'].level > 0"
+        "$scope.player.data.unlocks.upgrade",
+        "$scope.player.data.elements[$scope.current_element].generators['Tier 5'].level > 0"
       ],
       "dependencies" : [],
       "power" : 2
@@ -368,8 +368,8 @@
       "price" : 14000000,
       "description" : "x2",
       "preconditions" : [
-        "self.$scope.player.data.unlocks.upgrade",
-        "self.$scope.player.data.elements[self.$scope.current_element].generators['Tier 6'].level > 0"
+        "$scope.player.data.unlocks.upgrade",
+        "$scope.player.data.elements[$scope.current_element].generators['Tier 6'].level > 0"
       ],
       "dependencies" : [],
       "power" : 2
@@ -441,8 +441,8 @@
       "price" : 200000000,
       "description" : "x2",
       "preconditions" : [
-        "self.$scope.player.data.unlocks.upgrade",
-        "self.$scope.player.data.elements[self.$scope.current_element].generators['Tier 7'].level > 0"
+        "$scope.player.data.unlocks.upgrade",
+        "$scope.player.data.elements[$scope.current_element].generators['Tier 7'].level > 0"
       ],
       "dependencies" : [],
       "power" : 2
@@ -514,8 +514,8 @@
       "price" : 3300000000,
       "description" : "x2",
       "preconditions" : [
-        "self.$scope.player.data.unlocks.upgrade",
-        "self.$scope.player.data.elements[self.$scope.current_element].generators['Tier 8'].level > 0"
+        "$scope.player.data.unlocks.upgrade",
+        "$scope.player.data.elements[$scope.current_element].generators['Tier 8'].level > 0"
       ],
       "dependencies" : [],
       "power" : 2
@@ -587,8 +587,8 @@
       "price" : 51000000000,
       "description" : "x2",
       "preconditions" : [
-        "self.$scope.player.data.unlocks.upgrade",
-        "self.$scope.player.data.elements[self.$scope.current_element].generators['Tier 9'].level > 0"
+        "$scope.player.data.unlocks.upgrade",
+        "$scope.player.data.elements[$scope.current_element].generators['Tier 9'].level > 0"
       ],
       "dependencies" : [],
       "power" : 2
@@ -660,8 +660,8 @@
       "price" : 750000000000,
       "description" : "x2",
       "preconditions" : [
-        "self.$scope.player.data.unlocks.upgrade",
-        "self.$scope.player.data.elements[self.$scope.current_element].generators['Tier 10'].level > 0"
+        "$scope.player.data.unlocks.upgrade",
+        "$scope.player.data.elements[$scope.current_element].generators['Tier 10'].level > 0"
       ],
       "dependencies" : [],
       "power" : 2

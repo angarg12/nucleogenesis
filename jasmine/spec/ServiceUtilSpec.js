@@ -82,39 +82,6 @@ describe("Util service", function() {
     });
   });
 
-  describe('visibleKeys', function() {    
-    it("should return only the values that are visible", function() {
-      map = {}
-      map["a"] = {visible:function(){return true;}}      
-      map["f"] = {visible:function(){return false;}}      
-      map["e"] = {visible:function(){return true;}}       
-      map["s"] = {visible:function(){return false;}}      
-      map["b"] = {visible:function(){return true;}}
-      
-      result = spec.util.visibleKeys(map);
-      
-      expect(result).toEqual(["a","e","b"]);
-    });
-    
-    it("should return an empty list for an empty map", function() {
-      map = {}
-      
-      result = spec.util.visibleKeys(map);
-      
-      expect(result).toEqual([]);
-    });
-    
-    it("should return an empty list if no elements are visible", function() {
-      map = {}
-      map["a"] = {visible:function(){return false;}}      
-      map["f"] = {visible:function(){return false;}}
-      
-      result = spec.util.visibleKeys(map);
-      
-      expect(result).toEqual([]);
-    });
-  });
-
   describe('misc functions', function() {
     it("should return globally defined HTML code", function() {
       value = spec.util.getHTML('beta-');

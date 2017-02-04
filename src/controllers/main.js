@@ -19,7 +19,8 @@ angular
 'reaction',
 'element',
 'data',
-function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame, generator, upgrade, animation, format, synthesis, reaction, element, data) {
+'visibility',
+function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame, generator, upgrade, animation, format, synthesis, reaction, element, data, visibility) {
   $scope.version = '1.0.2';
   $scope.Math = window.Math;
   
@@ -34,6 +35,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   $scope.format = format;
   $scope.synthesis = synthesis;
   $scope.reaction = reaction;
+  $scope.visibility = visibility;
   $scope.element = element;
   var self = this;
   
@@ -59,6 +61,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
 	  synthesis.setScope($scope);
 	  reaction.setScope($scope);
 	  element.setScope($scope);
+          visibility.setScope($scope);
 	  
 	  self.onload = $timeout(self.startup);
   });
@@ -82,6 +85,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         for(var product in $scope.resources[resource].decay.decay_product) {
           player.data.resources[product].number += $scope.resources[resource].decay.decay_product[product] *
                                                      production;
+          player.data.resources[product].unlocked = true;
           $scope.$emit("unlocks", product);
           var decay_type = $scope.resources[resource].decay.decay_type;
           if(decay_type){
@@ -115,6 +119,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
 
         if(production > 0) {
           player.data.resources[isotopes[i]].number += production;
+          player.data.resources[isotopes[i]].unlocked = true;
           $scope.$emit("unlocks", isotopes[i]);
         }
         remaining -= production;
@@ -122,12 +127,13 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
       // The last isotope is just the remaining production that hasn't been consumed
       if(remaining > 0) {
         player.data.resources[isotopes[isotopes.length - 1]].number += remaining;
+        player.data.resources[isotopes[isotopes.length - 1]].unlocked = true;
         $scope.$emit("unlocks", isotopes[isotopes.length - 1]);
       }
     }
   };
   
-  self.update = function () {
+  self.update = function () {    
     self.processDecay($scope.radioisotopes);
     self.processIsotopes();
     synthesis.processSynthesis();
@@ -145,8 +151,17 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     animation.introAnimation();
   };
   
-  self.checkUnlock = $scope.$on("unlocks", function (event, item) {
-
+  self.checkUnlock = $scope.$on("unlocks", function (event, data) {
+    for(var unlock in $scope.unlocks){
+      if(!$scope.player.data.unlocks[unlock]){
+        item = $scope.unlocks[unlock];
+        //alert(data+" "+item.condition)
+        if(eval(item.condition)){
+          $scope.achievement.addToast(item.name);
+          $scope.player.data.unlocks[unlock] = true;
+        }
+      }
+    }
   });
   
   self.startup = function () {

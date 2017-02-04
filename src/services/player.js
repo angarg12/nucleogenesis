@@ -46,7 +46,6 @@ function() {
         };
       }
     }
-    this.startPlayer.elements.H.unlocked = true;
 
     for(var element in this.startPlayer.elements) {
       this.startPlayer.elements[element].upgrades = {};
@@ -81,7 +80,8 @@ function() {
       };
     }
 
-    this.startPlayer.resources.H.number = $scope.generators["Tier 1"].price;
+    this.startPlayer.elements.H.unlocked = true;
+    this.startPlayer.resources.H.unlocked = true;
     this.data = angular.copy(this.startPlayer);
   };
 }]);

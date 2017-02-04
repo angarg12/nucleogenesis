@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta content="text/html; charset=us-ascii" http-equiv=
-      "Content-Type">
+    <meta content="text/html; charset=us-ascii" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
     <script type="text/javascript" src="lib/angular.min.js"></script>
     <script type="text/javascript" src="lib/angular-animate.min.js"></script>
@@ -21,6 +20,7 @@
     <script type="text/javascript" src="src/services/synthesis.js"></script>
     <script type="text/javascript" src="src/services/upgrade.js"></script>
     <script type="text/javascript" src="src/services/util.js"></script>
+    <script type="text/javascript" src="src/services/visibility.js"></script>
     <script type="text/javascript" src="src/services/data.js"></script>
     <script type="text/javascript" src="src/controllers/main.js"></script>
     <link rel="stylesheet" type="text/css" href="styles/base-bootstrap.min.css" id="theme_css">
@@ -42,8 +42,7 @@
         <div class="container">
           <div class="navbar-header">
             <span class="navbar-brand page-title">
-            The Incremental Table of Elements <sub>an unfolding experiment</sub>
-            <small>by angarg12</small>
+            The Incremental Table of Elements
             </span> 
             <span class="navbar-brand">
             <span class="text-muted small">v{{version}}</span>
@@ -58,13 +57,13 @@
               <li class="animif"
                 ng-class="{active: current_tab === 'Elements'}">
                 <a class="ng-binding" ng-click="util.updateCurrent('current_tab','Elements')"> Elements 
-                <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="elementsHasNew()"></span>
+                <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="visibility.elementsHasNew()"></span>
                 </a>
               </li>
               <li class="animif"
                 ng-class="{active: current_tab === 'Encyclopedia'}">
                 <a class="ng-binding" ng-click="util.updateCurrent('current_tab','Encyclopedia')"> Encyclopedia 
-                <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="encyclopediaHasNew()"></span>
+                <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="visibility.encyclopediaHasNew()"></span>
                 </a>
               </li>
               <li class="animif"
@@ -96,7 +95,7 @@
                   <div>
                     <table class="table">
                       <tbody>
-                        <tr class="animif" ng-repeat="name in visibleGenerators()">
+                        <tr class="animif" ng-repeat="name in visibility.visibleGenerators()">
                           <td class="animif col-md-3">
                             <span class="pull-left">
                             {{name}}:&nbsp;
@@ -140,18 +139,18 @@
                     </table>
                   </div>
                   <div ng-if="player.data.unlocks.reactions && (
-                    visibleRedox().length > 0 ||
-                    visibleBindings().length > 0 ||
-                    visibleSyntheses().length > 0)">
+                    visibility.visibleRedox().length > 0 ||
+                    visibility.visibleBindings().length > 0 ||
+                    visibility.visibleSyntheses().length > 0)">
                     <hr>
-                    <div ng-if="visibleRedox().length > 0 ||
-                      visibleBindings().length > 0">
+                    <div ng-if="visibility.visibleRedox().length > 0 ||
+                      visibility.visibleBindings().length > 0">
                       <h3>Reactions</h3>
-                      <div ng-if="visibleRedox().length > 0">
+                      <div ng-if="visibility.visibleRedox().length > 0">
                         <h4>Redox</h4>
                         <table class="table">
                           <tbody>
-                            <tr class="animif" ng-repeat="key in visibleRedox()">
+                            <tr class="animif" ng-repeat="key in visibility.visibleRedox()">
                               <td class="col-md-7" width=50%>
                                 <div class="pull-left">
                                   <span ng-bind-html="util.trustHTML(format.reactionFormat(redox[key].number,redox[key]))"></span>
@@ -166,7 +165,7 @@
                                     ng-init="redox[key].number = redox[key].number || 1" 
                                     ng-model="redox[key].number">
                                   <button class="btn btn-default"
-                                    ng-click="redox[key].number, redox[key])"
+                                    ng-click="reaction.react(redox[key].number, redox[key])"
                                     ng-class="{disabled: !reaction.isReactionCostMet(redox[key].number, redox[key])}">React</button>
                                   </input>
                                 </div>
@@ -175,11 +174,11 @@
                           </tbody>
                         </table>
                       </div>
-                      <div ng-if="visibleBindings().length > 0">
+                      <div ng-if="visibility.visibleBindings().length > 0">
                         <h4>Binding energy</h4>
                         <table class="table">
                           <tbody>
-                            <tr class="animif" ng-repeat="key in visibleBindings()">
+                            <tr class="animif" ng-repeat="key in visibility.visibleBindings()">
                               <td class="col-md-8" width=50%>
                                 <div class="pull-left">
                                   <span ng-bind-html="util.trustHTML(format.reactionFormat(binding_energy[key].number,binding_energy[key]))"></span>
@@ -202,11 +201,11 @@
                         </table>
                       </div>
                     </div>
-                    <div ng-if="visibleSyntheses().length > 0">
+                    <div ng-if="visibility.visibleSyntheses().length > 0">
                       <h3>Syntheses</h3>
                       <table class="table">
                         <tbody>
-                          <tr class="animif" ng-repeat="syn in visibleSyntheses()"
+                          <tr class="animif" ng-repeat="syn in visibility.visibleSyntheses()"
                             ng-mouseover="player.data.syntheses[syn].is_new = false">
                             <td class="col-md-4" width=50%>
                               <div class="pull-left"
@@ -273,14 +272,14 @@
                     <h4>Upgrades</h4>
                     <table class="table">
                       <tbody>
-                        <tr class="animif" ng-repeat="generator in visibleGenerators()|filter:upgrade.filterUpgrade">
+                        <tr class="animif" ng-repeat="generator in visibility.visibleGenerators()|filter:upgrade.filterUpgrade">
                           <td class="animif col-md-2">
                             <div class="pull-left">
                               {{generator}}
                             </div>
                           </td>
                           <td class="animif col-md-1" ng-repeat="up in generators[generator].upgrades">
-                            <a class="btn btn-default" ng-show="visibleUpgrade(up)"
+                            <a class="btn btn-default" ng-show="visibility.visibleUpgrade(up)"
                               ng-click="upgrade.buyUpgrade(up, current_element)"
                               ng-class="{disabled: upgrades[up].price > player.data.resources[current_element].number && !player.data.elements[current_element].upgrades[up].bought,
                               active: player.data.elements[current_element].upgrades[up].bought}">
@@ -300,7 +299,7 @@
               </div>
               <div class="col-lg-3 col-lg-pull-8">
                 <table class="table table-hover element-table no_bottom" data-spy="affix" data-offset-top="150">
-                  <tbody class="animif" ng-repeat="key in visibleResources()" 
+                  <tbody class="animif" ng-repeat="key in visibility.visibleResources()" 
                     ng-mouseover="player.data.resources[key].is_new = false"
                     class="">
                     <tr>
@@ -346,15 +345,15 @@
                   </tbody>
                 </table>
               </div>
-              <div class="col-lg-1 col-lg-pull-0 right-box" ng-if="visibleElements().length > 1">
+              <div class="col-lg-1 col-lg-pull-0 right-box" ng-if="visibility.visibleElements().length > 1">
                 <table class="table table-hover element-table">
                   <tbody>
-                    <tr class="animif" ng-repeat="key in visibleElements()" ng-class="{active:current_element===key}">
+                    <tr class="animif" ng-repeat="key in visibility.visibleElements()" ng-class="{active:current_element===key}">
                       <td>
                         <div class="pull-left" ng-click="util.updateCurrent('current_element', key)">
                           <a>
                           {{elements[key].name}}
-                          <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="elementHasNew(key)"></span>
+                          <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="visibility.elementHasNew(key)"></span>
                           </a>
                         </div>
                       </td>
@@ -372,7 +371,7 @@
               <div class="col-lg-3 col-lg-pull-9">
                 <table class="table table-hover element-table no_bottom">
                   <tbody>
-                    <tr class="animif" ng-repeat="entry in visibleEncyclopediaEntries()" ng-mouseover="player.data.encyclopedia[entry].is_new = false" ng-click="util.updateEncyclopediaEntry('current_entry', entry)">
+                    <tr class="animif" ng-repeat="entry in visibility.visibleEncyclopediaEntries()" ng-mouseover="player.data.encyclopedia[entry].is_new = false" ng-click="util.updateEncyclopediaEntry('current_entry', entry)">
                       <td width=15%><span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.data.encyclopedia[entry].is_new"></span></td>
                       <td><a>{{encyclopedia[entry].name}}</a></td>
                     </tr>

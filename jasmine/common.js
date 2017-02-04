@@ -18,6 +18,7 @@ var commonSpec = function(spec) {
     spec.synthesis = $injector.get('synthesis');
     spec.reaction = $injector.get('reaction');
     spec.element = $injector.get('element');
+    spec.visibility = $injector.get('visibility');
     spec.data = $injector.get('data');
 
     jasmine.getJSONFixtures().fixturesPath = 'base/src/data/';

@@ -38,6 +38,7 @@ function(player) {
         var produced = number * reaction.product[product[i]];
         var current = player.data.resources[product[i]].number;
         player.data.resources[product[i]].number = Number.parseFloat((current + produced).toFixed(4));
+        player.data.resources[product[i]].unlocked = true;
         $scope.$emit("unlocks", product[i]);
       }
     }

@@ -101,16 +101,6 @@ function($filter, $sce) {
   this.trustHTML = function (html) {
     return $sce.trustAsHtml(html);
   };
-
-  this.visibleKeys = function (map) {
-    var result = {};
-    for(var key in map) {
-      if(map[key].visible()) {
-        result[key] = map[key];
-      }
-    }
-    return Object.keys(result);
-  };
   
   /**
    * Simply compares two string version values.
