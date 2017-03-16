@@ -104,28 +104,8 @@ angular
     return player.data.unlocks[entry];
   };
   
-  isRedoxVisible = function(entry) {
-    if(!player.data.unlocks.redox){
-      return false;
-    }
-
-    for(var reactant in entry.reactant){
-      if(!player.data.resources[reactant].unlocked){
-        return false;
-      }
-    }
-    
-    for(var element in entry.elements){
-      if($scope.current_element === entry.elements[element]){
-        return true;
-      }
-    }
-    
-    return false;
-  };
-
-  isBindingVisible = function(entry) {
-    if(!player.data.unlocks.nuclear_binding_energy){
+  isReactionVisible = function(entry, reaction) {
+    if(!player.data.unlocks[reaction]){
       return false;
     }
 
@@ -144,24 +124,16 @@ angular
     return false;
   };
   
-  isSynthesisVisible = function(entry) {
-    if(!player.data.unlocks.synthesis){
-      return false;
-    }
+  isRedoxVisible = function(entry) {
+    return isReactionVisible(entry, redox);
+  };
 
-    for(var reactant in entry.reactant){
-      if(!player.data.resources[reactant].unlocked){
-        return false;
-      }
-    }
-    
-    for(var element in entry.elements){
-      if($scope.current_element === entry.elements[element]){
-        return true;
-      }
-    }
-    
-    return false;
+  isBindingVisible = function(entry) {
+    return isReactionVisible(entry, nuclear_binding_energy);
+  };
+  
+  isSynthesisVisible = function(entry) {
+    return isReactionVisible(entry, synthesis);
   };
 
   this.elementHasNew = function(element) {
