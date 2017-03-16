@@ -9,14 +9,42 @@ angular
     $scope = scope;
   };
   
-  this.visibleElements = function() {
-    elements = [];
-    for( var element in $scope.elements) {
-      if(isElementVisible(element)) {
-        elements.push(element);
+  visible = function(items, func) {
+    var visibles = [];
+    for(var item in items) {
+      if(func(item)) {
+        visibles.push(item);
       }
     }
-    return elements;
+    return visibles;
+  };
+  
+  this.visibleElements = function() {
+    return visible($scope.elements, isElementVisible);
+  };
+
+  this.visibleGenerators = function() {
+    return visible($scope.generators, isGeneratorVisible);
+  };
+
+  this.visibleResources = function() {
+    return visible($scope.resources, isResourceVisible);
+  };
+
+  this.visibleEncyclopediaEntries = function() {
+    return visible($scope.encyclopedia, isEncyclopediaEntryVisible);
+  };
+  
+  this.visibleRedox = function() {
+    return visible($scope.redox, isRedoxVisible);
+  };
+  
+  this.visibleBindings = function() {
+    return visible($scope.binding_energy, isBindingVisible);
+  };
+  
+  this.visibleSyntheses = function() {
+    return visible($scope.syntheses, isSynthesisVisible);
   };
 
   isElementVisible = function(element) {
@@ -26,22 +54,12 @@ angular
     return player.data.elements[element].unlocked;
   };
 
-  this.visibleGenerators = function() {
-    generators = [];
-    for( var generator in $scope.generators) {
-      if(isGeneratorVisible(generator)) {
-        generators.push(generator);
-      }
-    }
-    return generators;
-  };
-
   isGeneratorVisible = function(name) {
     var generator = $scope.generators[name];
     var condition = "";
     for( var dep in generator.dependencies) {
       condition += "player.data.elements[$scope.current_element].generators['"
-          + generator.dependencies[dep] + "'].level > 0" + " && ";
+          + generator.dependencies[dep] + "'].level > 0 && ";
     }
     condition += "true";
     return eval(condition);
@@ -56,23 +74,13 @@ angular
     }
     for( var dep in upgrade.dependencies) {
       condition += "player.data.elements[$scope.current_element].upgrades['"
-          + upgrade.dependencies[dep] + "'].bought" + " && ";
+          + upgrade.dependencies[dep] + "'].bought && ";
     }
     condition += "true";
 
     return eval(condition);
-  };  
-
-  this.visibleResources = function() {
-    resources = [];
-    for( var resource in $scope.resources) {
-      if(isResourceVisible(resource)) {
-        resources.push(resource);
-      }
-    }
-    return resources;
   };
-
+  
   isResourceVisible = function(name) {
     if(!player.data.resources[name].unlocked){
       return false;
@@ -84,7 +92,7 @@ angular
     }
     
     for(var element in elements){
-      if($scope.current_element == elements[element]){
+      if($scope.current_element === elements[element]){
         return true;
       }
     }
@@ -92,30 +100,10 @@ angular
     return false;
   };
 
-  this.visibleEncyclopediaEntries = function() {
-    entries = [];
-    for( var entry in $scope.encyclopedia) {
-      if(isEncyclopediaEntryVisible(entry)) {
-        entries.push(entry);
-      }
-    }
-    return entries;
-  };
-
   isEncyclopediaEntryVisible = function(entry) {
     return player.data.unlocks[entry];
   };
-
-  this.visibleRedox = function() {
-    redox = [];
-    for( var entry in $scope.redox) {
-      if(isRedoxVisible($scope.redox[entry])) {
-        redox.push(entry);
-      }
-    }
-    return redox;
-  };
-
+  
   isRedoxVisible = function(entry) {
     if(!player.data.unlocks.redox){
       return false;
@@ -134,16 +122,6 @@ angular
     }
     
     return false;
-  };
-  
-  this.visibleBindings = function() {
-    binding = [];
-    for( var entry in $scope.binding_energy) {
-      if(isBindingVisible($scope.binding_energy[entry])) {
-        binding.push(entry);
-      }
-    }
-    return binding;
   };
 
   isBindingVisible = function(entry) {
@@ -166,16 +144,6 @@ angular
     return false;
   };
   
-  this.visibleSyntheses = function() {
-    syntheses = [];
-    for( var entry in $scope.syntheses) {
-      if(isSynthesisVisible($scope.syntheses[entry])) {
-        syntheses.push(entry);
-      }
-    }
-    return syntheses;
-  };
-
   isSynthesisVisible = function(entry) {
     if(!player.data.unlocks.synthesis){
       return false;
