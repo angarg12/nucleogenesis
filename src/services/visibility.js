@@ -2,13 +2,13 @@ angular
 .module('incremental')
 .service('visibility',
 ['player',
- function(player) {  
+ function(player) {
   var $scope;
-  
+
   this.setScope = function (scope){
     $scope = scope;
   };
-  
+
   visible = function(items, func) {
     var visibles = [];
     for(var item in items) {
@@ -18,13 +18,17 @@ angular
     }
     return visibles;
   };
-  
+
   this.visibleElements = function() {
     return visible($scope.elements, isElementVisible);
   };
 
   this.visibleGenerators = function() {
     return visible($scope.generators, isGeneratorVisible);
+  };
+
+  this.visibleUpgrades = function() {
+    return visible($scope.upgrades, isUpgradeVisible);
   };
 
   this.visibleResources = function() {
@@ -34,15 +38,15 @@ angular
   this.visibleEncyclopediaEntries = function() {
     return visible($scope.encyclopedia, isEncyclopediaEntryVisible);
   };
-  
+
   this.visibleRedox = function() {
     return visible($scope.redox, isRedoxVisible);
   };
-  
+
   this.visibleBindings = function() {
     return visible($scope.binding_energy, isBindingVisible);
   };
-  
+
   this.visibleSyntheses = function() {
     return visible($scope.syntheses, isSynthesisVisible);
   };
@@ -66,7 +70,7 @@ angular
   };
 
   // FIXME use eval for the time being, refactor to preprocess conditional functions
-  this.visibleUpgrade = function(name) {
+  isUpgradeVisible = function(name) {
     var upgrade = $scope.upgrades[name];
     var condition = "";
     for( var pre in upgrade.preconditions) {
@@ -80,30 +84,32 @@ angular
 
     return eval(condition);
   };
-  
+
   isResourceVisible = function(name) {
     if(!player.data.resources[name].unlocked){
       return false;
     }
-    
+
+    // This is for global resources e.g. protons, which do not
+    // belong to any element
     var elements = $scope.resources[name].elements;
     if(elements.length === 0){
       return true;
     }
-    
+
     for(var element in elements){
       if($scope.current_element === elements[element]){
         return true;
       }
     }
-    
+
     return false;
   };
 
   isEncyclopediaEntryVisible = function(entry) {
     return player.data.unlocks[entry];
   };
-  
+
   isReactionVisible = function(entry, reaction) {
     if(!player.data.unlocks[reaction]){
       return false;
@@ -114,44 +120,26 @@ angular
         return false;
       }
     }
-    
+
     for(var element in entry.elements){
       if($scope.current_element === entry.elements[element]){
         return true;
       }
     }
-    
+
     return false;
   };
-  
+
   isRedoxVisible = function(entry) {
-    return isReactionVisible(entry, redox);
+    return isReactionVisible($scope.redox[entry], 'redox');
   };
 
   isBindingVisible = function(entry) {
-    return isReactionVisible(entry, nuclear_binding_energy);
-  };
-  
-  isSynthesisVisible = function(entry) {
-    return isReactionVisible(entry, synthesis);
+    return isReactionVisible($scope.binding_energy[entry], 'nuclear_binding_energy');
   };
 
-  this.elementHasNew = function(element) {
-    var includes = $scope.elements[element].includes;
-    for( var key in includes) {
-      if(player.data.resources[includes[key]].unlocked
-          && player.data.resources[includes[key]].is_new) {
-        return true;
-      }
-    }
-    for( var index in $scope.elements[element].syntheses) {
-      var synthesis = $scope.elements[element].syntheses[index];
-      if(isSynthesisVisible(synthesis)
-          && player.data.syntheses[synthesis].is_new) {
-        return true;
-      }
-    }
-    return false;
+  isSynthesisVisible = function(entry) {
+    return isReactionVisible($scope.syntheses[entry], 'synthesis');
   };
 
   this.elementsHasNew = function() {
@@ -161,9 +149,14 @@ angular
         return true;
       }
     }
-    for( var key in $scope.table_resources) {
-      if(player.data.resources[$scope.table_resources[key]].unlocked
-          && player.data.resources[$scope.table_resources[key]].is_new) {
+    return false;
+  };
+
+  this.elementHasNew = function(element) {
+    var includes = $scope.elements[element].includes;
+    for( var key in includes) {
+      if(player.data.resources[includes[key]].unlocked
+          && player.data.resources[includes[key]].is_new) {
         return true;
       }
     }
@@ -176,5 +169,6 @@ angular
         return true;
       }
     }
+    return false;
   };
 }]);

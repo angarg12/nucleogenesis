@@ -31,7 +31,7 @@
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      
+
       ga('create', 'UA-58136427-5', 'auto');
       ga('send', 'pageview');
     </script>
@@ -43,7 +43,7 @@
           <div class="navbar-header">
             <span class="navbar-brand page-title">
             The Incremental Table of Elements
-            </span> 
+            </span>
             <span class="navbar-brand">
             <span class="text-muted small">v{{version}}</span>
             </span>
@@ -56,13 +56,13 @@
             <ul class="nav nav-tabs ng-scope" role="tablist">
               <li class="animif"
                 ng-class="{active: current_tab === 'Elements'}">
-                <a class="ng-binding" ng-click="util.updateCurrent('current_tab','Elements')"> Elements 
+                <a class="ng-binding" ng-click="util.updateCurrent('current_tab','Elements')"> Elements
                 <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="visibility.elementsHasNew()"></span>
                 </a>
               </li>
               <li class="animif"
                 ng-class="{active: current_tab === 'Encyclopedia'}">
-                <a class="ng-binding" ng-click="util.updateCurrent('current_tab','Encyclopedia')"> Encyclopedia 
+                <a class="ng-binding" ng-click="util.updateCurrent('current_tab','Encyclopedia')"> Encyclopedia
                 <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="visibility.encyclopediaHasNew()"></span>
                 </a>
               </li>
@@ -159,10 +159,10 @@
                               <td class="col-md-4">
                                 <!-- we store the value inside the object itself -->
                                 <div class="pull-left">
-                                  <input type="number" 
-                                    value="1" 
+                                  <input type="number"
+                                    value="1"
                                     min="1"
-                                    ng-init="redox[key].number = redox[key].number || 1" 
+                                    ng-init="redox[key].number = redox[key].number || 1"
                                     ng-model="redox[key].number">
                                   <button class="btn btn-default"
                                     ng-click="reaction.react(redox[key].number, redox[key])"
@@ -186,9 +186,9 @@
                               </td>
                               <td class="col-md-4">
                                 <div class="pull-left">
-                                  <input type="number" 
+                                  <input type="number"
                                     min="1"
-                                    ng-init="binding_energy[key].number = binding_energy[key].number || 1" 
+                                    ng-init="binding_energy[key].number = binding_energy[key].number || 1"
                                     ng-model="binding_energy[key].number">
                                   <button class="btn btn-default"
                                     ng-click="reaction.react(binding_energy[key].number, binding_energy[key])"
@@ -216,7 +216,7 @@
                             </td>
                             <td class="col-md-1">
                               <div class="pull-left" ng-if="player.data.syntheses[syn].number > 0">
-                                {{player.data.syntheses[syn].active}}/{{player.data.syntheses[syn].number}} 
+                                {{player.data.syntheses[syn].active}}/{{player.data.syntheses[syn].number}}
                               </div>
                             </td>
                             <td class="col-md-2">
@@ -278,8 +278,8 @@
                               {{generator}}
                             </div>
                           </td>
-                          <td class="animif col-md-1" ng-repeat="up in generators[generator].upgrades">
-                            <a class="btn btn-default" ng-show="visibility.visibleUpgrade(up)"
+                          <td class="animif col-md-1" ng-repeat="visibility.visibleUpgrades()">
+                            <a class="btn btn-default"
                               ng-click="upgrade.buyUpgrade(up, current_element)"
                               ng-class="{disabled: upgrades[up].price > player.data.resources[current_element].number && !player.data.elements[current_element].upgrades[up].bought,
                               active: player.data.elements[current_element].upgrades[up].bought}">
@@ -299,7 +299,7 @@
               </div>
               <div class="col-lg-3 col-lg-pull-8">
                 <table class="table table-hover element-table no_bottom" data-spy="affix" data-offset-top="150">
-                  <tbody class="animif" ng-repeat="key in visibility.visibleResources()" 
+                  <tbody class="animif" ng-repeat="key in visibility.visibleResources()"
                     ng-mouseover="player.data.resources[key].is_new = false"
                     class="">
                     <tr>
@@ -366,7 +366,7 @@
           <div class="tab-content ng-scope" id="encyclopedia">
             <div class="tab-pane row" ng-class="{active: current_tab == 'Encyclopedia'}">
               <div class="col-lg-9 col-lg-push-3">
-                 <iframe ng-src="{{current_encyclopedia_url}}"></iframe> 
+                 <iframe ng-src="{{current_encyclopedia_url}}"></iframe>
               </div>
               <div class="col-lg-3 col-lg-pull-9">
                 <table class="table table-hover element-table no_bottom">
@@ -414,8 +414,8 @@
                       <div ng-class="{element_purchased: player.data.elements[elem].unlocked === true,
                         element_unavailable: elements[elem].disabled === true,
                         element_cost_not_met: player.data.elements[elem].unlocked === false && !element.isElementCostMet(elem),
-                        element_cost_met: player.data.elements[elem].unlocked === false && element.isElementCostMet(elem)}" 
-                        ng-if="elem != ''" 
+                        element_cost_met: player.data.elements[elem].unlocked === false && element.isElementCostMet(elem)}"
+                        ng-if="elem != ''"
                         ng-mouseover="util.updateCurrent('hover_element', elem)"
                         ng-mouseleave="util.updateCurrent('hover_element', '')"
                         ng-click="element.buyElement(elem)"
@@ -424,7 +424,7 @@
                         <div ng-class="{element_purchased_dark: player.data.elements[elem].unlocked == true,
                           element_unavailable_dark: elements[elem].disabled === true,
                           element_cost_not_met_dark: player.data.elements[elem].unlocked === false && !element.isElementCostMet(elem),
-                          element_cost_met_dark: player.data.elements[elem].unlocked === false && element.isElementCostMet(elem)}" 
+                          element_cost_met_dark: player.data.elements[elem].unlocked === false && element.isElementCostMet(elem)}"
                           class="clear element_no">{{elements[elem].number}}</div>
                       </div>
                       <div ng-if="elem == ''" class="fl element_blank col-centered"></div>
@@ -456,15 +456,15 @@
                 <button class="btn btn-default btn-block"
                   ng-click="savegame.save()">Save</button>
                 <button class="btn btn-default btn-block"
-                  ng-click="savegame.reset(true)">Erase save</button>  
+                  ng-click="savegame.reset(true)">Erase save</button>
                 <br>
                 <br>
-                <button class="btn btn-default btn-block" id="exportSave" ng-click="savegame.exportSave()">Export Save</button> 
+                <button class="btn btn-default btn-block" id="exportSave" ng-click="savegame.exportSave()">Export Save</button>
                 <div id="exportSaveContents" style="display: none">
                   Copy this text:
                   <input id="exportSaveText" type="text" readonly>
                 </div>
-                <button class="btn btn-default btn-block" id="importSave" ng-click="savegame.importSave()">Import Save</button>                
+                <button class="btn btn-default btn-block" id="importSave" ng-click="savegame.importSave()">Import Save</button>
               </div>
               <div class="col-lg-12" ng-if="achievement.numberUnlocked() > 0">
                 <div ng-if="achievement.numberUnlocked() < 10">
@@ -478,10 +478,10 @@
               </div>
               <div class="col-lg-12">
                 <br>
-                Github: <a target="_blank" href="https://github.com/angarg12/incremental_table_elements">https://github.com/angarg12/incremental_table_elements</a>   
+                Github: <a target="_blank" href="https://github.com/angarg12/incremental_table_elements">https://github.com/angarg12/incremental_table_elements</a>
               </div>
               <div class="col-lg-12">
-                <a target="_blank" href="./changelog.txt">Changelog</a>              
+                <a target="_blank" href="./changelog.txt">Changelog</a>
               </div>
               <p style="padding-bottom:200px"></p>
             </div>
@@ -495,9 +495,9 @@
         <div class="container alert alert-success">
           <h3>New unlock:</h3>
           <h2>{{achievement.toast[0]}}</h2>
-          <button type="button" 
-            class="close" 
-            data-dismiss="alert" 
+          <button type="button"
+            class="close"
+            data-dismiss="alert"
             ng-click="achievement.removeToast()"
             ng-disabled="!achievement.is_toast_visible">
           <span aria-hidden="true">&times;</span>
