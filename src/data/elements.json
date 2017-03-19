@@ -9,9 +9,9 @@
     },
     "He" : {
       "name" : "Helium",
+      "includes" : [ "He", "3He", "3He+" ],
       "isotopes" : [ "3He" ],
-      "number" : 2,
-      "disabled" : true
+      "number" : 2
     },
     "Li" : {
       "name" : "Lithium",

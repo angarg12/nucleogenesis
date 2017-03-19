@@ -5,11 +5,17 @@ describe("Visible service", function() {
 
   describe('visibility functions', function() {
     it("should show visible elements", function() {
-      spec.player.data = {elements:{}};
+      spec.player.data = {elements:{},resources:{}};
+      spec.$scope.elements = {'H':{disabled:false},'C':{disabled:true},'O':{disabled:false}};
       spec.player.data.elements.H = {unlocked:true};
+      spec.$scope.elements.H.includes = ['H'];
       spec.player.data.elements.C = {unlocked:false};
+      spec.$scope.elements.C.includes = ['C'];
       spec.player.data.elements.O = {unlocked:false};
-      spec.elements = {'H':{disabled:false},'C':{disabled:false},'O':{disabled:false}};
+      spec.$scope.elements.O.includes = ['O'];
+      spec.player.data.resources.H = {unlocked:true};
+      spec.player.data.resources.C = {unlocked:false};
+      spec.player.data.resources.O = {unlocked:false};
 
       var values = spec.visibility.visibleElements();
 
