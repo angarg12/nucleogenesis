@@ -34,7 +34,7 @@ describe("Visible service", function() {
       expect(values).toEqual(['Tier 1', 'Tier 2']);
     });
 
-    it("should show visible upgrades", function() {
+    it("should show if an upgrade is visible", function() {
       spec.player.data = {elements:{}, unlocks:{}};
       spec.player.data.unlocks = {upgrade:true};
       spec.player.data.elements.H = {generators:[],upgrades:[]};
@@ -48,9 +48,47 @@ describe("Visible service", function() {
       spec.$scope.upgrades['Tier 1-2'] = temp['Tier 1-2'];
       spec.$scope.upgrades['Tier 1-3'] = temp['Tier 1-3'];
 
-      var values = spec.visibility.visibleUpgrades();
+      var values = spec.visibility.isUpgradeVisible('Tier 1-1');
 
-      expect(values).toEqual(['Tier 1-1', 'Tier 1-2']);
+      expect(values).toBeTruthy();
+    });
+
+    it("should show if an upgrade is visible 2", function() {
+      spec.player.data = {elements:{}, unlocks:{}};
+      spec.player.data.unlocks = {upgrade:true};
+      spec.player.data.elements.H = {generators:[],upgrades:[]};
+      spec.player.data.elements.H.generators['Tier 1'] = {level: 1};
+      spec.player.data.elements.H.upgrades['Tier 1-1'] = {bought: true};
+      spec.player.data.elements.H.upgrades['Tier 1-2'] = {bought: false};
+      spec.player.data.elements.H.upgrades['Tier 1-3'] = {bought: false};
+      var temp = spec.$scope.upgrades;
+      spec.$scope.upgrades = {};
+      spec.$scope.upgrades['Tier 1-1'] = temp['Tier 1-1'];
+      spec.$scope.upgrades['Tier 1-2'] = temp['Tier 1-2'];
+      spec.$scope.upgrades['Tier 1-3'] = temp['Tier 1-3'];
+
+      var values = spec.visibility.isUpgradeVisible('Tier 1-2');
+
+      expect(values).toBeTruthy();
+    });
+
+    it("should show if an upgrade is not visible", function() {
+      spec.player.data = {elements:{}, unlocks:{}};
+      spec.player.data.unlocks = {upgrade:true};
+      spec.player.data.elements.H = {generators:[],upgrades:[]};
+      spec.player.data.elements.H.generators['Tier 1'] = {level: 1};
+      spec.player.data.elements.H.upgrades['Tier 1-1'] = {bought: true};
+      spec.player.data.elements.H.upgrades['Tier 1-2'] = {bought: false};
+      spec.player.data.elements.H.upgrades['Tier 1-3'] = {bought: false};
+      var temp = spec.$scope.upgrades;
+      spec.$scope.upgrades = {};
+      spec.$scope.upgrades['Tier 1-1'] = temp['Tier 1-1'];
+      spec.$scope.upgrades['Tier 1-2'] = temp['Tier 1-2'];
+      spec.$scope.upgrades['Tier 1-3'] = temp['Tier 1-3'];
+
+      var values = spec.visibility.isUpgradeVisible('Tier 1-3');
+
+      expect(values).toBeFalsy();
     });
 
     it("should show visible resources", function() {

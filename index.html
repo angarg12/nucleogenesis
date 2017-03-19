@@ -278,8 +278,9 @@
                               {{generator}}
                             </div>
                           </td>
-                          <td class="animif col-md-1" ng-repeat="visibility.visibleUpgrades()">
+                          <td class="animif col-md-1" ng-repeat="up in generators[generator].upgrades">
                             <a class="btn btn-default"
+                              ng-if="visibility.isUpgradeVisible(up)"
                               ng-click="upgrade.buyUpgrade(up, current_element)"
                               ng-class="{disabled: upgrades[up].price > player.data.resources[current_element].number && !player.data.elements[current_element].upgrades[up].bought,
                               active: player.data.elements[current_element].upgrades[up].bought}">

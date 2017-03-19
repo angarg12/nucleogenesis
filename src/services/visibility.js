@@ -27,10 +27,6 @@ angular
     return visible($scope.generators, isGeneratorVisible);
   };
 
-  this.visibleUpgrades = function() {
-    return visible($scope.upgrades, isUpgradeVisible);
-  };
-
   this.visibleResources = function() {
     return visible($scope.resources, isResourceVisible);
   };
@@ -70,7 +66,7 @@ angular
   };
 
   // FIXME use eval for the time being, refactor to preprocess conditional functions
-  isUpgradeVisible = function(name) {
+  this.isUpgradeVisible = function(name) {
     var upgrade = $scope.upgrades[name];
     var condition = "";
     for( var pre in upgrade.preconditions) {
