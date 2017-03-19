@@ -4,6 +4,7 @@ jasmine/coverage
 coverage/
 *~
 */*~
+*/*.log
 .settings
 .project
 .tern-project
