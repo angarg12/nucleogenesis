@@ -2,10 +2,10 @@ angular
 .module('incremental')
 .service('player',
 [
-function() {  
+function() {
   var $scope;
   this.data;
-  
+
   // TODO: The startPlayer object can be mostly build
   // by using the data.js structures. That would save
   // a lot of
@@ -22,10 +22,11 @@ function() {
     elements_unlocked : 1,
     current_theme : "base"
   };
-  
+
   this.setScope = function (scope){
     $scope = scope;
     this.startPlayer.version = $scope.version;
+    this.populatePlayer();
   };
 
   this.populatePlayer = function () {
@@ -83,6 +84,9 @@ function() {
     this.startPlayer.elements.H.unlocked = true;
     this.startPlayer.resources.H.unlocked = true;
     this.startPlayer.resources.H.number = $scope.generators["Tier 1"].price;
+  };
+
+  this.initialisePlayer = function () {
     this.data = angular.copy(this.startPlayer);
   };
 }]);

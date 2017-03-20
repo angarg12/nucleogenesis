@@ -54,7 +54,6 @@ angular
 
     for(var index in $scope.elements[element].includes){
       var resource = $scope.elements[element].includes[index];
-        console.log(resource)
       if (player.data.resources[resource].unlocked) {
         return true;
       }

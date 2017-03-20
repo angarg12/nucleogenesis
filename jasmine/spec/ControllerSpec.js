@@ -5,7 +5,6 @@ describe("Incremental table elements", function() {
 
   describe('initialization functions', function() {
     it("should init all the variables", function() {
-      spyOn(spec.player, "populatePlayer");
 
       spec.$scope.init();
 
@@ -15,7 +14,6 @@ describe("Incremental table elements", function() {
 	  expect(spec.$scope.hover_element).toEqual("");
 	  expect(spec.achievement.toast).toEqual([]);
 	  expect(spec.achievement.is_toast_visible).toEqual(false);
-	  expect(spec.player.populatePlayer).toHaveBeenCalled();
     });
   });
 
@@ -145,7 +143,7 @@ describe("Incremental table elements", function() {
       spec.player.data.resources['3H'].number = 1e+10;
       spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
       spyOn(spec.util,'getPoisson').and.returnValue(18);
-      
+
       spec.controller.update();
 
       expect(spec.player.data.resources['3H'].number).toEqual(9999999982);

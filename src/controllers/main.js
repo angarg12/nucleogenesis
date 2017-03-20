@@ -21,9 +21,9 @@ angular
 'data',
 'visibility',
 function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame, generator, upgrade, animation, format, synthesis, reaction, element, data, visibility) {
-  $scope.version = '1.0.2';
+  $scope.version = '1.0.4';
   $scope.Math = window.Math;
-  
+
   $scope.data = data;
   $scope.player = player;
   $scope.achievement = achievement;
@@ -38,14 +38,14 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   $scope.visibility = visibility;
   $scope.element = element;
   var self = this;
-  
+
   $scope.current_tab = "Elements";
   // FIXME these keys couple the controller to the data in non-obvious ways
   // e.g. if the keys change, the controller breaks. to fix, point them to the first element
   $scope.current_entry = "hydrogen";
   $scope.current_element = "H";
   $scope.hover_element = "";
-  
+
   // since load calls are asynchronous, we need to do this to make sure that the data
   // is loaded before the services
   data.setScope($scope);
@@ -62,10 +62,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
 	  reaction.setScope($scope);
 	  element.setScope($scope);
           visibility.setScope($scope);
-	  
+
 	  self.onload = $timeout(self.startup);
   });
-  
+
   self.processDecay = function (resources) {
     for(var i = 0; i < resources.length; i++) {
       var resource = resources[i];
@@ -73,14 +73,14 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         var number = player.data.resources[resource].number;
         var half_life = $scope.resources[resource].decay.half_life;
         var production = util.randomDraw(number, Math.log(2) / half_life);
-        
+
         if(production === 0) {
           return;
         }
-        
+
         // we decrease the number of radioactive element
         player.data.resources[resource].number -= production;
-        
+
         // and decay products
         for(var product in $scope.resources[resource].decay.decay_product) {
           player.data.resources[product].number += $scope.resources[resource].decay.decay_product[product] *
@@ -132,8 +132,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
       }
     }
   };
-  
-  self.update = function () {    
+
+  self.update = function () {
     self.processDecay($scope.radioisotopes);
     self.processIsotopes();
     synthesis.processSynthesis();
@@ -146,16 +146,16 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     $scope.current_entry = "hydrogen";
     $scope.current_element = "H";
     $scope.hover_element = "";
-    player.populatePlayer();
+    player.initialisePlayer();
     achievement.init();
     animation.introAnimation();
   };
-  
+
   self.checkUnlock = $scope.$on("unlocks", function (event, data) {
     for(var unlock in $scope.unlocks){
       if(!$scope.player.data.unlocks[unlock]){
         item = $scope.unlocks[unlock];
-        //alert(data+" "+item.condition)
+
         if(eval(item.condition)){
           $scope.achievement.addToast(item.name);
           $scope.player.data.unlocks[unlock] = true;
@@ -163,7 +163,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
       }
     }
   });
-  
+
   self.startup = function () {
     $scope.current_encyclopedia_url = $sce.trustAsResourceUrl($scope.encyclopedia[$scope.current_entry].link);
     if(localStorage.getItem("playerStoredITE") !== null) {

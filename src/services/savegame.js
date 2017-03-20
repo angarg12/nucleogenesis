@@ -3,9 +3,9 @@ angular
 .service('savegame',
 ['player',
 'achievement',
-function(player, achievement) {  
+function(player, achievement) {
   var $scope;
-  
+
   this.setScope = function (scope){
     $scope = scope;
   };
@@ -19,11 +19,11 @@ function(player, achievement) {
   this.load = function () {
     try {
       player.data = JSON.parse(localStorage.getItem("playerStoredITE"));
+      this.versionControl();
     } catch (err) {
       alert("Error loading savegame, reset forced.");
       this.reset(false);
     }
-    this.versionControl();
   };
 
   this.reset = function (ask) {
@@ -47,7 +47,7 @@ function(player, achievement) {
   };
 
   this.importSave = function () {
-    var importText = prompt("Paste the text you were given by the export save dialog here.\n" + 
+    var importText = prompt("Paste the text you were given by the export save dialog here.\n" +
         "Warning: this will erase your current save!");
     if(importText) {
       try {
@@ -61,9 +61,12 @@ function(player, achievement) {
   };
 
   this.versionControl = function () {
+    // we merge the properties of the player with the start player to
+    // avoid undefined errors with new properties
+    player.data = angular.merge({}, player.startPlayer, player.data);
     /*
      * if(util.versionCompare(player.data.version,"0.11") == -1){
-     *   init(); 
+     *   init();
      * }
      */
   };
