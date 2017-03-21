@@ -87,7 +87,7 @@
                   <li>
                     <span ng-bind-html="util.trustHTML(util.getHTML(current_element))"></span>: {{(resources[current_element].ratio*100).toFixed(4)}}%
                   </li>
-                  <li class="animif" ng-repeat="isotope in elements[current_element].isotopes" ng-if="resources[isotope].visible()">
+                  <li class="animif" ng-repeat="isotope in elements[current_element].isotopes" ng-if="player.data.resources[isotope].unlocked">
                     <span ng-bind-html="util.trustHTML(util.getHTML(isotope))"></span>: {{(resources[isotope].ratio*100).toFixed(4)}}%
                   </li>
                 </ul>
