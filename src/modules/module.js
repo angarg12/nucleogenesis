@@ -1,10 +1,10 @@
-var module = angular.module('incremental', [ 'ngAnimate' ])
+var module = angular.module('incremental', [ 'ngAnimate', 'ngRoute' ])
 .filter('numberEx', ['numberFilter', '$locale',
   function(number, $locale) {
 
     var formats = $locale.NUMBER_FORMATS;
     return function(input, fractionSize) {
-      
+
       if(input === null){
     	  return "";
       }
@@ -24,4 +24,4 @@ var module = angular.module('incremental', [ 'ngAnimate' ])
       return whole +  decimal.substring(1);
     };
   }
-]);;
+]);
