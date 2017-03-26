@@ -8,6 +8,7 @@ var commonSpec = function(spec) {
     spyOn(_$rootScope_, '$emit');
     spec.$rootScope = _$rootScope_;
     spec.$scope = _$rootScope_.$new();
+    spyOn(spec.$scope, '$on');
     spec.achievement = $injector.get('achievement');
     spec.util = $injector.get('util');
     spec.player = $injector.get('player');

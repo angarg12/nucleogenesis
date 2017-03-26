@@ -1,7 +1,7 @@
 {
       "hydrogen": {
         "name": "Hydrogen",
-        "condition": "'H' == data"
+        "condition": "'H' == token"
       },
       "periodic_table": {
         "name": "Periodic table",
@@ -9,51 +9,51 @@
       },
       "isotope": {
         "name": "Isotope",
-        "condition": "[ '2H', '3H' ].indexOf(data) != -1"
+        "condition": "[ '2H', '3H' ].indexOf(token) != -1"
       },
       "ion": {
         "name": "Ion",
-        "condition": "'H-' == data"
+        "condition": "'H-' == token"
       },
       "radioactivity": {
         "name": "Radioactivity",
-        "condition": "'3H' == data"
+        "condition": "'3H' == token"
       },
       "reactions": {
         "name": "Reactions",
-        "condition": "'e-' == data"
+        "condition": "'e-' == token"
       },
       "electron": {
         "name": "Electron",
-        "condition": "'e-' == data"
+        "condition": "'e-' == token"
       },
       "proton": {
         "name": "Proton",
-        "condition": "'p' == data"
+        "condition": "'p' == token"
       },
       "neutron": {
         "name": "Neutron",
-        "condition": "'n' == data"
+        "condition": "'n' == token"
       },
       "energy": {
         "name": "Energy",
-        "condition": "'eV' == data"
+        "condition": "'eV' == token"
       },
       "half_life": {
         "name": "Half-life",
-        "condition": "'3H' == data"
+        "condition": "'3H' == token"
       },
       "oxygen": {
         "name": "Oxygen",
-        "condition": "'O' == data"
+        "condition": "'O' == token"
       },
       "upgrade": {
         "name": "Upgrades",
-        "condition": "'Tier 3' == data"
+        "condition": "'Tier 3' == token"
       },
       "redox": {
         "name": "Redox",
-        "condition": "'e-' == data"
+        "condition": "'e-' == token"
       },
       "nuclear_binding_energy": {
         "name": "Nuclear binding energy",
@@ -61,11 +61,11 @@
       },
       "beta_decay": {
         "name": "Beta decay",
-        "condition": "'beta-' == data"
+        "condition": "'beta-' == token"
       },
       "molecule": {
         "name": "Molecule",
-        "condition": "[ 'H2', 'O2' ,'O3' ].indexOf(data) != -1"
+        "condition": "[ 'H2', 'O2' ,'O3' ].indexOf(token) != -1"
       },
       "synthesis": {
         "name": "Synthesis",
@@ -73,34 +73,34 @@
       },
       "helium": {
         "name": "Helium",
-        "condition": "'He' == data"
+        "condition": "'He' == token"
       },
       "lithium": {
         "name": "Lithium",
-        "condition": "'Li' == data"
+        "condition": "'Li' == token"
       },
       "beryllium": {
         "name": "Beryllium",
-        "condition": "'Be' == data"
+        "condition": "'Be' == token"
       },
       "boron": {
         "name": "Boron",
-        "condition": "'B' == data"
+        "condition": "'B' == token"
       },
       "carbon": {
         "name": "Carbon",
-        "condition": "'C' == data"
+        "condition": "'C' == token"
       },
       "nitrogen": {
         "name": "Nitrogen",
-        "condition": "'N' == data"
+        "condition": "'N' == token"
       },
       "fluorine": {
         "name": "Fluorine",
-        "condition": "'F' == data"
+        "condition": "'F' == token"
       },
       "neon": {
         "name": "Neon",
-        "condition": "'Ne' == data"
+        "condition": "'Ne' == token"
       }
     }

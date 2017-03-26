@@ -38,6 +38,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   $scope.visibility = visibility;
   $scope.element = element;
   var self = this;
+  // we need this just for the $on function
+  self.data = data;
+  self.player = player;
+  self.achievement = achievement;
 
   $scope.current_tab = "Elements";
   // FIXME these keys couple the controller to the data in non-obvious ways
@@ -143,14 +147,14 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     animation.introAnimation();
   };
 
-  self.checkUnlock = $scope.$on("unlocks", function (event, data) {
-    for(var unlock in data.unlocks){
-      if(!$scope.player.data.unlocks[unlock]){
-        item = data.unlocks[unlock];
+  self.checkUnlock = $scope.$on("unlocks", function (event, token) {
+    for(var unlock in self.data.unlocks){
+      if(!self.player.data.unlocks[unlock]){
+        item = self.data.unlocks[unlock];
 
         if(eval(item.condition)){
-          $scope.achievement.addToast(item.name);
-          $scope.player.data.unlocks[unlock] = true;
+          self.achievement.addToast(item.name);
+          self.player.data.unlocks[unlock] = true;
         }
       }
     }
