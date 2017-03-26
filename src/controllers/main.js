@@ -48,7 +48,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
 
   // since load calls are asynchronous, we need to do this to make sure that the data
   // is loaded before the services
-  data.setScope($scope);
   data.loadData().then(function() {
 	  player.setScope($scope);
 	  achievement.setScope($scope);
@@ -56,8 +55,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
 	  savegame.setScope($scope);
 	  generator.setScope($scope);
 	  upgrade.setScope($scope);
-	  animation.setScope($scope);
-	  format.setScope($scope);
 	  synthesis.setScope($scope);
 	  reaction.setScope($scope);
 	  element.setScope($scope);
@@ -71,7 +68,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
       var resource = resources[i];
       if(player.data.resources[resource].unlocked) {
         var number = player.data.resources[resource].number;
-        var half_life = $scope.resources[resource].decay.half_life;
+        var half_life = data.resources[resource].decay.half_life;
         var production = util.randomDraw(number, Math.log(2) / half_life);
 
         if(production === 0) {
@@ -82,12 +79,12 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         player.data.resources[resource].number -= production;
 
         // and decay products
-        for(var product in $scope.resources[resource].decay.decay_product) {
-          player.data.resources[product].number += $scope.resources[resource].decay.decay_product[product] *
+        for(var product in data.resources[resource].decay.decay_product) {
+          player.data.resources[product].number += data.resources[resource].decay.decay_product[product] *
                                                      production;
           player.data.resources[product].unlocked = true;
           $scope.$emit("unlocks", product);
-          var decay_type = $scope.resources[resource].decay.decay_type;
+          var decay_type = data.resources[resource].decay.decay_type;
           if(decay_type){
             $scope.$emit("unlocks", decay_type);
           }
@@ -104,17 +101,17 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
       }
       // Prepare an array with the isotopes
       var isotopes = [ element ];
-      isotopes = isotopes.concat($scope.elements[element].isotopes);
+      isotopes = isotopes.concat(data.elements[element].isotopes);
       var remaining = generator.elementProduction(element);
       // We will create a random draw recalculate the mean and std
       for(var i = 0; i < isotopes.length - 1; i++) {
         // First we need to adjust the ratio for the remaining isotopes
         var remaining_ratio_sum = 0;
         for(var j = i; j < isotopes.length; j++) {
-          remaining_ratio_sum += $scope.resources[isotopes[j]].ratio;
+          remaining_ratio_sum += data.resources[isotopes[j]].ratio;
         }
 
-        var p = $scope.resources[isotopes[i]].ratio / remaining_ratio_sum;
+        var p = data.resources[isotopes[i]].ratio / remaining_ratio_sum;
         var production = util.randomDraw(remaining, p);
 
         if(production > 0) {
@@ -134,7 +131,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   };
 
   self.update = function () {
-    self.processDecay($scope.radioisotopes);
+    self.processDecay(data.radioisotopes);
     self.processIsotopes();
     synthesis.processSynthesis();
 
@@ -152,9 +149,9 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   };
 
   self.checkUnlock = $scope.$on("unlocks", function (event, data) {
-    for(var unlock in $scope.unlocks){
+    for(var unlock in data.unlocks){
       if(!$scope.player.data.unlocks[unlock]){
-        item = $scope.unlocks[unlock];
+        item = data.unlocks[unlock];
 
         if(eval(item.condition)){
           $scope.achievement.addToast(item.name);
@@ -165,15 +162,12 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   });
 
   self.startup = function () {
-    $scope.current_encyclopedia_url = $sce.trustAsResourceUrl($scope.encyclopedia[$scope.current_entry].link);
+    $scope.current_encyclopedia_url = $sce.trustAsResourceUrl(data.encyclopedia[$scope.current_entry].link);
     if(localStorage.getItem("playerStoredITE") !== null) {
       savegame.load();
     }
     if(player.data === undefined) {
       $scope.init();
-    }
-    if($scope.lastSave === undefined) {
-      $scope.lastSave = "None";
     }
     // init();
     achievement.init();

@@ -81,7 +81,7 @@ describe("Generator service", function() {
 
   describe('production functions', function() {
     it("should calculate the generator production", function() {
-      spec.$scope.generators['Tier 1'].upgrades = ['Tier 1-1','Tier 1-2','Tier 1-3'];
+      spec.data.generators['Tier 1'].upgrades = ['Tier 1-1','Tier 1-2','Tier 1-3'];
       spec.player.data = {elements:{}};
       spec.player.data.elements.H = {upgrades:{}};
       spec.player.data.elements.H.upgrades['Tier 1-1'] = {bought:true};
@@ -94,7 +94,7 @@ describe("Generator service", function() {
     });
     
     it("should calculate the tier production", function() {
-      spec.$scope.generators['Tier 1'].upgrades = ['Tier 1-1','Tier 1-2','Tier 1-3'];
+      spec.data.generators['Tier 1'].upgrades = ['Tier 1-1','Tier 1-2','Tier 1-3'];
       spec.player.data = {elements:{}};
       spec.player.data.elements.H = {upgrades:{},generators:{}};
       spec.player.data.elements.H.upgrades['Tier 1-1'] = {bought:true};
@@ -109,16 +109,16 @@ describe("Generator service", function() {
     });    
     
     it("should calculate the element production", function() {
-      spec.$scope.generators['Tier 1'].upgrades = [];
-      spec.$scope.generators['Tier 2'].upgrades = [];
-      spec.$scope.generators['Tier 3'].upgrades = [];
-      temp1 = spec.$scope.generators['Tier 1'];
-      temp2 = spec.$scope.generators['Tier 2'];
-      temp3 = spec.$scope.generators['Tier 3'];
-      spec.$scope.generators = {};
-      spec.$scope.generators['Tier 1'] = temp1;
-      spec.$scope.generators['Tier 2'] = temp2;
-      spec.$scope.generators['Tier 3'] = temp3;
+      spec.data.generators['Tier 1'].upgrades = [];
+      spec.data.generators['Tier 2'].upgrades = [];
+      spec.data.generators['Tier 3'].upgrades = [];
+      temp1 = spec.data.generators['Tier 1'];
+      temp2 = spec.data.generators['Tier 2'];
+      temp3 = spec.data.generators['Tier 3'];
+      spec.data.generators = {};
+      spec.data.generators['Tier 1'] = temp1;
+      spec.data.generators['Tier 2'] = temp2;
+      spec.data.generators['Tier 3'] = temp3;
       
       spec.player.data = {elements:{}};
       spec.player.data.elements.H = {generators:{}};

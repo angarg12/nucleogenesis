@@ -2,7 +2,8 @@ angular
 .module('incremental')
 .service('visibility',
 ['player',
- function(player) {
+'data',
+ function(player, data) {
   var $scope;
 
   this.setScope = function (scope){
@@ -20,40 +21,40 @@ angular
   };
 
   this.visibleElements = function() {
-    return visible($scope.elements, isElementVisible);
+    return visible(data.elements, isElementVisible);
   };
 
   this.visibleGenerators = function() {
-    return visible($scope.generators, isGeneratorVisible);
+    return visible(data.generators, isGeneratorVisible);
   };
 
   this.visibleResources = function() {
-    return visible($scope.resources, isResourceVisible);
+    return visible(data.resources, isResourceVisible);
   };
 
   this.visibleEncyclopediaEntries = function() {
-    return visible($scope.encyclopedia, isEncyclopediaEntryVisible);
+    return visible(data.encyclopedia, isEncyclopediaEntryVisible);
   };
 
   this.visibleRedox = function() {
-    return visible($scope.redox, isRedoxVisible);
+    return visible(data.redox, isRedoxVisible);
   };
 
   this.visibleBindings = function() {
-    return visible($scope.binding_energy, isBindingVisible);
+    return visible(data.binding_energy, isBindingVisible);
   };
 
   this.visibleSyntheses = function() {
-    return visible($scope.syntheses, isSynthesisVisible);
+    return visible(data.syntheses, isSynthesisVisible);
   };
 
   isElementVisible = function(element) {
-    if($scope.elements[element].disabled) {
+    if(data.elements[element].disabled) {
       return false;
     }
 
-    for(var index in $scope.elements[element].includes){
-      var resource = $scope.elements[element].includes[index];
+    for(var index in data.elements[element].includes){
+      var resource = data.elements[element].includes[index];
       if (player.data.resources[resource].unlocked) {
         return true;
       }
@@ -63,7 +64,7 @@ angular
   };
 
   isGeneratorVisible = function(name) {
-    var generator = $scope.generators[name];
+    var generator = data.generators[name];
     var condition = "";
     for( var dep in generator.dependencies) {
       condition += "player.data.elements[$scope.current_element].generators['"
@@ -75,7 +76,7 @@ angular
 
   // FIXME use eval for the time being, refactor to preprocess conditional functions
   this.isUpgradeVisible = function(name) {
-    var upgrade = $scope.upgrades[name];
+    var upgrade = data.upgrades[name];
     var condition = "";
     for( var pre in upgrade.preconditions) {
       condition += upgrade.preconditions[pre] + " && ";
@@ -96,7 +97,7 @@ angular
 
     // This is for global resources e.g. protons, which do not
     // belong to any element
-    var elements = $scope.resources[name].elements;
+    var elements = data.resources[name].elements;
     if(elements.length === 0){
       return true;
     }
@@ -135,19 +136,19 @@ angular
   };
 
   isRedoxVisible = function(entry) {
-    return isReactionVisible($scope.redox[entry], 'redox');
+    return isReactionVisible(data.redox[entry], 'redox');
   };
 
   isBindingVisible = function(entry) {
-    return isReactionVisible($scope.binding_energy[entry], 'nuclear_binding_energy');
+    return isReactionVisible(data.binding_energy[entry], 'nuclear_binding_energy');
   };
 
   isSynthesisVisible = function(entry) {
-    return isReactionVisible($scope.syntheses[entry], 'synthesis');
+    return isReactionVisible(data.syntheses[entry], 'synthesis');
   };
 
   this.elementsHasNew = function() {
-    for( var key in $scope.elements) {
+    for( var key in data.elements) {
       if(player.data.elements[key] !== undefined
           && player.data.elements[key].unlocked && this.elementHasNew(key)) {
         return true;
@@ -157,7 +158,7 @@ angular
   };
 
   this.elementHasNew = function(element) {
-    var includes = $scope.elements[element].includes;
+    var includes = data.elements[element].includes;
     for( var key in includes) {
       if(player.data.resources[includes[key]].unlocked
           && player.data.resources[includes[key]].is_new) {

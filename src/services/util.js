@@ -3,13 +3,14 @@ angular
 .service('util',
 ['$filter',
 '$sce',
-function($filter, $sce) {
+'data',
+function($filter, $sce, data) {
   // Polyfill for some browsers
   Number.parseFloat = parseFloat;
   Number.isInteger = Number.isInteger || function (value) {
     return typeof value === "number" && isFinite(value) && Math.floor(value) === value;
   };
-  
+
   var $scope;
   this.numberGenerator = new Ziggurat();
 
@@ -18,9 +19,9 @@ function($filter, $sce) {
   };
 
   this.getHTML = function (resource) {
-    var html = $scope.html[resource];
+    var html = data.html[resource];
     if(html === undefined){
-      html = $scope.resources[resource].html;
+      html = data.resources[resource].html;
     }
     if(html === undefined){
       return resource;
@@ -34,9 +35,9 @@ function($filter, $sce) {
 
   this.updateEncyclopediaEntry = function (variable, new_value) {
     $scope[variable] = new_value;
-    $scope.current_encyclopedia_url = $sce.trustAsResourceUrl($scope.encyclopedia[new_value].link);
+    $scope.current_encyclopedia_url = $sce.trustAsResourceUrl(data.encyclopedia[new_value].link);
   };
-  
+
   this.prettifyNumber = function (number) {
     if(typeof number == 'undefined') {
       return;
@@ -59,7 +60,7 @@ function($filter, $sce) {
     }
     return $filter('numberEx')(number, 4);
   };
-  
+
   // FIXME: poisson give bad results for small isotopes amount production
   // it should be based in p not in mean
   this.randomDraw = function (number, p) {
@@ -97,22 +98,22 @@ function($filter, $sce) {
 
     return k - 1;
   };
-  
+
   this.trustHTML = function (html) {
     return $sce.trustAsHtml(html);
   };
-  
+
   /**
    * Simply compares two string version values.
-   * 
+   *
    * Example: versionCompare('1.1', '1.2') => smaller
    * versionCompare('1.1', '1.1') => equal versionCompare('1.2',
    * '1.1') => bigger versionCompare('2.23.3', '2.22.3') => bigger
-   * 
+   *
    * Returns: smaller = left is LOWER than right equal = they are
    * equal bigger = left is GREATER = right is LOWER And FALSE if
    * one of input versions are not valid
-   * 
+   *
    * @function
    * @param {String}
    *          left Version #1

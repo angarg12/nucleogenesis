@@ -2,7 +2,8 @@ angular
 .module('incremental')
 .service('element',
 ['player',
-function(player) {
+'data',
+function(player, data) {
 	var $scope;
 
 	this.setScope = function (scope){
@@ -10,16 +11,16 @@ function(player) {
 	};
 
 	this.elementPrice = function (element) {
-		return Math.pow(player.data.elements_unlocked + 1, $scope.elements[element].number);
+		return Math.pow(player.data.elements_unlocked + 1, data.elements[element].number);
 	};
-	
+
 	this.isElementCostMet = function (element) {
 		var price = this.elementPrice(element);
 		return player.data.resources['e-'].number >= price &&
 			player.data.resources.p.number >= price &&
 			player.data.resources.n.number >= price;
 	};
-	
+
 	this.buyElement = function (element) {
 		if(player.data.elements[element].unlocked) {
 			return;

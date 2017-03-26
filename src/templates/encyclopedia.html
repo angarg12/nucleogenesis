@@ -6,8 +6,8 @@
     <table class="table table-hover element-table no_bottom">
       <tbody>
         <tr class="animif" ng-repeat="entry in visibility.visibleEncyclopediaEntries()" ng-mouseover="player.data.encyclopedia[entry].is_new = false" ng-click="util.updateEncyclopediaEntry('current_entry', entry)">
-          <td width=15%><span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="player.data.encyclopedia[entry].is_new"></span></td>
-          <td><a>{{encyclopedia[entry].name}}</a></td>
+          <td width=15%><span class="glyphicon glyphicon-exclamation-sign" ng-if="player.data.encyclopedia[entry].is_new"></span></td>
+          <td><a>{{data.encyclopedia[entry].name}}</a></td>
         </tr>
       </tbody>
     </table>

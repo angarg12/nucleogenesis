@@ -34,7 +34,6 @@ describe("Incremental table elements", function() {
       expect(localStorage.getItem).toHaveBeenCalled();
       expect(spec.$scope.init).toHaveBeenCalled();
       expect(spec.animation.introAnimation).toHaveBeenCalled();
-      expect(spec.$scope.lastSave).toEqual("None");
     });
 
     it("should load the player", function() {
@@ -53,15 +52,6 @@ describe("Incremental table elements", function() {
       spec.$timeout.flush();
 
 			expect(spec.$scope.init).not.toHaveBeenCalled();
-    });
-
-    it("should not overwrite lastSave", function() {
-      spec.$scope.lastSave = "test";
-
-      // flush onload
-      spec.$timeout.flush();
-
-			expect(spec.$scope.lastSave).toEqual("test");
     });
   });
 

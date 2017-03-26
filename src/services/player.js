@@ -1,8 +1,8 @@
 angular
 .module('incremental')
 .service('player',
-[
-function() {
+['data',
+function(data) {
   var $scope;
   this.data;
 
@@ -31,7 +31,7 @@ function() {
 
   this.populatePlayer = function () {
     this.startPlayer.resources = {};
-    for(var entry in $scope.resources) {
+    for(var entry in data.resources) {
       this.startPlayer.resources[entry] = {
         number : 0,
         is_new : true,
@@ -40,8 +40,8 @@ function() {
     }
 
     this.startPlayer.elements = {};
-    for(var element in $scope.elements) {
-      if(!$scope.elements[element].disabled) {
+    for(var element in data.elements) {
+      if(!data.elements[element].disabled) {
         this.startPlayer.elements[element] = {
           unlocked : false
         };
@@ -50,30 +50,30 @@ function() {
 
     for(var element in this.startPlayer.elements) {
       this.startPlayer.elements[element].upgrades = {};
-      for(var upgrade in $scope.upgrades) {
+      for(var upgrade in data.upgrades) {
         this.startPlayer.elements[element].upgrades[upgrade] = {
           bought : false
         };
       }
       this.startPlayer.elements[element].generators = {};
-      for(var generator in $scope.generators) {
+      for(var generator in data.generators) {
         this.startPlayer.elements[element].generators[generator] = {
           level : 0
         };
       }
     }
     this.startPlayer.encyclopedia = {};
-    for(var entry in $scope.encyclopedia) {
+    for(var entry in data.encyclopedia) {
       this.startPlayer.encyclopedia[entry] = {
         is_new : true
       };
     }
     this.startPlayer.unlocks = {};
-    for(var entry in $scope.unlocks) {
+    for(var entry in data.unlocks) {
       this.startPlayer.unlocks[entry] = false;
     }
     this.startPlayer.syntheses = {};
-    for(var entry in $scope.syntheses) {
+    for(var entry in data.syntheses) {
       this.startPlayer.syntheses[entry] = {
         number : 0,
         active : 0,
@@ -83,7 +83,7 @@ function() {
 
     this.startPlayer.elements.H.unlocked = true;
     this.startPlayer.resources.H.unlocked = true;
-    this.startPlayer.resources.H.number = $scope.generators["Tier 1"].price;
+    this.startPlayer.resources.H.number = data.generators["Tier 1"].price;
   };
 
   this.initialisePlayer = function () {

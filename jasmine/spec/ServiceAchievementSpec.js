@@ -98,7 +98,7 @@ describe("Achievement service", function() {
     it("should count the number of achievements", function() {    
       value = spec.achievement.numberUnlocks();
       
-      expect(value).toEqual(Object.keys(spec.$scope.unlocks).length);
+      expect(value).toEqual(Object.keys(spec.data.unlocks).length);
     });
     
     it("should count the number of achievements unlocked", function() {

@@ -3,13 +3,8 @@ angular
 .service('animation',
 ['$timeout',
 'player',
-function($timeout, player) {  
-  var $scope;
+function($timeout, player) {
   var self = this;
-  
-  this.setScope = function (scope){
-    $scope = scope;
-  };
 
   this.introAnimation = function () {
     $timeout(function () {

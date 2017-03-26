@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta content="text/html; charset=us-ascii" http-equiv="Content-Type">
-    <meta content="utf-8" http-equiv="encoding">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="lib/angular.min.js"></script>
     <script type="text/javascript" src="lib/angular-animate.min.js"></script>
     <script type="text/javascript" src="lib/angular-route.min.js"></script>
@@ -59,14 +60,14 @@
               ng-class="{active: current_tab === 'Elements'}">
               <a href="#matter"
                 ng-click="util.updateCurrent('current_tab','Elements')"> Elements
-              <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="visibility.elementsHasNew()"></span>
+              <span class="glyphicon glyphicon-exclamation-sign" ng-if="visibility.elementsHasNew()"></span>
               </a>
             </li>
             <li class="animif"
               ng-class="{active: current_tab === 'Encyclopedia'}">
               <a href="#encyclopedia"
                 ng-click="util.updateCurrent('current_tab','Encyclopedia')"> Encyclopedia
-              <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="visibility.encyclopediaHasNew()"></span>
+              <span class="glyphicon glyphicon-exclamation-sign" ng-if="visibility.encyclopediaHasNew()"></span>
               </a>
             </li>
             <li ng-class="{active: current_tab === 'Periodic Table'}">
@@ -89,9 +90,7 @@
     </div>
     <div ng-cloak>
       <div class="achieve achievealert animif" ng-show="achievement.is_toast_visible">
-        <div class="container alert alert-success">
-          <h3>New unlock:</h3>
-          <h2>{{achievement.toast[0]}}</h2>
+        <div class="container alert alert-success alert-dismissible">
           <button type="button"
             class="close"
             data-dismiss="alert"
@@ -100,6 +99,8 @@
           <span aria-hidden="true">&times;</span>
           <span class="sr-only">Close</span>
           </button>
+          <h3>New unlock:</h3>
+          <h2>{{achievement.toast[0]}}</h2>
         </div>
       </div>
     </div>

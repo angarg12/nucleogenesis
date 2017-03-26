@@ -2,19 +2,21 @@ angular
 .module('incremental')
 .service('generator',
 ['player',
-function(player) {  
+'upgrade',
+'data',
+function(player, upgrade, data) {
   var $scope;
-  
+
   this.setScope = function (scope){
     $scope = scope;
   };
 
   this.generatorPrice = function (name, element) {
     var level = player.data.elements[element].generators[name].level;
-    var price = $scope.generators[name].price * Math.pow($scope.generators[name].priceIncrease, level);
+    var price = data.generators[name].price * Math.pow(data.generators[name].priceIncrease, level);
     return Math.ceil(price);
   };
-  
+
   this.buyGenerators = function (name, element, number) {
     var price = this.generatorPrice(name, element);
     var i = 0;
@@ -29,31 +31,31 @@ function(player) {
       $scope.$emit("unlocks", name);
     }
   };
-  
+
   this.generatorProduction = function (name, element) {
-    var baseProduction = $scope.generators[name].power;
+    var baseProduction = data.generators[name].power;
     return this.upgradedProduction(baseProduction, name, element);
   };
 
   this.tierProduction = function (name, element) {
-    var baseProduction = $scope.generators[name].power *
+    var baseProduction = data.generators[name].power *
                          player.data.elements[element].generators[name].level;
     return this.upgradedProduction(baseProduction, name, element);
   };
 
   this.upgradedProduction = function (production, name, element) {
-    for(var upgrade in $scope.generators[name].upgrades) {
-        if(player.data.elements[element].upgrades[$scope.generators[name].upgrades[upgrade]].bought) {
-          power = $scope.upgrades[$scope.generators[name].upgrades[upgrade]].power;
-          production = $scope.upgradeApply(production, power);
+    for(var up in data.generators[name].upgrades) {
+        if(player.data.elements[element].upgrades[data.generators[name].upgrades[up]].bought) {
+          power = data.upgrades[data.generators[name].upgrades[up]].power;
+          production = upgrade.upgradeApply(production, power);
         }
       }
       return production;
   };
-  
+
   this.elementProduction = function (element) {
     var total = 0;
-    for(var tier in $scope.generators) {
+    for(var tier in data.generators) {
       total += this.tierProduction(tier, element);
     }
     return total;

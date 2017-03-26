@@ -6,13 +6,13 @@ describe("Visible service", function() {
   describe('visibility functions', function() {
     it("should show visible elements", function() {
       spec.player.data = {elements:{},resources:{}};
-      spec.$scope.elements = {'H':{disabled:false},'C':{disabled:true},'O':{disabled:false}};
+      spec.data.elements = {'H':{disabled:false},'C':{disabled:true},'O':{disabled:false}};
       spec.player.data.elements.H = {unlocked:true};
-      spec.$scope.elements.H.includes = ['H'];
+      spec.data.elements.H.includes = ['H'];
       spec.player.data.elements.C = {unlocked:false};
-      spec.$scope.elements.C.includes = ['C'];
+      spec.data.elements.C.includes = ['C'];
       spec.player.data.elements.O = {unlocked:false};
-      spec.$scope.elements.O.includes = ['O'];
+      spec.data.elements.O.includes = ['O'];
       spec.player.data.resources.H = {unlocked:true};
       spec.player.data.resources.C = {unlocked:false};
       spec.player.data.resources.O = {unlocked:false};
@@ -29,11 +29,11 @@ describe("Visible service", function() {
       spec.player.data.elements.H.generators['Tier 1'] = {level: 1};
       spec.player.data.elements.H.generators['Tier 2'] = {level: 0};
       spec.player.data.elements.H.generators['Tier 3'] = {level: 0};
-      var temp = spec.$scope.generators;
-      spec.$scope.generators = {};
-      spec.$scope.generators['Tier 1'] = temp['Tier 1'];
-      spec.$scope.generators['Tier 2'] = temp['Tier 2'];
-      spec.$scope.generators['Tier 3'] = temp['Tier 3'];
+      var temp = spec.data.generators;
+      spec.data.generators = {};
+      spec.data.generators['Tier 1'] = temp['Tier 1'];
+      spec.data.generators['Tier 2'] = temp['Tier 2'];
+      spec.data.generators['Tier 3'] = temp['Tier 3'];
 
       var values = spec.visibility.visibleGenerators();
 
@@ -48,11 +48,11 @@ describe("Visible service", function() {
       spec.player.data.elements.H.upgrades['Tier 1-1'] = {bought: true};
       spec.player.data.elements.H.upgrades['Tier 1-2'] = {bought: false};
       spec.player.data.elements.H.upgrades['Tier 1-3'] = {bought: false};
-      var temp = spec.$scope.upgrades;
-      spec.$scope.upgrades = {};
-      spec.$scope.upgrades['Tier 1-1'] = temp['Tier 1-1'];
-      spec.$scope.upgrades['Tier 1-2'] = temp['Tier 1-2'];
-      spec.$scope.upgrades['Tier 1-3'] = temp['Tier 1-3'];
+      var temp = spec.data.upgrades;
+      spec.data.upgrades = {};
+      spec.data.upgrades['Tier 1-1'] = temp['Tier 1-1'];
+      spec.data.upgrades['Tier 1-2'] = temp['Tier 1-2'];
+      spec.data.upgrades['Tier 1-3'] = temp['Tier 1-3'];
 
       var values = spec.visibility.isUpgradeVisible('Tier 1-1');
 
@@ -67,11 +67,11 @@ describe("Visible service", function() {
       spec.player.data.elements.H.upgrades['Tier 1-1'] = {bought: true};
       spec.player.data.elements.H.upgrades['Tier 1-2'] = {bought: false};
       spec.player.data.elements.H.upgrades['Tier 1-3'] = {bought: false};
-      var temp = spec.$scope.upgrades;
-      spec.$scope.upgrades = {};
-      spec.$scope.upgrades['Tier 1-1'] = temp['Tier 1-1'];
-      spec.$scope.upgrades['Tier 1-2'] = temp['Tier 1-2'];
-      spec.$scope.upgrades['Tier 1-3'] = temp['Tier 1-3'];
+      var temp = spec.data.upgrades;
+      spec.data.upgrades = {};
+      spec.data.upgrades['Tier 1-1'] = temp['Tier 1-1'];
+      spec.data.upgrades['Tier 1-2'] = temp['Tier 1-2'];
+      spec.data.upgrades['Tier 1-3'] = temp['Tier 1-3'];
 
       var values = spec.visibility.isUpgradeVisible('Tier 1-2');
 
@@ -86,11 +86,11 @@ describe("Visible service", function() {
       spec.player.data.elements.H.upgrades['Tier 1-1'] = {bought: true};
       spec.player.data.elements.H.upgrades['Tier 1-2'] = {bought: false};
       spec.player.data.elements.H.upgrades['Tier 1-3'] = {bought: false};
-      var temp = spec.$scope.upgrades;
-      spec.$scope.upgrades = {};
-      spec.$scope.upgrades['Tier 1-1'] = temp['Tier 1-1'];
-      spec.$scope.upgrades['Tier 1-2'] = temp['Tier 1-2'];
-      spec.$scope.upgrades['Tier 1-3'] = temp['Tier 1-3'];
+      var temp = spec.data.upgrades;
+      spec.data.upgrades = {};
+      spec.data.upgrades['Tier 1-1'] = temp['Tier 1-1'];
+      spec.data.upgrades['Tier 1-2'] = temp['Tier 1-2'];
+      spec.data.upgrades['Tier 1-3'] = temp['Tier 1-3'];
 
       var values = spec.visibility.isUpgradeVisible('Tier 1-3');
 
@@ -104,12 +104,12 @@ describe("Visible service", function() {
       spec.player.data.resources['2H'] = {unlocked:false};
       spec.player.data.resources.eV = {unlocked:true};
       spec.player.data.resources.O= {unlocked:true};
-      var temp = spec.$scope.resources;
-      spec.$scope.resources = {};
-      spec.$scope.resources['H'] = temp['H'];
-      spec.$scope.resources['2H'] = temp['2H'];
-      spec.$scope.resources['eV'] = temp['eV'];
-      spec.$scope.resources['O'] = temp['O'];
+      var temp = spec.data.resources;
+      spec.data.resources = {};
+      spec.data.resources['H'] = temp['H'];
+      spec.data.resources['2H'] = temp['2H'];
+      spec.data.resources['eV'] = temp['eV'];
+      spec.data.resources['O'] = temp['O'];
 
       var values = spec.visibility.visibleResources();
 
@@ -121,10 +121,10 @@ describe("Visible service", function() {
       spec.player.data.unlocks = {};
       spec.player.data.unlocks.hydrogen = true;
       spec.player.data.unlocks.oxygen = false;
-      var temp = spec.$scope.encyclopedia;
-      spec.$scope.encyclopedia = {};
-      spec.$scope.encyclopedia.hydrogen = temp.hydrogen;
-      spec.$scope.encyclopedia.oxygen = temp.oxygen;
+      var temp = spec.data.encyclopedia;
+      spec.data.encyclopedia = {};
+      spec.data.encyclopedia.hydrogen = temp.hydrogen;
+      spec.data.encyclopedia.oxygen = temp.oxygen;
 
       var values = spec.visibility.visibleEncyclopediaEntries();
 
@@ -181,10 +181,10 @@ describe("Visible service", function() {
       spec.player.data.resources.eV = {unlocked:true};
       spec.player.data.resources['2H'] = {unlocked:true};
       spec.player.data.resources['3H'] = {unlocked:false};
-      var temp = spec.$scope.binding_energy;
-      spec.$scope.binding_energy = {};
-      spec.$scope.binding_energy['2H'] = temp['2H'];
-      spec.$scope.binding_energy['3H'] = temp['3H'];
+      var temp = spec.data.binding_energy;
+      spec.data.binding_energy = {};
+      spec.data.binding_energy['2H'] = temp['2H'];
+      spec.data.binding_energy['3H'] = temp['3H'];
 
       var values = spec.visibility.visibleBindings();
 
@@ -200,10 +200,10 @@ describe("Visible service", function() {
       spec.player.data.resources.p = {unlocked:true};
       spec.player.data.resources.H2 = {unlocked:true};
       spec.player.data.resources.O2 = {unlocked:false};
-      var temp = spec.$scope.syntheses;
-      spec.$scope.syntheses = {};
-      spec.$scope.syntheses['H-p'] = temp['H-p'];
-      spec.$scope.syntheses.H2O = temp.H2O;
+      var temp = spec.data.syntheses;
+      spec.data.syntheses = {};
+      spec.data.syntheses['H-p'] = temp['H-p'];
+      spec.data.syntheses.H2O = temp.H2O;
 
       var values = spec.visibility.visibleSyntheses();
 
@@ -220,7 +220,7 @@ describe("Visible service", function() {
       spec.player.data.unlocks = {};
       spec.player.data.unlocks.synthesis = true;
       spec.player.data.resources.H = {unlocked:true, is_new:true};
-      spec.$scope.elements.H.includes = ['H'];
+      spec.data.elements.H.includes = ['H'];
 
       var hasNew = spec.visibility.elementsHasNew();
       expect(hasNew).toBeTruthy();
@@ -234,7 +234,7 @@ describe("Visible service", function() {
       spec.player.data.unlocks = {};
       spec.player.data.unlocks.synthesis = true;
       spec.player.data.resources.H = {unlocked:true, is_new:true};
-      spec.$scope.elements.H.includes = ['H'];
+      spec.data.elements.H.includes = ['H'];
 
       var hasNew = spec.visibility.elementsHasNew();
       expect(hasNew).toBeFalsy();
@@ -246,7 +246,7 @@ describe("Visible service", function() {
       spec.player.data.unlocks = {};
       spec.player.data.unlocks.synthesis = true;
       spec.player.data.resources.H = {unlocked:true, is_new:true};
-      spec.$scope.elements.H.includes = ['H'];
+      spec.data.elements.H.includes = ['H'];
 
       var hasNew = spec.visibility.elementHasNew('H');
       expect(hasNew).toBeTruthy();
@@ -260,7 +260,7 @@ describe("Visible service", function() {
       spec.player.data.resources['2H'] = {unlocked:true, is_new:false};
       spec.player.data.resources['3H'] = {unlocked:false, is_new:true};
       spec.player.data.resources['H-'] = {unlocked:false, is_new:false};
-      spec.$scope.elements.H.includes = ['2H','3H','H-'];
+      spec.data.elements.H.includes = ['2H','3H','H-'];
 
       var hasNew = spec.visibility.elementHasNew('H');
       expect(hasNew).toBeFalsy();
@@ -274,10 +274,10 @@ describe("Visible service", function() {
       spec.player.data.encyclopedia = {};
       spec.player.data.encyclopedia.hydrogen = {is_new:false};
       spec.player.data.encyclopedia.oxygen = { is_new:true};
-      var temp = spec.$scope.encyclopedia;
-      spec.$scope.encyclopedia = {};
-      spec.$scope.encyclopedia.hydrogen = temp.hydrogen;
-      spec.$scope.encyclopedia.oxygen = temp.oxygen;
+      var temp = spec.data.encyclopedia;
+      spec.data.encyclopedia = {};
+      spec.data.encyclopedia.hydrogen = temp.hydrogen;
+      spec.data.encyclopedia.oxygen = temp.oxygen;
 
       var hasNew = spec.visibility.encyclopediaHasNew();
 
@@ -292,10 +292,10 @@ describe("Visible service", function() {
       spec.player.data.encyclopedia = {};
       spec.player.data.encyclopedia.hydrogen = {is_new:false};
       spec.player.data.encyclopedia.oxygen = { is_new:false};
-      var temp = spec.$scope.encyclopedia;
-      spec.$scope.encyclopedia = {};
-      spec.$scope.encyclopedia.hydrogen = temp.hydrogen;
-      spec.$scope.encyclopedia.oxygen = temp.oxygen;
+      var temp = spec.data.encyclopedia;
+      spec.data.encyclopedia = {};
+      spec.data.encyclopedia.hydrogen = temp.hydrogen;
+      spec.data.encyclopedia.oxygen = temp.oxygen;
 
       var hasNew = spec.visibility.encyclopediaHasNew();
 

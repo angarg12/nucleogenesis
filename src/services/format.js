@@ -4,12 +4,6 @@ angular
 ['player',
 'util',
 function(player, util) {  
-  var $scope;
-  
-  this.setScope = function (scope){
-    $scope = scope;
-  };
-  
   /*
    * Formats in HTML a compound i.e. a collection of resources of
    * the form x + y + z

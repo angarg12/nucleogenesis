@@ -4,7 +4,8 @@ angular.module('incremental').service(
 '$q',
 function($http, $q) {
   var self = this;
-  self.$scope;
+
+  this.table_resources = [ "e-", "n", "p" ];
 
   this.files = ["elements",
               "generators",
@@ -18,25 +19,14 @@ function($http, $q) {
               "syntheses",
               "binding_energy",
               "redox"];
-  
+
   this.loadData = function() {
     var promises = this.files.map(function(file){
       return $http.get('src/data/'+file+'.json').then(function(response) {
-        self.$scope[file] = response.data;
+        self[file] = response.data;
       });
     });
-    
+
     return $q.all(promises);
-  };
-
-  // FIXME: temporary until we get rid of scope
-  this.setScope = function(scope) {
-    self.$scope = scope;
-
-    self.$scope.table_resources = [ "e-", "n", "p" ];
-
-    self.$scope.upgradeApply = function(resource, power) {
-      return resource * power;
-    };
   };
 } ]);

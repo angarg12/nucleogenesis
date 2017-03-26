@@ -2,30 +2,30 @@ angular
 .module('incremental')
 .service('achievement',
 ['$timeout',
-'$rootScope',
 'player',
-function($timeout, $rootScope, player) {
+'data',
+function($timeout, player, data) {
   self = this;
   self.toast;
   self.is_toast_visible;
   var $scope;
-  
+
   this.init = function (){
     self.toast = [];
     self.is_toast_visible = false;
   };
-  
+
   this.setScope = function (scope){
     $scope = scope;
   };
-  
+
   this.deleteToast = function () {
     self.toast.shift();
     if(self.toast.length > 0) {
       self.is_toast_visible = true;
     }
   };
-  
+
   this.removeToast = function () {
     self.is_toast_visible = false;
     $timeout(this.deleteToast, 1100);
@@ -37,9 +37,9 @@ function($timeout, $rootScope, player) {
       self.is_toast_visible = true;
     }
   };
-  
+
   this.numberUnlocks = function () {
-    return Object.keys($scope.unlocks).length;
+    return Object.keys(data.unlocks).length;
   };
 
   this.numberUnlocked = function () {

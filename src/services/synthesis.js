@@ -3,11 +3,12 @@ angular
 .service('synthesis',
 ['player',
  'reaction',
-function(player, reaction) {  
+ 'data',
+function(player, reaction, data) {  
   var $scope;
   var synthesis_price_increase = 1.15;
   var synthesis_power_increase = 2;
-  
+
   this.setScope = function (scope){
     $scope = scope;
   };
@@ -25,7 +26,7 @@ function(player, reaction) {
   this.synthesisPrice = function (synthesis) {
     var multiplier = this.synthesisMultiplier(synthesis);
     var price = {};
-    var reactant = $scope.syntheses[synthesis].reactant;
+    var reactant = data.syntheses[synthesis].reactant;
     for(var resource in reactant) {
       price[resource] = reactant[resource] * multiplier;
     }
@@ -54,13 +55,13 @@ function(player, reaction) {
       i++;
     }
   };
-  
+
   this.processSynthesis = function () {
     // We will process the synthesis
     for(var synthesis in player.data.syntheses) {
       var power = this.synthesisPower(synthesis);
       if(power !== 0) {
-        reaction.react(power, $scope.syntheses[synthesis]);
+        reaction.react(power, data.syntheses[synthesis]);
       }
     }
   };

@@ -5,6 +5,7 @@ angular
 'achievement',
 function(player, achievement) {
   var $scope;
+  this.lastSave = "None";
 
   this.setScope = function (scope){
     $scope = scope;
@@ -13,7 +14,7 @@ function(player, achievement) {
   this.save = function () {
     localStorage.setItem("playerStoredITE", JSON.stringify(player.data));
     var d = new Date();
-    $scope.lastSave = d.toLocaleTimeString();
+    this.lastSave = d.toLocaleTimeString();
   };
 
   this.load = function () {
@@ -64,10 +65,5 @@ function(player, achievement) {
     // we merge the properties of the player with the start player to
     // avoid undefined errors with new properties
     player.data = angular.merge({}, player.startPlayer, player.data);
-    /*
-     * if(util.versionCompare(player.data.version,"0.11") == -1){
-     *   init();
-     * }
-     */
   };
 }]);
