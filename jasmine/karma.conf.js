@@ -5,6 +5,7 @@ module.exports = function(config) {
     files: [
       'lib/jquery.min.js',
       'lib/angular.min.js',
+      'lib/angular-route.min.js',
       'lib/angular-animate.min.js',
       'lib/bootstrap.min.js',
       'lib/ziggurat.js',
@@ -19,10 +20,10 @@ module.exports = function(config) {
     browsers: ['PhantomJS'],
     singleRun: true,
     reporters: ['progress', 'coverage'],
-    preprocessors: { 
+    preprocessors: {
       'src/controllers/*.js': ['coverage'] ,
       'src/services/*.js': ['coverage']
-    },    
+    },
     coverageReporter: {
       type: "lcov",
       dir: "jasmine/coverage/"
