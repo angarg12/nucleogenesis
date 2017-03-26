@@ -1,19 +1,17 @@
 <div class="tab-pane row">
   <div class="col-lg-2">
-    <h1>Options</h1>
-    <br>
-    <button class="btn btn-default btn-block"
+    <button type="button" class="btn btn-default btn-block"
       ng-click="savegame.save()">Save</button>
-    <button class="btn btn-default btn-block"
+    <button type="button" class="btn btn-default btn-block"
       ng-click="savegame.reset(true)">Erase save</button>
     <br>
     <br>
-    <button class="btn btn-default btn-block" id="exportSave" ng-click="savegame.exportSave()">Export Save</button>
+    <button type="button" class="btn btn-default btn-block" id="exportSave" ng-click="savegame.exportSave()">Export Save</button>
     <div id="exportSaveContents" style="display: none">
       Copy this text:
       <input id="exportSaveText" type="text" readonly>
     </div>
-    <button class="btn btn-default btn-block" id="importSave" ng-click="savegame.importSave()">Import Save</button>
+    <button type="button" class="btn btn-default btn-block" id="importSave" ng-click="savegame.importSave()">Import Save</button>
   </div>
   <div class="col-lg-12" ng-if="achievement.numberUnlocked() > 0">
     <div ng-if="achievement.numberUnlocked() < 10">

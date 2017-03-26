@@ -1,4 +1,4 @@
-<div class="tab-pane row" ng-class="{active: current_tab == 'Elements'}">
+<div class="tab-pane row">
   <div class="col-lg-3">
     <table class="table table-hover element-table no_bottom" data-spy="affix" data-offset-top="150">
       <tbody class="container"
@@ -53,15 +53,14 @@
       </li>
     </ul>
     <div>
-      <div>
-        <table class="table">
+      <table class="table">
           <tr class="animif" ng-repeat="name in visibility.visibleGenerators()">
               <td class="animif col-md-3">
                 <span class="pull-left">
-                {{name}}:&nbsp;
+                {{name}}:
                 </span>
                 <span class="pull-left">
-                &nbsp;<span ng-bind-html="util.trustHTML(util.prettifyNumber(generator.generatorProduction(name,current_element)))"></span> /s
+                  <span ng-bind-html="util.trustHTML(util.prettifyNumber(generator.generatorProduction(name,current_element)))"></span> /s
                 </span>
               </td>
               <td class="animif col-md-1">
@@ -74,29 +73,28 @@
               </td>
               <td class="animif col-md-3">
                 <div class="pull-left" ng-bind-html="util.trustHTML(util.prettifyNumber(generator.generatorPrice(name, current_element)))"></div>
-                &nbsp;{{current_element}}
+                {{current_element}}
               </td>
               <td class="animif col-md-3">
                 <div class="pull-left">
-                  <button class="btn btn-default button-small"
+                  <button type="button" class="btn btn-default button-small"
                     ng-click="generator.buyGenerators(name, current_element, 1)"
                     ng-class="{disabled: generator.generatorPrice(name, current_element) > player.data.resources[current_element].number}">1</button>
                 </div>
                 <div class="pull-left">
-                  <button class="btn btn-default button-small"
+                  <button type="button" class="btn btn-default button-small"
                     ng-click="generator.buyGenerators(name, current_element, 10)"
                     ng-class="{disabled: generator.generatorPrice(name, current_element) > player.data.resources[current_element].number}">10</button>
                 </div>
                 <!-- crappy workaround since it doesn't recognize the literal Infinity -->
                 <div class="pull-left">
-                  <button class="btn btn-default button-small"
+                  <button type="button" class="btn btn-default button-small"
                     ng-click="generator.buyGenerators(name, current_element, 1/0)"
                     ng-class="{disabled: generator.generatorPrice(name, current_element) > player.data.resources[current_element].number}">&#8892;</button>
                 </div>
               </td>
             </tr>
         </table>
-      </div>
       <div ng-if="player.data.unlocks.reactions && (
         visibility.visibleRedox().length > 0 ||
         visibility.visibleBindings().length > 0 ||
@@ -123,7 +121,7 @@
                         min="1"
                         ng-init="redox[key].number = redox[key].number || 1"
                         ng-model="redox[key].number">
-                      <button class="btn btn-default"
+                      <button type="button" class="btn btn-default"
                         ng-click="reaction.react(redox[key].number, redox[key])"
                         ng-class="{disabled: !reaction.isReactionCostMet(redox[key].number, redox[key])}">React</button>
                       </input>
@@ -149,7 +147,7 @@
                         min="1"
                         ng-init="binding_energy[key].number = binding_energy[key].number || 1"
                         ng-model="binding_energy[key].number">
-                      <button class="btn btn-default"
+                      <button type="button" class="btn btn-default"
                         ng-click="reaction.react(binding_energy[key].number, binding_energy[key])"
                         ng-class="{disabled: !reaction.isReactionCostMet(binding_energy[key].number, binding_energy[key])}">React</button>
                       </input>
@@ -180,20 +178,20 @@
                 </td>
                 <td class="col-md-2">
                   <div class="pull-left" ng-if="player.data.syntheses[syn].number > 0">
-                    <button class="btn btn-default button-small"
+                    <button type="button" class="btn btn-default button-small"
                       ng-disabled="player.data.syntheses[syn].active >= player.data.syntheses[syn].number"
                       ng-click="player.data.syntheses[syn].active = player.data.syntheses[syn].number"
                       ng-class="{disabled: player.data.syntheses[syn].active >= player.data.syntheses[syn].number}">&#8892;</button>
-                    <button class="btn btn-default button-small"
+                    <button type="button" class="btn btn-default button-small"
                       ng-disabled="player.data.syntheses[syn].active >= player.data.syntheses[syn].number"
                       ng-click="player.data.syntheses[syn].active = player.data.syntheses[syn].active+1"
                       ng-class="{disabled: player.data.syntheses[syn].active >= player.data.syntheses[syn].number}">+</button>
                     <br>
-                    <button class="btn btn-default button-small"
+                    <button type="button" class="btn btn-default button-small"
                       ng-disabled="player.data.syntheses[syn].active <= 0"
                       ng-click="player.data.syntheses[syn].active = 0"
                       ng-class="{disabled: player.data.syntheses[syn].active <= 0}">&#8891;</button>
-                    <button class="btn btn-default button-small"
+                    <button type="button" class="btn btn-default button-small"
                       ng-disabled="player.data.syntheses[syn].active <= 0"
                       ng-click="player.data.syntheses[syn].active = player.data.syntheses[syn].active-1"
                       ng-class="{disabled: player.data.syntheses[syn].active <= 0}">-</button>
@@ -206,17 +204,17 @@
                 </td>
                 <td class="col-md-3">
                   <div class="pull-left">
-                    <button class="btn btn-default button-small"
+                    <button type="button" class="btn btn-default button-small"
                       ng-click="synthesis.buySynthesis(syn, 1)"
                       ng-class="{disabled: !synthesis.isSynthesisCostMet(syn)}">1</button>
                   </div>
                   <div class="pull-left">
-                    <button class="btn btn-default button-small"
+                    <button type="button" class="btn btn-default button-small"
                       ng-click="synthesis.buySynthesis(syn, 10)"
                       ng-class="{disabled: !synthesis.isSynthesisCostMet(syn)}">10</button>
                   </div>
                   <div class="pull-left">
-                    <button class="btn btn-default button-small"
+                    <button type="button" class="btn btn-default button-small"
                       ng-click="synthesis.buySynthesis(syn, 1/0)"
                       ng-class="{disabled: !synthesis.isSynthesisCostMet(syn)}">&#8892;</button>
                   </div>

@@ -22,14 +22,14 @@ var commonSpec = function(spec) {
     spec.data = $injector.get('data');
 
     jasmine.getJSONFixtures().fixturesPath = 'base/src/data/';
-        
+
     for(var index in spec.data.files){
       var file = spec.data.files[index];
       _$httpBackend_.whenGET('src/data/'+file+'.json').respond(
         getJSONFixture(file+'.json')
       );
-    };
-      
+    }
+
     spec.controller  = _$controller_('IncCtrl', {$scope:spec.$scope, achievement:spec.achievement, util:spec.util, player:spec.player, savegame:spec.savegame, generator:spec.generator, upgrade:spec.upgrade, animation:spec.animation, format:spec.format, synthesis:spec.synthesis, reaction:spec.reaction, element:spec.element, data:spec.data});
     _$httpBackend_.flush();
   }));

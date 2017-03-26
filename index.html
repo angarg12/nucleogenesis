@@ -25,7 +25,7 @@
     <script type="text/javascript" src="src/services/visibility.js"></script>
     <script type="text/javascript" src="src/services/data.js"></script>
     <script type="text/javascript" src="src/controllers/main.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles/base-bootstrap.min.css" id="theme_css">
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css" id="theme_css">
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <title>The Incremental Table of Elements</title>
     <script>
@@ -52,44 +52,38 @@
           </div>
         </div>
       </div>
-      <div class="viewwrap">
-        <div>
-          <div class="ng-scope ng-isolate-scope animif" ng-show="player.data.intro.menu">
-            <ul class="nav nav-tabs ng-scope" role="tablist">
-              <li class="animif"
-                ng-class="{active: current_tab === 'Elements'}">
-                <a class="ng-binding"
-                  href="#matter"
-                  ng-click="util.updateCurrent('current_tab','Elements')"> Elements
-                <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="visibility.elementsHasNew()"></span>
-                </a>
-              </li>
-              <li class="animif"
-                ng-class="{active: current_tab === 'Encyclopedia'}">
-                <a class="ng-binding"
-                  href="#encyclopedia"
-                  ng-click="util.updateCurrent('current_tab','Encyclopedia')"> Encyclopedia
-                <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="visibility.encyclopediaHasNew()"></span>
-                </a>
-              </li>
-              <li class="animif"
-                ng-class="{active: current_tab === 'Periodic Table'}">
-                <a class="ng-binding"
-                  href="#table"
-                  ng-click="util.updateCurrent('current_tab','Periodic Table')"> Periodic Table
-                </a>
-              </li>
-              <li class="animif"
-                ng-class="{active: current_tab === 'Options'}">
-                <a class="ng-binding"
-                  href="#options"
-                  ng-click="util.updateCurrent('current_tab','Options')"> Options
-                </a>
-              </li>
-            </ul>
-          </div>
-          <ng-view ng-show="player.data.intro.content"></ng-view>
+      <div>
+        <div class="ng-scope ng-isolate-scope animif" ng-show="player.data.intro.menu">
+          <ul class="nav nav-tabs ng-scope">
+            <li class="animif"
+              ng-class="{active: current_tab === 'Elements'}">
+              <a href="#matter"
+                ng-click="util.updateCurrent('current_tab','Elements')"> Elements
+              <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="visibility.elementsHasNew()"></span>
+              </a>
+            </li>
+            <li class="animif"
+              ng-class="{active: current_tab === 'Encyclopedia'}">
+              <a href="#encyclopedia"
+                ng-click="util.updateCurrent('current_tab','Encyclopedia')"> Encyclopedia
+              <span class="glyphicon glyphicon-exclamation-sign" title="New available" ng-if="visibility.encyclopediaHasNew()"></span>
+              </a>
+            </li>
+            <li ng-class="{active: current_tab === 'Periodic Table'}">
+              <a class="ng-binding"
+                href="#table"
+                ng-click="util.updateCurrent('current_tab','Periodic Table')"> Periodic Table
+              </a>
+            </li>
+            <li ng-class="{active: current_tab === 'Options'}">
+              <a class="ng-binding"
+                href="#options"
+                ng-click="util.updateCurrent('current_tab','Options')"> Options
+              </a>
+            </li>
+          </ul>
         </div>
+        <ng-view ng-show="player.data.intro.content"></ng-view>
       </div>
     </div>
     </div>
