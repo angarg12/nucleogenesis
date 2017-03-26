@@ -4,13 +4,8 @@ angular
 ['player',
 'upgrade',
 'data',
-function(player, upgrade, data) {
-  var $scope;
-
-  this.setScope = function (scope){
-    $scope = scope;
-  };
-
+'$rootScope',
+function(player, upgrade, data, $rootScope) {
   this.generatorPrice = function (name, element) {
     var level = player.data.elements[element].generators[name].level;
     var price = data.generators[name].price * Math.pow(data.generators[name].priceIncrease, level);
@@ -28,7 +23,7 @@ function(player, upgrade, data) {
       i++;
     }
     if(i > 0) {
-      $scope.$emit("unlocks", name);
+      $rootScope.$broadcast("unlocks", name);
     }
   };
 

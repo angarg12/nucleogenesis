@@ -4,8 +4,9 @@ var commonSpec = function(spec) {
   beforeEach(inject(function(_$rootScope_, _$controller_,_$timeout_, _$httpBackend_, $injector){
     // The injector unwraps the underscores (_) from around the parameter names when matching
     spec.$timeout = _$timeout_;
-    //spyOn(_$rootScope_, '$emit').and.callThrough();
+    spyOn(_$rootScope_, '$broadcast').and.callThrough();
     spyOn(_$rootScope_, '$emit');
+    spec.$rootScope = _$rootScope_;
     spec.$scope = _$rootScope_.$new();
     spec.achievement = $injector.get('achievement');
     spec.util = $injector.get('util');

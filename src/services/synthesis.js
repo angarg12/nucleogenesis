@@ -4,14 +4,9 @@ angular
 ['player',
  'reaction',
  'data',
-function(player, reaction, data) {  
-  var $scope;
+function(player, reaction, data) {
   var synthesis_price_increase = 1.15;
   var synthesis_power_increase = 2;
-
-  this.setScope = function (scope){
-    $scope = scope;
-  };
 
   this.synthesisMultiplier = function (synthesis) {
     var level = player.data.syntheses[synthesis].number;

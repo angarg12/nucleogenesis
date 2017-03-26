@@ -3,13 +3,8 @@ angular
 .service('element',
 ['player',
 'data',
-function(player, data) {
-	var $scope;
-
-	this.setScope = function (scope){
-	  $scope = scope;
-	};
-
+'$rootScope',
+function(player, data, $rootScope) {
 	this.elementPrice = function (element) {
 		return Math.pow(player.data.elements_unlocked + 1, data.elements[element].number);
 	};
@@ -30,7 +25,7 @@ function(player, data) {
 			player.data.resources['e-'].number -= price;
 			player.data.resources.p.number -= price;
 			player.data.resources.n.number -= price;
-			$scope.$emit("unlocks", element);
+			$rootScope.$broadcast("unlocks", element);
 			player.data.elements[element].unlocked = true;
 			player.data.elements[element].generators["Tier 1"].level = 1;
 			player.data.elements_unlocked++;

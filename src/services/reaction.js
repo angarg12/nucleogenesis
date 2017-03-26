@@ -2,13 +2,8 @@ angular
 .module('incremental')
 .service('reaction',
 ['player',
-function(player) {
-  var $scope;
-  
-  this.setScope = function (scope){
-    $scope = scope;
-  };
-  
+'$rootScope',
+function(player, $rootScope) {
   this.isReactionCostMet = function (number, reaction) {
     var keys = Object.keys(reaction.reactant);
     for(var i = 0; i < keys.length; i++) {
@@ -39,7 +34,7 @@ function(player) {
         var current = player.data.resources[product[i]].number;
         player.data.resources[product[i]].number = Number.parseFloat((current + produced).toFixed(4));
         player.data.resources[product[i]].unlocked = true;
-        $scope.$emit("unlocks", product[i]);
+        $rootScope.$broadcast("unlocks", product[i]);
       }
     }
   };

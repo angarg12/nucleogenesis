@@ -50,14 +50,9 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   // is loaded before the services
   data.loadData().then(function() {
 	  player.setScope($scope);
-	  achievement.setScope($scope);
 	  util.setScope($scope);
 	  savegame.setScope($scope);
-	  generator.setScope($scope);
 	  upgrade.setScope($scope);
-	  synthesis.setScope($scope);
-	  reaction.setScope($scope);
-	  element.setScope($scope);
           visibility.setScope($scope);
 
 	  self.onload = $timeout(self.startup);

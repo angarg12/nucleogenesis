@@ -6,17 +6,12 @@ angular
 'data',
 function($timeout, player, data) {
   self = this;
-  self.toast;
-  self.is_toast_visible;
-  var $scope;
+  self.toast = [];
+  self.is_toast_visible = false;
 
   this.init = function (){
     self.toast = [];
     self.is_toast_visible = false;
-  };
-
-  this.setScope = function (scope){
-    $scope = scope;
   };
 
   this.deleteToast = function () {
