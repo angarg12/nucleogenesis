@@ -97,44 +97,4 @@ function($filter, $sce, data) {
   this.trustHTML = function (html) {
     return $sce.trustAsHtml(html);
   };
-
-  /**
-   * Simply compares two string version values.
-   *
-   * Example: versionCompare('1.1', '1.2') => smaller
-   * versionCompare('1.1', '1.1') => equal versionCompare('1.2',
-   * '1.1') => bigger versionCompare('2.23.3', '2.22.3') => bigger
-   *
-   * Returns: smaller = left is LOWER than right equal = they are
-   * equal bigger = left is GREATER = right is LOWER And FALSE if
-   * one of input versions are not valid
-   *
-   * @function
-   * @param {String}
-   *          left Version #1
-   * @param {String}
-   *          right Version #2
-   * @return {Integer|Boolean}
-   * @author Alexey Bass (albass)
-   * @since 2011-07-14
-   */
-  this.versionCompare = function (left, right) {
-    if(typeof left != 'string' || typeof right != 'string') {
-      return;
-    }
-
-    var a = left.split('.');
-    var b = right.split('.');
-    var len = Math.max(a.length, b.length);
-
-    for(var i = 0; i < len; i++) {
-      if((a[i] && !b[i] && parseInt(a[i]) > 0) || (parseInt(a[i]) > parseInt(b[i]))) {
-        return 'bigger';
-      } else if((b[i] && !a[i] && parseInt(b[i]) > 0) || (parseInt(a[i]) < parseInt(b[i]))) {
-        return 'smaller';
-      }
-    }
-
-    return 'equal';
-  };
 }]);
