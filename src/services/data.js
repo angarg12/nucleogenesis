@@ -30,4 +30,4 @@ function($http, $q) {
 
     return $q.all(promises);
   };
-} ]);
+}]);
