@@ -33,11 +33,6 @@ function($filter, $sce, data) {
     $scope[variable] = new_value;
   };
 
-  this.updateEncyclopediaEntry = function (variable, new_value) {
-    $scope[variable] = new_value;
-    $scope.current_encyclopedia_url = $sce.trustAsResourceUrl(data.encyclopedia[new_value].link);
-  };
-
   this.prettifyNumber = function (number) {
     if(typeof number == 'undefined') {
       return;

@@ -21,7 +21,6 @@ angular
 'data',
 'visibility',
 function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame, generator, upgrade, animation, format, synthesis, reaction, element, data, visibility) {
-  $scope.version = '1.0.4';
   $scope.Math = window.Math;
 
   $scope.data = data;
@@ -46,18 +45,17 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   $scope.current_tab = "Elements";
   // FIXME these keys couple the controller to the data in non-obvious ways
   // e.g. if the keys change, the controller breaks. to fix, point them to the first element
-  $scope.current_entry = "hydrogen";
   $scope.current_element = "H";
   $scope.hover_element = "";
 
   // since load calls are asynchronous, we need to do this to make sure that the data
   // is loaded before the services
   data.loadData().then(function() {
-	  player.setScope($scope);
+	  player.populatePlayer();
 	  util.setScope($scope);
 	  savegame.setScope($scope);
 	  upgrade.setScope($scope);
-          visibility.setScope($scope);
+    visibility.setScope($scope);
 
 	  self.onload = $timeout(self.startup);
   });
@@ -139,7 +137,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
 
   $scope.init = function () {
     $scope.current_tab = "Elements";
-    $scope.current_entry = "hydrogen";
     $scope.current_element = "H";
     $scope.hover_element = "";
     player.initialisePlayer();
@@ -161,7 +158,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   });
 
   self.startup = function () {
-    $scope.current_encyclopedia_url = $sce.trustAsResourceUrl(data.encyclopedia[$scope.current_entry].link);
     if(localStorage.getItem("playerStoredITE") !== null) {
       savegame.load();
     }

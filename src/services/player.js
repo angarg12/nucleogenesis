@@ -3,7 +3,6 @@ angular
 .service('player',
 ['data',
 function(data) {
-  var $scope;
   this.data;
 
   // TODO: The startPlayer object can be mostly build
@@ -23,13 +22,8 @@ function(data) {
     current_theme : "base"
   };
 
-  this.setScope = function (scope){
-    $scope = scope;
-    this.startPlayer.version = $scope.version;
-    this.populatePlayer();
-  };
-
   this.populatePlayer = function () {
+    this.startPlayer.version = data.version;
     this.startPlayer.resources = {};
     for(var entry in data.resources) {
       this.startPlayer.resources[entry] = {

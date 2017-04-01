@@ -4,6 +4,7 @@ angular.module('incremental').service(
 '$q',
 function($http, $q) {
   var self = this;
+  this.version = '1.0.4';
 
   this.table_resources = [ "e-", "n", "p" ];
 
