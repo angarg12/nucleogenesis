@@ -12,7 +12,7 @@ module.exports = function(config) {
       'lib/angular-mocks.js',
       'src/modules/module.js',
       'src/services/*.js',
-      'src/controllers/main.js',
+      'src/controllers/main-loop.js',
       'jasmine/common.js',
       'jasmine/spec/*.js',
       {pattern: 'src/data/*.json', watched: true, served: true, included: false}

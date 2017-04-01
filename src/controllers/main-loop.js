@@ -1,6 +1,6 @@
 angular
 .module('incremental')
-.controller('IncCtrl',
+.controller('main-loop',
 ['$scope',
 '$document',
 '$interval',

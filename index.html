@@ -25,7 +25,7 @@
     <script type="text/javascript" src="src/services/util.js"></script>
     <script type="text/javascript" src="src/services/visibility.js"></script>
     <script type="text/javascript" src="src/services/data.js"></script>
-    <script type="text/javascript" src="src/controllers/main.js"></script>
+    <script type="text/javascript" src="src/controllers/main-loop.js"></script>
     <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css" id="theme_css">
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <title>The Incremental Table of Elements</title>
@@ -39,7 +39,7 @@
       ga('send', 'pageview');
     </script>
   </head>
-  <body class="ng-scope theme-none" ng-app="incremental" ng-controller="IncCtrl">
+  <body class="ng-scope theme-none" ng-app="incremental" ng-controller="main-loop">
     <div class="container">
       <div class="navbar navbar-default animif" ng-show="player.data.intro.banner">
         <div class="container">
