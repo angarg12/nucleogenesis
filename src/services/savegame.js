@@ -3,13 +3,9 @@ angular
 .service('savegame',
 ['player',
 'achievement',
-function(player, achievement) {
-  var $scope;
+'state',
+function(player, achievement, state) {
   this.lastSave = "None";
-
-  this.setScope = function (scope){
-    $scope = scope;
-  };
 
   this.save = function () {
     localStorage.setItem("playerStoredITE", JSON.stringify(player.data));
@@ -35,7 +31,7 @@ function(player, achievement) {
 
     if(confirmation === true) {
       localStorage.removeItem("playerStoredITE");
-      $scope.init();
+      state.init();
     }
   };
 

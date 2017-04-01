@@ -47,7 +47,7 @@ describe("Upgrade service", function() {
       spec.player.data.elements.H.upgrades['Tier 1-1'] = {bought:true};      
       spec.player.data.elements.H.upgrades['Tier 1-2'] = {bought:true};
       spec.player.data.elements.H.upgrades['Tier 1-3'] = {bought:false};
-      spec.$scope.current_element = 'H';
+      spec.state.current_element = 'H';
     
       value = spec.upgrade.lastUpgradeTierPrice('Tier 1');
       
@@ -71,7 +71,7 @@ describe("Upgrade service", function() {
       spec.player.data.elements.H.upgrades['Tier 1-12'] = {bought:true};
       spec.player.data.elements.H.upgrades['Tier 1-13'] = {bought:true};
       spec.player.data.elements.H.upgrades['Tier 1-14'] = {bought:true};
-      spec.$scope.current_element = 'H';
+      spec.state.current_element = 'H';
     
       value = spec.upgrade.lastUpgradeTierPrice('Tier 1');
       

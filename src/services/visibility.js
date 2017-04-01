@@ -3,13 +3,8 @@ angular
 .service('visibility',
 ['player',
 'data',
- function(player, data) {
-  var $scope;
-
-  this.setScope = function (scope){
-    $scope = scope;
-  };
-
+'state',
+ function(player, data, state) {
   visible = function(items, func) {
     var visibles = [];
     for(var item in items) {
@@ -67,7 +62,7 @@ angular
     var generator = data.generators[name];
     var condition = "";
     for( var dep in generator.dependencies) {
-      condition += "player.data.elements[$scope.current_element].generators['"
+      condition += "player.data.elements[state.current_element].generators['"
           + generator.dependencies[dep] + "'].level > 0 && ";
     }
     condition += "true";
@@ -82,7 +77,7 @@ angular
       condition += upgrade.preconditions[pre] + " && ";
     }
     for( var dep in upgrade.dependencies) {
-      condition += "player.data.elements[$scope.current_element].upgrades['"
+      condition += "player.data.elements[state.current_element].upgrades['"
           + upgrade.dependencies[dep] + "'].bought && ";
     }
     condition += "true";
@@ -103,7 +98,7 @@ angular
     }
 
     for(var element in elements){
-      if($scope.current_element === elements[element]){
+      if(state.current_element === elements[element]){
         return true;
       }
     }
@@ -127,7 +122,7 @@ angular
     }
 
     for(var element in entry.elements){
-      if($scope.current_element === entry.elements[element]){
+      if(state.current_element === entry.elements[element]){
         return true;
       }
     }

@@ -5,7 +5,7 @@
       },
       "periodic_table": {
         "name": "Periodic table",
-        "condition": "$scope.player.data.resources['e-'].unlocked && $scope.player.data.resources.p.unlocked && $scope.player.data.resources.n.unlocked"
+        "condition": "self.player.data.resources['e-'].unlocked && self.player.data.resources.p.unlocked && self.player.data.resources.n.unlocked"
       },
       "isotope": {
         "name": "Isotope",
@@ -57,7 +57,7 @@
       },
       "nuclear_binding_energy": {
         "name": "Nuclear binding energy",
-        "condition": "$scope.player.data.resources['e-'].number >= 100 && $scope.player.data.resources.p.number >= 100"
+        "condition": "self.player.data.resources['e-'].number >= 100 && self.player.data.resources.p.number >= 100"
       },
       "beta_decay": {
         "name": "Beta decay",
@@ -69,7 +69,7 @@
       },
       "synthesis": {
         "name": "Synthesis",
-        "condition": "$scope.player.data.resources['H-'].number >= 10"
+        "condition": "self.player.data.resources['H-'].number >= 10"
       },
       "helium": {
         "name": "Helium",

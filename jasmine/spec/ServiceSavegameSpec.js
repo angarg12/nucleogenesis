@@ -49,35 +49,35 @@ describe("Player service", function() {
 
     it("should reset player without confirmation", function() {
       spec.savegame.lastSave = undefined;
-      spyOn(spec.$scope, "init");
+      spyOn(spec.state, "init");
 
       spec.savegame.reset(false);
 
       expect(localStorage.removeItem).toHaveBeenCalled();
-      expect(spec.$scope.init).toHaveBeenCalled();
+      expect(spec.state.init).toHaveBeenCalled();
     });
 
     it("should reset player with confirmation", function() {
       spec.savegame.lastSave = undefined;
       spyOn(window, "confirm").and.returnValue(true);
-      spyOn(spec.$scope, "init");
+      spyOn(spec.state, "init");
 
       spec.savegame.reset(true);
 
       expect(localStorage.removeItem).toHaveBeenCalled();
-      expect(spec.$scope.init).toHaveBeenCalled();
+      expect(spec.state.init).toHaveBeenCalled();
     });
 
     it("should not reset player if the confirmation rejets", function() {
       spec.savegame.lastSave = undefined;
       spyOn(window, "confirm").and.returnValue(false);
-      spyOn(spec.$scope, "init");
+      spyOn(spec.state, "init");
       spyOn(spec.animation, "introAnimation");
 
       spec.savegame.reset(true);
 
       expect(localStorage.removeItem).not.toHaveBeenCalled();
-      expect(spec.$scope.init).not.toHaveBeenCalled();
+      expect(spec.state.init).not.toHaveBeenCalled();
       expect(spec.animation.introAnimation).not.toHaveBeenCalled();
     });
 

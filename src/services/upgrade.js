@@ -3,13 +3,8 @@ angular
 .service('upgrade',
 ['player',
 'data',
-function(player, data) {
-  var $scope;
-
-  this.setScope = function (scope){
-    $scope = scope;
-  };
-
+'state',
+function(player, data, state) {
   this.buyUpgrade = function (name, element) {
     if(player.data.elements[element].upgrades[name].bought) {
       return;
@@ -23,7 +18,7 @@ function(player, data) {
 
   this.lastUpgradeTierPrice = function (tier) {
     for(var upgrade in data.generators[tier].upgrades) {
-      if(!player.data.elements[$scope.current_element].upgrades[data.generators[tier].upgrades[upgrade]].bought) {
+      if(!player.data.elements[state.current_element].upgrades[data.generators[tier].upgrades[upgrade]].bought) {
         return data.upgrades[data.generators[tier].upgrades[upgrade]].price;
       }
     }
@@ -31,7 +26,7 @@ function(player, data) {
   };
 
   this.filterUpgrade = function (input) {
-    return player.data.elements[$scope.current_element].generators[input].level > 0;
+    return player.data.elements[state.current_element].generators[input].level > 0;
   };
 
   this.upgradeApply = function(resource, power) {

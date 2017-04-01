@@ -23,7 +23,7 @@ describe("Visible service", function() {
     });
 
     it("should show visible generators", function() {
-      spec.$scope.current_element = 'H';
+      spec.state.current_element = 'H';
       spec.player.data = {elements:{}};
       spec.player.data.elements.H = {generators:[]};
       spec.player.data.elements.H.generators['Tier 1'] = {level: 1};
@@ -98,7 +98,7 @@ describe("Visible service", function() {
     });
 
     it("should show visible resources", function() {
-      spec.$scope.current_element = 'H';
+      spec.state.current_element = 'H';
       spec.player.data = {resources:{}};
       spec.player.data.resources.H = {unlocked:true};
       spec.player.data.resources['2H'] = {unlocked:false};
@@ -132,7 +132,7 @@ describe("Visible service", function() {
     });
 
     it("should show visible redoxes", function() {
-      spec.$scope.current_element = 'H';
+      spec.state.current_element = 'H';
       spec.player.data = {unlocks:{},resources:{}};
       spec.player.data.unlocks = {};
       spec.player.data.unlocks.redox = true;
@@ -146,7 +146,7 @@ describe("Visible service", function() {
     });
 
     it("should not show redoxes if they are locked", function() {
-      spec.$scope.current_element = 'H';
+      spec.state.current_element = 'H';
       spec.player.data = {unlocks:{},resources:{}};
       spec.player.data.unlocks = {};
       spec.player.data.unlocks.redox = false;
@@ -160,7 +160,7 @@ describe("Visible service", function() {
     });
 
     it("should not show redoxes of other elements", function() {
-      spec.$scope.current_element = 'O';
+      spec.state.current_element = 'O';
       spec.player.data = {unlocks:{},resources:{}};
       spec.player.data.unlocks = {};
       spec.player.data.unlocks.redox = true;
@@ -174,7 +174,7 @@ describe("Visible service", function() {
     });
 
     it("should show visible bindings", function() {
-      spec.$scope.current_element = 'H';
+      spec.state.current_element = 'H';
       spec.player.data = {unlocks:{},resources:{}};
       spec.player.data.unlocks = {};
       spec.player.data.unlocks.nuclear_binding_energy = true;
@@ -192,7 +192,7 @@ describe("Visible service", function() {
     });
 
     it("should show visible syntheses", function() {
-      spec.$scope.current_element = 'H';
+      spec.state.current_element = 'H';
       spec.player.data = {unlocks:{},resources:{}};
       spec.player.data.unlocks = {};
       spec.player.data.unlocks.synthesis = true;
@@ -213,7 +213,7 @@ describe("Visible service", function() {
 
   describe('has new functions', function() {
     it("should return true if any element has new items", function() {
-      spec.$scope.current_element = 'H';
+      spec.state.current_element = 'H';
       spec.player.data = {elements:{},unlocks:{},resources:{}};
       spec.player.data.elements = {H:{}};
       spec.player.data.elements.H.unlocked = true;
@@ -227,7 +227,7 @@ describe("Visible service", function() {
     });
 
     it("should return false if no unlocked element has new items", function() {
-      spec.$scope.current_element = 'H';
+      spec.state.current_element = 'H';
       spec.player.data = {elements:{},unlocks:{},resources:{}};
       spec.player.data.elements = {H:{}};
       spec.player.data.elements.H.unlocked = false;
@@ -241,7 +241,7 @@ describe("Visible service", function() {
     });
 
     it("should return true if an element has new items", function() {
-      spec.$scope.current_element = 'H';
+      spec.state.current_element = 'H';
       spec.player.data = {unlocks:{},resources:{}};
       spec.player.data.unlocks = {};
       spec.player.data.unlocks.synthesis = true;
@@ -253,7 +253,7 @@ describe("Visible service", function() {
     });
 
     it("should return false if an element has no new items", function() {
-      spec.$scope.current_element = 'H';
+      spec.state.current_element = 'H';
       spec.player.data = {unlocks:{},resources:{}};
       spec.player.data.unlocks = {};
       spec.player.data.unlocks.synthesis = true;

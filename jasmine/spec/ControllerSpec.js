@@ -5,12 +5,11 @@ describe("Incremental table elements", function() {
 
   describe('initialization functions', function() {
     it("should init all the variables", function() {
+    spec.state.init();
 
-      spec.$scope.init();
-
-	  expect(spec.$scope.current_tab).toEqual("Elements");
-	  expect(spec.$scope.current_element).toEqual("H");
-	  expect(spec.$scope.hover_element).toEqual("");
+	  expect(spec.state.current_tab).toEqual("Elements");
+	  expect(spec.state.current_element).toEqual("H");
+	  expect(spec.state.hover_element).toEqual("");
 	  expect(spec.achievement.toast).toEqual([]);
 	  expect(spec.achievement.is_toast_visible).toEqual(false);
     });
@@ -19,7 +18,7 @@ describe("Incremental table elements", function() {
   describe('onload', function() {
     beforeEach(function() {
 			spyOn(spec.savegame, "load");
-			spyOn(spec.$scope, "init");
+			spyOn(spec.state, "init");
 			spyOn(spec.animation, "introAnimation");
     });
 
@@ -31,7 +30,7 @@ describe("Incremental table elements", function() {
 
       expect(spec.savegame.load).not.toHaveBeenCalled();
       expect(localStorage.getItem).toHaveBeenCalled();
-      expect(spec.$scope.init).toHaveBeenCalled();
+      expect(spec.state.init).toHaveBeenCalled();
       expect(spec.animation.introAnimation).toHaveBeenCalled();
     });
 
@@ -50,7 +49,7 @@ describe("Incremental table elements", function() {
       // flush onload
       spec.$timeout.flush();
 
-			expect(spec.$scope.init).not.toHaveBeenCalled();
+			expect(spec.state.init).not.toHaveBeenCalled();
     });
   });
 

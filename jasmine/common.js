@@ -22,6 +22,7 @@ var commonSpec = function(spec) {
     spec.element = $injector.get('element');
     spec.visibility = $injector.get('visibility');
     spec.data = $injector.get('data');
+    spec.state = $injector.get('state');
 
     jasmine.getJSONFixtures().fixturesPath = 'base/src/data/';
 
@@ -32,7 +33,7 @@ var commonSpec = function(spec) {
       );
     }
 
-    spec.controller  = _$controller_('main-loop', {$scope:spec.$scope, achievement:spec.achievement, util:spec.util, player:spec.player, savegame:spec.savegame, generator:spec.generator, upgrade:spec.upgrade, animation:spec.animation, format:spec.format, synthesis:spec.synthesis, reaction:spec.reaction, element:spec.element, data:spec.data});
+    spec.controller  = _$controller_('main-loop', {$scope:spec.$scope, achievement:spec.achievement, util:spec.util, player:spec.player, savegame:spec.savegame, generator:spec.generator, upgrade:spec.upgrade, animation:spec.animation, format:spec.format, synthesis:spec.synthesis, reaction:spec.reaction, element:spec.element, data:spec.data, state:spec.state});
     _$httpBackend_.flush();
   }));
 };
