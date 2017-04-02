@@ -37,6 +37,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   $scope.reaction = reaction;
   $scope.visibility = visibility;
   $scope.element = element;
+  $scope.state = state;
   var self = this;
   // we need this just for the $on function
   self.data = data;
@@ -47,7 +48,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   // is loaded before the services
   data.loadData().then(function() {
 	  player.populatePlayer();
-	  util.setScope($scope);
 
 	  self.onload = $timeout(self.startup);
   });

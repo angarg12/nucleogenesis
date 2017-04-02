@@ -60,27 +60,27 @@
             <li class="animif"
               ng-class="{active: state.current_tab === 'Elements'}">
               <a href="#matter"
-                ng-click="util.updateCurrent('state.current_tab','Elements')"> Elements
+                ng-click="state.current_tab = 'Elements'"> Elements
               <span class="glyphicon glyphicon-exclamation-sign" ng-if="visibility.elementsHasNew()"></span>
               </a>
             </li>
             <li class="animif"
               ng-class="{active: state.current_tab === 'Encyclopedia'}">
               <a href="#encyclopedia"
-                ng-click="util.updateCurrent('state.current_tab','Encyclopedia')"> Encyclopedia
+                ng-click="state.current_tab = 'Encyclopedia'"> Encyclopedia
               <span class="glyphicon glyphicon-exclamation-sign" ng-if="visibility.encyclopediaHasNew()"></span>
               </a>
             </li>
             <li ng-class="{active: state.current_tab === 'Periodic Table'}">
               <a class="ng-binding"
                 href="#table"
-                ng-click="util.updateCurrent('state.current_tab','Periodic Table')"> Periodic Table
+                ng-click="state.current_tab = 'Periodic Table'"> Periodic Table
               </a>
             </li>
             <li ng-class="{active: state.current_tab === 'Options'}">
               <a class="ng-binding"
                 href="#options"
-                ng-click="util.updateCurrent('state.current_tab','Options')"> Options
+                ng-click="state.current_tab = 'Options'"> Options
               </a>
             </li>
           </ul>

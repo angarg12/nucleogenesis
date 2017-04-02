@@ -42,13 +42,13 @@
     </table>
   </div>
   <div class="col-lg-8">
-    <h2>{{data.elements[current_element].name}}</h2>
-    <h3><span ng-bind-html="util.trustHTML(util.prettifyNumber(generator.elementProduction(current_element)))" id="production_total"></span> {{current_element}}/s</h3>
+    <h2>{{data.elements[state.current_element].name}}</h2>
+    <h3><span ng-bind-html="util.trustHTML(util.prettifyNumber(generator.elementProduction(state.current_element)))" id="production_total"></span> {{state.current_element}}/s</h3>
     <ul ng-if="player.data.unlocks.isotope">
       <li>
-        <span ng-bind-html="util.trustHTML(util.getHTML(current_element))"></span>: {{(data.resources[current_element].ratio*100).toFixed(4)}}%
+        <span ng-bind-html="util.trustHTML(util.getHTML(state.current_element))"></span>: {{(data.resources[state.current_element].ratio*100).toFixed(4)}}%
       </li>
-      <li class="animif" ng-repeat="isotope in data.elements[current_element].isotopes" ng-if="player.data.resources[isotope].unlocked">
+      <li class="animif" ng-repeat="isotope in data.elements[state.current_element].isotopes" ng-if="player.data.resources[isotope].unlocked">
         <span ng-bind-html="util.trustHTML(util.getHTML(isotope))"></span>: {{(data.resources[isotope].ratio*100).toFixed(4)}}%
       </li>
     </ul>
@@ -60,37 +60,37 @@
                 {{name}}:
                 </span>
                 <span class="pull-left">
-                  <span ng-bind-html="util.trustHTML(util.prettifyNumber(generator.generatorProduction(name,current_element)))"></span> /s
+                  <span ng-bind-html="util.trustHTML(util.prettifyNumber(generator.generatorProduction(name,state.current_element)))"></span> /s
                 </span>
               </td>
               <td class="animif col-md-1">
-                <div class="pull-left" ng-bind-html="util.trustHTML(util.prettifyNumber(player.data.elements[current_element].generators[name].level))"></div>
+                <div class="pull-left" ng-bind-html="util.trustHTML(util.prettifyNumber(player.data.elements[state.current_element].generators[name].level))"></div>
               </td>
               <td class="animif col-md-3">
                 <div class="pull-left">
-                  Total <span ng-bind-html="util.trustHTML(util.prettifyNumber(generator.tierProduction(name,current_element)))"></span> {{current_element}}/s
+                  Total <span ng-bind-html="util.trustHTML(util.prettifyNumber(generator.tierProduction(name,state.current_element)))"></span> {{state.current_element}}/s
                 </div>
               </td>
               <td class="animif col-md-3">
-                <div class="pull-left" ng-bind-html="util.trustHTML(util.prettifyNumber(generator.generatorPrice(name, current_element)))"></div>
-                {{current_element}}
+                <div class="pull-left" ng-bind-html="util.trustHTML(util.prettifyNumber(generator.generatorPrice(name, state.current_element)))"></div>
+                {{state.current_element}}
               </td>
               <td class="animif col-md-3">
                 <div class="pull-left">
                   <button type="button" class="btn btn-default button-small"
-                    ng-click="generator.buyGenerators(name, current_element, 1)"
-                    ng-class="{disabled: generator.generatorPrice(name, current_element) > player.data.resources[current_element].number}">1</button>
+                    ng-click="generator.buyGenerators(name, state.current_element, 1)"
+                    ng-class="{disabled: generator.generatorPrice(name, state.current_element) > player.data.resources[state.current_element].number}">1</button>
                 </div>
                 <div class="pull-left">
                   <button type="button" class="btn btn-default button-small"
-                    ng-click="generator.buyGenerators(name, current_element, 10)"
-                    ng-class="{disabled: generator.generatorPrice(name, current_element) > player.data.resources[current_element].number}">10</button>
+                    ng-click="generator.buyGenerators(name, state.current_element, 10)"
+                    ng-class="{disabled: generator.generatorPrice(name, state.current_element) > player.data.resources[state.current_element].number}">10</button>
                 </div>
                 <!-- crappy workaround since it doesn't recognize the literal Infinity -->
                 <div class="pull-left">
                   <button type="button" class="btn btn-default button-small"
-                    ng-click="generator.buyGenerators(name, current_element, 1/0)"
-                    ng-class="{disabled: generator.generatorPrice(name, current_element) > player.data.resources[current_element].number}">&#8892;</button>
+                    ng-click="generator.buyGenerators(name, state.current_element, 1/0)"
+                    ng-class="{disabled: generator.generatorPrice(name, state.current_element) > player.data.resources[state.current_element].number}">&#8892;</button>
                 </div>
               </td>
             </tr>
@@ -238,15 +238,15 @@
               <td class="animif col-md-1" ng-repeat="up in data.generators[generator].upgrades">
                 <a class="btn btn-default"
                   ng-if="visibility.isUpgradeVisible(up)"
-                  ng-click="upgrade.buyUpgrade(up, current_element)"
-                  ng-class="{disabled: data.upgrades[up].price > player.data.resources[current_element].number && !player.data.elements[current_element].upgrades[up].bought,
-                  active: player.data.elements[current_element].upgrades[up].bought}">
+                  ng-click="upgrade.buyUpgrade(up, state.current_element)"
+                  ng-class="{disabled: data.upgrades[up].price > player.data.resources[state.current_element].number && !player.data.elements[state.current_element].upgrades[up].bought,
+                  active: player.data.elements[state.current_element].upgrades[up].bought}">
                 {{data.upgrades[up].description}}
                 </a>
               </td>
               <td class="animif col-md-2">
                 <div ng-show="upgrade.lastUpgradeTierPrice(generator) != null">
-                  <span class="pull-left" ng-bind-html="util.trustHTML(util.prettifyNumber(upgrade.lastUpgradeTierPrice(generator)))"></span> &nbsp;{{current_element}}
+                  <span class="pull-left" ng-bind-html="util.trustHTML(util.prettifyNumber(upgrade.lastUpgradeTierPrice(generator)))"></span> &nbsp;{{state.current_element}}
                 </div>
               </td>
             </tr>
@@ -257,9 +257,9 @@
   </div>
   <div class="col-lg-1 right-box" ng-if="visibility.visibleElements().length > 1">
     <table class="table table-hover element-table">
-      <tr class="animif" ng-repeat="key in visibility.visibleElements()" ng-class="{active:current_element===key}">
+      <tr class="animif" ng-repeat="key in visibility.visibleElements()" ng-class="{active:state.current_element===key}">
         <td>
-          <div class="pull-left" ng-click="util.updateCurrent('current_element', key)">
+          <div class="pull-left" ng-click="state.current_element = key">
             <a>
             {{data.elements[key].name}}
             <span class="glyphicon glyphicon-exclamation-sign" ng-if="visibility.elementHasNew(key)"></span>

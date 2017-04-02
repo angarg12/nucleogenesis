@@ -11,12 +11,7 @@ function($filter, $sce, data) {
     return typeof value === "number" && isFinite(value) && Math.floor(value) === value;
   };
 
-  var $scope;
   this.numberGenerator = new Ziggurat();
-
-  this.setScope = function (scope){
-    $scope = scope;
-  };
 
   this.getHTML = function (resource) {
     var html = data.html[resource];
@@ -27,10 +22,6 @@ function($filter, $sce, data) {
       return resource;
     }
     return html;
-  };
-
-  this.updateCurrent = function (variable, new_value) {
-    $scope[variable] = new_value;
   };
 
   this.prettifyNumber = function (number) {
