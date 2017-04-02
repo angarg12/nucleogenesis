@@ -71,7 +71,7 @@ describe("Incremental table elements", function() {
 
       spec.controller.update();
 
-      expect(spec.player.data.resources.O.number).toEqual(200);
+      expect(spec.player.data.resources['16O'].number).toEqual(200);
       expect(spec.player.data.resources['17O'].number).toEqual(0);
       expect(spec.player.data.resources['18O'].number).toEqual(0);
     });
@@ -86,7 +86,7 @@ describe("Incremental table elements", function() {
 
       spec.controller.update();
 
-      expect(spec.player.data.resources.O.number).toEqual(1197);
+      expect(spec.player.data.resources['16O'].number).toEqual(1197);
       expect(spec.player.data.resources['17O'].number).toEqual(0);
       expect(spec.player.data.resources['18O'].number).toEqual(3);
     });
@@ -101,7 +101,7 @@ describe("Incremental table elements", function() {
 
       spec.controller.update();
 
-      expect(spec.player.data.resources.O.number).toEqual(31923);
+      expect(spec.player.data.resources['16O'].number).toEqual(31923);
       expect(spec.player.data.resources['17O'].number).toEqual(13);
       expect(spec.player.data.resources['18O'].number).toEqual(64);
     });

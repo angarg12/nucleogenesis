@@ -1,713 +1,716 @@
 {
-    "H" : {
-      "name" : "Hydrogen",
-      "isotopes" : [ "2H", "3H" ],
-      "includes" : [ "H", "2H", "3H", "H-", "H2" ],
-      "syntheses": [ "H-p", "H2O" ],
-      "redox": ["H+1", "H-1"],
-      "number" : 1
-    },
-    "He" : {
-      "name" : "Helium",
-      "includes" : [ "He", "3He", "3He+" ],
-      "isotopes" : [ "3He" ],
-      "number" : 2
-    },
-    "Li" : {
-      "name" : "Lithium",
-      "isotopes" : [ "7Li" ],
-      "number" : 3,
-      "disabled" : true
-    },
-    "Be" : {
-      "name" : "Beryllium",
-      "isotopes" : [ "7Be", "10Be" ],
-      "number" : 4,
-      "disabled" : true
-    },
-    "B" : {
-      "name" : "Boron",
-      "isotopes" : [ "11B" ],
-      "number" : 5,
-      "disabled" : true
-    },
-    "C" : {
-      "name" : "Carbon",
-      "isotopes" : [ "11C", "13C", "14C" ],
-      "number" : 6,
-      "disabled" : true
-    },
-    "N" : {
-      "name" : "Nitrogen",
-      "isotopes" : [ "13N", "15N" ],
-      "number" : 7,
-      "disabled" : true
-    },
-    "O" : {
-      "name" : "Oxygen",
-      "isotopes" : [ "17O", "18O" ],
-      "includes" : [ "O", "17O", "18O", "O2", "O3" ],
-      "syntheses": [ "O3", "O2-OO", "H2O", "O2O2-O3O" ],
-      "number" : 8
-    },
-    "F" : {
-      "name" : "Fluorine",
-      "isotopes" : [ "18F" ],
-      "number" : 9,
-      "disabled" : true
-    },
-    "Ne" : {
-      "name" : "Neon",
-      "isotopes" : [ "21Ne", "22Ne" ],
-      "number" : 10,
-      "disabled" : true
-    },
-    "Na" : {
-      "name" : "Sodium",
-      "isotopes" : [],
-      "number" : 11,
-      "disabled" : true
-    },
-    "Mg" : {
-      "name" : "Magnesium",
-      "isotopes" : [],
-      "number" : 12,
-      "disabled" : true
-    },
-    "Al" : {
-      "name" : "Aluminium",
-      "isotopes" : [],
-      "number" : 13,
-      "disabled" : true
-    },
-    "Si" : {
-      "name" : "Silicon",
-      "isotopes" : [],
-      "number" : 14,
-      "disabled" : true
-    },
-    "P" : {
-      "name" : "Phosphorus",
-      "isotopes" : [],
-      "number" : 15,
-      "disabled" : true
-    },
-    "S" : {
-      "name" : "Sulfur",
-      "isotopes" : [],
-      "number" : 16,
-      "disabled" : true
-    },
-    "Cl" : {
-      "name" : "Chlorine",
-      "isotopes" : [],
-      "number" : 17,
-      "disabled" : true
-    },
-    "Ar" : {
-      "name" : "Argon",
-      "isotopes" : [],
-      "number" : 18,
-      "disabled" : true
-    },
-    "K" : {
-      "name" : "Potassium",
-      "isotopes" : [],
-      "number" : 19,
-      "disabled" : true
-    },
-    "Ca" : {
-      "name" : "Calcium",
-      "isotopes" : [],
-      "number" : 20,
-      "disabled" : true
-    },
-    "Sc" : {
-      "name" : "Scandium",
-      "isotopes" : [],
-      "number" : 21,
-      "disabled" : true
-    },
-    "Ti" : {
-      "name" : "Titanium",
-      "isotopes" : [],
-      "number" : 22,
-      "disabled" : true
-    },
-    "V" : {
-      "name" : "Vanadium",
-      "isotopes" : [],
-      "number" : 23,
-      "disabled" : true
-    },
-    "Cr" : {
-      "name" : "Chromium",
-      "isotopes" : [],
-      "number" : 24,
-      "disabled" : true
-    },
-    "Mn" : {
-      "name" : "Manganese",
-      "isotopes" : [],
-      "number" : 25,
-      "disabled" : true
-    },
-    "Fe" : {
-      "name" : "Iron",
-      "isotopes" : [],
-      "number" : 26,
-      "disabled" : true
-    },
-    "Co" : {
-      "name" : "Cobalt",
-      "isotopes" : [],
-      "number" : 27,
-      "disabled" : true
-    },
-    "Ni" : {
-      "name" : "Nickel",
-      "isotopes" : [],
-      "number" : 28,
-      "disabled" : true
-    },
-    "Cu" : {
-      "name" : "Copper",
-      "isotopes" : [],
-      "number" : 29,
-      "disabled" : true
-    },
-    "Zn" : {
-      "name" : "Zinc",
-      "isotopes" : [],
-      "number" : 30,
-      "disabled" : true
-    },
-    "Ga" : {
-      "name" : "Gallium",
-      "isotopes" : [],
-      "number" : 31,
-      "disabled" : true
-    },
-    "Ge" : {
-      "name" : "Germanium",
-      "isotopes" : [],
-      "number" : 32,
-      "disabled" : true
-    },
-    "As" : {
-      "name" : "Arsenic",
-      "isotopes" : [],
-      "number" : 33,
-      "disabled" : true
-    },
-    "Se" : {
-      "name" : "Selenium",
-      "isotopes" : [],
-      "number" : 34,
-      "disabled" : true
-    },
-    "Br" : {
-      "name" : "Bromine",
-      "isotopes" : [],
-      "number" : 35,
-      "disabled" : true
-    },
-    "Kr" : {
-      "name" : "Krypton",
-      "isotopes" : [],
-      "number" : 36,
-      "disabled" : true
-    },
-    "Rb" : {
-      "name" : "Rubidium",
-      "isotopes" : [],
-      "number" : 37,
-      "disabled" : true
-    },
-    "Sr" : {
-      "name" : "Strontium",
-      "isotopes" : [],
-      "number" : 38,
-      "disabled" : true
-    },
-    "Y" : {
-      "name" : "Yttrium",
-      "isotopes" : [],
-      "number" : 39,
-      "disabled" : true
-    },
-    "Zr" : {
-      "name" : "Zirconium",
-      "isotopes" : [],
-      "number" : 40,
-      "disabled" : true
-    },
-    "Nb" : {
-      "name" : "Niobium",
-      "isotopes" : [],
-      "number" : 41,
-      "disabled" : true
-    },
-    "Mo" : {
-      "name" : "Molybdenum",
-      "isotopes" : [],
-      "number" : 42,
-      "disabled" : true
-    },
-    "Tc" : {
-      "name" : "Technetium",
-      "isotopes" : [],
-      "number" : 43,
-      "disabled" : true
-    },
-    "Ru" : {
-      "name" : "Ruthenium",
-      "isotopes" : [],
-      "number" : 44,
-      "disabled" : true
-    },
-    "Rh" : {
-      "name" : "Rhodium",
-      "isotopes" : [],
-      "number" : 45,
-      "disabled" : true
-    },
-    "Pd" : {
-      "name" : "Palladium",
-      "isotopes" : [],
-      "number" : 46,
-      "disabled" : true
-    },
-    "Ag" : {
-      "name" : "Silver",
-      "isotopes" : [],
-      "number" : 47,
-      "disabled" : true
-    },
-    "Cd" : {
-      "name" : "Cadmium",
-      "isotopes" : [],
-      "number" : 48,
-      "disabled" : true
-    },
-    "In" : {
-      "name" : "Indium",
-      "isotopes" : [],
-      "number" : 49,
-      "disabled" : true
-    },
-    "Sn" : {
-      "name" : "Tin",
-      "isotopes" : [],
-      "number" : 50,
-      "disabled" : true
-    },
-    "Sb" : {
-      "name" : "Antimony",
-      "isotopes" : [],
-      "number" : 51,
-      "disabled" : true
-    },
-    "Te" : {
-      "name" : "Tellurium",
-      "isotopes" : [],
-      "number" : 52,
-      "disabled" : true
-    },
-    "I" : {
-      "name" : "Iodine",
-      "isotopes" : [],
-      "number" : 53,
-      "disabled" : true
-    },
-    "Xe" : {
-      "name" : "Xenon",
-      "isotopes" : [],
-      "number" : 54,
-      "disabled" : true
-    },
-    "Cs" : {
-      "name" : "Caesium",
-      "isotopes" : [],
-      "number" : 55,
-      "disabled" : true
-    },
-    "Ba" : {
-      "name" : "Barium",
-      "isotopes" : [],
-      "number" : 56,
-      "disabled" : true
-    },
-    "La" : {
-      "name" : "Lanthanum",
-      "isotopes" : [],
-      "number" : 57,
-      "disabled" : true
-    },
-    "Ce" : {
-      "name" : "Cerium",
-      "isotopes" : [],
-      "number" : 58,
-      "disabled" : true
-    },
-    "Pr" : {
-      "name" : "Praseodymium",
-      "isotopes" : [],
-      "number" : 59,
-      "disabled" : true
-    },
-    "Nd" : {
-      "name" : "Neodymium",
-      "isotopes" : [],
-      "number" : 60,
-      "disabled" : true
-    },
-    "Pm" : {
-      "name" : "Promethium",
-      "isotopes" : [],
-      "number" : 61,
-      "disabled" : true
-    },
-    "Sm" : {
-      "name" : "Samarium",
-      "isotopes" : [],
-      "number" : 62,
-      "disabled" : true
-    },
-    "Eu" : {
-      "name" : "Europium",
-      "isotopes" : [],
-      "number" : 63,
-      "disabled" : true
-    },
-    "Gd" : {
-      "name" : "Gadolinium",
-      "isotopes" : [],
-      "number" : 64,
-      "disabled" : true
-    },
-    "Tb" : {
-      "name" : "Terbium",
-      "isotopes" : [],
-      "number" : 65,
-      "disabled" : true
-    },
-    "Dy" : {
-      "name" : "Dysprosium",
-      "isotopes" : [],
-      "number" : 66,
-      "disabled" : true
-    },
-    "Ho" : {
-      "name" : "Holmium",
-      "isotopes" : [],
-      "number" : 67,
-      "disabled" : true
-    },
-    "Er" : {
-      "name" : "Erbium",
-      "isotopes" : [],
-      "number" : 68,
-      "disabled" : true
-    },
-    "Tm" : {
-      "name" : "Thulium",
-      "isotopes" : [],
-      "number" : 69,
-      "disabled" : true
-    },
-    "Yb" : {
-      "name" : "Ytterbium",
-      "isotopes" : [],
-      "number" : 70,
-      "disabled" : true
-    },
-    "Lu" : {
-      "name" : "Lutetium",
-      "isotopes" : [],
-      "number" : 71,
-      "disabled" : true
-    },
-    "Hf" : {
-      "name" : "Hafnium",
-      "isotopes" : [],
-      "number" : 72,
-      "disabled" : true
-    },
-    "Ta" : {
-      "name" : "Tantalum",
-      "isotopes" : [],
-      "number" : 73,
-      "disabled" : true
-    },
-    "W" : {
-      "name" : "Tungsten",
-      "isotopes" : [],
-      "number" : 74,
-      "disabled" : true
-    },
-    "Re" : {
-      "name" : "Rhenium",
-      "isotopes" : [],
-      "number" : 75,
-      "disabled" : true
-    },
-    "Os" : {
-      "name" : "Osmium",
-      "isotopes" : [],
-      "number" : 76,
-      "disabled" : true
-    },
-    "Ir" : {
-      "name" : "Iridium",
-      "isotopes" : [],
-      "number" : 77,
-      "disabled" : true
-    },
-    "Pt" : {
-      "name" : "Platinum",
-      "isotopes" : [],
-      "number" : 78,
-      "disabled" : true
-    },
-    "Au" : {
-      "name" : "Gold",
-      "isotopes" : [],
-      "number" : 79,
-      "disabled" : true
-    },
-    "Hg" : {
-      "name" : "Mercury",
-      "isotopes" : [],
-      "number" : 80,
-      "disabled" : true
-    },
-    "Tl" : {
-      "name" : "Thallium",
-      "isotopes" : [],
-      "number" : 81,
-      "disabled" : true
-    },
-    "Pb" : {
-      "name" : "Lead",
-      "isotopes" : [],
-      "number" : 82,
-      "disabled" : true
-    },
-    "Bi" : {
-      "name" : "Bismuth",
-      "isotopes" : [],
-      "number" : 83,
-      "disabled" : true
-    },
-    "Po" : {
-      "name" : "Polonium",
-      "isotopes" : [],
-      "number" : 84,
-      "disabled" : true
-    },
-    "At" : {
-      "name" : "Astatine",
-      "isotopes" : [],
-      "number" : 85,
-      "disabled" : true
-    },
-    "Rn" : {
-      "name" : "Radon",
-      "isotopes" : [],
-      "number" : 86,
-      "disabled" : true
-    },
-    "Fr" : {
-      "name" : "Francium",
-      "isotopes" : [],
-      "number" : 87,
-      "disabled" : true
-    },
-    "Ra" : {
-      "name" : "Radium",
-      "isotopes" : [],
-      "number" : 88,
-      "disabled" : true
-    },
-    "Ac" : {
-      "name" : "Actinium",
-      "isotopes" : [],
-      "number" : 89,
-      "disabled" : true
-    },
-    "Th" : {
-      "name" : "Thorium",
-      "isotopes" : [],
-      "number" : 90,
-      "disabled" : true
-    },
-    "Pa" : {
-      "name" : "Protactinium",
-      "isotopes" : [],
-      "number" : 91,
-      "disabled" : true
-    },
-    "U" : {
-      "name" : "Uranium",
-      "isotopes" : [],
-      "number" : 92,
-      "disabled" : true
-    },
-    "Np" : {
-      "name" : "Neptunium",
-      "isotopes" : [],
-      "number" : 93,
-      "disabled" : true
-    },
-    "Pu" : {
-      "name" : "Plutonium",
-      "isotopes" : [],
-      "number" : 94,
-      "disabled" : true
-    },
-    "Am" : {
-      "name" : "Americium",
-      "isotopes" : [],
-      "number" : 95,
-      "disabled" : true
-    },
-    "Cm" : {
-      "name" : "Curium",
-      "isotopes" : [],
-      "number" : 96,
-      "disabled" : true
-    },
-    "Bk" : {
-      "name" : "Berkelium",
-      "isotopes" : [],
-      "number" : 97,
-      "disabled" : true
-    },
-    "Cf" : {
-      "name" : "Californium",
-      "isotopes" : [],
-      "number" : 98,
-      "disabled" : true
-    },
-    "Es" : {
-      "name" : "Einsteinium",
-      "isotopes" : [],
-      "number" : 99,
-      "disabled" : true
-    },
-    "Fm" : {
-      "name" : "Fermium",
-      "isotopes" : [],
-      "number" : 100,
-      "disabled" : true
-    },
-    "Md" : {
-      "name" : "Mendelevium",
-      "isotopes" : [],
-      "number" : 101,
-      "disabled" : true
-    },
-    "No" : {
-      "name" : "Nobelium",
-      "isotopes" : [],
-      "number" : 102,
-      "disabled" : true
-    },
-    "Lr" : {
-      "name" : "Lawrencium",
-      "isotopes" : [],
-      "number" : 103,
-      "disabled" : true
-    },
-    "Rf" : {
-      "name" : "Rutherfordium",
-      "isotopes" : [],
-      "number" : 104,
-      "disabled" : true
-    },
-    "Db" : {
-      "name" : "Dubnium",
-      "isotopes" : [],
-      "number" : 105,
-      "disabled" : true
-    },
-    "Sg" : {
-      "name" : "Seaborgium",
-      "isotopes" : [],
-      "number" : 106,
-      "disabled" : true
-    },
-    "Bh" : {
-      "name" : "Bohrium",
-      "isotopes" : [],
-      "number" : 107,
-      "disabled" : true
-    },
-    "Hs" : {
-      "name" : "Hassium",
-      "isotopes" : [],
-      "number" : 108,
-      "disabled" : true
-    },
-    "Mt" : {
-      "name" : "Meitnerium",
-      "isotopes" : [],
-      "number" : 109,
-      "disabled" : true
-    },
-    "Ds" : {
-      "name" : "Darmstadtium",
-      "isotopes" : [],
-      "number" : 110,
-      "disabled" : true
-    },
-    "Rg" : {
-      "name" : "Roentgenium",
-      "isotopes" : [],
-      "number" : 111,
-      "disabled" : true
-    },
-    "Cn" : {
-      "name" : "Copernicium",
-      "isotopes" : [],
-      "number" : 112,
-      "disabled" : true
-    },
-    "Nh" : {
-      "name" : "Nihonium",
-      "isotopes" : [],
-      "number" : 113,
-      "disabled" : true
-    },
-    "Fl" : {
-      "name" : "Flerovium",
-      "isotopes" : [],
-      "number" : 114,
-      "disabled" : true
-    },
-    "Mc" : {
-      "name" : "Moscovium",
-      "isotopes" : [],
-      "number" : 115,
-      "disabled" : true
-    },
-    "Lv" : {
-      "name" : "Livermorium",
-      "isotopes" : [],
-      "number" : 116,
-      "disabled" : true
-    },
-    "Ts" : {
-      "name" : "Tennessine",
-      "isotopes" : [],
-      "number" : 117,
-      "disabled" : true
-    },
-    "Og" : {
-      "name" : "Oganesson",
-      "isotopes" : [],
-      "number" : 118,
-      "disabled" : true
+    "H": {
+        "name": "Hydrogen",
+        "isotopes": ["1H", "2H", "3H"],
+        "main": "1H",
+        "includes": ["1H", "2H", "3H", "1H-", "H2"],
+        "syntheses": ["1H-p", "H2O"],
+        "redox": ["H+1", "1H-1"],
+        "number": 1
+    },
+    "He": {
+        "name": "Helium",
+        "includes": ["4He", "3He", "3He+"],
+        "isotopes": ["4He", "3He"],
+        "main": "4H",
+        "number": 2
+    },
+    "Li": {
+        "name": "Lithium",
+        "isotopes": ["6Li", "7Li"],
+        "main": "6Li",
+        "number": 3
+    },
+    "Be": {
+        "name": "Beryllium",
+        "isotopes": ["7Be", "9Be", "10Be"],
+        "main": "9Be",
+        "number": 4
+    },
+    "B": {
+        "name": "Boron",
+        "isotopes": ["10B", "11B"],
+        "main": "10B",
+        "number": 5
+    },
+    "C": {
+        "name": "Carbon",
+        "isotopes": ["11C", "12C", "13C", "14C"],
+        "main": "12C",
+        "number": 6
+    },
+    "N": {
+        "name": "Nitrogen",
+        "isotopes": ["13N", "14N", "15N"],
+        "main": "14N",
+        "number": 7
+    },
+    "O": {
+        "name": "Oxygen",
+        "isotopes": ["16O", "17O", "18O"],
+        "main": "16O",
+        "includes": ["O", "17O", "18O", "O2", "O3"],
+        "syntheses": ["O3", "O2-OO", "H2O", "O2O2-O3O"],
+        "number": 8
+    },
+    "F": {
+        "name": "Fluorine",
+        "isotopes": ["18F", "19F"],
+        "main": "19F",
+        "number": 9
+    },
+    "Ne": {
+        "name": "Neon",
+        "isotopes": ["20Ne", "21Ne", "22Ne"],
+        "main": "20Ne",
+        "number": 10
+    },
+    "Na": {
+        "name": "Sodium",
+        "isotopes": [],
+        "number": 11,
+        "disabled": true
+    },
+    "Mg": {
+        "name": "Magnesium",
+        "isotopes": [],
+        "number": 12,
+        "disabled": true
+    },
+    "Al": {
+        "name": "Aluminium",
+        "isotopes": [],
+        "number": 13,
+        "disabled": true
+    },
+    "Si": {
+        "name": "Silicon",
+        "isotopes": [],
+        "number": 14,
+        "disabled": true
+    },
+    "P": {
+        "name": "Phosphorus",
+        "isotopes": [],
+        "number": 15,
+        "disabled": true
+    },
+    "S": {
+        "name": "Sulfur",
+        "isotopes": [],
+        "number": 16,
+        "disabled": true
+    },
+    "Cl": {
+        "name": "Chlorine",
+        "isotopes": [],
+        "number": 17,
+        "disabled": true
+    },
+    "Ar": {
+        "name": "Argon",
+        "isotopes": [],
+        "number": 18,
+        "disabled": true
+    },
+    "K": {
+        "name": "Potassium",
+        "isotopes": [],
+        "number": 19,
+        "disabled": true
+    },
+    "Ca": {
+        "name": "Calcium",
+        "isotopes": [],
+        "number": 20,
+        "disabled": true
+    },
+    "Sc": {
+        "name": "Scandium",
+        "isotopes": [],
+        "number": 21,
+        "disabled": true
+    },
+    "Ti": {
+        "name": "Titanium",
+        "isotopes": [],
+        "number": 22,
+        "disabled": true
+    },
+    "V": {
+        "name": "Vanadium",
+        "isotopes": [],
+        "number": 23,
+        "disabled": true
+    },
+    "Cr": {
+        "name": "Chromium",
+        "isotopes": [],
+        "number": 24,
+        "disabled": true
+    },
+    "Mn": {
+        "name": "Manganese",
+        "isotopes": [],
+        "number": 25,
+        "disabled": true
+    },
+    "Fe": {
+        "name": "Iron",
+        "isotopes": [],
+        "number": 26,
+        "disabled": true
+    },
+    "Co": {
+        "name": "Cobalt",
+        "isotopes": [],
+        "number": 27,
+        "disabled": true
+    },
+    "Ni": {
+        "name": "Nickel",
+        "isotopes": [],
+        "number": 28,
+        "disabled": true
+    },
+    "Cu": {
+        "name": "Copper",
+        "isotopes": [],
+        "number": 29,
+        "disabled": true
+    },
+    "Zn": {
+        "name": "Zinc",
+        "isotopes": [],
+        "number": 30,
+        "disabled": true
+    },
+    "Ga": {
+        "name": "Gallium",
+        "isotopes": [],
+        "number": 31,
+        "disabled": true
+    },
+    "Ge": {
+        "name": "Germanium",
+        "isotopes": [],
+        "number": 32,
+        "disabled": true
+    },
+    "As": {
+        "name": "Arsenic",
+        "isotopes": [],
+        "number": 33,
+        "disabled": true
+    },
+    "Se": {
+        "name": "Selenium",
+        "isotopes": [],
+        "number": 34,
+        "disabled": true
+    },
+    "Br": {
+        "name": "Bromine",
+        "isotopes": [],
+        "number": 35,
+        "disabled": true
+    },
+    "Kr": {
+        "name": "Krypton",
+        "isotopes": [],
+        "number": 36,
+        "disabled": true
+    },
+    "Rb": {
+        "name": "Rubidium",
+        "isotopes": [],
+        "number": 37,
+        "disabled": true
+    },
+    "Sr": {
+        "name": "Strontium",
+        "isotopes": [],
+        "number": 38,
+        "disabled": true
+    },
+    "Y": {
+        "name": "Yttrium",
+        "isotopes": [],
+        "number": 39,
+        "disabled": true
+    },
+    "Zr": {
+        "name": "Zirconium",
+        "isotopes": [],
+        "number": 40,
+        "disabled": true
+    },
+    "Nb": {
+        "name": "Niobium",
+        "isotopes": [],
+        "number": 41,
+        "disabled": true
+    },
+    "Mo": {
+        "name": "Molybdenum",
+        "isotopes": [],
+        "number": 42,
+        "disabled": true
+    },
+    "Tc": {
+        "name": "Technetium",
+        "isotopes": [],
+        "number": 43,
+        "disabled": true
+    },
+    "Ru": {
+        "name": "Ruthenium",
+        "isotopes": [],
+        "number": 44,
+        "disabled": true
+    },
+    "Rh": {
+        "name": "Rhodium",
+        "isotopes": [],
+        "number": 45,
+        "disabled": true
+    },
+    "Pd": {
+        "name": "Palladium",
+        "isotopes": [],
+        "number": 46,
+        "disabled": true
+    },
+    "Ag": {
+        "name": "Silver",
+        "isotopes": [],
+        "number": 47,
+        "disabled": true
+    },
+    "Cd": {
+        "name": "Cadmium",
+        "isotopes": [],
+        "number": 48,
+        "disabled": true
+    },
+    "In": {
+        "name": "Indium",
+        "isotopes": [],
+        "number": 49,
+        "disabled": true
+    },
+    "Sn": {
+        "name": "Tin",
+        "isotopes": [],
+        "number": 50,
+        "disabled": true
+    },
+    "Sb": {
+        "name": "Antimony",
+        "isotopes": [],
+        "number": 51,
+        "disabled": true
+    },
+    "Te": {
+        "name": "Tellurium",
+        "isotopes": [],
+        "number": 52,
+        "disabled": true
+    },
+    "I": {
+        "name": "Iodine",
+        "isotopes": [],
+        "number": 53,
+        "disabled": true
+    },
+    "Xe": {
+        "name": "Xenon",
+        "isotopes": [],
+        "number": 54,
+        "disabled": true
+    },
+    "Cs": {
+        "name": "Caesium",
+        "isotopes": [],
+        "number": 55,
+        "disabled": true
+    },
+    "Ba": {
+        "name": "Barium",
+        "isotopes": [],
+        "number": 56,
+        "disabled": true
+    },
+    "La": {
+        "name": "Lanthanum",
+        "isotopes": [],
+        "number": 57,
+        "disabled": true
+    },
+    "Ce": {
+        "name": "Cerium",
+        "isotopes": [],
+        "number": 58,
+        "disabled": true
+    },
+    "Pr": {
+        "name": "Praseodymium",
+        "isotopes": [],
+        "number": 59,
+        "disabled": true
+    },
+    "Nd": {
+        "name": "Neodymium",
+        "isotopes": [],
+        "number": 60,
+        "disabled": true
+    },
+    "Pm": {
+        "name": "Promethium",
+        "isotopes": [],
+        "number": 61,
+        "disabled": true
+    },
+    "Sm": {
+        "name": "Samarium",
+        "isotopes": [],
+        "number": 62,
+        "disabled": true
+    },
+    "Eu": {
+        "name": "Europium",
+        "isotopes": [],
+        "number": 63,
+        "disabled": true
+    },
+    "Gd": {
+        "name": "Gadolinium",
+        "isotopes": [],
+        "number": 64,
+        "disabled": true
+    },
+    "Tb": {
+        "name": "Terbium",
+        "isotopes": [],
+        "number": 65,
+        "disabled": true
+    },
+    "Dy": {
+        "name": "Dysprosium",
+        "isotopes": [],
+        "number": 66,
+        "disabled": true
+    },
+    "Ho": {
+        "name": "Holmium",
+        "isotopes": [],
+        "number": 67,
+        "disabled": true
+    },
+    "Er": {
+        "name": "Erbium",
+        "isotopes": [],
+        "number": 68,
+        "disabled": true
+    },
+    "Tm": {
+        "name": "Thulium",
+        "isotopes": [],
+        "number": 69,
+        "disabled": true
+    },
+    "Yb": {
+        "name": "Ytterbium",
+        "isotopes": [],
+        "number": 70,
+        "disabled": true
+    },
+    "Lu": {
+        "name": "Lutetium",
+        "isotopes": [],
+        "number": 71,
+        "disabled": true
+    },
+    "Hf": {
+        "name": "Hafnium",
+        "isotopes": [],
+        "number": 72,
+        "disabled": true
+    },
+    "Ta": {
+        "name": "Tantalum",
+        "isotopes": [],
+        "number": 73,
+        "disabled": true
+    },
+    "W": {
+        "name": "Tungsten",
+        "isotopes": [],
+        "number": 74,
+        "disabled": true
+    },
+    "Re": {
+        "name": "Rhenium",
+        "isotopes": [],
+        "number": 75,
+        "disabled": true
+    },
+    "Os": {
+        "name": "Osmium",
+        "isotopes": [],
+        "number": 76,
+        "disabled": true
+    },
+    "Ir": {
+        "name": "Iridium",
+        "isotopes": [],
+        "number": 77,
+        "disabled": true
+    },
+    "Pt": {
+        "name": "Platinum",
+        "isotopes": [],
+        "number": 78,
+        "disabled": true
+    },
+    "Au": {
+        "name": "Gold",
+        "isotopes": [],
+        "number": 79,
+        "disabled": true
+    },
+    "Hg": {
+        "name": "Mercury",
+        "isotopes": [],
+        "number": 80,
+        "disabled": true
+    },
+    "Tl": {
+        "name": "Thallium",
+        "isotopes": [],
+        "number": 81,
+        "disabled": true
+    },
+    "Pb": {
+        "name": "Lead",
+        "isotopes": [],
+        "number": 82,
+        "disabled": true
+    },
+    "Bi": {
+        "name": "Bismuth",
+        "isotopes": [],
+        "number": 83,
+        "disabled": true
+    },
+    "Po": {
+        "name": "Polonium",
+        "isotopes": [],
+        "number": 84,
+        "disabled": true
+    },
+    "At": {
+        "name": "Astatine",
+        "isotopes": [],
+        "number": 85,
+        "disabled": true
+    },
+    "Rn": {
+        "name": "Radon",
+        "isotopes": [],
+        "number": 86,
+        "disabled": true
+    },
+    "Fr": {
+        "name": "Francium",
+        "isotopes": [],
+        "number": 87,
+        "disabled": true
+    },
+    "Ra": {
+        "name": "Radium",
+        "isotopes": [],
+        "number": 88,
+        "disabled": true
+    },
+    "Ac": {
+        "name": "Actinium",
+        "isotopes": [],
+        "number": 89,
+        "disabled": true
+    },
+    "Th": {
+        "name": "Thorium",
+        "isotopes": [],
+        "number": 90,
+        "disabled": true
+    },
+    "Pa": {
+        "name": "Protactinium",
+        "isotopes": [],
+        "number": 91,
+        "disabled": true
+    },
+    "U": {
+        "name": "Uranium",
+        "isotopes": [],
+        "number": 92,
+        "disabled": true
+    },
+    "Np": {
+        "name": "Neptunium",
+        "isotopes": [],
+        "number": 93,
+        "disabled": true
+    },
+    "Pu": {
+        "name": "Plutonium",
+        "isotopes": [],
+        "number": 94,
+        "disabled": true
+    },
+    "Am": {
+        "name": "Americium",
+        "isotopes": [],
+        "number": 95,
+        "disabled": true
+    },
+    "Cm": {
+        "name": "Curium",
+        "isotopes": [],
+        "number": 96,
+        "disabled": true
+    },
+    "Bk": {
+        "name": "Berkelium",
+        "isotopes": [],
+        "number": 97,
+        "disabled": true
+    },
+    "Cf": {
+        "name": "Californium",
+        "isotopes": [],
+        "number": 98,
+        "disabled": true
+    },
+    "Es": {
+        "name": "Einsteinium",
+        "isotopes": [],
+        "number": 99,
+        "disabled": true
+    },
+    "Fm": {
+        "name": "Fermium",
+        "isotopes": [],
+        "number": 100,
+        "disabled": true
+    },
+    "Md": {
+        "name": "Mendelevium",
+        "isotopes": [],
+        "number": 101,
+        "disabled": true
+    },
+    "No": {
+        "name": "Nobelium",
+        "isotopes": [],
+        "number": 102,
+        "disabled": true
+    },
+    "Lr": {
+        "name": "Lawrencium",
+        "isotopes": [],
+        "number": 103,
+        "disabled": true
+    },
+    "Rf": {
+        "name": "Rutherfordium",
+        "isotopes": [],
+        "number": 104,
+        "disabled": true
+    },
+    "Db": {
+        "name": "Dubnium",
+        "isotopes": [],
+        "number": 105,
+        "disabled": true
+    },
+    "Sg": {
+        "name": "Seaborgium",
+        "isotopes": [],
+        "number": 106,
+        "disabled": true
+    },
+    "Bh": {
+        "name": "Bohrium",
+        "isotopes": [],
+        "number": 107,
+        "disabled": true
+    },
+    "Hs": {
+        "name": "Hassium",
+        "isotopes": [],
+        "number": 108,
+        "disabled": true
+    },
+    "Mt": {
+        "name": "Meitnerium",
+        "isotopes": [],
+        "number": 109,
+        "disabled": true
+    },
+    "Ds": {
+        "name": "Darmstadtium",
+        "isotopes": [],
+        "number": 110,
+        "disabled": true
+    },
+    "Rg": {
+        "name": "Roentgenium",
+        "isotopes": [],
+        "number": 111,
+        "disabled": true
+    },
+    "Cn": {
+        "name": "Copernicium",
+        "isotopes": [],
+        "number": 112,
+        "disabled": true
+    },
+    "Nh": {
+        "name": "Nihonium",
+        "isotopes": [],
+        "number": 113,
+        "disabled": true
+    },
+    "Fl": {
+        "name": "Flerovium",
+        "isotopes": [],
+        "number": 114,
+        "disabled": true
+    },
+    "Mc": {
+        "name": "Moscovium",
+        "isotopes": [],
+        "number": 115,
+        "disabled": true
+    },
+    "Lv": {
+        "name": "Livermorium",
+        "isotopes": [],
+        "number": 116,
+        "disabled": true
+    },
+    "Ts": {
+        "name": "Tennessine",
+        "isotopes": [],
+        "number": 117,
+        "disabled": true
+    },
+    "Og": {
+        "name": "Oganesson",
+        "isotopes": [],
+        "number": 118,
+        "disabled": true
     }
-  }
+}

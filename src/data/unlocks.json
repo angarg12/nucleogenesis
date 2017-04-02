@@ -1,7 +1,7 @@
 {
       "hydrogen": {
         "name": "Hydrogen",
-        "condition": "'H' == token"
+        "condition": "'1H' == token"
       },
       "periodic_table": {
         "name": "Periodic table",
@@ -13,7 +13,7 @@
       },
       "ion": {
         "name": "Ion",
-        "condition": "'H-' == token"
+        "condition": "'1H-' == token"
       },
       "radioactivity": {
         "name": "Radioactivity",
@@ -69,7 +69,7 @@
       },
       "synthesis": {
         "name": "Synthesis",
-        "condition": "self.player.data.resources['H-'].number >= 10"
+        "condition": "self.player.data.resources['1H-'].number >= 10"
       },
       "helium": {
         "name": "Helium",

@@ -10,8 +10,9 @@ function(player, data, state) {
       return;
     }
     var price = data.upgrades[name].price;
-    if(player.data.resources[element].number >= price) {
-      player.data.resources[element].number -= price;
+    var currency = data.elements[element].main;
+    if(player.data.resources[currency].number >= price) {
+      player.data.resources[currency].number -= price;
       player.data.elements[element].upgrades[name].bought = true;
     }
   };

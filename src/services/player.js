@@ -11,8 +11,7 @@ function(data) {
   // redundancy and make the code more flexible and
   // dynamic.
   this.startPlayer = {
-    elements_unlocked : 1,
-    current_theme : "base"
+    elements_unlocked : 1
   };
 
   this.populatePlayer = function () {
@@ -69,8 +68,8 @@ function(data) {
     }
 
     this.startPlayer.elements.H.unlocked = true;
-    this.startPlayer.resources.H.unlocked = true;
-    this.startPlayer.resources.H.number = data.generators["Tier 1"].price;
+    this.startPlayer.resources['1H'].unlocked = true;
+    this.startPlayer.resources['1H'].number = data.generators["Tier 1"].price;
   };
 
   this.initialisePlayer = function () {

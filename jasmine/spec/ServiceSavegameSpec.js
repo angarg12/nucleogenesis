@@ -138,7 +138,7 @@ describe("Player service", function() {
     it("should populate a new player", function() {
       spec.player.populatePlayer();
 
-      expect(spec.player.startPlayer.resources.H).toEqual({
+      expect(spec.player.startPlayer.resources['1H']).toEqual({
         number : 15,
         is_new : true,
         unlocked : true

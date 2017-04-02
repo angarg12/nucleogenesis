@@ -87,8 +87,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         continue;
       }
       // Prepare an array with the isotopes
-      var isotopes = [ element ];
-      isotopes = isotopes.concat(data.elements[element].isotopes);
+      var isotopes = data.elements[element].isotopes;
       var remaining = generator.elementProduction(element);
       // We will create a random draw recalculate the mean and std
       for(var i = 0; i < isotopes.length - 1; i++) {

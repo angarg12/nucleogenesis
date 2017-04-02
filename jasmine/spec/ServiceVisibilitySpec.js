@@ -8,14 +8,14 @@ describe("Visible service", function() {
       spec.player.data = {elements:{},resources:{}};
       spec.data.elements = {'H':{disabled:false},'C':{disabled:true},'O':{disabled:false}};
       spec.player.data.elements.H = {unlocked:true};
-      spec.data.elements.H.includes = ['H'];
+      spec.data.elements.H.includes = ['1H'];
       spec.player.data.elements.C = {unlocked:false};
       spec.data.elements.C.includes = ['C'];
       spec.player.data.elements.O = {unlocked:false};
-      spec.data.elements.O.includes = ['O'];
-      spec.player.data.resources.H = {unlocked:true};
+      spec.data.elements.O.includes = ['16O'];
+      spec.player.data.resources['1H'] = {unlocked:true};
       spec.player.data.resources.C = {unlocked:false};
-      spec.player.data.resources.O = {unlocked:false};
+      spec.player.data.resources['16O'] = {unlocked:false};
 
       var values = spec.visibility.visibleElements();
 
@@ -100,20 +100,20 @@ describe("Visible service", function() {
     it("should show visible resources", function() {
       spec.state.current_element = 'H';
       spec.player.data = {resources:{}};
-      spec.player.data.resources.H = {unlocked:true};
+      spec.player.data.resources['1H'] = {unlocked:true};
       spec.player.data.resources['2H'] = {unlocked:false};
       spec.player.data.resources.eV = {unlocked:true};
-      spec.player.data.resources.O= {unlocked:true};
+      spec.player.data.resources['16O']= {unlocked:true};
       var temp = spec.data.resources;
       spec.data.resources = {};
-      spec.data.resources['H'] = temp['H'];
+      spec.data.resources['1H'] = temp['1H'];
       spec.data.resources['2H'] = temp['2H'];
       spec.data.resources['eV'] = temp['eV'];
-      spec.data.resources['O'] = temp['O'];
+      spec.data.resources['16O'] = temp['16O'];
 
       var values = spec.visibility.visibleResources();
 
-      expect(values).toEqual(['H', 'eV']);
+      expect(values).toEqual(['1H', 'eV']);
     });
 
     it("should show visible encyclopedia entries", function() {
@@ -136,7 +136,7 @@ describe("Visible service", function() {
       spec.player.data = {unlocks:{},resources:{}};
       spec.player.data.unlocks = {};
       spec.player.data.unlocks.redox = true;
-      spec.player.data.resources.H = {unlocked:true};
+      spec.player.data.resources['1H'] = {unlocked:true};
       spec.player.data.resources.eV = {unlocked:true};
       spec.player.data.resources['e-'] = {unlocked:false};
 
@@ -150,7 +150,7 @@ describe("Visible service", function() {
       spec.player.data = {unlocks:{},resources:{}};
       spec.player.data.unlocks = {};
       spec.player.data.unlocks.redox = false;
-      spec.player.data.resources.H = {unlocked:true};
+      spec.player.data.resources['1H'] = {unlocked:true};
       spec.player.data.resources.eV = {unlocked:true};
       spec.player.data.resources['e-'] = {unlocked:false};
 
@@ -164,7 +164,7 @@ describe("Visible service", function() {
       spec.player.data = {unlocks:{},resources:{}};
       spec.player.data.unlocks = {};
       spec.player.data.unlocks.redox = true;
-      spec.player.data.resources.H = {unlocked:true};
+      spec.player.data.resources['1H'] = {unlocked:true};
       spec.player.data.resources.eV = {unlocked:true};
       spec.player.data.resources['e-'] = {unlocked:false};
 
@@ -196,18 +196,18 @@ describe("Visible service", function() {
       spec.player.data = {unlocks:{},resources:{}};
       spec.player.data.unlocks = {};
       spec.player.data.unlocks.synthesis = true;
-      spec.player.data.resources['H-'] = {unlocked:true};
+      spec.player.data.resources['1H-'] = {unlocked:true};
       spec.player.data.resources.p = {unlocked:true};
       spec.player.data.resources.H2 = {unlocked:true};
       spec.player.data.resources.O2 = {unlocked:false};
       var temp = spec.data.syntheses;
       spec.data.syntheses = {};
-      spec.data.syntheses['H-p'] = temp['H-p'];
+      spec.data.syntheses['1H-p'] = temp['1H-p'];
       spec.data.syntheses.H2O = temp.H2O;
 
       var values = spec.visibility.visibleSyntheses();
 
-      expect(values).toEqual(['H-p']);
+      expect(values).toEqual(['1H-p']);
     });
   });
 
@@ -219,8 +219,8 @@ describe("Visible service", function() {
       spec.player.data.elements.H.unlocked = true;
       spec.player.data.unlocks = {};
       spec.player.data.unlocks.synthesis = true;
-      spec.player.data.resources.H = {unlocked:true, is_new:true};
-      spec.data.elements.H.includes = ['H'];
+      spec.player.data.resources['1H'] = {unlocked:true, is_new:true};
+      spec.data.elements.H.includes = ['1H'];
 
       var hasNew = spec.visibility.elementsHasNew();
       expect(hasNew).toBeTruthy();
@@ -233,8 +233,8 @@ describe("Visible service", function() {
       spec.player.data.elements.H.unlocked = false;
       spec.player.data.unlocks = {};
       spec.player.data.unlocks.synthesis = true;
-      spec.player.data.resources.H = {unlocked:true, is_new:true};
-      spec.data.elements.H.includes = ['H'];
+      spec.player.data.resources['1H'] = {unlocked:true, is_new:true};
+      spec.data.elements.H.includes = ['1H'];
 
       var hasNew = spec.visibility.elementsHasNew();
       expect(hasNew).toBeFalsy();
@@ -245,8 +245,8 @@ describe("Visible service", function() {
       spec.player.data = {unlocks:{},resources:{}};
       spec.player.data.unlocks = {};
       spec.player.data.unlocks.synthesis = true;
-      spec.player.data.resources.H = {unlocked:true, is_new:true};
-      spec.data.elements.H.includes = ['H'];
+      spec.player.data.resources['1H'] = {unlocked:true, is_new:true};
+      spec.data.elements.H.includes = ['1H'];
 
       var hasNew = spec.visibility.elementHasNew('H');
       expect(hasNew).toBeTruthy();
@@ -259,8 +259,8 @@ describe("Visible service", function() {
       spec.player.data.unlocks.synthesis = true;
       spec.player.data.resources['2H'] = {unlocked:true, is_new:false};
       spec.player.data.resources['3H'] = {unlocked:false, is_new:true};
-      spec.player.data.resources['H-'] = {unlocked:false, is_new:false};
-      spec.data.elements.H.includes = ['2H','3H','H-'];
+      spec.player.data.resources['1H-'] = {unlocked:false, is_new:false};
+      spec.data.elements.H.includes = ['2H','3H','1H-'];
 
       var hasNew = spec.visibility.elementHasNew('H');
       expect(hasNew).toBeFalsy();

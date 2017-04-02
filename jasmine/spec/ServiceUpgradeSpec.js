@@ -7,37 +7,37 @@ describe("Upgrade service", function() {
 
     it("should purchase an upgrade if cost is met", function() {      
       spec.player.data = {elements:{},resources:{}};
-      spec.player.data.resources.H = {number:110};
+      spec.player.data.resources['1H'] = {number:110};
       spec.player.data.elements.H = {upgrades:{}};
       spec.player.data.elements.H.upgrades["Tier 1-1"] = {bought:false};
       
       spec.upgrade.buyUpgrade("Tier 1-1",'H');
       
-      expect(spec.player.data.resources.H.number).toEqual(10);
+      expect(spec.player.data.resources['1H'].number).toEqual(10);
       expect(spec.player.data.elements.H.upgrades["Tier 1-1"].bought).toEqual(true);
     });
     
     it("should not purchase an upgrade if cost is not met", function() {      
       spec.player.data = {elements:{},resources:{}};
-      spec.player.data.resources.H = {number:10};
+      spec.player.data.resources['1H'] = {number:10};
       spec.player.data.elements.H = {upgrades:{}};
       spec.player.data.elements.H.upgrades["Tier 1-1"] = {bought:false};
       
       spec.upgrade.buyUpgrade("Tier 1-1",'H');
       
-      expect(spec.player.data.resources.H.number).toEqual(10);
+      expect(spec.player.data.resources['1H'].number).toEqual(10);
       expect(spec.player.data.elements.H.upgrades["Tier 1-1"].bought).toEqual(false);
     });
     
     it("should skip if the upgrade is already bought", function() {
       spec.player.data = {elements:{},resources:{}};
-      spec.player.data.resources.H = {number:10};
+      spec.player.data.resources['1H'] = {number:10};
       spec.player.data.elements.H = {upgrades:{}};
       spec.player.data.elements.H.upgrades["Tier 1-1"] = {bought:true};
       
       spec.upgrade.buyUpgrade("Tier 1-1",'H');
       
-      expect(spec.player.data.resources.H.number).toEqual(10);
+      expect(spec.player.data.resources['1H'].number).toEqual(10);
       expect(spec.player.data.elements.H.upgrades["Tier 1-1"].bought).toEqual(true);
     });  
 

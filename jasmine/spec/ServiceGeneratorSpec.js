@@ -28,51 +28,51 @@ describe("Generator service", function() {
 
     it("should purchase as many generators as requested", function() {
       spec.player.data = {elements:{},resources:{}};
-      spec.player.data.resources.H = {number:65};
+      spec.player.data.resources['1H'] = {number:65};
       spec.player.data.elements.H = {generators:{}};
       spec.player.data.elements.H.generators["Tier 1"] = {level:5};
 
       spec.generator.buyGenerators("Tier 1",'H',3);
 
-      expect(spec.player.data.resources.H.number).toEqual(2);
+      expect(spec.player.data.resources['1H'].number).toEqual(2);
       expect(spec.player.data.elements.H.generators["Tier 1"].level).toEqual(8);
       expect(spec.$rootScope.$broadcast).toHaveBeenCalled();
     });
 
     it("should purchase as many generators as possible until money runs out requested", function() {
       spec.player.data = {elements:{},resources:{}};
-      spec.player.data.resources.H = {number:45};
+      spec.player.data.resources['1H'] = {number:45};
       spec.player.data.elements.H = {generators:{}};
       spec.player.data.elements.H.generators["Tier 1"] = {level:5};
 
       spec.generator.buyGenerators("Tier 1",'H',3);
 
-      expect(spec.player.data.resources.H.number).toEqual(4);
+      expect(spec.player.data.resources['1H'].number).toEqual(4);
       expect(spec.player.data.elements.H.generators["Tier 1"].level).toEqual(7);
       expect(spec.$rootScope.$broadcast).toHaveBeenCalled();
     });
 
     it("should not purchase negative generators", function() {
       spec.player.data = {elements:{},resources:{}};
-      spec.player.data.resources.H = {number:10};
+      spec.player.data.resources['1H'] = {number:10};
       spec.player.data.elements.H = {generators:{}};
       spec.player.data.elements.H.generators["Tier 1"] = {level:5};
 
       spec.generator.buyGenerators("Tier 1",'H',-10);
 
-      expect(spec.player.data.resources.H.number).toEqual(10);
+      expect(spec.player.data.resources['1H'].number).toEqual(10);
       expect(spec.player.data.elements.H.generators["Tier 1"].level).toEqual(5);
     });
 
     it("should not purchase generator if cost is not met", function() {
       spec.player.data = {elements:{},resources:{}};
-      spec.player.data.resources.H = {number:10};
+      spec.player.data.resources['1H'] = {number:10};
       spec.player.data.elements.H = {generators:{}};
       spec.player.data.elements.H.generators["Tier 1"] = {level:5};
 
       spec.generator.buyGenerators("Tier 1",'H',10);
 
-      expect(spec.player.data.resources.H.number).toEqual(10);
+      expect(spec.player.data.resources['1H'].number).toEqual(10);
       expect(spec.player.data.elements.H.generators["Tier 1"].level).toEqual(5);
     });
   });

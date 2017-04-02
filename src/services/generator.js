@@ -16,8 +16,9 @@ function(player, upgrade, data, $rootScope) {
     var price = this.generatorPrice(name, element);
     var i = 0;
     // we need a loop since we use the ceil operator
-    while (i < number && player.data.resources[element].number >= price) {
-      player.data.resources[element].number -= price;
+    var currency = data.elements[element].main;
+    while (i < number && player.data.resources[currency].number >= price) {
+      player.data.resources[currency].number -= price;
       player.data.elements[element].generators[name].level++;
       price = this.generatorPrice(name, element);
       i++;

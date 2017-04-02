@@ -1,12 +1,12 @@
 {
-	"H": {
+	"1H": {
 		"ratio": 0.999884,
 		"elements": [
 			"H"
 		],
-		"type": "element"
+		"type": "isotope"
 	},
-	"H-": {
+	"1H-": {
 		"html": "H<sup>-</sup>",
 		"type": "ion",
 		"elements": [
@@ -46,7 +46,7 @@
 		],
 		"type": "molecule"
 	},
-	"He": {
+	"4He": {
 		"ratio": 0.999998,
 		"elements": [
 			"He"
@@ -71,7 +71,7 @@
 			"ion"
 		]
 	},
-	"Li": {
+	"6Li": {
 		"ratio": 0.95,
 		"elements": [
 			"Li"
@@ -86,7 +86,7 @@
 		],
 		"type": "isotope"
 	},
-	"Be": {
+	"9Be": {
 		"ratio": 0.999998,
 		"elements": [
 			"Be"
@@ -126,7 +126,7 @@
 			}
 		}
 	},
-	"B": {
+	"10B": {
 		"ratio": 0.2,
 		"elements": [
 			"B"
@@ -141,7 +141,7 @@
 		"html": "<sup>11</sup>B",
 		"type": "isotope"
 	},
-	"C": {
+	"12C": {
 		"ratio": 0.988998,
 		"elements": [
 			"C"
@@ -190,7 +190,7 @@
 			}
 		}
 	},
-	"N": {
+	"14N": {
 		"ratio": 0.959999,
 		"elements": [
 			"N"
@@ -221,7 +221,7 @@
 		"html": "<sup>15</sup>N",
 		"type": "isotope"
 	},
-	"O": {
+	"16O": {
 		"ratio": 0.9976,
 		"elements": [
 			"O"
@@ -266,7 +266,7 @@
 		],
 		"type": "molecule"
 	},
-	"F": {
+	"19F": {
 		"ratio": 0.999998,
 		"elements": [
 			"F"
@@ -290,7 +290,7 @@
 			}
 		}
 	},
-	"Ne": {
+	"20Ne": {
 		"ratio": 0.9048,
 		"elements": [
 			"Ne"
