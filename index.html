@@ -13,7 +13,6 @@
     <script type="text/javascript" src="src/modules/module.js"></script>
     <script type="text/javascript" src="src/config/routes.js"></script>
     <script type="text/javascript" src="src/services/achievement.js"></script>
-    <script type="text/javascript" src="src/services/animation.js"></script>
     <script type="text/javascript" src="src/services/element.js"></script>
     <script type="text/javascript" src="src/services/format.js"></script>
     <script type="text/javascript" src="src/services/generator.js"></script>
@@ -42,7 +41,7 @@
   </head>
   <body class="ng-scope theme-none" ng-app="incremental" ng-controller="main-loop">
     <div class="container">
-      <div class="navbar navbar-default animif" ng-show="player.data.intro.banner">
+      <div class="navbar navbar-default animif">
         <div class="container">
           <div class="navbar-header">
             <span class="navbar-brand page-title">
@@ -55,7 +54,7 @@
         </div>
       </div>
       <div>
-        <div class="ng-scope ng-isolate-scope animif" ng-show="player.data.intro.menu">
+        <div class="ng-scope ng-isolate-scope animif">
           <ul class="nav nav-tabs ng-scope">
             <li class="animif"
               ng-class="{active: state.current_tab === 'Elements'}">
@@ -85,7 +84,7 @@
             </li>
           </ul>
         </div>
-        <ng-view ng-show="player.data.intro.content"></ng-view>
+        <ng-view></ng-view>
       </div>
     </div>
     </div>

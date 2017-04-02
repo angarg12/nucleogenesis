@@ -1,9 +1,4 @@
 {
-  "intro": {
-    "banner": false,
-    "menu": false,
-    "content": false
-  },
   "elements_unlocked": 1,
   "current_theme": "base",
   "version": "1.0.2",

@@ -72,13 +72,11 @@ describe("Player service", function() {
       spec.savegame.lastSave = undefined;
       spyOn(window, "confirm").and.returnValue(false);
       spyOn(spec.state, "init");
-      spyOn(spec.animation, "introAnimation");
 
       spec.savegame.reset(true);
 
       expect(localStorage.removeItem).not.toHaveBeenCalled();
       expect(spec.state.init).not.toHaveBeenCalled();
-      expect(spec.animation.introAnimation).not.toHaveBeenCalled();
     });
 
     it("should export save", function() {

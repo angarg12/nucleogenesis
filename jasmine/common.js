@@ -15,7 +15,6 @@ var commonSpec = function(spec) {
     spec.savegame = $injector.get('savegame');
     spec.generator = $injector.get('generator');
     spec.upgrade = $injector.get('upgrade');
-    spec.animation = $injector.get('animation');
     spec.format = $injector.get('format');
     spec.synthesis = $injector.get('synthesis');
     spec.reaction = $injector.get('reaction');
@@ -33,7 +32,7 @@ var commonSpec = function(spec) {
       );
     }
 
-    spec.controller  = _$controller_('main-loop', {$scope:spec.$scope, achievement:spec.achievement, util:spec.util, player:spec.player, savegame:spec.savegame, generator:spec.generator, upgrade:spec.upgrade, animation:spec.animation, format:spec.format, synthesis:spec.synthesis, reaction:spec.reaction, element:spec.element, data:spec.data, state:spec.state});
+    spec.controller  = _$controller_('main-loop', {$scope:spec.$scope, achievement:spec.achievement, util:spec.util, player:spec.player, savegame:spec.savegame, generator:spec.generator, upgrade:spec.upgrade, format:spec.format, synthesis:spec.synthesis, reaction:spec.reaction, element:spec.element, data:spec.data, state:spec.state});
     _$httpBackend_.flush();
   }));
 };

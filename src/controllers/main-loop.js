@@ -13,7 +13,6 @@ angular
 'savegame',
 'generator',
 'upgrade',
-'animation',
 'format',
 'synthesis',
 'reaction',
@@ -21,7 +20,7 @@ angular
 'data',
 'visibility',
 'state',
-function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame, generator, upgrade, animation, format, synthesis, reaction, element, data, visibility, state) {
+function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame, generator, upgrade, format, synthesis, reaction, element, data, visibility, state) {
   $scope.Math = window.Math;
 
   $scope.data = data;
@@ -31,7 +30,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   $scope.savegame = savegame;
   $scope.generator = generator;
   $scope.upgrade = upgrade;
-  $scope.animation = animation;
   $scope.format = format;
   $scope.synthesis = synthesis;
   $scope.reaction = reaction;
@@ -149,7 +147,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     }
     // init();
     achievement.init();
-    animation.introAnimation();
     $interval(self.update, 1000);
     $interval(savegame.save, 10000);
   };

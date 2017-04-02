@@ -3,8 +3,7 @@ angular
 .service('state',
 ['player',
 'achievement',
-'animation',
-function(player,achievement,animation) {
+function(player,achievement) {
     this.current_tab = "Elements";
     // FIXME these keys couple the controller to the data in non-obvious ways
     // e.g. if the keys change, the controller breaks. to fix, point them to the first element
@@ -17,6 +16,5 @@ function(player,achievement,animation) {
       this.hover_element = "";
       player.initialisePlayer();
       achievement.init();
-      animation.introAnimation();
     };
 }]);

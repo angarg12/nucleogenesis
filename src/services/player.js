@@ -11,13 +11,6 @@ function(data) {
   // redundancy and make the code more flexible and
   // dynamic.
   this.startPlayer = {
-    // properties just for the sake of the intro
-    // animation
-    intro : {
-      banner : false,
-      menu : false,
-      content : false
-    },
     elements_unlocked : 1,
     current_theme : "base"
   };

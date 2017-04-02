@@ -19,7 +19,6 @@ describe("Incremental table elements", function() {
     beforeEach(function() {
 			spyOn(spec.savegame, "load");
 			spyOn(spec.state, "init");
-			spyOn(spec.animation, "introAnimation");
     });
 
     it("should load the game", function() {
@@ -31,7 +30,6 @@ describe("Incremental table elements", function() {
       expect(spec.savegame.load).not.toHaveBeenCalled();
       expect(localStorage.getItem).toHaveBeenCalled();
       expect(spec.state.init).toHaveBeenCalled();
-      expect(spec.animation.introAnimation).toHaveBeenCalled();
     });
 
     it("should load the player", function() {
