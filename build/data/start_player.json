@@ -3,12 +3,12 @@
   "current_theme": "base",
   "version": "1.0.2",
   "resources": {
-    "H": {
+    "1H": {
       "number": 15,
       "is_new": true,
       "unlocked": false
     },
-    "H-": {
+    "1H-": {
       "number": 0,
       "is_new": true,
       "unlocked": false
@@ -113,7 +113,7 @@
       "is_new": true,
       "unlocked": false
     },
-    "O": {
+    "16O": {
       "number": 0,
       "is_new": true,
       "unlocked": false
@@ -1071,7 +1071,7 @@
     "neon": false
   },
   "syntheses": {
-    "H-p": {
+    "1H-p": {
       "number": 0,
       "active": 0,
       "is_new": true
