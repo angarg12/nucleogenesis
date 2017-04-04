@@ -45,10 +45,7 @@
     <h2>{{data.elements[state.current_element].name}}</h2>
     <h3><span ng-bind-html="util.trustHTML(util.prettifyNumber(generator.elementProduction(state.current_element)))" id="production_total"></span> {{state.current_element}}/s</h3>
     <ul ng-if="player.data.unlocks.isotope">
-      <li>
-        <span ng-bind-html="util.trustHTML(util.getHTML(state.current_element))"></span>: {{(data.resources[state.current_element].ratio*100).toFixed(4)}}%
-      </li>
-      <li class="animif" ng-repeat="isotope in data.elements[state.current_element].isotopes" ng-if="player.data.resources[isotope].unlocked">
+      <li ng-repeat="isotope in data.elements[state.current_element].isotopes" ng-if="player.data.resources[isotope].unlocked">
         <span ng-bind-html="util.trustHTML(util.getHTML(isotope))"></span>: {{(data.resources[isotope].ratio*100).toFixed(4)}}%
       </li>
     </ul>
@@ -224,7 +221,7 @@
           </table>
         </div>
       </div>
-      <div ng-if="player.data.unlocks.upgrade">
+      <div>
         <hr>
         <h4>Upgrades</h4>
         <table class="table">

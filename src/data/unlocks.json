@@ -1,7 +1,7 @@
 {
       "hydrogen": {
         "name": "Hydrogen",
-        "condition": "'1H' == token"
+        "condition": "self.player.data.resources['1H'].unlocked"
       },
       "periodic_table": {
         "name": "Periodic table",
@@ -9,98 +9,62 @@
       },
       "isotope": {
         "name": "Isotope",
-        "condition": "[ '2H', '3H' ].indexOf(token) != -1"
+        "condition": "self.player.data.resources['2H'].unlocked"
       },
       "ion": {
         "name": "Ion",
-        "condition": "'1H-' == token"
+        "condition": "self.player.data.resources['1H-'].unlocked"
       },
       "radioactivity": {
         "name": "Radioactivity",
-        "condition": "'3H' == token"
+        "condition": "self.player.data.resources['3H'].unlocked"
       },
       "reactions": {
         "name": "Reactions",
-        "condition": "'e-' == token"
+        "condition": "self.player.data.resources['e-'].unlocked"
       },
       "electron": {
         "name": "Electron",
-        "condition": "'e-' == token"
+        "condition": "self.player.data.resources['e-'].unlocked"
       },
       "proton": {
         "name": "Proton",
-        "condition": "'p' == token"
+        "condition": "self.player.data.resources['p'].unlocked"
       },
       "neutron": {
         "name": "Neutron",
-        "condition": "'n' == token"
+        "condition": "self.player.data.resources['n'].unlocked"
       },
       "energy": {
         "name": "Energy",
-        "condition": "'eV' == token"
+        "condition": "self.player.data.resources['eV'].unlocked"
       },
       "half_life": {
         "name": "Half-life",
-        "condition": "'3H' == token"
+        "condition": "self.player.data.resources['3H'].unlocked"
       },
       "oxygen": {
         "name": "Oxygen",
-        "condition": "'O' == token"
-      },
-      "upgrade": {
-        "name": "Upgrades",
-        "condition": "'Tier 3' == token"
+        "condition": "self.player.data.resources['O'].unlocked"
       },
       "redox": {
         "name": "Redox",
-        "condition": "'e-' == token"
+        "condition": "self.player.data.resources['e-'].unlocked"
       },
       "nuclear_binding_energy": {
         "name": "Nuclear binding energy",
-        "condition": "self.player.data.resources['e-'].number >= 100 && self.player.data.resources.p.number >= 100"
+        "condition": "self.player.data.resources['e-'].unlocked && self.player.data.resources.p.unlocked"
       },
       "beta_decay": {
         "name": "Beta decay",
-        "condition": "'beta-' == token"
+        "condition": "self.player.data.resources['3H'].unlocked"
       },
       "molecule": {
         "name": "Molecule",
-        "condition": "[ 'H2', 'O2' ,'O3' ].indexOf(token) != -1"
+        "condition": "self.player.data.resources['H2'].unlocked || self.player.data.resources['O2'].unlocked || self.player.data.resources['O3'].unlocked"
       },
       "synthesis": {
         "name": "Synthesis",
-        "condition": "self.player.data.resources['1H-'].number >= 10"
-      },
-      "helium": {
-        "name": "Helium",
-        "condition": "'He' == token"
-      },
-      "lithium": {
-        "name": "Lithium",
-        "condition": "'Li' == token"
-      },
-      "beryllium": {
-        "name": "Beryllium",
-        "condition": "'Be' == token"
-      },
-      "boron": {
-        "name": "Boron",
-        "condition": "'B' == token"
-      },
-      "carbon": {
-        "name": "Carbon",
-        "condition": "'C' == token"
-      },
-      "nitrogen": {
-        "name": "Nitrogen",
-        "condition": "'N' == token"
-      },
-      "fluorine": {
-        "name": "Fluorine",
-        "condition": "'F' == token"
-      },
-      "neon": {
-        "name": "Neon",
-        "condition": "'Ne' == token"
+        "condition": "self.player.data.resources['1H-'].unlocked"
       }
     }

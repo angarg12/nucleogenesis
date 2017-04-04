@@ -70,11 +70,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
           player.data.resources[product].number += data.resources[resource].decay.decay_product[product] *
                                                      production;
           player.data.resources[product].unlocked = true;
-          $scope.$emit("unlocks", product);
-          var decay_type = data.resources[resource].decay.decay_type;
-          if(decay_type){
-            $scope.$emit("unlocks", decay_type);
-          }
         }
       }
     }
@@ -103,7 +98,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         if(production > 0) {
           player.data.resources[isotopes[i]].number += production;
           player.data.resources[isotopes[i]].unlocked = true;
-          $scope.$emit("unlocks", isotopes[i]);
         }
         remaining -= production;
       }
@@ -111,7 +105,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
       if(remaining > 0) {
         player.data.resources[isotopes[isotopes.length - 1]].number += remaining;
         player.data.resources[isotopes[isotopes.length - 1]].unlocked = true;
-        $scope.$emit("unlocks", isotopes[isotopes.length - 1]);
       }
     }
   };
@@ -121,10 +114,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     self.processIsotopes();
     synthesis.processSynthesis();
 
-    $scope.$emit("unlocks", null);
+    self.checkUnlocks();
   };
 
-  self.checkUnlock = $scope.$on("unlocks", function (event, token) {
+  self.checkUnlocks = function () {
     for(var unlock in self.data.unlocks){
       if(!self.player.data.unlocks[unlock]){
         item = self.data.unlocks[unlock];
@@ -135,7 +128,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         }
       }
     }
-  });
+  };
 
   self.startup = function () {
     if(localStorage.getItem("playerStoredITE") !== null) {
@@ -146,7 +139,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     }
     // init();
     achievement.init();
-    $interval(self.update, 1000);
+    $interval(self.update, 1);
     $interval(savegame.save, 10000);
   };
 }]);

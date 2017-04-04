@@ -3,7 +3,6 @@
       "price" : 100,
       "description" : "x2",
       "preconditions" : [
-        "player.data.unlocks.upgrade",
         "player.data.elements[state.current_element].generators['Tier 1'].level > 0"
       ],
       "dependencies" : [],
@@ -76,7 +75,6 @@
       "price" : 1000,
       "description" : "x2",
       "preconditions" : [
-        "player.data.unlocks.upgrade",
         "player.data.elements[state.current_element].generators['Tier 2'].level > 0"
       ],
       "dependencies" : [],
@@ -149,7 +147,6 @@
       "price" : 10000,
       "description" : "x2",
       "preconditions" : [
-        "player.data.unlocks.upgrade",
         "player.data.elements[state.current_element].generators['Tier 3'].level > 0"
       ],
       "dependencies" : [],
@@ -222,7 +219,6 @@
       "price" : 120000,
       "description" : "x2",
       "preconditions" : [
-        "player.data.unlocks.upgrade",
         "player.data.elements[state.current_element].generators['Tier 4'].level > 0"
       ],
       "dependencies" : [],
@@ -295,7 +291,6 @@
       "price" : 1300000,
       "description" : "x2",
       "preconditions" : [
-        "player.data.unlocks.upgrade",
         "player.data.elements[state.current_element].generators['Tier 5'].level > 0"
       ],
       "dependencies" : [],
@@ -368,7 +363,6 @@
       "price" : 14000000,
       "description" : "x2",
       "preconditions" : [
-        "player.data.unlocks.upgrade",
         "player.data.elements[state.current_element].generators['Tier 6'].level > 0"
       ],
       "dependencies" : [],
@@ -441,7 +435,6 @@
       "price" : 200000000,
       "description" : "x2",
       "preconditions" : [
-        "player.data.unlocks.upgrade",
         "player.data.elements[state.current_element].generators['Tier 7'].level > 0"
       ],
       "dependencies" : [],
@@ -514,7 +507,6 @@
       "price" : 3300000000,
       "description" : "x2",
       "preconditions" : [
-        "player.data.unlocks.upgrade",
         "player.data.elements[state.current_element].generators['Tier 8'].level > 0"
       ],
       "dependencies" : [],
@@ -587,7 +579,6 @@
       "price" : 51000000000,
       "description" : "x2",
       "preconditions" : [
-        "player.data.unlocks.upgrade",
         "player.data.elements[state.current_element].generators['Tier 9'].level > 0"
       ],
       "dependencies" : [],
@@ -660,7 +651,6 @@
       "price" : 750000000000,
       "description" : "x2",
       "preconditions" : [
-        "player.data.unlocks.upgrade",
         "player.data.elements[state.current_element].generators['Tier 10'].level > 0"
       ],
       "dependencies" : [],
