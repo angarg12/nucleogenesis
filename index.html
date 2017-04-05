@@ -56,29 +56,25 @@
       <div>
         <div class="ng-scope ng-isolate-scope animif">
           <ul class="nav nav-tabs ng-scope">
-            <li class="animif"
-              ng-class="{active: state.current_tab === 'Elements'}">
+            <li ng-class="{active: state.current_tab === 'Elements'}">
               <a href="#matter"
                 ng-click="state.current_tab = 'Elements'"> Elements
               <span class="glyphicon glyphicon-exclamation-sign" ng-if="visibility.elementsHasNew()"></span>
               </a>
             </li>
-            <li class="animif"
-              ng-class="{active: state.current_tab === 'Encyclopedia'}">
+            <li ng-class="{active: state.current_tab === 'Encyclopedia'}">
               <a href="#encyclopedia"
                 ng-click="state.current_tab = 'Encyclopedia'"> Encyclopedia
               <span class="glyphicon glyphicon-exclamation-sign" ng-if="visibility.encyclopediaHasNew()"></span>
               </a>
             </li>
             <li ng-class="{active: state.current_tab === 'Periodic Table'}">
-              <a class="ng-binding"
-                href="#table"
+              <a href="#table"
                 ng-click="state.current_tab = 'Periodic Table'"> Periodic Table
               </a>
             </li>
             <li ng-class="{active: state.current_tab === 'Options'}">
-              <a class="ng-binding"
-                href="#options"
+              <a href="#options"
                 ng-click="state.current_tab = 'Options'"> Options
               </a>
             </li>
@@ -88,21 +84,17 @@
       </div>
     </div>
     </div>
-    <div ng-cloak>
-      <div class="achieve achievealert animif" ng-show="achievement.is_toast_visible">
-        <div class="container alert alert-success alert-dismissible">
-          <button type="button"
-            class="close"
-            data-dismiss="alert"
-            ng-click="achievement.removeToast()"
-            ng-disabled="!achievement.is_toast_visible">
-          <span aria-hidden="true">&times;</span>
-          <span class="sr-only">Close</span>
-          </button>
-          <h3>New unlock:</h3>
-          <h2>{{achievement.toast[0]}}</h2>
-        </div>
-      </div>
+    <div class="achieve achievealert animif container alert alert-success alert-dismissible"
+      ng-show="achievement.is_toast_visible"
+      ng-cloak>
+      <button type="button"
+        class="close"
+        data-dismiss="alert"
+        ng-click="achievement.removeToast()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h3>New unlock:</h3>
+      <h2>{{achievement.toast[0]}}</h2>
     </div>
   </body>
 </html>

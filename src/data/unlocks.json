@@ -1,7 +1,7 @@
 {
       "hydrogen": {
         "name": "Hydrogen",
-        "condition": "self.player.data.resources['1H'].unlocked"
+        "condition": "self.player.data.elements.H.generators['Tier 1'].level > 0"
       },
       "periodic_table": {
         "name": "Periodic table",
@@ -45,7 +45,7 @@
       },
       "oxygen": {
         "name": "Oxygen",
-        "condition": "self.player.data.resources['O'].unlocked"
+        "condition": "self.player.data.resources['16O'].unlocked"
       },
       "redox": {
         "name": "Redox",
