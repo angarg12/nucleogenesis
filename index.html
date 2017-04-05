@@ -68,7 +68,8 @@
               <span class="glyphicon glyphicon-exclamation-sign" ng-if="visibility.encyclopediaHasNew()"></span>
               </a>
             </li>
-            <li ng-class="{active: state.current_tab === 'Periodic Table'}">
+            <li ng-if="player.data.unlocks.periodic_table" 
+              ng-class="{active: state.current_tab === 'Periodic Table'}">
               <a href="#table"
                 ng-click="state.current_tab = 'Periodic Table'"> Periodic Table
               </a>
