@@ -7,7 +7,6 @@ describe("Incremental table elements", function() {
     it("should init all the variables", function() {
     spec.state.init();
 
-	  expect(spec.state.current_tab).toEqual("Elements");
 	  expect(spec.state.current_element).toEqual("H");
 	  expect(spec.state.hover_element).toEqual("");
 	  expect(spec.achievement.toast).toEqual([]);

@@ -5,7 +5,7 @@ module.exports = function(config) {
     files: [
       'lib/jquery.min.js',
       'lib/angular.min.js',
-      'lib/angular-route.min.js',
+      'lib/angular-ui-router.min.js',
       'lib/angular-animate.min.js',
       'lib/bootstrap.min.js',
       'lib/ziggurat.js',

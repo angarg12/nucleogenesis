@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="lib/angular.min.js"></script>
     <script type="text/javascript" src="lib/angular-animate.min.js"></script>
-    <script type="text/javascript" src="lib/angular-route.min.js"></script>
+    <script type="text/javascript" src="lib/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript" src="lib/bootstrap.min.js"></script>
     <script type="text/javascript" src="lib/ziggurat.js"></script>
@@ -56,32 +56,32 @@
       <div>
         <div class="ng-scope ng-isolate-scope animif">
           <ul class="nav nav-tabs ng-scope">
-            <li ng-class="{active: state.current_tab === 'Elements'}">
-              <a href="#matter"
-                ng-click="state.current_tab = 'Elements'"> Elements
-              <span class="glyphicon glyphicon-exclamation-sign" ng-if="visibility.elementsHasNew()"></span>
+            <li ui-sref="matter"
+              ui-sref-active="active">
+              <a>
+                Elements
+                <span class="glyphicon glyphicon-exclamation-sign" ng-if="visibility.elementsHasNew()"></span>
               </a>
             </li>
-            <li ng-class="{active: state.current_tab === 'Encyclopedia'}">
-              <a href="#encyclopedia"
-                ng-click="state.current_tab = 'Encyclopedia'"> Encyclopedia
-              <span class="glyphicon glyphicon-exclamation-sign" ng-if="visibility.encyclopediaHasNew()"></span>
+            <li ui-sref="encyclopedia"
+              ui-sref-active="active">
+              <a>
+                Encyclopedia
+                <span class="glyphicon glyphicon-exclamation-sign" ng-if="visibility.encyclopediaHasNew()"></span>
               </a>
             </li>
-            <li ng-if="player.data.unlocks.periodic_table" 
-              ng-class="{active: state.current_tab === 'Periodic Table'}">
-              <a href="#table"
-                ng-click="state.current_tab = 'Periodic Table'"> Periodic Table
-              </a>
+            <li ng-if="player.data.unlocks.periodic_table"
+            ui-sref="table"
+              ui-sref-active="active">
+              <a>Periodic Table</a>
             </li>
-            <li ng-class="{active: state.current_tab === 'Options'}">
-              <a href="#options"
-                ng-click="state.current_tab = 'Options'"> Options
-              </a>
+            <li ui-sref="options"
+              ui-sref-active="active">
+              <a>Options</a>
             </li>
           </ul>
         </div>
-        <ng-view></ng-view>
+        <ui-view></ui-view>
       </div>
     </div>
     </div>

@@ -1,4 +1,4 @@
-var module = angular.module('incremental', [ 'ngAnimate', 'ngRoute' ])
+var module = angular.module('incremental', [ 'ngAnimate', 'ui.router' ])
 .filter('numberEx', ['numberFilter', '$locale',
   function(number, $locale) {
 
