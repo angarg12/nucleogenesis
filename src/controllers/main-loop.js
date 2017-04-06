@@ -50,9 +50,9 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
 	  self.onload = $timeout(self.startup);
   });
 
-  self.processDecay = function (resources) {
-    for(var i = 0; i < resources.length; i++) {
-      var resource = resources[i];
+  self.processDecay = function () {
+    for(var i = 0; i < data.radioisotopes.length; i++) {
+      var resource = data.radioisotopes[i];
       if(player.data.resources[resource].unlocked) {
         var number = player.data.resources[resource].number;
         var half_life = data.resources[resource].decay.half_life;
@@ -75,7 +75,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     }
   };
 
-  self.processIsotopes = function () {
+  self.processGenerators = function () {
     // We will simulate the production of isotopes proportional to their ratio
     for(var element in player.data.elements) {
       if(player.data.elements[element].unlocked === false){
@@ -109,14 +109,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     }
   };
 
-  self.update = function () {
-    self.processDecay(data.radioisotopes);
-    self.processIsotopes();
-    synthesis.processSynthesis();
-
-    self.checkUnlocks();
-  };
-
   self.checkUnlocks = function () {
     for(var unlock in self.data.unlocks){
       if(!self.player.data.unlocks[unlock]){
@@ -130,6 +122,26 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     }
   };
 
+  this.processSyntheses = function () {
+    // We will process the synthesis
+    for(var syn in player.data.syntheses) {
+      var power = synthesis.synthesisPower(syn);
+      if(power !== 0) {
+        reaction.react(power, data.syntheses[syn]);
+      }
+    }
+  };
+
+  self.update = function () {
+    self.processDecay();
+    self.processGenerators();
+    self.processSyntheses();
+
+    self.checkUnlocks();
+
+    $timeout(self.update, 1);
+  };
+
   self.startup = function () {
     if(localStorage.getItem("playerStoredITE") !== null) {
       savegame.load();
@@ -139,7 +151,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     }
     // init();
     achievement.init();
-    $interval(self.update, 1);
+    $timeout(self.update, 1);
     $interval(savegame.save, 10000);
   };
 }]);

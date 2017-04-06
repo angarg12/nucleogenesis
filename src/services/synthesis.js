@@ -50,14 +50,4 @@ function(player, reaction, data) {
       i++;
     }
   };
-
-  this.processSynthesis = function () {
-    // We will process the synthesis
-    for(var synthesis in player.data.syntheses) {
-      var power = this.synthesisPower(synthesis);
-      if(power !== 0) {
-        reaction.react(power, data.syntheses[synthesis]);
-      }
-    }
-  };
 }]);
