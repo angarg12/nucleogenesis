@@ -51,13 +51,30 @@
     </ul>
     <div>
       <table class="table">
+        <tr>
+          <td class="col-md-3">
+            {{state.current_element}}/s
+          </td>
+          <td class="col-md-1">
+            Number
+          </td>
+          <td class="col-md-3">
+              Total {{state.current_element}}/s
+          </td>
+          <td class="col-md-3">
+            Price
+          </td>
+          <td class="col-md-3">
+            Buy
+          </td>
+        </tr>
           <tr class="animif" ng-repeat="name in visibility.visibleGenerators()">
               <td class="animif col-md-3">
                 <span class="pull-left">
                 {{name}}:
                 </span>
                 <span class="pull-left">
-                  <span ng-bind-html="util.trustHTML(util.prettifyNumber(generator.generatorProduction(name,state.current_element)))"></span> /s
+                  <span ng-bind-html="util.trustHTML(util.prettifyNumber(generator.generatorProduction(name,state.current_element)))"></span>
                 </span>
               </td>
               <td class="animif col-md-1">
@@ -65,7 +82,7 @@
               </td>
               <td class="animif col-md-3">
                 <div class="pull-left">
-                  Total <span ng-bind-html="util.trustHTML(util.prettifyNumber(generator.tierProduction(name,state.current_element)))"></span> {{state.current_element}}/s
+                  <span ng-bind-html="util.trustHTML(util.prettifyNumber(generator.tierProduction(name,state.current_element)))"></span>
                 </div>
               </td>
               <td class="animif col-md-3">
