@@ -136,7 +136,7 @@
                         ng-init="data.redox[key].number = data.redox[key].number || 1"
                         ng-model="data.redox[key].number">
                       <button type="button" class="btn btn-default"
-                        ng-click="reaction.react(data.redox[key].number, data.redox[key])"
+                        ng-click="reaction.react(data.redox[key].number, data.redox[key], player.data)"
                         ng-class="{disabled: !reaction.isReactionCostMet(data.redox[key].number, data.redox[key])}">React</button>
                       </input>
                     </div>
@@ -162,7 +162,7 @@
                         ng-init="data.binding_energy[key].number = data.binding_energy[key].number || 1"
                         ng-model="data.binding_energy[key].number">
                       <button type="button" class="btn btn-default"
-                        ng-click="reaction.react(data.binding_energy[key].number, data.binding_energy[key])"
+                        ng-click="reaction.react(data.binding_energy[key].number, data.binding_energy[key], player.data)"
                         ng-class="{disabled: !reaction.isReactionCostMet(data.binding_energy[key].number, data.binding_energy[key])}">React</button>
                       </input>
                     </div>

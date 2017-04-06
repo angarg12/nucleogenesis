@@ -41,6 +41,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   self.data = data;
   self.player = player;
   self.achievement = achievement;
+  self.player_copy = null;
 
   // since load calls are asynchronous, we need to do this to make sure that the data
   // is loaded before the services
@@ -53,8 +54,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   self.processDecay = function () {
     for(var i = 0; i < data.radioisotopes.length; i++) {
       var resource = data.radioisotopes[i];
-      if(player.data.resources[resource].unlocked) {
-        var number = player.data.resources[resource].number;
+      if(self.player_copy.resources[resource].unlocked) {
+        var number = self.player_copy.resources[resource].number;
         var half_life = data.resources[resource].decay.half_life;
         var production = util.randomDraw(number, Math.log(2) / half_life);
 
@@ -63,13 +64,13 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         }
 
         // we decrease the number of radioactive element
-        player.data.resources[resource].number -= production;
+        self.player_copy.resources[resource].number -= production;
 
         // and decay products
         for(var product in data.resources[resource].decay.decay_product) {
-          player.data.resources[product].number += data.resources[resource].decay.decay_product[product] *
+          self.player_copy.resources[product].number += data.resources[resource].decay.decay_product[product] *
                                                      production;
-          player.data.resources[product].unlocked = true;
+          self.player_copy.resources[product].unlocked = true;
         }
       }
     }
@@ -77,8 +78,8 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
 
   self.processGenerators = function () {
     // We will simulate the production of isotopes proportional to their ratio
-    for(var element in player.data.elements) {
-      if(player.data.elements[element].unlocked === false){
+    for(var element in self.player_copy.elements) {
+      if(self.player_copy.elements[element].unlocked === false){
         continue;
       }
       // Prepare an array with the isotopes
@@ -96,27 +97,27 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         var production = util.randomDraw(remaining, p);
 
         if(production > 0) {
-          player.data.resources[isotopes[i]].number += production;
-          player.data.resources[isotopes[i]].unlocked = true;
+          self.player_copy.resources[isotopes[i]].number += production;
+          self.player_copy.resources[isotopes[i]].unlocked = true;
         }
         remaining -= production;
       }
       // The last isotope is just the remaining production that hasn't been consumed
       if(remaining > 0) {
-        player.data.resources[isotopes[isotopes.length - 1]].number += remaining;
-        player.data.resources[isotopes[isotopes.length - 1]].unlocked = true;
+        self.player_copy.resources[isotopes[isotopes.length - 1]].number += remaining;
+        self.player_copy.resources[isotopes[isotopes.length - 1]].unlocked = true;
       }
     }
   };
 
   self.checkUnlocks = function () {
     for(var unlock in self.data.unlocks){
-      if(!self.player.data.unlocks[unlock]){
+      if(!self.player_copy.unlocks[unlock]){
         item = self.data.unlocks[unlock];
 
         if(eval(item.condition)){
           self.achievement.addToast(item.name);
-          self.player.data.unlocks[unlock] = true;
+          self.player_copy.unlocks[unlock] = true;
         }
       }
     }
@@ -124,20 +125,24 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
 
   this.processSyntheses = function () {
     // We will process the synthesis
-    for(var syn in player.data.syntheses) {
+    for(var syn in self.player_copy.syntheses) {
       var power = synthesis.synthesisPower(syn);
       if(power !== 0) {
-        reaction.react(power, data.syntheses[syn]);
+        reaction.react(power, data.syntheses[syn], self.player_copy);
       }
     }
   };
 
   self.update = function () {
+    // do the update in a copy
+    self.player_copy = angular.copy(player.data);
     self.processDecay();
     self.processGenerators();
     self.processSyntheses();
-
     self.checkUnlocks();
+
+    // and update all at once
+    player.data = self.player_copy;
 
     $timeout(self.update, 1);
   };

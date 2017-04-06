@@ -69,7 +69,7 @@ describe("Reaction service", function() {
       spec.player.data.resources.p = {number:1};
       spec.player.data.resources['e-'] = {number:0};
 
-      spec.reaction.react(10,spec.data.redox['H+1']);
+      spec.reaction.react(10,spec.data.redox['H+1'], spec.player.data);
 
       expect(spec.player.data.resources['1H'].number).toEqual(40);
       expect(spec.player.data.resources.eV.number).toEqual(64.016);
@@ -86,7 +86,7 @@ describe("Reaction service", function() {
       spec.player.data.resources.p = {number:1};
       spec.player.data.resources['e-'] = {number:0};
 
-      spec.reaction.react(0.5,spec.data.redox['H+1']);
+      spec.reaction.react(0.5,spec.data.redox['H+1'], spec.player.data);
 
       expect(spec.player.data.resources['1H'].number).toEqual(50);
       expect(spec.player.data.resources.eV.number).toEqual(200);
@@ -102,7 +102,7 @@ describe("Reaction service", function() {
       spec.player.data.resources.p = {number:1};
       spec.player.data.resources['e-'] = {number:0};
 
-      spec.reaction.react(-10,spec.data.redox['H+1']);
+      spec.reaction.react(-10,spec.data.redox['H+1'], spec.player.data);
 
       expect(spec.player.data.resources['1H'].number).toEqual(50);
       expect(spec.player.data.resources.eV.number).toEqual(200);
@@ -118,7 +118,7 @@ describe("Reaction service", function() {
       spec.player.data.resources.p = {number:1};
       spec.player.data.resources['e-'] = {number:0};
 
-      spec.reaction.react(5,spec.data.redox['H+1']);
+      spec.reaction.react(5,spec.data.redox['H+1'], spec.player.data);
 
       expect(spec.player.data.resources['1H'].number).toEqual(50);
       expect(spec.player.data.resources.eV.number).toEqual(10);
