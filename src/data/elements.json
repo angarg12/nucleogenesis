@@ -49,7 +49,7 @@
         "name": "Oxygen",
         "isotopes": ["16O", "17O", "18O"],
         "main": "16O",
-        "includes": ["O", "17O", "18O", "O2", "O3"],
+        "includes": ["16O", "17O", "18O", "O2", "O3"],
         "syntheses": ["O3", "O2-OO", "H2O", "O2O2-O3O"],
         "number": 8
     },
