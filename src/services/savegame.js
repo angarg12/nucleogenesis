@@ -5,12 +5,9 @@ angular
 'achievement',
 'state',
 function(player, achievement, state) {
-  this.lastSave = "None";
-
   this.save = function () {
     localStorage.setItem("playerStoredITE", JSON.stringify(player.data));
     var d = new Date();
-    this.lastSave = d.toLocaleTimeString();
   };
 
   this.load = function () {

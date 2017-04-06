@@ -5,17 +5,17 @@ angular
  'reaction',
  'data',
 function(player, reaction, data) {
-  var synthesis_price_increase = 1.15;
-  var synthesis_power_increase = 2;
+  const PRICE_INCREASE = 1.15;
+  const POWER_INCREASE = 2;
 
   this.synthesisMultiplier = function (synthesis) {
     var level = player.data.syntheses[synthesis].number;
-    return Math.ceil(Math.pow(synthesis_price_increase, level));
+    return Math.ceil(Math.pow(PRICE_INCREASE, level));
   };
 
   this.synthesisPower = function (synthesis) {
     var level = player.data.syntheses[synthesis].active;
-    return Math.ceil(Math.pow(level, synthesis_power_increase));
+    return Math.ceil(Math.pow(level, POWER_INCREASE));
   };
 
   this.synthesisPrice = function (synthesis) {

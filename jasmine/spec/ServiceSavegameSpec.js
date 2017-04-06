@@ -13,18 +13,14 @@ describe("Player service", function() {
     });
 
     it("should save player data", function() {
-      spec.savegame.lastSave = undefined;
-
       spec.savegame.save();
 
-      expect(spec.savegame.lastSave).not.toBeUndefined();
       expect(localStorage.setItem).toHaveBeenCalled();
     });
 
     it("should load player data", function() {
       localStorage.getItem.isSpy = false;
       getItemSpy.and.returnValue('{}');
-      spec.savegame.lastSave = undefined;
       spyOn(spec.savegame, "reset");
       spyOn(spec.savegame, "versionControl");
 
@@ -36,7 +32,6 @@ describe("Player service", function() {
     });
 
     it("should load player data and throw exception", function() {
-      spec.savegame.lastSave = undefined;
       spyOn(spec.savegame, "reset");
       spyOn(spec.savegame, "versionControl");
 
@@ -48,7 +43,6 @@ describe("Player service", function() {
     });
 
     it("should reset player without confirmation", function() {
-      spec.savegame.lastSave = undefined;
       spyOn(spec.state, "init");
 
       spec.savegame.reset(false);
@@ -58,7 +52,6 @@ describe("Player service", function() {
     });
 
     it("should reset player with confirmation", function() {
-      spec.savegame.lastSave = undefined;
       spyOn(window, "confirm").and.returnValue(true);
       spyOn(spec.state, "init");
 
@@ -69,7 +62,6 @@ describe("Player service", function() {
     });
 
     it("should not reset player if the confirmation rejets", function() {
-      spec.savegame.lastSave = undefined;
       spyOn(window, "confirm").and.returnValue(false);
       spyOn(spec.state, "init");
 
