@@ -75,7 +75,6 @@ describe("Reaction service", function() {
       expect(spec.player.data.resources.eV.number).toEqual(64.016);
       expect(spec.player.data.resources.p.number).toEqual(11);
       expect(spec.player.data.resources['e-'].number).toEqual(10);
-      expect(spec.$rootScope.$broadcast).toHaveBeenCalled();
     });
 
     it("should return if the number specified is invalid", function() {

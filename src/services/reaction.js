@@ -34,7 +34,6 @@ function(player, $rootScope) {
         var current = player_data.resources[product[i]].number;
         player_data.resources[product[i]].number = Number.parseFloat((current + produced).toFixed(4));
         player_data.resources[product[i]].unlocked = true;
-        $rootScope.$broadcast("unlocks", product[i]);
       }
     }
   };

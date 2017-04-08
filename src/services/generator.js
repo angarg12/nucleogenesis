@@ -23,9 +23,6 @@ function(player, upgrade, data, $rootScope) {
       price = this.generatorPrice(name, element);
       i++;
     }
-    if(i > 0) {
-      $rootScope.$broadcast("unlocks", name);
-    }
   };
 
   this.generatorProduction = function (name, element) {

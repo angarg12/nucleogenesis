@@ -12,7 +12,7 @@
         "name": "Helium",
         "includes": ["4He", "3He", "3He+"],
         "isotopes": ["4He", "3He"],
-        "main": "4H",
+        "main": "4He",
         "number": 2
     },
     "Li": {

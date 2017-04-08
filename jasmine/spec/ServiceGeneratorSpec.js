@@ -36,7 +36,6 @@ describe("Generator service", function() {
 
       expect(spec.player.data.resources['1H'].number).toEqual(2);
       expect(spec.player.data.elements.H.generators["Tier 1"].level).toEqual(8);
-      expect(spec.$rootScope.$broadcast).toHaveBeenCalled();
     });
 
     it("should purchase as many generators as possible until money runs out requested", function() {
@@ -49,7 +48,6 @@ describe("Generator service", function() {
 
       expect(spec.player.data.resources['1H'].number).toEqual(4);
       expect(spec.player.data.elements.H.generators["Tier 1"].level).toEqual(7);
-      expect(spec.$rootScope.$broadcast).toHaveBeenCalled();
     });
 
     it("should not purchase negative generators", function() {

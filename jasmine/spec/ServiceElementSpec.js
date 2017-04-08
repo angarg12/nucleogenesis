@@ -92,7 +92,6 @@ describe("Element service", function() {
       expect(spec.player.data.elements.O.unlocked).toEqual(true);
       expect(spec.player.data.elements.O.generators["Tier 1"].level).toEqual(1);
       expect(spec.player.data.elements_unlocked).toEqual(2);
-      expect(spec.$rootScope.$broadcast).toHaveBeenCalled();
     });
 
     it("should not purchase element if cost is not met", function() {
