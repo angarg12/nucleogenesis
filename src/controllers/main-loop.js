@@ -21,8 +21,6 @@ angular
 'visibility',
 'state',
 function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame, generator, upgrade, format, synthesis, reaction, element, data, visibility, state) {
-  $scope.Math = window.Math;
-
   $scope.data = data;
   $scope.player = player;
   $scope.achievement = achievement;
