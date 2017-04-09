@@ -2,7 +2,7 @@ language: node_js
 dist: trusty
 
 node_js:
-  - "4"
+  - "node"
 env:
   - TEST_SUITE=unit-test
   - TEST_SUITE=e2e-test
