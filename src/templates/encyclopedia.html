@@ -4,7 +4,7 @@
   ng-mouseover="player.data.encyclopedia[entry].is_new = false"
   target="_blank"
   href="{{data.encyclopedia[entry].link}}">
-    <span class="glyphicon glyphicon-exclamation-sign" ng-if="player.data.encyclopedia[entry].is_new"></span>
+    <i class="material-icons" ng-if="player.data.encyclopedia[entry].is_new">error</i>
     {{data.encyclopedia[entry].name}}
   </a>
 </div>

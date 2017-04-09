@@ -26,6 +26,7 @@
     <script type="text/javascript" src="src/services/data.js"></script>
     <script type="text/javascript" src="src/services/state.js"></script>
     <script type="text/javascript" src="src/controllers/main-loop.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css" id="theme_css">
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <title>The Incremental Table of Elements</title>
@@ -60,14 +61,14 @@
               ui-sref-active="active">
               <a>
                 Elements
-                <span class="glyphicon glyphicon-exclamation-sign" ng-if="visibility.elementsHasNew()"></span>
+                <i class="material-icons" ng-if="visibility.elementsHasNew()">error</i>
               </a>
             </li>
             <li ui-sref="encyclopedia"
               ui-sref-active="active">
               <a>
                 Encyclopedia
-                <span class="glyphicon glyphicon-exclamation-sign" ng-if="visibility.encyclopediaHasNew()"></span>
+                <i class="material-icons" ng-if="visibility.encyclopediaHasNew()">error</i>
               </a>
             </li>
             <li ng-if="player.data.unlocks.periodic_table"

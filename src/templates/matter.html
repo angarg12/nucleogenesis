@@ -6,7 +6,7 @@
         ng-mouseover="player.data.resources[key].is_new = false">
         <tr class="animif row">
           <td class="col-lg-2">
-            <span class="glyphicon glyphicon-exclamation-sign" ng-if="player.data.resources[key].is_new"></span>
+            <i class="material-icons" ng-if="player.data.resources[key].is_new">error</i>
           </td>
           <td class="col-lg-4">
             <span class="pull-left by-icon" ng-bind-html="util.trustHTML(util.getHTML(key))"></span>
@@ -181,7 +181,7 @@
                 <td class="col-md-4" width=50%>
                   <div class="pull-left"
                     ng-class="{'text-muted': player.data.syntheses[syn].active <= 0}">
-                    <span class="glyphicon glyphicon-exclamation-sign" ng-if="player.data.syntheses[syn].is_new"></span>
+                    <i class="material-icons" ng-if="player.data.syntheses[syn].is_new">error</i>
                     <span ng-bind-html="util.trustHTML(format.reactionFormat(synthesis.synthesisPower(syn),data.syntheses[syn]))"></span>
                   </div>
                 </td>
@@ -275,8 +275,8 @@
         <td>
           <div class="pull-left" ng-click="state.current_element = key">
             <a>
-            {{data.elements[key].name}}
-            <span class="glyphicon glyphicon-exclamation-sign" ng-if="visibility.elementHasNew(key)"></span>
+              {{data.elements[key].name}}
+              <i class="material-icons" ng-if="visibility.elementHasNew(key)">error</i>
             </a>
           </div>
         </td>
