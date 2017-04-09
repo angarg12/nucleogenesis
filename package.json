@@ -16,7 +16,7 @@
   "dependencies": {
   },
   "devDependencies": {
-    "gulp": "~3.9.1",
+    "gulp": "latest",
     "gulp-cli": "latest",
     "gulp-load-plugins": "latest",
     "gulp-jshint": "latest",
@@ -34,19 +34,13 @@
     "gulp-rename": "latest",
     "gulp-notify": "latest",
     "del": "latest",
-    "grunt": "~1.0.1",
-    "grunt-contrib-jshint": "~1.0.0",
-    "grunt-protractor-runner": "~4.0.0",
-    "grunt-contrib-connect": "~1.0.2",
-    "grunt-karma": "~2.0.0",
-    "grunt-karma-coveralls": "~2.5.4",
-    "karma": "~1.4.0",
-    "karma-coverage": "~1.1.1",
-    "karma-jasmine": "~1.1.0",
-    "karma-jasmine-jquery": "~0.1.1",
-    "karma-phantomjs-launcher": "~1.0.2",
-    "istanbul": "~0.4.5",
-    "jasmine": "~2.5.2",
-    "jasmine-core": "~2.5.2"
+    "karma": "latest",
+    "karma-coverage": "latest",
+    "karma-jasmine": "latest",
+    "karma-jasmine-jquery": "latest",
+    "karma-phantomjs-launcher": "latest",
+    "istanbul": "latest",
+    "jasmine": "latest",
+    "jasmine-core": "latest"
   }
 }
