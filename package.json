@@ -1,22 +1,40 @@
 {
   "name": "nucleogenesis",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Chemistry based incremental idle game",
   "keyword": "incremental idle chemistry game",
   "homepage": "",
-  "bugs": { 
-    "url" : "https://github.com/angarg12/incremental_table_elements/issues", 
+  "bugs": {
+    "url" : "https://github.com/angarg12/incremental_table_elements/issues",
     "email" : "angarg12@gmail.com"
   },
   "license": "GPL-2.0",
-  "repository" :{ 
-    "type" : "git", 
+  "repository" :{
+    "type" : "git",
     "url" : "https://github.com/angarg12/incremental_table_elements.git"
   },
   "dependencies": {
-    "grunt": "~1.0.1"
   },
   "devDependencies": {
+    "gulp": "~3.9.1",
+    "gulp-cli": "latest",
+    "gulp-load-plugins": "latest",
+    "gulp-jshint": "latest",
+    "gulp-coveralls": "latest",
+    "gulp-connect": "latest",
+    "gulp-protractor": "latest",
+    "jshint-stylish": "latest",
+    "gulp-imagemin": "latest",
+    "gulp-concat": "latest",
+    "gulp-uglify": "latest",
+    "gulp-clean-css": "latest",
+    "gulp-usemin": "latest",
+    "gulp-cache": "latest",
+    "gulp-rev": "latest",
+    "gulp-rename": "latest",
+    "gulp-notify": "latest",
+    "del": "latest",
+    "grunt": "~1.0.1",
     "grunt-contrib-jshint": "~1.0.0",
     "grunt-protractor-runner": "~4.0.0",
     "grunt-contrib-connect": "~1.0.2",

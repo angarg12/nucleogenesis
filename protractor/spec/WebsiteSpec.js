@@ -4,6 +4,7 @@ describe('Game index', function() {
 
   beforeEach(function(){
     player = require('../../build/data/start_player.json');
+    browser.ignoreSynchronization = true;
   });
 
   it('should calculate total production', function() {

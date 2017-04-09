@@ -1,9 +1,9 @@
 exports.config = {
   framework: 'jasmine',
   specs: [
-    '../lib/jquery.min.js',
-    'spec_helper.js',
-    'spec/*.js'],
+    '/lib/jquery.min.js',
+    '/protractor/helper/*.js',
+    '/protractor/spec/*.js'],
   multiCapabilities: [{
     browserName: 'chrome'
   }]
