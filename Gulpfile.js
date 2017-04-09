@@ -32,13 +32,17 @@ gulp.task('webdriver_update', plugins.protractor.webdriver_update_specific({
 }));
 
 gulp.task('protractor', ['connect', 'webdriver_update'], function() {
-  gulp.src(["protractor/spec/**.js"], { read: false })
+  return gulp.src(["protractor/spec/**.js"], { read: false })
     .pipe(plugins.protractor.protractor({
         configFile: "protractor/protractor.conf.js"
     }))
     .on('error', function(e) { throw e });
   });
 
+gulp.task('disconnect', ['connect', 'protractor'], function() {
+  return plugins.connect.serverClose();
+});
+
 gulp.task('unit-test', ['coveralls']);
-gulp.task('e2e-test', ['protractor']);
+gulp.task('e2e-test', ['protractor', 'disconnect']);
 gulp.task('test', ['unit-test', 'e2e-test']);
