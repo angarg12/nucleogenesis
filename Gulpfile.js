@@ -42,7 +42,7 @@ gulp.task('protractor', ['connect', 'webdriver_update'], function() {
     .on('error', function(e) { throw e; });
   });
 
-gulp.task('disconnect', ['connect', 'protractor'], function() {
+gulp.task('disconnect', function() {
   return plugins.connect.serverClose();
 });
 
