@@ -1,6 +1,7 @@
 // Include gulp
 var gulp = require('gulp');
 var del = require('del');
+var runSequence = require('run-sequence');
 
 // Include plugins
 var plugins = require('gulp-load-plugins')();
@@ -16,7 +17,7 @@ gulp.task('karma', function (done) {
 });
 
 // coverage
-gulp.task('coveralls', ['karma'], function() {
+gulp.task('coveralls', function() {
   return gulp.src('jasmine/coverage/**/lcov.info')
     .pipe(plugins.coveralls());
 });
@@ -105,11 +106,20 @@ gulp.task('copy-lib', function() {
     .pipe(gulp.dest('build/lib'));
 });
 
-gulp.task('copy-build', ['copy-js',  'copy-data', 'copy-html', 'copy-css', 'copy-lib']);
+gulp.task('copy-build', ['copy-js',  'copy-data', 'copy-html',
+                        'copy-css', 'copy-lib']);
 
 // public tasks
 gulp.task('build', ['copy-build']);
 
-gulp.task('unit-test', ['build', 'coveralls']);
-gulp.task('e2e-test', ['protractor', 'disconnect']);
+gulp.task('unit-test', function(callback) {
+  runSequence('build', 'karma', 'coveralls',
+              callback);
+});
+
+gulp.task('e2e-test', function(callback) {
+  runSequence('protractor', 'disconnect',
+              callback);
+});
+
 gulp.task('test', ['unit-test', 'e2e-test']);

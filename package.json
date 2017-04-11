@@ -21,6 +21,7 @@
     "gulp-load-plugins": "latest",
     "gulp-jshint": "latest",
     "jshint": "latest",
+    "run-sequence": "latest",
     "gulp-coveralls": "latest",
     "gulp-connect": "latest",
     "gulp-protractor": "latest",
