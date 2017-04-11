@@ -118,7 +118,7 @@ gulp.task('unit-test', function(callback) {
 });
 
 gulp.task('e2e-test', function(callback) {
-  runSequence('protractor', 'disconnect',
+  runSequence('build', 'protractor', 'disconnect',
               callback);
 });
 
