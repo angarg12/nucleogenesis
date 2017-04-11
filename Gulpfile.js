@@ -7,6 +7,7 @@ var plugins = require('gulp-load-plugins')();
 
 var Server = require('karma').Server;
 
+// unit test
 gulp.task('karma', function (done) {
   new Server({
     configFile: __dirname + '/jasmine/karma.conf.js',
@@ -14,14 +15,16 @@ gulp.task('karma', function (done) {
   }, done).start();
 });
 
+// coverage
 gulp.task('coveralls', ['karma'], function() {
   return gulp.src('jasmine/coverage/**/lcov.info')
     .pipe(plugins.coveralls());
 });
 
+// e2e test
 gulp.task('connect', function() {
   return plugins.connect.server({
-    root: '.',
+    root: 'build/',
     port: 9000
   });
 });
@@ -42,16 +45,19 @@ gulp.task('disconnect', ['connect', 'protractor'], function() {
   return plugins.connect.serverClose();
 });
 
+// linting
 gulp.task('jshint',function(){
   gulp.src('src/**/*.js')
   .pipe(plugins.jshint())
   .pipe(plugins.jshint.reporter('default'));
 });
 
+// clean
 gulp.task('clean',function(){
   return del(['dist','build']);
 });
 
+// minify
 gulp.task('htmlmin', function() {
   return gulp.src('src/**/*.html')
     .pipe(plugins.htmlmin({collapseWhitespace: true}))
@@ -72,7 +78,38 @@ gulp.task('cleanCss', function() {
 
 gulp.task('minify', ['uglify', 'htmlmin', 'cleanCss']);
 
+// copy
+gulp.task('copy-js', function() {
+  return gulp.src('src/js/**')
+    .pipe(gulp.dest('build/js'));
+});
+
+gulp.task('copy-data', function() {
+  return gulp.src('src/data/**')
+    .pipe(gulp.dest('build/data'));
+});
+
+gulp.task('copy-html', function() {
+  return gulp.src('src/html/**')
+    .pipe(gulp.dest('build/'));
+});
+
+gulp.task('copy-css', function() {
+  return gulp.src('src/styles/**')
+    .pipe(gulp.dest('build/styles'));
+});
+
+// FIXME: replace by bower task
+gulp.task('copy-lib', function() {
+  return gulp.src('lib/**')
+    .pipe(gulp.dest('build/lib'));
+});
+
+gulp.task('copy-build', ['copy-js',  'copy-data', 'copy-html', 'copy-css', 'copy-lib']);
+
 // public tasks
-gulp.task('unit-test', ['coveralls']);
+gulp.task('build', ['copy-build']);
+
+gulp.task('unit-test', ['build', 'coveralls']);
 gulp.task('e2e-test', ['protractor', 'disconnect']);
 gulp.task('test', ['unit-test', 'e2e-test']);

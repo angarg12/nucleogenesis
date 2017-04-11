@@ -3,26 +3,25 @@ module.exports = function(config) {
     basePath: '../',
     frameworks: ['jasmine-jquery', 'jasmine'],
     files: [
-      'lib/jquery.min.js',
-      'lib/angular.min.js',
-      'lib/angular-ui-router.min.js',
-      'lib/angular-animate.min.js',
-      'lib/bootstrap.min.js',
-      'lib/ziggurat.js',
-      'lib/angular-mocks.js',
-      'src/modules/module.js',
-      'src/services/*.js',
-      'src/controllers/main-loop.js',
+      'build/lib/jquery.min.js',
+      'build/lib/angular.min.js',
+      'build/lib/angular-ui-router.min.js',
+      'build/lib/angular-animate.min.js',
+      'build/lib/bootstrap.min.js',
+      'build/lib/ziggurat.js',
+      'build/lib/angular-mocks.js',
+      'build/js/modules/module.js',
+      'build/js/services/*.js',
+      'build/js/controllers/main-loop.js',
       'jasmine/common.js',
       'jasmine/spec/*.js',
-      {pattern: 'src/data/*.json', watched: true, served: true, included: false}
+      {pattern: 'build/data/*.json', watched: true, served: true, included: false}
     ],
     browsers: ['PhantomJS'],
     singleRun: true,
     reporters: ['progress', 'coverage'],
     preprocessors: {
-      'src/controllers/*.js': ['coverage'] ,
-      'src/services/*.js': ['coverage']
+      'build/js/**/*.js': ['coverage']
     },
     coverageReporter: {
       type: "lcov",

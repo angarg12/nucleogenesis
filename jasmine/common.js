@@ -23,11 +23,11 @@ var commonSpec = function(spec) {
     spec.data = $injector.get('data');
     spec.state = $injector.get('state');
 
-    jasmine.getJSONFixtures().fixturesPath = 'base/src/data/';
+    jasmine.getJSONFixtures().fixturesPath = 'base/build/data/';
 
     for(var index in spec.data.files){
       var file = spec.data.files[index];
-      _$httpBackend_.whenGET('src/data/'+file+'.json').respond(
+      _$httpBackend_.whenGET('data/'+file+'.json').respond(
         getJSONFixture(file+'.json')
       );
     }

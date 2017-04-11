@@ -23,7 +23,7 @@ function($http, $q) {
 
   this.loadData = function() {
     var promises = this.files.map(function(file){
-      return $http.get('src/data/'+file+'.json').then(function(response) {
+      return $http.get('data/'+file+'.json').then(function(response) {
         self[file] = response.data;
       });
     });

@@ -3,16 +3,16 @@ angular
 .config(['$stateProvider',
   function($stateProvider) {
   $stateProvider.state("matter", {
-    templateUrl : "src/templates/matter.html"
+    templateUrl : "templates/matter.html"
   })
   .state("encyclopedia", {
-    templateUrl : "src/templates/encyclopedia.html"
+    templateUrl : "templates/encyclopedia.html"
   })
   .state("table", {
-    templateUrl : "src/templates/table.html"
+    templateUrl : "templates/table.html"
   })
   .state("options", {
-    templateUrl : "src/templates/options.html"
+    templateUrl : "templates/options.html"
   });
 }]).run([
   "$state",
