@@ -1,10 +1,10 @@
 angular
 .module('incremental')
 .service('util',
-['$filter',
+['numberFilter',
 '$sce',
 'data',
-function($filter, $sce, data) {
+function(numberFilter, $sce, data) {
   // Polyfill for some browsers
   Number.parseFloat = parseFloat;
   Number.isInteger = Number.isInteger || function (value) {
@@ -39,16 +39,14 @@ function($filter, $sce, data) {
       var exponential = number.toPrecision(6).split("e");
       var exponent = parseFloat(exponential[1].split("+")[1]);
       // And it is displayed in with superscript
-      return $filter('numberEx')(exponential[0], 4) +
+      return numberFilter(exponential[0]) +
              " &#215; 10<sup>" +
              this.prettifyNumber(exponent) +
              "</sup>";
     }
-    return $filter('numberEx')(number, 4);
+    return numberFilter(number);
   };
 
-  // FIXME: poisson give bad results for small isotopes amount production
-  // it should be based in p not in mean
   this.randomDraw = function (number, p) {
     var production;
     var mean = number * p;
