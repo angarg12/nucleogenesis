@@ -82,4 +82,4 @@ start_player.resources[main_hydrogen].unlocked = true;
 var first = Object.keys(generators)[0];
 start_player.resources[main_hydrogen].number = generators[first].price;
 
-jsonfile.writeFileSync(path.join(base_path,'/start_player.json'), start_player, {spaces: 2});
+process.stdout.write(JSON.stringify(start_player, null, 2));

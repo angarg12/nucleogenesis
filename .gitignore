@@ -2,6 +2,8 @@ pretest/
 node_modules/
 jasmine/coverage
 coverage/
+build/
+dist/
 *~
 */*~
 */*.log

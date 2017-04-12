@@ -109,6 +109,12 @@ gulp.task('copy-lib', function() {
 gulp.task('copy-build', ['copy-js',  'copy-data', 'copy-html',
                         'copy-css', 'copy-lib']);
 
+gulp.task('populate_player', ['copy-build'], function() {
+  return plugins.run('node scripts/populate_player.js build',{silent:true}).exec()
+  .pipe(plugins.rename("start_player.json"))
+  .pipe(gulp.dest('build/data'));
+});
+
 // public tasks
 gulp.task('build', ['copy-build']);
 

@@ -32,6 +32,8 @@
     "gulp-usemin": "latest",
     "gulp-cache": "latest",
     "gulp-rev": "latest",
+    "gulp-run": "latest",
+    "gulp-rename": "latest",
     "del": "latest",
     "karma": "latest",
     "karma-coverage": "latest",
