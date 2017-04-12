@@ -19,8 +19,10 @@ var start_player = {
   elements_unlocked : 1
 };
 
-// version is an argument
-start_player.version = args[1];
+// read the version from the npm config
+var npm = jsonfile.readFileSync('package.json');
+
+start_player.version = npm.version;
 start_player.resources = {};
 for(var entry in resources) {
   start_player.resources[entry] = {
