@@ -3,14 +3,15 @@ angular
 .service('util',
 ['numberFilter',
 '$sce',
+'$locale',
 'data',
-function(numberFilter, $sce, data) {
+function(numberFilter, $sce, $locale, data) {
   // Polyfill for some browsers
   Number.parseFloat = parseFloat;
   Number.isInteger = Number.isInteger || function (value) {
     return typeof value === "number" && isFinite(value) && Math.floor(value) === value;
   };
-
+  var formats = $locale.NUMBER_FORMATS;
   this.numberGenerator = new Ziggurat();
 
   this.getHTML = function (resource) {
@@ -39,12 +40,31 @@ function(numberFilter, $sce, data) {
       var exponential = number.toPrecision(6).split("e");
       var exponent = parseFloat(exponential[1].split("+")[1]);
       // And it is displayed in with superscript
-      return numberFilter(exponential[0]) +
+      return mangleCeroes(exponential[0], 4) +
              " &#215; 10<sup>" +
              this.prettifyNumber(exponent) +
              "</sup>";
     }
-    return numberFilter(number);
+    return mangleCeroes(number, 4);
+  };
+
+  // FIXME: it turns out we need this abomination since default numberFilter
+  // uses 3 decimals and we need 4 (for the isotopes proportions precision)
+  // and if you use decimals, it attaches 0's at the end
+  var mangleCeroes = function(input, fractionSize) {
+    //Get formatted value
+    var formattedValue = numberFilter(input, fractionSize);
+    //get the decimalSepPosition
+    var decimalIdx = formattedValue.indexOf(formats.DECIMAL_SEP);
+    //If no decimal just return
+    if (decimalIdx === -1){
+      return formattedValue;
+    }
+
+    var whole = formattedValue.substring(0, decimalIdx);
+    var decimal = (Number(formattedValue.substring(decimalIdx)) || "").toString();
+
+    return whole +  decimal.substring(1);
   };
 
   this.randomDraw = function (number, p) {
