@@ -3,12 +3,10 @@
 		"ratio": 0.999884,
 		"elements": [
 			"H"
-		],
-		"type": "isotope"
+		]
 	},
 	"1H-": {
 		"html": "H<sup>-</sup>",
-		"type": "ion",
 		"elements": [
 			"H"
 		],
@@ -19,8 +17,7 @@
 		"html": "<sup>2</sup>H",
 		"elements": [
 			"H"
-		],
-		"type": "isotope"
+		]
 	},
 	"3H": {
 		"ratio": 0.000001,
@@ -28,7 +25,6 @@
 		"elements": [
 			"H"
 		],
-		"type": "isotope",
 		"decay": {
 			"half_life": 3.8852e+8,
 			"decay_type": "beta-",
@@ -43,55 +39,45 @@
 		"html": "H<sub>2</sub>",
 		"elements": [
 			"H"
-		],
-		"type": "molecule"
+		]
 	},
 	"4He": {
 		"ratio": 0.999998,
 		"elements": [
 			"He"
-		],
-		"type": "element"
+		]
 	},
 	"3He": {
 		"ratio": 0.000002,
 		"html": "<sup>3</sup>He",
 		"elements": [
 			"He"
-		],
-		"type": "isotope"
+		]
 	},
 	"3He+": {
 		"html": "<sup>3</sup>He<sup>+</sup>",
 		"elements": [
 			"He"
-		],
-		"type": [
-			"isotope",
-			"ion"
 		]
 	},
 	"6Li": {
 		"ratio": 0.95,
 		"elements": [
 			"Li"
-		],
-		"type": "element"
+		]
 	},
 	"7Li": {
 		"ratio": 0.05,
 		"html": "<sup>7</sup>Li",
 		"elements": [
 			"Li"
-		],
-		"type": "isotope"
+		]
 	},
 	"9Be": {
 		"ratio": 0.999998,
 		"elements": [
 			"Be"
-		],
-		"type": "element"
+		]
 	},
 	"7Be": {
 		"ratio": 0.000001,
@@ -99,7 +85,6 @@
 		"elements": [
 			"Be"
 		],
-		"type": "isotope",
 		"decay": {
 			"half_life": 4589568,
 			"decay_type": "electron_capture",
@@ -114,7 +99,6 @@
 		"elements": [
 			"Be"
 		],
-		"type": "isotope",
 		"html": "<sup>10</sup>Be",
 		"decay": {
 			"half_life": 4.2917e+14,
@@ -130,23 +114,20 @@
 		"ratio": 0.2,
 		"elements": [
 			"B"
-		],
-		"type": "element"
+		]
 	},
 	"11B": {
 		"ratio": 0.8,
 		"elements": [
 			"B"
 		],
-		"html": "<sup>11</sup>B",
-		"type": "isotope"
+		"html": "<sup>11</sup>B"
 	},
 	"12C": {
 		"ratio": 0.988998,
 		"elements": [
 			"C"
-		],
-		"type": "element"
+		]
 	},
 	"11C": {
 		"ratio": 0.000001,
@@ -154,7 +135,6 @@
 		"elements": [
 			"C"
 		],
-		"type": "isotope",
 		"decay": {
 			"half_life": 1200,
 			"decay_type": "beta+",
@@ -170,8 +150,7 @@
 		"html": "<sup>13</sup>C",
 		"elements": [
 			"C"
-		],
-		"type": "isotope"
+		]
 	},
 	"14C": {
 		"ratio": 0.000001,
@@ -179,7 +158,6 @@
 		"elements": [
 			"C"
 		],
-		"type": "isotope",
 		"decay": {
 			"half_life": 1.807e+11,
 			"decay_type": "beta-",
@@ -194,8 +172,7 @@
 		"ratio": 0.959999,
 		"elements": [
 			"N"
-		],
-		"type": "element"
+		]
 	},
 	"13N": {
 		"ratio": 0.000001,
@@ -203,7 +180,6 @@
 			"N"
 		],
 		"html": "<sup>13</sup>N",
-		"type": "isotope",
 		"decay": {
 			"half_life": 598,
 			"decay_type": "electron_capture",
@@ -218,60 +194,52 @@
 		"elements": [
 			"N"
 		],
-		"html": "<sup>15</sup>N",
-		"type": "isotope"
+		"html": "<sup>15</sup>N"
 	},
 	"16O": {
 		"ratio": 0.9976,
 		"elements": [
 			"O"
-		],
-		"type": "element"
+		]
 	},
 	"O2": {
 		"html": "O<sub>2</sub>",
 		"elements": [
 			"O"
-		],
-		"type": "molecule"
+		]
 	},
 	"O3": {
 		"html": "O<sub>3</sub>",
 		"elements": [
 			"O"
-		],
-		"type": "molecule"
+		]
 	},
 	"17O": {
 		"ratio": 0.00039,
 		"html": "<sup>17</sup>O",
 		"elements": [
 			"O"
-		],
-		"type": "isotope"
+		]
 	},
 	"18O": {
 		"ratio": 0.00201,
 		"html": "<sup>18</sup>O",
 		"elements": [
 			"O"
-		],
-		"type": "isotope"
+		]
 	},
 	"H2O": {
 		"html": "H<sub>2</sub>O",
 		"elements": [
 			"H",
 			"O"
-		],
-		"type": "molecule"
+		]
 	},
 	"19F": {
 		"ratio": 0.999998,
 		"elements": [
 			"F"
-		],
-		"type": "element"
+		]
 	},
 	"18F": {
 		"ratio": 0.000001,
@@ -279,7 +247,6 @@
 		"elements": [
 			"F"
 		],
-		"type": "isotope",
 		"decay": {
 			"half_life": 6586,
 			"decay_type": "beta+",
@@ -294,39 +261,32 @@
 		"ratio": 0.9048,
 		"elements": [
 			"Ne"
-		],
-		"type": "element"
+		]
 	},
 	"21Ne": {
 		"ratio": 0.0027,
 		"html": "<sup>21</sup>Ne",
 		"elements": [
 			"Ne"
-		],
-		"type": "isotope"
+		]
 	},
 	"22Ne": {
 		"ratio": 0.0925,
 		"html": "<sup>22</sup>Ne",
 		"elements": [
 			"Ne"
-		],
-		"type": "isotope"
+		]
 	},
 	"e-": {
-		"elements": [],
-		"type": "subatomic"
+		"elements": []
 	},
 	"n": {
-		"elements": [],
-		"type": "subatomic"
+		"elements": []
 	},
 	"p": {
-		"elements": [],
-		"type": "subatomic"
+		"elements": []
 	},
 	"eV": {
-		"elements": [],
-		"type": "energy"
+		"elements": []
 	}
 }

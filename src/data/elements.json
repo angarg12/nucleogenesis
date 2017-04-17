@@ -1,7 +1,26 @@
 {
     "H": {
         "name": "Hydrogen",
-        "isotopes": ["1H", "2H", "3H"],
+        "isotopes": {
+          "1H": {
+            "ratio": 0.999884
+          },
+          "2H": {
+            "ratio": 0.000115
+          },
+          "3H": {
+            "ratio": 0.000001,
+        		"decay": {
+        			"half_life": 3.8852e+8,
+        			"decay_type": "beta-",
+        			"decay_product": {
+        				"3He+": 1,
+        				"e-": 1,
+        				"eV": 18610
+        			}
+            }
+          }
+        },
         "main": "1H",
         "includes": ["1H", "2H", "3H", "1H-", "H2"],
         "syntheses": ["1H-p", "H2O"],
