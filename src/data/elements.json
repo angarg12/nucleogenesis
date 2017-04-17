@@ -22,65 +22,194 @@
           }
         },
         "main": "1H",
-        "includes": ["1H", "2H", "3H", "1H-", "H2"],
         "syntheses": ["1H-p", "H2O"],
         "redox": ["H+1", "1H-1"],
         "number": 1
     },
     "He": {
         "name": "Helium",
-        "includes": ["4He", "3He", "3He+"],
-        "isotopes": ["4He", "3He"],
+        "isotopes": {
+          "4He": {
+        		"ratio": 0.999998
+        	},
+        	"3He": {
+        		"ratio": 0.000002
+        	}
+        },
         "main": "4He",
         "number": 2
     },
     "Li": {
         "name": "Lithium",
-        "isotopes": ["6Li", "7Li"],
+        "isotopes": {
+          "6Li": {
+        		"ratio": 0.95
+        	},
+        	"7Li": {
+        		"ratio": 0.05
+        	}
+        },
         "main": "6Li",
         "number": 3
     },
     "Be": {
         "name": "Beryllium",
-        "isotopes": ["7Be", "9Be", "10Be"],
+        "isotopes": {
+          "9Be": {
+        		"ratio": 0.999998
+        	},
+        	"7Be": {
+        		"ratio": 0.000001,
+        		"decay": {
+        			"half_life": 4589568,
+        			"decay_type": "electron_capture",
+        			"decay_product": {
+        				"7Li": 1,
+        				"eV": 862000
+        			}
+        		}
+        	},
+        	"10Be": {
+        		"ratio": 0.000001,
+        		"decay": {
+        			"half_life": 4.2917e+14,
+        			"decay_type": "beta-",
+        			"decay_product": {
+        				"10B": 1,
+        				"e-": 1,
+        				"eV": 556000
+        			}
+        		}
+        	}
+        },
         "main": "9Be",
         "number": 4
     },
     "B": {
         "name": "Boron",
-        "isotopes": ["10B", "11B"],
+        "isotopes": {
+          "10B": {
+        		"ratio": 0.2
+        	},
+        	"11B": {
+        		"ratio": 0.8
+        	}
+        },
         "main": "10B",
         "number": 5
     },
     "C": {
-        "name": "Carbon",
-        "isotopes": ["11C", "12C", "13C", "14C"],
+      "name": "Carbon",
+      "isotopes": {
+        "12C": {
+      		"ratio": 0.988998
+      	},
+      	"11C": {
+      		"ratio": 0.000001,
+      		"decay": {
+      			"half_life": 1200,
+      			"decay_type": "beta+",
+      			"decay_product": {
+      				"11B": 1,
+      				"e+": 1,
+      				"eV": 96000
+      			}
+      		}
+      	},
+      	"13C": {
+      		"ratio": 0.011
+      	},
+      	"14C": {
+      		"ratio": 0.000001,
+      		"decay": {
+      			"half_life": 1.807e+11,
+      			"decay_type": "beta-",
+      			"decay_product": {
+      				"14N": 1,
+      				"e-": 1,
+      				"eV": 156000
+      			}
+      		}
+        },
         "main": "12C",
         "number": 6
     },
     "N": {
         "name": "Nitrogen",
-        "isotopes": ["13N", "14N", "15N"],
+        "isotopes": {
+          "14N": {
+        		"ratio": 0.959999
+        	},
+        	"13N": {
+        		"ratio": 0.000001,
+        		"decay": {
+        			"half_life": 598,
+        			"decay_type": "electron_capture",
+        			"decay_product": {
+        				"13C": 1,
+        				"eV": 2220000
+        			}
+        		}
+        	},
+        	"15N": {
+        		"ratio": 0.04
+        	}
+        },
         "main": "14N",
         "number": 7
     },
     "O": {
         "name": "Oxygen",
-        "isotopes": ["16O", "17O", "18O"],
+        "isotopes": {
+          "16O": {
+        		"ratio": 0.9976
+        	},
+        	"17O": {
+        		"ratio": 0.00039
+        	},
+        	"18O": {
+        		"ratio": 0.00201
+        	}
+        },
         "main": "16O",
-        "includes": ["16O", "17O", "18O", "O2", "O3"],
         "syntheses": ["O3", "O2-OO", "H2O", "O2O2-O3O"],
         "number": 8
     },
     "F": {
         "name": "Fluorine",
-        "isotopes": ["18F", "19F"],
+        "isotopes": {
+        	"19F": {
+        		"ratio": 0.999998
+        	},
+        	"18F": {
+        		"ratio": 0.000001,
+        		"decay": {
+        			"half_life": 6586,
+        			"decay_type": "beta+",
+        			"decay_product": {
+        				"18O": 1,
+        				"e+": 1,
+        				"eV": 634000
+        			}
+        		}
+        	}
+        },
         "main": "19F",
         "number": 9
     },
     "Ne": {
         "name": "Neon",
-        "isotopes": ["20Ne", "21Ne", "22Ne"],
+        "isotopes": {
+        	"20Ne": {
+        		"ratio": 0.9048
+        	},
+        	"21Ne": {
+        		"ratio": 0.0027
+        	},
+        	"22Ne": {
+        		"ratio": 0.0925
+        	}
+        },
         "main": "20Ne",
         "number": 10
     },
