@@ -109,14 +109,23 @@ gulp.task('copy-lib', function() {
 gulp.task('copy-build', ['copy-js',  'copy-data', 'copy-html',
                         'copy-css', 'copy-lib']);
 
-gulp.task('populate_player', ['copy-build'], function() {
+gulp.task('populate_player', function() {
   return plugins.run('node scripts/populate_player.js build',{silent:true}).exec()
   .pipe(plugins.rename("start_player.json"))
   .pipe(gulp.dest('build/data'));
 });
 
+gulp.task('generate_isotopes', function() {
+  return plugins.run('node scripts/generate_isotopes.js build',{silent:true}).exec();
+});
+
 // public tasks
-gulp.task('build', ['copy-build']);
+gulp.task('build', function(callback) {
+  runSequence('copy-build',
+    'generate_isotopes',
+    'populate_player',
+    callback);
+});
 
 gulp.task('unit-test', function(callback) {
   runSequence('build', 'karma', 'coveralls',

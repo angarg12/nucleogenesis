@@ -14,17 +14,18 @@ for(var element in elements){
   elements[element].includes = elements[element].includes || [];
 
   var isotopes = elements[element].isotopes;
+  var isotopes_array = [];
   for(var isotope in isotopes){
     resources[isotope] = {};
     resources[isotope].ratio = isotopes[isotope].ratio;
-    delete isotopes[isotope].ratio;
     resources[isotope].decay = isotopes[isotope].decay;
-    delete isotopes[isotope].decay;
     resources[isotope].elements = [element];
     resources[isotope].html = "<sup>"+numberPrefix(isotope)+"</sup>"+element;
 
     elements[element].includes.push(isotope);
+    isotopes_array.push(isotope);
   }
+  elements[element].isotopes = isotopes_array;
 }
 
 function numberPrefix(string){

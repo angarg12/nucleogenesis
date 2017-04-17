@@ -2,15 +2,60 @@
   "elements_unlocked": 1,
   "version": "1.0.4",
   "resources": {
-    "1H": {
-      "number": 15,
-      "is_new": true,
-      "unlocked": true
-    },
     "1H-": {
       "number": 0,
       "is_new": true,
       "unlocked": false
+    },
+    "H2": {
+      "number": 0,
+      "is_new": true,
+      "unlocked": false
+    },
+    "3He+": {
+      "number": 0,
+      "is_new": true,
+      "unlocked": false
+    },
+    "O2": {
+      "number": 0,
+      "is_new": true,
+      "unlocked": false
+    },
+    "O3": {
+      "number": 0,
+      "is_new": true,
+      "unlocked": false
+    },
+    "H2O": {
+      "number": 0,
+      "is_new": true,
+      "unlocked": false
+    },
+    "e-": {
+      "number": 0,
+      "is_new": true,
+      "unlocked": false
+    },
+    "n": {
+      "number": 0,
+      "is_new": true,
+      "unlocked": false
+    },
+    "p": {
+      "number": 0,
+      "is_new": true,
+      "unlocked": false
+    },
+    "eV": {
+      "number": 0,
+      "is_new": true,
+      "unlocked": false
+    },
+    "1H": {
+      "number": 15,
+      "is_new": true,
+      "unlocked": true
     },
     "2H": {
       "number": 0,
@@ -22,22 +67,12 @@
       "is_new": true,
       "unlocked": false
     },
-    "H2": {
-      "number": 0,
-      "is_new": true,
-      "unlocked": false
-    },
     "4He": {
       "number": 0,
       "is_new": true,
       "unlocked": false
     },
     "3He": {
-      "number": 0,
-      "is_new": true,
-      "unlocked": false
-    },
-    "3He+": {
       "number": 0,
       "is_new": true,
       "unlocked": false
@@ -117,27 +152,12 @@
       "is_new": true,
       "unlocked": false
     },
-    "O2": {
-      "number": 0,
-      "is_new": true,
-      "unlocked": false
-    },
-    "O3": {
-      "number": 0,
-      "is_new": true,
-      "unlocked": false
-    },
     "17O": {
       "number": 0,
       "is_new": true,
       "unlocked": false
     },
     "18O": {
-      "number": 0,
-      "is_new": true,
-      "unlocked": false
-    },
-    "H2O": {
       "number": 0,
       "is_new": true,
       "unlocked": false
@@ -163,26 +183,6 @@
       "unlocked": false
     },
     "22Ne": {
-      "number": 0,
-      "is_new": true,
-      "unlocked": false
-    },
-    "e-": {
-      "number": 0,
-      "is_new": true,
-      "unlocked": false
-    },
-    "n": {
-      "number": 0,
-      "is_new": true,
-      "unlocked": false
-    },
-    "p": {
-      "number": 0,
-      "is_new": true,
-      "unlocked": false
-    },
-    "eV": {
       "number": 0,
       "is_new": true,
       "unlocked": false
