@@ -1,24 +1,24 @@
 {
-      "H+1": {
-        "reactant": {
-          "eV": 13.5984,
-          "1H": 1
-        },
-        "product": {
-          "p": 1,
-          "e-": 1
-        },
-        "elements": [ "H" ]
-      },
-      "1H-1": {
-        "reactant": {
-          "e-": 1,
-          "1H": 1
-        },
-        "product": {
-          "1H-": 1,
-          "eV": 0.7545
-        },
-        "elements": [ "H" ]
-      }
-    }
+  "1H+": {
+    "reactant": {
+      "eV": 13.5984,
+      "1H": 1
+    },
+    "product": {
+      "p": 1,
+      "e-": 1
+    },
+    "elements": ["H"]
+  },
+  "1H-1": {
+    "reactant": {
+      "e-": 1,
+      "1H": 1
+    },
+    "product": {
+      "1H-": 1,
+      "eV": 0.7545
+    },
+    "elements": ["H"]
+  }
+}

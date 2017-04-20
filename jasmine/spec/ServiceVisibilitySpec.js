@@ -142,7 +142,7 @@ describe("Visible service", function() {
 
       var values = spec.visibility.visibleRedox();
 
-      expect(values).toEqual(['H+1']);
+      expect(values).toEqual(['1H+']);
     });
 
     it("should not show redoxes if they are locked", function() {

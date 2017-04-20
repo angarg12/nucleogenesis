@@ -77,7 +77,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         continue;
       }
       // Prepare an array with the isotopes
-      var isotopes = data.elements[element].isotopes;
+      var isotopes = Object.keys(data.elements[element].isotopes);
       var remaining = generator.elementProduction(element);
       // We will create a random draw recalculate the mean and std
       for(var i = 0; i < isotopes.length - 1; i++) {
@@ -98,8 +98,9 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
       }
       // The last isotope is just the remaining production that hasn't been consumed
       if(remaining > 0) {
-        player_copy.resources[isotopes[isotopes.length - 1]].number += remaining;
-        player_copy.resources[isotopes[isotopes.length - 1]].unlocked = true;
+        var last = isotopes[isotopes.length - 1];
+        player_copy.resources[last].number += remaining;
+        player_copy.resources[last].unlocked = true;
       }
     }
   };

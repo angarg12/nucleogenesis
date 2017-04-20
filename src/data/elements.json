@@ -21,9 +21,11 @@
         }
       }
     },
+    "ionization_energy": [13.5984],
+    "electron_affinity": [-0.7545, 5.9498],
     "main": "1H",
     "syntheses": ["1H-p", "H2O"],
-    "redox": ["H+1", "1H-1"],
+    "redox": ["1H+", "1H-1"],
     "number": 1
   },
   "He": {
@@ -36,6 +38,8 @@
         "ratio": 0.000002
       }
     },
+    "ionization_energy": [24.58741, 54.41778],
+    "electron_affinity": [19.7, 6.92802],
     "main": "4He",
     "number": 2
   },
@@ -49,6 +53,8 @@
         "ratio": 0.05
       }
     },
+    "ionization_energy": [5.39172, 75.64018, 122.45429],
+    "electron_affinity": [-0.6177, 8.1321],
     "main": "6Li",
     "number": 3
   },
@@ -82,6 +88,8 @@
         }
       }
     },
+    "ionization_energy": [9.3227, 18.21116, 153.89661, 217.71865],
+    "electron_affinity": [2.4, 7.8287],
     "main": "9Be",
     "number": 4
   },
@@ -95,6 +103,8 @@
         "ratio": 0.8
       }
     },
+    "ionization_energy": [8.29803, 25.15484, 37.93064, 259.37521, 340.22580],
+    "electron_affinity": [-0.2767, 7.5824],
     "main": "10B",
     "number": 5
   },
@@ -102,10 +112,10 @@
     "name": "Carbon",
     "isotopes": {
       "12C": {
-        "ratio": 0.988998
+        "ratio": 0.988999
       },
       "11C": {
-        "ratio": 0.000001,
+        "ratio": 0,
         "decay": {
           "half_life": 1200,
           "decay_type": "beta+",
@@ -132,6 +142,8 @@
         }
       }
     },
+    "ionization_energy": [11.26030, 24.38332, 47.8878, 64.4939, 392.087, 489.99334],
+    "electron_affinity": [-1.5951, 10.1104],
     "main": "12C",
     "number": 6
   },
@@ -139,10 +151,10 @@
     "name": "Nitrogen",
     "isotopes": {
       "14N": {
-        "ratio": 0.959999
+        "ratio": 0.96
       },
       "13N": {
-        "ratio": 0.000001,
+        "ratio": 0,
         "decay": {
           "half_life": 598,
           "decay_type": "electron_capture",
@@ -156,6 +168,8 @@
         "ratio": 0.04
       }
     },
+    "ionization_energy": [14.53414, 29.6013, 47.44924, 77.4735, 97.8902, 552.0718, 667.046],
+    "electron_affinity": [1.7, 9.5145],
     "main": "14N",
     "number": 7
   },
@@ -172,6 +186,8 @@
         "ratio": 0.00201
       }
     },
+    "ionization_energy": [13.61806, 35.11730, 54.9355, 77.41353, 113.8990, 138.1197, 739.29, 871.4101],
+    "electron_affinity": [-1.4614, 8.8899],
     "main": "16O",
     "syntheses": ["O3", "O2-OO", "H2O", "O2O2-O3O"],
     "number": 8
@@ -195,6 +211,8 @@
         }
       }
     },
+    "ionization_energy": [17.42282, 34.97082, 62.7084, 87.1398, 114.2428, 157.1651, 185.186, 953.9112, 1103.1176],
+    "electron_affinity": [-3.3995, 7.8287],
     "main": "19F",
     "number": 9
   },
@@ -211,6 +229,7 @@
         "ratio": 0.0925
       }
     },
+    "ionization_energy": [21.5646, 40.96328, 63.45, 97.12, 126.21, 157.93, 207.2759, 239.0989, 1195.8286, 1362.1995],
     "main": "20Ne",
     "number": 10
   },
