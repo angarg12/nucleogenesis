@@ -21,6 +21,7 @@ ratings:
   - "**.js"
   - "**.md"
 exclude_paths:
+  - "Gulpfile.js"
   - "jasmine/"
   - "lib/"
   - "node_modules/"
