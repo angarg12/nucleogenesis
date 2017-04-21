@@ -22,7 +22,9 @@ for (var element in elements) {
     resources[isotope].elements = [element];
     resources[isotope].html = isotopePrefix(isotope) + element;
 
-    elements[element].includes.push(isotope);
+    if(elements[element].includes.indexOf(isotope) === -1){
+      elements[element].includes.push(isotope);
+    }
   }
 }
 

@@ -19,41 +19,96 @@ for (var element in elements) {
   for (var isotope in isotopes) {
     elements[element].isotopes[isotope].oxides = [];
     for (var i = 0; i < elements[element].ionization_energy.length; i++) {
-      var key = generateKey(isotope, i, "+");
-
-      resources[key] = {};
-      resources[key].elements = [element];
-      resources[key].html = isotopePrefix(isotope) + element + cationPostfix(i);
-      resources[key].charge = (i + 1);
-
-      elements[element].includes.push(key);
-      elements[element].isotopes[isotope].oxides.push(key);
-
-      redox[key] = {};
-      redox[key].reactant = {};
-      var energy = elements[element].ionization_energy[i];
-      redox[key].reactant[generateKey(isotope, i - 1, "+")] = 1;
-      redox[key].reactant.eV = energy;
-      redox[key].product = {};
-      // 1H is unique!!
-      if (isotope === "1H") {
-        redox[key].product.p = 1;
-      } else {
-        redox[key].product[key] = 1;
-
-      }
-      redox[key].product["e-"] = 1;
+      generateOxidation(isotope, i+1, element);
     }
   }
 }
 
-function generateKey(isotope, i, sign) {
-  if (i < 0) {
+steps: make an array with all states concatenated
+electron affinity (with opposite sign!!) and ionization energy
+process back from the end for oxidation, and the inverse for reduction
+
+function generateOxidation(isotope, charge, element){
+  var from = generateName(isotope, charge-1);
+  var to = generateName(isotope, charge);
+
+  // 1H is unique!! an hydrogen cation is a lonely proton
+  if (to === "1H+") {
+    to = "p";
+  }
+
+  addResource(from, charge);
+  addResource(to, charge-1);
+
+  var ion = {};
+
+  var energy = elements[element].ionization_energy[i];
+  ion.reactant = {};
+  ion.reactant[from] = 1;
+  ion.reactant.eV = energy;
+
+  ion.product = {};
+  ion.product[to] = 1;
+  ion.product["e-"] = 1;
+
+  // if the energy is negative, then energy is released
+  // if(energy < 0){
+  //   ion.product.eV = energy;
+  // }else{
+  //   ion.reactant.eV = energy;
+  // }
+
+  var key = generateKey(ion);
+  redox[key] = ion;
+  if(!elements[element].isotopes[isotope].oxides[key]){
+    elements[element].isotopes[isotope].oxides.push(key);
+  }
+}
+
+function addResource(name, charge){
+  if(!resources[name]){
+    resources[name] = {};
+    resources[name].elements = [element];
+    resources[name].html = isotopePrefix(isotope) + element + ionPostfix(charge);
+    resources[name].charge = charge;
+  }
+
+  if(elements[element].includes.indexOf(name) === -1){
+    elements[element].includes.push(name);
+  }
+}
+
+function generateKey(reaction) {
+  var key = "";
+  key += concatKeys(reaction.reactant);
+  key += concatKeys(reaction.product);
+
+  return key;
+}
+
+function concatKeys(map) {
+  var key = "";
+  for(var i in map){
+    if(i === "eV"){
+      continue;
+    }
+    key += i;
+  }
+  return key;
+}
+
+function generateName(isotope, i) {
+  if (i === 0) {
     return isotope;
   }
-  var postfix = sign;
-  if (i > 0) {
-    postfix = (i + 1) + postfix;
+  var postfix = "";
+  if(Math.abs(i) > 1){
+    postfix = Math.abs(i);
+  }
+  if(i > 0){
+    postfix += "+";
+  }else{
+    postfix += "-";
   }
   return isotope + postfix;
 }
@@ -63,11 +118,12 @@ function isotopePrefix(isotope) {
   return "<sup>" + prefix + "</sup>";
 }
 
-function cationPostfix(index) {
+function ionPostfix(index) {
   var prefix = "";
-  if (index > 0) {
-    prefix = (index + 1).toString();
+  if(index === 0){
+    return prefix;
   }
+  prefix = index.toString();
   return "<sup>" + prefix + "+<sup>";
 }
 
@@ -77,6 +133,6 @@ jsonfile.writeFileSync(path.join(base_path, '/resources.json'), resources, {
 jsonfile.writeFileSync(path.join(base_path, '/elements.json'), elements, {
   spaces: 2
 });
-jsonfile.writeFileSync(path.join(base_path, '/oxidation.json'), redox, {
+jsonfile.writeFileSync(path.join(base_path, '/redox.json'), redox, {
   spaces: 2
 });
