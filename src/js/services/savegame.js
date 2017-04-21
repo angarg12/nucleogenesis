@@ -2,9 +2,9 @@ angular
 .module('incremental')
 .service('savegame',
 ['player',
-'achievement',
 'state',
-function(player, achievement, state) {
+'data',
+function(player, state, data) {
   this.save = function () {
     localStorage.setItem("playerStoredITE", JSON.stringify(player.data));
     var d = new Date();
@@ -57,6 +57,6 @@ function(player, achievement, state) {
   this.versionControl = function () {
     // we merge the properties of the player with the start player to
     // avoid undefined errors with new properties
-    player.data = angular.merge({}, player.startPlayer, player.data);
+    player.data = angular.merge({}, data.start_player, player.data);
   };
 }]);

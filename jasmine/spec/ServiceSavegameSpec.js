@@ -125,25 +125,4 @@ describe("Player service", function() {
       spec.savegame.versionControl();
     });
   });
-
-  describe('populate player', function() {
-    it("should populate a new player", function() {
-      spec.player.populatePlayer();
-
-      expect(spec.player.startPlayer.resources['1H']).toEqual({
-        number : 15,
-        is_new : true,
-        unlocked : true
-      });
-      expect(spec.player.startPlayer.elements.H.unlocked).toEqual(true);
-      expect(spec.player.startPlayer.elements.H.upgrades['Tier 1-1'].bought).toEqual(false);
-      expect(spec.player.startPlayer.encyclopedia.hydrogen.is_new).toEqual(true);
-      expect(spec.player.startPlayer.unlocks.hydrogen).toEqual(false);
-      expect(spec.player.startPlayer.syntheses.H2O).toEqual({
-        number : 0,
-        active : 0,
-        is_new : true
-      });
-    });
-  });
 });

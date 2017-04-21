@@ -112,8 +112,7 @@ describe("Synthesis service", function() {
 
   describe('update', function() {
     it("should process synthesis", function() {
-      spec.player.populatePlayer();
-      spec.player.data = spec.player.startPlayer;
+      spec.player.data = spec.data.start_player;
       spec.player.data.syntheses.H2O.number = 2;
       spec.player.data.syntheses.H2O.active = 2;
       spec.player.data.resources.H2.number = 10;

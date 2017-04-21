@@ -40,8 +40,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   // since load calls are asynchronous, we need to do this to make sure that the data
   // is loaded before the services
   data.loadData().then(function() {
-	  player.populatePlayer();
-
 	  $timeout(self.startup);
   });
 

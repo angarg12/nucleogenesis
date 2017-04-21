@@ -1,4 +1,4 @@
-describe("Incremental table elements", function() {
+describe("controller main-loop", function() {
   var spec = {};
 
   commonSpec(spec);
@@ -52,17 +52,15 @@ describe("Incremental table elements", function() {
 
   describe('update', function() {
     it("should not update player if nothing is purchased", function() {
-      spec.player.populatePlayer();
-      spec.player.data = angular.copy(spec.player.startPlayer);
+      spec.player.data = angular.copy(spec.data.start_player);
 
       spec.controller.update();
 
-      expect(spec.player.data).toEqual(spec.player.startPlayer);
+      expect(spec.player.data).toEqual(spec.data.start_player);
     });
 
     it("should generate isotopes", function() {
-      spec.player.populatePlayer();
-      spec.player.data = spec.player.startPlayer;
+      spec.player.data = spec.data.start_player;
       spec.player.data.elements.O.unlocked = true;
       spec.player.data.elements.O.generators['Tier 1'].level = 200;
       spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
@@ -76,8 +74,7 @@ describe("Incremental table elements", function() {
     });
 
     it("should generate isotopes 2", function() {
-      spec.player.populatePlayer();
-      spec.player.data = spec.player.startPlayer;
+      spec.player.data = spec.data.start_player;
       spec.player.data.elements.O.unlocked = true;
       spec.player.data.elements.O.generators['Tier 1'].level = 1200;
       spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
@@ -91,8 +88,7 @@ describe("Incremental table elements", function() {
     });
 
     it("should generate isotopes 3", function() {
-      spec.player.populatePlayer();
-      spec.player.data = spec.player.startPlayer;
+      spec.player.data = spec.data.start_player;
       spec.player.data.elements.O.unlocked = true;
       spec.player.data.elements.O.generators['Tier 1'].level = 32000;
       spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
@@ -106,8 +102,7 @@ describe("Incremental table elements", function() {
     });
 
     it("should process radioactivity", function() {
-      spec.player.populatePlayer();
-      spec.player.data = spec.player.startPlayer;
+      spec.player.data = spec.data.start_player;
       spec.player.data.resources['3H'].unlocked = true;
       spec.player.data.resources['3H'].number = 1000;
       spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
@@ -122,8 +117,7 @@ describe("Incremental table elements", function() {
     });
 
     it("should process radioactivity 2", function() {
-      spec.player.populatePlayer();
-      spec.player.data = spec.player.startPlayer;
+      spec.player.data = spec.data.start_player;
       spec.player.data.resources['3H'].unlocked = true;
       spec.player.data.resources['3H'].number = 1e+10;
       spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);

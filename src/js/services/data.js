@@ -19,7 +19,8 @@ function($http, $q) {
               "html",
               "syntheses",
               "binding_energy",
-              "redox"];
+              "redox",
+              "start_player"];
 
   this.loadData = function() {
     var promises = this.files.map(function(file){

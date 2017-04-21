@@ -12,7 +12,6 @@ function(player,achievement) {
     this.init = function () {
       this.current_element = "H";
       this.hover_element = "";
-      player.initialisePlayer();
       achievement.init();
     };
 }]);
