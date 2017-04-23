@@ -93,12 +93,12 @@ angular
     // This is for global resources e.g. protons, which do not
     // belong to any element
     var elements = data.resources[name].elements;
-    if(elements.length === 0){
+    if(Object.keys(elements).length === 0){
       return true;
     }
 
     for(var element in elements){
-      if(state.current_element === elements[element]){
+      if(state.current_element === element){
         return true;
       }
     }

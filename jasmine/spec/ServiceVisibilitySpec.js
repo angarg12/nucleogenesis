@@ -200,11 +200,18 @@ describe("Visible service", function() {
       spec.player.data.resources.p = {unlocked:true};
       spec.player.data.resources.H2 = {unlocked:true};
       spec.player.data.resources.O2 = {unlocked:false};
-      var temp = spec.data.syntheses;
       spec.data.syntheses = {};
-      spec.data.syntheses['1H-p'] = temp['1H-p'];
-      spec.data.syntheses.H2O = temp.H2O;
-
+      spec.data.syntheses['1H-p'] = {
+        "reactant": {"1H-":1,"p":1},
+        "product": {"H2":1},
+        "elements": [ "H" ]
+      };
+      spec.data.syntheses['H2O'] = {
+        "reactant": {"H2":2,"O2":1},
+        "product": {"H2O":2},
+        "elements": ["H","O"]
+      };
+      
       var values = spec.visibility.visibleSyntheses();
 
       expect(values).toEqual(['1H-p']);

@@ -19,7 +19,8 @@ for (var element in elements) {
     resources[isotope] = {};
     resources[isotope].ratio = isotopes[isotope].ratio;
     resources[isotope].decay = isotopes[isotope].decay;
-    resources[isotope].elements = [element];
+    resources[isotope].elements = {};
+    resources[isotope].elements[element] = 1;
     resources[isotope].html = isotopePrefix(isotope) + element;
 
     if(elements[element].includes.indexOf(isotope) === -1){

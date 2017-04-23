@@ -24,7 +24,6 @@
     "ionization_energy": [13.5984],
     "electron_affinity": [-0.7545, 5.9498],
     "main": "1H",
-    "syntheses": ["1H-p", "H2O"],
     "redox": ["1H+", "1H-1"],
     "number": 1
   },
@@ -189,7 +188,6 @@
     "ionization_energy": [13.61806, 35.11730, 54.9355, 77.41353, 113.8990, 138.1197, 739.29, 871.4101],
     "electron_affinity": [-1.4614, 8.8899],
     "main": "16O",
-    "syntheses": ["O3", "O2-OO", "H2O", "O2O2-O3O"],
     "number": 8
   },
   "F": {

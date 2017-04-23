@@ -13,6 +13,12 @@ describe("Synthesis service", function() {
       spec.player.data.syntheses = {};
       spec.player.data.syntheses['1H-p'] = {};
       spec.player.data.syntheses['1H-p'].number = 0;
+      spec.data.syntheses = {};
+      spec.data.syntheses['1H-p'] = {
+        "reactant": {"1H-":1,"p":1},
+        "product": {"H2":1},
+        "elements": [ "H" ]
+      };
 
       value = spec.synthesis.isSynthesisCostMet('1H-p');
 
@@ -27,6 +33,12 @@ describe("Synthesis service", function() {
       spec.player.data.syntheses = {};
       spec.player.data.syntheses['1H-p'] = {};
       spec.player.data.syntheses['1H-p'].number = 0;
+      spec.data.syntheses = {};
+      spec.data.syntheses['1H-p'] = {
+        "reactant": {"1H-":1,"p":1},
+        "product": {"H2":1},
+        "elements": [ "H" ]
+      };
 
       value = spec.synthesis.isSynthesisCostMet('1H-p');
 
@@ -41,6 +53,12 @@ describe("Synthesis service", function() {
       spec.player.data.syntheses = {};
       spec.player.data.syntheses['1H-p'] = {};
       spec.player.data.syntheses['1H-p'].number = 0;
+      spec.data.syntheses = {};
+      spec.data.syntheses['1H-p'] = {
+        "reactant": {"1H-":1,"p":1},
+        "product": {"H2":1},
+        "elements": [ "H" ]
+      };
 
       value = spec.synthesis.isSynthesisCostMet('1H-p');
 
@@ -51,6 +69,12 @@ describe("Synthesis service", function() {
       spec.player.data = {syntheses:{}};
       spec.player.data.syntheses.H2O = {};
       spec.player.data.syntheses.H2O.number = 2;
+      spec.data.syntheses = {};
+      spec.data.syntheses['H2O'] = {
+        "reactant": {"H2":2,"O2":1},
+        "product": {"H2O":2},
+        "elements": ["H","O"]
+      };
 
       value = spec.synthesis.synthesisPrice('H2O');
 
@@ -62,6 +86,12 @@ describe("Synthesis service", function() {
       spec.player.data.resources['H2'] = {number:32};
       spec.player.data.resources['O2'] = {number:32};
       spec.player.data.syntheses['H2O'] = {number:1};
+      spec.data.syntheses = {};
+      spec.data.syntheses['H2O'] = {
+        "reactant": {"H2":2,"O2":1},
+        "product": {"H2O":2},
+        "elements": ["H","O"]
+      };
 
       spec.synthesis.buySynthesis('H2O',3);
 
@@ -75,6 +105,12 @@ describe("Synthesis service", function() {
       spec.player.data.resources['H2'] = {number:10};
       spec.player.data.resources['O2'] = {number:32};
       spec.player.data.syntheses['H2O'] = {number:1};
+      spec.data.syntheses = {};
+      spec.data.syntheses['H2O'] = {
+        "reactant": {"H2":2,"O2":1},
+        "product": {"H2O":2},
+        "elements": ["H","O"]
+      };
 
       spec.synthesis.buySynthesis('H2O',3);
 
@@ -88,6 +124,12 @@ describe("Synthesis service", function() {
       spec.player.data.resources['H2'] = {number:32};
       spec.player.data.resources['O2'] = {number:32};
       spec.player.data.syntheses['H2O'] = {number:1};
+      spec.data.syntheses = {};
+      spec.data.syntheses['H2O'] = {
+        "reactant": {"H2":2,"O2":1},
+        "product": {"H2O":2},
+        "elements": ["H","O"]
+      };
 
       spec.synthesis.buySynthesis('H2O',-3);
 
@@ -101,6 +143,12 @@ describe("Synthesis service", function() {
       spec.player.data.resources['H2'] = {number:2};
       spec.player.data.resources['O2'] = {number:32};
       spec.player.data.syntheses['H2O'] = {number:1};
+      spec.data.syntheses = {};
+      spec.data.syntheses['H2O'] = {
+        "reactant": {"H2":2,"O2":1},
+        "product": {"H2O":2},
+        "elements": ["H","O"]
+      };
 
       spec.synthesis.buySynthesis('H2O',3);
 
@@ -113,17 +161,23 @@ describe("Synthesis service", function() {
   describe('update', function() {
     it("should process synthesis", function() {
       spec.player.data = spec.data.start_player;
+      spec.player.data.syntheses.H2O = {};
       spec.player.data.syntheses.H2O.number = 2;
       spec.player.data.syntheses.H2O.active = 2;
       spec.player.data.resources.H2.number = 10;
       spec.player.data.resources.O2.number = 5;
+      spec.data.syntheses = {};
+      spec.data.syntheses['H2O'] = {
+        "reactant": {"H2":2,"O2":1},
+        "product": {"H2O":2},
+        "elements": ["H","O"]
+      };
 
       spec.controller.update();
 
       expect(spec.player.data.resources.H2.number).toEqual(2);
       expect(spec.player.data.resources.O2.number).toEqual(1);
       expect(spec.player.data.resources.H2O.number).toEqual(8);
-      expect(spec.player.data.resources.eV.number).toEqual(23.7);
     });
   });
 });

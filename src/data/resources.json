@@ -1,52 +1,33 @@
 {
-	"1H-": {
-		"html": "H<sup>-</sup>",
-		"elements": [
-			"H"
-		],
-		"charge": -1
-	},
-	"H2": {
-		"html": "H<sub>2</sub>",
-		"elements": [
-			"H"
-		]
-	},
-	"3He+": {
-		"html": "<sup>3</sup>He<sup>+</sup>",
-		"elements": [
-			"He"
-		]
-	},
-	"O2": {
-		"html": "O<sub>2</sub>",
-		"elements": [
-			"O"
-		]
-	},
-	"O3": {
-		"html": "O<sub>3</sub>",
-		"elements": [
-			"O"
-		]
-	},
-	"H2O": {
-		"html": "H<sub>2</sub>O",
-		"elements": [
-			"H",
-			"O"
-		]
-	},
-	"e-": {
-		"elements": []
-	},
-	"n": {
-		"elements": []
-	},
-	"p": {
-		"elements": []
-	},
-	"eV": {
-		"elements": []
-	}
+  "1H-": {
+    "html": "H<sup>-</sup>",
+    "elements": {
+      "H": 1
+    },
+    "charge": -1
+  },
+  "H2": {
+    "html": "H<sub>2</sub>",
+    "elements": {
+      "H": 1
+    }
+  },
+  "3He+": {
+    "html": "<sup>3</sup>He<sup>+</sup>",
+    "elements": {
+      "He": 1
+    }
+  },
+  "e-": {
+    "elements": {}
+  },
+  "n": {
+    "elements": {}
+  },
+  "p": {
+    "elements": {}
+  },
+  "eV": {
+    "elements": {}
+  }
 }

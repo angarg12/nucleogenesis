@@ -1,0 +1,212 @@
+B F2 -> BF F
+B N2O -> N2 BO
+B O2 -> BO O
+BF F -> B F2
+BF O -> BO F
+BH F -> H BF
+BO O -> B O2
+Be O2 -> BeO O
+C BH -> CH B
+C C -> C2
+C CH2 -> CH CH
+C F2 -> CF F
+C H2O -> CH OH
+C HF -> CF H
+C N -> CN
+C N2 -> CN N
+C N2 -> CNN
+C NH2 -> CH NH
+C NO -> CN O
+C NO -> CO N
+C NO2 -> CO NO
+C O -> CO
+C O2 -> CO O
+C2 O -> CO C
+C2H H -> C2H2
+C2H H -> H2 C2
+C2H O -> C2O H
+C2H O -> CO CH
+C2H O -> OH C2
+C2H2 C -> H2 C3
+C2H2 F -> C2H HF
+C2H2 H -> C2H3
+C2H2 H -> H2 C2H
+C2H2 O -> C2H OH
+C2H2 O -> CO CH2
+C2H3 H -> C2H2 H2
+C2H3 H -> C2H4
+C2H3 N -> C2H2 NH
+C2H3 O -> C2H2 OH
+C2H3 O -> CO CH3
+C2H4 F -> C2H3 HF
+C2H4 H -> C2H5
+C2H4 H -> H2 C2H3
+C2H4 O -> C2H3 OH
+C2H5 H -> C2H4 H2
+C2H5 H -> C2H6
+C2H5 H -> CH3 CH3
+C2H5 O -> C2H4 OH
+C2H6 F -> C2H5 HF
+C2H6 H -> CH4 CH3
+C2H6 H -> H2 C2H5
+C2H6 O -> C2H5 OH
+C2O H -> CO CH
+C2O N -> CN CO
+C2O O -> CO CO
+CF F -> C F2
+CF F -> CF2
+CF H -> C HF
+CF H -> CH F
+CF N -> CN F
+CF O -> CO F
+CF2 F -> CF3
+CF2 H -> CF HF
+CF3 F -> CF4
+CF3 H -> CF2 HF
+CF4 H -> CF3 HF
+CH F -> C HF
+CH F -> CF H
+CH H -> H2 C
+CH N -> C NH
+CH N -> CN H
+CH O -> CO H
+CH O -> OH C
+CH3 H -> CH4
+CH3 H -> H2 CH2
+CH3 O -> CO H2 H
+CH4 C -> C2H4
+CH4 C -> CH3 CH
+CH4 F -> CH3 HF
+CH4 H -> H2 CH3
+CH4 O -> CH3 OH
+CN C -> C2 N
+CN N -> C N2
+CN N -> CNN
+CN O -> C NO
+CN O -> CO N
+CO C -> C2O
+CO N -> CN O
+CO O -> CO2
+CO2 B -> CO BO
+CO2 C -> CO CO
+CO2 H -> CO OH
+CO2 N -> CO NO
+CO2 O -> CO O2
+CO2 O -> CO3
+CO2 O2 O -> CO2 O3
+F F -> F2
+F O2F -> F2 O2
+F O2F -> F2O2
+F2 H -> HF F
+F2 O -> OF F
+F2O2 F -> F2 O2F
+H BF -> BH F
+H BH -> H2 B
+H CH2 -> CH3
+H CH2 -> H2 CH
+H H -> H2
+H N -> NH
+H NF -> HF N
+H NH -> H2 N
+H NH2 -> H2 NH
+H NH2 -> NH3
+H O -> OH
+H2 C -> CH H
+H2 C -> CH2
+H2 F -> HF H
+H2 N -> H NH
+H2 N -> NH2
+H2 O -> OH H
+H2O F -> OH HF
+H2O H -> H2 OH
+H2O N -> OH NH
+H2O O -> H2 O2
+H2O O -> HO2 H
+H2O O -> OH OH
+H2O2 F -> HO2 HF
+H2O2 H -> H2 HO2
+H2O2 H -> OH H2O
+H2O2 O -> HO2 OH
+HF F -> F2 H
+HF H -> H2 F
+HO2 F -> HF O2
+HO2 H -> H2 O2
+HO2 H -> H2O O
+HO2 H -> H2O2
+HO2 H -> OH OH
+HO2 O -> OH O2
+He O2 O -> He O3
+Li N2O -> N2 LiO
+Li O2 -> LiO2
+N CH2 -> CH NH
+N N -> N2
+N2 F -> FN2
+N2 H -> NH N
+N2 O -> N2O
+N2 O -> NO N
+N2 O O -> N2 O2
+N2 O2 O -> N2 O3
+N2O H -> NO NH
+N2O H -> OH N2
+N2O O -> N2 O2
+N2O O -> NO NO
+NF2 F -> NF3
+NF2 H -> HF NF
+NF2 N -> F FN2
+NF2 N -> NF NF
+NF2 O -> OF NF
+NF3 N -> NF2 NF
+NH N -> N2 H
+NH O -> NO H
+NH O -> OH N
+NH2 F -> HF NH
+NH2 N -> N2 H H
+NH2 N -> NH NH
+NH2 O -> H2 NO
+NH2 O -> OH NH
+NH3 F -> HF NH2
+NH3 H -> H2 NH2
+NH3 O -> OH NH2
+NO H -> NH O
+NO H -> OH N
+NO N -> N2 O
+NO O -> NO2
+NO O -> O2 N
+NO2 H -> OH NO
+NO2 N -> N2 O O
+NO2 N -> N2 O2
+NO2 N -> N2O O
+NO2 N -> NO NO
+NO2 O -> NO3
+NO2 O -> O2 NO
+NO3 F -> NO2 OF
+NO3 H -> OH NO2
+NO3 O -> O2 NO2
+O CH2 -> CH OH
+O CH2 -> CO H H
+O CH2 -> CO H2
+O N -> NO
+O O -> O2
+O2 F -> O2F
+O2 H -> H O O
+O2 H -> HO2
+O2 H -> OH O
+O2 N -> NO O
+O2 O -> O3
+O2 O2 O -> O2 O3
+O2F O -> O2 OF
+O3 F -> O2 OF
+O3 H -> HO2 O
+O3 H -> OH O2
+O3 N -> O2 NO
+O3 O -> O2 O2
+OF H -> HF O
+OF H -> OH F
+OF O -> O2 F
+OH C -> CO H
+OH H -> H2 O
+OH H -> H2O
+OH H2O H -> H2O H2O
+OH N -> NH O
+OH N -> NO H
+OH O -> O2 H

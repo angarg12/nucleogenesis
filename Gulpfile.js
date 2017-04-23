@@ -119,10 +119,15 @@ gulp.task('generate_isotopes', function() {
   return plugins.run('node scripts/generate_isotopes.js build',{silent:true}).exec();
 });
 
+gulp.task('generate_syntheses', function() {
+  return plugins.run('node scripts/generate_syntheses.js build',{silent:true}).exec();
+});
+
 // public tasks
 gulp.task('build', function(callback) {
   runSequence('copy-build',
     'generate_isotopes',
+    'generate_syntheses',
     'populate_player',
     callback);
 });
