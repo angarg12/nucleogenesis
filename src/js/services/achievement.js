@@ -9,6 +9,8 @@ function($timeout, player, data) {
   self.toast = [];
   self.is_toast_visible = false;
 
+  <%= functions %>
+
   this.init = function (){
     self.toast = [];
     self.is_toast_visible = false;
@@ -45,5 +47,18 @@ function($timeout, player, data) {
       }
     }
     return unlocked;
+  };
+
+  this.checkAchievements = function () {
+    for(var unlock in data.unlocks){
+      if(!player.data.unlocks[unlock]){
+        item = data.unlocks[unlock];
+
+        if(this[item.condition]){
+          this.addToast(item.name);
+          player.data.unlocks[unlock] = true;
+        }
+      }
+    }
   };
 }]);

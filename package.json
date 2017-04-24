@@ -16,6 +16,7 @@
   "dependencies": {},
   "devDependencies": {
     "molecular-parser": "jagill/node-molecular-parser",
+    "lodash.template": "latest",
     "gulp": "latest",
     "gulp-cli": "latest",
     "gulp-load-plugins": "latest",

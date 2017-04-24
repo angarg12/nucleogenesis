@@ -104,16 +104,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   };
 
   checkUnlocks = function () {
-    for(var unlock in data.unlocks){
-      if(!player_copy.unlocks[unlock]){
-        item = data.unlocks[unlock];
-
-        if(eval(item.condition)){
-          achievement.addToast(item.name);
-          player_copy.unlocks[unlock] = true;
-        }
-      }
-    }
+    achievement.checkAchievements();
   };
 
   processSyntheses = function () {

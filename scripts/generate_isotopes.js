@@ -2,14 +2,11 @@
 'use strict';
 
 var jsonfile = require('jsonfile');
-var path = require('path');
 
 var args = process.argv.slice(2);
 
-var base_path = path.join(args[0], '/data');
-
-var resources = jsonfile.readFileSync(path.join(base_path, '/resources.json'));
-var elements = jsonfile.readFileSync(path.join(base_path, '/elements.json'));
+var resources = jsonfile.readFileSync(args[0]+'/data/resources.json');
+var elements = jsonfile.readFileSync(args[0]+'/data/elements.json');
 
 for (var element in elements) {
   elements[element].includes = elements[element].includes || [];
@@ -34,9 +31,9 @@ function isotopePrefix(isotope) {
   return "<sup>" + prefix + "</sup>";
 }
 
-jsonfile.writeFileSync(path.join(base_path, '/resources.json'), resources, {
+jsonfile.writeFileSync(args[0]+'/data/resources.json', resources, {
   spaces: 2
 });
-jsonfile.writeFileSync(path.join(base_path, '/elements.json'), elements, {
+jsonfile.writeFileSync(args[0]+'/data/elements.json', elements, {
   spaces: 2
 });

@@ -6,17 +6,15 @@ var parser = require('molecular-parser');
 
 var args = process.argv.slice(2);
 
-var base_path = path.join(args[0], '/data');
-
-var resources = jsonfile.readFileSync(path.join(base_path, '/resources.json'));
-var elements = jsonfile.readFileSync(path.join(base_path, '/elements.json'));
+var resources = jsonfile.readFileSync(args[0]+'/data/resources.json');
+var elements = jsonfile.readFileSync(args[0]+'/data/elements.json');
 
 for (var element in elements) {
   elements[element].syntheses = elements[element].syntheses || [];
 }
 
 var lineReader = require('readline').createInterface({
-  input: require('fs').createReadStream(path.join(base_path, '/raw_syntheses.txt'))
+  input: require('fs').createReadStream(args[0]+'/data/raw_syntheses.txt')
 });
 
 var chosen = ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne'];
@@ -46,13 +44,13 @@ lineReader.on('close', function () {
     throw new Error("Failed to generate syntheses");
   }
 
-  jsonfile.writeFileSync(path.join(base_path, '/resources.json'), resources, {
+  jsonfile.writeFileSync(args[0]+'/data/resources.json', resources, {
     spaces: 2
   });
-  jsonfile.writeFileSync(path.join(base_path, '/elements.json'), elements, {
+  jsonfile.writeFileSync(args[0]+'/data/elements.json', elements, {
     spaces: 2
   });
-  jsonfile.writeFileSync(path.join(base_path, '/syntheses.json'), syntheses, {
+  jsonfile.writeFileSync(args[0]+'/data/syntheses.json', syntheses, {
     spaces: 2
   });
 });
