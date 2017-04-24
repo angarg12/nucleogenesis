@@ -14,7 +14,7 @@ function($http, $q) {
               "encyclopedia",
               "periodic_table",
               "resources",
-              "unlocks",
+              "achievements",
               "radioisotopes",
               "html",
               "syntheses",

@@ -12,7 +12,7 @@ var elements = jsonfile.readFileSync(path.join(base_path,'/elements.json'));
 var generators = jsonfile.readFileSync(path.join(base_path,'/generators.json'));
 var upgrades = jsonfile.readFileSync(path.join(base_path,'/upgrades.json'));
 var encyclopedia = jsonfile.readFileSync(path.join(base_path,'/encyclopedia.json'));
-var unlocks = jsonfile.readFileSync(path.join(base_path,'/unlocks.json'));
+var achievements = jsonfile.readFileSync(path.join(base_path,'/achievements.json'));
 var syntheses = jsonfile.readFileSync(path.join(base_path,'/syntheses.json'));
 
 var start_player = {
@@ -61,9 +61,9 @@ for(var entry in encyclopedia) {
     is_new : true
   };
 }
-start_player.unlocks = {};
-for(var entry in unlocks) {
-  start_player.unlocks[entry] = false;
+start_player.achievements = {};
+for(var entry in achievements) {
+  start_player.achievements[entry] = false;
 }
 start_player.syntheses = {};
 for(var entry in syntheses) {

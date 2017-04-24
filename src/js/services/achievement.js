@@ -35,28 +35,14 @@ function($timeout, player, data) {
     }
   };
 
-  this.numberUnlocks = function () {
-    return Object.keys(data.unlocks).length;
-  };
-
-  this.numberUnlocked = function () {
-    var unlocked = 0;
-    for(var key in player.data.unlocks) {
-      if(player.data.unlocks[key]) {
-        unlocked++;
-      }
-    }
-    return unlocked;
-  };
-
   this.checkAchievements = function () {
-    for(var unlock in data.unlocks){
-      if(!player.data.unlocks[unlock]){
-        item = data.unlocks[unlock];
+    for(var achievement in data.achievements){
+      if(!player.data.achievements[achievement]){
+        item = data.achievements[achievement];
 
         if(this[item.condition]){
           this.addToast(item.name);
-          player.data.unlocks[unlock] = true;
+          player.data.achievements[achievement] = true;
         }
       }
     }

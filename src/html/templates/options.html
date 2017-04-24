@@ -1,9 +1,7 @@
 <div class="tab-pane row">
   <div class="col-lg-2">
-    <button type="button" class="btn btn-default btn-block"
-      ng-click="savegame.save()">Save</button>
-    <button type="button" class="btn btn-default btn-block"
-      ng-click="savegame.reset(true)">Erase save</button>
+    <button type="button" class="btn btn-default btn-block" ng-click="savegame.save()">Save</button>
+    <button type="button" class="btn btn-default btn-block" ng-click="savegame.reset(true)">Erase save</button>
     <br>
     <br>
     <button type="button" class="btn btn-default btn-block" id="exportSave" ng-click="savegame.exportSave()">Export Save</button>
@@ -13,19 +11,8 @@
     </div>
     <button type="button" class="btn btn-default btn-block" id="importSave" ng-click="savegame.importSave()">Import Save</button>
   </div>
-  <div class="col-lg-12" ng-if="achievement.numberUnlocked() > 0">
-    <div ng-if="achievement.numberUnlocked() < 10">
-      <br>
-      Unlocks: {{achievement.numberUnlocked()}}/??
-    </div>
-    <div ng-if="achievement.numberUnlocked() >= 10">
-      <br>
-      Unlocks: {{achievement.numberUnlocked()}}/{{achievement.numberUnlocks()}}
-    </div>
-  </div>
   <div class="col-lg-12">
-    <br>
-    Github: <a target="_blank" href="https://github.com/angarg12/incremental_table_elements">https://github.com/angarg12/incremental_table_elements</a>
+    <br> Github: <a target="_blank" href="https://github.com/angarg12/incremental_table_elements">https://github.com/angarg12/incremental_table_elements</a>
   </div>
   <div class="col-lg-12">
     <a target="_blank" href="./changelog.txt">Changelog</a>

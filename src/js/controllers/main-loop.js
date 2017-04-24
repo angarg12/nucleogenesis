@@ -103,10 +103,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     }
   };
 
-  checkUnlocks = function () {
-    achievement.checkAchievements();
-  };
-
   processSyntheses = function () {
     // We will process the synthesis
     for(var syn in player_copy.syntheses) {
@@ -123,7 +119,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     processDecay();
     processGenerators();
     processSyntheses();
-    checkUnlocks();
+    achievement.checkAchievements();
 
     // and update all at once
     player.data = player_copy;

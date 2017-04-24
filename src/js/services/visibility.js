@@ -107,11 +107,11 @@ angular
   };
 
   isEncyclopediaEntryVisible = function(entry) {
-    return player.data.unlocks[entry];
+    return player.data.achievements[entry];
   };
 
   isReactionVisible = function(entry, reaction) {
-    if(!player.data.unlocks[reaction]){
+    if(!player.data.achievements[reaction]){
       return false;
     }
 
