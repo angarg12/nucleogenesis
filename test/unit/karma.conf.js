@@ -10,9 +10,9 @@ module.exports = function(config) {
       'build/lib/bootstrap.min.js',
       'build/lib/ziggurat.js',
       'build/lib/angular-mocks.js',
-      'build/js/modules/module.js',
-      'build/js/services/*.js',
-      'build/js/controllers/main-loop.js',
+      'build/scripts/modules/module.js',
+      'build/scripts/services/*.js',
+      'build/scripts/controllers/main-loop.js',
       'test/unit/common.js',
       'test/unit/spec/*.js',
       {pattern: 'build/data/*.json', watched: true, served: true, included: false}
@@ -21,7 +21,7 @@ module.exports = function(config) {
     singleRun: true,
     reporters: ['progress', 'coverage'],
     preprocessors: {
-      'build/js/**/*.js': ['coverage']
+      'build/scripts/**/*.js': ['coverage']
     },
     coverageReporter: {
       type: "lcov",

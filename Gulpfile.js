@@ -81,8 +81,8 @@ gulp.task('minify', ['uglify', 'htmlmin', 'cleanCss']);
 
 // copy
 gulp.task('copy-js', function() {
-  return gulp.src('src/js/**')
-    .pipe(gulp.dest('build/js'));
+  return gulp.src('src/scripts/**')
+    .pipe(gulp.dest('build/scripts'));
 });
 
 gulp.task('copy-data', function() {
@@ -110,21 +110,21 @@ gulp.task('copy-build', ['copy-js',  'copy-data', 'copy-html',
                         'copy-css', 'copy-lib']);
 
 gulp.task('populate_player', function() {
-  return plugins.run('node scripts/populate_player.js build',{silent:true}).exec()
+  return plugins.run('node build_scripts/populate_player.js build',{silent:true}).exec()
   .pipe(plugins.rename("start_player.json"))
   .pipe(gulp.dest('build/data'));
 });
 
 gulp.task('generate_isotopes', function() {
-  return plugins.run('node scripts/generate_isotopes.js build',{silent:true}).exec();
+  return plugins.run('node build_scripts/generate_isotopes.js build',{silent:true}).exec();
 });
 
 gulp.task('generate_syntheses', function() {
-  return plugins.run('node scripts/generate_syntheses.js build',{silent:true}).exec();
+  return plugins.run('node build_scripts/generate_syntheses.js build',{silent:true}).exec();
 });
 
 gulp.task('generate_achievement_functions', function() {
-  return plugins.run('node scripts/generate_achievement_functions.js build',{silent:true}).exec();
+  return plugins.run('node build_scripts/generate_achievement_functions.js build',{silent:true}).exec();
 });
 
 // public tasks

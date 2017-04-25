@@ -10,7 +10,7 @@ const fs = require('fs');
 const args = process.argv.slice(2);
 
 var achievements = jsonfile.readFileSync(args[0]+'/data/achievements.json');
-var achievement_service = fs.readFileSync(args[0]+'/js/services/achievement.js').toString();
+var achievement_service = fs.readFileSync(args[0]+'/scripts/services/achievement.js').toString();
 
 const FUNCTION_TEMPLATE = `function <%= name %> (){
   return <%= condition %>;
@@ -34,7 +34,7 @@ for(var i in functions){
 
 var service_template = template(achievement_service);
 
-fs.writeFileSync(args[0]+'/js/services/achievement.js', service_template({'functions': concat_functions}));
+fs.writeFileSync(args[0]+'/scripts/services/achievement.js', service_template({'functions': concat_functions}));
 jsonfile.writeFileSync(args[0] + '/data/achievements.json', achievements, {
   spaces: 2
 });
