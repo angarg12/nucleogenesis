@@ -82,7 +82,7 @@ describe("Element service", function() {
       spec.player.data.resources.p = {number:257};
       spec.player.data.resources.n = {number:258};
       spec.player.data.elements.O = {unlocked:false,generators:{}};
-      spec.player.data.elements.O.generators["Tier 1"] = {level:0};
+      spec.player.data.elements.O.generators["Tier 1"] = 0;
 
       spec.element.buyElement('O');
 
@@ -90,7 +90,7 @@ describe("Element service", function() {
       expect(spec.player.data.resources.p.number).toEqual(1);
       expect(spec.player.data.resources.n.number).toEqual(2);
       expect(spec.player.data.elements.O.unlocked).toEqual(true);
-      expect(spec.player.data.elements.O.generators["Tier 1"].level).toEqual(1);
+      expect(spec.player.data.elements.O.generators["Tier 1"]).toEqual(1);
       expect(spec.player.data.elements_unlocked).toEqual(2);
     });
 
@@ -100,7 +100,7 @@ describe("Element service", function() {
       spec.player.data.resources.p = {number:257};
       spec.player.data.resources.n = {number:258};
       spec.player.data.elements.O = {unlocked:false,generators:{}};
-      spec.player.data.elements.O.generators["Tier 1"] = {level:0};
+      spec.player.data.elements.O.generators["Tier 1"] = 0;
 
       spec.element.buyElement('O');
 
@@ -108,7 +108,7 @@ describe("Element service", function() {
       expect(spec.player.data.resources.p.number).toEqual(257);
       expect(spec.player.data.resources.n.number).toEqual(258);
       expect(spec.player.data.elements.O.unlocked).toEqual(false);
-      expect(spec.player.data.elements.O.generators["Tier 1"].level).toEqual(0);
+      expect(spec.player.data.elements.O.generators["Tier 1"]).toEqual(0);
       expect(spec.player.data.elements_unlocked).toEqual(2);
     });
 

@@ -11,9 +11,9 @@ describe('Game index', function() {
     // we need to load the page to set the player and load it again to load the save
     browser.get('http://localhost:9000/index.html');
 
-    player.elements.H.generators["Tier 1"].level = 10;
-    player.elements.H.generators["Tier 2"].level = 10;
-    player.elements.H.generators["Tier 5"].level = 5;
+    player.elements.H.generators["Tier 1"] = 10;
+    player.elements.H.generators["Tier 2"] = 10;
+    player.elements.H.generators["Tier 5"] = 5;
     LocalStorage.setValue(JSON.stringify(player));
 
     browser.get('http://localhost:9000/index.html');

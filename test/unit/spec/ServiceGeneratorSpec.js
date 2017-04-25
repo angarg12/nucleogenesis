@@ -8,7 +8,7 @@ describe("Generator service", function() {
       spec.player.data = {};
       spec.player.data.elements = {'H':{}};
       spec.player.data.elements.H = {'generators':{}};
-      spec.player.data.elements.H.generators['Tier 1'] = {'level':5};
+      spec.player.data.elements.H.generators['Tier 1'] = 5;
 
       value = spec.generator.generatorPrice('Tier 1','H');
 
@@ -19,7 +19,7 @@ describe("Generator service", function() {
       spec.player.data = {};
       spec.player.data.elements = {'H':{}};
       spec.player.data.elements.H = {'generators':{}};
-      spec.player.data.elements.H.generators['Tier 3'] = {'level':10};
+      spec.player.data.elements.H.generators['Tier 3'] = 10;
 
       value = spec.generator.generatorPrice('Tier 3','H');
 
@@ -30,48 +30,48 @@ describe("Generator service", function() {
       spec.player.data = {elements:{},resources:{}};
       spec.player.data.resources['1H'] = {number:65};
       spec.player.data.elements.H = {generators:{}};
-      spec.player.data.elements.H.generators["Tier 1"] = {level:5};
+      spec.player.data.elements.H.generators["Tier 1"] = 5;
 
       spec.generator.buyGenerators("Tier 1",'H',3);
 
       expect(spec.player.data.resources['1H'].number).toEqual(2);
-      expect(spec.player.data.elements.H.generators["Tier 1"].level).toEqual(8);
+      expect(spec.player.data.elements.H.generators["Tier 1"]).toEqual(8);
     });
 
     it("should purchase as many generators as possible until money runs out requested", function() {
       spec.player.data = {elements:{},resources:{}};
       spec.player.data.resources['1H'] = {number:45};
       spec.player.data.elements.H = {generators:{}};
-      spec.player.data.elements.H.generators["Tier 1"] = {level:5};
+      spec.player.data.elements.H.generators["Tier 1"] = 5;
 
       spec.generator.buyGenerators("Tier 1",'H',3);
 
       expect(spec.player.data.resources['1H'].number).toEqual(4);
-      expect(spec.player.data.elements.H.generators["Tier 1"].level).toEqual(7);
+      expect(spec.player.data.elements.H.generators["Tier 1"]).toEqual(7);
     });
 
     it("should not purchase negative generators", function() {
       spec.player.data = {elements:{},resources:{}};
       spec.player.data.resources['1H'] = {number:10};
       spec.player.data.elements.H = {generators:{}};
-      spec.player.data.elements.H.generators["Tier 1"] = {level:5};
+      spec.player.data.elements.H.generators["Tier 1"] = 5;
 
       spec.generator.buyGenerators("Tier 1",'H',-10);
 
       expect(spec.player.data.resources['1H'].number).toEqual(10);
-      expect(spec.player.data.elements.H.generators["Tier 1"].level).toEqual(5);
+      expect(spec.player.data.elements.H.generators["Tier 1"]).toEqual(5);
     });
 
     it("should not purchase generator if cost is not met", function() {
       spec.player.data = {elements:{},resources:{}};
       spec.player.data.resources['1H'] = {number:10};
       spec.player.data.elements.H = {generators:{}};
-      spec.player.data.elements.H.generators["Tier 1"] = {level:5};
+      spec.player.data.elements.H.generators["Tier 1"] = 5;
 
       spec.generator.buyGenerators("Tier 1",'H',10);
 
       expect(spec.player.data.resources['1H'].number).toEqual(10);
-      expect(spec.player.data.elements.H.generators["Tier 1"].level).toEqual(5);
+      expect(spec.player.data.elements.H.generators["Tier 1"]).toEqual(5);
     });
   });
 
@@ -80,9 +80,9 @@ describe("Generator service", function() {
       spec.data.generators['Tier 1'].upgrades = ['Tier 1-1','Tier 1-2','Tier 1-3'];
       spec.player.data = {elements:{}};
       spec.player.data.elements.H = {upgrades:{}};
-      spec.player.data.elements.H.upgrades['Tier 1-1'] = {bought:true};
-      spec.player.data.elements.H.upgrades['Tier 1-2'] = {bought:true};
-      spec.player.data.elements.H.upgrades['Tier 1-3'] = {bought:false};
+      spec.player.data.elements.H.upgrades['Tier 1-1'] = true;
+      spec.player.data.elements.H.upgrades['Tier 1-2'] = true;
+      spec.player.data.elements.H.upgrades['Tier 1-3'] = false;
 
       value = spec.generator.generatorProduction('Tier 1','H');
 
@@ -93,10 +93,10 @@ describe("Generator service", function() {
       spec.data.generators['Tier 1'].upgrades = ['Tier 1-1','Tier 1-2','Tier 1-3'];
       spec.player.data = {elements:{}};
       spec.player.data.elements.H = {upgrades:{},generators:{}};
-      spec.player.data.elements.H.upgrades['Tier 1-1'] = {bought:true};
-      spec.player.data.elements.H.upgrades['Tier 1-2'] = {bought:true};
-      spec.player.data.elements.H.upgrades['Tier 1-3'] = {bought:false};
-      spec.player.data.elements.H.generators['Tier 1'] = {level:10};
+      spec.player.data.elements.H.upgrades['Tier 1-1'] = true;
+      spec.player.data.elements.H.upgrades['Tier 1-2'] = true;
+      spec.player.data.elements.H.upgrades['Tier 1-3'] = false;
+      spec.player.data.elements.H.generators['Tier 1'] = 10;
 
 
       value = spec.generator.tierProduction('Tier 1','H');
@@ -118,9 +118,9 @@ describe("Generator service", function() {
 
       spec.player.data = {elements:{}};
       spec.player.data.elements.H = {generators:{}};
-      spec.player.data.elements.H.generators['Tier 1'] = {level:1};
-      spec.player.data.elements.H.generators['Tier 2'] = {level:1};
-      spec.player.data.elements.H.generators['Tier 3'] = {level:1};
+      spec.player.data.elements.H.generators['Tier 1'] = 1;
+      spec.player.data.elements.H.generators['Tier 2'] = 1;
+      spec.player.data.elements.H.generators['Tier 3'] = 1;
 
       value = spec.generator.elementProduction('H');
 

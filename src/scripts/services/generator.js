@@ -7,7 +7,7 @@ angular
 '$rootScope',
 function(player, upgrade, data, $rootScope) {
   this.generatorPrice = function (name, element) {
-    var level = player.data.elements[element].generators[name].level;
+    var level = player.data.elements[element].generators[name];
     var price = data.generators[name].price * Math.pow(data.generators[name].priceIncrease, level);
     return Math.ceil(price);
   };
@@ -19,7 +19,7 @@ function(player, upgrade, data, $rootScope) {
     var currency = data.elements[element].main;
     while (i < number && player.data.resources[currency].number >= price) {
       player.data.resources[currency].number -= price;
-      player.data.elements[element].generators[name].level++;
+      player.data.elements[element].generators[name]++;
       price = this.generatorPrice(name, element);
       i++;
     }
@@ -32,13 +32,13 @@ function(player, upgrade, data, $rootScope) {
 
   this.tierProduction = function (name, element) {
     var baseProduction = data.generators[name].power *
-                         player.data.elements[element].generators[name].level;
+                         player.data.elements[element].generators[name];
     return this.upgradedProduction(baseProduction, name, element);
   };
 
   this.upgradedProduction = function (production, name, element) {
     for(var up in data.generators[name].upgrades) {
-        if(player.data.elements[element].upgrades[data.generators[name].upgrades[up]].bought) {
+        if(player.data.elements[element].upgrades[data.generators[name].upgrades[up]]) {
           power = data.upgrades[data.generators[name].upgrades[up]].power;
           production = upgrade.upgradeApply(production, power);
         }

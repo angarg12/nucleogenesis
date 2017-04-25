@@ -63,7 +63,7 @@ angular
     var condition = "";
     for( var dep in generator.dependencies) {
       condition += "player.data.elements[state.current_element].generators['"
-          + generator.dependencies[dep] + "'].level > 0 && ";
+          + generator.dependencies[dep] + "'] > 0 && ";
     }
     condition += "true";
     return eval(condition);
@@ -78,7 +78,7 @@ angular
     }
     for( var dep in upgrade.dependencies) {
       condition += "player.data.elements[state.current_element].upgrades['"
-          + upgrade.dependencies[dep] + "'].bought && ";
+          + upgrade.dependencies[dep] + "'] && ";
     }
     condition += "true";
 

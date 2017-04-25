@@ -76,7 +76,7 @@
             </span>
           </td>
           <td class="animif col-md-1">
-            <div class="pull-left" ng-bind-html="util.trustHTML(util.prettifyNumber(player.data.elements[state.current_element].generators[name].level))"></div>
+            <div class="pull-left" ng-bind-html="util.trustHTML(util.prettifyNumber(player.data.elements[state.current_element].generators[name]))"></div>
           </td>
           <td class="animif col-md-3">
             <div class="pull-left">
@@ -211,8 +211,8 @@
                 </div>
               </td>
               <td class="animif col-md-1" ng-repeat="up in data.generators[generator].upgrades">
-                <a class="btn btn-default" ng-if="visibility.isUpgradeVisible(up)" ng-click="upgrade.buyUpgrade(up, state.current_element)" ng-class="{disabled: data.upgrades[up].price > player.data.resources[state.current_element].number && !player.data.elements[state.current_element].upgrades[up].bought,
-                  active: player.data.elements[state.current_element].upgrades[up].bought}">
+                <a class="btn btn-default" ng-if="visibility.isUpgradeVisible(up)" ng-click="upgrade.buyUpgrade(up, state.current_element)" ng-class="{disabled: data.upgrades[up].price > player.data.resources[state.current_element].number && !player.data.elements[state.current_element].upgrades[up],
+                  active: player.data.elements[state.current_element].upgrades[up]}">
                 {{data.upgrades[up].description}}
                 </a>
               </td>

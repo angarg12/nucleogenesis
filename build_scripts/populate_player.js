@@ -44,15 +44,11 @@ for(var element in elements) {
 for(var element in start_player.elements) {
   start_player.elements[element].upgrades = {};
   for(var upgrade in upgrades) {
-    start_player.elements[element].upgrades[upgrade] = {
-      bought : false
-    };
+    start_player.elements[element].upgrades[upgrade] = false;
   }
   start_player.elements[element].generators = {};
   for(var generator in generators) {
-    start_player.elements[element].generators[generator] = {
-      level : 0
-    };
+    start_player.elements[element].generators[generator] = 0;
   }
 }
 start_player.encyclopedia = {};

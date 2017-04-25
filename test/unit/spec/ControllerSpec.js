@@ -62,7 +62,7 @@ describe("controller main-loop", function() {
     it("should generate isotopes", function() {
       spec.player.data = spec.data.start_player;
       spec.player.data.elements.O.unlocked = true;
-      spec.player.data.elements.O.generators['Tier 1'].level = 200;
+      spec.player.data.elements.O.generators['Tier 1'] = 200;
       spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
       spyOn(spec.util,'getPoisson').and.returnValue(0);
 
@@ -76,7 +76,7 @@ describe("controller main-loop", function() {
     it("should generate isotopes 2", function() {
       spec.player.data = spec.data.start_player;
       spec.player.data.elements.O.unlocked = true;
-      spec.player.data.elements.O.generators['Tier 1'].level = 1200;
+      spec.player.data.elements.O.generators['Tier 1'] = 1200;
       spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
       spyOn(spec.util,'getPoisson').and.returnValue(0);
 
@@ -90,7 +90,7 @@ describe("controller main-loop", function() {
     it("should generate isotopes 3", function() {
       spec.player.data = spec.data.start_player;
       spec.player.data.elements.O.unlocked = true;
-      spec.player.data.elements.O.generators['Tier 1'].level = 32000;
+      spec.player.data.elements.O.generators['Tier 1'] = 32000;
       spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
       spyOn(spec.util,'getPoisson').and.returnValue(0);
 
