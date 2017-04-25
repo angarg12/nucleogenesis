@@ -22,7 +22,6 @@ ratings:
   - "**.md"
 exclude_paths:
   - "Gulpfile.js"
-  - "jasmine/"
+  - "test/"
   - "lib/"
   - "node_modules/"
-  - "protractor/"

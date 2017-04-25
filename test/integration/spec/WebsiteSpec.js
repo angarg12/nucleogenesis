@@ -3,7 +3,7 @@ describe('Game index', function() {
   var LocalStorage = require("../helper/LocalStorage.js");
 
   beforeEach(function(){
-    player = require('../../build/data/start_player.json');
+    player = require('../../../build/data/start_player.json');
     browser.ignoreSynchronization = true;
   });
 
@@ -17,7 +17,6 @@ describe('Game index', function() {
     LocalStorage.setValue(JSON.stringify(player));
 
     browser.get('http://localhost:9000/index.html');
-
 
     expect(element(by.id('production_total')).getText()).toEqual('13,110');
   });

@@ -1,6 +1,6 @@
 pretest/
 node_modules/
-jasmine/coverage
+test/unit/coverage
 coverage/
 build/
 dist/

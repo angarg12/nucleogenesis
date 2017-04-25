@@ -11,14 +11,14 @@ var Server = require('karma').Server;
 // unit test
 gulp.task('karma', function (done) {
   new Server({
-    configFile: __dirname + '/jasmine/karma.conf.js',
+    configFile: __dirname + '/test/unit/karma.conf.js',
     singleRun: true
   }, done).start();
 });
 
 // coverage
 gulp.task('coveralls', function() {
-  return gulp.src('jasmine/coverage/**/lcov.info')
+  return gulp.src('test/unit/coverage/**/lcov.info')
     .pipe(plugins.coveralls());
 });
 
@@ -35,9 +35,9 @@ gulp.task('webdriver_update', plugins.protractor.webdriver_update_specific({
 }));
 
 gulp.task('protractor', ['connect', 'webdriver_update'], function() {
-  return gulp.src(["protractor/spec/**.js"], { read: false })
+  return gulp.src(["test/integration/spec/**.js"], { read: false })
     .pipe(plugins.protractor.protractor({
-        configFile: "protractor/protractor.conf.js"
+        configFile: "test/integration/protractor.conf.js"
     }))
     .on('error', function(e) { throw e; });
   });

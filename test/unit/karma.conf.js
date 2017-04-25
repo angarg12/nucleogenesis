@@ -1,6 +1,6 @@
 module.exports = function(config) {
   config.set({
-    basePath: '../',
+    basePath: '../../',
     frameworks: ['jasmine-jquery', 'jasmine'],
     files: [
       'build/lib/jquery.min.js',
@@ -13,8 +13,8 @@ module.exports = function(config) {
       'build/js/modules/module.js',
       'build/js/services/*.js',
       'build/js/controllers/main-loop.js',
-      'jasmine/common.js',
-      'jasmine/spec/*.js',
+      'test/unit/common.js',
+      'test/unit/spec/*.js',
       {pattern: 'build/data/*.json', watched: true, served: true, included: false}
     ],
     browsers: ['PhantomJS'],
@@ -25,7 +25,7 @@ module.exports = function(config) {
     },
     coverageReporter: {
       type: "lcov",
-      dir: "jasmine/coverage/"
+      dir: "test/unit/coverage/"
     }
   });
 };
