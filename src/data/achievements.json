@@ -1,70 +1,70 @@
 {
-      "hydrogen": {
-        "name": "Hydrogen",
-        "condition": "player.data.elements.H.generators['Tier 1'].level > 0"
-      },
-      "periodic_table": {
-        "name": "Periodic table",
-        "condition": "player.data.resources['e-'].unlocked && player.data.resources.p.unlocked && player.data.resources.n.unlocked"
-      },
-      "isotope": {
-        "name": "Isotope",
-        "condition": "player.data.resources['2H'].unlocked"
-      },
-      "ion": {
-        "name": "Ion",
-        "condition": "player.data.resources['1H-'].unlocked"
-      },
-      "radioactivity": {
-        "name": "Radioactivity",
-        "condition": "player.data.resources['3H'].unlocked"
-      },
-      "reactions": {
-        "name": "Reactions",
-        "condition": "player.data.resources['e-'].unlocked"
-      },
-      "electron": {
-        "name": "Electron",
-        "condition": "player.data.resources['e-'].unlocked"
-      },
-      "proton": {
-        "name": "Proton",
-        "condition": "player.data.resources['p'].unlocked"
-      },
-      "neutron": {
-        "name": "Neutron",
-        "condition": "player.data.resources['n'].unlocked"
-      },
-      "energy": {
-        "name": "Energy",
-        "condition": "player.data.resources['eV'].unlocked"
-      },
-      "half_life": {
-        "name": "Half-life",
-        "condition": "player.data.resources['3H'].unlocked"
-      },
-      "oxygen": {
-        "name": "Oxygen",
-        "condition": "player.data.resources['16O'].unlocked"
-      },
-      "redox": {
-        "name": "Redox",
-        "condition": "player.data.resources['e-'].unlocked"
-      },
-      "nuclear_binding_energy": {
-        "name": "Nuclear binding energy",
-        "condition": "player.data.resources['e-'].unlocked && player.data.resources.p.unlocked"
-      },
-      "beta_decay": {
-        "name": "Beta decay",
-        "condition": "player.data.resources['3H'].unlocked"
-      },
-      "molecule": {
-        "name": "Molecule",
-        "condition": "player.data.resources['H2'].unlocked || player.data.resources['O2'].unlocked || player.data.resources['O3'].unlocked"
-      },
-      "synthesis": {
-        "name": "Synthesis",
-        "condition": "player.data.resources['1H-'].unlocked"
-      }
-    }
+  "hydrogen": {
+    "name": "Hydrogen",
+    "condition": "player.elements.H.generators['Tier 1'].level > 0"
+  },
+  "periodic_table": {
+    "name": "Periodic table",
+    "condition": "player.resources['e-'].unlocked && player.resources.p.unlocked && player.resources.n.unlocked"
+  },
+  "isotope": {
+    "name": "Isotope",
+    "condition": "player.resources['2H'].unlocked"
+  },
+  "ion": {
+    "name": "Ion",
+    "condition": "player.resources['1H-'].unlocked"
+  },
+  "radioactivity": {
+    "name": "Radioactivity",
+    "condition": "player.resources['3H'].unlocked"
+  },
+  "reactions": {
+    "name": "Reactions",
+    "condition": "player.resources['e-'].unlocked"
+  },
+  "electron": {
+    "name": "Electron",
+    "condition": "player.resources['e-'].unlocked"
+  },
+  "proton": {
+    "name": "Proton",
+    "condition": "player.resources['p'].unlocked"
+  },
+  "neutron": {
+    "name": "Neutron",
+    "condition": "player.resources['n'].unlocked"
+  },
+  "energy": {
+    "name": "Energy",
+    "condition": "player.resources['eV'].unlocked"
+  },
+  "half_life": {
+    "name": "Half-life",
+    "condition": "player.resources['3H'].unlocked"
+  },
+  "oxygen": {
+    "name": "Oxygen",
+    "condition": "player.resources['16O'].unlocked"
+  },
+  "redox": {
+    "name": "Redox",
+    "condition": "player.resources['e-'].unlocked"
+  },
+  "nuclear_binding_energy": {
+    "name": "Nuclear binding energy",
+    "condition": "player.resources['e-'].unlocked && player.resources.p.unlocked"
+  },
+  "beta_decay": {
+    "name": "Beta decay",
+    "condition": "player.resources['3H'].unlocked"
+  },
+  "molecule": {
+    "name": "Molecule",
+    "condition": "player.resources['H2'].unlocked || player.resources['O2'].unlocked || player.resources['O3'].unlocked"
+  },
+  "synthesis": {
+    "name": "Synthesis",
+    "condition": "player.resources['1H-'].unlocked"
+  }
+}

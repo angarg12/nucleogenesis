@@ -119,7 +119,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     processDecay();
     processGenerators();
     processSyntheses();
-    achievement.checkAchievements();
+    achievement.checkAchievements(player_copy);
 
     // and update all at once
     player.data = player_copy;
@@ -128,14 +128,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   };
 
   self.startup = function () {
-    if(localStorage.getItem("playerStoredITE") !== null) {
-      savegame.load();
-    }
-    if(player.data === undefined) {
-      state.init();
-    }
-    // init();
-    achievement.init();
+    savegame.load();
     $timeout(self.update, 1);
     $interval(savegame.save, 10000);
   };

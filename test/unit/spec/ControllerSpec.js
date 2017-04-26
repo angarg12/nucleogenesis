@@ -21,14 +21,10 @@ describe("controller main-loop", function() {
     });
 
     it("should load the game", function() {
-      spyOn(localStorage, "getItem").and.returnValue(null);
-
       // flush onload
       spec.$timeout.flush();
 
-      expect(spec.savegame.load).not.toHaveBeenCalled();
-      expect(localStorage.getItem).toHaveBeenCalled();
-      expect(spec.state.init).toHaveBeenCalled();
+      expect(spec.savegame.load).toHaveBeenCalled();
     });
 
     it("should load the player", function() {
@@ -51,6 +47,10 @@ describe("controller main-loop", function() {
   });
 
   describe('update', function() {
+    beforeEach(function() {
+      spyOn(spec.achievement, "checkAchievements");
+    });
+
     it("should not update player if nothing is purchased", function() {
       spec.player.data = angular.copy(spec.data.start_player);
 

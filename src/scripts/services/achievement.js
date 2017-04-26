@@ -2,9 +2,8 @@ angular
 .module('incremental')
 .service('achievement',
 ['$timeout',
-'player',
 'data',
-function($timeout, player, data) {
+function($timeout, data) {
   self = this;
   self.toast = [];
   self.is_toast_visible = false;
@@ -35,14 +34,14 @@ function($timeout, player, data) {
     }
   };
 
-  this.checkAchievements = function () {
+  this.checkAchievements = function (player) {
     for(var achievement in data.achievements){
-      if(!player.data.achievements[achievement]){
+      if(!player.achievements[achievement]){
         item = data.achievements[achievement];
 
-        if(this[item.condition]){
+        if(this[item.condition](player)){
           this.addToast(item.name);
-          player.data.achievements[achievement] = true;
+          player.achievements[achievement] = true;
         }
       }
     }

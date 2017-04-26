@@ -12,7 +12,7 @@ const args = process.argv.slice(2);
 var achievements = jsonfile.readFileSync(args[0]+'/data/achievements.json');
 var achievement_service = fs.readFileSync(args[0]+'/scripts/services/achievement.js').toString();
 
-const FUNCTION_TEMPLATE = `function <%= name %> (){
+const FUNCTION_TEMPLATE = `this.<%= name %> = function (player){
   return <%= condition %>;
 };`;
 

@@ -4,7 +4,6 @@ describe("Upgrade service", function() {
   commonSpec(spec);
 
   describe('purchase functions', function() {
-
     it("should purchase an upgrade if cost is met", function() {
       spec.player.data = {elements:{},resources:{}};
       spec.player.data.resources['1H'] = {number:110};

@@ -10,10 +10,20 @@ function(player, state, data) {
     var d = new Date();
   };
 
+  function initSave(){
+    player.data = data.start_player;
+    state.init();
+  }
+
   this.load = function () {
     try {
-      player.data = JSON.parse(localStorage.getItem("playerStoredITE"));
-      this.versionControl();
+      var stored_player = localStorage.getItem("playerStoredITE");
+      if(stored_player !== null) {
+        player.data = JSON.parse(stored_player);
+        this.versionControl();
+      } else {
+        initSave();
+      }
     } catch (err) {
       alert("Error loading savegame, reset forced.");
       this.reset(false);
@@ -28,7 +38,7 @@ function(player, state, data) {
 
     if(confirmation === true) {
       localStorage.removeItem("playerStoredITE");
-      state.init();
+      initSave();
     }
   };
 
