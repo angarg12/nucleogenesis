@@ -100,6 +100,12 @@ gulp.task('copy-css', function() {
     .pipe(gulp.dest('build/styles'));
 });
 
+// FIXME replace by bower
+gulp.task('copy-fonts', function() {
+  return gulp.src('src/fonts/**')
+    .pipe(gulp.dest('build/fonts'));
+});
+
 // FIXME: replace by bower task
 gulp.task('copy-lib', function() {
   return gulp.src('lib/**')
@@ -107,7 +113,7 @@ gulp.task('copy-lib', function() {
 });
 
 gulp.task('copy-build', ['copy-js',  'copy-data', 'copy-html',
-                        'copy-css', 'copy-lib']);
+                        'copy-css', 'copy-fonts','copy-lib']);
 
 gulp.task('populate_player', function() {
   return plugins.run('node build_scripts/populate_player.js build',{silent:true}).exec()

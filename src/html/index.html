@@ -27,7 +27,7 @@
   <script type="text/javascript" src="scripts/services/data.js"></script>
   <script type="text/javascript" src="scripts/services/state.js"></script>
   <script type="text/javascript" src="scripts/controllers/main-loop.js"></script>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="styles/materialdesignicons.min.css" />
   <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css" id="theme_css">
   <link rel="stylesheet" type="text/css" href="styles/main.css">
   <title>The Incremental Table of Elements</title>
@@ -69,13 +69,13 @@
           <li ui-sref="matter" ui-sref-active="active">
             <a>
                 Elements
-                <i class="material-icons" ng-if="visibility.elementsHasNew()">error</i>
+                <i class="mdi mdi-18px mdi-alert-decagram" ng-if="visibility.elementsHasNew()"></i>
               </a>
           </li>
           <li ui-sref="encyclopedia" ui-sref-active="active">
             <a>
                 Encyclopedia
-                <i class="material-icons" ng-if="visibility.encyclopediaHasNew()">error</i>
+                <i class="mdi mdi-18px mdi-alert-decagram" ng-if="visibility.encyclopediaHasNew()"></i>
               </a>
           </li>
           <li ng-if="player.data.achievements.periodic_table" ui-sref="table" ui-sref-active="active">
