@@ -1,7 +1,7 @@
 exports.config = {
   framework: 'jasmine',
   specs: [
-    '/build/lib/jquery.min.js',
+    '/build/bower_components/jquery/dist/jquery.min.js',
     '/test/integration/helper/*.js',
     '/test/integration/spec/*.js'],
   multiCapabilities: [{

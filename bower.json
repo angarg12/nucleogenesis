@@ -1,0 +1,36 @@
+{
+  "name": "nucleogenesis",
+  "description": "Chemistry based incremental idle game",
+  "main": "index.html",
+  "authors": [
+    "Andrés <angarg12@gmail.com>"
+  ],
+  "license": "GPL-2.0",
+  "keywords": [
+    "incremental",
+    "idle",
+    "game",
+    "javascript",
+    "chemistry"
+  ],
+  "homepage": "https://github.com/angarg12/incremental_table_elements",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-animate": "^1.6.4",
+    "angular-ui-router": "^0.4.2",
+    "mdi": "^1.9.33",
+    "bootstrap": "^3.3.7",
+    "ziggurat": "angarg12/ziggurat"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.6.4"
+  }
+}

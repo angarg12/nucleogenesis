@@ -15,6 +15,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "bower": "latest",
     "molecular-parser": "jagill/node-molecular-parser",
     "lodash.template": "latest",
     "gulp": "latest",
@@ -23,6 +24,7 @@
     "gulp-jshint": "latest",
     "jshint": "latest",
     "run-sequence": "latest",
+    "gulp-bower": "latest",
     "gulp-coveralls": "latest",
     "gulp-connect": "latest",
     "gulp-protractor": "latest",
