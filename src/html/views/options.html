@@ -5,10 +5,7 @@
     <br>
     <br>
     <button type="button" class="btn btn-default btn-block" id="exportSave" ng-click="savegame.exportSave()">Export Save</button>
-    <div id="exportSaveContents" style="display: none">
-      Copy this text:
-      <input id="exportSaveText" type="text" readonly>
-    </div>
+    <input id="exportSaveText" type="text" value="{{state.export}}" readonly>
     <button type="button" class="btn btn-default btn-block" id="importSave" ng-click="savegame.importSave()">Import Save</button>
   </div>
   <div class="col-lg-12">

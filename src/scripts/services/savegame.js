@@ -45,9 +45,7 @@ function(player, state, data) {
   this.exportSave = function () {
     var exportText = btoa(JSON.stringify(player.data));
 
-    $("#exportSaveContents").toggle();
-    $("#exportSaveText").val(exportText);
-    $("#exportSaveText").select();
+    state.export = exportText;
   };
 
   this.importSave = function () {
