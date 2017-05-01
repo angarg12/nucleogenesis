@@ -34,6 +34,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   $scope.visibility = visibility;
   $scope.element = element;
   $scope.state = state;
+  $scope.loading = true;
   var self = this;
   var player_copy = null;
 
@@ -129,6 +130,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
 
   self.startup = function () {
     savegame.load();
+    $scope.loading = false;
     $timeout(self.update, 1);
     $interval(savegame.save, 10000);
   };

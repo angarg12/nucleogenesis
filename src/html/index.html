@@ -50,7 +50,7 @@
 </head>
 
 <body class="ng-scope theme-none" ng-app="incremental" ng-controller="main-loop">
-  <div class="container">
+  <div>
     <div class="navbar navbar-default animif">
       <div class="container">
         <div class="navbar-header">
@@ -64,19 +64,22 @@
       </div>
     </div>
     <div>
+      <div ng-if="loading" class="loader" />
+    </div>
+    <div ng-if="!loading">
       <div class="ng-scope ng-isolate-scope animif">
         <ul class="nav nav-tabs ng-scope">
           <li ui-sref="matter" ui-sref-active="active">
             <a>
-                Elements
-                <i class="mdi mdi-18px mdi-alert-decagram" ng-if="visibility.elementsHasNew()"></i>
-              </a>
+              Elements
+              <i class="mdi mdi-18px mdi-alert-decagram" ng-if="visibility.elementsHasNew()"></i>
+            </a>
           </li>
           <li ui-sref="encyclopedia" ui-sref-active="active">
             <a>
-                Encyclopedia
-                <i class="mdi mdi-18px mdi-alert-decagram" ng-if="visibility.encyclopediaHasNew()"></i>
-              </a>
+              Encyclopedia
+              <i class="mdi mdi-18px mdi-alert-decagram" ng-if="visibility.encyclopediaHasNew()"></i>
+            </a>
           </li>
           <li ng-if="player.data.achievements.periodic_table" ui-sref="table" ui-sref-active="active">
             <a>Periodic Table</a>
@@ -88,7 +91,6 @@
       </div>
       <ui-view></ui-view>
     </div>
-  </div>
   </div>
   <div class="achieve achievealert animif container alert alert-success alert-dismissible" ng-show="achievement.is_toast_visible" ng-cloak>
     <button type="button" class="close" data-dismiss="alert" ng-click="achievement.removeToast()">

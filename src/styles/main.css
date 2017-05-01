@@ -1,256 +1,274 @@
+/* We need this because otherwise ng-animate doesn't hide the element */
+
+
+/* https://github.com/angular/angular.js/issues/8224 */
+
+.loader.ng-animate {
+  -webkit-animation: none 0s;
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 16px solid #f3f3f3;
+  /* Light grey */
+  border-top: 16px solid #3498db;
+  /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .navbar-brand {
-  padding-bottom:55px;
+  padding-bottom: 55px;
 }
 
 .navbar-brand small {
-  display:block;
-  font-size:85%;
+  display: block;
+  font-size: 85%;
 }
 
-body{
-    padding-bottom:170px;
+body {
+  padding-bottom: 170px;
 }
 
 .affix {
-	top:0;
-	width:20%;
+  top: 0;
+  width: 20%;
 }
 
 .element-table tr:first-child td {
-    border: 0px none;
+  border: 0px none;
 }
 
 .right-box {
-	padding-left:0px;
+  padding-left: 0px;
 }
 
 .no_bottom {
-    margin-bottom: 0px;
+  margin-bottom: 0px;
 }
 
-.table > tbody > tr > td, .table > tbody > tr > td > span {
-     vertical-align: middle;
+.table>tbody>tr>td, .table>tbody>tr>td>span {
+  vertical-align: middle;
 }
 
 .icon {
-	font-size:150%;
+  font-size: 150%;
 }
 
 .by-icon {
-	line-height:2.14305;
+  line-height: 2.14305;
 }
 
 .table_tab {
-	text-align: center;
+  text-align: center;
 }
 
 .title {
-	font-size: 30px;
-	font-weight: 500;
-	line-height: 33px;
-	margin-bottom: 10px;
-	margin-top: 20px;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 33px;
+  margin-bottom: 10px;
+  margin-top: 20px;
 }
 
 iframe {
-    display:block;
-    height:600px;
-    width:100%;
+  display: block;
+  height: 600px;
+  width: 100%;
 }
 
 .achievealert {
-  position:fixed;
-  bottom:0;
-  left:0;
-  width:100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
+
 .achieve {
-  text-align:center;
+  text-align: center;
 }
+
 .achieve h3 {
-  margin-top:0px;
-  margin-bottom:0px;
-  font-weight:bold;
-  padding-left:1em;
-  padding-right:1em;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-weight: bold;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
-.animif,
-.animif.ng-enter.ng-enter-active,
-.animif.ng-leave {
-    opacity: 1;
+.animif, .animif.ng-enter.ng-enter-active, .animif.ng-leave {
+  opacity: 1;
 }
 
-.animif.ng-hide,
-.animif.ng-enter {
-    opacity: 0;
+.animif.ng-hide, .animif.ng-enter {
+  opacity: 0;
 }
 
-.animif.ng-hide-add,
-.animif.ng-hide-remove,
-.animif.ng-enter {
-    -webkit-transition: 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) all;
-    -moz-transition: 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) all;
-    -ms-transition: 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) all;
-    -o-transition: 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) all;
-    transition: 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) all;
+.animif.ng-hide-add, .animif.ng-hide-remove, .animif.ng-enter {
+  -webkit-transition: 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) all;
+  -moz-transition: 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) all;
+  -ms-transition: 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) all;
+  -o-transition: 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) all;
+  transition: 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) all;
 }
 
 .button-small {
-	width:36px;
-	height:36px;
+  width: 36px;
+  height: 36px;
 }
+
 
 /* Periodic Table */
 
-.element_table 
-{	
-	display: inline-block;
-	text-align: center;
-    float: none;
-    margin: auto;
-    position: relative;
+.element_table {
+  display: inline-block;
+  text-align: center;
+  float: none;
+  margin: auto;
+  position: relative;
 }
 
-.clear
-{
-	clear: both;
+.clear {
+  clear: both;
 }
 
-.fl
-{
-	float: left;
+.fl {
+  float: left;
 }
 
-.element_row
-{
-	margin: 0px;
-	height: 50px;
-	padding: 4px 0 0 4px;
+.element_row {
+  margin: 0px;
+  height: 50px;
+  padding: 4px 0 0 4px;
 }
 
-.element
-{
-	position: relative;
-	height: 45px;
-	width: 45px;
-	margin-right: 2px;
+.element {
+  position: relative;
+  height: 45px;
+  width: 45px;
+  margin-right: 2px;
 }
 
-.element_purchased
-{
-	background-color:#a2d34d;	
+.element_purchased {
+  background-color: #a2d34d;
 }
 
-.element_purchased_dark
-{
-	background-color:#458a05;	
+.element_purchased_dark {
+  background-color: #458a05;
 }
 
-.element_unavailable
-{
-	background-color:#cfcfcf;	
+.element_unavailable {
+  background-color: #cfcfcf;
 }
 
-.element_unavailable_dark
-{
-	background-color:#858585;	
+.element_unavailable_dark {
+  background-color: #858585;
 }
 
-.element_cost_not_met
-{
-	background-color:#f07049;	
+.element_cost_not_met {
+  background-color: #f07049;
 }
 
-.element_cost_not_met_dark
-{
-	background-color:#e72a00;	
+.element_cost_not_met_dark {
+  background-color: #e72a00;
 }
 
-.element_cost_met
-{
-	background-color:#eada24;	
+.element_cost_met {
+  background-color: #eada24;
 }
 
-.element_cost_met_dark
-{
-	background-color:#9d6d00;	
+.element_cost_met_dark {
+  background-color: #9d6d00;
 }
 
-.element_blank
-{
-	height: 45px;
-	width: 45px;
-	margin-right: 2px;
+.element_blank {
+  height: 45px;
+  width: 45px;
+  margin-right: 2px;
 }
 
-.element_no
-{
-    height: 15px;
-    margin-top: 6px;
-    text-align: center;
-    font-size: 11px;
-	color:white;
+.element_no {
+  height: 15px;
+  margin-top: 6px;
+  text-align: center;
+  font-size: 11px;
+  color: white;
 }
 
-.element_name
-{
-	text-align: center;
-	margin-top: 12px;
-    font-size: 18px;
-    line-height: 15px;
+.element_name {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 18px;
+  line-height: 15px;
 }
 
-.element_info
-{
-	left: 98px;
-	position: absolute;
-	top: 49px;
-	overflow: hidden;
+.element_info {
+  left: 98px;
+  position: absolute;
+  top: 49px;
+  overflow: hidden;
 }
 
-.element_basic
-{
-	margin-top:5px;
-	width: 93px;
-	bottom: 2px;	
-	height: 98px;
-	text-align: center;
-	padding-top: 36px;
-    font-size:13px;
-    line-height:15px;
+.element_basic {
+  margin-top: 5px;
+  width: 93px;
+  bottom: 2px;
+  height: 98px;
+  text-align: center;
+  padding-top: 36px;
+  font-size: 13px;
+  line-height: 15px;
 }
 
-.element_details
-{
-	margin-top:5px;
-	width: 150px;
-	bottom: 2px;	
-	text-align: left;
-	margin-left: 15px;
+.element_details {
+  margin-top: 5px;
+  width: 150px;
+  bottom: 2px;
+  text-align: left;
+  margin-left: 15px;
 }
 
-.bottom
-{
-	position:absolute;
-	bottom:0;
+.bottom {
+  position: absolute;
+  bottom: 0;
 }
 
-.element_symbol
-{
-    font-size:40px;
-    padding-bottom:20px;
-    line-height:15px;
-}
-.symbol_name
-{
-    line-height:29px;
-	height: 29px;
-	color:white;
-	font-weight: bold;
+.element_symbol {
+  font-size: 40px;
+  padding-bottom: 20px;
+  line-height: 15px;
 }
 
-.blank_row
-{
-    height:20px;
+.symbol_name {
+  line-height: 29px;
+  height: 29px;
+  color: white;
+  font-weight: bold;
+}
+
+.blank_row {
+  height: 20px;
 }
