@@ -35,8 +35,11 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   $scope.element = element;
   $scope.state = state;
   $scope.loading = true;
+
   var self = this;
   var player_copy = null;
+  // FIXME read this from npm
+  $scope.version = '1.0.4';
 
   // since load calls are asynchronous, we need to do this to make sure that the data
   // is loaded before the services

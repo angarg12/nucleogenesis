@@ -1,0 +1,1 @@
+angular.value('data', <%= data %>);
