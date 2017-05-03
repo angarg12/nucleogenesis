@@ -41,12 +41,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   // FIXME read this from npm
   $scope.version = '1.0.4';
 
-  // since load calls are asynchronous, we need to do this to make sure that the data
-  // is loaded before the services
-  data.loadData().then(function() {
-	  $timeout(self.startup);
-  });
-
   processDecay = function () {
     for(var i = 0; i < data.radioisotopes.length; i++) {
       var resource = data.radioisotopes[i];
@@ -137,4 +131,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     $timeout(self.update, 1);
     $interval(savegame.save, 10000);
   };
+
+  $timeout(self.startup);
 }]);

@@ -10,7 +10,7 @@ describe("Visible service", function() {
       spec.player.data.elements.H = {unlocked:true};
       spec.data.elements.H.includes = ['1H'];
       spec.player.data.elements.C = {unlocked:false};
-      spec.data.elements.C.includes = ['C'];
+      spec.data.elements.C.includes = ['8C'];
       spec.player.data.elements.O = {unlocked:false};
       spec.data.elements.O.includes = ['16O'];
       spec.player.data.resources['1H'] = {unlocked:true};
@@ -261,9 +261,7 @@ describe("Visible service", function() {
 
     it("should return false if an element has no new items", function() {
       spec.state.current_element = 'H';
-      spec.player.data = {achievements:{},resources:{}};
-      spec.player.data.achievements = {};
-      spec.player.data.achievements.synthesis = true;
+      spec.player.data = {resources:{}};
       spec.player.data.resources['2H'] = {unlocked:true, is_new:false};
       spec.player.data.resources['3H'] = {unlocked:false, is_new:true};
       spec.player.data.resources['1H-'] = {unlocked:false, is_new:false};

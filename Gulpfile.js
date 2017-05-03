@@ -79,6 +79,8 @@ gulp.task('cleanCss', function() {
 
 gulp.task('minify', ['uglify', 'htmlmin', 'cleanCss']);
 
+// dependencies
+
 gulp.task('bower', function() {
   return plugins.bower();
 });
@@ -112,10 +114,16 @@ gulp.task('copy-lib', function() {
 gulp.task('copy-build', ['copy-js',  'copy-data', 'copy-html',
                         'copy-css', 'copy-lib']);
 
+// build
+
 gulp.task('populate_player', function() {
   return plugins.run('node build_scripts/populate_player.js build',{silent:true}).exec()
   .pipe(plugins.rename("start_player.json"))
   .pipe(gulp.dest('build/data'));
+});
+
+gulp.task('populate_data', function() {
+  return plugins.run('node build_scripts/populate_data.js build',{silent:true}).exec();
 });
 
 gulp.task('generate_isotopes', function() {
@@ -130,15 +138,28 @@ gulp.task('generate_achievement_functions', function() {
   return plugins.run('node build_scripts/generate_achievement_functions.js build',{silent:true}).exec();
 });
 
+gulp.task('concat', function() {
+  return gulp.src(['build/scripts/modules/*.js',
+    'build/scripts/*.js',
+    'build/scripts/config/*.js',
+    'build/scripts/services/*.js',
+    'build/scripts/controllers/*.js'])
+    .pipe(plugins.concat('app.min.js'))
+    .pipe(gulp.dest('build/scripts'));
+});
+
 // public tasks
 gulp.task('build', function(callback) {
   runSequence(
+    'clean',
     'bower',
     'copy-build',
     'generate_isotopes',
     'generate_syntheses',
     'populate_player',
+    'populate_data',
     'generate_achievement_functions',
+    'concat',
     callback);
 });
 

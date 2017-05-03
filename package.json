@@ -27,6 +27,7 @@
     "gulp-bower": "latest",
     "gulp-coveralls": "latest",
     "gulp-connect": "latest",
+    "gulp-concat": "latest",
     "gulp-protractor": "latest",
     "gulp-concat": "latest",
     "gulp-htmlmin": "latest",

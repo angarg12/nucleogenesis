@@ -4,7 +4,6 @@ describe("Synthesis service", function() {
   commonSpec(spec);
 
   describe('prices and cost', function() {
-
     it("should check if the cost of a synthesis is met", function() {
       spec.player.data = {};
       spec.player.data.resources = {};
@@ -160,6 +159,8 @@ describe("Synthesis service", function() {
 
   describe('update', function() {
     it("should process synthesis", function() {
+      spyOn(spec.achievement,'checkAchievements');
+
       spec.player.data = spec.data.start_player;
       spec.player.data.syntheses.H2O = {};
       spec.player.data.syntheses.H2O.number = 2;

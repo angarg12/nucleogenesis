@@ -11,11 +11,11 @@ module.exports = function(config) {
       'build/bower_components/ziggurat/ziggurat.js',
       'build/bower_components/angular-mocks/angular-mocks.js',
       'build/scripts/modules/module.js',
+      'build/scripts/data.js',
       'build/scripts/services/*.js',
       'build/scripts/controllers/main-loop.js',
       'test/unit/common.js',
-      'test/unit/spec/*.js',
-      {pattern: 'build/data/*.json', watched: true, served: true, included: false}
+      'test/unit/spec/*.js'
     ],
     browsers: ['PhantomJS'],
     singleRun: true,

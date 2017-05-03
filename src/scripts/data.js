@@ -1,1 +1,1 @@
-angular.value('data', <%= data %>);
+angular.module('incremental').value('data', <%= data %>);
