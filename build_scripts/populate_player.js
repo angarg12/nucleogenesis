@@ -27,7 +27,6 @@ start_player.resources = {};
 for(var entry in resources) {
   start_player.resources[entry] = {
     number : 0,
-    is_new : true,
     unlocked : false
   };
 }
@@ -51,12 +50,12 @@ for(var element in start_player.elements) {
     start_player.elements[element].generators[generator] = 0;
   }
 }
-start_player.encyclopedia = {};
-for(var entry in encyclopedia) {
-  start_player.encyclopedia[entry] = {
-    is_new : true
-  };
-}
+// start_player.encyclopedia = {};
+// for(var entry in encyclopedia) {
+//   start_player.encyclopedia[entry] = {
+//     is_new : true
+//   };
+// }
 start_player.achievements = {};
 for(var entry in achievements) {
   start_player.achievements[entry] = false;
@@ -65,8 +64,7 @@ start_player.syntheses = {};
 for(var entry in syntheses) {
   start_player.syntheses[entry] = {
     number : 0,
-    active : 0,
-    is_new : true
+    active : 0
   };
 }
 

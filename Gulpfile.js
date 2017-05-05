@@ -156,9 +156,9 @@ gulp.task('build', function(callback) {
     'copy-build',
     'generate_isotopes',
     'generate_syntheses',
+    'generate_achievement_functions',
     'populate_player',
     'populate_data',
-    'generate_achievement_functions',
     'concat',
     callback);
 });

@@ -2,8 +2,9 @@ angular
 .module('incremental')
 .service('reaction',
 ['player',
+'visibility',
 '$rootScope',
-function(player, $rootScope) {
+function(player, visibility, $rootScope) {
   this.isReactionCostMet = function (number, reaction) {
     var keys = Object.keys(reaction.reactant);
     for(var i = 0; i < keys.length; i++) {
@@ -33,7 +34,10 @@ function(player, $rootScope) {
         var produced = number * reaction.product[product[i]];
         var current = player_data.resources[product[i]].number;
         player_data.resources[product[i]].number = Number.parseFloat((current + produced).toFixed(4));
-        player_data.resources[product[i]].unlocked = true;
+        if(!player_data.resources[product[i]].unlocked){
+          player_data.resources[product[i]].unlocked = true;
+          visibility.addNew(product[i]);
+        }
       }
     }
   };

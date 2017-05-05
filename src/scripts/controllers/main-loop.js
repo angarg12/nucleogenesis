@@ -60,7 +60,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         for(var product in data.resources[resource].decay.decay_product) {
           player_copy.resources[product].number += data.resources[resource].decay.decay_product[product] *
                                                      production;
-          player_copy.resources[product].unlocked = true;
+          if(!player_copy.resources[product].unlocked){
+            player_copy.resources[product].unlocked = true;
+            visibility.addNew(product);
+          }
         }
       }
     }
@@ -88,7 +91,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
 
         if(production > 0) {
           player_copy.resources[isotopes[i]].number += production;
-          player_copy.resources[isotopes[i]].unlocked = true;
+          if(!player_copy.resources[isotopes[i]].unlocked){
+            player_copy.resources[isotopes[i]].unlocked = true;
+            visibility.addNew(isotopes[i]);
+          }
         }
         remaining -= production;
       }
@@ -96,7 +102,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
       if(remaining > 0) {
         var last = isotopes[isotopes.length - 1];
         player_copy.resources[last].number += remaining;
-        player_copy.resources[last].unlocked = true;
+        if(!player_copy.resources[last].unlocked){
+          player_copy.resources[last].unlocked = true;
+          visibility.addNew(last);
+        }
       }
     }
   };

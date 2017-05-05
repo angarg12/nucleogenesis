@@ -1,10 +1,10 @@
 <div class="tab-pane row">
   <div class="col-lg-3">
     <table class="table table-hover element-table no_bottom" data-spy="affix" data-offset-top="150">
-      <tbody class="container" ng-repeat="key in visibility.visibleResources()" ng-mouseover="player.data.resources[key].is_new = false">
+      <tbody class="container" ng-repeat="key in visibility.visibleResources()" ng-mouseover="visibility.removeNew(key)">
         <tr class="animif row">
           <td class="col-lg-2">
-            <i class="mdi mdi-18px mdi-alert-decagram" ng-if="player.data.resources[key].is_new"></i>
+            <i class="mdi mdi-18px mdi-alert-decagram" ng-if="visibility.hasNew(key)"></i>
           </td>
           <td class="col-lg-4">
             <span class="pull-left by-icon" ng-bind-html="util.trustHTML(util.getHTML(key))"></span>
@@ -157,10 +157,10 @@
           <h3>Syntheses</h3>
           <table class="table">
             <tbody>
-              <tr class="animif" ng-repeat="syn in visibility.visibleSyntheses()" ng-mouseover="player.data.syntheses[syn].is_new = false">
+              <tr class="animif" ng-repeat="syn in visibility.visibleSyntheses()" ng-mouseover="visibility.removeNew(key)">
                 <td class="col-md-4" width=50%>
                   <div class="pull-left" ng-class="{'text-muted': player.data.syntheses[syn].active <= 0}">
-                    <i class="mdi mdi-18px mdi-alert-decagram" ng-if="player.data.syntheses[syn].is_new"></i>
+                    <i class="mdi mdi-18px mdi-alert-decagram" ng-if="visibility.hasNew(syn)"></i>
                     <span ng-bind-html="util.trustHTML(format.reactionFormat(synthesis.synthesisPower(syn),data.syntheses[syn]))"></span>
                   </div>
                 </td>

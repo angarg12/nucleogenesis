@@ -4,7 +4,8 @@ angular
 ['player',
 'state',
 'data',
-function(player, state, data) {
+'achievement',
+function(player, state, data, achievement) {
   this.save = function () {
     localStorage.setItem("playerStoredITE", JSON.stringify(player.data));
     var d = new Date();
@@ -13,6 +14,7 @@ function(player, state, data) {
   function initSave(){
     player.data = data.start_player;
     state.init();
+    achievement.init();
   }
 
   this.load = function () {

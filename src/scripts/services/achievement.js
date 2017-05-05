@@ -3,7 +3,8 @@ angular
 .service('achievement',
 ['$timeout',
 'data',
-function($timeout, data) {
+'visibility',
+function($timeout, data, visibility) {
   self = this;
   self.toast = [];
   self.is_toast_visible = false;
@@ -41,6 +42,7 @@ function($timeout, data) {
 
         if(this[item.condition](player)){
           this.addToast(item.name);
+          visibility.addNew(achievement);
           player.achievements[achievement] = true;
         }
       }

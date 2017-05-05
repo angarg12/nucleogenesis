@@ -5,6 +5,8 @@ angular
 'data',
 'state',
  function(player, data, state) {
+  var new_elements = [];
+
   visible = function(items, func) {
     var visibles = [];
     for(var item in items) {
@@ -144,8 +146,7 @@ angular
 
   this.elementsHasNew = function() {
     for( var key in data.elements) {
-      if(player.data.elements[key] !== undefined
-          && player.data.elements[key].unlocked && this.elementHasNew(key)) {
+      if(this.elementHasNew(key)) {
         return true;
       }
     }
@@ -155,8 +156,7 @@ angular
   this.elementHasNew = function(element) {
     var includes = data.elements[element].includes;
     for( var key in includes) {
-      if(player.data.resources[includes[key]].unlocked
-          && player.data.resources[includes[key]].is_new) {
+      if(this.hasNew(includes[key])) {
         return true;
       }
     }
@@ -164,11 +164,25 @@ angular
   };
 
   this.encyclopediaHasNew = function() {
-    for( var entry in player.data.encyclopedia) {
-      if(isEncyclopediaEntryVisible(entry) && player.data.encyclopedia[entry].is_new) {
+    for( var entry in data.encyclopedia) {
+      if(this.hasNew(entry)) {
         return true;
       }
     }
     return false;
+  };
+
+  this.hasNew = function(entry) {
+    return new_elements.indexOf(entry) !== -1;
+  };
+
+  this.addNew = function(entry) {
+    new_elements.push(entry);
+  };
+
+  this.removeNew = function(entry) {
+    if(new_elements.indexOf(entry) !== -1) {
+      new_elements.splice(new_elements.indexOf(entry),1);
+    }
   };
 }]);
