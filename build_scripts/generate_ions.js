@@ -1,4 +1,5 @@
 /*jslint node: true */
+/*jslint esversion: 6 */
 'use strict';
 
 var jsonfile = require('jsonfile');

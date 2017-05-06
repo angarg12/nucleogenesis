@@ -16,6 +16,8 @@
   "dependencies": {},
   "devDependencies": {
     "bower": "latest",
+    "gulp-babel": "latest",
+    "babel-preset-es2015": "latest",
     "molecular-parser": "jagill/node-molecular-parser",
     "lodash.template": "latest",
     "gulp": "latest",

@@ -1,3 +1,7 @@
+/*jslint node: true */
+/*jslint esversion: 6 */
+'use strict';
+
 angular
 .module('incremental')
 .controller('main-loop',
@@ -37,11 +41,11 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   $scope.loading = true;
 
   var self = this;
-  var player_copy = null;
+  let player_copy = null;
   // FIXME read this from npm
   $scope.version = '1.0.4';
 
-  processDecay = function () {
+  function processDecay () {
     for(var i = 0; i < data.radioisotopes.length; i++) {
       var resource = data.radioisotopes[i];
       if(player_copy.resources[resource].unlocked) {
@@ -67,9 +71,9 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         }
       }
     }
-  };
+  }
 
-  processGenerators = function () {
+  function processGenerators () {
     // We will simulate the production of isotopes proportional to their ratio
     for(var element in player_copy.elements) {
       if(player_copy.elements[element].unlocked === false){
@@ -108,9 +112,9 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         }
       }
     }
-  };
+  }
 
-  processSyntheses = function () {
+  function processSyntheses () {
     // We will process the synthesis
     for(var syn in player_copy.syntheses) {
       var power = synthesis.synthesisPower(syn);
@@ -118,7 +122,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
         reaction.react(power, data.syntheses[syn], player_copy);
       }
     }
-  };
+  }
 
   self.update = function () {
     // do the update in a copy

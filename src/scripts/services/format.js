@@ -1,9 +1,13 @@
+/*jslint node: true */
+/*jslint esversion: 6 */
+'use strict';
+
 angular
 .module('incremental')
 .service('format',
 ['player',
 'util',
-function(player, util) {  
+function(player, util) {
   /*
    * Formats in HTML a compound i.e. a collection of resources of
    * the form x + y + z

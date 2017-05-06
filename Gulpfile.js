@@ -1,3 +1,7 @@
+/*jslint node: true */
+/*jslint esversion: 6 */
+'use strict';
+
 // Include gulp
 var gulp = require('gulp');
 var del = require('del');
@@ -138,12 +142,15 @@ gulp.task('generate_achievement_functions', function() {
   return plugins.run('node build_scripts/generate_achievement_functions.js build',{silent:true}).exec();
 });
 
-gulp.task('concat', function() {
+gulp.task('babel', function() {
   return gulp.src(['build/scripts/modules/*.js',
     'build/scripts/*.js',
     'build/scripts/config/*.js',
     'build/scripts/services/*.js',
     'build/scripts/controllers/*.js'])
+    .pipe(plugins.babel({
+      presets: ['es2015']
+    }))
     .pipe(plugins.concat('app.min.js'))
     .pipe(gulp.dest('build/scripts'));
 });
@@ -159,7 +166,7 @@ gulp.task('build', function(callback) {
     'generate_achievement_functions',
     'populate_player',
     'populate_data',
-    'concat',
+    'babel',
     callback);
 });
 

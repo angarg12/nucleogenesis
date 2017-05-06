@@ -1,3 +1,7 @@
+/*jslint node: true */
+/*jslint esversion: 6 */
+'use strict';
+
 angular
 .module('incremental')
 .service('generator',
@@ -39,7 +43,7 @@ function(player, upgrade, data, $rootScope) {
   this.upgradedProduction = function (production, name, element) {
     for(var up in data.generators[name].upgrades) {
         if(player.data.elements[element].upgrades[data.generators[name].upgrades[up]]) {
-          power = data.upgrades[data.generators[name].upgrades[up]].power;
+          let power = data.upgrades[data.generators[name].upgrades[up]].power;
           production = upgrade.upgradeApply(production, power);
         }
       }

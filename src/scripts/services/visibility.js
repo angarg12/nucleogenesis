@@ -1,188 +1,192 @@
+/*jslint node: true */
+/*jslint esversion: 6 */
+'use strict';
+
 angular
-.module('incremental')
-.service('visibility',
-['player',
-'data',
-'state',
- function(player, data, state) {
-  var new_elements = [];
+  .module('incremental')
+  .service('visibility', ['player',
+    'data',
+    'state',
+    function (player, data, state) {
+      var new_elements = [];
 
-  visible = function(items, func) {
-    var visibles = [];
-    for(var item in items) {
-      if(func(item)) {
-        visibles.push(item);
+      function visible(items, func) {
+        var visibles = [];
+        for (var item in items) {
+          if (func(item)) {
+            visibles.push(item);
+          }
+        }
+        return visibles;
       }
-    }
-    return visibles;
-  };
 
-  this.visibleElements = function() {
-    return visible(data.elements, isElementVisible);
-  };
+      this.visibleElements = function () {
+        return visible(data.elements, isElementVisible);
+      };
 
-  this.visibleGenerators = function() {
-    return visible(data.generators, isGeneratorVisible);
-  };
+      this.visibleGenerators = function () {
+        return visible(data.generators, isGeneratorVisible);
+      };
 
-  this.visibleResources = function() {
-    return visible(data.resources, isResourceVisible);
-  };
+      this.visibleResources = function () {
+        return visible(data.resources, isResourceVisible);
+      };
 
-  this.visibleEncyclopediaEntries = function() {
-    return visible(data.encyclopedia, isEncyclopediaEntryVisible);
-  };
+      this.visibleEncyclopediaEntries = function () {
+        return visible(data.encyclopedia, isEncyclopediaEntryVisible);
+      };
 
-  this.visibleRedox = function() {
-    return visible(data.redox, isRedoxVisible);
-  };
+      this.visibleRedox = function () {
+        return visible(data.redox, isRedoxVisible);
+      };
 
-  this.visibleBindings = function() {
-    return visible(data.binding_energy, isBindingVisible);
-  };
+      this.visibleBindings = function () {
+        return visible(data.binding_energy, isBindingVisible);
+      };
 
-  this.visibleSyntheses = function() {
-    return visible(data.syntheses, isSynthesisVisible);
-  };
+      this.visibleSyntheses = function () {
+        return visible(data.syntheses, isSynthesisVisible);
+      };
 
-  isElementVisible = function(element) {
-    if(data.elements[element].disabled) {
-      return false;
-    }
+      function isElementVisible(element) {
+        if (data.elements[element].disabled) {
+          return false;
+        }
 
-    for(var index in data.elements[element].includes){
-      var resource = data.elements[element].includes[index];
-      if (player.data.resources[resource].unlocked) {
-        return true;
-      }
-    }
+        for (var index in data.elements[element].includes) {
+          var resource = data.elements[element].includes[index];
+          if (player.data.resources[resource].unlocked) {
+            return true;
+          }
+        }
 
-    return false;
-  };
-
-  isGeneratorVisible = function(name) {
-    var generator = data.generators[name];
-    var condition = "";
-    for( var dep in generator.dependencies) {
-      condition += "player.data.elements[state.current_element].generators['"
-          + generator.dependencies[dep] + "'] > 0 && ";
-    }
-    condition += "true";
-    return eval(condition);
-  };
-
-  // FIXME use eval for the time being, refactor to preprocess conditional functions
-  this.isUpgradeVisible = function(name) {
-    var upgrade = data.upgrades[name];
-    var condition = "";
-    for( var pre in upgrade.preconditions) {
-      condition += upgrade.preconditions[pre] + " && ";
-    }
-    for( var dep in upgrade.dependencies) {
-      condition += "player.data.elements[state.current_element].upgrades['"
-          + upgrade.dependencies[dep] + "'] && ";
-    }
-    condition += "true";
-
-    return eval(condition);
-  };
-
-  isResourceVisible = function(name) {
-    if(!player.data.resources[name].unlocked){
-      return false;
-    }
-
-    // This is for global resources e.g. protons, which do not
-    // belong to any element
-    var elements = data.resources[name].elements;
-    if(Object.keys(elements).length === 0){
-      return true;
-    }
-
-    for(var element in elements){
-      if(state.current_element === element){
-        return true;
-      }
-    }
-
-    return false;
-  };
-
-  isEncyclopediaEntryVisible = function(entry) {
-    return player.data.achievements[entry];
-  };
-
-  isReactionVisible = function(entry, reaction) {
-    if(!player.data.achievements[reaction]){
-      return false;
-    }
-
-    for(var reactant in entry.reactant){
-      if(!player.data.resources[reactant].unlocked){
         return false;
       }
-    }
 
-    for(var element in entry.elements){
-      if(state.current_element === entry.elements[element]){
-        return true;
+      function isGeneratorVisible(name) {
+        var generator = data.generators[name];
+        var condition = "";
+        for (var dep in generator.dependencies) {
+          condition += "player.data.elements[state.current_element].generators['" +
+            generator.dependencies[dep] + "'] > 0 && ";
+        }
+        condition += "true";
+        return eval(condition);
       }
-    }
 
-    return false;
-  };
+      // FIXME use eval for the time being, refactor to preprocess conditional functions
+      this.isUpgradeVisible = function (name) {
+        var upgrade = data.upgrades[name];
+        var condition = "";
+        for (var pre in upgrade.preconditions) {
+          condition += upgrade.preconditions[pre] + " && ";
+        }
+        for (var dep in upgrade.dependencies) {
+          condition += "player.data.elements[state.current_element].upgrades['" +
+            upgrade.dependencies[dep] + "'] && ";
+        }
+        condition += "true";
 
-  isRedoxVisible = function(entry) {
-    return isReactionVisible(data.redox[entry], 'redox');
-  };
+        return eval(condition);
+      };
 
-  isBindingVisible = function(entry) {
-    return isReactionVisible(data.binding_energy[entry], 'nuclear_binding_energy');
-  };
+      function isResourceVisible(name) {
+        if (!player.data.resources[name].unlocked) {
+          return false;
+        }
 
-  isSynthesisVisible = function(entry) {
-    return isReactionVisible(data.syntheses[entry], 'synthesis');
-  };
+        // This is for global resources e.g. protons, which do not
+        // belong to any element
+        var elements = data.resources[name].elements;
+        if (Object.keys(elements).length === 0) {
+          return true;
+        }
 
-  this.elementsHasNew = function() {
-    for( var key in data.elements) {
-      if(this.elementHasNew(key)) {
-        return true;
+        for (var element in elements) {
+          if (state.current_element === element) {
+            return true;
+          }
+        }
+
+        return false;
       }
-    }
-    return false;
-  };
 
-  this.elementHasNew = function(element) {
-    var includes = data.elements[element].includes;
-    for( var key in includes) {
-      if(this.hasNew(includes[key])) {
-        return true;
+      function isEncyclopediaEntryVisible(entry) {
+        return player.data.achievements[entry];
       }
-    }
-    return false;
-  };
 
-  this.encyclopediaHasNew = function() {
-    for( var entry in data.encyclopedia) {
-      if(this.hasNew(entry)) {
-        return true;
+      function isReactionVisible(entry, reaction) {
+        if (!player.data.achievements[reaction]) {
+          return false;
+        }
+
+        for (var reactant in entry.reactant) {
+          if (!player.data.resources[reactant].unlocked) {
+            return false;
+          }
+        }
+
+        for (var element in entry.elements) {
+          if (state.current_element === entry.elements[element]) {
+            return true;
+          }
+        }
+
+        return false;
       }
+
+      function isRedoxVisible(entry) {
+        return isReactionVisible(data.redox[entry], 'redox');
+      }
+
+      function isBindingVisible(entry) {
+        return isReactionVisible(data.binding_energy[entry], 'nuclear_binding_energy');
+      }
+
+      function isSynthesisVisible(entry) {
+        return isReactionVisible(data.syntheses[entry], 'synthesis');
+      }
+
+      this.elementsHasNew = function () {
+        for (var key in data.elements) {
+          if (this.elementHasNew(key)) {
+            return true;
+          }
+        }
+        return false;
+      };
+
+      this.elementHasNew = function (element) {
+        var includes = data.elements[element].includes;
+        for (var key in includes) {
+          if (this.hasNew(includes[key])) {
+            return true;
+          }
+        }
+        return false;
+      };
+
+      this.encyclopediaHasNew = function () {
+        for (var entry in data.encyclopedia) {
+          if (this.hasNew(entry)) {
+            return true;
+          }
+        }
+        return false;
+      };
+
+      this.hasNew = function (entry) {
+        return new_elements.indexOf(entry) !== -1;
+      };
+
+      this.addNew = function (entry) {
+        new_elements.push(entry);
+      };
+
+      this.removeNew = function (entry) {
+        if (new_elements.indexOf(entry) !== -1) {
+          new_elements.splice(new_elements.indexOf(entry), 1);
+        }
+      };
     }
-    return false;
-  };
-
-  this.hasNew = function(entry) {
-    return new_elements.indexOf(entry) !== -1;
-  };
-
-  this.addNew = function(entry) {
-    new_elements.push(entry);
-  };
-
-  this.removeNew = function(entry) {
-    if(new_elements.indexOf(entry) !== -1) {
-      new_elements.splice(new_elements.indexOf(entry),1);
-    }
-  };
-}]);
+  ]);
