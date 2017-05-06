@@ -59,7 +59,11 @@ lineReader.on('close', function () {
 function vectorToMap(vector){
   var map = {};
   for(var i in vector){
-    map[vector[i]] = map[vector[i]]+1 || 1;
+    let resource = vector[i];
+    if(elements[resource] !== undefined){
+      resource = elements[resource].main;
+    }
+    map[resource] = map[resource]+1 || 1;
   }
   return map;
 }
