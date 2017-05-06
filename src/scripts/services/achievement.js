@@ -1,5 +1,3 @@
-/*jslint node: true */
-/*jslint esversion: 6 */
 'use strict';
 
 angular
@@ -9,7 +7,7 @@ angular
 'data',
 'visibility',
 function($timeout, data, visibility) {
-  self = this;
+  let self = this;
   self.toast = [];
   self.is_toast_visible = false;
 
@@ -42,7 +40,7 @@ function($timeout, data, visibility) {
   this.checkAchievements = function (player) {
     for(var achievement in data.achievements){
       if(!player.achievements[achievement]){
-        item = data.achievements[achievement];
+        let item = data.achievements[achievement];
 
         if(this[item.condition](player)){
           this.addToast(item.name);

@@ -1,0 +1,23 @@
+{
+  "maxerr": 50,
+
+  "bitwise": true,
+  "camelcase": true,
+  "forin": false,
+  "newcap": true,
+  "quotmark": "single",
+  "undef": true,
+  "unused": true,
+  "strict": true,
+  "varstmt": true,
+
+  "esversion": 6,
+  "globalstrict": true,
+
+  "globals": {
+    "angular": false,
+    "localStorage": false,
+    "aota": false,
+    "btob": false
+  }
+}
