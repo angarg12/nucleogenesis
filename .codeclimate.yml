@@ -8,9 +8,6 @@ engines:
       - javascript
   eslint:
     enabled: true
-    checks:
-      guard-for-in:
-        enabled: false
   fixme:
     enabled: true
   markdownlint:
@@ -23,5 +20,3 @@ ratings:
 exclude_paths:
   - "Gulpfile.js"
   - "test/"
-  - "lib/"
-  - "node_modules/"

@@ -1,0 +1,72 @@
+{
+  // http://eslint.org/docs/rules/
+
+  "ecmaFeatures": {
+    "blockBindings": true,                     // enable let and const (aka block bindings)
+    "forOf": true,                             // enable for-of loops
+  },
+
+  "env": {
+    "browser": true,     // browser global variables
+  },
+
+  "globals": {
+    // e.g. "angular": true
+  },
+
+  "rules": {
+    ////////// Possible Errors //////////
+
+    "no-comma-dangle": 1,         // disallow trailing commas in object literals
+    "no-cond-assign": 1,          // disallow assignment in conditional expressions
+    "no-console": 1,              // disallow use of console (off by default in the node environment)
+    "no-constant-condition": 1,   // disallow use of constant expressions in conditions
+    "no-empty": 1,                // disallow empty statements
+    "no-empty-class": 1,          // disallow the use of empty character classes in regular expressions
+    "no-extra-boolean-cast": 1,   // disallow double-negation boolean casts in a boolean context
+    "no-extra-parens": 1,         // disallow unnecessary parentheses (off by default)
+    "no-extra-semi": 1,           // disallow unnecessary semicolons
+    "no-unreachable": 1,          // disallow unreachable statements after a return, throw, continue, or break statement
+    "use-isnan": 1,               // disallow comparisons with the value NaN
+    "valid-typeof": 1,            // Ensure that the results of typeof are compared against a valid string
+
+
+    ////////// Best Practices //////////
+
+    "curly": 1,                 // specify curly brace conventions for all control statements
+    "default-case": 1,          // require default case in switch statements (off by default)
+    "dot-notation": 1,          // encourages use of dot notation whenever possible
+    "eqeqeq": 1,                // require the use of === and !==
+    "guard-for-in": 0,          // make sure for-in loops have an if statement (off by default)
+    "no-eq-null": 1,            // disallow comparisons to null without a type-checking operator (off by default)
+    "no-eval": 1,               // disallow use of eval()
+    "no-floating-decimal": 1,   // disallow the use of leading or trailing decimal points in numeric literals (off by default)
+    "no-implied-eval": 1,       // disallow use of eval()-like methods
+    "no-iterator": 1,           // disallow usage of __iterator__ property
+    "no-multi-spaces": 1,       // disallow use of multiple spaces
+    "no-octal": 1,              // disallow use of octal literals
+    "no-octal-escape": 1,       // disallow use of octal escape sequences in string literals, such as var foo = "Copyright \251";
+    "no-redeclare": 1,          // disallow declaring the same variable more then once
+    "no-return-assign": 1,      // disallow use of assignment in return statement
+    "no-self-compare": 1,       // disallow comparisons where both sides are exactly the same (off by default)
+    "no-warning-comments": 1,   // disallow usage of configurable warning terms in comments, e.g. TODO or FIXME (off by default)
+    "radix": 1,                 // require use of the second argument for parseInt() (off by default)
+
+    ////////// Strict Mode //////////
+
+    "strict": 1,          // controls location of Use Strict Directives
+
+    ////////// Variables //////////
+
+    "no-shadow": 1,                   // disallow declaration of variables already declared in the outer scope
+    "no-shadow-restricted-names": 1,  // disallow shadowing of names such as arguments
+    "no-undef": 1,                    // disallow use of undeclared variables unless mentioned in a /*global */ block
+    "no-undef-init": 1,               // disallow use of undefined when initializing variables
+    "no-undefined": 1,                // disallow use of undefined variable (off by default)
+    "no-unused-vars": 1,              // disallow declaration of variables that are not used in the code
+
+    ////////// ECMAScript 6 //////////
+
+    "no-var": 1,          // require let or const instead of var (off by default)
+  }
+}
