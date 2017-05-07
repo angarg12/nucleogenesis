@@ -107,6 +107,9 @@ function elementsFromHalf(half, synth_elements, key){
   for (var i in half) {
     var breakdown = parser.decomposeFormula(i);
     for (var j in breakdown) {
+      if (elements[j].includes.indexOf(i) === -1) {
+        elements[j].includes.push(i);
+      }
       // we add the elements involved in both parts
       if (synth_elements.indexOf(j) === -1) {
         synth_elements.push(j);

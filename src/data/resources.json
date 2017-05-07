@@ -6,12 +6,6 @@
     },
     "charge": -1
   },
-  "H2": {
-    "html": "H<sub>2</sub>",
-    "elements": {
-      "H": 1
-    }
-  },
   "3He+": {
     "html": "<sup>3</sup>He<sup>+</sup>",
     "elements": {

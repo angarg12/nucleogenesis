@@ -24,7 +24,7 @@
     "ionization_energy": [13.5984],
     "electron_affinity": [-0.7545, 5.9498],
     "main": "1H",
-    "redox": ["1H+", "1H-1"],
+    "redox": ["1H+", "1H-"],
     "number": 1
   },
   "He": {
