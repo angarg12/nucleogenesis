@@ -28,7 +28,7 @@ function(numberFilter, $sce, $locale, data) {
   };
 
   this.prettifyNumber = function (number) {
-    if(typeof number == 'undefined') {
+    if(typeof number == 'undefined' || number === null) {
       return;
     }
     if(number === "") {
@@ -55,6 +55,7 @@ function(numberFilter, $sce, $locale, data) {
   // and if you use decimals, it attaches 0's at the end
   var mangleCeroes = function(input, fractionSize) {
     //Get formatted value
+
     var formattedValue = numberFilter(input, fractionSize);
     //get the decimalSepPosition
     var decimalIdx = formattedValue.indexOf(formats.DECIMAL_SEP);
