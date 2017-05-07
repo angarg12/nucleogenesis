@@ -20,12 +20,6 @@ gulp.task('karma', function (done) {
   }, done).start();
 });
 
-// coverage
-gulp.task('coveralls', function() {
-  return gulp.src('test/unit/coverage/**/lcov.info')
-    .pipe(plugins.coveralls());
-});
-
 // e2e test
 gulp.task('connect', function() {
   return plugins.connect.server({
@@ -50,38 +44,38 @@ gulp.task('disconnect', function() {
   return plugins.connect.serverClose();
 });
 
-// linting
-gulp.task('jshint',function(){
-  gulp.src('src/**/*.js')
-  .pipe(plugins.jshint())
-  .pipe(plugins.jshint.reporter('default'));
-});
-
 // clean
 gulp.task('clean',function(){
   return del(['dist','build']);
 });
 
-// minify
+// dist
+
 gulp.task('htmlmin', function() {
-  return gulp.src('src/**/*.html')
+  return gulp.src('build/**/*.html')
     .pipe(plugins.htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('build/'));
+    .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('uglify', function() {
-  return gulp.src('src/**/*.js')
+  return gulp.src('build/scripts/app.min.js')
     .pipe(plugins.uglify())
-    .pipe(gulp.dest('build/'));
+    .pipe(gulp.dest('dist/scripts'));
 });
 
 gulp.task('cleanCss', function() {
-  return gulp.src('styles/*.css')
+  return gulp.src('build/**/*.css')
     .pipe(plugins.cleanCss())
-    .pipe(gulp.dest('build/'));
+    .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('minify', ['uglify', 'htmlmin', 'cleanCss']);
+
+// FIXME can we do this with a parametric task?
+gulp.task('copy-lib-dist', function() {
+  return gulp.src('bower_components/**')
+    .pipe(gulp.dest('dist/bower_components'));
+});
 
 // dependencies
 
@@ -170,13 +164,20 @@ gulp.task('build', function(callback) {
     callback);
 });
 
+gulp.task('build-unit-test', function(callback) {
+  runSequence('build', 'karma', callback);
+});
+
+gulp.task('dist', function(callback) {
+  runSequence('build', 'minify', 'copy-lib-dist', callback);
+});
+
 gulp.task('unit-test', function(callback) {
-  runSequence('build', 'karma', 'coveralls',
-              callback);
+  runSequence('dist', 'karma', callback);
 });
 
 gulp.task('e2e-test', function(callback) {
-  runSequence('build', 'protractor', 'disconnect',
+  runSequence('dist', 'protractor', 'disconnect',
               callback);
 });
 
