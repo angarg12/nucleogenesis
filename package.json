@@ -20,6 +20,7 @@
     "babel-preset-es2015": "latest",
     "molecular-parser": "jagill/node-molecular-parser",
     "lodash.template": "latest",
+    "node-natural-sort": "latest",
     "gulp": "latest",
     "gulp-cli": "latest",
     "gulp-load-plugins": "latest",

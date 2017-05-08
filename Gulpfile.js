@@ -136,6 +136,10 @@ gulp.task('generate_achievement_functions', function() {
   return plugins.run('node build_scripts/generate_achievement_functions.js build',{silent:true}).exec();
 });
 
+gulp.task('sort_resources', function() {
+  return plugins.run('node build_scripts/sort_resources.js build',{silent:true}).exec();
+});
+
 gulp.task('babel', function() {
   return gulp.src(['build/scripts/modules/*.js',
     'build/scripts/*.js',
@@ -158,6 +162,7 @@ gulp.task('build', function(callback) {
     'generate_isotopes',
     'generate_syntheses',
     'generate_achievement_functions',
+    'sort_resources',
     'populate_player',
     'populate_data',
     'babel',
