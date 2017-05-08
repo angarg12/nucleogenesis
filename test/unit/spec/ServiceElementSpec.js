@@ -10,7 +10,7 @@ describe("Element service", function() {
 
       value = spec.element.elementPrice('O');
 
-      expect(value).toEqual(256);
+      expect(value).toEqual(16);
     });
 
     it("should calculate element price 2", function() {
@@ -20,7 +20,7 @@ describe("Element service", function() {
       value = spec.element.elementPrice('Sn');
 
       // without the precision it doesn't work!!
-      expect(value.toPrecision(6)).toBeCloseTo(8.0828128e+38.toPrecision(6),6);
+      expect(value.toPrecision(6)).toBeCloseTo(1600,6);
     });
 
     it("should check if the cost of an element is met", function() {
@@ -86,9 +86,9 @@ describe("Element service", function() {
 
       spec.element.buyElement('O');
 
-      expect(spec.player.data.resources['e-'].number).toEqual(0);
-      expect(spec.player.data.resources.p.number).toEqual(1);
-      expect(spec.player.data.resources.n.number).toEqual(2);
+      expect(spec.player.data.resources['e-'].number).toEqual(240);
+      expect(spec.player.data.resources.p.number).toEqual(241);
+      expect(spec.player.data.resources.n.number).toEqual(242);
       expect(spec.player.data.elements.O.unlocked).toEqual(true);
       expect(spec.player.data.elements.O.generators["Tier 1"]).toEqual(1);
       expect(spec.player.data.elements_unlocked).toEqual(2);
@@ -96,17 +96,17 @@ describe("Element service", function() {
 
     it("should not purchase element if cost is not met", function() {
       spec.player.data = {elements:{},resources:{},elements_unlocked:2};
-      spec.player.data.resources['e-'] = {number:256};
-      spec.player.data.resources.p = {number:257};
-      spec.player.data.resources.n = {number:258};
+      spec.player.data.resources['e-'] = {number:1};
+      spec.player.data.resources.p = {number:20};
+      spec.player.data.resources.n = {number:30};
       spec.player.data.elements.O = {unlocked:false,generators:{}};
       spec.player.data.elements.O.generators["Tier 1"] = 0;
 
       spec.element.buyElement('O');
 
-      expect(spec.player.data.resources['e-'].number).toEqual(256);
-      expect(spec.player.data.resources.p.number).toEqual(257);
-      expect(spec.player.data.resources.n.number).toEqual(258);
+      expect(spec.player.data.resources['e-'].number).toEqual(1);
+      expect(spec.player.data.resources.p.number).toEqual(20);
+      expect(spec.player.data.resources.n.number).toEqual(30);
       expect(spec.player.data.elements.O.unlocked).toEqual(false);
       expect(spec.player.data.elements.O.generators["Tier 1"]).toEqual(0);
       expect(spec.player.data.elements_unlocked).toEqual(2);

@@ -20,6 +20,10 @@ for (let element in elements) {
 
 let misc = ['e-','n','p','eV'];
 
+// FIXME: only until we fix ions!!
+
+misc.push('1H-','3He+');
+
 for (let resource of misc) {
   sorted_resources[resource] = resources[resource];
 }
