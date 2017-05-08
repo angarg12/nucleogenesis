@@ -8,7 +8,7 @@ angular
 '$rootScope',
 function(player, data, $rootScope) {
 	this.elementPrice = function (element) {
-		return Math.pow(player.data.elements_unlocked + 1, data.elements[element].number);
+		return Math.pow(2, player.data.elements_unlocked) *  data.elements[element].number;
 	};
 
 	this.isElementCostMet = function (element) {
