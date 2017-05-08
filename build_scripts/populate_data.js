@@ -19,6 +19,10 @@ for(var i in files){
     data += "\""+file.replace('.json','') + "\":"+ JSON.stringify(content)+",";
   }
 }
+// read the version from the npm config
+var npm = jsonfile.readFileSync('package.json');
+
+data += "\"version:\":\""+npm.version+"\"";
 
 data += "}";
 

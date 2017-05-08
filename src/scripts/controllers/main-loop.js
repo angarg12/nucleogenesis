@@ -40,8 +40,6 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
 
   var self = this;
   let player_copy = null;
-  // FIXME read this from npm
-  $scope.version = '1.0.4';
 
   function processDecay () {
     for(var i = 0; i < data.radioisotopes.length; i++) {
