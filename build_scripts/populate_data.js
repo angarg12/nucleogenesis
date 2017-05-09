@@ -22,7 +22,7 @@ for(var i in files){
 // read the version from the npm config
 var npm = jsonfile.readFileSync('package.json');
 
-data += "\"version:\":\""+npm.version+"\"";
+data += "\"version\":\""+npm.version+"\"";
 
 data += "}";
 

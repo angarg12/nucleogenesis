@@ -15,7 +15,7 @@ function(player, util) {
     var keys = Object.keys(compound);
     for(var i = 0; i < keys.length; i++) {
       if(Number.isInteger(number) && number > 1) {
-        compoundHTML += util.prettifyNumber(Number.parseFloat((number * compound[keys[i]]).toFixed(4))) +
+        compoundHTML += util.prettifyNumber(number * compound[keys[i]]) +
                         " ";
       } else if(compound[keys[i]] != 1) {
         compoundHTML += util.prettifyNumber(compound[keys[i]]) + " ";

@@ -113,7 +113,7 @@ describe("controller main-loop", function() {
       expect(spec.player.data.resources['3H'].number).toEqual(1000);
       expect(spec.player.data.resources['3He+'].number).toEqual(0);
       expect(spec.player.data.resources['e-'].number).toEqual(0);
-      expect(spec.player.data.resources.eV.number).toEqual(0);
+      expect(spec.player.data.resources.eV.number).toBeCloseTo(0,4);
     });
 
     it("should process radioactivity 2", function() {
@@ -128,7 +128,7 @@ describe("controller main-loop", function() {
       expect(spec.player.data.resources['3H'].number).toEqual(9999999982);
       expect(spec.player.data.resources['3He+'].number).toEqual(18);
       expect(spec.player.data.resources['e-'].number).toEqual(18);
-      expect(spec.player.data.resources.eV.number).toEqual(334980);
+      expect(spec.player.data.resources.eV.number).toBeCloseTo(334980,4);
     });
   });
 

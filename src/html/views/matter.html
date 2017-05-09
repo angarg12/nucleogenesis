@@ -44,7 +44,7 @@
     <h3><span ng-bind-html="util.trustHTML(util.prettifyNumber(generator.elementProduction(state.current_element)))" id="production_total"></span> {{state.current_element}}/s</h3>
     <ul ng-if="player.data.achievements.isotope">
       <li ng-repeat="(isotope,_) in data.elements[state.current_element].isotopes" ng-if="player.data.resources[isotope].unlocked">
-        <span ng-bind-html="util.trustHTML(util.getHTML(isotope))"></span>: {{(data.resources[isotope].ratio*100).toFixed(4)}}%
+        <span ng-bind-html="util.trustHTML(util.getHTML(isotope))"></span>: <span ng-bind-html="util.trustHTML(util.prettifyNumber(data.resources[isotope].ratio*100))"></span>%
       </li>
     </ul>
     <div>
