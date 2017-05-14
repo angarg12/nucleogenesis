@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <div class="tab-pane row">
   <div class="col-lg-3">
     <table class="table table-hover element-table no_bottom" data-spy="affix" data-offset-top="150">
@@ -114,7 +115,7 @@
             <table class="table">
               <tbody>
                 <tr class="animif" ng-repeat="key in visibility.visibleRedox(state.current_element)">
-                  <td class="col-md-7" width=50%>
+                  <td class="col-md-7" width="50%">
                     <div class="pull-left">
                       <span ng-bind-html="util.trustHTML(format.reactionFormat(data.redox[key].number,data.redox[key]))"></span>
                     </div>
@@ -122,9 +123,8 @@
                   <td class="col-md-4">
                     <!-- we store the value inside the object itself -->
                     <div class="pull-left">
-                      <input type="number" value="1" min="1" ng-init="data.redox[key].number = data.redox[key].number || 1" ng-model="data.redox[key].number">
+                      <input type="number" value="1" min="1" ng-init="data.redox[key].number = data.redox[key].number || 1" ng-model="data.redox[key].number" />
                       <button type="button" class="btn btn-default" ng-click="reaction.react(data.redox[key].number, data.redox[key], state.player)" ng-class="{disabled: !reaction.isReactionCostMet(data.redox[key].number, data.redox[key])}">React</button>
-                      </input>
                     </div>
                   </td>
                 </tr>
@@ -136,16 +136,17 @@
             <table class="table">
               <tbody>
                 <tr class="animif" ng-repeat="key in visibility.visibleBindings(state.current_element)">
-                  <td class="col-md-8" width=50%>
+                  <td class="col-md-8" width="50%">
                     <div class="pull-left">
                       <span ng-bind-html="util.trustHTML(format.reactionFormat(data.binding_energy[key].number,data.binding_energy[key]))"></span>
                     </div>
                   </td>
                   <td class="col-md-4">
                     <div class="pull-left">
-                      <input type="number" min="1" ng-init="data.binding_energy[key].number = data.binding_energy[key].number || 1" ng-model="data.binding_energy[key].number">
-                      <button type="button" class="btn btn-default" ng-click="reaction.react(data.binding_energy[key].number, data.binding_energy[key], state.player)" ng-class="{disabled: !reaction.isReactionCostMet(data.binding_energy[key].number, data.binding_energy[key])}">React</button>
-                      </input>
+                      <input type="number" min="1" ng-init="data.binding_energy[key].number = data.binding_energy[key].number || 1" ng-model="data.binding_energy[key].number" />
+                      <button type="button" class="btn btn-default" ng-click="reaction.react(data.binding_energy[key].number, data.binding_energy[key], state.player)" ng-class="{disabled: !reaction.isReactionCostMet(data.binding_energy[key].number, data.binding_energy[key])}">
+                          React
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -158,7 +159,7 @@
           <table class="table">
             <tbody>
               <tr class="animif" ng-repeat="syn in visibility.visibleSyntheses(state.current_element)" ng-mouseover="visibility.removeNew(key)">
-                <td class="col-md-4" width=50%>
+                <td class="col-md-4" width="50%">
                   <div class="pull-left" ng-class="{'text-muted': state.player.syntheses[syn].active <= 0}">
                     <i class="mdi mdi-18px mdi-alert-decagram" ng-if="visibility.hasNew(syn)"></i>
                     <span ng-bind-html="util.trustHTML(format.reactionFormat(synthesis.synthesisPower(syn),data.syntheses[syn]))"></span>

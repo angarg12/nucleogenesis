@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <div class="panel-body row">
   <a class="btn btn-default col-lg-2" ng-repeat="entry in visibility.visibleEncyclopediaEntries()" ng-mouseover="visibility.removeNew(entry)" target="_blank" href="{{data.encyclopedia[entry].link}}">
     <i class="mdi mdi-18px mdi-alert-decagram" ng-if="visibility.hasNew(entry)"></i> {{data.encyclopedia[entry].name}}

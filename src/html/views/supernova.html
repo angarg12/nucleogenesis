@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <div class="tab-pane row">
   <div class="col-lg-3">
     <table class="table table-hover element-table no_bottom" data-spy="affix" data-offset-top="150">
@@ -6,8 +7,8 @@
           <td class="col-lg-2">
             <i class="mdi mdi-18px mdi-alert-decagram" ng-if="supernova.visibility.hasNew(key)"></i>
           </td>
-          <td class="col-lg-4" <span class="pull-left by-icon" ng-bind-html="supernova.util.trustHTML(supernova.util.getHTML(key))">
-            </span>
+          <td class="col-lg-4">
+            <span class="pull-left by-icon" ng-bind-html="supernova.util.trustHTML(supernova.util.getHTML(key))"></span>
             <span ng-if="supernova.data.radioisotopes.indexOf(key) != -1" class="pull-left icon">&#9762;</span>
           </td>
           <td class="col-lg-6">
@@ -51,9 +52,9 @@
       <span ng-bind-html="supernova.util.trustHTML(supernova.util.prettifyNumber(supernova.exoticProduction()))"></span>
       <span ng-bind-html="supernova.util.trustHTML(supernova.util.getHTML(supernova.data.elements[supernova.state.current_element].exotic))"></span>
     </p>
-    <button type="button" class="btn btn-default" ng-click='prestige(supernova.state.current_element)'>Prestige</button>
+    <button type="button" class="btn btn-default" ng-click="prestige(supernova.state.current_element)">Prestige</button>
     <p>You will sacrifice</p>
-    <p ng-repeat="key in supernova.data.elements[supernova.state.current_element].includes" ng-if='supernova.state.player.resources[key].unlocked'>
+    <p ng-repeat="key in supernova.data.elements[supernova.state.current_element].includes" ng-if="supernova.state.player.resources[key].unlocked">
       <span ng-bind-html="supernova.util.trustHTML(supernova.util.prettifyNumber(supernova.state.player.resources[key].number))"></span>
       <span ng-bind-html="supernova.util.trustHTML(supernova.util.getHTML(key))"></span>
     </p>
@@ -72,3 +73,4 @@
       </tr>
     </table>
   </div>
+</div>

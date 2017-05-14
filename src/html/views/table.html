@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <div class="tab-pane row">
   <div class="col-lg-2">
     <table class="table table-hover element-table no_bottom">
@@ -52,7 +53,7 @@
               element_cost_met_dark: state.player.elements[elem].unlocked === false && element.isElementCostMet(elem)}"
               class="clear element_no">{{data.elements[elem].number}}</div>
           </div>
-          <div ng-if="elem == ''" class="fl element_blank col-centered"></div>
+          <div ng-if="elem === ''" class="fl element_blank col-centered"></div>
         </span>
       </div>
     </div>
