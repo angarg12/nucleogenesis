@@ -6,7 +6,7 @@
           <div ng-bind-html="util.trustHTML(util.getHTML(key))"></div>
         </td>
         <td class="col-lg-9">
-          <div ng-bind-html="util.trustHTML(util.prettifyNumber(player.data.resources[key].number))"></div>
+          <div ng-bind-html="util.trustHTML(util.prettifyNumber(state.player.resources[key].number))"></div>
         </td>
       </tr>
     </table>
@@ -15,19 +15,19 @@
     <p>Buy new elements to unlock generators and upgrades. Be aware that the price of new elements increases with each purchase.</p>
     <div class="element_table">
       <div class="element_info" ng-show="data.elements[state.hover_element] != null">
-        <div class="fl element_basic" ng-class="{element_purchased: player.data.elements[state.hover_element].unlocked === true,
+        <div class="fl element_basic" ng-class="{element_purchased: state.player.elements[state.hover_element].unlocked === true,
           element_unavailable: data.elements[state.hover_element].disabled === true,
-          element_cost_not_met: player.data.elements[state.hover_element].unlocked === false && !element.isElementCostMet(state.hover_element),
-          element_cost_met: player.data.elements[state.hover_element].unlocked === false && element.isElementCostMet(state.hover_element)}">
+          element_cost_not_met: state.player.elements[state.hover_element].unlocked === false && !element.isElementCostMet(state.hover_element),
+          element_cost_met: state.player.elements[state.hover_element].unlocked === false && element.isElementCostMet(state.hover_element)}">
           <div id="symbol" class="element_symbol">{{state.hover_element}}</div>
-          <div id="ename" class="symbol_name" ng-class="{element_purchased_dark: player.data.elements[state.hover_element].unlocked == true,
+          <div id="ename" class="symbol_name" ng-class="{element_purchased_dark: state.player.elements[state.hover_element].unlocked == true,
             element_unavailable_dark: data.elements[state.hover_element].disabled === true,
-            element_cost_not_met_dark: player.data.elements[state.hover_element].unlocked === false && !element.isElementCostMet(state.hover_element),
-            element_cost_met_dark: player.data.elements[state.hover_element].unlocked === false && element.isElementCostMet(state.hover_element)}">
+            element_cost_not_met_dark: state.player.elements[state.hover_element].unlocked === false && !element.isElementCostMet(state.hover_element),
+            element_cost_met_dark: state.player.elements[state.hover_element].unlocked === false && element.isElementCostMet(state.hover_element)}">
             {{data.elements[state.hover_element].name}}
           </div>
         </div>
-        <div class="fl element_details" ng-if="player.data.elements.hasOwnProperty(state.hover_element) && player.data.elements[state.hover_element].unlocked != true">
+        <div class="fl element_details" ng-if="state.player.elements.hasOwnProperty(state.hover_element) && state.player.elements[state.hover_element].unlocked != true">
           <div>Cost</div>
           <div><span ng-bind-html="util.trustHTML(util.prettifyNumber(element.elementPrice(state.hover_element)))"></span> e-</div>
           <div><span ng-bind-html="util.trustHTML(util.prettifyNumber(element.elementPrice(state.hover_element)))"></span> p</div>
@@ -36,20 +36,20 @@
       </div>
       <div ng-repeat="element_row in data.periodic_table" class="element_row">
         <span ng-repeat="elem in element_row track by $index">
-          <div ng-class="{element_purchased: player.data.elements[elem].unlocked === true,
+          <div ng-class="{element_purchased: state.player.elements[elem].unlocked === true,
             element_unavailable: data.elements[elem].disabled === true,
-            element_cost_not_met: player.data.elements[elem].unlocked === false && !element.isElementCostMet(elem),
-            element_cost_met: player.data.elements[elem].unlocked === false && element.isElementCostMet(elem)}"
+            element_cost_not_met: state.player.elements[elem].unlocked === false && !element.isElementCostMet(elem),
+            element_cost_met: state.player.elements[elem].unlocked === false && element.isElementCostMet(elem)}"
             ng-if="elem != ''"
             ng-mouseover="state.hover_element = elem"
             ng-mouseleave="state.hover_element = ''"
             ng-click="element.buyElement(elem)"
             class="fl element col-centered">
             <div class="clear element_name">{{elem}}</div>
-            <div ng-class="{element_purchased_dark: player.data.elements[elem].unlocked == true,
+            <div ng-class="{element_purchased_dark: state.player.elements[elem].unlocked == true,
               element_unavailable_dark: data.elements[elem].disabled === true,
-              element_cost_not_met_dark: player.data.elements[elem].unlocked === false && !element.isElementCostMet(elem),
-              element_cost_met_dark: player.data.elements[elem].unlocked === false && element.isElementCostMet(elem)}"
+              element_cost_not_met_dark: state.player.elements[elem].unlocked === false && !element.isElementCostMet(elem),
+              element_cost_met_dark: state.player.elements[elem].unlocked === false && element.isElementCostMet(elem)}"
               class="clear element_no">{{data.elements[elem].number}}</div>
           </div>
           <div ng-if="elem == ''" class="fl element_blank col-centered"></div>

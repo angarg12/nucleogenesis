@@ -3,37 +3,37 @@
 angular
 .module('incremental')
 .service('synthesis',
-['player',
+['state',
  'reaction',
  'data',
-function(player, reaction, data) {
+function(state, reaction, data) {
   const PRICE_INCREASE = 1.15;
   const POWER_INCREASE = 2;
 
   this.synthesisMultiplier = function (synthesis) {
-    var level = player.data.syntheses[synthesis].number;
+    let level = state.player.syntheses[synthesis].number;
     return Math.ceil(Math.pow(PRICE_INCREASE, level));
   };
 
   this.synthesisPower = function (synthesis) {
-    var level = player.data.syntheses[synthesis].active;
+    let level = state.player.syntheses[synthesis].active;
     return Math.ceil(Math.pow(level, POWER_INCREASE));
   };
 
   this.synthesisPrice = function (synthesis) {
-    var multiplier = this.synthesisMultiplier(synthesis);
-    var price = {};
-    var reactant = data.syntheses[synthesis].reactant;
-    for(var resource in reactant) {
+    let multiplier = this.synthesisMultiplier(synthesis);
+    let price = {};
+    let reactant = data.syntheses[synthesis].reactant;
+    for(let resource in reactant) {
       price[resource] = reactant[resource] * multiplier;
     }
     return price;
   };
 
   this.isSynthesisCostMet = function (synthesis) {
-    var price = this.synthesisPrice(synthesis);
-    for(var resource in price) {
-      if(player.data.resources[resource].number < price[resource]) {
+    let price = this.synthesisPrice(synthesis);
+    for(let resource in price) {
+      if(state.player.resources[resource].number < price[resource]) {
         return false;
       }
     }
@@ -41,14 +41,14 @@ function(player, reaction, data) {
   };
 
   this.buySynthesis = function (synthesis, number) {
-    var i = 0;
+    let i = 0;
     // we need a loop since we use the ceil operator
     while (i < number && this.isSynthesisCostMet(synthesis)) {
-      var price = this.synthesisPrice(synthesis);
-      for(var resource in price) {
-        player.data.resources[resource].number -= price[resource];
+      let price = this.synthesisPrice(synthesis);
+      for(let resource in price) {
+        state.player.resources[resource].number -= price[resource];
       }
-      player.data.syntheses[synthesis].number += 1;
+      state.player.syntheses[synthesis].number += 1;
       i++;
     }
   };

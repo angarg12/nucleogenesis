@@ -1,10 +1,14 @@
-describe("Achievement service", function() {
+/* globals describe,commonSpec,it,expect */
+// jshint varstmt: false
+'use strict';
+
+describe('Achievement service', function() {
   var spec = {};
 
   commonSpec(spec);
 
   describe('toast functions', function() {
-    it("should add toasts to an empty queue", function() {
+    it('should add toasts to an empty queue', function() {
       spec.achievement.toast = [];
       spec.achievement.is_toast_visible = false;
 
@@ -15,7 +19,7 @@ describe("Achievement service", function() {
       expect(spec.achievement.is_toast_visible).toEqual(true);
     });
 
-    it("should add toasts to an non empty queue", function() {
+    it('should add toasts to an non empty queue', function() {
       spec.achievement.toast = ['a'];
 
       spec.achievement.addToast('test');
@@ -24,7 +28,7 @@ describe("Achievement service", function() {
       expect(spec.achievement.toast[1]).toEqual('test');
     });
 
-    it("should not change the visibility of non empty queue", function() {
+    it('should not change the visibility of non empty queue', function() {
       spec.achievement.toast = ['a'];
       spec.achievement.is_toast_visible = false;
 
@@ -33,7 +37,7 @@ describe("Achievement service", function() {
       expect(spec.achievement.is_toast_visible).toEqual(false);
     });
 
-    it("should remove toasts", function() {
+    it('should remove toasts', function() {
       spec.achievement.toast = ['test'];
       spec.achievement.is_toast_visible = true;
 
@@ -42,7 +46,7 @@ describe("Achievement service", function() {
       expect(spec.achievement.is_toast_visible).toEqual(false);
     });
 
-    it("should not flip the visibility when removing toasts", function() {
+    it('should not flip the visibility when removing toasts', function() {
       spec.achievement.toast = ['test'];
       spec.achievement.is_toast_visible = false;
 
@@ -51,7 +55,7 @@ describe("Achievement service", function() {
       expect(spec.achievement.is_toast_visible).toEqual(false);
     });
 
-    it("should not fail on empty toast queues", function() {
+    it('should not fail on empty toast queues', function() {
       spec.achievement.toast = [];
       spec.achievement.is_toast_visible = true;
 
@@ -60,7 +64,7 @@ describe("Achievement service", function() {
       expect(spec.achievement.is_toast_visible).toEqual(false);
     });
 
-    it("should delete toasts", function() {
+    it('should delete toasts', function() {
       spec.achievement.toast = ['test'];
 
       spec.achievement.deleteToast();
@@ -68,7 +72,7 @@ describe("Achievement service", function() {
       expect(spec.achievement.toast).toEqual([]);
     });
 
-    it("should shift toasts", function() {
+    it('should shift toasts', function() {
       spec.achievement.toast = ['test','test2'];
 
       spec.achievement.deleteToast();
@@ -76,7 +80,7 @@ describe("Achievement service", function() {
       expect(spec.achievement.toast).toEqual(['test2']);
     });
 
-    it("should make upcoming toasts visible", function() {
+    it('should make upcoming toasts visible', function() {
       spec.achievement.toast = ['test','test2'];
       spec.achievement.is_toast_visible = false;
 
@@ -85,7 +89,7 @@ describe("Achievement service", function() {
       expect(spec.achievement.is_toast_visible).toEqual(true);
     });
 
-    it("should not fail on delete empty lists", function() {
+    it('should not fail on delete empty lists', function() {
       spec.achievement.toast = [];
 
       spec.achievement.deleteToast();

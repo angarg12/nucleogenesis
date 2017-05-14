@@ -1,4 +1,8 @@
-describe("Player service", function() {
+/* globals describe,commonSpec,it,expect,beforeEach,spyOn,window */
+// jshint varstmt: false
+'use strict';
+
+describe('Save service', function() {
   var spec = {};
 
   commonSpec(spec);
@@ -7,22 +11,22 @@ describe("Player service", function() {
     var getItemSpy;
 
     beforeEach(function() {
-      getItemSpy = spyOn(localStorage, "getItem");
-      spyOn(localStorage, "setItem");
-      spyOn(localStorage, "removeItem");
+      getItemSpy = spyOn(localStorage, 'getItem');
+      spyOn(localStorage, 'setItem');
+      spyOn(localStorage, 'removeItem');
     });
 
-    it("should save player data", function() {
+    it('should save player data', function() {
       spec.savegame.save();
 
       expect(localStorage.setItem).toHaveBeenCalled();
     });
 
-    it("should load player data", function() {
+    it('should load player data', function() {
       localStorage.getItem.isSpy = false;
       getItemSpy.and.returnValue('{}');
-      spyOn(spec.savegame, "reset");
-      spyOn(spec.savegame, "versionControl");
+      spyOn(spec.savegame, 'reset');
+      spyOn(spec.savegame, 'versionControl');
 
       spec.savegame.load();
 
@@ -31,9 +35,9 @@ describe("Player service", function() {
       expect(spec.savegame.versionControl).toHaveBeenCalled();
     });
 
-    it("should load player data and throw exception", function() {
-      spyOn(spec.savegame, "reset");
-      spyOn(spec.savegame, "versionControl");
+    it('should load player data and throw exception', function() {
+      spyOn(spec.savegame, 'reset');
+      spyOn(spec.savegame, 'versionControl');
 
       spec.savegame.load();
 
@@ -42,8 +46,8 @@ describe("Player service", function() {
       expect(spec.savegame.versionControl).not.toHaveBeenCalled();
     });
 
-    it("should reset player without confirmation", function() {
-      spyOn(spec.state, "init");
+    it('should reset player without confirmation', function() {
+      spyOn(spec.state, 'init');
 
       spec.savegame.reset(false);
 
@@ -51,9 +55,9 @@ describe("Player service", function() {
       expect(spec.state.init).toHaveBeenCalled();
     });
 
-    it("should reset player with confirmation", function() {
-      spyOn(window, "confirm").and.returnValue(true);
-      spyOn(spec.state, "init");
+    it('should reset player with confirmation', function() {
+      spyOn(window, 'confirm').and.returnValue(true);
+      spyOn(spec.state, 'init');
 
       spec.savegame.reset(true);
 
@@ -61,9 +65,9 @@ describe("Player service", function() {
       expect(spec.state.init).toHaveBeenCalled();
     });
 
-    it("should not reset player if the confirmation rejets", function() {
-      spyOn(window, "confirm").and.returnValue(false);
-      spyOn(spec.state, "init");
+    it('should not reset player if the confirmation rejets', function() {
+      spyOn(window, 'confirm').and.returnValue(false);
+      spyOn(spec.state, 'init');
 
       spec.savegame.reset(true);
 
@@ -71,19 +75,19 @@ describe("Player service", function() {
       expect(spec.state.init).not.toHaveBeenCalled();
     });
 
-    it("should export save", function() {
-      spyOn(window, "btoa").and.returnValue("");
+    it('should export save', function() {
+      spyOn(window, 'btoa').and.returnValue('');
 
       spec.savegame.exportSave();
 
       expect(window.btoa).toHaveBeenCalled();
     });
 
-    it("should import save", function() {
-      spyOn(window, "prompt").and.returnValue("test");
-      spyOn(JSON, "parse").and.returnValue("{}");
-      spyOn(spec.savegame, "versionControl");
-      spyOn(spec.savegame, "save");
+    it('should import save', function() {
+      spyOn(window, 'prompt').and.returnValue('test');
+      spyOn(JSON, 'parse').and.returnValue('{}');
+      spyOn(spec.savegame, 'versionControl');
+      spyOn(spec.savegame, 'save');
 
       spec.savegame.importSave();
 
@@ -93,11 +97,11 @@ describe("Player service", function() {
       expect(spec.savegame.save).toHaveBeenCalled();
     });
 
-    it("should not import if save is not presented", function() {
-      spyOn(window, "prompt").and.returnValue("");
-      spyOn(window, "atob").and.returnValue("{}");
-      spyOn(spec.savegame, "versionControl");
-      spyOn(spec.savegame, "save");
+    it('should not import if save is not presented', function() {
+      spyOn(window, 'prompt').and.returnValue('');
+      spyOn(window, 'atob').and.returnValue('{}');
+      spyOn(spec.savegame, 'versionControl');
+      spyOn(spec.savegame, 'save');
 
       spec.savegame.importSave();
 
@@ -107,11 +111,11 @@ describe("Player service", function() {
       expect(spec.savegame.save).not.toHaveBeenCalled();
     });
 
-    it("should not import if save is invalid", function() {
-      spyOn(window, "prompt").and.returnValue("test");
-      spyOn(window, "atob");
-      spyOn(spec.savegame, "versionControl");
-      spyOn(spec.savegame, "save");
+    it('should not import if save is invalid', function() {
+      spyOn(window, 'prompt').and.returnValue('test');
+      spyOn(window, 'atob');
+      spyOn(spec.savegame, 'versionControl');
+      spyOn(spec.savegame, 'save');
 
       spec.savegame.importSave();
 
@@ -121,7 +125,7 @@ describe("Player service", function() {
       expect(spec.savegame.save).not.toHaveBeenCalled();
     });
 
-    it("should version control", function() {
+    it('should version control', function() {
       spec.savegame.versionControl();
     });
   });

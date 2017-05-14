@@ -2,9 +2,9 @@
 
 angular
   .module('incremental')
-  .service('visibility', ['player',
+  .service('visibility', ['state',
     'data',
-    function (player, data) {
+    function (state, data) {
       let newElements = [];
 
       function visible(items, func, currentElement) {
@@ -52,7 +52,7 @@ angular
 
         for (let index in data.elements[element].includes) {
           let resource = data.elements[element].includes[index];
-          if (player.data.resources[resource].unlocked) {
+          if (state.player.resources[resource].unlocked) {
             return true;
           }
         }
@@ -64,8 +64,8 @@ angular
         let generator = data.generators[name];
         let condition = '';
         for (let dep in generator.dependencies) {
-          condition += 'player.data.elements[currentElement].generators["' +
-            generator.dependencies[dep] + '"] > 0 && ';
+          condition += 'state.player.elements[currentElement].generators[\'' +
+            generator.dependencies[dep] + '\'] > 0 && ';
         }
         condition += 'true';
         return eval(condition);
@@ -79,8 +79,8 @@ angular
           condition += upgrade.preconditions[pre] + ' && ';
         }
         for (let dep in upgrade.dependencies) {
-          condition += 'player.data.elements[currentElement].upgrades["' +
-            upgrade.dependencies[dep] + '"] && ';
+          condition += 'state.player.elements[currentElement].upgrades[\'' +
+            upgrade.dependencies[dep] + '\'] && ';
         }
         condition += 'true';
 
@@ -88,7 +88,7 @@ angular
       };
 
       function isResourceVisible(name, currentElement) {
-        if (!player.data.resources[name].unlocked) {
+        if (!state.player.resources[name].unlocked) {
           return false;
         }
 
@@ -109,16 +109,16 @@ angular
       }
 
       function isEncyclopediaEntryVisible(entry) {
-        return player.data.achievements[entry];
+        return state.player.achievements[entry];
       }
 
       function isReactionVisible(entry, currentElement, reaction) {
-        if (!player.data.achievements[reaction]) {
+        if (!state.player.achievements[reaction]) {
           return false;
         }
 
         for (let reactant in entry.reactant) {
-          if (!player.data.resources[reactant].unlocked) {
+          if (!state.player.resources[reactant].unlocked) {
             return false;
           }
         }

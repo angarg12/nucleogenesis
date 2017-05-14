@@ -1,3 +1,8 @@
+/* globals inject,beforeEach,spyOn, */
+/* exported commonSpec */
+// jshint varstmt: false
+'use strict';
+
 var commonSpec = function(spec) {
   var original_data = null;
 
@@ -20,7 +25,6 @@ var commonSpec = function(spec) {
     spyOn(spec.$scope, '$on');
     spec.achievement = _$injector_.get('achievement');
     spec.util = _$injector_.get('util');
-    spec.player = _$injector_.get('player');
     spec.savegame = _$injector_.get('savegame');
     spec.generator = _$injector_.get('generator');
     spec.upgrade = _$injector_.get('upgrade');
@@ -32,6 +36,6 @@ var commonSpec = function(spec) {
     spec.data = _$injector_.get('data');
     spec.state = _$injector_.get('state');
 
-    spec.controller  = _$controller_('main-loop', {$scope:spec.$scope, achievement:spec.achievement, util:spec.util, player:spec.player, savegame:spec.savegame, generator:spec.generator, upgrade:spec.upgrade, format:spec.format, synthesis:spec.synthesis, reaction:spec.reaction, element:spec.element, data:spec.data, state:spec.state});
+    spec.controller  = _$controller_('main-loop', {$scope:spec.$scope, achievement:spec.achievement, util:spec.util, savegame:spec.savegame, generator:spec.generator, upgrade:spec.upgrade, format:spec.format, synthesis:spec.synthesis, reaction:spec.reaction, element:spec.element, data:spec.data, state:spec.state});
   }));
 };

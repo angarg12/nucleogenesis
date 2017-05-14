@@ -3,34 +3,33 @@
 angular
 .module('incremental')
 .service('element',
-['player',
+['state',
 'data',
-'$rootScope',
-function(player, data, $rootScope) {
+function(state, data) {
 	this.elementPrice = function (element) {
-		return Math.pow(2, player.data.elements_unlocked) *  data.elements[element].number;
+		return Math.pow(2, state.player.elements_unlocked) *  data.elements[element].number;
 	};
 
 	this.isElementCostMet = function (element) {
-		var price = this.elementPrice(element);
-		return player.data.resources['e-'].number >= price &&
-			player.data.resources.p.number >= price &&
-			player.data.resources.n.number >= price;
+		let price = this.elementPrice(element);
+		return state.player.resources['e-'].number >= price &&
+			state.player.resources.p.number >= price &&
+			state.player.resources.n.number >= price;
 	};
 
 	this.buyElement = function (element) {
-		if(player.data.elements[element].unlocked) {
+		if(state.player.elements[element].unlocked) {
 			return;
 		}
 		if(this.isElementCostMet(element)) {
-			var price = this.elementPrice(element);
-			player.data.resources['e-'].number -= price;
-			player.data.resources.p.number -= price;
-			player.data.resources.n.number -= price;
+			let price = this.elementPrice(element);
+			state.player.resources['e-'].number -= price;
+			state.player.resources.p.number -= price;
+			state.player.resources.n.number -= price;
 
-			player.data.elements[element].unlocked = true;
-			player.data.elements[element].generators["Tier 1"] = 1;
-			player.data.elements_unlocked++;
+			state.player.elements[element].unlocked = true;
+			state.player.elements[element].generators["Tier 1"] = 1;
+			state.player.elements_unlocked++;
 		}
 	};
 }]);

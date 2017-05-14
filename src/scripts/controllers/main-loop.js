@@ -11,7 +11,6 @@ angular
 '$timeout',
 'achievement',
 'util',
-'player',
 'savegame',
 'generator',
 'upgrade',
@@ -22,9 +21,8 @@ angular
 'data',
 'visibility',
 'state',
-function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, player, savegame, generator, upgrade, format, synthesis, reaction, element, data, visibility, state) {
+function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, savegame, generator, upgrade, format, synthesis, reaction, element, data, visibility, state) {
   $scope.data = data;
-  $scope.player = player;
   $scope.achievement = achievement;
   $scope.util = util;
   $scope.savegame = savegame;
@@ -38,30 +36,30 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
   $scope.state = state;
   $scope.loading = true;
 
-  var self = this;
-  let player_copy = null;
+  let self = this;
+  let playerCopy = null;
 
   function processDecay () {
-    for(var i = 0; i < data.radioisotopes.length; i++) {
-      var resource = data.radioisotopes[i];
-      if(player_copy.resources[resource].unlocked) {
-        var number = player_copy.resources[resource].number;
-        var half_life = data.resources[resource].decay.half_life;
-        var production = util.randomDraw(number, Math.log(2) / half_life);
+    for(let i = 0; i < data.radioisotopes.length; i++) {
+      let resource = data.radioisotopes[i];
+      if(playerCopy.resources[resource].unlocked) {
+        let number = playerCopy.resources[resource].number;
+        let halfLife = data.resources[resource].decay.half_life;
+        let production = util.randomDraw(number, Math.log(2) / halfLife);
 
         if(production === 0) {
           return;
         }
 
         // we decrease the number of radioactive element
-        player_copy.resources[resource].number -= production;
+        playerCopy.resources[resource].number -= production;
 
         // and decay products
-        for(var product in data.resources[resource].decay.decay_product) {
-          player_copy.resources[product].number += data.resources[resource].decay.decay_product[product] *
+        for(let product in data.resources[resource].decay.decay_product) {
+          playerCopy.resources[product].number += data.resources[resource].decay.decay_product[product] *
                                                      production;
-          if(!player_copy.resources[product].unlocked){
-            player_copy.resources[product].unlocked = true;
+          if(!playerCopy.resources[product].unlocked){
+            playerCopy.resources[product].unlocked = true;
             visibility.addNew(product);
           }
         }
@@ -71,28 +69,28 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
 
   function processGenerators () {
     // We will simulate the production of isotopes proportional to their ratio
-    for(var element in player_copy.elements) {
-      if(player_copy.elements[element].unlocked === false){
+    for(let element in playerCopy.elements) {
+      if(playerCopy.elements[element].unlocked === false){
         continue;
       }
       // Prepare an array with the isotopes
-      var isotopes = Object.keys(data.elements[element].isotopes);
-      var remaining = generator.elementProduction(element);
+      let isotopes = Object.keys(data.elements[element].isotopes);
+      let remaining = generator.elementProduction(element);
       // We will create a random draw recalculate the mean and std
-      for(var i = 0; i < isotopes.length - 1; i++) {
+      for(let i = 0; i < isotopes.length - 1; i++) {
         // First we need to adjust the ratio for the remaining isotopes
-        var remaining_ratio_sum = 0;
-        for(var j = i; j < isotopes.length; j++) {
-          remaining_ratio_sum += data.resources[isotopes[j]].ratio;
+        let remainingRatioSum = 0;
+        for(let j = i; j < isotopes.length; j++) {
+          remainingRatioSum += data.resources[isotopes[j]].ratio;
         }
 
-        var p = data.resources[isotopes[i]].ratio / remaining_ratio_sum;
-        var production = util.randomDraw(remaining, p);
+        let p = data.resources[isotopes[i]].ratio / remainingRatioSum;
+        let production = util.randomDraw(remaining, p);
 
         if(production > 0) {
-          player_copy.resources[isotopes[i]].number += production;
-          if(!player_copy.resources[isotopes[i]].unlocked){
-            player_copy.resources[isotopes[i]].unlocked = true;
+          playerCopy.resources[isotopes[i]].number += production;
+          if(!playerCopy.resources[isotopes[i]].unlocked){
+            playerCopy.resources[isotopes[i]].unlocked = true;
             visibility.addNew(isotopes[i]);
           }
         }
@@ -100,10 +98,10 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
       }
       // The last isotope is just the remaining production that hasn't been consumed
       if(remaining > 0) {
-        var last = isotopes[isotopes.length - 1];
-        player_copy.resources[last].number += remaining;
-        if(!player_copy.resources[last].unlocked){
-          player_copy.resources[last].unlocked = true;
+        let last = isotopes[isotopes.length - 1];
+        playerCopy.resources[last].number += remaining;
+        if(!playerCopy.resources[last].unlocked){
+          playerCopy.resources[last].unlocked = true;
           visibility.addNew(last);
         }
       }
@@ -112,24 +110,24 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
 
   function processSyntheses () {
     // We will process the synthesis
-    for(var syn in player_copy.syntheses) {
-      var power = synthesis.synthesisPower(syn);
+    for(let syn in playerCopy.syntheses) {
+      let power = synthesis.synthesisPower(syn);
       if(power !== 0) {
-        reaction.react(power, data.syntheses[syn], player_copy);
+        reaction.react(power, data.syntheses[syn], playerCopy);
       }
     }
   }
 
   self.update = function () {
     // do the update in a copy
-    player_copy = angular.copy(player.data);
+    playerCopy = angular.copy(state.player);
     processDecay();
     processGenerators();
     processSyntheses();
-    achievement.checkAchievements(player_copy);
+    achievement.checkAchievements(playerCopy);
 
     // and update all at once
-    player.data = player_copy;
+    state.player = playerCopy;
 
     $timeout(self.update, 1000);
   };

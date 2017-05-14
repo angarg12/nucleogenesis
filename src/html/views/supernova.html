@@ -11,7 +11,7 @@
             <span ng-if="supernova.data.radioisotopes.indexOf(key) != -1" class="pull-left icon">&#9762;</span>
           </td>
           <td class="col-lg-6">
-            <div class="pull-left" ng-bind-html="supernova.util.trustHTML(supernova.util.prettifyNumber(supernova.player.data.resources[key].number))"></div>
+            <div class="pull-left" ng-bind-html="supernova.util.trustHTML(supernova.util.prettifyNumber(supernova.state.player.resources[key].number))"></div>
           </td>
         </tr>
         <tr class="animif row" ng-if="supernova.data.resources[key].decay != null">
@@ -27,7 +27,7 @@
         <!-- XXX: We tie this unlock to beta decay to avoid introducing a new generic unlock "decay". Since beta
           decay is the first and only decay type on the game, this works just fine.
           -->
-        <tr class="animif row" ng-if="supernova.data.resources[key].decay != null && supernova.player.data.achievements.beta_decay">
+        <tr class="animif row" ng-if="supernova.data.resources[key].decay != null && supernova.state.player.achievements.beta_decay">
           <td class="col-lg-2"></td>
           <td class="col-lg-4 text-center">
             <div ng-if="supernova.data.resources[key].decay.decay_type" ng-bind-html="supernova.util.trustHTML(supernova.util.getHTML(supernova.data.resources[key].decay.decay_type))"></div>
@@ -42,9 +42,9 @@
   <div class="col-lg-8">
     <h2>{{supernova.data.elements[supernova.state.current_element].name}}</h2>
     <h3>
-      <span ng-bind-html="supernova.util.trustHTML(supernova.util.prettifyNumber(supernova.player.data.resources[supernova.data.elements[supernova.state.current_element].exotic].number))"></span>
+      <span ng-bind-html="supernova.util.trustHTML(supernova.util.prettifyNumber(supernova.state.player.resources[supernova.data.elements[supernova.state.current_element].exotic].number))"></span>
       <span ng-bind-html="supernova.util.trustHTML(supernova.util.getHTML(supernova.data.elements[supernova.state.current_element].exotic))"></span>
-      (+<span ng-bind-html="supernova.util.trustHTML(supernova.util.prettifyNumber(supernova.player.data.resources[supernova.data.elements[supernova.state.current_element].exotic].number))"></span>%)
+      (+<span ng-bind-html="supernova.util.trustHTML(supernova.util.prettifyNumber(supernova.state.player.resources[supernova.data.elements[supernova.state.current_element].exotic].number))"></span>%)
     </h3>
     <p>Sacrifice your progress to obtain exotic matter. Exotic matter boosts your production for the element and unlocks new upgrades.</p>
     <p>Prestige now to obtain
@@ -53,8 +53,8 @@
     </p>
     <button type="button" class="btn btn-default" ng-click='prestige(supernova.state.current_element)'>Prestige</button>
     <p>You will sacrifice</p>
-    <p ng-repeat="key in supernova.data.elements[supernova.state.current_element].includes" ng-if='supernova.player.data.resources[key].unlocked'>
-      <span ng-bind-html="supernova.util.trustHTML(supernova.util.prettifyNumber(supernova.player.data.resources[key].number))"></span>
+    <p ng-repeat="key in supernova.data.elements[supernova.state.current_element].includes" ng-if='supernova.state.player.resources[key].unlocked'>
+      <span ng-bind-html="supernova.util.trustHTML(supernova.util.prettifyNumber(supernova.state.player.resources[key].number))"></span>
       <span ng-bind-html="supernova.util.trustHTML(supernova.util.getHTML(key))"></span>
     </p>
   </div>

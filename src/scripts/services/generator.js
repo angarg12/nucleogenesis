@@ -3,44 +3,43 @@
 angular
 .module('incremental')
 .service('generator',
-['player',
+['state',
 'upgrade',
 'data',
-'$rootScope',
-function(player, upgrade, data, $rootScope) {
+function(state, upgrade, data) {
   this.generatorPrice = function (name, element) {
-    var level = player.data.elements[element].generators[name];
-    var price = data.generators[name].price * Math.pow(data.generators[name].priceIncrease, level);
+    let level = state.player.elements[element].generators[name];
+    let price = data.generators[name].price * Math.pow(data.generators[name].priceIncrease, level);
     return Math.ceil(price);
   };
 
   this.buyGenerators = function (name, element, number) {
-    var price = this.generatorPrice(name, element);
-    var i = 0;
+    let price = this.generatorPrice(name, element);
+    let i = 0;
     // we need a loop since we use the ceil operator
-    var currency = data.elements[element].main;
-    while (i < number && player.data.resources[currency].number >= price) {
-      player.data.resources[currency].number -= price;
-      player.data.elements[element].generators[name]++;
+    let currency = data.elements[element].main;
+    while (i < number && state.player.resources[currency].number >= price) {
+      state.player.resources[currency].number -= price;
+      state.player.elements[element].generators[name]++;
       price = this.generatorPrice(name, element);
       i++;
     }
   };
 
   this.generatorProduction = function (name, element) {
-    var baseProduction = data.generators[name].power;
+    let baseProduction = data.generators[name].power;
     return this.upgradedProduction(baseProduction, name, element);
   };
 
   this.tierProduction = function (name, element) {
-    var baseProduction = data.generators[name].power *
-                         player.data.elements[element].generators[name];
+    let baseProduction = data.generators[name].power *
+                         state.player.elements[element].generators[name];
     return this.upgradedProduction(baseProduction, name, element);
   };
 
   this.upgradedProduction = function (production, name, element) {
-    for(var up in data.generators[name].upgrades) {
-        if(player.data.elements[element].upgrades[data.generators[name].upgrades[up]]) {
+    for(let up in data.generators[name].upgrades) {
+        if(state.player.elements[element].upgrades[data.generators[name].upgrades[up]]) {
           let power = data.upgrades[data.generators[name].upgrades[up]].power;
           production = upgrade.upgradeApply(production, power);
         }
@@ -49,8 +48,8 @@ function(player, upgrade, data, $rootScope) {
   };
 
   this.elementProduction = function (element) {
-    var total = 0;
-    for(var tier in data.generators) {
+    let total = 0;
+    for(let tier in data.generators) {
       total += this.tierProduction(tier, element);
     }
     return total;

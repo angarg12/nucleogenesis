@@ -11,13 +11,13 @@ function(numberFilter, $sce, $locale, data) {
   // Polyfill for some browsers
   Number.parseFloat = parseFloat;
   Number.isInteger = Number.isInteger || function (value) {
-    return typeof value === "number" && isFinite(value) && Math.floor(value) === value;
+    return typeof value === 'number' && isFinite(value) && Math.floor(value) === value;
   };
-  var formats = $locale.NUMBER_FORMATS;
+  let formats = $locale.NUMBER_FORMATS;
   this.numberGenerator = new Ziggurat();
 
   this.getHTML = function (resource) {
-    var html = data.html[resource];
+    let html = data.html[resource];
     if(html === undefined){
       html = data.resources[resource].html;
     }
@@ -31,21 +31,21 @@ function(numberFilter, $sce, $locale, data) {
     if(typeof number == 'undefined' || number === null) {
       return;
     }
-    if(number === "") {
-      return "";
+    if(number === '') {
+      return '';
     }
     if(number == Infinity) {
-      return "&infin;";
+      return '&infin;';
     }
     if(number > 1e6) {
       // Very ugly way to extract the mantisa and exponent from an exponential string
-      var exponential = number.toPrecision(6).split("e");
-      var exponent = parseFloat(exponential[1].split("+")[1]);
+      let exponential = number.toPrecision(6).split('e');
+      let exponent = parseFloat(exponential[1].split('+')[1]);
       // And it is displayed in with superscript
       return mangleCeroes(exponential[0], 4) +
-             " &#215; 10<sup>" +
+             ' &#215; 10<sup>' +
              this.prettifyNumber(exponent) +
-             "</sup>";
+             '</sup>';
     }
     return mangleCeroes(number, 4);
   };
@@ -53,35 +53,35 @@ function(numberFilter, $sce, $locale, data) {
   // FIXME: it turns out we need this abomination since default numberFilter
   // uses 3 decimals and we need 4 (for the isotopes proportions precision)
   // and if you use decimals, it attaches 0's at the end
-  var mangleCeroes = function(input, fractionSize) {
+  let mangleCeroes = function(input, fractionSize) {
     //Get formatted value
 
-    var formattedValue = numberFilter(input, fractionSize);
+    let formattedValue = numberFilter(input, fractionSize);
     //get the decimalSepPosition
-    var decimalIdx = formattedValue.indexOf(formats.DECIMAL_SEP);
+    let decimalIdx = formattedValue.indexOf(formats.DECIMAL_SEP);
     //If no decimal just return
     if (decimalIdx === -1){
       return formattedValue;
     }
 
-    var whole = formattedValue.substring(0, decimalIdx);
-    var decimal = (Number(formattedValue.substring(decimalIdx)) || "").toString();
+    let whole = formattedValue.substring(0, decimalIdx);
+    let decimal = (Number(formattedValue.substring(decimalIdx)) || '').toString();
 
     return whole +  decimal.substring(1);
   };
 
   this.randomDraw = function (number, p) {
-    var production;
-    var mean = number * p;
+    let production;
+    let mean = number * p;
     if(p < 0.01) {
       // using Poisson distribution (would get slow for large numbers. there are fast formulas but I don't know
       // how good they are)
       production = this.getPoisson(mean);
     } else {
       // Gaussian distribution
-      var q = 1 - p;
-      var variance = number * p * q;
-      var std = Math.sqrt(variance);
+      let q = 1 - p;
+      let variance = number * p * q;
+      let std = Math.sqrt(variance);
       production = Math.round(this.numberGenerator.nextGaussian() * std + mean);
     }
     if(production > number) {
@@ -94,9 +94,9 @@ function(numberFilter, $sce, $locale, data) {
   };
 
   this.getPoisson = function (lambda) {
-    var L = Math.exp(-lambda);
-    var p = 1.0;
-    var k = 0;
+    let L = Math.exp(-lambda);
+    let p = 1.0;
+    let k = 0;
 
     do {
       k++;
