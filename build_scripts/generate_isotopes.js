@@ -10,6 +10,12 @@ var elements = jsonfile.readFileSync(args[0]+'/data/elements.json');
 
 for (var element in elements) {
   elements[element].includes = elements[element].includes || [];
+  let exotic = 'x'+element;
+  elements[element].exotic = exotic;
+
+  resources[exotic] = {};
+  resources[exotic].elements = {};
+  resources[exotic].elements[element] = 1;
 
   var isotopes = elements[element].isotopes;
   for (var isotope in isotopes) {

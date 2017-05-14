@@ -4,8 +4,12 @@ angular
 .module('incremental')
 .config(['$stateProvider',
   function($stateProvider) {
-  $stateProvider.state("matter", {
+  $stateProvider
+  .state("matter", {
     templateUrl : "views/matter.html"
+  })
+  .state("supernova", {
+    component: 'supernova'
   })
   .state("encyclopedia", {
     templateUrl : "views/encyclopedia.html"

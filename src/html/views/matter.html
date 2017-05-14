@@ -1,7 +1,7 @@
 <div class="tab-pane row">
   <div class="col-lg-3">
     <table class="table table-hover element-table no_bottom" data-spy="affix" data-offset-top="150">
-      <tbody class="container" ng-repeat="key in visibility.visibleResources()" ng-mouseover="visibility.removeNew(key)">
+      <tbody class="container" ng-repeat="key in visibility.visibleResources(state.current_element)" ng-mouseover="visibility.removeNew(key)">
         <tr class="animif row">
           <td class="col-lg-2">
             <i class="mdi mdi-18px mdi-alert-decagram" ng-if="visibility.hasNew(key)"></i>
@@ -66,7 +66,7 @@
             Buy
           </td>
         </tr>
-        <tr class="animif" ng-repeat="name in visibility.visibleGenerators()">
+        <tr class="animif" ng-repeat="name in visibility.visibleGenerators(state.current_element)">
           <td class="animif col-md-3">
             <span class="pull-left">
                 {{name}}:
@@ -102,18 +102,18 @@
         </tr>
       </table>
       <div ng-if="player.data.achievements.reactions && (
-        visibility.visibleRedox().length > 0 ||
-        visibility.visibleBindings().length > 0 ||
-        visibility.visibleSyntheses().length > 0)">
+        visibility.visibleRedox(state.current_element).length > 0 ||
+        visibility.visibleBindings(state.current_element).length > 0 ||
+        visibility.visibleSyntheses(state.current_element).length > 0)">
         <hr>
-        <div ng-if="visibility.visibleRedox().length > 0 ||
-          visibility.visibleBindings().length > 0">
+        <div ng-if="visibility.visibleRedox(state.current_element).length > 0 ||
+          visibility.visibleBindings(state.current_element).length > 0">
           <h3>Reactions</h3>
-          <div ng-if="visibility.visibleRedox().length > 0">
+          <div ng-if="visibility.visibleRedox(state.current_element).length > 0">
             <h4>Redox</h4>
             <table class="table">
               <tbody>
-                <tr class="animif" ng-repeat="key in visibility.visibleRedox()">
+                <tr class="animif" ng-repeat="key in visibility.visibleRedox(state.current_element)">
                   <td class="col-md-7" width=50%>
                     <div class="pull-left">
                       <span ng-bind-html="util.trustHTML(format.reactionFormat(data.redox[key].number,data.redox[key]))"></span>
@@ -131,11 +131,11 @@
               </tbody>
             </table>
           </div>
-          <div ng-if="visibility.visibleBindings().length > 0">
+          <div ng-if="visibility.visibleBindings(state.current_element).length > 0">
             <h4>Binding energy</h4>
             <table class="table">
               <tbody>
-                <tr class="animif" ng-repeat="key in visibility.visibleBindings()">
+                <tr class="animif" ng-repeat="key in visibility.visibleBindings(state.current_element)">
                   <td class="col-md-8" width=50%>
                     <div class="pull-left">
                       <span ng-bind-html="util.trustHTML(format.reactionFormat(data.binding_energy[key].number,data.binding_energy[key]))"></span>
@@ -153,11 +153,11 @@
             </table>
           </div>
         </div>
-        <div ng-if="visibility.visibleSyntheses().length > 0">
+        <div ng-if="visibility.visibleSyntheses(state.current_element).length > 0">
           <h3>Syntheses</h3>
           <table class="table">
             <tbody>
-              <tr class="animif" ng-repeat="syn in visibility.visibleSyntheses()" ng-mouseover="visibility.removeNew(key)">
+              <tr class="animif" ng-repeat="syn in visibility.visibleSyntheses(state.current_element)" ng-mouseover="visibility.removeNew(key)">
                 <td class="col-md-4" width=50%>
                   <div class="pull-left" ng-class="{'text-muted': player.data.syntheses[syn].active <= 0}">
                     <i class="mdi mdi-18px mdi-alert-decagram" ng-if="visibility.hasNew(syn)"></i>
@@ -204,14 +204,14 @@
         <h4>Upgrades</h4>
         <table class="table">
           <tbody>
-            <tr class="animif" ng-repeat="generator in visibility.visibleGenerators()|filter:upgrade.filterUpgrade">
+            <tr class="animif" ng-repeat="generator in visibility.visibleGenerators(state.current_element)|filter:upgrade.filterUpgrade">
               <td class="animif col-md-2">
                 <div class="pull-left">
                   {{generator}}
                 </div>
               </td>
               <td class="animif col-md-1" ng-repeat="up in data.generators[generator].upgrades">
-                <a class="btn btn-default" ng-if="visibility.isUpgradeVisible(up)" ng-click="upgrade.buyUpgrade(up, state.current_element)" ng-class="{disabled: data.upgrades[up].price > player.data.resources[state.current_element].number && !player.data.elements[state.current_element].upgrades[up],
+                <a class="btn btn-default" ng-if="visibility.isUpgradeVisible(up, state.current_element)" ng-click="upgrade.buyUpgrade(up, state.current_element)" ng-class="{disabled: data.upgrades[up].price > player.data.resources[state.current_element].number && !player.data.elements[state.current_element].upgrades[up],
                   active: player.data.elements[state.current_element].upgrades[up]}">
                 {{data.upgrades[up].description}}
                 </a>

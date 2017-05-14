@@ -16,6 +16,8 @@ for (let element in elements) {
   for (let resource of includes) {
     sorted_resources[resource] = resources[resource];
   }
+  let exotic = elements[element].exotic;
+  sorted_resources[exotic] = resources[exotic];
 }
 
 let misc = ['e-','n','p','eV'];

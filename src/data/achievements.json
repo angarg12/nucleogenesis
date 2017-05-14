@@ -1,7 +1,11 @@
 {
   "hydrogen": {
     "name": "Hydrogen",
-    "condition": "player.elements.H.generators['Tier 1'].level > 0"
+    "condition": "player.resources['1H'].number > 1"
+  },
+  "hydrogen_ii": {
+    "name": "Hydrogen II",
+    "condition": "player.resources['1H'].number > 1e6"
   },
   "periodic_table": {
     "name": "Periodic table",

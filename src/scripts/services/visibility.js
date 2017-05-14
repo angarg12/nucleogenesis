@@ -4,14 +4,13 @@ angular
   .module('incremental')
   .service('visibility', ['player',
     'data',
-    'state',
-    function (player, data, state) {
-      var new_elements = [];
+    function (player, data) {
+      let newElements = [];
 
-      function visible(items, func) {
-        var visibles = [];
-        for (var item in items) {
-          if (func(item)) {
+      function visible(items, func, currentElement) {
+        let visibles = [];
+        for (let item in items) {
+          if (func(item, currentElement)) {
             visibles.push(item);
           }
         }
@@ -22,28 +21,28 @@ angular
         return visible(data.elements, isElementVisible);
       };
 
-      this.visibleGenerators = function () {
-        return visible(data.generators, isGeneratorVisible);
+      this.visibleGenerators = function (currentElement) {
+        return visible(data.generators, isGeneratorVisible, currentElement);
       };
 
-      this.visibleResources = function () {
-        return visible(data.resources, isResourceVisible);
+      this.visibleResources = function (currentElement) {
+        return visible(data.resources, isResourceVisible, currentElement);
       };
 
       this.visibleEncyclopediaEntries = function () {
         return visible(data.encyclopedia, isEncyclopediaEntryVisible);
       };
 
-      this.visibleRedox = function () {
-        return visible(data.redox, isRedoxVisible);
+      this.visibleRedox = function (currentElement) {
+        return visible(data.redox, isRedoxVisible, currentElement);
       };
 
-      this.visibleBindings = function () {
-        return visible(data.binding_energy, isBindingVisible);
+      this.visibleBindings = function (currentElement) {
+        return visible(data.binding_energy, isBindingVisible, currentElement);
       };
 
-      this.visibleSyntheses = function () {
-        return visible(data.syntheses, isSynthesisVisible);
+      this.visibleSyntheses = function (currentElement) {
+        return visible(data.syntheses, isSynthesisVisible, currentElement);
       };
 
       function isElementVisible(element) {
@@ -51,8 +50,8 @@ angular
           return false;
         }
 
-        for (var index in data.elements[element].includes) {
-          var resource = data.elements[element].includes[index];
+        for (let index in data.elements[element].includes) {
+          let resource = data.elements[element].includes[index];
           if (player.data.resources[resource].unlocked) {
             return true;
           }
@@ -61,47 +60,47 @@ angular
         return false;
       }
 
-      function isGeneratorVisible(name) {
-        var generator = data.generators[name];
-        var condition = "";
-        for (var dep in generator.dependencies) {
-          condition += "player.data.elements[state.current_element].generators['" +
-            generator.dependencies[dep] + "'] > 0 && ";
+      function isGeneratorVisible(name, currentElement) {
+        let generator = data.generators[name];
+        let condition = '';
+        for (let dep in generator.dependencies) {
+          condition += 'player.data.elements[currentElement].generators["' +
+            generator.dependencies[dep] + '"] > 0 && ';
         }
-        condition += "true";
+        condition += 'true';
         return eval(condition);
       }
 
       // FIXME use eval for the time being, refactor to preprocess conditional functions
-      this.isUpgradeVisible = function (name) {
-        var upgrade = data.upgrades[name];
-        var condition = "";
-        for (var pre in upgrade.preconditions) {
-          condition += upgrade.preconditions[pre] + " && ";
+      this.isUpgradeVisible = function (name, currentElement) {
+        let upgrade = data.upgrades[name];
+        let condition = '';
+        for (let pre in upgrade.preconditions) {
+          condition += upgrade.preconditions[pre] + ' && ';
         }
-        for (var dep in upgrade.dependencies) {
-          condition += "player.data.elements[state.current_element].upgrades['" +
-            upgrade.dependencies[dep] + "'] && ";
+        for (let dep in upgrade.dependencies) {
+          condition += 'player.data.elements[currentElement].upgrades["' +
+            upgrade.dependencies[dep] + '"] && ';
         }
-        condition += "true";
+        condition += 'true';
 
         return eval(condition);
       };
 
-      function isResourceVisible(name) {
+      function isResourceVisible(name, currentElement) {
         if (!player.data.resources[name].unlocked) {
           return false;
         }
 
         // This is for global resources e.g. protons, which do not
         // belong to any element
-        var elements = data.resources[name].elements;
+        let elements = data.resources[name].elements;
         if (Object.keys(elements).length === 0) {
           return true;
         }
 
-        for (var element in elements) {
-          if (state.current_element === element) {
+        for (let element in elements) {
+          if (currentElement === element) {
             return true;
           }
         }
@@ -113,19 +112,19 @@ angular
         return player.data.achievements[entry];
       }
 
-      function isReactionVisible(entry, reaction) {
+      function isReactionVisible(entry, currentElement, reaction) {
         if (!player.data.achievements[reaction]) {
           return false;
         }
 
-        for (var reactant in entry.reactant) {
+        for (let reactant in entry.reactant) {
           if (!player.data.resources[reactant].unlocked) {
             return false;
           }
         }
 
-        for (var element in entry.elements) {
-          if (state.current_element === entry.elements[element]) {
+        for (let element in entry.elements) {
+          if (currentElement === entry.elements[element]) {
             return true;
           }
         }
@@ -133,20 +132,20 @@ angular
         return false;
       }
 
-      function isRedoxVisible(entry) {
-        return isReactionVisible(data.redox[entry], 'redox');
+      function isRedoxVisible(entry, currentElement) {
+        return isReactionVisible(data.redox[entry], currentElement, 'redox');
       }
 
-      function isBindingVisible(entry) {
-        return isReactionVisible(data.binding_energy[entry], 'nuclear_binding_energy');
+      function isBindingVisible(entry, currentElement) {
+        return isReactionVisible(data.binding_energy[entry], currentElement, 'nuclear_binding_energy');
       }
 
-      function isSynthesisVisible(entry) {
-        return isReactionVisible(data.syntheses[entry], 'synthesis');
+      function isSynthesisVisible(entry, currentElement) {
+        return isReactionVisible(data.syntheses[entry], currentElement, 'synthesis');
       }
 
       this.elementsHasNew = function () {
-        for (var key in data.elements) {
+        for (let key in data.elements) {
           if (this.elementHasNew(key)) {
             return true;
           }
@@ -155,8 +154,8 @@ angular
       };
 
       this.elementHasNew = function (element) {
-        var includes = data.elements[element].includes;
-        for (var key in includes) {
+        let includes = data.elements[element].includes;
+        for (let key in includes) {
           if (this.hasNew(includes[key])) {
             return true;
           }
@@ -165,7 +164,7 @@ angular
       };
 
       this.encyclopediaHasNew = function () {
-        for (var entry in data.encyclopedia) {
+        for (let entry in data.encyclopedia) {
           if (this.hasNew(entry)) {
             return true;
           }
@@ -174,16 +173,16 @@ angular
       };
 
       this.hasNew = function (entry) {
-        return new_elements.indexOf(entry) !== -1;
+        return newElements.indexOf(entry) !== -1;
       };
 
       this.addNew = function (entry) {
-        new_elements.push(entry);
+        newElements.push(entry);
       };
 
       this.removeNew = function (entry) {
-        if (new_elements.indexOf(entry) !== -1) {
-          new_elements.splice(new_elements.indexOf(entry), 1);
+        if (newElements.indexOf(entry) !== -1) {
+          newElements.splice(newElements.indexOf(entry), 1);
         }
       };
     }

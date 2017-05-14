@@ -141,11 +141,8 @@ gulp.task('sort_resources', function() {
 });
 
 gulp.task('babel', function() {
-  return gulp.src(['build/scripts/modules/*.js',
-    'build/scripts/*.js',
-    'build/scripts/config/*.js',
-    'build/scripts/services/*.js',
-    'build/scripts/controllers/*.js'])
+  return gulp.src(['build/scripts/modules/module.js',
+    'build/scripts/**/*!(module.js)'])
     .pipe(plugins.babel({
       presets: ['es2015']
     }))

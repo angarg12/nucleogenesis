@@ -3,7 +3,7 @@
     "price": 100,
     "description": "x2",
     "preconditions": [
-      "player.data.elements[state.current_element].generators['Tier 1'] > 0"
+      "player.data.elements[currentElement].generators['Tier 1'] > 0"
     ],
     "dependencies": [],
     "power": 2
@@ -75,7 +75,7 @@
     "price": 1000,
     "description": "x2",
     "preconditions": [
-      "player.data.elements[state.current_element].generators['Tier 2'] > 0"
+      "player.data.elements[currentElement].generators['Tier 2'] > 0"
     ],
     "dependencies": [],
     "power": 2
@@ -147,7 +147,7 @@
     "price": 10000,
     "description": "x2",
     "preconditions": [
-      "player.data.elements[state.current_element].generators['Tier 3'] > 0"
+      "player.data.elements[currentElement].generators['Tier 3'] > 0"
     ],
     "dependencies": [],
     "power": 2
@@ -219,7 +219,7 @@
     "price": 120000,
     "description": "x2",
     "preconditions": [
-      "player.data.elements[state.current_element].generators['Tier 4'] > 0"
+      "player.data.elements[currentElement].generators['Tier 4'] > 0"
     ],
     "dependencies": [],
     "power": 2
@@ -291,7 +291,7 @@
     "price": 1300000,
     "description": "x2",
     "preconditions": [
-      "player.data.elements[state.current_element].generators['Tier 5'] > 0"
+      "player.data.elements[currentElement].generators['Tier 5'] > 0"
     ],
     "dependencies": [],
     "power": 2
@@ -363,7 +363,7 @@
     "price": 14000000,
     "description": "x2",
     "preconditions": [
-      "player.data.elements[state.current_element].generators['Tier 6'] > 0"
+      "player.data.elements[currentElement].generators['Tier 6'] > 0"
     ],
     "dependencies": [],
     "power": 2
@@ -435,7 +435,7 @@
     "price": 200000000,
     "description": "x2",
     "preconditions": [
-      "player.data.elements[state.current_element].generators['Tier 7'] > 0"
+      "player.data.elements[currentElement].generators['Tier 7'] > 0"
     ],
     "dependencies": [],
     "power": 2
@@ -507,7 +507,7 @@
     "price": 3300000000,
     "description": "x2",
     "preconditions": [
-      "player.data.elements[state.current_element].generators['Tier 8'] > 0"
+      "player.data.elements[currentElement].generators['Tier 8'] > 0"
     ],
     "dependencies": [],
     "power": 2
@@ -579,7 +579,7 @@
     "price": 51000000000,
     "description": "x2",
     "preconditions": [
-      "player.data.elements[state.current_element].generators['Tier 9'] > 0"
+      "player.data.elements[currentElement].generators['Tier 9'] > 0"
     ],
     "dependencies": [],
     "power": 2
@@ -651,7 +651,7 @@
     "price": 750000000000,
     "description": "x2",
     "preconditions": [
-      "player.data.elements[state.current_element].generators['Tier 10'] > 0"
+      "player.data.elements[currentElement].generators['Tier 10'] > 0"
     ],
     "dependencies": [],
     "power": 2

@@ -23,7 +23,6 @@ describe("Visible service", function() {
     });
 
     it("should show visible generators", function() {
-      spec.state.current_element = 'H';
       spec.player.data = {elements:{}};
       spec.player.data.elements.H = {generators:[]};
       spec.player.data.elements.H.generators['Tier 1'] = 1;
@@ -35,7 +34,7 @@ describe("Visible service", function() {
       spec.data.generators['Tier 2'] = temp['Tier 2'];
       spec.data.generators['Tier 3'] = temp['Tier 3'];
 
-      var values = spec.visibility.visibleGenerators();
+      var values = spec.visibility.visibleGenerators('H');
 
       expect(values).toEqual(['Tier 1', 'Tier 2']);
     });
@@ -54,7 +53,7 @@ describe("Visible service", function() {
       spec.data.upgrades['Tier 1-2'] = temp['Tier 1-2'];
       spec.data.upgrades['Tier 1-3'] = temp['Tier 1-3'];
 
-      var values = spec.visibility.isUpgradeVisible('Tier 1-1');
+      var values = spec.visibility.isUpgradeVisible('Tier 1-1', 'H');
 
       expect(values).toBeTruthy();
     });
@@ -73,7 +72,7 @@ describe("Visible service", function() {
       spec.data.upgrades['Tier 1-2'] = temp['Tier 1-2'];
       spec.data.upgrades['Tier 1-3'] = temp['Tier 1-3'];
 
-      var values = spec.visibility.isUpgradeVisible('Tier 1-2');
+      var values = spec.visibility.isUpgradeVisible('Tier 1-2', 'H');
 
       expect(values).toBeTruthy();
     });
@@ -92,13 +91,12 @@ describe("Visible service", function() {
       spec.data.upgrades['Tier 1-2'] = temp['Tier 1-2'];
       spec.data.upgrades['Tier 1-3'] = temp['Tier 1-3'];
 
-      var values = spec.visibility.isUpgradeVisible('Tier 1-3');
+      var values = spec.visibility.isUpgradeVisible('Tier 1-3', 'H');
 
       expect(values).toBeFalsy();
     });
 
     it("should show visible resources", function() {
-      spec.state.current_element = 'H';
       spec.player.data = {resources:{}};
       spec.player.data.resources['1H'] = {unlocked:true};
       spec.player.data.resources['2H'] = {unlocked:false};
@@ -111,7 +109,7 @@ describe("Visible service", function() {
       spec.data.resources['eV'] = temp['eV'];
       spec.data.resources['16O'] = temp['16O'];
 
-      var values = spec.visibility.visibleResources();
+      var values = spec.visibility.visibleResources('H');
 
       expect(values).toEqual(['1H', 'eV']);
     });
@@ -132,7 +130,6 @@ describe("Visible service", function() {
     });
 
     it("should show visible redoxes", function() {
-      spec.state.current_element = 'H';
       spec.player.data = {achievements:{},resources:{}};
       spec.player.data.achievements = {};
       spec.player.data.achievements.redox = true;
@@ -140,13 +137,12 @@ describe("Visible service", function() {
       spec.player.data.resources.eV = {unlocked:true};
       spec.player.data.resources['e-'] = {unlocked:false};
 
-      var values = spec.visibility.visibleRedox();
+      var values = spec.visibility.visibleRedox('H');
 
       expect(values).toEqual(['1H+']);
     });
 
     it("should not show redoxes if they are locked", function() {
-      spec.state.current_element = 'H';
       spec.player.data = {achievements:{},resources:{}};
       spec.player.data.achievements = {};
       spec.player.data.achievements.redox = false;
@@ -154,13 +150,12 @@ describe("Visible service", function() {
       spec.player.data.resources.eV = {unlocked:true};
       spec.player.data.resources['e-'] = {unlocked:false};
 
-      var values = spec.visibility.visibleRedox();
+      var values = spec.visibility.visibleRedox('H');
 
       expect(values).toEqual([]);
     });
 
     it("should not show redoxes of other elements", function() {
-      spec.state.current_element = 'O';
       spec.player.data = {achievements:{},resources:{}};
       spec.player.data.achievements = {};
       spec.player.data.achievements.redox = true;
@@ -168,13 +163,12 @@ describe("Visible service", function() {
       spec.player.data.resources.eV = {unlocked:true};
       spec.player.data.resources['e-'] = {unlocked:false};
 
-      var values = spec.visibility.visibleRedox();
+      var values = spec.visibility.visibleRedox('O');
 
       expect(values).toEqual([]);
     });
 
     it("should show visible bindings", function() {
-      spec.state.current_element = 'H';
       spec.player.data = {achievements:{},resources:{}};
       spec.player.data.achievements = {};
       spec.player.data.achievements.nuclear_binding_energy = true;
@@ -186,13 +180,12 @@ describe("Visible service", function() {
       spec.data.binding_energy['2H'] = temp['2H'];
       spec.data.binding_energy['3H'] = temp['3H'];
 
-      var values = spec.visibility.visibleBindings();
+      var values = spec.visibility.visibleBindings('H');
 
       expect(values).toEqual(['2H']);
     });
 
     it("should show visible syntheses", function() {
-      spec.state.current_element = 'H';
       spec.player.data = {achievements:{},resources:{}};
       spec.player.data.achievements = {};
       spec.player.data.achievements.synthesis = true;
@@ -212,7 +205,7 @@ describe("Visible service", function() {
         "elements": ["H","O"]
       };
 
-      var values = spec.visibility.visibleSyntheses();
+      var values = spec.visibility.visibleSyntheses('H');
 
       expect(values).toEqual(['1H-p']);
     });
