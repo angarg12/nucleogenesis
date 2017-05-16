@@ -86,7 +86,8 @@
           </td>
           <td class="animif col-md-3">
             <div class="pull-left" ng-bind-html="util.trustHTML(util.prettifyNumber(generator.generatorPrice(name, state.current_element)))"></div>
-            {{state.current_element}}
+            &nbsp;
+            <span ng-bind-html="util.trustHTML(util.getHTML(data.elements[state.current_element].main))"></span>
           </td>
           <td class="animif col-md-3">
             <div class="pull-left">
@@ -124,7 +125,7 @@
                     <!-- we store the value inside the object itself -->
                     <div class="pull-left">
                       <input type="number" value="1" min="1" ng-init="data.redox[key].number = data.redox[key].number || 1" ng-model="data.redox[key].number" />
-                      <button type="button" class="btn btn-default" ng-click="reaction.react(data.redox[key].number, data.redox[key], state.player)" ng-class="{disabled: !reaction.isReactionCostMet(data.redox[key].number, data.redox[key])}">React</button>
+                      <button type="button" class="btn btn-default" ng-click="reaction.react(data.redox[key].number, data.redox[key], state.player)" ng-class="{disabled: !reaction.isReactionCostMet(data.redox[key].number, data.redox[key], state.player)}">React</button>
                     </div>
                   </td>
                 </tr>
@@ -144,7 +145,7 @@
                   <td class="col-md-4">
                     <div class="pull-left">
                       <input type="number" min="1" ng-init="data.binding_energy[key].number = data.binding_energy[key].number || 1" ng-model="data.binding_energy[key].number" />
-                      <button type="button" class="btn btn-default" ng-click="reaction.react(data.binding_energy[key].number, data.binding_energy[key], state.player)" ng-class="{disabled: !reaction.isReactionCostMet(data.binding_energy[key].number, data.binding_energy[key])}">
+                      <button type="button" class="btn btn-default" ng-click="reaction.react(data.binding_energy[key].number, data.binding_energy[key], state.player)" ng-class="{disabled: !reaction.isReactionCostMet(data.binding_energy[key].number, data.binding_energy[key], state.player)}">
                           React
                       </button>
                     </div>
@@ -219,7 +220,8 @@
               </td>
               <td class="animif col-md-2">
                 <div ng-show="upgrade.lastUpgradeTierPrice(generator) != null">
-                  <span class="pull-left" ng-bind-html="util.trustHTML(util.prettifyNumber(upgrade.lastUpgradeTierPrice(generator)))"></span> &nbsp;{{state.current_element}}
+                  <span class="pull-left" ng-bind-html="util.trustHTML(util.prettifyNumber(upgrade.lastUpgradeTierPrice(generator)))"></span> &nbsp;
+                  <span ng-bind-html="util.trustHTML(util.getHTML(data.elements[state.current_element].main))"></span>
                 </div>
               </td>
             </tr>

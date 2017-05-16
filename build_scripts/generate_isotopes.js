@@ -1,14 +1,14 @@
 /*jslint node: true */
 'use strict';
 
-var jsonfile = require('jsonfile');
+let jsonfile = require('jsonfile');
 
-var args = process.argv.slice(2);
+let args = process.argv.slice(2);
 
-var resources = jsonfile.readFileSync(args[0]+'/data/resources.json');
-var elements = jsonfile.readFileSync(args[0]+'/data/elements.json');
+let resources = jsonfile.readFileSync(args[0]+'/data/resources.json');
+let elements = jsonfile.readFileSync(args[0]+'/data/elements.json');
 
-for (var element in elements) {
+for (let element in elements) {
   elements[element].includes = elements[element].includes || [];
   let exotic = 'x'+element;
   elements[element].exotic = exotic;
@@ -16,15 +16,17 @@ for (var element in elements) {
   resources[exotic] = {};
   resources[exotic].elements = {};
   resources[exotic].elements[element] = 1;
+  resources[exotic].type = ['exotic'];
 
-  var isotopes = elements[element].isotopes;
-  for (var isotope in isotopes) {
+  let isotopes = elements[element].isotopes;
+  for (let isotope in isotopes) {
     resources[isotope] = {};
     resources[isotope].ratio = isotopes[isotope].ratio;
     resources[isotope].decay = isotopes[isotope].decay;
     resources[isotope].elements = {};
     resources[isotope].elements[element] = 1;
     resources[isotope].html = isotopePrefix(isotope) + element;
+    resources[isotope].type = ['isotope'];
 
     if(elements[element].includes.indexOf(isotope) === -1){
       elements[element].includes.push(isotope);
@@ -33,8 +35,8 @@ for (var element in elements) {
 }
 
 function isotopePrefix(isotope) {
-  var prefix = isotope.replace(/(^\d+)(.+$)/i, '$1');
-  return "<sup>" + prefix + "</sup>";
+  let prefix = isotope.replace(/(^\d+)(.+$)/i, '$1');
+  return '<sup>' + prefix + '</sup>';
 }
 
 jsonfile.writeFileSync(args[0]+'/data/resources.json', resources, {

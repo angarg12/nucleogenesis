@@ -2,71 +2,72 @@
 <div class="tab-pane row">
   <div class="col-lg-3">
     <table class="table table-hover element-table no_bottom" data-spy="affix" data-offset-top="150">
-      <tbody class="container" ng-repeat="key in supernova.visibility.visibleResources(supernova.state.current_element)" ng-mouseover="supernova.visibility.removeNew(key)">
+      <tbody class="container" ng-repeat="key in ct.visibility.visibleResources(ct.state.current_element)" ng-mouseover="ct.visibility.removeNew(key)">
         <tr class="animif row">
           <td class="col-lg-2">
-            <i class="mdi mdi-18px mdi-alert-decagram" ng-if="supernova.visibility.hasNew(key)"></i>
+            <i class="mdi mdi-18px mdi-alert-decagram" ng-if="ct.visibility.hasNew(key)"></i>
           </td>
           <td class="col-lg-4">
-            <span class="pull-left by-icon" ng-bind-html="supernova.util.trustHTML(supernova.util.getHTML(key))"></span>
-            <span ng-if="supernova.data.radioisotopes.indexOf(key) != -1" class="pull-left icon">&#9762;</span>
+            <span class="pull-left by-icon" ng-bind-html="ct.util.trustHTML(ct.util.getHTML(key))"></span>
+            <span ng-if="ct.data.radioisotopes.indexOf(key) != -1" class="pull-left icon">&#9762;</span>
           </td>
           <td class="col-lg-6">
-            <div class="pull-left" ng-bind-html="supernova.util.trustHTML(supernova.util.prettifyNumber(supernova.state.player.resources[key].number))"></div>
+            <div class="pull-left" ng-bind-html="ct.util.trustHTML(ct.util.prettifyNumber(ct.state.player.resources[key].number))"></div>
           </td>
         </tr>
-        <tr class="animif row" ng-if="supernova.data.resources[key].decay != null">
+        <tr class="animif row" ng-if="ct.data.resources[key].decay != null">
           <td class="col-lg-2"></td>
           <td class="col-lg-4 text-center">
             t<sub>1/2</sub>
           </td>
           <td class="col-lg-6">
-            <div class="pull-left" ng-bind-html="supernova.util.trustHTML(supernova.util.prettifyNumber(supernova.data.resources[key].decay.half_life))"></div>
+            <div class="pull-left" ng-bind-html="ct.util.trustHTML(ct.util.prettifyNumber(ct.data.resources[key].decay.half_life))"></div>
             s
           </td>
         </tr>
         <!-- XXX: We tie this unlock to beta decay to avoid introducing a new generic unlock "decay". Since beta
           decay is the first and only decay type on the game, this works just fine.
           -->
-        <tr class="animif row" ng-if="supernova.data.resources[key].decay != null && supernova.state.player.achievements.beta_decay">
+        <tr class="animif row" ng-if="ct.data.resources[key].decay != null && ct.state.player.achievements.beta_decay">
           <td class="col-lg-2"></td>
           <td class="col-lg-4 text-center">
-            <div ng-if="supernova.data.resources[key].decay.decay_type" ng-bind-html="supernova.util.trustHTML(supernova.util.getHTML(supernova.data.resources[key].decay.decay_type))"></div>
+            <div ng-if="ct.data.resources[key].decay.decay_type" ng-bind-html="ct.util.trustHTML(ct.util.getHTML(ct.data.resources[key].decay.decay_type))"></div>
           </td>
           <td class="col-lg-6">
-            <div class="pull-left" ng-bind-html="supernova.util.trustHTML(format.decayFormat(supernova.data.resources[key].decay))"></div>
+            <div class="pull-left" ng-bind-html="ct.util.trustHTML(ct.format.decayFormat(ct.data.resources[key].decay))"></div>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
   <div class="col-lg-8">
-    <h2>{{supernova.data.elements[supernova.state.current_element].name}}</h2>
+    <h2>{{ct.data.elements[ct.state.current_element].name}}</h2>
     <h3>
-      <span ng-bind-html="supernova.util.trustHTML(supernova.util.prettifyNumber(supernova.state.player.resources[supernova.data.elements[supernova.state.current_element].exotic].number))"></span>
-      <span ng-bind-html="supernova.util.trustHTML(supernova.util.getHTML(supernova.data.elements[supernova.state.current_element].exotic))"></span>
-      (+<span ng-bind-html="supernova.util.trustHTML(supernova.util.prettifyNumber(supernova.state.player.resources[supernova.data.elements[supernova.state.current_element].exotic].number))"></span>%)
+      <span ng-bind-html="ct.util.trustHTML(ct.util.prettifyNumber(ct.state.player.resources[ct.data.elements[ct.state.current_element].exotic].number))"></span>
+      <span ng-bind-html="ct.util.trustHTML(ct.util.getHTML(ct.data.elements[ct.state.current_element].exotic))"></span>
+      (+<span ng-bind-html="ct.util.trustHTML(ct.util.prettifyNumber(ct.state.player.resources[ct.data.elements[ct.state.current_element].exotic].number*ct.data.constants.EXOTIC_POWER*100))"></span>%)
     </h3>
-    <p>Sacrifice your progress to obtain exotic matter. Exotic matter boosts your production for the element and unlocks new upgrades.</p>
-    <p>Prestige now to obtain
-      <span ng-bind-html="supernova.util.trustHTML(supernova.util.prettifyNumber(supernova.exoticProduction()))"></span>
-      <span ng-bind-html="supernova.util.trustHTML(supernova.util.getHTML(supernova.data.elements[supernova.state.current_element].exotic))"></span>
+    <p>Sacrifice your progress to obtain exotic matter. Exotic matter boosts your production for the element by {{ct.data.constants.EXOTIC_POWER*100}}% and unlocks new upgrades.</p>
+    <p>Prestige now to obtain</p>
+    <p ng-repeat="(key,value) in ct.exoticProduction()">
+      <span ng-bind-html="ct.util.trustHTML(ct.util.prettifyNumber(value))"></span>
+      <span ng-bind-html="ct.util.trustHTML(ct.util.getHTML(key))"></span>
     </p>
-    <button type="button" class="btn btn-default" ng-click="prestige(supernova.state.current_element)">Prestige</button>
+    <button type="button" class="btn btn-default" ng-click="ct.prestige(ct.state.current_element)">Prestige</button>
     <p>You will sacrifice</p>
-    <p ng-repeat="key in supernova.data.elements[supernova.state.current_element].includes" ng-if="supernova.state.player.resources[key].unlocked">
-      <span ng-bind-html="supernova.util.trustHTML(supernova.util.prettifyNumber(supernova.state.player.resources[key].number))"></span>
-      <span ng-bind-html="supernova.util.trustHTML(supernova.util.getHTML(key))"></span>
+    <p ng-repeat="key in ct.data.elements[ct.state.current_element].includes" ng-if="ct.state.player.resources[key].unlocked">
+      <span ng-bind-html="ct.util.trustHTML(ct.util.prettifyNumber(ct.state.player.resources[key].number))"></span>
+      <span ng-bind-html="ct.util.trustHTML(ct.util.getHTML(key))"></span>
     </p>
   </div>
-  <div class="col-lg-1 right-box" ng-if="supernova.visibility.visibleElements().length > 1">
+  <div class="col-lg-1 right-box" ng-if="ct.visibility.visibleElements().length > 1">
     <table class="table table-hover element-table">
-      <tr class="animif" ng-repeat="key in supernova.visibility.visibleElements()" ng-class="{active:supernova.state.current_element===key}">
+      <tr class="animif" ng-repeat="key in ct.visibility.visibleElements()" ng-class="{active:ct.state.current_element===key}">
         <td>
-          <div class="pull-left" ng-click="supernova.state.current_element = key">
+          <div class="pull-left" ng-click="ct.state.current_element = key">
             <a>
-            {{supernova.data.elements[key].name}}
-            <i class="mdi mdi-18px mdi-alert-decagram" ng-if="supernova.visibility.elementHasNew(key)"></i>
+            {{ct.data.elements[key].name}}
+            <i class="mdi mdi-18px mdi-alert-decagram" ng-if="ct.visibility.elementHasNew(key)"></i>
           </a>
           </div>
         </td>

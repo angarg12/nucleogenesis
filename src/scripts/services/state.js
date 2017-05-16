@@ -12,6 +12,6 @@ angular
     this.init = function () {
       this.current_element = 'H';
       this.hover_element = '';
-      this.player = {};
+      this.export = '';
     };
 }]);

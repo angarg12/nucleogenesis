@@ -7,10 +7,10 @@ angular
 'visibility',
 '$rootScope',
 function(state, visibility) {
-  this.isReactionCostMet = function (number, reaction) {
+  this.isReactionCostMet = function (number, reaction, playerData) {
     let keys = Object.keys(reaction.reactant);
     for(let i = 0; i < keys.length; i++) {
-      let available = state.player.resources[keys[i]].number;
+      let available = playerData.resources[keys[i]].number;
       let required = number * reaction.reactant[keys[i]];
       if(required > available) {
         return false;
@@ -23,7 +23,7 @@ function(state, visibility) {
     if(!Number.isInteger(number) || number <= 0) {
       return;
     }
-    if(this.isReactionCostMet(number, reaction)) {
+    if(this.isReactionCostMet(number, reaction, playerData)) {
       let reactant = Object.keys(reaction.reactant);
       for(let i = 0; i < reactant.length; i++) {
         let required = number * reaction.reactant[reactant[i]];

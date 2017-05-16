@@ -44,7 +44,9 @@ function(state, upgrade, data) {
           production = upgrade.upgradeApply(production, power);
         }
       }
-      return production;
+      let exotic = data.elements[element].exotic;
+      production += production*state.player.resources[exotic].number*data.constants.EXOTIC_POWER;
+      return Math.floor(production);
   };
 
   this.elementProduction = function (element) {

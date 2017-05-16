@@ -9,15 +9,15 @@ let args = process.argv.slice(2);
 let resources = jsonfile.readFileSync(args[0]+'/data/resources.json');
 let elements = jsonfile.readFileSync(args[0]+'/data/elements.json');
 
-let sorted_resources = {};
+let sortedResources = {};
 
 for (let element in elements) {
   let includes = elements[element].includes.sort(naturalSort());
   for (let resource of includes) {
-    sorted_resources[resource] = resources[resource];
+    sortedResources[resource] = resources[resource];
   }
   let exotic = elements[element].exotic;
-  sorted_resources[exotic] = resources[exotic];
+  sortedResources[exotic] = resources[exotic];
 }
 
 let misc = ['e-','n','p','eV'];
@@ -27,9 +27,9 @@ let misc = ['e-','n','p','eV'];
 misc.push('1H-','3He+');
 
 for (let resource of misc) {
-  sorted_resources[resource] = resources[resource];
+  sortedResources[resource] = resources[resource];
 }
 
-jsonfile.writeFileSync(args[0]+'/data/resources.json', sorted_resources, {
+jsonfile.writeFileSync(args[0]+'/data/resources.json', sortedResources, {
   spaces: 2
 });

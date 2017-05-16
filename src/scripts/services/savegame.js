@@ -5,26 +5,30 @@
 angular
 .module('incremental')
 .service('savegame',
-['state',
+['$state',
+'state',
 'data',
 'achievement',
-function(state, data, achievement) {
+function($state, state, data, achievement) {
   this.save = function () {
     localStorage.setItem('playerStoredITE', JSON.stringify(state.player));
   };
 
   function initSave(){
-    state.player = data.start_player;
-    state.init();
+    state.player = {};
+    versionControl();
+    // runLoop is set to true here
     achievement.init();
+    state.init();
+    $state.go('matter');
   }
 
   this.load = function () {
     try {
-      let stored_player = localStorage.getItem('playerStoredITE');
-      if(stored_player !== null) {
-        state.player = JSON.parse(stored_player);
-        this.versionControl();
+      let storedPlayer = localStorage.getItem('playerStoredITE');
+      if(storedPlayer !== null) {
+        state.player = JSON.parse(storedPlayer);
+        versionControl();
       } else {
         initSave();
       }
@@ -58,7 +62,7 @@ function(state, data, achievement) {
     if(importText) {
       try {
         state.player = JSON.parse(atob(importText));
-        this.versionControl();
+        versionControl();
         this.save();
       } catch (error) {
         alert('Invalid save file.');
@@ -66,9 +70,17 @@ function(state, data, achievement) {
     }
   };
 
-  this.versionControl = function () {
+   function versionControl() {
+    // delete saves older than this version
+    if(state.player.version && versionCompare(state.player.version, '2.1.0') < -1){
+      state.player = {};
+    }
     // we merge the properties of the player with the start player to
     // avoid undefined errors with new properties
     state.player = angular.merge({}, data.start_player, state.player);
-  };
+    // append an id if it doesn't exist
+    if(!state.player.id){
+      state.player.id = Math.random().toString().substring(3);
+    }
+  }
 }]);

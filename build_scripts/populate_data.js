@@ -7,25 +7,25 @@ const fs = require('fs');
 
 const args = process.argv.slice(2);
 
-var data_file = fs.readFileSync(args[0]+'/scripts/data.js').toString();
-var files = fs.readdirSync(args[0]+'/data');
+let dataFile = fs.readFileSync(args[0]+'/scripts/data.js').toString();
+let files = fs.readdirSync(args[0]+'/data');
 
-var data = "{";
+let data = '{';
 
-for(var i in files){
-  var file = files[i];
+for(let i in files){
+  let file = files[i];
   if(file.endsWith('.json')){
-    var content = jsonfile.readFileSync(args[0]+'/data/'+file);
-    data += "\""+file.replace('.json','') + "\":"+ JSON.stringify(content)+",";
+    let content = jsonfile.readFileSync(args[0]+'/data/'+file);
+    data += '\''+file.replace('.json','') + '\':'+ JSON.stringify(content)+',';
   }
 }
 // read the version from the npm config
-var npm = jsonfile.readFileSync('package.json');
+let npm = jsonfile.readFileSync('package.json');
 
-data += "\"version\":\""+npm.version+"\"";
+data += '\'version\':\''+npm.version+'\'';
 
-data += "}";
+data += '}';
 
-var data_template = template(data_file);
+let dataTemplate = template(dataFile);
 
-fs.writeFileSync(args[0]+'/scripts/data.js', data_template({'data': data}));
+fs.writeFileSync(args[0]+'/scripts/data.js', dataTemplate({'data': data}));

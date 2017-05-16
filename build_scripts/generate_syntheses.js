@@ -1,36 +1,36 @@
 /*jslint node: true */
 'use strict';
 
-var jsonfile = require('jsonfile');
-var path = require('path');
-var parser = require('molecular-parser');
+let jsonfile = require('jsonfile');
+let path = require('path');
+let parser = require('molecular-parser');
 
-var args = process.argv.slice(2);
+let args = process.argv.slice(2);
 
-var resources = jsonfile.readFileSync(args[0]+'/data/resources.json');
-var elements = jsonfile.readFileSync(args[0]+'/data/elements.json');
+let resources = jsonfile.readFileSync(args[0]+'/data/resources.json');
+let elements = jsonfile.readFileSync(args[0]+'/data/elements.json');
 
-for (var element in elements) {
+for (let element in elements) {
   elements[element].syntheses = elements[element].syntheses || [];
 }
 
-var lineReader = require('readline').createInterface({
+let lineReader = require('readline').createInterface({
   input: require('fs').createReadStream(args[0]+'/data/raw_syntheses.txt')
 });
 
-var chosen = ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne'];
-var ln = 1;
-var has_errors = false;
-var syntheses = {};
+let chosen = ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne'];
+let ln = 1;
+let has_errors = false;
+let syntheses = {};
 // for each reaction
 lineReader.on('line', function (line) {
-  var synthesis = parseSynthesis(line);
+  let synthesis = parseSynthesis(line);
   if (!isValidSynthesis(synthesis)) {
-    console.log(ln + " " + line);
+    console.log(ln + ' ' + line);
     has_errors = true;
   }
 
-  var key = generateKey(synthesis);
+  let key = generateKey(synthesis);
   syntheses[key] = {};
   syntheses[key].reactant = vectorToMap(synthesis[0]);
   syntheses[key].product = vectorToMap(synthesis[1]);
@@ -42,7 +42,7 @@ lineReader.on('line', function (line) {
 lineReader.on('close', function () {
   findDeadEnds(syntheses);
   if (has_errors) {
-    throw new Error("Failed to generate syntheses");
+    throw new Error('Failed to generate syntheses');
   }
 
   jsonfile.writeFileSync(args[0]+'/data/resources.json', resources, {
@@ -57,8 +57,8 @@ lineReader.on('close', function () {
 });
 
 function vectorToMap(vector){
-  var map = {};
-  for(var i in vector){
+  let map = {};
+  for(let i in vector){
     let resource = vector[i];
     if(elements[resource] !== undefined){
       resource = elements[resource].main;
@@ -72,13 +72,13 @@ function vectorToMap(vector){
 // i.e. all molecules in the left of a syntheses, must appear in the right
 // (except single atoms)
 function findDeadEnds(syntheses) {
-  var ln = 1;
-  for (var i in syntheses) {
-    var reactant = syntheses[i].reactant;
+  let ln = 1;
+  for (let i in syntheses) {
+    let reactant = syntheses[i].reactant;
     // for each molecule
-    for (var molecule in reactant) {
-      var found = false;
-      for (var j in syntheses) {
+    for (let molecule in reactant) {
+      let found = false;
+      for (let j in syntheses) {
         // skip the own synthesis
         if (i == j) {
           continue;
@@ -89,7 +89,7 @@ function findDeadEnds(syntheses) {
         }
       }
       if (found === false) {
-        console.log("Error: molecule is a dead end: " + ln + " " + molecule + " " + i);
+        console.log('Error: molecule is a dead end: ' + ln + ' ' + molecule + ' ' + i);
         has_errors = true;
       }
     }
@@ -104,9 +104,9 @@ function extractElements(synthesis, key) {
 }
 
 function elementsFromHalf(half, synth_elements, key){
-  for (var i in half) {
-    var breakdown = parser.decomposeFormula(i);
-    for (var j in breakdown) {
+  for (let i in half) {
+    let breakdown = parser.decomposeFormula(i);
+    for (let j in breakdown) {
       if (elements[j].includes.indexOf(i) === -1) {
         elements[j].includes.push(i);
       }
@@ -122,10 +122,10 @@ function elementsFromHalf(half, synth_elements, key){
 }
 
 function generateKey(synthesis) {
-  var key = "";
-  for (var half in synthesis) {
-    for (var i in synthesis[half]) {
-      key += synthesis[half][i] + ".";
+  let key = '';
+  for (let half in synthesis) {
+    for (let i in synthesis[half]) {
+      key += synthesis[half][i] + '.';
     }
     key = key.replace(/.$/, '');
     key += '-';
@@ -135,9 +135,9 @@ function generateKey(synthesis) {
 }
 
 function isUnbalancedSynthesis(synthesis) {
-  var reactant = parser.decomposeFormula(synthesis[0].join(''));
-  var product = parser.decomposeFormula(synthesis[1].join(''));
-  for (var i in reactant) {
+  let reactant = parser.decomposeFormula(synthesis[0].join(''));
+  let product = parser.decomposeFormula(synthesis[1].join(''));
+  for (let i in reactant) {
     if (reactant[i] != product[i]) {
       return true;
     }
@@ -149,7 +149,7 @@ function isRepeatedSynthesis(synthesis) {
   if (synthesis[0].length != synthesis[1].length) {
     return false;
   }
-  for (var i in synthesis[0]) {
+  for (let i in synthesis[0]) {
     if (synthesis[0][i] != synthesis[1][i]) {
       return false;
     }
@@ -158,10 +158,10 @@ function isRepeatedSynthesis(synthesis) {
 }
 
 function parseSynthesis(line) {
-  var part = line.split("->");
-  var synthesis = [];
-  for (var i in part) {
-    synthesis[i] = part[i].trim().split(" ").sort();
+  let part = line.split('->');
+  let synthesis = [];
+  for (let i in part) {
+    synthesis[i] = part[i].trim().split(' ').sort();
   }
   return synthesis;
 }
@@ -170,27 +170,27 @@ function isValidSynthesis(synthesis) {
   if (synthesis.length != 2 ||
     synthesis[0][0].length === 0 ||
     synthesis[1][0].length === 0) {
-    console.log("Error: malformed synthesis");
+    console.log('Error: malformed synthesis');
     return false;
   }
-  for (var i in synthesis) {
+  for (let i in synthesis) {
     if (!isValidHalf(synthesis[i])) {
       return false;
     }
   }
   if (isRepeatedSynthesis(synthesis)) {
-    console.log("Error: synthesis is repeated");
+    console.log('Error: synthesis is repeated');
     return false;
   }
   if (isUnbalancedSynthesis(synthesis)) {
-    console.log("Error: synthesis is unbalanced");
+    console.log('Error: synthesis is unbalanced');
     return false;
   }
   return true;
 }
 
 function isValidHalf(molecules) {
-  for (var j in molecules) {
+  for (let j in molecules) {
     if (!isValidMolecule(molecules[j])) {
       return false;
     }
@@ -200,15 +200,15 @@ function isValidHalf(molecules) {
 
 function isValidMolecule(molecule) {
   try {
-    var breakdown = parser.decomposeFormula(molecule);
+    let breakdown = parser.decomposeFormula(molecule);
     if (Object.keys(breakdown).length > 2) {
-      console.log("Error: molecule too large");
+      console.log('Error: molecule too large');
       return false;
     }
     // FIXME only for the beta
-    for (var k in breakdown) {
+    for (let k in breakdown) {
       if (chosen.indexOf(k) === -1) {
-        console.log("Error: molecule contains invalid elements");
+        console.log('Error: molecule contains invalid elements');
         return false;
       }
     }
@@ -216,21 +216,22 @@ function isValidMolecule(molecule) {
       resources[molecule] = {};
       resources[molecule].elements = breakdown;
       resources[molecule].html = generateHTML(breakdown);
+      resources[molecule].type = ['molecule'];
     }
   } catch (e) {
-    console.log("Error: unable to parse molecule");
+    console.log('Error: unable to parse molecule');
     return false;
   }
   return true;
 }
 
 function generateHTML(breakdown){
-  var html = "";
-  for (var k in breakdown) {
+  let html = '';
+  for (let k in breakdown) {
     html += k;
-    var number = breakdown[k];
+    let number = breakdown[k];
     if(number > 1){
-      html += "<sub>"+number+"</sub>";
+      html += '<sub>'+number+'</sub>';
     }
   }
   return html;

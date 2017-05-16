@@ -129,7 +129,7 @@ function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, ut
     // and update all at once
     state.player = playerCopy;
 
-    $timeout(self.update, 1000);
+    $timeout(self.update, 1);
   };
 
   self.startup = function () {

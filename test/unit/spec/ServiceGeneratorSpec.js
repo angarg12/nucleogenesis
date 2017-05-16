@@ -82,7 +82,8 @@ describe('Generator service', function() {
   describe('production functions', function() {
     it('should calculate the generator production', function() {
       spec.data.generators['Tier 1'].upgrades = ['Tier 1-1','Tier 1-2','Tier 1-3'];
-      spec.state.player = {elements:{}};
+      spec.state.player = {elements:{}, resources:{}};
+      spec.state.player.resources.xH = {number: 0};
       spec.state.player.elements.H = {upgrades:{}};
       spec.state.player.elements.H.upgrades['Tier 1-1'] = true;
       spec.state.player.elements.H.upgrades['Tier 1-2'] = true;
@@ -93,9 +94,24 @@ describe('Generator service', function() {
       expect(value).toEqual(6);
     });
 
+    it('should calculate the generator production with exotic matter', function() {
+      spec.data.generators['Tier 1'].upgrades = ['Tier 1-1','Tier 1-2','Tier 1-3'];
+      spec.state.player = {elements:{}, resources:{}};
+      spec.state.player.resources.xH = {number: 3250};
+      spec.state.player.elements.H = {upgrades:{}};
+      spec.state.player.elements.H.upgrades['Tier 1-1'] = true;
+      spec.state.player.elements.H.upgrades['Tier 1-2'] = true;
+      spec.state.player.elements.H.upgrades['Tier 1-3'] = false;
+
+      var value = spec.generator.generatorProduction('Tier 1','H');
+
+      expect(value).toEqual(25);
+    });
+
     it('should calculate the tier production', function() {
       spec.data.generators['Tier 1'].upgrades = ['Tier 1-1','Tier 1-2','Tier 1-3'];
-      spec.state.player = {elements:{}};
+      spec.state.player = {elements:{}, resources:{}};
+      spec.state.player.resources.xH = {number: 0};
       spec.state.player.elements.H = {upgrades:{},generators:{}};
       spec.state.player.elements.H.upgrades['Tier 1-1'] = true;
       spec.state.player.elements.H.upgrades['Tier 1-2'] = true;
@@ -119,7 +135,8 @@ describe('Generator service', function() {
       spec.data.generators['Tier 2'] = temp2;
       spec.data.generators['Tier 3'] = temp3;
 
-      spec.state.player = {elements:{}};
+      spec.state.player = {elements:{}, resources:{}};
+      spec.state.player.resources.xH = {number: 0};
       spec.state.player.elements.H = {generators:{}};
       spec.state.player.elements.H.generators['Tier 1'] = 1;
       spec.state.player.elements.H.generators['Tier 2'] = 1;

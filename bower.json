@@ -28,7 +28,8 @@
     "angular-ui-router": "^1.0.3",
     "mdi": "^1.9.33",
     "bootstrap": "^3.3.7",
-    "ziggurat": "angarg12/ziggurat"
+    "ziggurat": "angarg12/ziggurat",
+    "version-compare": "angarg12/version_compare"
   },
   "devDependencies": {
     "angular-mocks": "^1.6.4"
