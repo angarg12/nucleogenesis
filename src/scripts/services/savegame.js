@@ -72,7 +72,7 @@ function($state, state, data, achievement) {
 
    function versionControl() {
     // delete saves older than this version
-    if(state.player.version && versionCompare(state.player.version, '2.1.0') < -1){
+    if(state.player.version && versionCompare(state.player.version, '2.1.0') < 0){
       state.player = {};
     }
     // we merge the properties of the player with the start player to
