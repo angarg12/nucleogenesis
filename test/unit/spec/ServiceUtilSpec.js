@@ -35,7 +35,7 @@ describe('Util service', function() {
 
     it('should format numbers in scientific notation', function() {
       var value = spec.util.prettifyNumber(1e24);
-      expect(value).toEqual('1 &#215; 10<sup>24</sup>');
+      expect(value).toEqual('1.0000 &#215; 10<sup>24</sup>');
     });
   });
 

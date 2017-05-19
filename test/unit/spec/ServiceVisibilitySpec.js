@@ -18,7 +18,7 @@ describe('Visible service', function() {
       spec.state.player.elements.O = {unlocked:false};
       spec.data.elements.O.includes = ['16O'];
       spec.state.player.resources['1H'] = {unlocked:true};
-      spec.state.player.resources.C = {unlocked:false};
+      spec.state.player.resources['8C'] = {unlocked:false};
       spec.state.player.resources['16O'] = {unlocked:false};
 
       var values = spec.visibility.visibleElements();

@@ -59,7 +59,7 @@ describe('Format service', function() {
     it('should format decay', function() {
       var value = spec.format.decayFormat(spec.data.resources['3H'].decay);
 
-      expect(value).toEqual('<span class=\'icon\'>&#8594;</span><sup>3</sup>He<sup>+</sup> + e- + 18,610 eV');
+      expect(value).toEqual('<sup>3</sup>He<sup>+</sup> + e- + 18,610 eV');
     });
 
     it('should format decay without energy', function() {
@@ -67,7 +67,7 @@ describe('Format service', function() {
 
       var value = spec.format.decayFormat(spec.data.resources['3H'].decay);
 
-      expect(value).toEqual('<span class=\'icon\'>&#8594;</span><sup>3</sup>He<sup>+</sup> + e-');
+      expect(value).toEqual('<sup>3</sup>He<sup>+</sup> + e-');
     });
   });
 });
