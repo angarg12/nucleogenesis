@@ -50,8 +50,7 @@ angular
           return false;
         }
 
-        for (let index in data.elements[element].includes) {
-          let resource = data.elements[element].includes[index];
+        for (let resource of data.elements[element].includes) {
           if (state.player.resources[resource].unlocked) {
             return true;
           }

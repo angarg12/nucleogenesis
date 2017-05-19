@@ -41,8 +41,7 @@ function(state, util) {
   };
 
   this.decayFormat = function (decay) {
-    let format = '<span class=\'icon\'>&#8594;</span>';
-    format += this.compoundFormat(1, decay.decay_product);
+    let format = this.compoundFormat(1, decay.decay_product);
     return format;
   };
 }]);

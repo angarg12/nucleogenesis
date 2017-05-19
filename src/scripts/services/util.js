@@ -42,7 +42,7 @@ function(numberFilter, $sce, $locale, data) {
       let exponential = number.toPrecision(6).split('e');
       let exponent = parseFloat(exponential[1].split('+')[1]);
       // And it is displayed in with superscript
-      return mangleCeroes(exponential[0], 4) +
+      return numberFilter(exponential[0], 4) +
              ' &#215; 10<sup>' +
              this.prettifyNumber(exponent) +
              '</sup>';

@@ -2,40 +2,52 @@
 <div class="tab-pane row">
   <div class="col-lg-2">
     <table class="table table-hover element-table no_bottom">
-      <tr class="animif row" ng-repeat="key in data.table_resources">
+      <tr class="animif row"
+          ng-repeat="key in data.table_resources">
         <td class="col-lg-3">
-          <div ng-bind-html="util.trustHTML(util.getHTML(key))"></div>
+          <get-html value="key"></get-html>
         </td>
         <td class="col-lg-9">
-          <div ng-bind-html="util.trustHTML(util.prettifyNumber(state.player.resources[key].number))"></div>
+          <pretty value="state.player.resources[key].number"></pretty>
         </td>
       </tr>
     </table>
   </div>
   <div class="col-lg-10">
-    <p>Buy new elements to unlock generators and upgrades. Be aware that the price of new elements increases with each purchase.</p>
+    <p>Buy new elements to unlock generators and upgrades. Be aware that the price of new elements increases
+      with each purchase.</p>
     <div class="element_table">
-      <div class="element_info" ng-show="data.elements[state.hover_element] != null">
-        <div class="fl element_basic" ng-class="{element_purchased: state.player.elements[state.hover_element].unlocked === true,
+      <div class="element_info"
+           ng-show="data.elements[state.hover_element] != null">
+        <div class="fl element_basic"
+             ng-class="{element_purchased: state.player.elements[state.hover_element].unlocked === true,
           element_unavailable: data.elements[state.hover_element].disabled === true,
           element_cost_not_met: state.player.elements[state.hover_element].unlocked === false && !element.isElementCostMet(state.hover_element),
           element_cost_met: state.player.elements[state.hover_element].unlocked === false && element.isElementCostMet(state.hover_element)}">
-          <div id="symbol" class="element_symbol">{{state.hover_element}}</div>
-          <div id="ename" class="symbol_name" ng-class="{element_purchased_dark: state.player.elements[state.hover_element].unlocked == true,
+          <div id="symbol"
+               class="element_symbol">{{state.hover_element}}</div>
+          <div id="ename"
+               class="symbol_name"
+               ng-class="{element_purchased_dark: state.player.elements[state.hover_element].unlocked == true,
             element_unavailable_dark: data.elements[state.hover_element].disabled === true,
             element_cost_not_met_dark: state.player.elements[state.hover_element].unlocked === false && !element.isElementCostMet(state.hover_element),
             element_cost_met_dark: state.player.elements[state.hover_element].unlocked === false && element.isElementCostMet(state.hover_element)}">
             {{data.elements[state.hover_element].name}}
           </div>
         </div>
-        <div class="fl element_details" ng-if="state.player.elements.hasOwnProperty(state.hover_element) && state.player.elements[state.hover_element].unlocked != true">
+        <div class="fl element_details"
+             ng-if="state.player.elements.hasOwnProperty(state.hover_element) && state.player.elements[state.hover_element].unlocked != true">
           <div>Cost</div>
-          <div><span ng-bind-html="util.trustHTML(util.prettifyNumber(element.elementPrice(state.hover_element)))"></span> e-</div>
-          <div><span ng-bind-html="util.trustHTML(util.prettifyNumber(element.elementPrice(state.hover_element)))"></span> p</div>
-          <div><span ng-bind-html="util.trustHTML(util.prettifyNumber(element.elementPrice(state.hover_element)))"></span> n</div>
+          <div>
+            <pretty value="element.elementPrice(state.hover_element)"></pretty> e-</div>
+          <div>
+            <pretty value="element.elementPrice(state.hover_element)"></pretty> p</div>
+          <div>
+            <pretty value="element.elementPrice(state.hover_element)"></pretty> n</div>
         </div>
       </div>
-      <div ng-repeat="element_row in data.periodic_table" class="element_row">
+      <div ng-repeat="element_row in data.periodic_table"
+           class="element_row">
         <span ng-repeat="elem in element_row track by $index">
           <div ng-class="{element_purchased: state.player.elements[elem].unlocked === true,
             element_unavailable: data.elements[elem].disabled === true,

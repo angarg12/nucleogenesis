@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<div ng-if="ct.visibility.visibleElements().length > 1" class="col-lg-1 right-box">
+  <table class="table table-hover element-table">
+    <tr ng-repeat="key in ct.visibility.visibleElements()" class="animif" ng-class="{active:ct.state.current_element===key}">
+      <td>
+        <div ng-click="ct.state.current_element = key" class="pull-left">
+          <a>
+          {{ct.data.elements[key].name}}
+          <i ng-if="ct.visibility.elementHasNew(key)" class="mdi mdi-18px mdi-alert-decagram"></i>
+        </a>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

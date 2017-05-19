@@ -3,39 +3,50 @@
 
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-  <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="bower_components/ziggurat/ziggurat.js"></script>
-  <script type="text/javascript" src="bower_components/version-compare/version-compare.js"></script>
-  <script type="text/javascript" src="scripts/app.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="bower_components/mdi/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css" id="theme_css">
-  <link rel="stylesheet" type="text/css" href="styles/main.css">
+  <meta http-equiv="X-UA-Compatible"
+        content="IE=edge">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <script type="text/javascript"
+          src="bower_components/angular/angular.min.js"></script>
+  <script type="text/javascript"
+          src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script type="text/javascript"
+          src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script type="text/javascript"
+          src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript"
+          src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript"
+          src="bower_components/ziggurat/ziggurat.js"></script>
+  <script type="text/javascript"
+          src="bower_components/version-compare/version-compare.js"></script>
+  <script type="text/javascript"
+          src="scripts/app.min.js"></script>
+  <link rel="stylesheet"
+        type="text/css"
+        href="bower_components/mdi/css/materialdesignicons.min.css" />
+  <link rel="stylesheet"
+        type="text/css"
+        href="bower_components/bootstrap/dist/css/bootstrap.min.css"
+        id="theme_css">
+  <link rel="stylesheet"
+        type="text/css"
+        href="styles/main.css">
   <title>Nucleogenesis</title>
   <script>
-  (function(i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function() {
-      (i[r].q = i[r].q || []).push(arguments)
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o),
-      m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-  ga('create', 'UA-58136427-7', 'auto');
-  ga('send', 'pageview');
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-58136427-7', 'auto');
+    ga('send', 'pageview');
   </script>
 </head>
 
-<body class="ng-scope theme-none" ng-app="incremental" ng-controller="main-loop">
+<body class="ng-scope theme-none"
+      ng-app="incremental"
+      ng-controller="main-loop">
   <div>
     <div class="navbar navbar-default animif">
       <div class="container">
@@ -49,36 +60,46 @@
         </div>
       </div>
     </div>
-    <div class="alert alert-danger" role="alert">
-      <b>Warning:</b> This is an early beta version under heavy development. Expect unbalanced gameplay, bugs, save wipes and broken features.
+    <div class="alert alert-danger"
+         role="alert">
+      <b>Warning:</b> This is an early beta version under heavy development. Expect unbalanced gameplay,
+      bugs, save wipes and broken features.
     </div>
     <div>
-      <div ng-if="loading" class="loader" />
+      <div ng-if="loading"
+           class="loader" />
     </div>
     <div ng-if="!loading">
       <div class="ng-scope ng-isolate-scope animif">
         <ul class="nav nav-tabs ng-scope">
-          <li ui-sref="matter" ui-sref-active="active">
+          <li ui-sref="matter"
+              ui-sref-active="active">
             <a>
               Elements
               <i class="mdi mdi-18px mdi-alert-decagram" ng-if="visibility.elementsHasNew()"></i>
             </a>
           </li>
-          <li ng-if="state.player.achievements.hydrogen_ii" ui-sref="supernova" ui-sref-active="active">
+          <li ng-if="state.player.achievements.hydrogen_ii"
+              ui-sref="supernova"
+              ui-sref-active="active">
             <a>
               Exotic matter
             </a>
           </li>
-          <li ui-sref="encyclopedia" ui-sref-active="active">
+          <li ui-sref="encyclopedia"
+              ui-sref-active="active">
             <a>
               Encyclopedia
               <i class="mdi mdi-18px mdi-alert-decagram" ng-if="visibility.encyclopediaHasNew()"></i>
             </a>
           </li>
-          <li ng-if="state.player.achievements.periodic_table" ui-sref="table" ui-sref-active="active">
+          <li ng-if="state.player.achievements.periodic_table"
+              ui-sref="table"
+              ui-sref-active="active">
             <a>Periodic Table</a>
           </li>
-          <li ui-sref="options" ui-sref-active="active">
+          <li ui-sref="options"
+              ui-sref-active="active">
             <a>Options</a>
           </li>
         </ul>
@@ -86,9 +107,13 @@
       <ui-view></ui-view>
     </div>
   </div>
-  <div class="achieve achievealert animif" ng-show="achievement.is_toast_visible" ng-cloak>
+  <div class="achieve achievealert animif"
+       ng-show="achievement.is_toast_visible"
+       ng-cloak>
     <div class="container alert alert-success">
-      <button type="button" class="close" ng-click="achievement.removeToast()">
+      <button type="button"
+              class="close"
+              ng-click="achievement.removeToast()">
           <span aria-hidden="true">&times;</span>
         </button>
       <h3>Achievement</h3>
