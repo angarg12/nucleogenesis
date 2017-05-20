@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('incremental').value('data', <%= data %>);
+angular.module('game').value('data', <%= data %>);

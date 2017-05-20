@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('incremental').component('elementSelect', {
+angular.module('game').component('elementSelect', {
   templateUrl: 'views/element-select.html',
   controller: ['state', 'visibility', 'data',
     function (state, visibility, data) {

@@ -1,5 +1,6 @@
+/* eslint no-var: 0 */
 /* globals describe,commonSpec,it,expect,spyOn, */
-// jshint varstmt: false
+/* jshint varstmt: false */
 'use strict';
 
 describe('Util service', function() {
@@ -19,8 +20,8 @@ describe('Util service', function() {
     });
 
     it('should return undefined as undefined', function() {
-      var value = spec.util.prettifyNumber(undefined);
-      expect(value).toBeUndefined();
+      var value = spec.util.prettifyNumber();
+      expect(value).toBeNull();
     });
 
     it('should leave small numbers unchanged', function() {

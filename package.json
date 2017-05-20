@@ -1,6 +1,6 @@
 {
   "name": "nucleogenesis",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "Chemistry based incremental idle game",
   "keyword": "incremental idle chemistry game",
   "homepage": "",
@@ -18,6 +18,7 @@
     "bower": "latest",
     "gulp-babel": "latest",
     "babel-preset-es2015": "latest",
+    "babel-polyfill": "latest",
     "molecular-parser": "jagill/node-molecular-parser",
     "lodash.template": "latest",
     "node-natural-sort": "latest",
@@ -41,6 +42,7 @@
     "gulp-rev": "latest",
     "gulp-run": "latest",
     "gulp-rename": "latest",
+    "gulp-codeclimate-reporter": "latest",
     "del": "latest",
     "karma": "latest",
     "karma-coverage": "latest",

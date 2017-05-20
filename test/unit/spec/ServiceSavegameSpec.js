@@ -1,5 +1,6 @@
+/* eslint no-var: 0 */
 /* globals describe,commonSpec,it,expect,beforeEach,spyOn,window */
-// jshint varstmt: false
+/* jshint varstmt: false */
 'use strict';
 
 describe('Save service', function() {

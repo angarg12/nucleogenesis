@@ -1,5 +1,6 @@
+/* eslint no-var: 0 */
 /* globals describe,commonSpec,it,expect */
-// jshint varstmt: false
+/* jshint varstmt: false */
 'use strict';
 
 describe('Upgrade service', function() {
@@ -50,7 +51,7 @@ describe('Upgrade service', function() {
       spec.state.player.elements.H.upgrades['Tier 1-1'] = true;
       spec.state.player.elements.H.upgrades['Tier 1-2'] = true;
       spec.state.player.elements.H.upgrades['Tier 1-3'] = false;
-      spec.state.current_element = 'H';
+      spec.state.currentElement = 'H';
 
       var value = spec.upgrade.lastUpgradeTierPrice('Tier 1');
 
@@ -74,7 +75,7 @@ describe('Upgrade service', function() {
       spec.state.player.elements.H.upgrades['Tier 1-12'] = true;
       spec.state.player.elements.H.upgrades['Tier 1-13'] = true;
       spec.state.player.elements.H.upgrades['Tier 1-14'] = true;
-      spec.state.current_element = 'H';
+      spec.state.currentElement = 'H';
 
       var value = spec.upgrade.lastUpgradeTierPrice('Tier 1');
 

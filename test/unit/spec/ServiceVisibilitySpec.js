@@ -1,5 +1,6 @@
+/* eslint no-var: 0 */
 /* globals describe,commonSpec,it,expect */
-// jshint varstmt: false
+/* jshint varstmt: false */
 'use strict';
 
 describe('Visible service', function() {
@@ -110,7 +111,7 @@ describe('Visible service', function() {
       spec.data.resources = {};
       spec.data.resources['1H'] = temp['1H'];
       spec.data.resources['2H'] = temp['2H'];
-      spec.data.resources['eV'] = temp['eV'];
+      spec.data.resources.eV = temp.eV;
       spec.data.resources['16O'] = temp['16O'];
 
       var values = spec.visibility.visibleResources('H');
@@ -203,7 +204,7 @@ describe('Visible service', function() {
         'product': {'H2':1},
         'elements': [ 'H' ]
       };
-      spec.data.syntheses['H2O'] = {
+      spec.data.syntheses.H2O = {
         'reactant': {'H2':2,'O2':1},
         'product': {'H2O':2},
         'elements': ['H','O']

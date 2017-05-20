@@ -3,14 +3,14 @@
 'use strict';
 
 // Include gulp
-var gulp = require('gulp');
-var del = require('del');
-var runSequence = require('run-sequence');
+let gulp = require('gulp');
+let del = require('del');
+let runSequence = require('run-sequence');
 
 // Include plugins
-var plugins = require('gulp-load-plugins')();
+let plugins = require('gulp-load-plugins')();
 
-var Server = require('karma').Server;
+let Server = require('karma').Server;
 
 // unit test
 gulp.task('karma', function (done) {
@@ -18,6 +18,13 @@ gulp.task('karma', function (done) {
     configFile: __dirname + '/test/unit/karma.conf.js',
     singleRun: true
   }, done).start();
+});
+
+gulp.task('codecov', function() {
+  return gulp
+    .src(['test/unit/coverage/**/lcov-report/lcov.info'], { read: false })
+    .pipe(plugins.codeclimateReporter({ token: '1d8279dc5b0b15d891c420e5fa78c773ad7841f0bf552dfa43e9cafe7a68fac9' }))
+  ;
 });
 
 // e2e test
@@ -33,9 +40,9 @@ gulp.task('webdriver_update', plugins.protractor.webdriver_update_specific({
 }));
 
 gulp.task('protractor', ['connect', 'webdriver_update'], function() {
-  return gulp.src(["test/integration/spec/**.js"], { read: false })
+  return gulp.src(['test/integration/spec/**.js'], { read: false })
     .pipe(plugins.protractor.protractor({
-        configFile: "test/integration/protractor.conf.js"
+        configFile: 'test/integration/protractor.conf.js'
     }))
     .on('error', function(e) { throw e; });
   });
@@ -116,7 +123,7 @@ gulp.task('copy-build', ['copy-js',  'copy-data', 'copy-html',
 
 gulp.task('populate_player', function() {
   return plugins.run('node build_scripts/populate_player.js build',{silent:true}).exec()
-  .pipe(plugins.rename("start_player.json"))
+  .pipe(plugins.rename('start_player.json'))
   .pipe(gulp.dest('build/data'));
 });
 
@@ -175,7 +182,7 @@ gulp.task('dist', function(callback) {
 });
 
 gulp.task('unit-test', function(callback) {
-  runSequence('dist', 'karma', callback);
+  runSequence('dist', 'karma', 'codecov', callback);
 });
 
 gulp.task('e2e-test', function(callback) {

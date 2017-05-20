@@ -1,27 +1,27 @@
 'use strict';
 
 angular
-.module('incremental')
+.module('game')
 .config(['$stateProvider',
   function($stateProvider) {
   $stateProvider
-  .state("matter", {
-    templateUrl : "views/matter.html"
+  .state('matter', {
+    templateUrl : 'views/matter.html'
   })
-  .state("supernova", {
+  .state('supernova', {
     component: 'supernova'
   })
-  .state("encyclopedia", {
-    templateUrl : "views/encyclopedia.html"
+  .state('encyclopedia', {
+    templateUrl : 'views/encyclopedia.html'
   })
-  .state("table", {
-    templateUrl : "views/table.html"
+  .state('table', {
+    templateUrl : 'views/table.html'
   })
-  .state("options", {
-    templateUrl : "views/options.html"
+  .state('options', {
+    templateUrl : 'views/options.html'
   });
 }]).run([
-  "$state",
+  '$state',
    function($state){
       $state.go('matter');
    }

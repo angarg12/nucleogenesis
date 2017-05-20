@@ -4,6 +4,7 @@
 /* https://github.com/angular/angular.js/issues/8224 */
 
 .loader.ng-animate {
+  -moz-animation: none 0s;
   -webkit-animation: none 0s;
 }
 
@@ -18,6 +19,7 @@
   border-radius: 50%;
   width: 120px;
   height: 120px;
+  -moz-animation: spin 2s linear infinite;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
@@ -25,9 +27,11 @@
 @-webkit-keyframes spin {
   0% {
     -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
     -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
@@ -59,15 +63,15 @@ body {
 }
 
 .element-table tr:first-child td {
-  border: 0px none;
+  border: 0 none;
 }
 
 .right-box {
-  padding-left: 0px;
+  padding-left: 0;
 }
 
 .no_bottom {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .table>tbody>tr>td, .table>tbody>tr>td>span {
@@ -112,8 +116,8 @@ iframe {
 }
 
 .achieve h3 {
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin-top: 0;
+  margin-bottom: 0;
   font-weight: bold;
   padding-left: 1em;
   padding-right: 1em;
@@ -160,7 +164,7 @@ iframe {
 }
 
 .element_row {
-  margin: 0px;
+  margin: 0;
   height: 50px;
   padding: 4px 0 0 4px;
 }

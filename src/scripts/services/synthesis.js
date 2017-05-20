@@ -1,23 +1,20 @@
 'use strict';
 
 angular
-.module('incremental')
+.module('game')
 .service('synthesis',
 ['state',
  'reaction',
  'data',
 function(state, reaction, data) {
-  const PRICE_INCREASE = 1.15;
-  const POWER_INCREASE = 2;
-
   this.synthesisMultiplier = function (synthesis) {
     let level = state.player.syntheses[synthesis].number;
-    return Math.ceil(Math.pow(PRICE_INCREASE, level));
+    return Math.ceil(Math.pow(data.constants.SYNTH_PRICE_INCREASE, level));
   };
 
   this.synthesisPower = function (synthesis) {
     let level = state.player.syntheses[synthesis].active;
-    return Math.ceil(Math.pow(level, POWER_INCREASE));
+    return Math.ceil(Math.pow(level, data.constants.SYNTH_POWER_INCREASE));
   };
 
   this.synthesisPrice = function (synthesis) {

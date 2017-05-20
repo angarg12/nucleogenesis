@@ -1,5 +1,6 @@
+/* eslint no-var: 0 */
 /* globals describe,commonSpec,it,expect,spyOn, */
-// jshint varstmt: false
+/* jshint varstmt: false */
 'use strict';
 
 describe('Synthesis service', function() {
@@ -73,7 +74,7 @@ describe('Synthesis service', function() {
       spec.state.player.syntheses.H2O = {};
       spec.state.player.syntheses.H2O.number = 2;
       spec.data.syntheses = {};
-      spec.data.syntheses['H2O'] = {
+      spec.data.syntheses.H2O = {
         'reactant': {'H2':2,'O2':1},
         'product': {'H2O':2},
         'elements': ['H','O']
@@ -86,11 +87,11 @@ describe('Synthesis service', function() {
 
     it('should purchase as many synthesis as requested', function() {
       spec.state.player = {syntheses:{},resources:{}};
-      spec.state.player.resources['H2'] = {number:32};
-      spec.state.player.resources['O2'] = {number:32};
-      spec.state.player.syntheses['H2O'] = {number:1};
+      spec.state.player.resources.H2 = {number:32};
+      spec.state.player.resources.O2 = {number:32};
+      spec.state.player.syntheses.H2O = {number:1};
       spec.data.syntheses = {};
-      spec.data.syntheses['H2O'] = {
+      spec.data.syntheses.H2O = {
         'reactant': {'H2':2,'O2':1},
         'product': {'H2O':2},
         'elements': ['H','O']
@@ -98,18 +99,18 @@ describe('Synthesis service', function() {
 
       spec.synthesis.buySynthesis('H2O',3);
 
-      expect(spec.state.player.resources['H2'].number).toEqual(20);
-      expect(spec.state.player.resources['O2'].number).toEqual(26);
-      expect(spec.state.player.syntheses['H2O'].number).toEqual(4);
+      expect(spec.state.player.resources.H2.number).toEqual(20);
+      expect(spec.state.player.resources.O2.number).toEqual(26);
+      expect(spec.state.player.syntheses.H2O.number).toEqual(4);
     });
 
     it('should purchase as many synthesis as possible', function() {
       spec.state.player = {syntheses:{},resources:{}};
-      spec.state.player.resources['H2'] = {number:10};
-      spec.state.player.resources['O2'] = {number:32};
-      spec.state.player.syntheses['H2O'] = {number:1};
+      spec.state.player.resources.H2 = {number:10};
+      spec.state.player.resources.O2 = {number:32};
+      spec.state.player.syntheses.H2O = {number:1};
       spec.data.syntheses = {};
-      spec.data.syntheses['H2O'] = {
+      spec.data.syntheses.H2O = {
         'reactant': {'H2':2,'O2':1},
         'product': {'H2O':2},
         'elements': ['H','O']
@@ -117,18 +118,18 @@ describe('Synthesis service', function() {
 
       spec.synthesis.buySynthesis('H2O',3);
 
-      expect(spec.state.player.resources['H2'].number).toEqual(2);
-      expect(spec.state.player.resources['O2'].number).toEqual(28);
-      expect(spec.state.player.syntheses['H2O'].number).toEqual(3);
+      expect(spec.state.player.resources.H2.number).toEqual(2);
+      expect(spec.state.player.resources.O2.number).toEqual(28);
+      expect(spec.state.player.syntheses.H2O.number).toEqual(3);
     });
 
     it('should not purchase negative synthesis', function() {
       spec.state.player = {syntheses:{},resources:{}};
-      spec.state.player.resources['H2'] = {number:32};
-      spec.state.player.resources['O2'] = {number:32};
-      spec.state.player.syntheses['H2O'] = {number:1};
+      spec.state.player.resources.H2 = {number:32};
+      spec.state.player.resources.O2 = {number:32};
+      spec.state.player.syntheses.H2O = {number:1};
       spec.data.syntheses = {};
-      spec.data.syntheses['H2O'] = {
+      spec.data.syntheses.H2O = {
         'reactant': {'H2':2,'O2':1},
         'product': {'H2O':2},
         'elements': ['H','O']
@@ -136,18 +137,18 @@ describe('Synthesis service', function() {
 
       spec.synthesis.buySynthesis('H2O',-3);
 
-      expect(spec.state.player.resources['H2'].number).toEqual(32);
-      expect(spec.state.player.resources['O2'].number).toEqual(32);
-      expect(spec.state.player.syntheses['H2O'].number).toEqual(1);
+      expect(spec.state.player.resources.H2.number).toEqual(32);
+      expect(spec.state.player.resources.O2.number).toEqual(32);
+      expect(spec.state.player.syntheses.H2O.number).toEqual(1);
     });
 
     it('should not purchase synthesis if the cost is not met', function() {
       spec.state.player = {syntheses:{},resources:{}};
-      spec.state.player.resources['H2'] = {number:2};
-      spec.state.player.resources['O2'] = {number:32};
-      spec.state.player.syntheses['H2O'] = {number:1};
+      spec.state.player.resources.H2 = {number:2};
+      spec.state.player.resources.O2 = {number:32};
+      spec.state.player.syntheses.H2O = {number:1};
       spec.data.syntheses = {};
-      spec.data.syntheses['H2O'] = {
+      spec.data.syntheses.H2O = {
         'reactant': {'H2':2,'O2':1},
         'product': {'H2O':2},
         'elements': ['H','O']
@@ -155,9 +156,9 @@ describe('Synthesis service', function() {
 
       spec.synthesis.buySynthesis('H2O',3);
 
-      expect(spec.state.player.resources['H2'].number).toEqual(2);
-      expect(spec.state.player.resources['O2'].number).toEqual(32);
-      expect(spec.state.player.syntheses['H2O'].number).toEqual(1);
+      expect(spec.state.player.resources.H2.number).toEqual(2);
+      expect(spec.state.player.resources.O2.number).toEqual(32);
+      expect(spec.state.player.syntheses.H2O.number).toEqual(1);
     });
   });
 
@@ -172,7 +173,7 @@ describe('Synthesis service', function() {
       spec.state.player.resources.H2.number = 10;
       spec.state.player.resources.O2.number = 5;
       spec.data.syntheses = {};
-      spec.data.syntheses['H2O'] = {
+      spec.data.syntheses.H2O = {
         'reactant': {'H2':2,'O2':1},
         'product': {'H2O':2},
         'elements': ['H','O']

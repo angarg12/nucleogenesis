@@ -1,7 +1,8 @@
+/* globals Ziggurat */
 'use strict';
 
 angular
-.module('incremental')
+.module('game')
 .service('util',
 ['numberFilter',
 '$sce',
@@ -18,23 +19,23 @@ function(numberFilter, $sce, $locale, data) {
 
   this.getHTML = function (resource) {
     let html = data.html[resource];
-    if(html === undefined){
+    if(typeof html === 'undefined'){
       html = data.resources[resource].html;
     }
-    if(html === undefined){
+    if(typeof html === 'undefined'){
       return resource;
     }
     return html;
   };
 
   this.prettifyNumber = function (number) {
-    if(typeof number == 'undefined' || number === null) {
-      return;
+    if(typeof number === 'undefined' || number === null){
+      return null;
     }
     if(number === '') {
       return '';
     }
-    if(number == Infinity) {
+    if(number === Infinity) {
       return '&infin;';
     }
     if(number > 1e6) {
@@ -53,7 +54,7 @@ function(numberFilter, $sce, $locale, data) {
   // FIXME: it turns out we need this abomination since default numberFilter
   // uses 3 decimals and we need 4 (for the isotopes proportions precision)
   // and if you use decimals, it attaches 0's at the end
-  let mangleCeroes = function(input, fractionSize) {
+  function mangleCeroes(input, fractionSize) {
     //Get formatted value
 
     let formattedValue = numberFilter(input, fractionSize);
@@ -67,8 +68,8 @@ function(numberFilter, $sce, $locale, data) {
     let whole = formattedValue.substring(0, decimalIdx);
     let decimal = (Number(formattedValue.substring(decimalIdx)) || '').toString();
 
-    return whole +  decimal.substring(1);
-  };
+    return whole + decimal.substring(1);
+  }
 
   this.randomDraw = function (number, p) {
     let production;

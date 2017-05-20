@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-.module('incremental')
+.module('game')
 .service('upgrade',
 ['data',
 'state',
@@ -20,7 +20,7 @@ function(data, state) {
 
   this.lastUpgradeTierPrice = function (tier) {
     for(let upgrade in data.generators[tier].upgrades) {
-      if(!state.player.elements[state.current_element].upgrades[data.generators[tier].upgrades[upgrade]]) {
+      if(!state.player.elements[state.currentElement].upgrades[data.generators[tier].upgrades[upgrade]]) {
         return data.upgrades[data.generators[tier].upgrades[upgrade]].price;
       }
     }
@@ -28,7 +28,7 @@ function(data, state) {
   };
 
   this.filterUpgrade = function (input) {
-    return state.player.elements[state.current_element].generators[input] > 0;
+    return state.player.elements[state.currentElement].generators[input] > 0;
   };
 
   this.upgradeApply = function(resource, power) {

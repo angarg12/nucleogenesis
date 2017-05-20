@@ -1,5 +1,6 @@
+/* eslint no-var: 0 */
 /* globals describe,commonSpec,it,expect */
-// jshint varstmt: false
+/* jshint varstmt: false */
 'use strict';
 
 describe('Format service', function() {

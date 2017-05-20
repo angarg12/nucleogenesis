@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-.module('incremental')
+.module('game')
 .controller('main-loop',
 ['$scope',
 '$document',

@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-.module('incremental')
+.module('game')
 .service('achievement',
 ['$window',
 '$timeout',
@@ -10,31 +10,31 @@ angular
 function($window, $timeout, data, visibility) {
   let self = this;
   self.toast = [];
-  self.is_toast_visible = false;
+  self.isToastVisible = false;
 
   <%= functions %>
 
   this.init = function (){
     self.toast = [];
-    self.is_toast_visible = false;
+    self.isToastVisible = false;
   };
 
   this.deleteToast = function () {
     self.toast.shift();
     if(self.toast.length > 0) {
-      self.is_toast_visible = true;
+      self.isToastVisible = true;
     }
   };
 
   this.removeToast = function () {
-    self.is_toast_visible = false;
+    self.isToastVisible = false;
     $timeout(this.deleteToast, 1100);
   };
 
   this.addToast = function (t) {
     self.toast.push(t);
     if(this.toast.length == 1) {
-      self.is_toast_visible = true;
+      self.isToastVisible = true;
     }
   };
 

@@ -1,13 +1,13 @@
 'use strict';
 
 angular
-.module('incremental')
+.module('game')
 .service('element',
 ['state',
 'data',
 function(state, data) {
 	this.elementPrice = function (element) {
-		return Math.pow(2, state.player.elements_unlocked) *  data.elements[element].number;
+		return Math.pow(2, state.player.elements_unlocked) * data.elements[element].number;
 	};
 
 	this.isElementCostMet = function (element) {

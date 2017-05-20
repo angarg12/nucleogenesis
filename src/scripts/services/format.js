@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-.module('incremental')
+.module('game')
 .service('format',
 ['state',
 'util',
@@ -17,7 +17,7 @@ function(state, util) {
       if(Number.isInteger(number) && number > 1) {
         compoundHTML += util.prettifyNumber(number * compound[keys[i]]) +
                         ' ';
-      } else if(compound[keys[i]] != 1) {
+      } else if(compound[keys[i]] !== 1) {
         compoundHTML += util.prettifyNumber(compound[keys[i]]) + ' ';
       }
       compoundHTML += util.getHTML(keys[i]) + ' ';

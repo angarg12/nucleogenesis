@@ -1,24 +1,24 @@
 /*jslint node: true */
 'use strict';
 
-var jsonfile = require('jsonfile');
-var path = require('path');
+let jsonfile = require('jsonfile');
+let path = require('path');
 
-var args = process.argv.slice(2);
+let args = process.argv.slice(2);
 
-var base_path = path.join(args[0], '/data');
+let basePath = path.join(args[0], '/data');
 
-var resources = jsonfile.readFileSync(path.join(base_path, '/resources.json'));
-var elements = jsonfile.readFileSync(path.join(base_path, '/elements.json'));
-var redox = {};
+let resources = jsonfile.readFileSync(path.join(basePath, '/resources.json'));
+let elements = jsonfile.readFileSync(path.join(basePath, '/elements.json'));
+let redox = {};
 
-for (var element in elements) {
+for (let element in elements) {
   elements[element].includes = elements[element].includes || [];
 
-  var isotopes = elements[element].isotopes;
-  for (var isotope in isotopes) {
+  let isotopes = elements[element].isotopes;
+  for (let isotope in isotopes) {
     elements[element].isotopes[isotope].oxides = [];
-    for (var i = 0; i < elements[element].ionization_energy.length; i++) {
+    for (let i = 0; i < elements[element].ionization_energy.length; i++) {
       generateOxidation(isotope, i+1, element);
     }
   }
@@ -29,27 +29,27 @@ electron affinity (with opposite sign!!) and ionization energy
 process back from the end for oxidation, and the inverse for reduction
 
 function generateOxidation(isotope, charge, element){
-  var from = generateName(isotope, charge-1);
-  var to = generateName(isotope, charge);
+  let from = generateName(isotope, charge-1);
+  let to = generateName(isotope, charge);
 
   // 1H is unique!! an hydrogen cation is a lonely proton
-  if (to === "1H+") {
-    to = "p";
+  if (to === '1H+') {
+    to = 'p';
   }
 
   addResource(from, charge);
   addResource(to, charge-1);
 
-  var ion = {};
+  let ion = {};
 
-  var energy = elements[element].ionization_energy[i];
+  let energy = elements[element].ionization_energy[i];
   ion.reactant = {};
   ion.reactant[from] = 1;
   ion.reactant.eV = energy;
 
   ion.product = {};
   ion.product[to] = 1;
-  ion.product["e-"] = 1;
+  ion.product['e-'] = 1;
 
   // if the energy is negative, then energy is released
   // if(energy < 0){
@@ -58,7 +58,7 @@ function generateOxidation(isotope, charge, element){
   //   ion.reactant.eV = energy;
   // }
 
-  var key = generateKey(ion);
+  let key = generateKey(ion);
   redox[key] = ion;
   if(!elements[element].isotopes[isotope].oxides[key]){
     elements[element].isotopes[isotope].oxides.push(key);
@@ -79,7 +79,7 @@ function addResource(name, charge){
 }
 
 function generateKey(reaction) {
-  var key = "";
+  let key = '';
   key += concatKeys(reaction.reactant);
   key += concatKeys(reaction.product);
 
@@ -87,9 +87,9 @@ function generateKey(reaction) {
 }
 
 function concatKeys(map) {
-  var key = "";
-  for(var i in map){
-    if(i === "eV"){
+  let key = '';
+  for(let i in map){
+    if(i === 'eV'){
       continue;
     }
     key += i;
@@ -101,30 +101,30 @@ function generateName(isotope, i) {
   if (i === 0) {
     return isotope;
   }
-  var postfix = "";
+  let postfix = '';
   if(Math.abs(i) > 1){
     postfix = Math.abs(i);
   }
   if(i > 0){
-    postfix += "+";
+    postfix += '+';
   }else{
-    postfix += "-";
+    postfix += '-';
   }
   return isotope + postfix;
 }
 
 function isotopePrefix(isotope) {
-  var prefix = isotope.replace(/(^\d+)(.+$)/i, '$1');
-  return "<sup>" + prefix + "</sup>";
+  let prefix = isotope.replace(/(^\d+)(.+$)/i, '$1');
+  return '<sup>' + prefix + '</sup>';
 }
 
 function ionPostfix(index) {
-  var prefix = "";
+  let prefix = '';
   if(index === 0){
     return prefix;
   }
   prefix = index.toString();
-  return "<sup>" + prefix + "+<sup>";
+  return '<sup>' + prefix + '+<sup>';
 }
 
 jsonfile.writeFileSync(path.join(base_path, '/resources.json'), resources, {

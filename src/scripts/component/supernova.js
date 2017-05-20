@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('incremental').component('supernova', {
+angular.module('game').component('supernova', {
   templateUrl: 'views/supernova.html',
   controller: ['state', 'format', 'visibility', 'data','util',supernova],
   controllerAs: 'ct'
@@ -16,9 +16,9 @@ function supernova(state, format, visibility, data, util) {
 
   ct.exoticProduction = function(){
     let production = {};
-    let exotic = data.elements[state.current_element].exotic;
+    let exotic = data.elements[state.currentElement].exotic;
     production[exotic] = 0;
-    for(let resource of data.elements[state.current_element].includes){
+    for(let resource of data.elements[state.currentElement].includes){
       if(!state.player.resources[resource].unlocked){
         continue;
       }
@@ -57,27 +57,27 @@ function supernova(state, format, visibility, data, util) {
       resources[key].unlocked = true;
     }
 
-    for(let resource of data.elements[state.current_element].includes){
+    for(let resource of data.elements[state.currentElement].includes){
       resources[resource].number = 0;
     }
 
-    let upgrades = state.player.elements[state.current_element].upgrades;
+    let upgrades = state.player.elements[state.currentElement].upgrades;
     for(let upgrade in upgrades){
       upgrades[upgrade] = false;
     }
 
-    let generators = state.player.elements[state.current_element].generators;
+    let generators = state.player.elements[state.currentElement].generators;
     for(let generator in generators){
       generators[generator] = 0;
     }
 
-    let syntheses = data.elements[state.current_element].syntheses;
+    let syntheses = data.elements[state.currentElement].syntheses;
     for(let synthesis of syntheses){
       state.player.syntheses[synthesis].active = 0;
     }
     delete generators['0'];
     let first = Object.keys(generators)[0];
 
-    state.player.elements[state.current_element].generators[first] = 1;
+    state.player.elements[state.currentElement].generators[first] = 1;
   };
 }

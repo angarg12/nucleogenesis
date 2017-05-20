@@ -1,5 +1,6 @@
+/* eslint no-var: 0 */
 /* globals describe,commonSpec,it,expect,beforeEach,spyOn, */
-// jshint varstmt: false
+/* jshint varstmt: false */
 'use strict';
 
 describe('controller main-loop', function() {
@@ -11,10 +12,10 @@ describe('controller main-loop', function() {
     it('should init all the variables', function() {
     spec.state.init();
 
-	  expect(spec.state.current_element).toEqual('H');
-	  expect(spec.state.hover_element).toEqual('');
+	  expect(spec.state.currentElement).toEqual('H');
+	  expect(spec.state.hoverElement).toEqual('');
 	  expect(spec.achievement.toast).toEqual([]);
-	  expect(spec.achievement.is_toast_visible).toEqual(false);
+	  expect(spec.achievement.isToastVisible).toEqual(false);
     });
   });
 

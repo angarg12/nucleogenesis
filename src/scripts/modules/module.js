@@ -1,3 +1,3 @@
 'use strict';
 
-var module = angular.module('incremental', [ 'ngAnimate', 'ui.router' ]);
+angular.module('game', [ 'ngAnimate', 'ui.router' ]);

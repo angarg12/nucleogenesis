@@ -2,21 +2,25 @@
 <div class="tab-pane row">
   <sidebar></sidebar>
   <div class="col-lg-8">
-    <h2>{{ct.data.elements[ct.state.current_element].name}}</h2>
+    <h2>{{ct.data.elements[ct.state.currentElement].name}}</h2>
     <h3>
-      <pretty value="ct.state.player.resources[ct.data.elements[ct.state.current_element].exotic].number"></pretty>
-      <get-html value="ct.data.elements[ct.state.current_element].exotic"></get-html>
-      (+<pretty value="ct.state.player.resources[ct.data.elements[ct.state.current_element].exotic].number*ct.data.constants.EXOTIC_POWER*100"></pretty>%)
+      <pretty value="ct.state.player.resources[ct.data.elements[ct.state.currentElement].exotic].number"></pretty>
+      <get-html value="ct.data.elements[ct.state.currentElement].exotic"></get-html>
+      (+<pretty value="ct.state.player.resources[ct.data.elements[ct.state.currentElement].exotic].number*ct.data.constants.EXOTIC_POWER*100"></pretty>%)
     </h3>
-    <p>Sacrifice your progress to obtain exotic matter. Exotic matter boosts your production for the element by {{ct.data.constants.EXOTIC_POWER*100}}% and unlocks new upgrades.</p>
+    <p>Sacrifice your progress to obtain exotic matter. Exotic matter boosts your production for the element
+      by {{ct.data.constants.EXOTIC_POWER*100}}% and unlocks new upgrades.</p>
     <p>Prestige now to obtain</p>
     <p ng-repeat="(key,value) in ct.exoticProduction()">
       <pretty value="value"></pretty>
       <get-html value="key"></get-html>
     </p>
-    <button type="button" class="btn btn-default" ng-click="ct.prestige(ct.state.current_element)">Prestige</button>
+    <button type="button"
+            class="btn btn-default"
+            ng-click="ct.prestige(ct.state.currentElement)">Prestige</button>
     <p>You will sacrifice</p>
-    <p ng-repeat="key in ct.data.elements[ct.state.current_element].includes" ng-if="ct.state.player.resources[key].unlocked">
+    <p ng-repeat="key in ct.data.elements[ct.state.currentElement].includes"
+       ng-if="ct.state.player.resources[key].unlocked">
       <pretty value="ct.state.player.resources[key].number"></pretty>
       <get-html value="key"></get-html>
     </p>

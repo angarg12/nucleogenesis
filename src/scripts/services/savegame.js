@@ -1,9 +1,8 @@
-/*jslint node: true */
-/*jslint esversion: 6 */
+/* globals versionCompare, atob, btoa */
 'use strict';
 
 angular
-.module('incremental')
+.module('game')
 .service('savegame',
 ['$state',
 'state',

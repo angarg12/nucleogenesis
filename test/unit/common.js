@@ -1,12 +1,13 @@
+/* eslint no-var: 0 */
 /* globals inject,beforeEach,spyOn, */
 /* exported commonSpec */
-// jshint varstmt: false
+/* jshint varstmt: false */
 'use strict';
 
 var commonSpec = function(spec) {
   var original_data = null;
 
-  beforeEach(angular.mock.module('incremental'));
+  beforeEach(angular.mock.module('game'));
 
   beforeEach(angular.mock.module(function (_$provide_) {
       spec.$provide = _$provide_;
@@ -36,6 +37,6 @@ var commonSpec = function(spec) {
     spec.data = _$injector_.get('data');
     spec.state = _$injector_.get('state');
 
-    spec.controller  = _$controller_('main-loop', {$scope:spec.$scope, achievement:spec.achievement, util:spec.util, savegame:spec.savegame, generator:spec.generator, upgrade:spec.upgrade, format:spec.format, synthesis:spec.synthesis, reaction:spec.reaction, element:spec.element, data:spec.data, state:spec.state});
+    spec.controller = _$controller_('main-loop', {$scope:spec.$scope, achievement:spec.achievement, util:spec.util, savegame:spec.savegame, generator:spec.generator, upgrade:spec.upgrade, format:spec.format, synthesis:spec.synthesis, reaction:spec.reaction, element:spec.element, data:spec.data, state:spec.state});
   }));
 };

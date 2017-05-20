@@ -1,17 +1,17 @@
 'use strict';
 
 angular
-.module('incremental')
+.module('game')
 .service('state',
 [function() {
-    this.current_element = 'H';
-    this.hover_element = '';
+    this.currentElement = 'H';
+    this.hoverElement = '';
     this.export = '';
     this.player = {};
 
     this.init = function () {
-      this.current_element = 'H';
-      this.hover_element = '';
+      this.currentElement = 'H';
+      this.hoverElement = '';
       this.export = '';
     };
 }]);

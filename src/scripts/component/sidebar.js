@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('incremental').component('sidebar', {
+angular.module('game').component('sidebar', {
   templateUrl: 'views/sidebar.html',
   controller: ['state', 'visibility', 'data', 'format',
     function (state, visibility, data, format) {
