@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<div class="row">
+  <div ng-repeat="up in ct.visibility.visibleUpgrades(ct.state.currentElement)"
+       class="col-lg-6 btn btn-default"
+       ng-class="{disabled: ct.data.upgrades[up].price > ct.state.player.resources[ct.state.currentElement].number &&
+         !ct.state.player.elements[ct.state.currentElement].upgrades[up],
+         active: ct.state.player.elements[ct.state.currentElement].upgrades[up]}">
+    <span class="pull-left">
+        {{up}}: {{ct.data.upgrades[up].description}}
+      </span>
+    <span class="pull-right">
+        <pretty value="ct.data.upgrades[up].price"></pretty> &nbsp;
+        <get-html value="ct.data.elements[ct.state.currentElement].main"></get-html>
+      </span>
+  </div>
+</div>

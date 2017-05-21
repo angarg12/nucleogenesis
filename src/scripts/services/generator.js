@@ -4,9 +4,8 @@ angular
 .module('game')
 .service('generator',
 ['state',
-'upgrade',
 'data',
-function(state, upgrade, data) {
+function(state, data) {
   this.generatorPrice = function (name, element) {
     let level = state.player.elements[element].generators[name];
     let price = data.generators[name].price * Math.pow(data.generators[name].priceIncrease, level);
@@ -41,13 +40,17 @@ function(state, upgrade, data) {
     for(let up in data.generators[name].upgrades) {
         if(state.player.elements[element].upgrades[data.generators[name].upgrades[up]]) {
           let power = data.upgrades[data.generators[name].upgrades[up]].power;
-          production = upgrade.upgradeApply(production, power);
+          production = upgradeApply(production, power);
         }
       }
       let exotic = data.elements[element].exotic;
       production += production*state.player.resources[exotic].number*data.constants.EXOTIC_POWER;
       return Math.floor(production);
   };
+
+  function upgradeApply(resource, power) {
+    return resource * power;
+  }
 
   this.elementProduction = function (element) {
     let total = 0;

@@ -25,6 +25,10 @@ angular
         return visible(data.generators, isGeneratorVisible, currentElement);
       };
 
+      this.visibleUpgrades = function (currentElement) {
+        return visible(data.upgrades, isUpgradeVisible, currentElement);
+      };
+
       this.visibleResources = function (currentElement) {
         return visible(data.resources, isResourceVisible, currentElement);
       };
@@ -61,30 +65,40 @@ angular
 
       function isGeneratorVisible(name, currentElement) {
         let generator = data.generators[name];
-        let condition = '';
-        for (let dep in generator.dependencies) {
-          condition += 'state.player.elements[currentElement].generators[\'' +
-            generator.dependencies[dep] + '\'] > 0 && ';
+        for (let dep of generator.deps) {
+          if(state.player.elements[currentElement].generators[dep] === 0){
+            return false;
+          }
         }
-        condition += 'true';
-        return eval(condition);
+
+        return true;
       }
 
-      // FIXME use eval for the time being, refactor to preprocess conditional functions
-      this.isUpgradeVisible = function (name, currentElement) {
+      function isUpgradeVisible(name, currentElement) {
         let upgrade = data.upgrades[name];
-        let condition = '';
-        for (let pre in upgrade.preconditions) {
-          condition += upgrade.preconditions[pre] + ' && ';
+        for (let tier of upgrade.tiers) {
+          if(state.player.elements[currentElement].generators[tier] === 0){
+            return false;
+          }
         }
-        for (let dep in upgrade.dependencies) {
-          condition += 'state.player.elements[currentElement].upgrades[\'' +
-            upgrade.dependencies[dep] + '\'] && ';
+        for (let dep of upgrade.deps) {
+          if(!state.player.elements[currentElement].upgrades[dep]){
+            return false;
+          }
         }
-        condition += 'true';
+        // for (let dep of upgrade.exotic_deps) {
+        //   if(!state.player.elements[currentElement].exotic_upgrades[dep]){
+        //     return false;
+        //   }
+        // }
+        // for (let dep of upgrade.dark_deps) {
+        //   if(!state.player.dark_upgrades[dep]){
+        //     return false;
+        //   }
+        // }
 
-        return eval(condition);
-      };
+        return true;
+      }
 
       function isResourceVisible(name, currentElement) {
         if (!state.player.resources[name].unlocked) {
@@ -142,15 +156,6 @@ angular
       function isSynthesisVisible(entry, currentElement) {
         return isReactionVisible(data.syntheses[entry], currentElement, 'synthesis');
       }
-
-      this.elementsHasNew = function () {
-        for (let key in data.elements) {
-          if (this.elementHasNew(key)) {
-            return true;
-          }
-        }
-        return false;
-      };
 
       this.elementHasNew = function (element) {
         let includes = data.elements[element].includes;

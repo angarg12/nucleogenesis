@@ -1,47 +1,45 @@
 <!DOCTYPE html>
-<div class="col-lg-3">
-  <table class="table table-hover element-table no_bottom"
-         data-spy="affix"
-         data-offset-top="150">
-    <tbody ng-repeat="key in ct.visibility.visibleResources(ct.state.currentElement)"
-           ng-mouseover="ct.visibility.removeNew(key)"
-           class="container">
-      <tr class="animif row">
-        <td class="col-lg-2">
-          <i ng-if="ct.visibility.hasNew(key)"
-             class="mdi mdi-18px mdi-alert-decagram"></i>
-        </td>
-        <td class="col-lg-4">
-          <get-html value="key"></get-html>
-          <span ng-if="ct.data.radioisotopes.indexOf(key) != -1"
-                class="pull-left icon">&#9762;</span>
-        </td>
-        <td class="col-lg-6">
-          <pretty value="ct.state.player.resources[key].number"></pretty>
-        </td>
-      </tr>
-      <tr ng-if="ct.data.resources[key].decay != null"
-          class="animif row">
-        <td class="col-lg-2"></td>
-        <td class="col-lg-4 text-center">
-          t<sub>1/2</sub>
-        </td>
-        <td class="col-lg-6">
-          <pretty value="ct.data.resources[key].decay.half_life"></pretty>
-          s
-        </td>
-      </tr>
-      <tr ng-if="ct.data.resources[key].decay != null"
-          class="animif row">
-        <td class="col-lg-2"></td>
-        <td class="col-lg-4 text-center">
-          <get-html value="ct.data.resources[key].decay.decay_type"></get-html>
-        </td>
-        <td class="col-lg-6">
-          <div ng-bind-html="ct.util.trustHTML(ct.format.decayFormat(ct.data.resources[key].decay))"
-               class="pull-left"></div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<table class="table table-hover element-table no_bottom"
+       data-spy="affix"
+       data-offset-top="150">
+  <tbody ng-repeat="key in ct.visibility.visibleResources(ct.state.currentElement)"
+         ng-mouseover="ct.visibility.removeNew(key)"
+         class="container">
+    <tr class="animif row">
+      <td class="col-lg-2">
+        <i ng-if="ct.visibility.hasNew(key)"
+           class="mdi mdi-18px mdi-alert-decagram"></i>
+      </td>
+      <td class="col-lg-4">
+        <get-html value="key"></get-html>
+        <span ng-if="ct.data.radioisotopes.indexOf(key) != -1"
+              class="pull-left icon">&#9762;</span>
+      </td>
+      <td class="col-lg-6">
+        <pretty value="ct.state.player.resources[key].number"></pretty>
+      </td>
+    </tr>
+    <tr ng-if="ct.data.resources[key].decay != null"
+        class="animif row">
+      <td class="col-lg-2"></td>
+      <td class="col-lg-4 text-center">
+        t<sub>1/2</sub>
+      </td>
+      <td class="col-lg-6">
+        <pretty value="ct.data.resources[key].decay.half_life"></pretty>
+        s
+      </td>
+    </tr>
+    <tr ng-if="ct.data.resources[key].decay != null"
+        class="animif row">
+      <td class="col-lg-2"></td>
+      <td class="col-lg-4 text-center">
+        <get-html value="ct.data.resources[key].decay.decay_type"></get-html>
+      </td>
+      <td class="col-lg-6">
+        <div ng-bind-html="ct.util.trustHTML(ct.format.decayFormat(ct.data.resources[key].decay))"
+             class="pull-left"></div>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -41,7 +41,6 @@ function(state, util) {
   };
 
   this.decayFormat = function (decay) {
-    let format = this.compoundFormat(1, decay.decay_product);
-    return format;
+    return this.compoundFormat(1, decay.decay_product);
   };
 }]);

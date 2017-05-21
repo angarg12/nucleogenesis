@@ -13,7 +13,6 @@ angular
 'util',
 'savegame',
 'generator',
-'upgrade',
 'format',
 'synthesis',
 'reaction',
@@ -21,13 +20,12 @@ angular
 'data',
 'visibility',
 'state',
-function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, savegame, generator, upgrade, format, synthesis, reaction, element, data, visibility, state) {
+function ($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, savegame, generator, format, synthesis, reaction, element, data, visibility, state) {
   $scope.data = data;
   $scope.achievement = achievement;
   $scope.util = util;
   $scope.savegame = savegame;
   $scope.generator = generator;
-  $scope.upgrade = upgrade;
   $scope.format = format;
   $scope.synthesis = synthesis;
   $scope.reaction = reaction;

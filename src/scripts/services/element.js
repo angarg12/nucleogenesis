@@ -28,7 +28,7 @@ function(state, data) {
 			state.player.resources.n.number -= price;
 
 			state.player.elements[element].unlocked = true;
-			state.player.elements[element].generators["Tier 1"] = 1;
+			state.player.elements[element].generators["1"] = 1;
 			state.player.elements_unlocked++;
 		}
 	};

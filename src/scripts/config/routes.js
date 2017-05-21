@@ -8,6 +8,9 @@ angular
   .state('matter', {
     templateUrl : 'views/matter.html'
   })
+  .state('nova', {
+    component: 'nova'
+  })
   .state('supernova', {
     component: 'supernova'
   })

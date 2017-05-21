@@ -87,7 +87,7 @@ describe('Element service', function() {
       spec.state.player.resources.p = {number:257};
       spec.state.player.resources.n = {number:258};
       spec.state.player.elements.O = {unlocked:false,generators:{}};
-      spec.state.player.elements.O.generators['Tier 1'] = 0;
+      spec.state.player.elements.O.generators['1'] = 0;
 
       spec.element.buyElement('O');
 
@@ -95,7 +95,7 @@ describe('Element service', function() {
       expect(spec.state.player.resources.p.number).toEqual(241);
       expect(spec.state.player.resources.n.number).toEqual(242);
       expect(spec.state.player.elements.O.unlocked).toEqual(true);
-      expect(spec.state.player.elements.O.generators['Tier 1']).toEqual(1);
+      expect(spec.state.player.elements.O.generators['1']).toEqual(1);
       expect(spec.state.player.elements_unlocked).toEqual(2);
     });
 
@@ -105,7 +105,7 @@ describe('Element service', function() {
       spec.state.player.resources.p = {number:20};
       spec.state.player.resources.n = {number:30};
       spec.state.player.elements.O = {unlocked:false,generators:{}};
-      spec.state.player.elements.O.generators['Tier 1'] = 0;
+      spec.state.player.elements.O.generators['1'] = 0;
 
       spec.element.buyElement('O');
 
@@ -113,7 +113,7 @@ describe('Element service', function() {
       expect(spec.state.player.resources.p.number).toEqual(20);
       expect(spec.state.player.resources.n.number).toEqual(30);
       expect(spec.state.player.elements.O.unlocked).toEqual(false);
-      expect(spec.state.player.elements.O.generators['Tier 1']).toEqual(0);
+      expect(spec.state.player.elements.O.generators['1']).toEqual(0);
       expect(spec.state.player.elements_unlocked).toEqual(2);
     });
 

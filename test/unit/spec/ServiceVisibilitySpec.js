@@ -30,75 +30,40 @@ describe('Visible service', function() {
     it('should show visible generators', function() {
       spec.state.player = {elements:{}};
       spec.state.player.elements.H = {generators:[]};
-      spec.state.player.elements.H.generators['Tier 1'] = 1;
-      spec.state.player.elements.H.generators['Tier 2'] = 0;
-      spec.state.player.elements.H.generators['Tier 3'] = 0;
+      spec.state.player.elements.H.generators['1'] = 1;
+      spec.state.player.elements.H.generators['2'] = 0;
+      spec.state.player.elements.H.generators['3'] = 0;
       var temp = spec.data.generators;
       spec.data.generators = {};
-      spec.data.generators['Tier 1'] = temp['Tier 1'];
-      spec.data.generators['Tier 2'] = temp['Tier 2'];
-      spec.data.generators['Tier 3'] = temp['Tier 3'];
+      spec.data.generators['1'] = temp['1'];
+      spec.data.generators['2'] = temp['2'];
+      spec.data.generators['3'] = temp['3'];
 
       var values = spec.visibility.visibleGenerators('H');
 
-      expect(values).toEqual(['Tier 1', 'Tier 2']);
+      expect(values).toEqual(['1', '2']);
     });
 
     it('should show if an upgrade is visible', function() {
       spec.state.player = {elements:{}, achievements:{}};
       spec.state.player.achievements = {upgrade:true};
       spec.state.player.elements.H = {generators:[],upgrades:[]};
-      spec.state.player.elements.H.generators['Tier 1'] = 1;
-      spec.state.player.elements.H.upgrades['Tier 1-1'] = true;
-      spec.state.player.elements.H.upgrades['Tier 1-2'] = false;
-      spec.state.player.elements.H.upgrades['Tier 1-3'] = false;
+      spec.state.player.elements.H.generators['1'] = 1;
+      spec.state.player.elements.H.upgrades['1-1'] = true;
+      spec.state.player.elements.H.upgrades['1-2'] = false;
+      spec.state.player.elements.H.upgrades['1-3'] = false;
+      spec.state.player.elements.H.generators['2'] = 0;
+      spec.state.player.elements.H.upgrades['2-1'] = false;
       var temp = spec.data.upgrades;
       spec.data.upgrades = {};
-      spec.data.upgrades['Tier 1-1'] = temp['Tier 1-1'];
-      spec.data.upgrades['Tier 1-2'] = temp['Tier 1-2'];
-      spec.data.upgrades['Tier 1-3'] = temp['Tier 1-3'];
+      spec.data.upgrades['1-1'] = temp['1-1'];
+      spec.data.upgrades['1-2'] = temp['1-2'];
+      spec.data.upgrades['1-3'] = temp['1-3'];
+      spec.data.upgrades['2-1'] = temp['2-1'];
 
-      var values = spec.visibility.isUpgradeVisible('Tier 1-1', 'H');
+      var values = spec.visibility.visibleUpgrades('H');
 
-      expect(values).toBeTruthy();
-    });
-
-    it('should show if an upgrade is visible 2', function() {
-      spec.state.player = {elements:{}, achievements:{}};
-      spec.state.player.achievements = {upgrade:true};
-      spec.state.player.elements.H = {generators:[],upgrades:[]};
-      spec.state.player.elements.H.generators['Tier 1'] = 1;
-      spec.state.player.elements.H.upgrades['Tier 1-1'] = true;
-      spec.state.player.elements.H.upgrades['Tier 1-2'] = false;
-      spec.state.player.elements.H.upgrades['Tier 1-3'] = false;
-      var temp = spec.data.upgrades;
-      spec.data.upgrades = {};
-      spec.data.upgrades['Tier 1-1'] = temp['Tier 1-1'];
-      spec.data.upgrades['Tier 1-2'] = temp['Tier 1-2'];
-      spec.data.upgrades['Tier 1-3'] = temp['Tier 1-3'];
-
-      var values = spec.visibility.isUpgradeVisible('Tier 1-2', 'H');
-
-      expect(values).toBeTruthy();
-    });
-
-    it('should show if an upgrade is not visible', function() {
-      spec.state.player = {elements:{}, achievements:{}};
-      spec.state.player.achievements = {upgrade:true};
-      spec.state.player.elements.H = {generators:[],upgrades:[]};
-      spec.state.player.elements.H.generators['Tier 1'] = 1;
-      spec.state.player.elements.H.upgrades['Tier 1-1'] = true;
-      spec.state.player.elements.H.upgrades['Tier 1-2'] = false;
-      spec.state.player.elements.H.upgrades['Tier 1-3'] = false;
-      var temp = spec.data.upgrades;
-      spec.data.upgrades = {};
-      spec.data.upgrades['Tier 1-1'] = temp['Tier 1-1'];
-      spec.data.upgrades['Tier 1-2'] = temp['Tier 1-2'];
-      spec.data.upgrades['Tier 1-3'] = temp['Tier 1-3'];
-
-      var values = spec.visibility.isUpgradeVisible('Tier 1-3', 'H');
-
-      expect(values).toBeFalsy();
+      expect(values).toEqual(['1-1', '1-2']);
     });
 
     it('should show visible resources', function() {
@@ -217,14 +182,6 @@ describe('Visible service', function() {
   });
 
   describe('has new functions', function() {
-    it('should return true if any element has new items', function() {
-      spec.data.elements.H.includes = ['1H'];
-      spec.visibility.addNew('1H');
-
-      var hasNew = spec.visibility.elementsHasNew();
-      expect(hasNew).toBeTruthy();
-    });
-
     it('should return true if an element has new items', function() {
       spec.data.elements.H.includes = ['1H'];
       spec.visibility.addNew('1H');

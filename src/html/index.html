@@ -75,8 +75,13 @@
           <li ui-sref="matter"
               ui-sref-active="active">
             <a>
-              Elements
-              <i class="mdi mdi-18px mdi-alert-decagram" ng-if="visibility.elementsHasNew()"></i>
+              Matter
+            </a>
+          </li>
+          <li ui-sref="nova"
+              ui-sref-active="active">
+            <a>
+              Upgrades
             </a>
           </li>
           <li ng-if="state.player.achievements.hydrogen_ii"
@@ -104,7 +109,18 @@
           </li>
         </ul>
       </div>
-      <ui-view></ui-view>
+      <div class="tab-pane row">
+        <div class="col-lg-3">
+          <sidebar></sidebar>
+        </div>
+        <div class="col-lg-8">
+          <ui-view></ui-view>
+        </div>
+        <div ng-if="visibility.visibleElements().length > 1"
+             class="col-lg-1 right-box">
+          <element-select></element-select>
+        </div>
+      </div>
     </div>
   </div>
   <div class="achieve achievealert animif"
