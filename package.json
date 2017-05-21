@@ -5,13 +5,13 @@
   "keyword": "incremental idle chemistry game",
   "homepage": "",
   "bugs": {
-    "url": "https://github.com/angarg12/incremental_table_elements/issues",
+    "url": "https://github.com/angarg12/nucleogenesis/issues",
     "email": "angarg12@gmail.com"
   },
   "license": "GPL-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/angarg12/incremental_table_elements.git"
+    "url": "https://github.com/angarg12/nucleogenesis.git"
   },
   "dependencies": {},
   "devDependencies": {
