@@ -1,6 +1,7 @@
 {
   "1-1": {
     "price": 100,
+    "name": "I boost 1",
     "description": "x2",
     "tiers": ["1"],
     "deps": [],
@@ -10,6 +11,7 @@
   },
   "1-2": {
     "price": 500,
+    "name": "I boost 2",
     "description": "x3",
     "tiers": ["1"],
     "deps": [
@@ -21,6 +23,7 @@
   },
   "1-3": {
     "price": 10000,
+    "name": "boost",
     "description": "x4",
     "tiers": ["1"],
     "deps": [
@@ -32,6 +35,7 @@
   },
   "1-4": {
     "price": 100000,
+    "name": "boost",
     "description": "x5",
     "tiers": ["1"],
     "deps": [
@@ -43,6 +47,7 @@
   },
   "1-5": {
     "price": 10000000,
+    "name": "boost",
     "description": "x6",
     "tiers": ["1"],
     "deps": [
@@ -54,6 +59,7 @@
   },
   "1-6": {
     "price": 100000000,
+    "name": "boost",
     "description": "x7",
     "tiers": ["1"],
     "deps": [
@@ -65,6 +71,7 @@
   },
   "1-7": {
     "price": 1000000000,
+    "name": "boost",
     "description": "x8",
     "tiers": ["1"],
     "deps": [
@@ -76,6 +83,7 @@
   },
   "1-8": {
     "price": 10000000000,
+    "name": "boost",
     "description": "x9",
     "tiers": ["1"],
     "deps": [
@@ -87,6 +95,7 @@
   },
   "2-1": {
     "price": 1000,
+    "name": "boost",
     "description": "x2",
     "tiers": ["2"],
     "deps": [],
@@ -96,6 +105,7 @@
   },
   "2-2": {
     "price": 5000,
+    "name": "boost",
     "description": "x3",
     "tiers": ["2"],
     "deps": [
@@ -107,6 +117,7 @@
   },
   "2-3": {
     "price": 50000,
+    "name": "boost",
     "description": "x4",
     "tiers": ["2"],
     "deps": [
@@ -118,6 +129,7 @@
   },
   "2-4": {
     "price": 5000000,
+    "name": "boost",
     "description": "x5",
     "tiers": ["2"],
     "deps": [
@@ -129,6 +141,7 @@
   },
   "2-5": {
     "price": 500000000,
+    "name": "boost",
     "description": "x6",
     "tiers": ["2"],
     "deps": [
@@ -140,6 +153,7 @@
   },
   "2-6": {
     "price": 50000000000,
+    "name": "boost",
     "description": "x7",
     "tiers": ["2"],
     "deps": [
@@ -151,6 +165,7 @@
   },
   "2-7": {
     "price": 50000000000000,
+    "name": "boost",
     "description": "x8",
     "tiers": ["2"],
     "deps": [
@@ -162,6 +177,7 @@
   },
   "2-8": {
     "price": 5.0e+16,
+    "name": "boost",
     "description": "x9",
     "tiers": ["2"],
     "deps": [
@@ -173,6 +189,7 @@
   },
   "3-1": {
     "price": 10000,
+    "name": "boost",
     "description": "x2",
     "tiers": ["3"],
     "deps": [],
@@ -182,6 +199,7 @@
   },
   "3-2": {
     "price": 55000,
+    "name": "boost",
     "description": "x3",
     "tiers": ["3"],
     "deps": [
@@ -193,6 +211,7 @@
   },
   "3-3": {
     "price": 550000,
+    "name": "boost",
     "description": "x4",
     "tiers": ["3"],
     "deps": [
@@ -204,6 +223,7 @@
   },
   "3-4": {
     "price": 55000000,
+    "name": "boost",
     "description": "x5",
     "tiers": ["3"],
     "deps": [
@@ -215,6 +235,7 @@
   },
   "3-5": {
     "price": 5500000000,
+    "name": "boost",
     "description": "x6",
     "tiers": ["3"],
     "deps": [
@@ -226,6 +247,7 @@
   },
   "3-6": {
     "price": 550000000000,
+    "name": "boost",
     "description": "x7",
     "tiers": ["3"],
     "deps": [
@@ -237,6 +259,7 @@
   },
   "3-7": {
     "price": 5.5e+14,
+    "name": "boost",
     "description": "x8",
     "tiers": ["3"],
     "deps": [
@@ -248,6 +271,7 @@
   },
   "3-8": {
     "price": 5.5e+17,
+    "name": "boost",
     "description": "x9",
     "tiers": ["3"],
     "deps": [
@@ -259,6 +283,7 @@
   },
   "4-1": {
     "price": 120000,
+    "name": "boost",
     "description": "x2",
     "tiers": ["4"],
     "deps": [],
@@ -268,6 +293,7 @@
   },
   "4-2": {
     "price": 600000,
+    "name": "boost",
     "description": "x3",
     "tiers": ["4"],
     "deps": [
@@ -279,6 +305,7 @@
   },
   "4-3": {
     "price": 6000000,
+    "name": "boost",
     "description": "x4",
     "tiers": ["4"],
     "deps": [
@@ -290,6 +317,7 @@
   },
   "4-4": {
     "price": 600000000,
+    "name": "boost",
     "description": "x5",
     "tiers": ["4"],
     "deps": [
@@ -301,6 +329,7 @@
   },
   "4-5": {
     "price": 60000000000,
+    "name": "boost",
     "description": "x6",
     "tiers": ["4"],
     "deps": [
@@ -312,6 +341,7 @@
   },
   "4-6": {
     "price": 6000000000000,
+    "name": "boost",
     "description": "x7",
     "tiers": ["4"],
     "deps": [
@@ -323,6 +353,7 @@
   },
   "4-7": {
     "price": 6.0e+15,
+    "name": "boost",
     "description": "x8",
     "tiers": ["4"],
     "deps": [
@@ -334,6 +365,7 @@
   },
   "4-8": {
     "price": 6.0e+18,
+    "name": "boost",
     "description": "x9",
     "tiers": ["4"],
     "deps": [
@@ -345,6 +377,7 @@
   },
   "5-1": {
     "price": 1300000,
+    "name": "boost",
     "description": "x2",
     "tiers": ["5"],
     "deps": [],
@@ -354,6 +387,7 @@
   },
   "5-2": {
     "price": 6500000,
+    "name": "boost",
     "description": "x3",
     "tiers": ["5"],
     "deps": [
@@ -365,6 +399,7 @@
   },
   "5-3": {
     "price": 65000000,
+    "name": "boost",
     "description": "x4",
     "tiers": ["5"],
     "deps": [
@@ -376,6 +411,7 @@
   },
   "5-4": {
     "price": 6500000000,
+    "name": "boost",
     "description": "x5",
     "tiers": ["5"],
     "deps": [
@@ -387,6 +423,7 @@
   },
   "5-5": {
     "price": 650000000000,
+    "name": "boost",
     "description": "x6",
     "tiers": ["5"],
     "deps": [
@@ -398,6 +435,7 @@
   },
   "5-6": {
     "price": 65000000000000,
+    "name": "boost",
     "description": "x7",
     "tiers": ["5"],
     "deps": [
@@ -409,6 +447,7 @@
   },
   "5-7": {
     "price": 6.5e+16,
+    "name": "boost",
     "description": "x8",
     "tiers": ["5"],
     "deps": [
@@ -420,6 +459,7 @@
   },
   "5-8": {
     "price": 6.5e+19,
+    "name": "boost",
     "description": "x9",
     "tiers": ["5"],
     "deps": [
@@ -431,6 +471,7 @@
   },
   "6-1": {
     "price": 14000000,
+    "name": "boost",
     "description": "x2",
     "tiers": ["6"],
     "deps": [],
@@ -440,6 +481,7 @@
   },
   "6-2": {
     "price": 70000000,
+    "name": "boost",
     "description": "x3",
     "tiers": ["6"],
     "deps": [
@@ -451,6 +493,7 @@
   },
   "6-3": {
     "price": 700000000,
+    "name": "boost",
     "description": "x4",
     "tiers": ["6"],
     "deps": [
@@ -462,6 +505,7 @@
   },
   "6-4": {
     "price": 70000000000,
+    "name": "boost",
     "description": "x5",
     "tiers": ["6"],
     "deps": [
@@ -473,6 +517,7 @@
   },
   "6-5": {
     "price": 7000000000000,
+    "name": "boost",
     "description": "x6",
     "tiers": ["6"],
     "deps": [
@@ -484,6 +529,7 @@
   },
   "6-6": {
     "price": 7.0e+14,
+    "name": "boost",
     "description": "x7",
     "tiers": ["6"],
     "deps": [
@@ -495,6 +541,7 @@
   },
   "6-7": {
     "price": 7.0e+17,
+    "name": "boost",
     "description": "x8",
     "tiers": ["6"],
     "deps": [
@@ -506,6 +553,7 @@
   },
   "6-8": {
     "price": 7.0e+20,
+    "name": "boost",
     "description": "x9",
     "tiers": ["6"],
     "deps": [
@@ -517,6 +565,7 @@
   },
   "7-1": {
     "price": 200000000,
+    "name": "boost",
     "description": "x2",
     "tiers": ["7"],
     "deps": [],
@@ -526,6 +575,7 @@
   },
   "7-2": {
     "price": 1000000000,
+    "name": "boost",
     "description": "x3",
     "tiers": ["7"],
     "deps": [
@@ -537,6 +587,7 @@
   },
   "7-3": {
     "price": 10000000000,
+    "name": "boost",
     "description": "x4",
     "tiers": ["7"],
     "deps": [
@@ -548,6 +599,7 @@
   },
   "7-4": {
     "price": 1000000000000,
+    "name": "boost",
     "description": "x5",
     "tiers": ["7"],
     "deps": [
@@ -559,6 +611,7 @@
   },
   "7-5": {
     "price": 1.0e+14,
+    "name": "boost",
     "description": "x6",
     "tiers": ["7"],
     "deps": [
@@ -570,6 +623,7 @@
   },
   "7-6": {
     "price": 1.0e+16,
+    "name": "boost",
     "description": "x7",
     "tiers": ["7"],
     "deps": [
@@ -581,6 +635,7 @@
   },
   "7-7": {
     "price": 1.0e+19,
+    "name": "boost",
     "description": "x8",
     "tiers": ["7"],
     "deps": [
@@ -592,6 +647,7 @@
   },
   "7-8": {
     "price": 1.0e+22,
+    "name": "boost",
     "description": "x9",
     "tiers": ["7"],
     "deps": [
@@ -603,6 +659,7 @@
   },
   "8-1": {
     "price": 3300000000,
+    "name": "boost",
     "description": "x2",
     "tiers": ["8"],
     "deps": [],
@@ -612,6 +669,7 @@
   },
   "8-2": {
     "price": 16500000000,
+    "name": "boost",
     "description": "x3",
     "tiers": ["8"],
     "deps": [
@@ -623,6 +681,7 @@
   },
   "8-3": {
     "price": 165000000000,
+    "name": "boost",
     "description": "x4",
     "tiers": ["8"],
     "deps": [
@@ -634,6 +693,7 @@
   },
   "8-4": {
     "price": 16500000000000,
+    "name": "boost",
     "description": "x5",
     "tiers": ["8"],
     "deps": [
@@ -645,6 +705,7 @@
   },
   "8-5": {
     "price": 1.65e+15,
+    "name": "boost",
     "description": "x6",
     "tiers": ["8"],
     "deps": [
@@ -656,6 +717,7 @@
   },
   "8-6": {
     "price": 1.65e+17,
+    "name": "boost",
     "description": "x7",
     "tiers": ["8"],
     "deps": [
@@ -667,6 +729,7 @@
   },
   "8-7": {
     "price": 1.65e+20,
+    "name": "boost",
     "description": "x8",
     "tiers": ["8"],
     "deps": [
@@ -678,6 +741,7 @@
   },
   "8-8": {
     "price": 1.65e+23,
+    "name": "boost",
     "description": "x9",
     "tiers": ["8"],
     "deps": [
@@ -689,6 +753,7 @@
   },
   "9-1": {
     "price": 51000000000,
+    "name": "boost",
     "description": "x2",
     "tiers": ["9"],
     "deps": [],
@@ -698,6 +763,7 @@
   },
   "9-2": {
     "price": 255000000000,
+    "name": "boost",
     "description": "x3",
     "tiers": ["9"],
     "deps": [
@@ -709,6 +775,7 @@
   },
   "9-3": {
     "price": 2550000000000,
+    "name": "boost",
     "description": "x4",
     "tiers": ["9"],
     "deps": [
@@ -720,6 +787,7 @@
   },
   "9-4": {
     "price": 2.55e+14,
+    "name": "boost",
     "description": "x5",
     "tiers": ["9"],
     "deps": [
@@ -731,6 +799,7 @@
   },
   "9-5": {
     "price": 2.55e+16,
+    "name": "boost",
     "description": "x6",
     "tiers": ["9"],
     "deps": [
@@ -742,6 +811,7 @@
   },
   "9-6": {
     "price": 2.55e+18,
+    "name": "boost",
     "description": "x7",
     "tiers": ["9"],
     "deps": [
@@ -753,6 +823,7 @@
   },
   "9-7": {
     "price": 2.55e+21,
+    "name": "boost",
     "description": "x8",
     "tiers": ["9"],
     "deps": [
@@ -764,6 +835,7 @@
   },
   "9-8": {
     "price": 2.55e+24,
+    "name": "boost",
     "description": "x9",
     "tiers": ["9"],
     "deps": [
@@ -775,6 +847,7 @@
   },
   "10-1": {
     "price": 750000000000,
+    "name": "boost",
     "description": "x2",
     "tiers": ["10"],
     "deps": [],
@@ -784,6 +857,7 @@
   },
   "10-2": {
     "price": 3750000000000,
+    "name": "boost",
     "description": "x3",
     "tiers": ["10"],
     "deps": [
@@ -795,6 +869,7 @@
   },
   "10-3": {
     "price": 37500000000000,
+    "name": "boost",
     "description": "x4",
     "tiers": ["10"],
     "deps": [
@@ -806,6 +881,7 @@
   },
   "10-4": {
     "price": 3.75e+15,
+    "name": "boost",
     "description": "x5",
     "tiers": ["10"],
     "deps": [
@@ -817,6 +893,7 @@
   },
   "10-5": {
     "price": 3.75e+17,
+    "name": "boost",
     "description": "x6",
     "tiers": ["10"],
     "deps": [
@@ -828,6 +905,7 @@
   },
   "10-6": {
     "price": 3.75e+19,
+    "name": "boost",
     "description": "x7",
     "tiers": ["10"],
     "deps": [
@@ -839,6 +917,7 @@
   },
   "10-7": {
     "price": 3.75e+22,
+    "name": "boost",
     "description": "x8",
     "tiers": ["10"],
     "deps": [
@@ -850,6 +929,7 @@
   },
   "10-8": {
     "price": 3.75e+25,
+    "name": "boost",
     "description": "x9",
     "tiers": ["10"],
     "deps": [

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<div class="row">
+<h2>{{ct.data.elements[ct.state.currentElement].name}}</h2>
+<div class="panel-body row">
   <div ng-repeat="up in ct.visibility.visibleUpgrades(ct.state.currentElement)"
+       ng-click="ct.buyUpgrade(up, ct.state.currentElement)"
        class="col-lg-6 btn btn-default"
-       ng-class="{disabled: ct.data.upgrades[up].price > ct.state.player.resources[ct.state.currentElement].number &&
+       ng-class="{disabled: ct.data.upgrades[up].price > ct.state.player.resources[ct.data.elements[ct.state.currentElement].main].number &&
          !ct.state.player.elements[ct.state.currentElement].upgrades[up],
          active: ct.state.player.elements[ct.state.currentElement].upgrades[up]}">
     <span class="pull-left">
-        {{up}}: {{ct.data.upgrades[up].description}}
+        {{ct.data.upgrades[up].name}}: {{ct.data.upgrades[up].description}}
       </span>
     <span class="pull-right">
         <pretty value="ct.data.upgrades[up].price"></pretty> &nbsp;

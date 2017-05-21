@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <h2>{{data.elements[state.currentElement].name}}</h2>
 <h3>
-      <pretty value="generator.elementProduction(state.currentElement)" id="production_total"></pretty>
-      {{state.currentElement}}/s
-    </h3>
+  <pretty value="generator.elementProduction(state.currentElement)" id="production_total"></pretty>
+  {{state.currentElement}}/s
+</h3>
 <ul ng-if="state.player.achievements.isotope">
   <li ng-repeat="(isotope,_) in data.elements[state.currentElement].isotopes"
       ng-if="state.player.resources[isotope].unlocked">
