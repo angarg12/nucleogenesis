@@ -17,7 +17,7 @@
     "deps": [
       "1-1"
     ],
-    "exotic_deps": [],
+    "exotic_deps": ["x3"],
     "dark_deps": [],
     "power": 3
   },

@@ -1,0 +1,9 @@
+{
+  "x3": {
+    "price": 100,
+    "name": "Extra prod 1",
+    "description": "Unlocks x3 boosts",
+    "deps": [],
+    "dark_deps": []
+  }
+}

@@ -80,4 +80,16 @@ function supernova(state, format, visibility, data, util) {
 
     state.player.elements[state.currentElement].generators[first] = 1;
   };
+
+  ct.buyExoticUpgrade = function (name, element) {
+    if(state.player.elements[element].exotic_upgrades[name]) {
+      return;
+    }
+    let price = data.exotic_upgrades[name].price;
+    let currency = data.elements[element].exotic;
+    if(state.player.resources[currency].number >= price) {
+      state.player.resources[currency].number -= price;
+      state.player.elements[element].exotic_upgrades[name] = true;
+    }
+  };
 }

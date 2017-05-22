@@ -26,7 +26,15 @@ angular
       };
 
       this.visibleUpgrades = function (currentElement) {
-        return visible(data.upgrades, isUpgradeVisible, currentElement);
+        return visible(data.upgrades, isBasicUpgradeVisible, currentElement);
+      };
+
+      this.visibleExoticUpgrades = function (currentElement) {
+        return visible(data.exotic_upgrades, isExoticUpgradeVisible, currentElement);
+      };
+
+      this.visibleDarkUpgrades = function (currentElement) {
+        return visible(data.dark_upgrades, isDarkUpgradeVisible, currentElement);
       };
 
       this.visibleResources = function (currentElement) {
@@ -74,30 +82,41 @@ angular
         return true;
       }
 
-      function isUpgradeVisible(name, currentElement) {
-        let upgrade = data.upgrades[name];
-        for (let tier of upgrade.tiers) {
-          if(state.player.elements[currentElement].generators[tier] === 0){
-            return false;
-          }
-        }
-        for (let dep of upgrade.deps) {
-          if(!state.player.elements[currentElement].upgrades[dep]){
-            return false;
-          }
-        }
-        // for (let dep of upgrade.exotic_deps) {
-        //   if(!state.player.elements[currentElement].exotic_upgrades[dep]){
-        //     return false;
-        //   }
-        // }
-        // for (let dep of upgrade.dark_deps) {
-        //   if(!state.player.dark_upgrades[dep]){
-        //     return false;
-        //   }
-        // }
+      function isBasicUpgradeVisible(name, currentElement) {
+        return isUpgradeVisible(name, currentElement, data.upgrades[name]);
+      }
 
+      function isExoticUpgradeVisible(name, currentElement) {
+        return isUpgradeVisible(name, currentElement, data.exotic_upgrades[name]);
+      }
+
+      function isDarkUpgradeVisible(name, currentElement) {
+        return isUpgradeVisible(name, currentElement, data.dark_upgrades[name]);
+      }
+
+      function meetDependencies(upgrades, dependencies){
+        if(!dependencies){
+          return true;
+        }
+        for (let dep of dependencies) {
+          if(!upgrades[dep]){
+            return false;
+          }
+        }
         return true;
+      }
+
+      function isUpgradeVisible(name, currentElement, upgrade) {
+        if(upgrade.tiers){
+          for (let tier of upgrade.tiers) {
+            if(state.player.elements[currentElement].generators[tier] === 0){
+              return false;
+            }
+          }
+        }
+        return meetDependencies(state.player.elements[currentElement].upgrades, upgrade.deps) &&
+        meetDependencies(state.player.elements[currentElement].exotic_upgrades, upgrade.exotic_deps) &&
+        meetDependencies(state.player.dark_upgrades, upgrade.dark_deps);
       }
 
       function isResourceVisible(name, currentElement) {
