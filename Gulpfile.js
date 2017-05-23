@@ -6,11 +6,14 @@
 let gulp = require('gulp');
 let del = require('del');
 let runSequence = require('run-sequence');
+let uglifyes = require('uglify-es');
+let composer = require('gulp-uglify/composer');
 
 // Include plugins
 let plugins = require('gulp-load-plugins')();
 
 let Server = require('karma').Server;
+let ugly = composer(uglifyes, console);
 
 // unit test
 gulp.task('karma', function (done) {
@@ -66,7 +69,7 @@ gulp.task('htmlmin', function() {
 
 gulp.task('uglify', function() {
   return gulp.src('build/scripts/app.min.js')
-    .pipe(plugins.uglify())
+    .pipe(ugly())
     .pipe(gulp.dest('dist/scripts'));
 });
 

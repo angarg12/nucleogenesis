@@ -33,6 +33,7 @@
     "gulp-concat": "latest",
     "gulp-htmlmin": "latest",
     "gulp-uglify": "latest",
+    "uglify-es": "latest",
     "gulp-clean-css": "latest",
     "gulp-usemin": "latest",
     "gulp-cache": "latest",
