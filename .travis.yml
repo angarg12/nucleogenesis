@@ -1,11 +1,12 @@
 language: node_js
 dist: trusty
 node_js:
-  - "node"
+  - node
 env:
   - TEST_SUITE=unit-test
   - TEST_SUITE=e2e-test
 addons:
+  firefox: latest
   apt:
     sources:
       - google-chrome

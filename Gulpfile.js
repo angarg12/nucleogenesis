@@ -116,7 +116,7 @@ gulp.task('copy-lib', function() {
     .pipe(gulp.dest('build/bower_components'));
 });
 
-gulp.task('copy-build', ['copy-js',  'copy-data', 'copy-html',
+gulp.task('copy-build', ['copy-js', 'copy-data', 'copy-html',
                         'copy-css', 'copy-lib']);
 
 // build
@@ -147,12 +147,9 @@ gulp.task('sort_resources', function() {
   return plugins.run('node build_scripts/sort_resources.js build',{silent:true}).exec();
 });
 
-gulp.task('babel', function() {
+gulp.task('concat', function() {
   return gulp.src(['build/scripts/modules/module.js',
     'build/scripts/**/*!(module.js)'])
-    .pipe(plugins.babel({
-      presets: ['es2015']
-    }))
     .pipe(plugins.concat('app.min.js'))
     .pipe(gulp.dest('build/scripts'));
 });
@@ -169,7 +166,7 @@ gulp.task('build', function(callback) {
     'sort_resources',
     'populate_player',
     'populate_data',
-    'babel',
+    'concat',
     callback);
 });
 
