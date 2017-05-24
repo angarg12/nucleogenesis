@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewbox="0 0 155 155" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+  <g class="logo-center">
+    <circle cx="77.5" cy="87.5" r="15"/>
+  </g>  
+  <g class="logo-tear">
+    <path d="M 55.8 100.5
+           L 33.5 101.5
+           A 5 5 0 0 0 43.5 118.5
+           z" />
+    <path d="M 77.5 62
+           L 67.7 42.3
+           A 5 5 0 0 1 87.5 42.2
+           z" />
+    <path d="M 99.5 100.5
+           L 121.5 101.5
+           A 5 5 0 0 1 111.5 118.5
+           z" />
+  </g>  
+  <g class="logo-out">
+    <circle cx="12.5" cy="125.5" r="10" />
+    <circle cx="77.5" cy="12.5" r="10" />
+    <circle cx="142.5" cy="124.5" r="10" />
+  </g>  
+</svg>
