@@ -26,7 +26,7 @@ gulp.task('karma', function (done) {
 gulp.task('codecov', function() {
   return gulp
     .src(['test/unit/coverage/**/lcov.info'], { read: false })
-    .pipe(plugins.codeclimateReporter({ token: '1d8279dc5b0b15d891c420e5fa78c773ad7841f0bf552dfa43e9cafe7a68fac9' }))
+    .pipe(plugins.codeclimateReporter({ token: '8e959350aa2fde657bbdd472964d5b2bdbb7d2ba10b8f6137865f2c241ecc86e' }))
   ;
 });
 
