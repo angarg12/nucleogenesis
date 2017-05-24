@@ -1,20 +1,23 @@
-[![Build Status](https://travis-ci.org/angarg12/incremental_table_elements.svg?branch=master)](https://travis-ci.org/angarg12/incremental_table_elements)
-[![Coverage Status](https://coveralls.io/repos/github/angarg12/incremental_table_elements/badge.svg?branch=master)](https://coveralls.io/github/angarg12/incremental_table_elements?branch=master)
+[![Build Status](https://travis-ci.org/angarg12/nucleogenesis.svg?branch=master)](https://travis-ci.org/angarg12/nucleogenesis)
+[![Test Coverage](https://codeclimate.com/github/angarg12/nucleogenesis/badges/coverage.svg)](https://codeclimate.com/github/angarg12/nucleogenesis/coverage)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/angarg12/nucleogenesis/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/angarg12/nucleogenesis/?branch=master)
 [![Code Climate](https://codeclimate.com/github/angarg12/incremental_table_elements/badges/gpa.svg)](https://codeclimate.com/github/angarg12/incremental_table_elements)
-
-# Developers
+[![Dependency Status](https://gemnasium.com/badges/github.com/angarg12/nucleogenesis.svg)](https://gemnasium.com/github.com/angarg12/nucleogenesis)
+[![devDependencies Status](https://david-dm.org/angarg12/nucleogenesis/dev-status.svg)](https://david-dm.org/angarg12/nucleogenesis?type=dev)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fangarg12%2Fnucleogenesis.svg?type=shield)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fangarg12%2Fnucleogenesis?ref=badge_shield)
 
 # Players
+
 Nucleogenesis is a chemistry-based incremental/idle game.
 
-* [Game](https://angarg12.github.io/IncrementalTableElements/)
+* [The Incremental Table of the Elements](https://angarg12.github.io/IncrementalTableElements/), v1, current release.
+* [Nucleogenesis](https://angarg12.github.io/nucleogenesis/), v2, currently in beta.
 
- # License
- 
-Nucleogenesis: A chemistry-based incremental/idle game.
+# Contributors
 
-Copyright (C) 2016 Andrés Garcia Garcia (angarg12)
 
-This project is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+# License
 
-Derivative works should include attribution to the original author. The original author does not endorse or promote derivative works, unless explicit consent is given.
+[GPL-3.0](LICENSE)
+
+Derivative works should include attribution to the original author, Andrés Garcia Garcia (angarg12).
