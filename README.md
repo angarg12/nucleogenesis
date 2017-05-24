@@ -7,7 +7,7 @@
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fangarg12%2Fnucleogenesis.svg?type=shield)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fangarg12%2Fnucleogenesis?ref=badge_shield)
 
 <p align="center">
-<img src="https://rawgit.com/angarg12/nucleogenesis/master/img/logo.svg"/>
+<img width="155" heigth="155" src="https://rawgit.com/angarg12/nucleogenesis/master/img/logo.svg"/>
 </p>
 <p align="center">
 <img src="https://rawgit.com/angarg12/nucleogenesis/master/img/title.png"/>
