@@ -4,7 +4,7 @@ angular
   .module('game')
   .service('visibility', ['state',
     'data',
-    function (state, data) {
+    function(state, data) {
       let newElements = [];
 
       function visible(items, func, currentElement) {
@@ -17,43 +17,43 @@ angular
         return visibles;
       }
 
-      this.visibleElements = function () {
+      this.visibleElements = function() {
         return visible(data.elements, isElementVisible);
       };
 
-      this.visibleGenerators = function (currentElement) {
+      this.visibleGenerators = function(currentElement) {
         return visible(data.generators, isGeneratorVisible, currentElement);
       };
 
-      this.visibleUpgrades = function (currentElement) {
+      this.visibleUpgrades = function(currentElement) {
         return visible(data.upgrades, isBasicUpgradeVisible, currentElement);
       };
 
-      this.visibleExoticUpgrades = function (currentElement) {
+      this.visibleExoticUpgrades = function(currentElement) {
         return visible(data.exotic_upgrades, isExoticUpgradeVisible, currentElement);
       };
 
-      this.visibleDarkUpgrades = function (currentElement) {
+      this.visibleDarkUpgrades = function(currentElement) {
         return visible(data.dark_upgrades, isDarkUpgradeVisible, currentElement);
       };
 
-      this.visibleResources = function (currentElement) {
+      this.visibleResources = function(currentElement) {
         return visible(data.resources, isResourceVisible, currentElement);
       };
 
-      this.visibleEncyclopediaEntries = function () {
+      this.visibleEncyclopediaEntries = function() {
         return visible(data.encyclopedia, isEncyclopediaEntryVisible);
       };
 
-      this.visibleRedox = function (currentElement) {
+      this.visibleRedox = function(currentElement) {
         return visible(data.redox, isRedoxVisible, currentElement);
       };
 
-      this.visibleBindings = function (currentElement) {
+      this.visibleBindings = function(currentElement) {
         return visible(data.binding_energy, isBindingVisible, currentElement);
       };
 
-      this.visibleSyntheses = function (currentElement) {
+      this.visibleSyntheses = function(currentElement) {
         return visible(data.syntheses, isSynthesisVisible, currentElement);
       };
 
@@ -74,7 +74,7 @@ angular
       function isGeneratorVisible(name, currentElement) {
         let generator = data.generators[name];
         for (let dep of generator.deps) {
-          if(state.player.elements[currentElement].generators[dep] === 0){
+          if (state.player.elements[currentElement].generators[dep] === 0) {
             return false;
           }
         }
@@ -94,12 +94,12 @@ angular
         return isUpgradeVisible(name, currentElement, data.dark_upgrades[name]);
       }
 
-      function meetDependencies(upgrades, dependencies){
-        if(!dependencies){
+      function meetDependencies(upgrades, dependencies) {
+        if (!dependencies) {
           return true;
         }
         for (let dep of dependencies) {
-          if(!upgrades[dep]){
+          if (!upgrades[dep]) {
             return false;
           }
         }
@@ -107,16 +107,16 @@ angular
       }
 
       function isUpgradeVisible(name, currentElement, upgrade) {
-        if(upgrade.tiers){
+        if (upgrade.tiers) {
           for (let tier of upgrade.tiers) {
-            if(state.player.elements[currentElement].generators[tier] === 0){
+            if (state.player.elements[currentElement].generators[tier] === 0) {
               return false;
             }
           }
         }
         return meetDependencies(state.player.elements[currentElement].upgrades, upgrade.deps) &&
-        meetDependencies(state.player.elements[currentElement].exotic_upgrades, upgrade.exotic_deps) &&
-        meetDependencies(state.player.dark_upgrades, upgrade.dark_deps);
+          meetDependencies(state.player.elements[currentElement].exotic_upgrades, upgrade.exotic_deps) &&
+          meetDependencies(state.player.dark_upgrades, upgrade.dark_deps);
       }
 
       function isResourceVisible(name, currentElement) {
@@ -176,7 +176,7 @@ angular
         return isReactionVisible(data.syntheses[entry], currentElement, 'synthesis');
       }
 
-      this.elementHasNew = function (element) {
+      this.elementHasNew = function(element) {
         let includes = data.elements[element].includes;
         for (let key in includes) {
           if (this.hasNew(includes[key])) {
@@ -186,7 +186,7 @@ angular
         return false;
       };
 
-      this.encyclopediaHasNew = function () {
+      this.encyclopediaHasNew = function() {
         for (let entry in data.encyclopedia) {
           if (this.hasNew(entry)) {
             return true;
@@ -195,15 +195,15 @@ angular
         return false;
       };
 
-      this.hasNew = function (entry) {
+      this.hasNew = function(entry) {
         return newElements.indexOf(entry) !== -1;
       };
 
-      this.addNew = function (entry) {
+      this.addNew = function(entry) {
         newElements.push(entry);
       };
 
-      this.removeNew = function (entry) {
+      this.removeNew = function(entry) {
         if (newElements.indexOf(entry) !== -1) {
           newElements.splice(newElements.indexOf(entry), 1);
         }
