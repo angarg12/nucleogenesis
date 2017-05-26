@@ -31,13 +31,14 @@ var commonSpec = function(spec) {
     spec.format = _$injector_.get('format');
     spec.synthesis = _$injector_.get('synthesis');
     spec.reaction = _$injector_.get('reaction');
-    spec.element = _$injector_.get('element');
     spec.visibility = _$injector_.get('visibility');
     spec.data = _$injector_.get('data');
     spec.state = _$injector_.get('state');
 
+    spec.core = _$componentController_('core', null, null);
     spec.nova = _$componentController_('nova', null, null);
+    spec.supernova = _$componentController_('supernova', null, null);
 
-    spec.controller = _$controller_('main-loop', {$scope:spec.$scope, achievement:spec.achievement, util:spec.util, savegame:spec.savegame, generator:spec.generator, format:spec.format, synthesis:spec.synthesis, reaction:spec.reaction, element:spec.element, data:spec.data, state:spec.state});
+    spec.controller = _$controller_('main-loop', {$scope:spec.$scope, achievement:spec.achievement, util:spec.util, savegame:spec.savegame, generator:spec.generator, format:spec.format, synthesis:spec.synthesis, reaction:spec.reaction, data:spec.data, state:spec.state});
   }));
 };

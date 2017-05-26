@@ -3,10 +3,7 @@
 angular
   .module('game')
   .controller('main-loop', ['$scope',
-    '$document',
     '$interval',
-    '$sce',
-    '$filter',
     '$timeout',
     'achievement',
     'util',
@@ -15,11 +12,10 @@ angular
     'format',
     'synthesis',
     'reaction',
-    'element',
     'data',
     'visibility',
     'state',
-    function($scope, $document, $interval, $sce, $filter, $timeout, achievement, util, savegame, generator, format, synthesis, reaction, element, data, visibility, state) {
+    function($scope, $interval, $timeout, achievement, util, savegame, generator, format, synthesis, reaction, data, visibility, state) {
       $scope.data = data;
       $scope.achievement = achievement;
       $scope.util = util;
@@ -29,7 +25,6 @@ angular
       $scope.synthesis = synthesis;
       $scope.reaction = reaction;
       $scope.visibility = visibility;
-      $scope.element = element;
       $scope.state = state;
       $scope.loading = true;
 

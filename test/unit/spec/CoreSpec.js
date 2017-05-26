@@ -13,7 +13,7 @@ describe('Element service', function() {
       spec.state.player = {};
       spec.state.player.elements_unlocked = 1;
 
-      var value = spec.element.elementPrice('O');
+      var value = spec.core.elementPrice('O');
 
       expect(value).toEqual(16);
     });
@@ -22,7 +22,7 @@ describe('Element service', function() {
       spec.state.player = {};
       spec.state.player.elements_unlocked = 5;
 
-      var value = spec.element.elementPrice('Sn');
+      var value = spec.core.elementPrice('Sn');
 
       // without the precision it doesn't work!!
       expect(value.toPrecision(6)).toBeCloseTo(1600,6);
@@ -35,7 +35,7 @@ describe('Element service', function() {
 			spec.state.player.resources.p = {number:300};
 			spec.state.player.resources.n = {number:300};
 
-      var value = spec.element.isElementCostMet('O');
+      var value = spec.core.isElementCostMet('O');
 
       expect(value).toEqual(false);
     });
@@ -48,7 +48,7 @@ describe('Element service', function() {
 			spec.state.player.resources.n = {number:300};
       spec.state.player.elements_unlocked = 1;
 
-      var value = spec.element.isElementCostMet('O');
+      var value = spec.core.isElementCostMet('O');
 
       expect(value).toEqual(false);
     });
@@ -61,7 +61,7 @@ describe('Element service', function() {
 			spec.state.player.resources.n = {number:0};
       spec.state.player.elements_unlocked = 1;
 
-      var value = spec.element.isElementCostMet('O');
+      var value = spec.core.isElementCostMet('O');
 
       expect(value).toEqual(false);
     });
@@ -74,7 +74,7 @@ describe('Element service', function() {
 			spec.state.player.resources.n = {number:300};
       spec.state.player.elements_unlocked = 1;
 
-      var value = spec.element.isElementCostMet('O');
+      var value = spec.core.isElementCostMet('O');
 
       expect(value).toEqual(true);
     });
@@ -89,7 +89,7 @@ describe('Element service', function() {
       spec.state.player.elements.O = {unlocked:false,generators:{}};
       spec.state.player.elements.O.generators['1'] = 0;
 
-      spec.element.buyElement('O');
+      spec.core.buyElement('O');
 
       expect(spec.state.player.resources['e-'].number).toEqual(240);
       expect(spec.state.player.resources.p.number).toEqual(241);
@@ -107,7 +107,7 @@ describe('Element service', function() {
       spec.state.player.elements.O = {unlocked:false,generators:{}};
       spec.state.player.elements.O.generators['1'] = 0;
 
-      spec.element.buyElement('O');
+      spec.core.buyElement('O');
 
       expect(spec.state.player.resources['e-'].number).toEqual(1);
       expect(spec.state.player.resources.p.number).toEqual(20);
@@ -118,13 +118,13 @@ describe('Element service', function() {
     });
 
     it('should skip if the element is already purchased', function() {
-      spyOn(spec.element,'isElementCostMet');
+      spyOn(spec.core,'isElementCostMet');
       spec.state.player = {elements:{}};
       spec.state.player.elements.O = {unlocked:true};
 
-      spec.element.buyElement('O');
+      spec.core.buyElement('O');
 
-      expect(spec.element.isElementCostMet).not.toHaveBeenCalled();
+      expect(spec.core.isElementCostMet).not.toHaveBeenCalled();
     });
   });
 });

@@ -3,12 +3,12 @@
   <div class="col-lg-2">
     <table class="table table-hover element-table no_bottom">
       <tr class="animif row"
-          ng-repeat="key in data.table_resources">
+          ng-repeat="key in ct.data.table_resources">
         <td class="col-lg-3">
           <get-html value="key"></get-html>
         </td>
         <td class="col-lg-9">
-          <pretty value="state.player.resources[key].number"></pretty>
+          <pretty value="ct.state.player.resources[key].number"></pretty>
         </td>
       </tr>
     </table>
@@ -18,7 +18,7 @@
       with each purchase.</p>
     <div class="element_table">
       <div class="element_info"
-           ng-show="data.elements[state.hoverElement] != null">
+           ng-show="ct.data.elements[ct.state.hoverElement] != null">
         <div class="fl element_basic"
              ng-class="{element_purchased: state.player.elements[state.hoverElement].unlocked === true,
           element_unavailable: data.elements[state.hoverElement].disabled === true,
@@ -39,14 +39,14 @@
              ng-if="state.player.elements.hasOwnProperty(state.hoverElement) && state.player.elements[state.hoverElement].unlocked != true">
           <div>Cost</div>
           <div>
-            <pretty value="element.elementPrice(state.hoverElement)"></pretty> e-</div>
+            <pretty value="ct.elementPrice(ct.state.hoverElement)"></pretty> e-</div>
           <div>
-            <pretty value="element.elementPrice(state.hoverElement)"></pretty> p</div>
+            <pretty value="ct.elementPrice(ct.state.hoverElement)"></pretty> p</div>
           <div>
-            <pretty value="element.elementPrice(state.hoverElement)"></pretty> n</div>
+            <pretty value="ct.elementPrice(ct.state.hoverElement)"></pretty> n</div>
         </div>
       </div>
-      <div ng-repeat="element_row in data.periodic_table"
+      <div ng-repeat="element_row in ct.data.periodic_table"
            class="element_row">
         <span ng-repeat="elem in element_row track by $index">
           <div ng-class="{element_purchased: state.player.elements[elem].unlocked === true,

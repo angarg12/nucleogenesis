@@ -8,11 +8,6 @@ angular
     '$locale',
     'data',
     function(numberFilter, $sce, $locale, data) {
-      // Polyfill for some browsers
-      Number.parseFloat = parseFloat;
-      Number.isInteger = Number.isInteger || function(value) {
-        return typeof value === 'number' && isFinite(value) && Math.floor(value) === value;
-      };
       let formats = $locale.NUMBER_FORMATS;
       this.numberGenerator = new Ziggurat();
 

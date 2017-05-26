@@ -17,8 +17,8 @@ angular
         .state('encyclopedia', {
           templateUrl: 'views/encyclopedia.html'
         })
-        .state('table', {
-          templateUrl: 'views/table.html'
+        .state('core', {
+          templateUrl: 'views/core.html'
         })
         .state('options', {
           templateUrl: 'views/options.html'
