@@ -18,7 +18,7 @@ angular
           templateUrl: 'views/encyclopedia.html'
         })
         .state('core', {
-          templateUrl: 'views/core.html'
+          component: 'core'
         })
         .state('options', {
           templateUrl: 'views/options.html'
