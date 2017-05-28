@@ -2,21 +2,21 @@
 
 angular
   .module('game')
-  .service('reaction', ['state',
-    'visibility',
-    '$rootScope',
-    function(state, visibility) {
-      this.isReactionCostMet = function(number, reaction, playerData) {
-        let keys = Object.keys(reaction.reactant);
-        for (let i = 0; i < keys.length; i++) {
-          let available = playerData.resources[keys[i]].number;
-          let required = number * reaction.reactant[keys[i]];
-          if (required > available) {
-            return false;
+  .service('reaction', ['visibility',
+    function(visibility) {
+      // FIXME: We can't factor this out until we change redox to work in auto,
+      // like syntheses
+        this.isReactionCostMet = function(number, reaction, playerData) {
+          let keys = Object.keys(reaction.reactant);
+          for (let i = 0; i < keys.length; i++) {
+            let available = playerData.resources[keys[i]].number;
+            let required = number * reaction.reactant[keys[i]];
+            if (required > available) {
+              return false;
+            }
           }
-        }
-        return true;
-      };
+          return true;
+        };
 
       this.react = function(number, reaction, playerData) {
         if (!Number.isInteger(number) || number <= 0) {

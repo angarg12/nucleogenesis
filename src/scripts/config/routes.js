@@ -8,6 +8,12 @@ angular
         .state('matter', {
           templateUrl: 'views/matter.html'
         })
+        .state('redox', {
+          component: 'redox'
+        })
+        .state('reactor', {
+          component: 'reactor'
+        })
         .state('nova', {
           component: 'nova'
         })

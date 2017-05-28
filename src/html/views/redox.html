@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<h2>{{data.elements[state.currentElement].name}}</h2>
+<h3>Redox</h3>
+<table class="table">
+  <tbody>
+    <tr class="animif"
+        ng-repeat="key in ct.visibility.visibleRedox(ct.state.currentElement)">
+      <td class="col-md-7">
+        <div class="pull-left">
+          <span ng-bind-html="ct.util.trustHTML(ct.format.reactionFormat(ct.data.redox[key].number, ct.data.redox[key]))"></span>
+        </div>
+      </td>
+      <td class="col-md-4">
+        <!-- we store the value inside the object itself -->
+        <div class="pull-left">
+          <input type="number"
+                 value="1"
+                 min="1"
+                 ng-init="ct.data.redox[key].number = ct.data.redox[key].number || 1"
+                 ng-model="ct.data.redox[key].number" />
+          <button type="button"
+                  class="btn btn-default"
+                  ng-click="ct.reaction.react(ct.data.redox[key].number, ct.data.redox[key], ct.state.player)"
+
+                  ng-class="{disabled: !ct.reaction.isReactionCostMet(ct.data.redox[key].number, ct.data.redox[key], ct.state.player)}">React</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3>Binding Energy</h3>
+<table class="table">
+  <tbody>
+    <tr class="animif"
+        ng-repeat="key in ct.visibility.visibleBindings(ct.state.currentElement)">
+      <td class="col-md-8">
+        <div class="pull-left">
+          <span ng-bind-html="ct.util.trustHTML(ct.format.reactionFormat(ct.data.binding_energy[key].number, ct.data.binding_energy[key]))"></span>
+        </div>
+      </td>
+      <td class="col-md-4">
+        <div class="pull-left">
+          <input type="number"
+                 min="1"
+                 ng-init="ct.data.binding_energy[key].number = ct.data.binding_energy[key].number || 1"
+                 ng-model="ct.data.binding_energy[key].number" />
+          <button type="button"
+                  class="btn btn-default"
+                  ng-click="ct.reaction.react(ct.data.binding_energy[key].number, ct.data.binding_energy[key], ct.state.player)"
+
+                  ng-class="{disabled: !ct.reaction.isReactionCostMet(ct.data.binding_energy[key].number, ct.data.binding_energy[key], ct.state.player)}">
+                    React
+                </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

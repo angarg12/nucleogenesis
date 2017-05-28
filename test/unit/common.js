@@ -38,6 +38,8 @@ var commonSpec = function(spec) {
     spec.core = _$componentController_('core', null, null);
     spec.nova = _$componentController_('nova', null, null);
     spec.supernova = _$componentController_('supernova', null, null);
+    spec.redox = _$componentController_('redox', null, null);
+    spec.reactor = _$componentController_('reactor', null, null);
 
     spec.controller = _$controller_('main-loop', {$scope:spec.$scope, achievement:spec.achievement, util:spec.util, savegame:spec.savegame, generator:spec.generator, format:spec.format, synthesis:spec.synthesis, reaction:spec.reaction, data:spec.data, state:spec.state});
   }));
