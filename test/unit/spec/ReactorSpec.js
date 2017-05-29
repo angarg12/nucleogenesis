@@ -3,7 +3,7 @@
 /* jshint varstmt: false */
 'use strict';
 
-describe('Synthesis service', function() {
+describe('Reactor', function() {
   var spec = {};
 
   commonSpec(spec);

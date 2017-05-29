@@ -100,6 +100,24 @@ describe('Achievement service', function() {
   });
 
   describe('achievements', function() {
+    it('should not award achievements if conditions are not met', function() {
+      window.ga = function(){};
+      spec.data.start_player.resources['1H'] = 0;
+      let playerCopy = angular.copy(spec.data.start_player);
 
+      spec.achievement.checkAchievements (playerCopy);
+
+      expect(playerCopy.achievements).toEqual(spec.data.start_player.achievements);
+    });
+
+    it('should award achievements if conditions are met', function() {
+      window.ga = function(){};
+      let playerCopy = angular.copy(spec.data.start_player);
+      playerCopy.resources['1H'].number = 1e15;
+
+      spec.achievement.checkAchievements (playerCopy);
+
+      expect(playerCopy.achievements.hydrogen_ii).toEqual(true);
+    });
   });
 });
