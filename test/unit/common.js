@@ -1,5 +1,5 @@
 /* eslint no-var: 0 */
-/* globals inject,beforeEach,spyOn, */
+/* globals inject,beforeEach,window, */
 /* exported commonSpec */
 /* jshint varstmt: false */
 'use strict';
@@ -17,6 +17,7 @@ var commonSpec = function(spec) {
     originalData = originalData || angular.copy(_$injector_.get('data'));
     spec.$provide.value('data', angular.copy(originalData));
 
+    window.ga = function () {};
     // The injector unwraps the underscores (_) from around the parameter names when matching
     spec.$timeout = _$timeout_;
     spec.achievement = _$injector_.get('achievement');

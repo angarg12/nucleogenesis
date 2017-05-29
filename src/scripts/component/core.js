@@ -15,19 +15,19 @@ function core(state, data) {
     return Math.pow(2, state.player.elements_unlocked) * data.elements[element].number;
   };
 
-  ct.isElementCostMet = function (element) {
-    let price = this.elementPrice(element);
+   function isElementCostMet(element) {
+    let price = ct.elementPrice(element);
     return state.player.resources['e-'].number >= price &&
       state.player.resources.p.number >= price &&
       state.player.resources.n.number >= price;
-  };
+  }
 
   ct.buyElement = function (element) {
     if (state.player.elements[element].unlocked) {
       return;
     }
-    if (this.isElementCostMet(element)) {
-      let price = this.elementPrice(element);
+    if (isElementCostMet(element)) {
+      let price = ct.elementPrice(element);
       state.player.resources['e-'].number -= price;
       state.player.resources.p.number -= price;
       state.player.resources.n.number -= price;
@@ -47,7 +47,7 @@ function core(state, data) {
       if (state.player.elements[element].unlocked) {
         return 'element_purchased';
       }else{
-        if(ct.isElementCostMet(element)) {
+        if(isElementCostMet(element)) {
           return 'element_cost_met';
         }else{
           return 'element_cost_not_met';

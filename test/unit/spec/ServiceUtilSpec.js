@@ -60,32 +60,6 @@ describe('Util service', function() {
     });
   });
 
-  describe('poisson', function() {
-    it('should generate numbers according to a poisson', function() {
-      spyOn(Math,'random').and.returnValue(0.1);
-
-      var value = spec.util.getPoisson(1);
-
-      expect(value).toEqual(0);
-    });
-
-    it('should generate numbers according to a poisson 2', function() {
-      spyOn(Math,'random').and.returnValues(1,0.1);
-
-      var value = spec.util.getPoisson(1);
-
-      expect(value).toEqual(1);
-    });
-
-    it('should generate numbers according to a poisson 3', function() {
-      spyOn(Math,'random').and.returnValues(0.8,0.4,0.2,0.1);
-
-      var value = spec.util.getPoisson(4);
-
-      expect(value).toEqual(3);
-    });
-  });
-
   describe('random draw', function() {
     it('should return a normally distributed random number', function() {
       spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValues(0);

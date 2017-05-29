@@ -69,7 +69,6 @@ describe('controller main-loop', function() {
       spec.state.player.elements.O.unlocked = true;
       spec.state.player.elements.O.generators['1'] = 200;
       spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
-      spyOn(spec.util,'getPoisson').and.returnValue(0);
 
       spec.controller.update();
 
@@ -83,7 +82,6 @@ describe('controller main-loop', function() {
       spec.state.player.elements.O.unlocked = true;
       spec.state.player.elements.O.generators['1'] = 1200;
       spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
-      spyOn(spec.util,'getPoisson').and.returnValue(0);
 
       spec.controller.update();
 
@@ -97,7 +95,6 @@ describe('controller main-loop', function() {
       spec.state.player.elements.O.unlocked = true;
       spec.state.player.elements.O.generators['1'] = 32000;
       spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
-      spyOn(spec.util,'getPoisson').and.returnValue(0);
 
       spec.controller.update();
 
@@ -110,8 +107,7 @@ describe('controller main-loop', function() {
       spec.state.player = spec.data.start_player;
       spec.state.player.resources['3H'].unlocked = true;
       spec.state.player.resources['3H'].number = 1000;
-      spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
-      spyOn(spec.util,'getPoisson').and.returnValue(0);
+      spyOn(spec.util,'randomDraw').and.returnValue(0);
 
       spec.controller.update();
 
@@ -125,8 +121,7 @@ describe('controller main-loop', function() {
       spec.state.player = spec.data.start_player;
       spec.state.player.resources['3H'].unlocked = true;
       spec.state.player.resources['3H'].number = 1e+10;
-      spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
-      spyOn(spec.util,'getPoisson').and.returnValue(18);
+      spyOn(spec.util,'randomDraw').and.returnValue(18);
 
       spec.controller.update();
 

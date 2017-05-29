@@ -27,57 +27,6 @@ describe('Element service', function() {
       // without the precision it doesn't work!!
       expect(value.toPrecision(6)).toBeCloseTo(1600,6);
     });
-
-    it('should check if the cost of an element is met', function() {
-      spec.state.player = {};
-      spec.state.player.resources = {};
-      spec.state.player.resources['e-'] = {number:0};
-			spec.state.player.resources.p = {number:300};
-			spec.state.player.resources.n = {number:300};
-
-      var value = spec.core.isElementCostMet('O');
-
-      expect(value).toEqual(false);
-    });
-
-    it('should check if the cost of an element is met 2', function() {
-      spec.state.player = {};
-      spec.state.player.resources = {};
-      spec.state.player.resources['e-'] = {number:300};
-			spec.state.player.resources.p = {number:0};
-			spec.state.player.resources.n = {number:300};
-      spec.state.player.elements_unlocked = 1;
-
-      var value = spec.core.isElementCostMet('O');
-
-      expect(value).toEqual(false);
-    });
-
-    it('should check if the cost of an element is met 3', function() {
-      spec.state.player = {};
-      spec.state.player.resources = {};
-      spec.state.player.resources['e-'] = {number:300};
-			spec.state.player.resources.p = {number:300};
-			spec.state.player.resources.n = {number:0};
-      spec.state.player.elements_unlocked = 1;
-
-      var value = spec.core.isElementCostMet('O');
-
-      expect(value).toEqual(false);
-    });
-
-    it('should check if the cost of an element is met 4', function() {
-      spec.state.player = {};
-      spec.state.player.resources = {};
-      spec.state.player.resources['e-'] = {number:300};
-			spec.state.player.resources.p = {number:300};
-			spec.state.player.resources.n = {number:300};
-      spec.state.player.elements_unlocked = 1;
-
-      var value = spec.core.isElementCostMet('O');
-
-      expect(value).toEqual(true);
-    });
   });
 
   describe('purchase functions', function() {
@@ -118,13 +67,12 @@ describe('Element service', function() {
     });
 
     it('should skip if the element is already purchased', function() {
-      spyOn(spec.core,'isElementCostMet');
       spec.state.player = {elements:{}};
       spec.state.player.elements.O = {unlocked:true};
 
       spec.core.buyElement('O');
 
-      expect(spec.core.isElementCostMet).not.toHaveBeenCalled();
+      expect(spec.state.player.elements.O.unlocked).toEqual(true);
     });
   });
 });

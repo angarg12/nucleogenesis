@@ -26,16 +26,16 @@ angular
 
       this.generatorProduction = function(name, element) {
         let baseProduction = data.generators[name].power;
-        return this.upgradedProduction(baseProduction, name, element);
+        return upgradedProduction(baseProduction, name, element);
       };
 
       this.tierProduction = function(name, element) {
         let baseProduction = data.generators[name].power *
           state.player.elements[element].generators[name];
-        return this.upgradedProduction(baseProduction, name, element);
+        return upgradedProduction(baseProduction, name, element);
       };
 
-      this.upgradedProduction = function(production, name, element) {
+      function upgradedProduction(production, name, element) {
         for (let up in data.generators[name].upgrades) {
           if (state.player.elements[element].upgrades[data.generators[name].upgrades[up]]) {
             let power = data.upgrades[data.generators[name].upgrades[up]].power;
@@ -45,7 +45,7 @@ angular
         let exotic = data.elements[element].exotic;
         production += production * state.player.resources[exotic].number * data.constants.EXOTIC_POWER;
         return Math.floor(production);
-      };
+      }
 
       function upgradeApply(resource, power) {
         return resource * power;

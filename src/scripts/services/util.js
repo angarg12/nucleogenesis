@@ -71,7 +71,7 @@ angular
         if (p < 0.01) {
           // using Poisson distribution (would get slow for large numbers. there are fast formulas but I don't know
           // how good they are)
-          production = this.getPoisson(mean);
+          production = getPoisson(mean);
         } else {
           // Gaussian distribution
           let q = 1 - p;
@@ -88,7 +88,7 @@ angular
         return production;
       };
 
-      this.getPoisson = function(lambda) {
+      function getPoisson(lambda) {
         let L = Math.exp(-lambda);
         let p = 1.0;
         let k = 0;
@@ -99,7 +99,7 @@ angular
         } while (p > L);
 
         return k - 1;
-      };
+      }
 
       this.trustHTML = function(html) {
         return $sce.trustAsHtml(html);

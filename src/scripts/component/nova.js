@@ -23,8 +23,4 @@ function nova(state, visibility, data) {
       state.player.elements[element].upgrades[name] = true;
     }
   };
-
-  ct.filterUpgrade = function(input) {
-    return state.player.elements[state.currentElement].generators[input] > 0;
-  };
 }
