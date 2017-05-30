@@ -4,7 +4,7 @@
 'use strict';
 
 describe('Achievement service', function () {
-  var spec = {};
+  let spec = {};
 
   commonSpec(spec);
 

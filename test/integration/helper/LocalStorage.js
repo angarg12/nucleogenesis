@@ -1,6 +1,6 @@
 "use strict";
 
-var LocalStorage = function () {
+let LocalStorage = function () {
     this.getValue = function (key) {
         return browser.executeScript("return window.localStorage.getItem('" + key + "');");
     };
@@ -8,7 +8,7 @@ var LocalStorage = function () {
     this.setValue = function (key) {
       return browser.executeScript("window.localStorage.setItem('playerStoredITE','" + key + "');");
     };
-    
+
     this.clear = function () {
         browser.executeScript("return window.localStorage.clear();");
     };

@@ -4,7 +4,7 @@
 'use strict';
 
 describe('Nova ', function() {
-  var spec = {};
+  let spec = {};
 
   commonSpec(spec);
 

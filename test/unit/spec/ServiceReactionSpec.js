@@ -4,62 +4,62 @@
 'use strict';
 
 describe('Reaction service', function() {
-  var spec = {};
+  let spec = {};
 
   commonSpec(spec);
 
   describe('prices and cost', function() {
     it('should check if the cost of a reaction is met', function() {
-      var player = {};
+      let player = {};
       player.resources = {};
       player.resources['1H'] = {number:0};
       player.resources.eV = {number:15};
 
-      var value = spec.reaction.isReactionCostMet(1, spec.data.redox['1H+'], player);
+      let value = spec.reaction.isReactionCostMet(1, spec.data.redox['1H+'], player);
 
       expect(value).toEqual(false);
     });
 
     it('should check if the cost of a reaction is met 2', function() {
-      var player = {};
+      let player = {};
       player.resources = {};
       player.resources['1H'] = {number:5};
       player.resources.eV = {number:5};
 
-      var value = spec.reaction.isReactionCostMet(1, spec.data.redox['1H+'], player);
+      let value = spec.reaction.isReactionCostMet(1, spec.data.redox['1H+'], player);
 
       expect(value).toEqual(false);
     });
 
     it('should check if the cost of a reaction is met 3', function() {
-      var player = {};
+      let player = {};
       player.resources = {};
       player.resources['1H'] = {number:50};
       player.resources.eV = {number:50};
 
-      var value = spec.reaction.isReactionCostMet(10, spec.data.redox['1H+'], player);
+      let value = spec.reaction.isReactionCostMet(10, spec.data.redox['1H+'], player);
 
       expect(value).toEqual(false);
     });
 
     it('should check if the cost of a reaction is met 4', function() {
-      var player = {};
+      let player = {};
       player.resources = {};
       player.resources['1H'] = {number:5};
       player.resources.eV = {number:50};
 
-      var value = spec.reaction.isReactionCostMet(1, spec.data.redox['1H+'], player);
+      let value = spec.reaction.isReactionCostMet(1, spec.data.redox['1H+'], player);
 
       expect(value).toEqual(true);
     });
 
     it('should check if the cost of a reaction is met 5', function() {
-      var player = {};
+      let player = {};
       player.resources = {};
       player.resources['1H'] = {number:50};
       player.resources.eV = {number:500};
 
-      var value = spec.reaction.isReactionCostMet(10, spec.data.redox['1H+'], player);
+      let value = spec.reaction.isReactionCostMet(10, spec.data.redox['1H+'], player);
 
       expect(value).toEqual(true);
     });
@@ -67,7 +67,7 @@ describe('Reaction service', function() {
 
   describe('react', function() {
     it('should react the number specified', function() {
-      var player = {};
+      let player = {};
       player.resources = {};
       player.resources['1H'] = {number:50};
       player.resources.eV = {number:200};
@@ -83,7 +83,7 @@ describe('Reaction service', function() {
     });
 
     it('should return if the number specified is invalid', function() {
-      var player = {};
+      let player = {};
       player.resources = {};
       player.resources['1H'] = {number:50};
       player.resources.eV = {number:200};
@@ -99,7 +99,7 @@ describe('Reaction service', function() {
     });
 
     it('should return if the number specified is negative', function() {
-      var player = {};
+      let player = {};
       player.resources = {};
       player.resources['1H'] = {number:50};
       player.resources.eV = {number:200};
@@ -115,7 +115,7 @@ describe('Reaction service', function() {
     });
 
     it('should return if the cost is not met', function() {
-      var player = {};
+      let player = {};
       player.resources = {};
       player.resources['1H'] = {number:50};
       player.resources.eV = {number:10};

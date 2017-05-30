@@ -4,7 +4,7 @@
 'use strict';
 
 describe('Visible service', function() {
-  var spec = {};
+  let spec = {};
 
   commonSpec(spec);
 
@@ -22,7 +22,7 @@ describe('Visible service', function() {
       spec.state.player.resources['8C'] = {unlocked:false};
       spec.state.player.resources['16O'] = {unlocked:false};
 
-      var values = spec.visibility.visibleElements();
+      let values = spec.visibility.visibleElements();
 
       expect(values).toEqual(['H']);
     });
@@ -33,13 +33,13 @@ describe('Visible service', function() {
       spec.state.player.elements.H.generators['1'] = 1;
       spec.state.player.elements.H.generators['2'] = 0;
       spec.state.player.elements.H.generators['3'] = 0;
-      var temp = spec.data.generators;
+      let temp = spec.data.generators;
       spec.data.generators = {};
       spec.data.generators['1'] = temp['1'];
       spec.data.generators['2'] = temp['2'];
       spec.data.generators['3'] = temp['3'];
 
-      var values = spec.visibility.visibleGenerators('H');
+      let values = spec.visibility.visibleGenerators('H');
 
       expect(values).toEqual(['1', '2']);
     });
@@ -55,14 +55,14 @@ describe('Visible service', function() {
       spec.state.player.elements.H.exotic_upgrades.x3 = false;
       spec.state.player.elements.H.generators['2'] = 0;
       spec.state.player.elements.H.upgrades['2-1'] = false;
-      var temp = spec.data.upgrades;
+      let temp = spec.data.upgrades;
       spec.data.upgrades = {};
       spec.data.upgrades['1-1'] = temp['1-1'];
       spec.data.upgrades['1-2'] = temp['1-2'];
       spec.data.upgrades['1-3'] = temp['1-3'];
       spec.data.upgrades['2-1'] = temp['2-1'];
 
-      var values = spec.visibility.visibleUpgrades('H');
+      let values = spec.visibility.visibleUpgrades('H');
 
       expect(values).toEqual(['1-1']);
     });
@@ -78,16 +78,38 @@ describe('Visible service', function() {
       spec.state.player.elements.H.exotic_upgrades.x3 = true;
       spec.state.player.elements.H.generators['2'] = 0;
       spec.state.player.elements.H.upgrades['2-1'] = false;
-      var temp = spec.data.upgrades;
+      let temp = spec.data.upgrades;
       spec.data.upgrades = {};
       spec.data.upgrades['1-1'] = temp['1-1'];
       spec.data.upgrades['1-2'] = temp['1-2'];
       spec.data.upgrades['1-3'] = temp['1-3'];
       spec.data.upgrades['2-1'] = temp['2-1'];
 
-      var values = spec.visibility.visibleUpgrades('H');
+      let values = spec.visibility.visibleUpgrades('H');
 
       expect(values).toEqual(['1-1','1-2']);
+    });
+
+    it('should show if an exotic upgrade is visible', function() {
+      spec.state.player = spec.data.start_player;
+      let temp = spec.data.exotic_upgrades;
+      spec.data.exotic_upgrades = {};
+      spec.data.exotic_upgrades.x3 = temp.x3;
+
+      let values = spec.visibility.visibleExoticUpgrades('H');
+
+      expect(values).toEqual(['x3']);
+    });
+
+    it('should show if an exotic upgrade is visible', function() {
+      spec.state.player = spec.data.start_player;
+      let temp = spec.data.dark_upgrades;
+      spec.data.dark_upgrades = {};
+      spec.data.dark_upgrades.table = temp.table;
+
+      let values = spec.visibility.visibleDarkUpgrades('H');
+
+      expect(values).toEqual(['table']);
     });
 
     it('should show visible resources', function() {
@@ -96,14 +118,14 @@ describe('Visible service', function() {
       spec.state.player.resources['2H'] = {unlocked:false};
       spec.state.player.resources.eV = {unlocked:true};
       spec.state.player.resources['16O']= {unlocked:true};
-      var temp = spec.data.resources;
+      let temp = spec.data.resources;
       spec.data.resources = {};
       spec.data.resources['1H'] = temp['1H'];
       spec.data.resources['2H'] = temp['2H'];
       spec.data.resources.eV = temp.eV;
       spec.data.resources['16O'] = temp['16O'];
 
-      var values = spec.visibility.visibleResources('H');
+      let values = spec.visibility.visibleResources('H');
 
       expect(values).toEqual(['1H', 'eV']);
     });
@@ -113,12 +135,12 @@ describe('Visible service', function() {
       spec.state.player.achievements = {};
       spec.state.player.achievements.hydrogen = true;
       spec.state.player.achievements.oxygen = false;
-      var temp = spec.data.encyclopedia;
+      let temp = spec.data.encyclopedia;
       spec.data.encyclopedia = {};
       spec.data.encyclopedia.hydrogen = temp.hydrogen;
       spec.data.encyclopedia.oxygen = temp.oxygen;
 
-      var values = spec.visibility.visibleEncyclopediaEntries();
+      let values = spec.visibility.visibleEncyclopediaEntries();
 
       expect(values).toEqual(['hydrogen']);
     });
@@ -131,7 +153,7 @@ describe('Visible service', function() {
       spec.state.player.resources.eV = {unlocked:true};
       spec.state.player.resources['e-'] = {unlocked:false};
 
-      var values = spec.visibility.visibleRedox('H');
+      let values = spec.visibility.visibleRedox('H');
 
       expect(values).toEqual(['1H+']);
     });
@@ -144,7 +166,7 @@ describe('Visible service', function() {
       spec.state.player.resources.eV = {unlocked:true};
       spec.state.player.resources['e-'] = {unlocked:false};
 
-      var values = spec.visibility.visibleRedox('H');
+      let values = spec.visibility.visibleRedox('H');
 
       expect(values).toEqual([]);
     });
@@ -157,7 +179,7 @@ describe('Visible service', function() {
       spec.state.player.resources.eV = {unlocked:true};
       spec.state.player.resources['e-'] = {unlocked:false};
 
-      var values = spec.visibility.visibleRedox('O');
+      let values = spec.visibility.visibleRedox('O');
 
       expect(values).toEqual([]);
     });
@@ -169,12 +191,12 @@ describe('Visible service', function() {
       spec.state.player.resources.eV = {unlocked:true};
       spec.state.player.resources['2H'] = {unlocked:true};
       spec.state.player.resources['3H'] = {unlocked:false};
-      var temp = spec.data.binding_energy;
+      let temp = spec.data.binding_energy;
       spec.data.binding_energy = {};
       spec.data.binding_energy['2H'] = temp['2H'];
       spec.data.binding_energy['3H'] = temp['3H'];
 
-      var values = spec.visibility.visibleBindings('H');
+      let values = spec.visibility.visibleBindings('H');
 
       expect(values).toEqual(['2H']);
     });
@@ -199,7 +221,7 @@ describe('Visible service', function() {
         'elements': ['H','O']
       };
 
-      var values = spec.visibility.visibleSyntheses('H');
+      let values = spec.visibility.visibleSyntheses('H');
 
       expect(values).toEqual(['1H-p']);
     });
@@ -210,37 +232,59 @@ describe('Visible service', function() {
       spec.data.elements.H.includes = ['1H'];
       spec.visibility.addNew('1H');
 
-      var hasNew = spec.visibility.elementHasNew('H');
+      let hasNew = spec.visibility.elementHasNew('H');
       expect(hasNew).toBeTruthy();
     });
 
     it('should return false if an element has no new items', function() {
       spec.data.elements.H.includes = ['2H','3H','1H-'];
 
-      var hasNew = spec.visibility.elementHasNew('H');
+      let hasNew = spec.visibility.elementHasNew('H');
       expect(hasNew).toBeFalsy();
     });
 
     it('should return true if there are new encyclopedia entries', function() {
-      var temp = spec.data.encyclopedia;
+      let temp = spec.data.encyclopedia;
       spec.data.encyclopedia = {};
       spec.data.encyclopedia.hydrogen = temp.hydrogen;
       spec.data.encyclopedia.oxygen = temp.oxygen;
       spec.visibility.addNew('hydrogen');
       spec.visibility.addNew('oxygen');
 
-      var hasNew = spec.visibility.encyclopediaHasNew();
+      let hasNew = spec.visibility.encyclopediaHasNew();
 
       expect(hasNew).toBeTruthy();
     });
 
     it('should return false if there are no new encyclopedia entries', function() {
-      var temp = spec.data.encyclopedia;
+      let temp = spec.data.encyclopedia;
       spec.data.encyclopedia = {};
       spec.data.encyclopedia.hydrogen = temp.hydrogen;
       spec.data.encyclopedia.oxygen = temp.oxygen;
 
-      var hasNew = spec.visibility.encyclopediaHasNew();
+      let hasNew = spec.visibility.encyclopediaHasNew();
+
+      expect(hasNew).toBeFalsy();
+    });
+
+    it('should add and remove items correctly', function() {
+      spec.visibility.addNew('1H');
+
+      let hasNew = spec.visibility.hasNew('1H');
+
+      expect(hasNew).toBeTruthy();
+
+      spec.visibility.removeNew('1H');
+
+      hasNew = spec.visibility.hasNew('1H');
+
+      expect(hasNew).toBeFalsy();
+    });
+
+    it('should not remove items that aren\'t there', function() {
+      spec.visibility.removeNew('1H');
+
+      let hasNew = spec.visibility.hasNew('1H');
 
       expect(hasNew).toBeFalsy();
     });

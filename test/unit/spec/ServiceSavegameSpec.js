@@ -17,16 +17,16 @@
  * See: https://github.com/jasmine/jasmine/issues/299
  */
 (function () {
-  var originalLocalStorage = window.localStorage;
-  var supportsModification = Object.getOwnPropertyDescriptor(window, 'localStorage').configurable;
+  let originalLocalStorage = window.localStorage;
+  let supportsModification = Object.getOwnPropertyDescriptor(window, 'localStorage').configurable;
 
   function mockLocalStorage() {
     if (!supportsModification) {
       return;
     }
 
-    var mock = (function () {
-      var store = {};
+    let mock = (function () {
+      let store = {};
       return {
         'getItem': function (key) {
           return store[key];
@@ -68,13 +68,13 @@
 })();
 
 describe('Save service', function () {
-  var spec = {};
+  let spec = {};
 
   commonSpec(spec);
   window.mockLocalStorage();
 
   describe('save and load', function () {
-    var getItemSpy;
+    let getItemSpy;
 
     beforeEach(function () {
       getItemSpy = spyOn(localStorage, 'getItem');

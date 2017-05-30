@@ -4,7 +4,7 @@
 'use strict';
 
 describe('Reactor', function() {
-  var spec = {};
+  let spec = {};
 
   commonSpec(spec);
 
@@ -24,7 +24,7 @@ describe('Reactor', function() {
         'elements': [ 'H' ]
       };
 
-      var value = spec.reactor.isSynthesisCostMet('1H-p');
+      let value = spec.reactor.isSynthesisCostMet('1H-p');
 
       expect(value).toEqual(false);
     });
@@ -44,7 +44,7 @@ describe('Reactor', function() {
         'elements': [ 'H' ]
       };
 
-      var value = spec.reactor.isSynthesisCostMet('1H-p');
+      let value = spec.reactor.isSynthesisCostMet('1H-p');
 
       expect(value).toEqual(false);
     });
@@ -64,7 +64,7 @@ describe('Reactor', function() {
         'elements': [ 'H' ]
       };
 
-      var value = spec.reactor.isSynthesisCostMet('1H-p');
+      let value = spec.reactor.isSynthesisCostMet('1H-p');
 
       expect(value).toEqual(true);
     });

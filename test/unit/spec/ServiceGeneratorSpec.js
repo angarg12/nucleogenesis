@@ -4,7 +4,7 @@
 'use strict';
 
 describe('Generator service', function() {
-  var spec = {};
+  let spec = {};
 
   commonSpec(spec);
 
@@ -15,7 +15,7 @@ describe('Generator service', function() {
       spec.state.player.elements.H = {'generators':{}};
       spec.state.player.elements.H.generators['1'] = 5;
 
-      var value = spec.generator.generatorPrice('1','H');
+      let value = spec.generator.generatorPrice('1','H');
 
       expect(value).toEqual(20);
     });
@@ -26,7 +26,7 @@ describe('Generator service', function() {
       spec.state.player.elements.H = {'generators':{}};
       spec.state.player.elements.H.generators['3'] = 10;
 
-      var value = spec.generator.generatorPrice('3','H');
+      let value = spec.generator.generatorPrice('3','H');
 
       expect(value).toEqual(1792);
     });
@@ -90,7 +90,7 @@ describe('Generator service', function() {
       spec.state.player.elements.H.upgrades['1-2'] = true;
       spec.state.player.elements.H.upgrades['1-3'] = false;
 
-      var value = spec.generator.generatorProduction('1','H');
+      let value = spec.generator.generatorProduction('1','H');
 
       expect(value).toEqual(6);
     });
@@ -104,7 +104,7 @@ describe('Generator service', function() {
       spec.state.player.elements.H.upgrades['1-2'] = true;
       spec.state.player.elements.H.upgrades['1-3'] = false;
 
-      var value = spec.generator.generatorProduction('1','H');
+      let value = spec.generator.generatorProduction('1','H');
 
       expect(value).toEqual(25);
     });
@@ -119,7 +119,7 @@ describe('Generator service', function() {
       spec.state.player.elements.H.upgrades['1-3'] = false;
       spec.state.player.elements.H.generators['1'] = 10;
 
-      var value = spec.generator.tierProduction('1','H');
+      let value = spec.generator.tierProduction('1','H');
 
       expect(value).toEqual(60);
     });
@@ -128,9 +128,9 @@ describe('Generator service', function() {
       spec.data.generators['1'].upgrades = [];
       spec.data.generators['2'].upgrades = [];
       spec.data.generators['3'].upgrades = [];
-      var temp1 = spec.data.generators['1'];
-      var temp2 = spec.data.generators['2'];
-      var temp3 = spec.data.generators['3'];
+      let temp1 = spec.data.generators['1'];
+      let temp2 = spec.data.generators['2'];
+      let temp3 = spec.data.generators['3'];
       spec.data.generators = {};
       spec.data.generators['1'] = temp1;
       spec.data.generators['2'] = temp2;
@@ -143,7 +143,7 @@ describe('Generator service', function() {
       spec.state.player.elements.H.generators['2'] = 1;
       spec.state.player.elements.H.generators['3'] = 1;
 
-      var value = spec.generator.elementProduction('H');
+      let value = spec.generator.elementProduction('H');
 
       expect(value).toEqual(91);
     });

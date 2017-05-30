@@ -4,7 +4,7 @@
 'use strict';
 
 describe('Element service', function() {
-  var spec = {};
+  let spec = {};
 
   commonSpec(spec);
 
@@ -13,7 +13,7 @@ describe('Element service', function() {
       spec.state.player = {};
       spec.state.player.elements_unlocked = 1;
 
-      var value = spec.core.elementPrice('O');
+      let value = spec.core.elementPrice('O');
 
       expect(value).toEqual(16);
     });
@@ -22,7 +22,7 @@ describe('Element service', function() {
       spec.state.player = {};
       spec.state.player.elements_unlocked = 5;
 
-      var value = spec.core.elementPrice('Sn');
+      let value = spec.core.elementPrice('Sn');
 
       // without the precision it doesn't work!!
       expect(value.toPrecision(6)).toBeCloseTo(1600,6);

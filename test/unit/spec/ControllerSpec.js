@@ -4,7 +4,7 @@
 'use strict';
 
 describe('controller main-loop', function() {
-  var spec = {};
+  let spec = {};
 
   commonSpec(spec);
 
