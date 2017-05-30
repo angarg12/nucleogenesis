@@ -9,7 +9,8 @@ angular
     'data',
     function(numberFilter, $sce, $locale, data) {
       let formats = $locale.NUMBER_FORMATS;
-      this.numberGenerator = new Ziggurat();
+      this.gaussian = new Ziggurat();
+      this.poisson = new Poisson();
 
       this.getHTML = function(resource) {
         let html = data.html[resource];
@@ -71,13 +72,13 @@ angular
         if (p < 0.01) {
           // using Poisson distribution (would get slow for large numbers. there are fast formulas but I don't know
           // how good they are)
-          production = getPoisson(mean);
+          production = this.poisson.getPoisson(mean);
         } else {
           // Gaussian distribution
           let q = 1 - p;
           let variance = number * p * q;
           let std = Math.sqrt(variance);
-          production = Math.round(this.numberGenerator.nextGaussian() * std + mean);
+          production = Math.round(this.gaussian.nextGaussian() * std + mean);
         }
         if (production > number) {
           production = number;
@@ -87,19 +88,6 @@ angular
         }
         return production;
       };
-
-      function getPoisson(lambda) {
-        let L = Math.exp(-lambda);
-        let p = 1.0;
-        let k = 0;
-
-        do {
-          k++;
-          p *= Math.random();
-        } while (p > L);
-
-        return k - 1;
-      }
 
       this.trustHTML = function(html) {
         return $sce.trustAsHtml(html);

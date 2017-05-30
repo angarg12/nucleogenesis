@@ -29,6 +29,7 @@
     "mdi": "^1.9.33",
     "bootstrap": "^3.3.7",
     "ziggurat": "angarg12/ziggurat",
+    "poisson": "angarg12/poisson",
     "version-compare": "angarg12/version_compare"
   },
   "devDependencies": {

@@ -11,6 +11,7 @@ module.exports = function(config) {
       'build/bower_components/angular-animate/angular-animate.min.js',
       'build/bower_components/bootstrap/dist/js/bootstrap.min.js',
       'build/bower_components/ziggurat/ziggurat.js',
+      'build/bower_components/poisson/poisson.js',
       'build/bower_components/angular-mocks/angular-mocks.js',
       'build/scripts/app.min.js',
       'test/unit/common.js',

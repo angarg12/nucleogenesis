@@ -68,7 +68,8 @@ describe('controller main-loop', function() {
       spec.state.player = spec.data.start_player;
       spec.state.player.elements.O.unlocked = true;
       spec.state.player.elements.O.generators['1'] = 200;
-      spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
+      spyOn(spec.util.gaussian,'nextGaussian').and.returnValue(0);
+      spyOn(spec.util.poisson,'getPoisson').and.returnValue(0);
 
       spec.controller.update();
 
@@ -81,7 +82,8 @@ describe('controller main-loop', function() {
       spec.state.player = spec.data.start_player;
       spec.state.player.elements.O.unlocked = true;
       spec.state.player.elements.O.generators['1'] = 1200;
-      spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
+      spyOn(spec.util.gaussian,'nextGaussian').and.returnValue(0);
+      spyOn(spec.util.poisson,'getPoisson').and.returnValue(0);
 
       spec.controller.update();
 
@@ -94,7 +96,8 @@ describe('controller main-loop', function() {
       spec.state.player = spec.data.start_player;
       spec.state.player.elements.O.unlocked = true;
       spec.state.player.elements.O.generators['1'] = 32000;
-      spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValue(0);
+      spyOn(spec.util.gaussian,'nextGaussian').and.returnValue(0);
+      spyOn(spec.util.poisson,'getPoisson').and.returnValue(0);
 
       spec.controller.update();
 

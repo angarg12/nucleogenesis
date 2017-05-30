@@ -62,7 +62,7 @@ describe('Util service', function() {
 
   describe('random draw', function() {
     it('should return a normally distributed random number', function() {
-      spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValues(0);
+      spyOn(spec.util.gaussian,'nextGaussian').and.returnValues(0);
 
       var value = spec.util.randomDraw(100, Math.log(2)/50);
 
@@ -70,7 +70,7 @@ describe('Util service', function() {
     });
 
     it('should return a normally distributed random number 2', function() {
-      spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValues(0.5);
+      spyOn(spec.util.gaussian,'nextGaussian').and.returnValues(0.5);
 
       var value = spec.util.randomDraw(1000, Math.log(2)/50);
 
@@ -78,7 +78,7 @@ describe('Util service', function() {
     });
 
     it('should not return negative value', function() {
-      spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValues(-1000);
+      spyOn(spec.util.gaussian,'nextGaussian').and.returnValues(-1000);
 
       var value = spec.util.randomDraw(1000, Math.log(2)/50);
 
@@ -86,7 +86,7 @@ describe('Util service', function() {
     });
 
     it('should not return overproduction', function() {
-      spyOn(spec.util.numberGenerator,'nextGaussian').and.returnValues(1000);
+      spyOn(spec.util.gaussian,'nextGaussian').and.returnValues(1000);
 
       var value = spec.util.randomDraw(1000, Math.log(2)/50);
 
