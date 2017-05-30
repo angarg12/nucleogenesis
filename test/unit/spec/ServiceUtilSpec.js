@@ -92,5 +92,21 @@ describe('Util service', function() {
 
       expect(value).toEqual(1000);
     });
+
+    it('should use a poisson distribution for very small probabilities', function() {
+      let poisson = spyOn(spec.util.poisson,'getPoisson');
+
+      spec.util.randomDraw(1000, 0);
+
+      expect(poisson).toHaveBeenCalled();
+    });
+
+    it('should use a gaussian distribution for very small probabilities', function() {
+      let gaussian = spyOn(spec.util.gaussian,'nextGaussian');
+
+      spec.util.randomDraw(1000, 1);
+
+      expect(gaussian).toHaveBeenCalled();
+    });
   });
 });

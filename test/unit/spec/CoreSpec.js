@@ -75,4 +75,59 @@ describe('Element service', function() {
       expect(spec.state.player.elements.O.unlocked).toEqual(true);
     });
   });
+
+  describe('class functions', function() {
+    it('should return the right class for unavailable elements', function() {
+      spec.state.player.elements = {};
+
+      let clazz = spec.core.elementClass('H');
+
+      expect(clazz).toEqual('element_unavailable');
+    });
+
+    it('should return the right class for purchased elements', function() {
+      spec.state.player.elements = {};
+      spec.state.player.elements.H = {unlocked: true};
+
+      let clazz = spec.core.elementClass('H');
+
+      expect(clazz).toEqual('element_purchased');
+    });
+
+    it('should return the right class for elements where the cost is met', function() {
+      spec.state.player.elements = {};
+      spec.state.player.elements.H = {unlocked: false};
+      spec.state.player.resources = {};
+      spec.state.player.resources.p = {number: 1e6};
+      spec.state.player.resources.n = {number: 1e6};
+      spec.state.player.resources['e-'] = {number: 1e6};
+      spyOn(spec.core, 'elementPrice').and.returnValue(100);
+
+      let clazz = spec.core.elementClass('H');
+
+      expect(clazz).toEqual('element_cost_met');
+    });
+
+    it('should return the right class for elements where the cost is not met', function() {
+      spec.state.player.elements = {};
+      spec.state.player.elements.H = {unlocked: false};
+      spec.state.player.resources = {};
+      spec.state.player.resources.p = {number: 0};
+      spec.state.player.resources.n = {number: 0};
+      spec.state.player.resources['e-'] = {number: 0};
+      spyOn(spec.core, 'elementPrice').and.returnValue(100);
+
+      let clazz = spec.core.elementClass('H');
+
+      expect(clazz).toEqual('element_cost_not_met');
+    });
+
+    it('should return the right secondary class', function() {
+      spyOn(spec.core, 'elementClass').and.returnValue('available');
+
+      let clazz = spec.core.elementSecondaryClass('H');
+
+      expect(clazz).toEqual('available_dark');
+    });
+  });
 });
