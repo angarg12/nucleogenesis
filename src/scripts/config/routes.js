@@ -6,7 +6,7 @@ angular
     function($stateProvider) {
       $stateProvider
         .state('matter', {
-          templateUrl: 'views/matter.html'
+          component: 'matter'
         })
         .state('redox', {
           component: 'redox'

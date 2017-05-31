@@ -36,6 +36,7 @@ let commonSpec = function(spec) {
     spec.supernova = _$componentController_('supernova', null, null);
     spec.redox = _$componentController_('redox', null, null);
     spec.reactor = _$componentController_('reactor', null, null);
+    spec.matter = _$componentController_('matter', null, null);
 
     // asinine sanity check for components
 

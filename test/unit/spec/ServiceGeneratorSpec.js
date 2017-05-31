@@ -15,7 +15,7 @@ describe('Generator service', function() {
       spec.state.player.elements.H = {'generators':{}};
       spec.state.player.elements.H.generators['1'] = 5;
 
-      let value = spec.generator.generatorPrice('1','H');
+      let value = spec.matter.generatorPrice('1','H');
 
       expect(value).toEqual(20);
     });
@@ -26,7 +26,7 @@ describe('Generator service', function() {
       spec.state.player.elements.H = {'generators':{}};
       spec.state.player.elements.H.generators['3'] = 10;
 
-      let value = spec.generator.generatorPrice('3','H');
+      let value = spec.matter.generatorPrice('3','H');
 
       expect(value).toEqual(1792);
     });
@@ -37,7 +37,7 @@ describe('Generator service', function() {
       spec.state.player.elements.H = {generators:{}};
       spec.state.player.elements.H.generators['1'] = 5;
 
-      spec.generator.buyGenerators('1','H',3);
+      spec.matter.buyGenerators('1','H',3);
 
       expect(spec.state.player.resources['1H'].number).toEqual(2);
       expect(spec.state.player.elements.H.generators['1']).toEqual(8);
@@ -49,7 +49,7 @@ describe('Generator service', function() {
       spec.state.player.elements.H = {generators:{}};
       spec.state.player.elements.H.generators['1'] = 5;
 
-      spec.generator.buyGenerators('1','H',3);
+      spec.matter.buyGenerators('1','H',3);
 
       expect(spec.state.player.resources['1H'].number).toEqual(4);
       expect(spec.state.player.elements.H.generators['1']).toEqual(7);
@@ -61,7 +61,7 @@ describe('Generator service', function() {
       spec.state.player.elements.H = {generators:{}};
       spec.state.player.elements.H.generators['1'] = 5;
 
-      spec.generator.buyGenerators('1','H',-10);
+      spec.matter.buyGenerators('1','H',-10);
 
       expect(spec.state.player.resources['1H'].number).toEqual(10);
       expect(spec.state.player.elements.H.generators['1']).toEqual(5);
@@ -73,7 +73,7 @@ describe('Generator service', function() {
       spec.state.player.elements.H = {generators:{}};
       spec.state.player.elements.H.generators['1'] = 5;
 
-      spec.generator.buyGenerators('1','H',10);
+      spec.matter.buyGenerators('1','H',10);
 
       expect(spec.state.player.resources['1H'].number).toEqual(10);
       expect(spec.state.player.elements.H.generators['1']).toEqual(5);
