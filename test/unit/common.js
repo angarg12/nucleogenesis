@@ -37,6 +37,13 @@ let commonSpec = function(spec) {
     spec.redox = _$componentController_('redox', null, null);
     spec.reactor = _$componentController_('reactor', null, null);
 
+    // asinine sanity check for components
+
+    _$componentController_('elementSelect', null, null);
+    _$componentController_('getHtml', null, null);
+    _$componentController_('pretty', null, null);
+    _$componentController_('sidebar', null, null);
+
     spec.controller = _$controller_('main-loop', {$scope:_$rootScope_.$new(), achievement:spec.achievement, util:spec.util, savegame:spec.savegame, generator:spec.generator, format:spec.format, synthesis:spec.synthesis, reaction:spec.reaction, data:spec.data, state:spec.state});
   }));
 };
