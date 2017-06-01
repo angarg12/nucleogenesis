@@ -110,13 +110,13 @@ angular
         // and update all at once
         state.player = playerCopy;
 
-        $timeout(self.update, 1);
+        $timeout(self.update, 1000);
       };
 
       self.startup = function() {
         savegame.load();
         $scope.loading = false;
-        $timeout(self.update, 1);
+        $timeout(self.update, 1000);
         $interval(savegame.save, 10000);
       };
 
