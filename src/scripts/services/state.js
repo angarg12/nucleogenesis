@@ -7,10 +7,21 @@ angular
     this.hoverElement = '';
     this.export = '';
     this.player = {};
+    let updateFunctions = [];
 
     this.init = function() {
       this.currentElement = 'H';
       this.hoverElement = '';
       this.export = '';
+    };
+
+    this.registerUpdate = function(func){
+      updateFunctions.push(func);
+    };
+
+    this.update = function(player){
+      for(let func of updateFunctions){
+        func(player);
+      }
     };
   }]);

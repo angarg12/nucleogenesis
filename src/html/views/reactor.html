@@ -10,7 +10,7 @@
              ng-class="{'text-muted': ct.state.player.syntheses[syn].active <= 0}">
           <i class="mdi mdi-18px mdi-alert-decagram"
              ng-if="ct.visibility.hasNew(syn)"></i>
-          <span ng-bind-html="ct.util.trustHTML(ct.format.reactionFormat(ct.synthesis.synthesisPower(syn), ct.data.syntheses[syn]))"></span>
+          <span ng-bind-html="ct.util.trustHTML(ct.format.reactionFormat(ct.synthesisPower(syn), ct.data.syntheses[syn]))"></span>
         </div>
       </td>
       <td class="col-md-1">

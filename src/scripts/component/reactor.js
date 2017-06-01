@@ -2,17 +2,32 @@
 
 angular.module('game').component('reactor', {
   templateUrl: 'views/reactor.html',
-  controller: ['state', 'data', 'visibility', 'util', 'format', reactor],
+  controller: ['state', 'data', 'visibility', 'util', 'format', 'reaction', reactor],
   controllerAs: 'ct'
 });
 
-function reactor(state, data, visibility, util, format) {
+function reactor(state, data, visibility, util, format, reaction) {
   let ct = this;
   ct.state = state;
   ct.data = data;
   ct.visibility = visibility;
   ct.util = util;
   ct.format = format;
+
+  function update(player) {
+    // We will process the synthesis
+    for (let syn in player.syntheses) {
+      let power = ct.synthesisPower(syn);
+      if (power !== 0) {
+        reaction.react(power, data.syntheses[syn], player);
+      }
+    }
+  }
+
+  ct.synthesisPower = function (synthesis) {
+    let level = state.player.syntheses[synthesis].active;
+    return Math.ceil(Math.pow(level, data.constants.SYNTH_POWER_INCREASE));
+  };
 
   ct.synthesisMultiplier = function (synthesis) {
     let level = state.player.syntheses[synthesis].number;
@@ -51,4 +66,6 @@ function reactor(state, data, visibility, util, format) {
       i++;
     }
   };
+
+  state.registerUpdate(update);
 }

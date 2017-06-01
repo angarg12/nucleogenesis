@@ -10,19 +10,17 @@ angular
     'savegame',
     'generator',
     'format',
-    'synthesis',
     'reaction',
     'data',
     'visibility',
     'state',
-    function($scope, $interval, $timeout, achievement, util, savegame, generator, format, synthesis, reaction, data, visibility, state) {
+    function($scope, $interval, $timeout, achievement, util, savegame, generator, format, reaction, data, visibility, state) {
       $scope.data = data;
       $scope.achievement = achievement;
       $scope.util = util;
       $scope.savegame = savegame;
       $scope.generator = generator;
       $scope.format = format;
-      $scope.synthesis = synthesis;
       $scope.reaction = reaction;
       $scope.visibility = visibility;
       $scope.state = state;
@@ -100,23 +98,14 @@ angular
         }
       }
 
-      function processSyntheses() {
-        // We will process the synthesis
-        for (let syn in playerCopy.syntheses) {
-          let power = synthesis.synthesisPower(syn);
-          if (power !== 0) {
-            reaction.react(power, data.syntheses[syn], playerCopy);
-          }
-        }
-      }
-
       self.update = function() {
         // do the update in a copy
         playerCopy = angular.copy(state.player);
         processDecay();
         processGenerators();
-        processSyntheses();
         achievement.checkAchievements(playerCopy);
+
+        state.update(playerCopy);
 
         // and update all at once
         state.player = playerCopy;
