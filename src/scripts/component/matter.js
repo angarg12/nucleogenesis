@@ -2,15 +2,16 @@
 
 angular.module('game').component('matter', {
   templateUrl: 'views/matter.html',
-  controller: ['state', 'visibility', 'data', matter],
+  controller: ['state', 'visibility', 'data', 'generator', matter],
   controllerAs: 'ct'
 });
 
-function matter(state, visibility, data) {
+function matter(state, visibility, data, generator) {
   let ct = this;
   ct.state = state;
   ct.visibility = visibility;
   ct.data = data;
+  ct.generator = generator;
 
   ct.generatorPrice = function(name, element) {
     let level = state.player.elements[element].generators[name];
