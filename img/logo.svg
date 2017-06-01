@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
-  <g class="logo-center">
+<svg width="155" height="155" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+  <g fill="#03a9f4">
     <circle cx="77.5" cy="87.5" r="15"/>
   </g>  
-  <g class="logo-tear">
+  <g fill="#00c853">
 	<path d="M 55.4 100.2
 			Q 50.5 104.8 45.5 115.2
 			A 10 10 0 1 1 37.4 101.2
@@ -20,7 +20,7 @@
 			Q 104.5 104.8 99.5 100.2
 			z" />
   </g>  
-  <g class="logo-out">
+  <g fill="#b388ff">
     <circle cx="12.5" cy="125.5" r="10" />
     <circle cx="77.5" cy="12.5" r="10" />
     <circle cx="142.5" cy="124.5" r="10" />
