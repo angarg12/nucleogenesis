@@ -540,8 +540,7 @@
           "half_life": 3.2482e+12,
           "decay_type": "electron_capture",
           "decay_product": {
-            "41K": 1,
-            "eV": 0
+            "41K": 1
           }
         }
       },
