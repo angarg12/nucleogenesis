@@ -23,7 +23,6 @@ let commonSpec = function(spec) {
     spec.achievement = _$injector_.get('achievement');
     spec.util = _$injector_.get('util');
     spec.savegame = _$injector_.get('savegame');
-    spec.generator = _$injector_.get('generator');
     spec.format = _$injector_.get('format');
     spec.reaction = _$injector_.get('reaction');
     spec.visibility = _$injector_.get('visibility');
@@ -44,6 +43,6 @@ let commonSpec = function(spec) {
     _$componentController_('pretty', null, null);
     _$componentController_('sidebar', null, null);
 
-    spec.controller = _$controller_('main-loop', {$scope:_$rootScope_.$new(), achievement:spec.achievement, util:spec.util, savegame:spec.savegame, generator:spec.generator, format:spec.format, reaction:spec.reaction, data:spec.data, state:spec.state});
+    spec.controller = _$controller_('main-loop', {$scope:_$rootScope_.$new(), achievement:spec.achievement, util:spec.util, savegame:spec.savegame, format:spec.format, reaction:spec.reaction, data:spec.data, state:spec.state});
   }));
 };

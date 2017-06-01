@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <h2>{{ct.data.elements[ct.state.currentElement].name}}</h2>
 <h3>
-  <pretty value="ct.generator.elementProduction(ct.state.currentElement)" id="production_total"></pretty>
+  <pretty value="ct.elementProduction(ct.state.currentElement)" id="production_total"></pretty>
   {{ct.state.currentElement}}/s
 </h3>
 <ul ng-if="ct.state.player.achievements.isotope">
@@ -39,13 +39,13 @@
       {{ct.data.generators[gen].name}}
     </td>
     <td class="animif col-md-2">
-      <pretty value="ct.generator.generatorProduction(gen, ct.state.currentElement)"></pretty>
+      <pretty value="ct.generatorProduction(gen, ct.state.currentElement)"></pretty>
     </td>
     <td class="animif col-md-1">
       <pretty value="ct.state.player.elements[ct.state.currentElement].generators[gen]"></pretty>
     </td>
     <td class="animif col-md-3">
-      <pretty value="ct.generator.tierProduction(gen, ct.state.currentElement)"></pretty>
+      <pretty value="ct.tierProduction(gen, ct.state.currentElement)"></pretty>
     </td>
     <td class="animif col-md-3">
       <pretty value="ct.generatorPrice(gen, ct.state.currentElement)"></pretty>
