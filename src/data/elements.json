@@ -600,81 +600,658 @@
   },
   "Sc": {
     "name": "Scandium",
-    "isotopes": [],
-    "number": 21,
-    "disabled": true
+    "isotopes": {
+      "44Sc": {
+        "ratio": 0
+      },
+      "45Sc": {
+        "ratio": 1
+      },
+      "46Sc": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 7239456,
+          "decay_type": "beta-",
+          "decay_product": {
+            "46Ti": 1,
+            "e-": 1,
+            "eV": 356900
+          }
+        }
+      },
+      "47Sc": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 6944832,
+          "decay_type": "beta-",
+          "decay_product": {
+            "47Ti": 1,
+            "e-": 1,
+            "eV": 600000
+          }
+        }
+      },
+      "48Sc": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 157212,
+          "decay_type": "beta-",
+          "decay_product": {
+            "48Ti": 1,
+            "e-": 1,
+            "eV": 661000
+          }
+        }
+      }
+    },
+    "ionization_energy": [6.5615, 12.79967, 24.75666, 73.4894, 91.65, 110.68, 138.0, 158.1, 180.03, 225.18, 249.798, 687.36, 756.7, 830.8, 927.5, 1009, 1094, 1213, 1287.97, 5674.8, 6033.712],
+    "electron_affinity": [-0.1876, 8.5471],
+    "main": "45Sc",
+    "number": 21
   },
   "Ti": {
     "name": "Titanium",
-    "isotopes": [],
-    "number": 22,
-    "disabled": true
+    "isotopes": {
+      "44Ti": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1.9867e+9,
+          "decay_type": "electron_capture",
+          "decay_product": {
+            "44Sc": 1,
+            "eV": 0
+          }
+        }
+      },
+      "46Ti": {
+        "ratio": 0.0825
+      },
+      "47Ti": {
+        "ratio": 0.0744
+      },
+      "48Ti": {
+        "ratio": 0.7372
+      },
+      "49Ti": {
+        "ratio": 0.0541
+      },
+      "50Ti": {
+        "ratio": 0.0518
+      }
+    },
+    "ionization_energy": [6.8281, 13.5755, 27.4917, 43.2672, 99.30, 119.53, 140.8, 170.4, 192.1, 215.92, 265.07, 291.500, 787.84, 863.1, 941.9, 1044, 1131, 1221, 1346, 1425.4, 6249.0, 6625.82],
+    "electron_affinity": [-0.0788, 9.3988],
+    "main": "48Ti",
+    "number": 22
   },
   "V": {
     "name": "Vanadium",
-    "isotopes": [],
-    "number": 23,
-    "disabled": true
+    "isotopes": {
+      "48V": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1382400,
+          "decay_type": "beta+",
+          "decay_product": {
+            "48Ti": 1,
+            "e+": 1,
+            "eV": 4012300
+          }
+        }
+      },
+      "49V": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 28512000,
+          "decay_type": "electron_capture",
+          "decay_product": {
+            "49Ti": 1,
+            "eV": 601900
+          }
+        }
+      },
+      "50V": {
+        "ratio": 0.0025,
+        "decay": {
+          "half_life": 4.7304e+24,
+          "decay_type": "electron_capture",
+          "decay_product": {
+            "50Ti": 1,
+            "eV": 2208300
+          }
+        }
+      },
+      "51V": {
+        "ratio": 0.9975
+      }
+    },
+    "ionization_energy": [6.7462, 14.66, 29.311, 46.709, 65.2817, 128.13, 150.6, 173.4, 205.8, 230.5, 255.7, 308.1, 336.277, 896.0, 976, 1060, 1168, 1260, 1355, 1486, 1569.6, 6851.3, 7246.12],
+    "electron_affinity": [-0.5244, 7.8654],
+    "main": "51V",
+    "number": 23
   },
   "Cr": {
     "name": "Chromium",
-    "isotopes": [],
-    "number": 24,
-    "disabled": true
+    "isotopes": {
+      "50Cr": {
+        "ratio": 0.04345
+      },
+      "51Cr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 2393496,
+          "decay_type": "electron_capture",
+          "decay_product": {
+            "51V": 1,
+            "eV": 0
+          }
+        }
+      },
+      "52Cr": {
+        "ratio": 0.83789
+      },
+      "53Cr": {
+        "ratio": 0.09501
+      },
+      "54Cr": {
+        "ratio": 0.02365
+      }
+    },
+    "ionization_energy": [6.7665, 16.4857, 30.96, 49.16, 69.46, 90.6349, 160.18, 184.7, 209.3, 244.4, 270.8, 298.0, 354.8, 384.168, 1010.6, 1097, 1185, 1299, 1396, 1496, 1634, 1721.4, 7481.7, 7894.81],
+    "electron_affinity": [-0.6664, 11.378],
+    "main": "52Cr",
+    "number": 24
   },
   "Mn": {
     "name": "Manganese",
-    "isotopes": [],
-    "number": 25,
-    "disabled": true
+    "isotopes": {
+      "52Mn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 483840,
+          "decay_type": "beta+",
+          "decay_product": {
+            "52Cr": 1,
+            "e+": 1,
+            "eV": 575000
+          }
+        }
+      },
+      "53Mn": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 1.17945e+14,
+          "decay_type": "electron_capture",
+          "decay_product": {
+            "53Cr": 1,
+            "eV": 0
+          }
+        }
+      },
+      "54Mn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 2678400,
+          "decay_type": "electron_capture",
+          "decay_product": {
+            "54Cr": 1,
+            "eV": 1377000
+          }
+        }
+      },
+      "55Mn": {
+        "ratio": 0.999999
+      }
+    },
+    "ionization_energy": [7.43402, 15.63999, 33.668, 51.2, 72.4, 95.6, 119.203, 194.5, 221.8, 248.3, 286.0, 314.4, 343.6 ,403.0, 435.163, 1134.7, 1224, 1317, 1437, 1539, 1644, 1788, 1879.9, 8140.6, 8571.94],
+    "electron_affinity": [1, 10.8546],
+    "main": "55Mn",
+    "number": 25
   },
   "Fe": {
     "name": "Iron",
-    "isotopes": [],
-    "number": 26,
-    "disabled": true
+    "isotopes": {
+      "54Fe": {
+        "ratio": 0.0585
+      },
+      "55Fe": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 86093280,
+          "decay_type": "electron_capture",
+          "decay_product": {
+            "55Mn": 1,
+            "eV": 231000
+          }
+        }
+      },
+      "56Fe": {
+        "ratio": 0.9175
+      },
+      "57Fe": {
+        "ratio": 0.0212
+      },
+      "58Fe": {
+        "ratio": 0.0028
+      },
+      "59Fe": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 3853440,
+          "decay_type": "beta-",
+          "decay_product": {
+            "59Co": 1,
+            "e-": 1,
+            "eV": 1565000
+          }
+        }
+      },
+      "60Fe": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 8.19936e+13,
+          "decay_type": "beta-",
+          "decay_product": {
+            "60Co": 1,
+            "e-": 1,
+            "eV": 3978000
+          }
+        }
+      }
+    },
+    "ionization_energy": [7.9024, 16.1878, 30.652, 54.8, 75.0, 99.1, 124.98, 151.06, 233.6, 262.1, 290.2, 330.8, 361.0, 392.2, 457, 489.256, 1266, 1358, 1456, 1582, 1689, 1799, 1950, 2023, 8828, 9277.69],
+    "electron_affinity": [-0.1627, 10.3879],
+    "main": "56Fe",
+    "number": 26
   },
   "Co": {
     "name": "Cobalt",
-    "isotopes": [],
-    "number": 27,
-    "disabled": true
+    "isotopes": {
+      "56Co": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 6676128,
+          "decay_type": "electron_capture",
+          "decay_product": {
+            "56Fe": 1,
+            "eV": 4566000
+          }
+        }
+      },
+      "57Co": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 23482656,
+          "decay_type": "electron_capture",
+          "decay_product": {
+            "57Fe": 1,
+            "eV": 836000
+          }
+        }
+      },
+      "58Co": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 6122304,
+          "decay_type": "electron_capture",
+          "decay_product": {
+            "58Fe": 1,
+            "eV": 2307000
+          }
+        }
+      },
+      "59Co": {
+        "ratio": 1
+      },
+      "60Co": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1.6623e+8,
+          "decay_type": "beta-",
+          "decay_product": {
+            "60Ni": 1,
+            "e-": 1,
+            "eV": 2824000
+          }
+        }
+      }
+    },
+    "ionization_energy": [7.8810, 17.083, 33.50, 51.3, 79.5, 102.0, 128.9, 157.8, 186.13, 275.4, 305, 336, 379, 411, 444, 511.96, 546.58, 1397.2, 1504.6, 1603, 1735, 1846, 1962, 2119, 2219.0, 9544.1, 10012.12],
+    "electron_affinity": [-0.6602, 13.7077],
+    "main": "59Co",
+    "number": 27
   },
   "Ni": {
     "name": "Nickel",
-    "isotopes": [],
-    "number": 28,
-    "disabled": true
+    "isotopes": {
+      "58Ni": {
+        "ratio": 0.68076
+      },
+      "59Ni": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 2.3652E+12,
+          "decay_type": "electron_capture",
+          "decay_product": {
+            "59Co": 1,
+            "eV": 50600
+          }
+        }
+      },
+      "60Ni": {
+        "ratio": 0.26223
+      },
+      "61Ni": {
+        "ratio": 0.0114
+      },
+      "62Ni": {
+        "ratio": 0.03635
+      },
+      "63Ni": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 3.1536e+9,
+          "decay_type": "beta-",
+          "decay_product": {
+            "63Cu": 1,
+            "e-": 1,
+            "eV": 66900
+          }
+        }
+      },
+      "64Ni": {
+        "ratio": 0.00926
+      }
+    },
+    "ionization_energy": [7.6398, 18.16884, 35.19, 54.9, 76.06, 108, 133, 162, 193, 224.6, 321.0, 352, 384, 430, 464, 499, 571.08, 607.06, 1541, 1648, 1756, 1894, 2011, 2131, 2295, 2399.2, 10288.8, 10775.40],
+    "electron_affinity": [-1.1608, 7.2818],
+    "main": "58Ni",
+    "number": 28
   },
   "Cu": {
     "name": "Copper",
-    "isotopes": [],
-    "number": 29,
-    "disabled": true
+    "isotopes": {
+      "63Cu": {
+        "ratio": 0.6915
+      },
+      "64Cu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 45720,
+          "decay_type": "beta+",
+          "decay_product": {
+            "64Ni": 1,
+            "e+": 1,
+            "eV": 0
+          }
+        }
+      },
+      "65Cu": {
+        "ratio": 0.3085
+      },
+      "66Cu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 222588,
+          "decay_type": "beta-",
+          "decay_product": {
+            "67Zn": 1,
+            "e-": 1,
+            "eV": 0
+          }
+        }
+      }
+    },
+    "ionization_energy": [7.72638, 20.29240, 36.841, 57.38, 79.8, 103, 139, 166, 199, 232, 265.3, 369, 401, 435, 484, 520, 557, 633, 670.588, 1697, 1804, 1916, 2060, 2182, 2308, 2478, 2587.5, 11062.38, 11567.617],
+    "electron_affinity": [-1.2271, 8.5933],
+    "main": "63Cu",
+    "number": 29
   },
   "Zn": {
     "name": "Zinc",
-    "isotopes": [],
-    "number": 30,
-    "disabled": true
+    "isotopes": {
+      "64Zn": {
+        "ratio": 0.492
+      },
+      "65Zn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 21081600,
+          "decay_type": "beta+",
+          "decay_product": {
+            "65Cu": 1,
+            "e+": 1,
+            "eV": 1351900
+          }
+        }
+      },
+      "66Zn": {
+        "ratio": 0.277
+      },
+      "67Zn": {
+        "ratio": 0.04
+      },
+      "68Zn": {
+        "ratio": 0.185
+      },
+      "69Zn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 3360,
+          "decay_type": "beta-",
+          "decay_product": {
+            "69Ga": 1,
+            "e-": 1,
+            "eV": 906000
+          }
+        }
+      },
+      "70Zn": {
+        "ratio": 0.006
+      },
+      "71Zn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 144,
+          "decay_type": "beta-",
+          "decay_product": {
+            "71Ga": 1,
+            "e-": 1,
+            "eV": 2820000
+          }
+        }
+      },
+      "72Zn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 167400,
+          "decay_type": "beta-",
+          "decay_product": {
+            "72Ga": 1,
+            "e-": 1,
+            "eV": 458000
+          }
+        }
+      }
+    },
+    "ionization_energy": [9.3942, 17.96440, 39.723, 59.4, 82.6, 108, 134, 174, 203, 238, 274, 310.8, 419.7, 454, 490, 542, 579, 619, 698, 738, 1856],
+    "main": "64Zn",
+    "number": 30
   },
   "Ga": {
     "name": "Gallium",
-    "isotopes": [],
-    "number": 31,
-    "disabled": true
+    "isotopes": {
+      "66Ga": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 34200,
+          "decay_type": "beta+",
+          "decay_product": {
+            "66Zn": 1,
+            "e+": 1,
+            "eV": 4153000
+          }
+        }
+      },
+      "67Ga": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 285120,
+          "decay_type": "electron_capture",
+          "decay_product": {
+            "67Zn": 1,
+            "eV": 1001000
+          }
+        }
+      },
+      "68Ga": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 4320,
+          "decay_type": "beta+",
+          "decay_product": {
+            "68Zn": 1,
+            "e+": 1,
+            "eV": 1899000
+          }
+        }
+      },
+      "69Ga": {
+        "ratio": 0.6011
+      },
+      "70Ga": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1260,
+          "decay_type": "beta-",
+          "decay_product": {
+            "70Ge": 1,
+            "e-": 1,
+            "eV": 1653000
+          }
+        }
+      },
+      "71Ga": {
+        "ratio": 0.3989
+      },
+      "72Ga": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 50760,
+          "decay_type": "beta-",
+          "decay_product": {
+            "72Ge": 1,
+            "e-": 1,
+            "eV": 3997000
+          }
+        }
+      },
+      "73Ga": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 17640,
+          "decay_type": "beta-",
+          "decay_product": {
+            "73Ge": 1,
+            "e-": 1,
+            "eV": 1598000
+          }
+        }
+      }
+    },
+    "ionization_energy": [5.99930, 20.5142, 30.71, 64],
+    "electron_affinity": [-0.2995, 6.9471],
+    "main": "69Ga",
+    "number": 31
   },
   "Ge": {
     "name": "Germanium",
-    "isotopes": [],
-    "number": 32,
-    "disabled": true
+    "isotopes": {
+      "68Ge": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 23397120,
+          "decay_type": "electron_capture",
+          "decay_product": {
+            "68Ga": 1,
+            "eV": 0
+          }
+        }
+      },
+      "70Ge": {
+        "ratio": 0.2052
+      },
+      "71Ge": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 976320,
+          "decay_type": "electron_capture",
+          "decay_product": {
+            "71Ga": 1,
+            "eV": 0
+          }
+        }
+      },
+      "72Ge": {
+        "ratio": 0.2745
+      },
+      "73Ge": {
+        "ratio": 0.0776
+      },
+      "74Ge": {
+        "ratio": 0.3652
+      },
+      "76Ge": {
+        "ratio": 0.0775,
+        "decay": {
+          "half_life": 5.6134e+28,
+          "decay_type": "2beta-",
+          "decay_product": {
+            "76Se": 1,
+            "e-": 2,
+            "eV": 2039000
+          }
+        }
+      }
+    },
+    "ionization_energy": [7.8994, 15.93462, 34.2241, 45.7131, 93.5],
+    "electron_affinity": [-1.2333, 8.1444],
+    "main": "74Ge",
+    "number": 32
   },
   "As": {
     "name": "Arsenic",
-    "isotopes": [],
-    "number": 33,
-    "disabled": true
+    "isotopes": {
+      "73As": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 6937920,
+          "decay_type": "electron_capture",
+          "decay_product": {
+            "73Ge": 1,
+            "eV": 0
+          }
+        }
+      },
+      "74As": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1537920,
+          "decay_type": "beta+",
+          "decay_product": {
+            "74Ge": 1,
+            "eV": 941000
+          }
+        }
+      },
+      "75As": {
+        "ratio": 1
+      }
+    },
+    "ionization_energy": [9.7886, 18.633, 28.351, 50.13, 62.63, 127.6],
+    "electron_affinity": [-0.8084, 7.1375],
+    "main": "75As",
+    "number": 33
   },
   "Se": {
     "name": "Selenium",
