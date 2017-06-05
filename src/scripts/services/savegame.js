@@ -7,64 +7,24 @@ angular
     'state',
     'data',
     'achievement',
-    function($state, state, data, achievement) {
-      this.save = function() {
-        localStorage.setItem('playerStoredITE', JSON.stringify(state.player));
-      };
-
-      function initSave() {
+    function ($state, state, data, achievement) {
+      this.initSave = function () {
         state.player = {};
         versionControl();
-        // runLoop is set to true here
         achievement.init();
         state.init();
         $state.go('matter');
-      }
+      };
 
-      this.load = function() {
+      this.load = function () {
         try {
           let storedPlayer = localStorage.getItem('playerStoredITE');
-          if (storedPlayer !== null) {
-            state.player = JSON.parse(storedPlayer);
-            versionControl();
-          } else {
-            initSave();
-          }
+          // versionControl will catch an invalid player
+          state.player = JSON.parse(storedPlayer);
+          versionControl();
         } catch (err) {
           alert('Error loading savegame, reset forced.');
-          this.reset(false);
-        }
-      };
-
-      this.reset = function(ask) {
-        let confirmation = true;
-        if (ask) {
-          confirmation = confirm('Are you sure you want to reset? This will permanently erase your progress.');
-        }
-
-        if (confirmation === true) {
-          localStorage.removeItem('playerStoredITE');
-          initSave();
-        }
-      };
-
-      this.exportSave = function() {
-        let exportText = btoa(JSON.stringify(state.player));
-
-        state.export = exportText;
-      };
-
-      this.importSave = function() {
-        let importText = prompt('Paste the text you were given by the export save dialog here.\n' +
-          'Warning: this will erase your current save!');
-        if (importText) {
-          try {
-            state.player = JSON.parse(atob(importText));
-            versionControl();
-            this.save();
-          } catch (error) {
-            alert('Invalid save file.');
-          }
+          this.initSave();
         }
       };
 

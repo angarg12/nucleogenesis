@@ -5,24 +5,22 @@ angular
   .controller('main-loop', ['$scope',
     '$interval',
     '$timeout',
+    'savegame',
     'achievement',
     'util',
-    'savegame',
     'format',
     'reaction',
     'data',
     'visibility',
     'state',
-    function($scope, $interval, $timeout, achievement, util, savegame, format, reaction, data, visibility, state) {
+    function($scope, $interval, $timeout, savegame, achievement, util, format, reaction, data, visibility, state) {
       $scope.data = data;
       $scope.achievement = achievement;
       $scope.util = util;
-      $scope.savegame = savegame;
       $scope.format = format;
       $scope.reaction = reaction;
       $scope.visibility = visibility;
       $scope.state = state;
-      $scope.loading = true;
 
       let self = this;
       let playerCopy = null;
@@ -40,11 +38,15 @@ angular
         $timeout(self.update, 1);
       };
 
+      function save() {
+        localStorage.setItem('playerStoredITE', JSON.stringify(state.player));
+      }
+
       self.startup = function() {
         savegame.load();
-        $scope.loading = false;
+        state.loading = false;
         $timeout(self.update, 1000);
-        $interval(savegame.save, 10000);
+        $interval(save, 10000);
       };
 
       $timeout(self.startup);

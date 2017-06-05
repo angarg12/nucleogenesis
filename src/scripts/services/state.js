@@ -7,6 +7,7 @@ angular
     this.hoverElement = '';
     this.export = '';
     this.player = {};
+    this.loading = true;
     let updateFunctions = [];
 
     this.init = function() {

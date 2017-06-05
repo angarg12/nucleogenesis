@@ -68,10 +68,10 @@
       bugs, save wipes and broken features.
     </div>
     <div>
-      <div ng-if="loading"
+      <div ng-if="state.loading"
            class="loader" />
     </div>
-    <div ng-if="!loading">
+    <div ng-if="!state.loading">
       <div class="ng-scope ng-isolate-scope animif">
         <ul class="nav nav-tabs ng-scope">
           <li ui-sref="matter"

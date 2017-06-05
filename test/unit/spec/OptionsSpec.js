@@ -67,50 +67,23 @@
   window.unmockLocalStorage = unmockLocalStorage;
 })();
 
-describe('Save service', function () {
+describe('Options', function () {
   let spec = {};
 
   commonSpec(spec);
   window.mockLocalStorage();
 
   describe('save and load', function () {
-    let getItemSpy;
-
     beforeEach(function () {
-      getItemSpy = spyOn(localStorage, 'getItem');
+      spyOn(localStorage, 'getItem');
       spyOn(localStorage, 'setItem');
       spyOn(localStorage, 'removeItem');
-    });
-
-    it('should save player data', function () {
-      spec.savegame.save();
-
-      expect(localStorage.setItem).toHaveBeenCalled();
-    });
-
-    it('should load player data', function () {
-      getItemSpy.and.returnValue('{}');
-      spyOn(spec.savegame, 'reset');
-
-      spec.savegame.load();
-
-      expect(localStorage.getItem).toHaveBeenCalled();
-      expect(spec.savegame.reset).not.toHaveBeenCalled();
-    });
-
-    it('should load player data and throw exception', function () {
-      spyOn(spec.savegame, 'reset');
-
-      spec.savegame.load();
-
-      expect(localStorage.getItem).toHaveBeenCalled();
-      expect(spec.savegame.reset).toHaveBeenCalled();
     });
 
     it('should reset player without confirmation', function () {
       spyOn(spec.state, 'init');
 
-      spec.savegame.reset(false);
+      spec.options.reset(false);
 
       expect(localStorage.removeItem).toHaveBeenCalled();
       expect(spec.state.init).toHaveBeenCalled();
@@ -120,7 +93,7 @@ describe('Save service', function () {
       spyOn(window, 'confirm').and.returnValue(true);
       spyOn(spec.state, 'init');
 
-      spec.savegame.reset(true);
+      spec.options.reset(true);
 
       expect(localStorage.removeItem).toHaveBeenCalled();
       expect(spec.state.init).toHaveBeenCalled();
@@ -130,7 +103,7 @@ describe('Save service', function () {
       spyOn(window, 'confirm').and.returnValue(false);
       spyOn(spec.state, 'init');
 
-      spec.savegame.reset(true);
+      spec.options.reset(true);
 
       expect(localStorage.removeItem).not.toHaveBeenCalled();
       expect(spec.state.init).not.toHaveBeenCalled();
@@ -139,45 +112,58 @@ describe('Save service', function () {
     it('should export save', function () {
       spyOn(window, 'btoa').and.returnValue('');
 
-      spec.savegame.exportSave();
+      spec.options.importExportSave();
 
       expect(window.btoa).toHaveBeenCalled();
     });
 
     it('should import save', function () {
-      spyOn(window, 'prompt').and.returnValue('test');
       spyOn(JSON, 'parse').and.returnValue('{}');
-      spyOn(spec.savegame, 'save');
+      spec.state.export = 'test';
 
-      spec.savegame.importSave();
+      spec.options.importExportSave();
 
-      expect(window.prompt).toHaveBeenCalled();
       expect(JSON.parse).toHaveBeenCalled();
-      expect(spec.savegame.save).toHaveBeenCalled();
     });
 
     it('should not import if save is not presented', function () {
-      spyOn(window, 'prompt').and.returnValue('');
       spyOn(window, 'atob').and.returnValue('{}');
-      spyOn(spec.savegame, 'save');
+      spec.state.export = '';
 
-      spec.savegame.importSave();
+      spec.options.importExportSave();
 
-      expect(window.prompt).toHaveBeenCalled();
       expect(window.atob).not.toHaveBeenCalled();
-      expect(spec.savegame.save).not.toHaveBeenCalled();
     });
 
     it('should not import if save is invalid', function () {
-      spyOn(window, 'prompt').and.returnValue('test');
       spyOn(window, 'atob');
-      spyOn(spec.savegame, 'save');
+      spec.state.export = 'test';
 
-      spec.savegame.importSave();
+      spec.options.importExportSave();
 
-      expect(window.prompt).toHaveBeenCalled();
       expect(window.atob).toHaveBeenCalled();
-      expect(spec.savegame.save).not.toHaveBeenCalled();
+    });
+
+    describe('onload', function() {
+      beforeEach(function() {
+  			spyOn(spec.state, 'init');
+      });
+
+      it('should load the game', function() {
+        // flush onload
+        spec.$timeout.flush();
+
+        expect(localStorage.getItem).toHaveBeenCalled();
+      });
+
+      it('should not init if the player exists', function() {
+        spyOn(JSON, 'parse').and.returnValue('{}');
+
+        // flush onload
+        spec.$timeout.flush();
+
+  			expect(spec.state.init).not.toHaveBeenCalled();
+      });
     });
   });
 });

@@ -19,38 +19,6 @@ describe('controller main-loop', function() {
     });
   });
 
-  describe('onload', function() {
-    beforeEach(function() {
-			spyOn(spec.savegame, 'load');
-			spyOn(spec.state, 'init');
-    });
-
-    it('should load the game', function() {
-      // flush onload
-      spec.$timeout.flush();
-
-      expect(spec.savegame.load).toHaveBeenCalled();
-    });
-
-    it('should load the player', function() {
-      spyOn(localStorage, 'getItem').and.returnValue('');
-
-      // flush onload
-      spec.$timeout.flush();
-
-			expect(spec.savegame.load).toHaveBeenCalled();
-    });
-
-    it('should not init if the player exists', function() {
-      spec.state.player = '';
-
-      // flush onload
-      spec.$timeout.flush();
-
-			expect(spec.state.init).not.toHaveBeenCalled();
-    });
-  });
-
   describe('update', function() {
     beforeEach(function() {
       spyOn(spec.achievement, 'checkAchievements');

@@ -4,8 +4,7 @@ angular
   .module('game')
   .service('reaction', ['visibility',
     function(visibility) {
-      // FIXME: We can't factor this out until we change redox to work in auto,
-      // like syntheses
+      // FIXME: move to util?
         this.isReactionCostMet = function(number, reaction, playerData) {
           let keys = Object.keys(reaction.reactant);
           for (let i = 0; i < keys.length; i++) {

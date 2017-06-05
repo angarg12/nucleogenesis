@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <div class="tab-pane row">
-  <div class="col-lg-2">
+  <div class="col-lg-12">
     <button type="button"
             class="btn btn-default btn-block"
-            ng-click="savegame.save()">Save</button>
-    <button type="button"
-            class="btn btn-default btn-block"
-            ng-click="savegame.reset(true)">Erase save</button>
-    <br>
-    <br>
+            ng-click="ct.reset(true)">Erase save</button>
+  </div>
+  <div class="col-lg-12">
     <button type="button"
             class="btn btn-default btn-block"
             id="exportSave"
-            ng-click="savegame.exportSave()">Export Save</button>
-    <input id="exportSaveText"
+            ng-click="ct.importExportSave()">Import/Export Save</button>
+  </div>
+  <div class="col-lg-12 form-group">
+    <input class="form-control"
+           id="exportSaveText"
            type="text"
-           value="{{state.export}}"
-           readonly>
-    <button type="button"
-            class="btn btn-default btn-block"
-            id="importSave"
-            ng-click="savegame.importSave()">Import Save</button>
+           value="{{ct.state.export}}"
+           readonly />
   </div>
   <div class="col-lg-12">
     <a target="_blank"
