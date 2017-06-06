@@ -41,8 +41,8 @@ for (let element in elements) {
       mainIsotope[1] = isotope;
     }
   }
-  if (ratioSum !== 1) {
-    throw new Error("Ratios do not add up to 1 for ".concat(element));
+  if ((Math.round(ratioSum*1000000)/1000000 !== 1) && !elements[element].disabled) {
+    throw new Error("Ratios add up to ".concat(Math.round(ratioSum*1000000)/1000000, " for ", element));;
   }
   elements[element].main = mainIsotope[1];
 }
