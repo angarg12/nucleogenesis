@@ -140,5 +140,5 @@ function update(player){
     return total;
   };
 
-  state.registerUpdate(update);
+  state.registerUpdate('matter', update);
 }

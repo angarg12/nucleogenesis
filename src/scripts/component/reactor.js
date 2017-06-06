@@ -67,5 +67,5 @@ function reactor(state, data, visibility, util, format, reaction) {
     }
   };
 
-  state.registerUpdate(update);
+  state.registerUpdate('reactor', update);
 }

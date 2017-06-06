@@ -8,7 +8,7 @@ angular
     this.export = '';
     this.player = {};
     this.loading = true;
-    let updateFunctions = [];
+    let updateFunctions = {};
 
     this.init = function() {
       this.currentElement = 'H';
@@ -16,13 +16,13 @@ angular
       this.export = '';
     };
 
-    this.registerUpdate = function(func){
-      updateFunctions.push(func);
+    this.registerUpdate = function(name, func){
+      updateFunctions[name] = func;
     };
 
     this.update = function(player){
-      for(let func of updateFunctions){
-        func(player);
+      for(let func in updateFunctions){
+        updateFunctions[func](player);
       }
     };
   }]);
