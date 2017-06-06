@@ -27,7 +27,7 @@ angular
           component: 'core'
         })
         .state('options', {
-          templateUrl: 'views/options.html'
+          component: 'options'
         });
     }
   ]).run([

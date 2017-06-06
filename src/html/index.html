@@ -93,13 +93,15 @@
               Exotic matter
             </a>
           </li>
-          <li ui-sref="redox"
+          <li ng-if="state.player.achievements.redox"
+              ui-sref="redox"
               ui-sref-active="active">
             <a>
               Reactions
             </a>
           </li>
-          <li ui-sref="reactor"
+          <li ng-if="state.player.achievements.synthesis"
+              ui-sref="reactor"
               ui-sref-active="active">
             <a>
               Syntheses
