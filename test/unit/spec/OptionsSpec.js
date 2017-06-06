@@ -69,13 +69,14 @@
 
 describe('Options', function () {
   let spec = {};
+  let getItem;
 
   commonSpec(spec);
   window.mockLocalStorage();
 
   describe('save and load', function () {
     beforeEach(function () {
-      spyOn(localStorage, 'getItem');
+      getItem = spyOn(localStorage, 'getItem');
       spyOn(localStorage, 'setItem');
       spyOn(localStorage, 'removeItem');
     });
@@ -157,7 +158,7 @@ describe('Options', function () {
       });
 
       it('should not init if the player exists', function() {
-        spyOn(JSON, 'parse').and.returnValue('{}');
+        getItem.and.returnValue('{}');
 
         // flush onload
         spec.$timeout.flush();

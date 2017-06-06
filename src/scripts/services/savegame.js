@@ -19,9 +19,12 @@ angular
       this.load = function () {
         try {
           let storedPlayer = localStorage.getItem('playerStoredITE');
-          // versionControl will catch an invalid player
-          state.player = JSON.parse(storedPlayer);
-          versionControl();
+          if(!storedPlayer){
+            this.initSave();
+          }else{            
+            state.player = JSON.parse(storedPlayer);
+            versionControl();
+          }
         } catch (err) {
           alert('Error loading savegame, reset forced.');
           this.initSave();
