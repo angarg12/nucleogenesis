@@ -35,7 +35,7 @@ angular
         // and update all at once
         state.player = playerCopy;
 
-        $timeout(self.update, 1000);
+        $timeout(self.update, 1);
       };
 
       function save() {

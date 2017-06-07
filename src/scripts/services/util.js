@@ -5,10 +5,8 @@ angular
   .module('game')
   .service('util', ['numberFilter',
     '$sce',
-    '$locale',
     'data',
-    function(numberFilter, $sce, $locale, data) {
-      let formats = $locale.NUMBER_FORMATS;
+    function(numberFilter, $sce, data) {
       this.gaussian = new Ziggurat();
       this.poisson = new Poisson();
 
@@ -43,28 +41,9 @@ angular
             this.prettifyNumber(exponent) +
             '</sup>';
         }
-        return mangleCeroes(number, 4);
+        // we use a regex to remove trailing zeros, plus . (if necessary)
+        return numberFilter(number, 4).replace(/(\.0*$)|(0*$)/, '');
       };
-
-      // FIXME: it turns out we need this abomination since default numberFilter
-      // uses 3 decimals and we need 4 (for the isotopes proportions precision)
-      // and if you use decimals, it attaches 0's at the end
-      function mangleCeroes(input, fractionSize) {
-        //Get formatted value
-
-        let formattedValue = numberFilter(input, fractionSize);
-        //get the decimalSepPosition
-        let decimalIdx = formattedValue.indexOf(formats.DECIMAL_SEP);
-        //If no decimal just return
-        if (decimalIdx === -1) {
-          return formattedValue;
-        }
-
-        let whole = formattedValue.substring(0, decimalIdx);
-        let decimal = (Number(formattedValue.substring(decimalIdx)) || '').toString();
-
-        return whole + decimal.substring(1);
-      }
 
       this.randomDraw = function(number, p) {
         let production;
