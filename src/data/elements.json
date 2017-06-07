@@ -196,7 +196,7 @@
     "name": "Fluorine",
     "isotopes": {
       "19F": {
-        "ratio": 0.999998
+        "ratio": 0.999999
       },
       "18F": {
         "ratio": 0.000001,
@@ -440,7 +440,7 @@
     "name": "Argon",
     "isotopes": {
       "36Ar": {
-        "ratio": 0.00334
+        "ratio": 0.00336
       },
       "37Ar": {
         "ratio": 0,
@@ -469,7 +469,7 @@
         }
       },
       "40Ar": {
-        "ratio": 0.996039
+        "ratio": 0.996009
       },
       "41Ar": {
         "ratio": 0,
@@ -532,7 +532,7 @@
     "name": "Calcium",
     "isotopes": {
       "40Ca": {
-        "ratio": 0.9694
+        "ratio": 0.969409
       },
       "41Ca": {
         "ratio": 0.000001,
@@ -925,7 +925,7 @@
     "name": "Nickel",
     "isotopes": {
       "58Ni": {
-        "ratio": 0.68076
+        "ratio": 0.680759
       },
       "59Ni": {
         "ratio": 0.000001,
