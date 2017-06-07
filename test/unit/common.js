@@ -4,8 +4,8 @@
 /* jshint varstmt: false */
 'use strict';
 
+let originalData = null;
 let commonSpec = function(spec) {
-  let originalData = null;
 
   beforeEach(angular.mock.module('game'));
 

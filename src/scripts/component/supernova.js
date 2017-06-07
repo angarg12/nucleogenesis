@@ -87,6 +87,7 @@ function supernova(state, format, visibility, data, util) {
     }
     let price = data.exotic_upgrades[name].price;
     let currency = data.elements[element].exotic;
+
     if (state.player.resources[currency].number >= price) {
       state.player.resources[currency].number -= price;
       state.player.elements[element].exotic_upgrades[name] = true;
