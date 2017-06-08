@@ -2,8 +2,10 @@
   "1-1": {
     "price": 100,
     "name": "I boost 1",
-    "description": "x2",
-    "tiers": ["1"],
+    "description": "Tier I production x2",
+    "tiers": [
+      "1"
+    ],
     "deps": [],
     "exotic_deps": [],
     "dark_deps": [],
@@ -12,20 +14,26 @@
   "1-2": {
     "price": 500,
     "name": "I boost 2",
-    "description": "x3",
-    "tiers": ["1"],
+    "description": "Tier I production x3",
+    "tiers": [
+      "1"
+    ],
     "deps": [
       "1-1"
     ],
-    "exotic_deps": ["x3"],
+    "exotic_deps": [
+      "x3"
+    ],
     "dark_deps": [],
     "power": 3
   },
   "1-3": {
     "price": 10000,
-    "name": "boost",
-    "description": "x4",
-    "tiers": ["1"],
+    "name": "I boost 3",
+    "description": "Tier I production x4",
+    "tiers": [
+      "1"
+    ],
     "deps": [
       "1-2"
     ],
@@ -35,9 +43,11 @@
   },
   "1-4": {
     "price": 100000,
-    "name": "boost",
-    "description": "x5",
-    "tiers": ["1"],
+    "name": "I boost 4",
+    "description": "Tier I production x5",
+    "tiers": [
+      "1"
+    ],
     "deps": [
       "1-3"
     ],
@@ -47,9 +57,11 @@
   },
   "1-5": {
     "price": 10000000,
-    "name": "boost",
-    "description": "x6",
-    "tiers": ["1"],
+    "name": "I boost 5",
+    "description": "Tier I production x6",
+    "tiers": [
+      "1"
+    ],
     "deps": [
       "1-4"
     ],
@@ -59,9 +71,11 @@
   },
   "1-6": {
     "price": 100000000,
-    "name": "boost",
-    "description": "x7",
-    "tiers": ["1"],
+    "name": "I boost 6",
+    "description": "Tier I production x7",
+    "tiers": [
+      "1"
+    ],
     "deps": [
       "1-5"
     ],
@@ -71,9 +85,11 @@
   },
   "1-7": {
     "price": 1000000000,
-    "name": "boost",
-    "description": "x8",
-    "tiers": ["1"],
+    "name": "I boost 7",
+    "description": "Tier I production x8",
+    "tiers": [
+      "1"
+    ],
     "deps": [
       "1-6"
     ],
@@ -83,9 +99,11 @@
   },
   "1-8": {
     "price": 10000000000,
-    "name": "boost",
-    "description": "x9",
-    "tiers": ["1"],
+    "name": "I boost 8",
+    "description": "Tier I production x9",
+    "tiers": [
+      "1"
+    ],
     "deps": [
       "1-7"
     ],
@@ -95,9 +113,11 @@
   },
   "2-1": {
     "price": 1000,
-    "name": "boost",
-    "description": "x2",
-    "tiers": ["2"],
+    "name": "II boost 1",
+    "description": "Tier II production x2",
+    "tiers": [
+      "2"
+    ],
     "deps": [],
     "exotic_deps": [],
     "dark_deps": [],
@@ -105,9 +125,11 @@
   },
   "2-2": {
     "price": 5000,
-    "name": "boost",
-    "description": "x3",
-    "tiers": ["2"],
+    "name": "II boost 2",
+    "description": "Tier II production x3",
+    "tiers": [
+      "2"
+    ],
     "deps": [
       "2-1"
     ],
@@ -117,9 +139,11 @@
   },
   "2-3": {
     "price": 50000,
-    "name": "boost",
-    "description": "x4",
-    "tiers": ["2"],
+    "name": "II boost 3",
+    "description": "Tier II production x4",
+    "tiers": [
+      "2"
+    ],
     "deps": [
       "2-2"
     ],
@@ -129,9 +153,11 @@
   },
   "2-4": {
     "price": 5000000,
-    "name": "boost",
-    "description": "x5",
-    "tiers": ["2"],
+    "name": "II boost 4",
+    "description": "Tier II production x5",
+    "tiers": [
+      "2"
+    ],
     "deps": [
       "2-3"
     ],
@@ -141,9 +167,11 @@
   },
   "2-5": {
     "price": 500000000,
-    "name": "boost",
-    "description": "x6",
-    "tiers": ["2"],
+    "name": "II boost 5",
+    "description": "Tier II production x6",
+    "tiers": [
+      "2"
+    ],
     "deps": [
       "2-4"
     ],
@@ -153,9 +181,11 @@
   },
   "2-6": {
     "price": 50000000000,
-    "name": "boost",
-    "description": "x7",
-    "tiers": ["2"],
+    "name": "II boost 6",
+    "description": "Tier II production x7",
+    "tiers": [
+      "2"
+    ],
     "deps": [
       "2-5"
     ],
@@ -165,9 +195,11 @@
   },
   "2-7": {
     "price": 50000000000000,
-    "name": "boost",
-    "description": "x8",
-    "tiers": ["2"],
+    "name": "II boost 7",
+    "description": "Tier II production x8",
+    "tiers": [
+      "2"
+    ],
     "deps": [
       "2-6"
     ],
@@ -176,10 +208,12 @@
     "power": 8
   },
   "2-8": {
-    "price": 5.0e+16,
-    "name": "boost",
-    "description": "x9",
-    "tiers": ["2"],
+    "price": 50000000000000000,
+    "name": "II boost 8",
+    "description": "Tier II production x9",
+    "tiers": [
+      "2"
+    ],
     "deps": [
       "2-7"
     ],
@@ -189,9 +223,11 @@
   },
   "3-1": {
     "price": 10000,
-    "name": "boost",
-    "description": "x2",
-    "tiers": ["3"],
+    "name": "III boost 1",
+    "description": "Tier III production x2",
+    "tiers": [
+      "3"
+    ],
     "deps": [],
     "exotic_deps": [],
     "dark_deps": [],
@@ -199,9 +235,11 @@
   },
   "3-2": {
     "price": 55000,
-    "name": "boost",
-    "description": "x3",
-    "tiers": ["3"],
+    "name": "III boost 2",
+    "description": "Tier III production x3",
+    "tiers": [
+      "3"
+    ],
     "deps": [
       "3-1"
     ],
@@ -211,9 +249,11 @@
   },
   "3-3": {
     "price": 550000,
-    "name": "boost",
-    "description": "x4",
-    "tiers": ["3"],
+    "name": "III boost 3",
+    "description": "Tier III production x4",
+    "tiers": [
+      "3"
+    ],
     "deps": [
       "3-2"
     ],
@@ -223,9 +263,11 @@
   },
   "3-4": {
     "price": 55000000,
-    "name": "boost",
-    "description": "x5",
-    "tiers": ["3"],
+    "name": "III boost 4",
+    "description": "Tier III production x5",
+    "tiers": [
+      "3"
+    ],
     "deps": [
       "3-3"
     ],
@@ -235,9 +277,11 @@
   },
   "3-5": {
     "price": 5500000000,
-    "name": "boost",
-    "description": "x6",
-    "tiers": ["3"],
+    "name": "III boost 5",
+    "description": "Tier III production x6",
+    "tiers": [
+      "3"
+    ],
     "deps": [
       "3-4"
     ],
@@ -247,9 +291,11 @@
   },
   "3-6": {
     "price": 550000000000,
-    "name": "boost",
-    "description": "x7",
-    "tiers": ["3"],
+    "name": "III boost 6",
+    "description": "Tier III production x7",
+    "tiers": [
+      "3"
+    ],
     "deps": [
       "3-5"
     ],
@@ -258,10 +304,12 @@
     "power": 7
   },
   "3-7": {
-    "price": 5.5e+14,
-    "name": "boost",
-    "description": "x8",
-    "tiers": ["3"],
+    "price": 550000000000000,
+    "name": "III boost 7",
+    "description": "Tier III production x8",
+    "tiers": [
+      "3"
+    ],
     "deps": [
       "3-6"
     ],
@@ -270,10 +318,12 @@
     "power": 8
   },
   "3-8": {
-    "price": 5.5e+17,
-    "name": "boost",
-    "description": "x9",
-    "tiers": ["3"],
+    "price": 550000000000000000,
+    "name": "III boost 8",
+    "description": "Tier III production x9",
+    "tiers": [
+      "3"
+    ],
     "deps": [
       "3-7"
     ],
@@ -283,9 +333,11 @@
   },
   "4-1": {
     "price": 120000,
-    "name": "boost",
-    "description": "x2",
-    "tiers": ["4"],
+    "name": "IV boost 1",
+    "description": "Tier IV production x2",
+    "tiers": [
+      "4"
+    ],
     "deps": [],
     "exotic_deps": [],
     "dark_deps": [],
@@ -293,9 +345,11 @@
   },
   "4-2": {
     "price": 600000,
-    "name": "boost",
-    "description": "x3",
-    "tiers": ["4"],
+    "name": "IV boost 2",
+    "description": "Tier IV production x3",
+    "tiers": [
+      "4"
+    ],
     "deps": [
       "4-1"
     ],
@@ -305,9 +359,11 @@
   },
   "4-3": {
     "price": 6000000,
-    "name": "boost",
-    "description": "x4",
-    "tiers": ["4"],
+    "name": "IV boost 3",
+    "description": "Tier IV production x4",
+    "tiers": [
+      "4"
+    ],
     "deps": [
       "4-2"
     ],
@@ -317,9 +373,11 @@
   },
   "4-4": {
     "price": 600000000,
-    "name": "boost",
-    "description": "x5",
-    "tiers": ["4"],
+    "name": "IV boost 4",
+    "description": "Tier IV production x5",
+    "tiers": [
+      "4"
+    ],
     "deps": [
       "4-3"
     ],
@@ -329,9 +387,11 @@
   },
   "4-5": {
     "price": 60000000000,
-    "name": "boost",
-    "description": "x6",
-    "tiers": ["4"],
+    "name": "IV boost 5",
+    "description": "Tier IV production x6",
+    "tiers": [
+      "4"
+    ],
     "deps": [
       "4-4"
     ],
@@ -341,9 +401,11 @@
   },
   "4-6": {
     "price": 6000000000000,
-    "name": "boost",
-    "description": "x7",
-    "tiers": ["4"],
+    "name": "IV boost 6",
+    "description": "Tier IV production x7",
+    "tiers": [
+      "4"
+    ],
     "deps": [
       "4-5"
     ],
@@ -352,10 +414,12 @@
     "power": 7
   },
   "4-7": {
-    "price": 6.0e+15,
-    "name": "boost",
-    "description": "x8",
-    "tiers": ["4"],
+    "price": 6000000000000000,
+    "name": "IV boost 7",
+    "description": "Tier IV production x8",
+    "tiers": [
+      "4"
+    ],
     "deps": [
       "4-6"
     ],
@@ -364,10 +428,12 @@
     "power": 8
   },
   "4-8": {
-    "price": 6.0e+18,
-    "name": "boost",
-    "description": "x9",
-    "tiers": ["4"],
+    "price": 6000000000000000000,
+    "name": "IV boost 8",
+    "description": "Tier IV production x9",
+    "tiers": [
+      "4"
+    ],
     "deps": [
       "4-7"
     ],
@@ -377,9 +443,11 @@
   },
   "5-1": {
     "price": 1300000,
-    "name": "boost",
-    "description": "x2",
-    "tiers": ["5"],
+    "name": "V boost 1",
+    "description": "Tier V production x2",
+    "tiers": [
+      "5"
+    ],
     "deps": [],
     "exotic_deps": [],
     "dark_deps": [],
@@ -387,9 +455,11 @@
   },
   "5-2": {
     "price": 6500000,
-    "name": "boost",
-    "description": "x3",
-    "tiers": ["5"],
+    "name": "V boost 2",
+    "description": "Tier V production x3",
+    "tiers": [
+      "5"
+    ],
     "deps": [
       "5-1"
     ],
@@ -399,9 +469,11 @@
   },
   "5-3": {
     "price": 65000000,
-    "name": "boost",
-    "description": "x4",
-    "tiers": ["5"],
+    "name": "V boost 3",
+    "description": "Tier V production x4",
+    "tiers": [
+      "5"
+    ],
     "deps": [
       "5-2"
     ],
@@ -411,9 +483,11 @@
   },
   "5-4": {
     "price": 6500000000,
-    "name": "boost",
-    "description": "x5",
-    "tiers": ["5"],
+    "name": "V boost 4",
+    "description": "Tier V production x5",
+    "tiers": [
+      "5"
+    ],
     "deps": [
       "5-3"
     ],
@@ -423,9 +497,11 @@
   },
   "5-5": {
     "price": 650000000000,
-    "name": "boost",
-    "description": "x6",
-    "tiers": ["5"],
+    "name": "V boost 5",
+    "description": "Tier V production x6",
+    "tiers": [
+      "5"
+    ],
     "deps": [
       "5-4"
     ],
@@ -435,9 +511,11 @@
   },
   "5-6": {
     "price": 65000000000000,
-    "name": "boost",
-    "description": "x7",
-    "tiers": ["5"],
+    "name": "V boost 6",
+    "description": "Tier V production x7",
+    "tiers": [
+      "5"
+    ],
     "deps": [
       "5-5"
     ],
@@ -446,10 +524,12 @@
     "power": 7
   },
   "5-7": {
-    "price": 6.5e+16,
-    "name": "boost",
-    "description": "x8",
-    "tiers": ["5"],
+    "price": 65000000000000000,
+    "name": "V boost 7",
+    "description": "Tier V production x8",
+    "tiers": [
+      "5"
+    ],
     "deps": [
       "5-6"
     ],
@@ -458,10 +538,12 @@
     "power": 8
   },
   "5-8": {
-    "price": 6.5e+19,
-    "name": "boost",
-    "description": "x9",
-    "tiers": ["5"],
+    "price": 65000000000000000000,
+    "name": "V boost 8",
+    "description": "Tier V production x9",
+    "tiers": [
+      "5"
+    ],
     "deps": [
       "5-7"
     ],
@@ -471,9 +553,11 @@
   },
   "6-1": {
     "price": 14000000,
-    "name": "boost",
-    "description": "x2",
-    "tiers": ["6"],
+    "name": "VI boost 1",
+    "description": "Tier VI production x2",
+    "tiers": [
+      "6"
+    ],
     "deps": [],
     "exotic_deps": [],
     "dark_deps": [],
@@ -481,9 +565,11 @@
   },
   "6-2": {
     "price": 70000000,
-    "name": "boost",
-    "description": "x3",
-    "tiers": ["6"],
+    "name": "VI boost 2",
+    "description": "Tier VI production x3",
+    "tiers": [
+      "6"
+    ],
     "deps": [
       "6-1"
     ],
@@ -493,9 +579,11 @@
   },
   "6-3": {
     "price": 700000000,
-    "name": "boost",
-    "description": "x4",
-    "tiers": ["6"],
+    "name": "VI boost 3",
+    "description": "Tier VI production x4",
+    "tiers": [
+      "6"
+    ],
     "deps": [
       "6-2"
     ],
@@ -505,9 +593,11 @@
   },
   "6-4": {
     "price": 70000000000,
-    "name": "boost",
-    "description": "x5",
-    "tiers": ["6"],
+    "name": "VI boost 4",
+    "description": "Tier VI production x5",
+    "tiers": [
+      "6"
+    ],
     "deps": [
       "6-3"
     ],
@@ -517,9 +607,11 @@
   },
   "6-5": {
     "price": 7000000000000,
-    "name": "boost",
-    "description": "x6",
-    "tiers": ["6"],
+    "name": "VI boost 5",
+    "description": "Tier VI production x6",
+    "tiers": [
+      "6"
+    ],
     "deps": [
       "6-4"
     ],
@@ -528,10 +620,12 @@
     "power": 6
   },
   "6-6": {
-    "price": 7.0e+14,
-    "name": "boost",
-    "description": "x7",
-    "tiers": ["6"],
+    "price": 700000000000000,
+    "name": "VI boost 6",
+    "description": "Tier VI production x7",
+    "tiers": [
+      "6"
+    ],
     "deps": [
       "6-5"
     ],
@@ -540,10 +634,12 @@
     "power": 7
   },
   "6-7": {
-    "price": 7.0e+17,
-    "name": "boost",
-    "description": "x8",
-    "tiers": ["6"],
+    "price": 700000000000000000,
+    "name": "VI boost 7",
+    "description": "Tier VI production x8",
+    "tiers": [
+      "6"
+    ],
     "deps": [
       "6-6"
     ],
@@ -552,10 +648,12 @@
     "power": 8
   },
   "6-8": {
-    "price": 7.0e+20,
-    "name": "boost",
-    "description": "x9",
-    "tiers": ["6"],
+    "price": 700000000000000000000,
+    "name": "VI boost 8",
+    "description": "Tier VI production x9",
+    "tiers": [
+      "6"
+    ],
     "deps": [
       "6-7"
     ],
@@ -565,9 +663,11 @@
   },
   "7-1": {
     "price": 200000000,
-    "name": "boost",
-    "description": "x2",
-    "tiers": ["7"],
+    "name": "VII boost 1",
+    "description": "Tier VII production x2",
+    "tiers": [
+      "7"
+    ],
     "deps": [],
     "exotic_deps": [],
     "dark_deps": [],
@@ -575,9 +675,11 @@
   },
   "7-2": {
     "price": 1000000000,
-    "name": "boost",
-    "description": "x3",
-    "tiers": ["7"],
+    "name": "VII boost 2",
+    "description": "Tier VII production x3",
+    "tiers": [
+      "7"
+    ],
     "deps": [
       "7-1"
     ],
@@ -587,9 +689,11 @@
   },
   "7-3": {
     "price": 10000000000,
-    "name": "boost",
-    "description": "x4",
-    "tiers": ["7"],
+    "name": "VII boost 3",
+    "description": "Tier VII production x4",
+    "tiers": [
+      "7"
+    ],
     "deps": [
       "7-2"
     ],
@@ -599,9 +703,11 @@
   },
   "7-4": {
     "price": 1000000000000,
-    "name": "boost",
-    "description": "x5",
-    "tiers": ["7"],
+    "name": "VII boost 4",
+    "description": "Tier VII production x5",
+    "tiers": [
+      "7"
+    ],
     "deps": [
       "7-3"
     ],
@@ -610,10 +716,12 @@
     "power": 5
   },
   "7-5": {
-    "price": 1.0e+14,
-    "name": "boost",
-    "description": "x6",
-    "tiers": ["7"],
+    "price": 100000000000000,
+    "name": "VII boost 5",
+    "description": "Tier VII production x6",
+    "tiers": [
+      "7"
+    ],
     "deps": [
       "7-4"
     ],
@@ -622,10 +730,12 @@
     "power": 6
   },
   "7-6": {
-    "price": 1.0e+16,
-    "name": "boost",
-    "description": "x7",
-    "tiers": ["7"],
+    "price": 10000000000000000,
+    "name": "VII boost 6",
+    "description": "Tier VII production x7",
+    "tiers": [
+      "7"
+    ],
     "deps": [
       "7-5"
     ],
@@ -634,10 +744,12 @@
     "power": 7
   },
   "7-7": {
-    "price": 1.0e+19,
-    "name": "boost",
-    "description": "x8",
-    "tiers": ["7"],
+    "price": 10000000000000000000,
+    "name": "VII boost 7",
+    "description": "Tier VII production x8",
+    "tiers": [
+      "7"
+    ],
     "deps": [
       "7-6"
     ],
@@ -646,10 +758,12 @@
     "power": 8
   },
   "7-8": {
-    "price": 1.0e+22,
-    "name": "boost",
-    "description": "x9",
-    "tiers": ["7"],
+    "price": 1e+22,
+    "name": "VII boost 8",
+    "description": "Tier VII production x9",
+    "tiers": [
+      "7"
+    ],
     "deps": [
       "7-7"
     ],
@@ -659,9 +773,11 @@
   },
   "8-1": {
     "price": 3300000000,
-    "name": "boost",
-    "description": "x2",
-    "tiers": ["8"],
+    "name": "VIII boost 1",
+    "description": "Tier VIII production x2",
+    "tiers": [
+      "8"
+    ],
     "deps": [],
     "exotic_deps": [],
     "dark_deps": [],
@@ -669,9 +785,11 @@
   },
   "8-2": {
     "price": 16500000000,
-    "name": "boost",
-    "description": "x3",
-    "tiers": ["8"],
+    "name": "VIII boost 2",
+    "description": "Tier VIII production x3",
+    "tiers": [
+      "8"
+    ],
     "deps": [
       "8-1"
     ],
@@ -681,9 +799,11 @@
   },
   "8-3": {
     "price": 165000000000,
-    "name": "boost",
-    "description": "x4",
-    "tiers": ["8"],
+    "name": "VIII boost 3",
+    "description": "Tier VIII production x4",
+    "tiers": [
+      "8"
+    ],
     "deps": [
       "8-2"
     ],
@@ -693,9 +813,11 @@
   },
   "8-4": {
     "price": 16500000000000,
-    "name": "boost",
-    "description": "x5",
-    "tiers": ["8"],
+    "name": "VIII boost 4",
+    "description": "Tier VIII production x5",
+    "tiers": [
+      "8"
+    ],
     "deps": [
       "8-3"
     ],
@@ -704,10 +826,12 @@
     "power": 5
   },
   "8-5": {
-    "price": 1.65e+15,
-    "name": "boost",
-    "description": "x6",
-    "tiers": ["8"],
+    "price": 1650000000000000,
+    "name": "VIII boost 5",
+    "description": "Tier VIII production x6",
+    "tiers": [
+      "8"
+    ],
     "deps": [
       "8-4"
     ],
@@ -716,10 +840,12 @@
     "power": 6
   },
   "8-6": {
-    "price": 1.65e+17,
-    "name": "boost",
-    "description": "x7",
-    "tiers": ["8"],
+    "price": 165000000000000000,
+    "name": "VIII boost 6",
+    "description": "Tier VIII production x7",
+    "tiers": [
+      "8"
+    ],
     "deps": [
       "8-5"
     ],
@@ -728,10 +854,12 @@
     "power": 7
   },
   "8-7": {
-    "price": 1.65e+20,
-    "name": "boost",
-    "description": "x8",
-    "tiers": ["8"],
+    "price": 165000000000000000000,
+    "name": "VIII boost 7",
+    "description": "Tier VIII production x8",
+    "tiers": [
+      "8"
+    ],
     "deps": [
       "8-6"
     ],
@@ -741,9 +869,11 @@
   },
   "8-8": {
     "price": 1.65e+23,
-    "name": "boost",
-    "description": "x9",
-    "tiers": ["8"],
+    "name": "VIII boost 8",
+    "description": "Tier VIII production x9",
+    "tiers": [
+      "8"
+    ],
     "deps": [
       "8-7"
     ],
@@ -753,9 +883,11 @@
   },
   "9-1": {
     "price": 51000000000,
-    "name": "boost",
-    "description": "x2",
-    "tiers": ["9"],
+    "name": "IX boost 1",
+    "description": "Tier IX production x2",
+    "tiers": [
+      "9"
+    ],
     "deps": [],
     "exotic_deps": [],
     "dark_deps": [],
@@ -763,9 +895,11 @@
   },
   "9-2": {
     "price": 255000000000,
-    "name": "boost",
-    "description": "x3",
-    "tiers": ["9"],
+    "name": "IX boost 2",
+    "description": "Tier IX production x3",
+    "tiers": [
+      "9"
+    ],
     "deps": [
       "9-1"
     ],
@@ -775,9 +909,11 @@
   },
   "9-3": {
     "price": 2550000000000,
-    "name": "boost",
-    "description": "x4",
-    "tiers": ["9"],
+    "name": "IX boost 3",
+    "description": "Tier IX production x4",
+    "tiers": [
+      "9"
+    ],
     "deps": [
       "9-2"
     ],
@@ -786,10 +922,12 @@
     "power": 4
   },
   "9-4": {
-    "price": 2.55e+14,
-    "name": "boost",
-    "description": "x5",
-    "tiers": ["9"],
+    "price": 255000000000000,
+    "name": "IX boost 4",
+    "description": "Tier IX production x5",
+    "tiers": [
+      "9"
+    ],
     "deps": [
       "9-3"
     ],
@@ -798,10 +936,12 @@
     "power": 5
   },
   "9-5": {
-    "price": 2.55e+16,
-    "name": "boost",
-    "description": "x6",
-    "tiers": ["9"],
+    "price": 25500000000000000,
+    "name": "IX boost 5",
+    "description": "Tier IX production x6",
+    "tiers": [
+      "9"
+    ],
     "deps": [
       "9-4"
     ],
@@ -810,10 +950,12 @@
     "power": 6
   },
   "9-6": {
-    "price": 2.55e+18,
-    "name": "boost",
-    "description": "x7",
-    "tiers": ["9"],
+    "price": 2550000000000000000,
+    "name": "IX boost 6",
+    "description": "Tier IX production x7",
+    "tiers": [
+      "9"
+    ],
     "deps": [
       "9-5"
     ],
@@ -823,9 +965,11 @@
   },
   "9-7": {
     "price": 2.55e+21,
-    "name": "boost",
-    "description": "x8",
-    "tiers": ["9"],
+    "name": "IX boost 7",
+    "description": "Tier IX production x8",
+    "tiers": [
+      "9"
+    ],
     "deps": [
       "9-6"
     ],
@@ -835,9 +979,11 @@
   },
   "9-8": {
     "price": 2.55e+24,
-    "name": "boost",
-    "description": "x9",
-    "tiers": ["9"],
+    "name": "IX boost 8",
+    "description": "Tier IX production x9",
+    "tiers": [
+      "9"
+    ],
     "deps": [
       "9-7"
     ],
@@ -847,9 +993,11 @@
   },
   "10-1": {
     "price": 750000000000,
-    "name": "boost",
-    "description": "x2",
-    "tiers": ["10"],
+    "name": "X boost 1",
+    "description": "Tier X production x2",
+    "tiers": [
+      "10"
+    ],
     "deps": [],
     "exotic_deps": [],
     "dark_deps": [],
@@ -857,9 +1005,11 @@
   },
   "10-2": {
     "price": 3750000000000,
-    "name": "boost",
-    "description": "x3",
-    "tiers": ["10"],
+    "name": "X boost 2",
+    "description": "Tier X production x3",
+    "tiers": [
+      "10"
+    ],
     "deps": [
       "10-1"
     ],
@@ -869,9 +1019,11 @@
   },
   "10-3": {
     "price": 37500000000000,
-    "name": "boost",
-    "description": "x4",
-    "tiers": ["10"],
+    "name": "X boost 3",
+    "description": "Tier X production x4",
+    "tiers": [
+      "10"
+    ],
     "deps": [
       "10-2"
     ],
@@ -880,10 +1032,12 @@
     "power": 4
   },
   "10-4": {
-    "price": 3.75e+15,
-    "name": "boost",
-    "description": "x5",
-    "tiers": ["10"],
+    "price": 3750000000000000,
+    "name": "X boost 4",
+    "description": "Tier X production x5",
+    "tiers": [
+      "10"
+    ],
     "deps": [
       "10-3"
     ],
@@ -892,10 +1046,12 @@
     "power": 5
   },
   "10-5": {
-    "price": 3.75e+17,
-    "name": "boost",
-    "description": "x6",
-    "tiers": ["10"],
+    "price": 375000000000000000,
+    "name": "X boost 5",
+    "description": "Tier X production x6",
+    "tiers": [
+      "10"
+    ],
     "deps": [
       "10-4"
     ],
@@ -904,10 +1060,12 @@
     "power": 6
   },
   "10-6": {
-    "price": 3.75e+19,
-    "name": "boost",
-    "description": "x7",
-    "tiers": ["10"],
+    "price": 37500000000000000000,
+    "name": "X boost 6",
+    "description": "Tier X production x7",
+    "tiers": [
+      "10"
+    ],
     "deps": [
       "10-5"
     ],
@@ -917,9 +1075,11 @@
   },
   "10-7": {
     "price": 3.75e+22,
-    "name": "boost",
-    "description": "x8",
-    "tiers": ["10"],
+    "name": "X boost 7",
+    "description": "Tier X production x8",
+    "tiers": [
+      "10"
+    ],
     "deps": [
       "10-6"
     ],
@@ -929,9 +1089,11 @@
   },
   "10-8": {
     "price": 3.75e+25,
-    "name": "boost",
-    "description": "x9",
-    "tiers": ["10"],
+    "name": "X boost 8",
+    "description": "Tier X production x9",
+    "tiers": [
+      "10"
+    ],
     "deps": [
       "10-7"
     ],
