@@ -31,10 +31,11 @@ function supernova(state, format, visibility, data, util) {
         for (let element in data.resources[resource].elements) {
           let newExotic = data.elements[element].exotic;
           production[newExotic] = production[newExotic] || 0;
-          production[newExotic] += Math.floor(Math.log(state.player.resources[resource].number)) * multiplier;
+          production[newExotic] += Math.floor(Math.max(0, Math.log(state.player.resources[resource].number))) * multiplier;
         }
+      }else{
+        production[exotic] += Math.floor(Math.max(0, Math.log(state.player.resources[resource].number)));
       }
-      production[exotic] += Math.floor(Math.log(state.player.resources[resource].number));
     }
     for (let key in production) {
       // we adjust the production to start at 1e6 resources
