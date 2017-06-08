@@ -125,9 +125,7 @@ gulp.task('copy-build', ['copy-js', 'copy-data', 'copy-html',
 // build
 
 gulp.task('populate_player', function() {
-  return plugins.run('node build_scripts/populate_player.js build',{silent:true}).exec()
-  .pipe(plugins.rename('start_player.json'))
-  .pipe(gulp.dest('build/data'));
+  return plugins.run('node build_scripts/populate_player.js build',{silent:true}).exec();
 });
 
 gulp.task('populate_data', function() {

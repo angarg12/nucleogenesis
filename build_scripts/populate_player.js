@@ -88,4 +88,6 @@ startPlayer.resources[mainHydrogen].unlocked = true;
 let first = Object.keys(generators)[0];
 startPlayer.resources[mainHydrogen].number = generators[first].price;
 
-process.stdout.write(JSON.stringify(startPlayer, null, 2));
+jsonfile.writeFileSync(args[0] + '/data/start_player.json', startPlayer, {
+  spaces: 2
+});
