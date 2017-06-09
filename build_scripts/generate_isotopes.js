@@ -8,6 +8,7 @@ let args = process.argv.slice(2);
 
 let resources = jsonfile.readFileSync(args[0] + '/data/resources.json');
 let elements = jsonfile.readFileSync(args[0] + '/data/elements.json');
+let radioisotopes = [];
 
 for (let element in elements) {
   elements[element].includes = elements[element].includes || [];
@@ -21,11 +22,14 @@ for (let element in elements) {
 
   let isotopes = elements[element].isotopes;
   let ratioSum = 0;
-  let mainIsotope = [0, ""];
+  let mainIsotope = [0, ''];
   for (let isotope in isotopes) {
     resources[isotope] = {};
     resources[isotope].ratio = isotopes[isotope].ratio;
     resources[isotope].decay = isotopes[isotope].decay;
+    if (typeof isotopes[isotope].decay !== 'undefined') {
+      radioisotopes.push(isotope);
+    }
     resources[isotope].elements = {};
     resources[isotope].elements[element] = 1;
     resources[isotope].html = isotopePrefix(isotope) + element;
@@ -43,7 +47,7 @@ for (let element in elements) {
   }
   let difference = 1 - ratioSum;
   if ((Math.abs(difference) > 1e-6) && !elements[element].disabled) {
-    throw new Error("Ratios add up to ".concat(Math.round(ratioSum * 1000000) / 1000000, " for ", element));
+    throw new Error('Ratios add up to '.concat(Math.round(ratioSum * 1000000) / 1000000, ' for ', element));
   }
   elements[element].main = mainIsotope[1];
 }
@@ -57,5 +61,8 @@ jsonfile.writeFileSync(args[0] + '/data/resources.json', resources, {
   spaces: 2
 });
 jsonfile.writeFileSync(args[0] + '/data/elements.json', elements, {
+  spaces: 2
+});
+jsonfile.writeFileSync(args[0] + '/data/radioisotopes.json', radioisotopes, {
   spaces: 2
 });
