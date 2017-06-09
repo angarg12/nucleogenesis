@@ -8,7 +8,7 @@ let args = process.argv.slice(2);
 
 let resources = jsonfile.readFileSync(args[0] + '/data/resources.json');
 let elements = jsonfile.readFileSync(args[0] + '/data/elements.json');
-let radioisotopes = jsonfile.readFileSync(args[0] + '/data/radioisotopes.json');
+let radioisotopes = [];
 
 for (let element in elements) {
   elements[element].includes = elements[element].includes || [];
@@ -28,7 +28,7 @@ for (let element in elements) {
     resources[isotope].ratio = isotopes[isotope].ratio;
     resources[isotope].decay = isotopes[isotope].decay;
     if (typeof isotopes[isotope].decay !== 'undefined') {
-      radioisotopes[isotope] = isotopes[isotope];
+      radioisotopes.push(isotope);
     }
     resources[isotope].elements = {};
     resources[isotope].elements[element] = 1;
