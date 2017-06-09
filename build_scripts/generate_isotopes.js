@@ -27,7 +27,7 @@ for (let element in elements) {
     resources[isotope] = {};
     resources[isotope].ratio = isotopes[isotope].ratio;
     resources[isotope].decay = isotopes[isotope].decay;
-    if (isotopes[isotope].decay !== undefined) {
+    if (typeof isotopes[isotope].decay !== 'undefined') {
       radioisotopes[isotope] = isotopes[isotope];
     }
     resources[isotope].elements = {};
