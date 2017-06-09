@@ -1,1 +1,713 @@
-["3H"]
+{
+  "3H": {
+    "ratio": 0.000001,
+    "decay": {
+      "half_life": 388520000,
+      "decay_type": "beta-",
+      "decay_product": {
+        "3He+": 1,
+        "e-": 1,
+        "eV": 18610
+      }
+    }
+  },
+  "7Be": {
+    "ratio": 0.000001,
+    "decay": {
+      "half_life": 4589568,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "7Li": 1,
+        "eV": 862000
+      }
+    }
+  },
+  "10Be": {
+    "ratio": 0.000001,
+    "decay": {
+      "half_life": 429170000000000,
+      "decay_type": "beta-",
+      "decay_product": {
+        "10B": 1,
+        "e-": 1,
+        "eV": 556000
+      }
+    }
+  },
+  "11C": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 1200,
+      "decay_type": "beta+",
+      "decay_product": {
+        "11B": 1,
+        "e+": 1,
+        "eV": 96000
+      }
+    }
+  },
+  "14C": {
+    "ratio": 0.000001,
+    "decay": {
+      "half_life": 180700000000,
+      "decay_type": "beta-",
+      "decay_product": {
+        "14N": 1,
+        "e-": 1,
+        "eV": 156000
+      }
+    }
+  },
+  "13N": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 598,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "13C": 1,
+        "eV": 2220000
+      }
+    }
+  },
+  "18F": {
+    "ratio": 0.000001,
+    "decay": {
+      "half_life": 6586,
+      "decay_type": "beta+",
+      "decay_product": {
+        "18O": 1,
+        "e+": 1,
+        "eV": 634000
+      }
+    }
+  },
+  "22Na": {
+    "ratio": 0.000001,
+    "decay": {
+      "half_life": 82056000,
+      "decay_type": "beta+",
+      "decay_product": {
+        "22Ne": 1,
+        "e+": 1,
+        "eV": 1820000
+      }
+    }
+  },
+  "26Al": {
+    "ratio": 0.000001,
+    "decay": {
+      "half_life": 22611000000000,
+      "decay_type": "beta+",
+      "decay_product": {
+        "26Mg": 1,
+        "e+": 1,
+        "eV": 1170000
+      }
+    }
+  },
+  "31Si": {
+    "ratio": 0.000001,
+    "decay": {
+      "half_life": 9432,
+      "decay_type": "beta-",
+      "decay_product": {
+        "31P": 1,
+        "e-": 1,
+        "eV": 1495000
+      }
+    }
+  },
+  "32Si": {
+    "ratio": 0.000001,
+    "decay": {
+      "half_life": 4825000000,
+      "decay_type": "beta-",
+      "decay_product": {
+        "32P": 1,
+        "e-": 1,
+        "eV": 13020000
+      }
+    }
+  },
+  "32P": {
+    "ratio": 0.000001,
+    "decay": {
+      "half_life": 1233792,
+      "decay_type": "beta-",
+      "decay_product": {
+        "32S": 1,
+        "e-": 1,
+        "eV": 1.709
+      }
+    }
+  },
+  "33P": {
+    "ratio": 0.000001,
+    "decay": {
+      "half_life": 2185920,
+      "decay_type": "beta-",
+      "decay_product": {
+        "33S": 1,
+        "e-": 1,
+        "eV": 249000
+      }
+    }
+  },
+  "35S": {
+    "ratio": 0.000001,
+    "decay": {
+      "half_life": 7544448,
+      "decay_type": "beta-",
+      "decay_product": {
+        "35Cl": 1,
+        "e-": 1,
+        "eV": 167000
+      }
+    }
+  },
+  "36Cl": {
+    "ratio": 0.000001,
+    "decay": {
+      "half_life": 9492300000000,
+      "decay_type": "beta-",
+      "decay_product": {
+        "36Ar": 1,
+        "e-": 1,
+        "eV": 709000
+      }
+    }
+  },
+  "37Ar": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 3024000,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "37Cl": 1,
+        "eV": 813000
+      }
+    }
+  },
+  "39Ar": {
+    "ratio": 0.000001,
+    "decay": {
+      "half_life": 8483100000,
+      "decay_type": "beta-",
+      "decay_product": {
+        "39K": 1,
+        "e-": 1,
+        "eV": 565000
+      }
+    }
+  },
+  "41Ar": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 6560,
+      "decay_type": "beta-",
+      "decay_product": {
+        "41K": 1,
+        "e-": 1,
+        "eV": 2490000
+      }
+    }
+  },
+  "42Ar": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 1037500000,
+      "decay_type": "beta-",
+      "decay_product": {
+        "42K": 1,
+        "e-": 1,
+        "eV": 600000
+      }
+    }
+  },
+  "40K": {
+    "ratio": 0.00012,
+    "decay": {
+      "half_life": 39356900000000000,
+      "decay_type": "beta-",
+      "decay_product": {
+        "40Ca": 1,
+        "e-": 1,
+        "eV": 1311000
+      }
+    }
+  },
+  "41Ca": {
+    "ratio": 0.000001,
+    "decay": {
+      "half_life": 3248200000000,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "41K": 1
+      }
+    }
+  },
+  "45Ca": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 14057280,
+      "decay_type": "beta-",
+      "decay_product": {
+        "45Sc": 1,
+        "e-": 1,
+        "eV": 258000
+      }
+    }
+  },
+  "47Ca": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 388800,
+      "decay_type": "beta-",
+      "decay_product": {
+        "47Sc": 1,
+        "e-": 1,
+        "eV": 1990000
+      }
+    }
+  },
+  "48Ca": {
+    "ratio": 0.00187,
+    "decay": {
+      "half_life": 1.356e+27,
+      "decay_type": "2beta-",
+      "decay_product": {
+        "48Ti": 1,
+        "e-": 2,
+        "eV": 4274000
+      }
+    }
+  },
+  "46Sc": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 7239456,
+      "decay_type": "beta-",
+      "decay_product": {
+        "46Ti": 1,
+        "e-": 1,
+        "eV": 356900
+      }
+    }
+  },
+  "47Sc": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 6944832,
+      "decay_type": "beta-",
+      "decay_product": {
+        "47Ti": 1,
+        "e-": 1,
+        "eV": 600000
+      }
+    }
+  },
+  "48Sc": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 157212,
+      "decay_type": "beta-",
+      "decay_product": {
+        "48Ti": 1,
+        "e-": 1,
+        "eV": 661000
+      }
+    }
+  },
+  "44Ti": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 1986700000,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "44Sc": 1,
+        "eV": 0
+      }
+    }
+  },
+  "48V": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 1382400,
+      "decay_type": "beta+",
+      "decay_product": {
+        "48Ti": 1,
+        "e+": 1,
+        "eV": 4012300
+      }
+    }
+  },
+  "49V": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 28512000,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "49Ti": 1,
+        "eV": 601900
+      }
+    }
+  },
+  "50V": {
+    "ratio": 0.0025,
+    "decay": {
+      "half_life": 4.7304e+24,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "50Ti": 1,
+        "eV": 2208300
+      }
+    }
+  },
+  "51Cr": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 2393496,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "51V": 1,
+        "eV": 0
+      }
+    }
+  },
+  "52Mn": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 483840,
+      "decay_type": "beta+",
+      "decay_product": {
+        "52Cr": 1,
+        "e+": 1,
+        "eV": 575000
+      }
+    }
+  },
+  "53Mn": {
+    "ratio": 0.000001,
+    "decay": {
+      "half_life": 117945000000000,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "53Cr": 1,
+        "eV": 0
+      }
+    }
+  },
+  "54Mn": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 2678400,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "54Cr": 1,
+        "eV": 1377000
+      }
+    }
+  },
+  "55Fe": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 86093280,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "55Mn": 1,
+        "eV": 231000
+      }
+    }
+  },
+  "59Fe": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 3853440,
+      "decay_type": "beta-",
+      "decay_product": {
+        "59Co": 1,
+        "e-": 1,
+        "eV": 1565000
+      }
+    }
+  },
+  "60Fe": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 81993600000000,
+      "decay_type": "beta-",
+      "decay_product": {
+        "60Co": 1,
+        "e-": 1,
+        "eV": 3978000
+      }
+    }
+  },
+  "56Co": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 6676128,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "56Fe": 1,
+        "eV": 4566000
+      }
+    }
+  },
+  "57Co": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 23482656,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "57Fe": 1,
+        "eV": 836000
+      }
+    }
+  },
+  "58Co": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 6122304,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "58Fe": 1,
+        "eV": 2307000
+      }
+    }
+  },
+  "60Co": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 166230000,
+      "decay_type": "beta-",
+      "decay_product": {
+        "60Ni": 1,
+        "e-": 1,
+        "eV": 2824000
+      }
+    }
+  },
+  "59Ni": {
+    "ratio": 0.000001,
+    "decay": {
+      "half_life": 2365200000000,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "59Co": 1,
+        "eV": 50600
+      }
+    }
+  },
+  "63Ni": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 3153600000,
+      "decay_type": "beta-",
+      "decay_product": {
+        "63Cu": 1,
+        "e-": 1,
+        "eV": 66900
+      }
+    }
+  },
+  "64Cu": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 45720,
+      "decay_type": "beta+",
+      "decay_product": {
+        "64Ni": 1,
+        "e+": 1,
+        "eV": 0
+      }
+    }
+  },
+  "66Cu": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 222588,
+      "decay_type": "beta-",
+      "decay_product": {
+        "67Zn": 1,
+        "e-": 1,
+        "eV": 0
+      }
+    }
+  },
+  "65Zn": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 21081600,
+      "decay_type": "beta+",
+      "decay_product": {
+        "65Cu": 1,
+        "e+": 1,
+        "eV": 1351900
+      }
+    }
+  },
+  "69Zn": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 3360,
+      "decay_type": "beta-",
+      "decay_product": {
+        "69Ga": 1,
+        "e-": 1,
+        "eV": 906000
+      }
+    }
+  },
+  "71Zn": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 144,
+      "decay_type": "beta-",
+      "decay_product": {
+        "71Ga": 1,
+        "e-": 1,
+        "eV": 2820000
+      }
+    }
+  },
+  "72Zn": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 167400,
+      "decay_type": "beta-",
+      "decay_product": {
+        "72Ga": 1,
+        "e-": 1,
+        "eV": 458000
+      }
+    }
+  },
+  "66Ga": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 34200,
+      "decay_type": "beta+",
+      "decay_product": {
+        "66Zn": 1,
+        "e+": 1,
+        "eV": 4153000
+      }
+    }
+  },
+  "67Ga": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 285120,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "67Zn": 1,
+        "eV": 1001000
+      }
+    }
+  },
+  "68Ga": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 4320,
+      "decay_type": "beta+",
+      "decay_product": {
+        "68Zn": 1,
+        "e+": 1,
+        "eV": 1899000
+      }
+    }
+  },
+  "70Ga": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 1260,
+      "decay_type": "beta-",
+      "decay_product": {
+        "70Ge": 1,
+        "e-": 1,
+        "eV": 1653000
+      }
+    }
+  },
+  "72Ga": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 50760,
+      "decay_type": "beta-",
+      "decay_product": {
+        "72Ge": 1,
+        "e-": 1,
+        "eV": 3997000
+      }
+    }
+  },
+  "73Ga": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 17640,
+      "decay_type": "beta-",
+      "decay_product": {
+        "73Ge": 1,
+        "e-": 1,
+        "eV": 1598000
+      }
+    }
+  },
+  "68Ge": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 23397120,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "68Ga": 1,
+        "eV": 0
+      }
+    }
+  },
+  "71Ge": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 976320,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "71Ga": 1,
+        "eV": 0
+      }
+    }
+  },
+  "76Ge": {
+    "ratio": 0.0775,
+    "decay": {
+      "half_life": 5.6134e+28,
+      "decay_type": "2beta-",
+      "decay_product": {
+        "76Se": 1,
+        "e-": 2,
+        "eV": 2039000
+      }
+    }
+  },
+  "73As": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 6937920,
+      "decay_type": "electron_capture",
+      "decay_product": {
+        "73Ge": 1,
+        "eV": 0
+      }
+    }
+  },
+  "74As": {
+    "ratio": 0,
+    "decay": {
+      "half_life": 1537920,
+      "decay_type": "beta+",
+      "decay_product": {
+        "74Ge": 1,
+        "eV": 941000
+      }
+    }
+  }
+}
