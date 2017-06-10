@@ -21,7 +21,7 @@ function matter(state, visibility, data, util) {
         let production = util.randomDraw(number, Math.log(2) / halfLife);
 
         if (production === 0) {
-          return;
+          continue;
         }
 
         // we decrease the number of radioactive element
