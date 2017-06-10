@@ -1,56 +1,34 @@
 <!DOCTYPE html>
-<!--  <div class="col-lg-2">
-    <table class="table table-hover element-table no_bottom">
-      <tr class="animif row"
-          ng-repeat="key in ct.data.table_resources">
-        <td class="col-lg-3">
-          <get-html value="key"></get-html>
-        </td>
-        <td class="col-lg-9">
-          <pretty value="ct.state.player.resources[key].number"></pretty>
-        </td>
-      </tr>
-    </table>-->
 <p>Buy new elements to unlock generators and upgrades. Be aware that the price of new elements increases
   with each purchase.</p>
-<div class="element_table">
-  <div class="element_info"
-       ng-show="ct.data.elements[ct.state.hoverElement] != null">
-    <div class="fl element_basic"
-         ng-class="ct.elementClass(ct.state.hoverElement)">
-      <div id="symbol"
-           class="element_symbol">{{ct.state.hoverElement}}</div>
-      <div id="ename"
-           class="symbol_name"
-           ng-class="ct.elementSecondaryClass(ct.state.hoverElement)">
-        {{ct.data.elements[ct.state.hoverElement].name}}
+<div class="row">
+  <div ng-repeat="(element, value) in ct.data.elements"
+       class="col-lg-4">
+    <div class="thumbnail">
+      <div ng-class="ct.elementClass(element)">
+        <h2 class="element_symbol">{{element}}</h2>
+      </div>
+      <div class="symbol_name"
+           ng-class="ct.elementSecondaryClass(element)">
+        {{value.name}}
+      </div>
+      <p>
+        Isotopes: {{ct.data.elements[element].isotopes | keylength}}
+      </p>
+      <p>
+        Redox: {{-ct.data.elements[element].electron_affinity.length}},+{{ct.data.elements[element].ionization_energy.length}}
+      </p>
+      <div class="hidden_block"
+           ng-show="ct.state.player.elements.hasOwnProperty(element) && ct.state.player.elements[element].unlocked != true">
+        <p>
+          Cost:
+          <pretty value="ct.elementPrice(element)"></pretty> e-, p, n
+        </p>
+        <p ng-click="ct.buyElement(element)"
+           class="btn btn-default">
+          Buy
+        </p>
       </div>
     </div>
-    <div class="fl element_details"
-         ng-if="ct.state.player.elements.hasOwnProperty(ct.state.hoverElement) && ct.state.player.elements[ct.state.hoverElement].unlocked != true">
-      <div>Cost</div>
-      <div>
-        <pretty value="ct.elementPrice(ct.state.hoverElement)"></pretty> e-</div>
-      <div>
-        <pretty value="ct.elementPrice(ct.state.hoverElement)"></pretty> p</div>
-      <div>
-        <pretty value="ct.elementPrice(ct.state.hoverElement)"></pretty> n</div>
-    </div>
-  </div>
-  <div ng-repeat="element_row in ct.data.periodic_table"
-       class="element_row">
-    <span ng-repeat="elem in element_row track by $index">
-          <div ng-class="ct.elementClass(elem)"
-            ng-if="elem != ''"
-            ng-mouseover="ct.state.hoverElement = elem"
-            ng-mouseleave="ct.state.hoverElement = ''"
-            ng-click="ct.buyElement(elem)"
-            class="fl element col-centered">
-            <div class="clear element_name">{{elem}}</div>
-            <div ng-class="ct.elementSecondaryClass(elem)"
-              class="clear element_no">{{ct.data.elements[elem].number}}</div>
-          </div>
-          <div ng-if="elem === ''" class="fl element_blank col-centered"></div>
-        </span>
   </div>
 </div>
