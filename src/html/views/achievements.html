@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<div class="row">
+  <div ng-repeat="(key, achievement) in ct.data.achievements"
+       class="col-lg-4">
+    <div class="panel panel-default"
+         ng-class="{'panel-success': ct.state.player.achievements[key]}">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{achievement.name}}</h3>
+      </div>
+      <div class="panel-body"> {{achievement.description}}
+      </div>
+    </div>
+  </div>
+</div>

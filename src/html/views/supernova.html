@@ -21,10 +21,10 @@
   <pretty value="ct.state.player.resources[key].number"></pretty>
   <get-html value="key"></get-html>
 </p>
-<div class="panel-body row">
+<div class="row">
   <div ng-repeat="up in ct.visibility.visibleExoticUpgrades(ct.state.currentElement)"
        ng-click="ct.buyExoticUpgrade(up, ct.state.currentElement)"
-       class="col-lg-6 btn btn-default"
+       class="col-lg-12 btn btn-default"
        ng-class="{disabled: ct.data.exotic_upgrades[up].price > ct.state.player.resources[ct.data.elements[ct.state.currentElement].exotic].number &&
          !ct.state.player.elements[ct.state.currentElement].exotic_upgrades[up],
          active: ct.state.player.elements[ct.state.currentElement].exotic_upgrades[up]}">
