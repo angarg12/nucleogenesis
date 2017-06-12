@@ -62,15 +62,10 @@ startPlayer.dark_upgrades = {};
 for(let upgrade in dark_upgrades) {
   startPlayer.dark_upgrades[upgrade] = false;
 }
-// start_player.encyclopedia = {};
-// for(let entry in encyclopedia) {
-//   start_player.encyclopedia[entry] = {
-//     is_new : true
-//   };
-// }
+
 startPlayer.achievements = {};
 for(let entry in achievements) {
-  startPlayer.achievements[entry] = false;
+  startPlayer.achievements[entry] = 0;
 }
 startPlayer.syntheses = {};
 for(let entry in syntheses) {

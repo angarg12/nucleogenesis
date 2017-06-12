@@ -113,11 +113,11 @@ describe('Achievement service', function () {
     it('should award achievements if conditions are met', function () {
       window.ga = function () {};
       let playerCopy = angular.copy(spec.data.start_player);
-      playerCopy.resources['1H'].number = 1e15;
+      playerCopy.resources['1H'].number = 1e7;
 
       spec.achievement.checkAchievements(playerCopy);
 
-      expect(playerCopy.achievements.hydrogen_ii).toEqual(true);
+      expect(playerCopy.achievements.hydrogen).toEqual(2);
     });
   });
 });

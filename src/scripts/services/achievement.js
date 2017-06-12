@@ -11,6 +11,8 @@ angular
       self.toast = [];
       self.isToastVisible = false;
 
+      /* Achievement functions are derived from the data file. This template
+      variable will be replaced with the achievement conditions */
       <%= functions %>
 
       self.init = function() {
@@ -35,21 +37,35 @@ angular
         if (self.toast.length == 1) {
           self.isToastVisible = true;
         }
-      };
+      }
 
+      /* Checks if the player has unlocked any new achievement. */
       self.checkAchievements = function(player) {
-        for (let achievement in data.achievements) {
-          if (!player.achievements[achievement]) {
-            let item = data.achievements[achievement];
-
-            if (self[item.condition](player)) {
-              addToast(item.name);
-              visibility.addNew(achievement);
-              player.achievements[achievement] = true;
-              $window.ga('send', 'event', 'achievement', achievement, player.id, Date.now());
-            }
+        for (let key in data.achievements) {
+          let achievement = data.achievements[key];
+          let levels = achievement.goals.length;
+          
+          if (player.achievements[key] < levels) {
+            checkAchievement(player, key, achievement);
           }
         }
       };
+
+      /* Checks all the levels of an achievement that the player hasn't unlocked
+        yet. */
+      function checkAchievement(player, key, achievement) {
+        // start from the current achievement level and go up
+        for(let level = player.achievements[key]; level < achievement.goals.length; level++){
+          // if the progress of the player is bigger than the goal, unlock it
+          let progress = self[achievement.progress](player);
+
+          if (progress >= achievement.goals[level]) {
+            addToast(achievement.name);
+            visibility.addNew(achievement);
+            player.achievements[key] = level+1;
+            $window.ga('send', 'event', 'achievement', key+'-'+level, player.id, Date.now());
+          }
+        }
+      }
     }
   ]);

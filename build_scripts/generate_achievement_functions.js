@@ -13,18 +13,29 @@ let achievements = jsonfile.readFileSync(args[0]+'/data/achievements.json');
 let achievementService = fs.readFileSync(args[0]+'/scripts/services/achievement.js').toString();
 
 const FUNCTION_TEMPLATE = `this.<%= name %> = function (player){
-  return <%= condition %>;
+  return <%= progress %>;
 };`;
 
 let functionTemplate = template(FUNCTION_TEMPLATE);
 
+// convert conditions to progress, to normalise the implementation
+for(let i in achievements){
+let achievement = achievements[i];
+  if(typeof achievement.condition === 'undefined') {
+    continue;
+  }
+  achievement.progress = '('+achievement.condition+') ? 1 : 0';
+  achievement.goals = [1];
+  delete achievement.condition;
+}
+
 let functions = {};
 for(let i in achievements){
   let achievement = achievements[i];
-  let name = '_'+crypto.createHash('md5').update(achievement.condition).digest('hex');
-  functions[name] = functionTemplate({ 'name': name, 'condition': achievement.condition });
-  // we overwrite the condition with the name
-  achievements[i].condition = name;
+  let name = '_'+crypto.createHash('md5').update(achievement.progress).digest('hex');
+  functions[name] = functionTemplate({ 'name': name, 'progress': achievement.progress });
+  // we overwrite progress with the name
+  achievements[i].progress = name;
 }
 
 let concatFunctions = '';
