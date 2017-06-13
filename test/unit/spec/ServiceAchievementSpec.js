@@ -12,9 +12,12 @@ describe('Achievement service', function () {
     it('should add toasts to an empty queue', function () {
       spec.achievement.toast = [];
       spec.achievement.isToastVisible = false;
+      window.ga = function () {};
+      let playerCopy = angular.copy(spec.data.start_player);
+      playerCopy.resources['1H'].number = spec.data.achievements.hydrogen.goals[0];
 
       // we check achievements to activate add toast
-      spec.achievement.checkAchievements(spec.data.start_player);
+      spec.achievement.checkAchievements(playerCopy);
 
       expect(spec.achievement.toast.length).toEqual(1);
       expect(spec.achievement.isToastVisible).toEqual(true);
@@ -22,9 +25,12 @@ describe('Achievement service', function () {
 
     it('should add toasts to an non empty queue', function () {
       spec.achievement.toast = ['a'];
+      window.ga = function () {};
+      let playerCopy = angular.copy(spec.data.start_player);
+      playerCopy.resources['1H'].number = spec.data.achievements.hydrogen.goals[0];
 
       // we check achievements to activate add toast
-      spec.achievement.checkAchievements(spec.data.start_player);
+      spec.achievement.checkAchievements(playerCopy);
 
       expect(spec.achievement.toast.length).toEqual(2);
     });
@@ -113,7 +119,7 @@ describe('Achievement service', function () {
     it('should award achievements if conditions are met', function () {
       window.ga = function () {};
       let playerCopy = angular.copy(spec.data.start_player);
-      playerCopy.resources['1H'].number = 1e7;
+      playerCopy.resources['1H'].number = spec.data.achievements.hydrogen.goals[1];
 
       spec.achievement.checkAchievements(playerCopy);
 
