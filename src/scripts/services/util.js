@@ -3,10 +3,10 @@
 
 angular
   .module('game')
-  .service('util', ['numberFilter',
+  .service('util', ['prettyNumberFilter',
     '$sce',
     'data',
-    function(numberFilter, $sce, data) {
+    function(prettyNumber, $sce, data) {
       this.gaussian = new Ziggurat();
       this.poisson = new Poisson();
 
@@ -35,14 +35,14 @@ angular
           // Very ugly way to extract the mantisa and exponent from an exponential string
           let exponential = number.toPrecision(6).split('e');
           let exponent = parseFloat(exponential[1].split('+')[1]);
-          // And it is displayed in with superscript
-          return numberFilter(exponential[0], 4) +
+          // And it is displayed with superscript
+          return Number.parseFloat(exponential[0]).toFixed(4) +
             ' &#215; 10<sup>' +
             this.prettifyNumber(exponent) +
             '</sup>';
         }
         // we use a regex to remove trailing zeros, plus . (if necessary)
-        return numberFilter(number, 4).replace(/(\.0*$)|(0*$)/, '');
+        return prettyNumber(number, 4);
       };
 
       this.randomDraw = function(number, p) {

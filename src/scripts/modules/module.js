@@ -8,4 +8,9 @@ angular.module('game', ['ngAnimate', 'ui.router'])
     }
     return Object.keys(input).length;
   };
-});
+})
+.filter('prettyNumber', ['numberFilter', function(numberFilter){
+  return function(number, precision){
+    return numberFilter(number, precision).replace(/(\.0*$)|(0*$)/, '');
+  };
+}]);

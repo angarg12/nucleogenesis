@@ -1,13 +1,31 @@
 <!DOCTYPE html>
+<h3> {{ct.numberUnlocked()}}/{{ct.data.achievements | keylength}} </h3>
 <div class="row">
   <div ng-repeat="(key, achievement) in ct.data.achievements"
        class="col-lg-4">
     <div class="panel panel-default"
-         ng-class="{'panel-success': ct.state.player.achievements[key]}">
+         ng-class="{'panel-success': ct.maxed(key),
+                    'panel-warning': ct.inProgress(key)}">
       <div class="panel-heading">
-        <h3 class="panel-title">{{achievement.name}}</h3>
+        <h3 class="panel-title">
+          {{achievement.name}}
+          <span ng-if="ct.hasProgress(key)">{{ct.getLevel(key)}}</span>
+        </h3>
       </div>
       <div class="panel-body"> {{achievement.description}}
+        <div class="hidden_block progress"
+             ng-show="ct.hasProgress(key) && !ct.maxed(key)">
+          <span class="progressbar-font">
+		{{ct.achieve_service.getProgress(key, ct.state.player) | prettyNumber : 2}}%
+	  </span>
+          <div class="progress-bar"
+               role="progressbar"
+               aria-valuenow="{{ct.achieve_service.getProgress(key, ct.state.player)}}"
+               aria-valuemin="0"
+               aria-valuemax="100"
+               style="width: {{ct.achieve_service.getProgress(key, ct.state.player)}}%;">
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -284,3 +284,11 @@ iframe {
 .blank_row {
   height: 20px;
 }
+
+.progressbar-font {
+  color: black;
+  text-align: center;
+  position: absolute;
+  right: 0;
+  left: 0;
+}

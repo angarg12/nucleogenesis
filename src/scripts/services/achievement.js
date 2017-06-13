@@ -44,7 +44,7 @@ angular
         for (let key in data.achievements) {
           let achievement = data.achievements[key];
           let levels = achievement.goals.length;
-          
+
           if (player.achievements[key] < levels) {
             checkAchievement(player, key, achievement);
           }
@@ -57,9 +57,9 @@ angular
         // start from the current achievement level and go up
         for(let level = player.achievements[key]; level < achievement.goals.length; level++){
           // if the progress of the player is bigger than the goal, unlock it
-          let progress = self[achievement.progress](player);
+          let progress = self.getProgress(key, player);
 
-          if (progress >= achievement.goals[level]) {
+          if (progress >= 100) {
             addToast(achievement.name);
             visibility.addNew(achievement);
             player.achievements[key] = level+1;
@@ -67,5 +67,14 @@ angular
           }
         }
       }
+
+      self.getProgress = function (key, player){
+        let level = player.achievements[key];
+        let achievement = data.achievements[key];
+        let amount = self[achievement.progress](player);
+        let progress = (amount/achievement.goals[level])*100;
+
+        return Math.min(100, progress);
+      };
     }
   ]);
