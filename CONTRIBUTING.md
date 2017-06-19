@@ -22,8 +22,7 @@ We divide issues in rough sizes according to their size and complexity. We use s
 
 ## Quickstart
 
-    git clone
-    https://github.com/angarg12/nucleogenesis.git
+    git clone https://github.com/angarg12/nucleogenesis.git
     cd nucleogenesis
     npm install
     gulp build
