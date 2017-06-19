@@ -17,8 +17,8 @@ Nucleogenesis is a chemistry-based incremental/idle game.
 
 * [The Incremental Table of the Elements](https://angarg12.github.io/IncrementalTableElements/), v1, current release.
 * [Nucleogenesis](https://angarg12.github.io/nucleogenesis/), v2, currently in beta.
-* Check out how to [contribute](CONTRIBUTING).
-* [Code of Conduct](CODE_OF_CONDUCT).
+* Check out how to [contribute](CONTRIBUTING.md).
+* [Code of Conduct](CODE_OF_CONDUCT.md).
 * [GPL-3.0 License](LICENSE).
 
 Derivative works should include attribution to the original author, Andrés Garcia Garcia (angarg12).
