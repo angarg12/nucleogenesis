@@ -22,7 +22,8 @@ function generateResource(isotope, charge, element){
 function addResource(name, charge, isotope, element){
   if(!resources[name]){
     resources[name] = {};
-    resources[name].elements = [element];
+    resources[name].elements = {};
+    resources[name].elements[element] = 1;
     resources[name].html = htmlPrefix(isotope) + element + htmlPostfix(charge);
     resources[name].charge = charge;
     resources[name].type = ['isotope','ion'];

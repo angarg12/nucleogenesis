@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('game', ['ngAnimate', 'ui.router'])
+angular.module('game', ['ngAnimate', 'ui.router', 'rzModule'])
 .filter('keylength', function(){
   return function(input){
     if(!angular.isObject(input)){

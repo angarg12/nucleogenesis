@@ -2,11 +2,12 @@
 
 angular.module('game').component('matter', {
   templateUrl: 'views/matter.html',
-  controller: ['state', 'visibility', 'data', 'util', matter],
+  controller: 'ct_matter',
   controllerAs: 'ct'
 });
 
-function matter(state, visibility, data, util) {
+angular.module('game').controller('ct_matter', ['state', 'visibility', 'data', 'util',
+function (state, visibility, data, util) {
   let ct = this;
   ct.state = state;
   ct.visibility = visibility;
@@ -141,4 +142,4 @@ function update(player){
   };
 
   state.registerUpdate('matter', update);
-}
+}]);

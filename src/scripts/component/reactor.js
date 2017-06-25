@@ -2,11 +2,12 @@
 
 angular.module('game').component('reactor', {
   templateUrl: 'views/reactor.html',
-  controller: ['state', 'data', 'visibility', 'util', 'format', 'reaction', reactor],
+  controller:  'ct_reactor',
   controllerAs: 'ct'
 });
 
-function reactor(state, data, visibility, util, format, reaction) {
+angular.module('game').controller('ct_reactor', ['state', 'data', 'visibility', 'util', 'format', 'reaction',
+function (state, data, visibility, util, format, reaction) {
   let ct = this;
   ct.state = state;
   ct.data = data;
@@ -68,4 +69,4 @@ function reactor(state, data, visibility, util, format, reaction) {
   };
 
   state.registerUpdate('reactor', update);
-}
+}]);

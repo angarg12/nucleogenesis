@@ -3,28 +3,64 @@
 <h3>Redox</h3>
 <table class="table">
   <tbody>
+    <tr class="animif">
+      <div class="row">
+        <th class="col-lg-2">
+          Resource
+        </th>
+        <th class="col-lg-8">
+          Redox
+        </th>
+        <th class="col-lg-1">
+          Number
+        </th>
+        <th class="col-lg-1">
+          Active
+        </th>
+      </div>
+    </tr>
     <tr class="animif"
-        ng-repeat="key in ct.visibility.visibleRedox(ct.state.currentElement)">
-      <td class="col-md-7">
-        <div class="pull-left">
-          <span ng-bind-html="ct.util.trustHTML(ct.format.reactionFormat(ct.data.redox[key].number, ct.data.redox[key]))"></span>
-        </div>
-      </td>
-      <td class="col-md-4">
-        <!-- we store the value inside the object itself -->
-        <div class="pull-left">
-          <input type="number"
-                 value="1"
-                 min="1"
-                 ng-init="ct.data.redox[key].number = ct.data.redox[key].number || 1"
-                 ng-model="ct.data.redox[key].number" />
-          <button type="button"
-                  class="btn btn-default"
-                  ng-click="ct.reaction.react(ct.data.redox[key].number, ct.data.redox[key], ct.state.player)"
+        ng-repeat="redox in ct.redox">
+      <div class="row">
+        <td class="col-lg-2">
+          <form name="isotope">
+            <select name="isotope"
+                    id="isotope"
+                    ng-options="key as key for (key , value) in ct.data.elements[ct.state.currentElement].isotopes"
 
-                  ng-class="{disabled: !ct.reaction.isReactionCostMet(ct.data.redox[key].number, ct.data.redox[key], ct.state.player)}">React</button>
-        </div>
-      </td>
+                    ng-model="redox.resource">
+            </select>
+          </form>
+        </td>
+        <td class="col-lg-2">
+          <span ng-bind-html="ct.util.trustHTML(ct.format.reactionFormat(redox.number, ct.redoxReaction(redox)))"></span>
+          <div>
+            <label>From:</label>
+            <rzslider rz-slider-model="redox.from"
+                      rz-slider-options="{
+						floor: -ct.data.elements[ct.state.currentElement].electron_affinity.length,
+						ceil: ct.data.elements[ct.state.currentElement].ionization_energy.length,
+						showTicksValues: true}">
+            </rzslider>
+          </div>
+          <div>
+            <label>To:</label>
+            <rzslider rz-slider-model="redox.to"
+                      rz-slider-options="{
+						floor: -ct.data.elements[ct.state.currentElement].electron_affinity.length,
+						ceil: ct.data.elements[ct.state.currentElement].ionization_energy.length,
+						showTicksValues: true}">
+            </rzslider>
+          </div>
+        </td>
+        <td class="col-lg-1">
+          {{redox.number}}
+        </td>
+        <td class="col-lg-1">
+          <input type="checkbox"
+                 ng-model="redox.active">
+        </td>
+      </div>
     </tr>
   </tbody>
 </table>
