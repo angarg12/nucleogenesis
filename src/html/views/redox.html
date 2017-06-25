@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <h2>{{ct.data.elements[ct.state.currentElement].name}}</h2>
 <h3>Redox</h3>
+<button type="button"
+        class="btn btn-default"
+        ng-click="ct.addRedox()">
+		Add
+	</button> {{ct.state.player.redox}}
 <table class="table">
   <tbody>
     <tr class="animif">
@@ -20,17 +25,21 @@
       </div>
     </tr>
     <tr class="animif"
-        ng-repeat="redox in ct.redox">
+        ng-repeat="redox in ct.visibility.visibleRedox(ct.state.currentElement)">
       <div class="row">
         <td class="col-lg-2">
           <form name="isotope">
             <select name="isotope"
                     id="isotope"
-                    ng-options="key as key for (key , value) in ct.data.elements[ct.state.currentElement].isotopes"
-
+                    ng-options="key as key for (key , value) in ct.data.elements[redox.element].isotopes"
                     ng-model="redox.resource">
             </select>
           </form>
+          <button type="button"
+                  class="btn btn-default"
+                  ng-click="ct.removeRedox($index)">
+					Remove
+				</button>
         </td>
         <td class="col-lg-2">
           <span ng-bind-html="ct.util.trustHTML(ct.format.reactionFormat(redox.number, ct.redoxReaction(redox)))"></span>
@@ -38,8 +47,8 @@
             <label>From:</label>
             <rzslider rz-slider-model="redox.from"
                       rz-slider-options="{
-						floor: -ct.data.elements[ct.state.currentElement].electron_affinity.length,
-						ceil: ct.data.elements[ct.state.currentElement].ionization_energy.length,
+						floor: -ct.data.elements[redox.element].electron_affinity.length,
+						ceil: ct.data.elements[redox.element].ionization_energy.length,
 						showTicksValues: true}">
             </rzslider>
           </div>
@@ -47,8 +56,8 @@
             <label>To:</label>
             <rzslider rz-slider-model="redox.to"
                       rz-slider-options="{
-						floor: -ct.data.elements[ct.state.currentElement].electron_affinity.length,
-						ceil: ct.data.elements[ct.state.currentElement].ionization_energy.length,
+						floor: -ct.data.elements[redox.element].electron_affinity.length,
+						ceil: ct.data.elements[redox.element].ionization_energy.length,
 						showTicksValues: true}">
             </rzslider>
           </div>

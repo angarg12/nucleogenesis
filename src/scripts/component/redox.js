@@ -16,18 +16,11 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
     ct.format = format;
     ct.reaction = reaction;
 
-    ct.redox = [{
-      resource: '1H',
-      number: 50,
-      active: false,
-      from: 0,
-      to: 1
-    }];
     ct.channels = 2;
     ct.bandwidth = 100;
 
     function update(player) {
-      for (let redox of ct.redox) {
+      for (let redox of ct.state.player.redox) {
         if (!redox.resource || !redox.active) {
           continue;
         }
@@ -112,6 +105,21 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
     function getSign(number) {
       return number > 0 ? '+' : '-';
     }
+
+    ct.addRedox = function () {
+      ct.state.player.redox.push({
+        resource: data.elements[ct.state.currentElement].main,
+        number: 50,
+        active: false,
+        element: ct.state.currentElement,
+        from: 0,
+        to: 1
+      });
+    };
+
+    ct.removeRedox = function (index) {
+      ct.state.player.redox.splice(index, 1);
+    };
 
     state.registerUpdate('redox', update);
   }
