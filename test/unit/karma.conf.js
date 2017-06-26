@@ -10,6 +10,7 @@ module.exports = function(config) {
       'build/bower_components/angular-ui-router/release/angular-ui-router.min.js',
       'build/bower_components/angular-animate/angular-animate.min.js',
       'build/bower_components/bootstrap/dist/js/bootstrap.min.js',
+      'build/bower_components/angularjs-slider/dist/rzslider.min.js',
       'build/bower_components/ziggurat/ziggurat.js',
       'build/bower_components/poisson/poisson.js',
       'build/bower_components/angular-mocks/angular-mocks.js',

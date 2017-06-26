@@ -18,7 +18,7 @@ describe('Format service', function() {
       };
       let value = spec.format.reactionFormat(1, spec.data.syntheses['1H-p']);
 
-      expect(value).toEqual('H<sup>-</sup> + p <span class=\'icon\'>&#8594;</span> H<sub>2</sub>');
+      expect(value).toEqual('<sup>1</sup>H<sup>-</sup> + p <span class=\'icon\'>&#8594;</span> H<sub>2</sub>');
     });
 
     it('should format multiple reactions', function() {
@@ -30,7 +30,7 @@ describe('Format service', function() {
       };
       let value = spec.format.reactionFormat(10, spec.data.syntheses['1H-p']);
 
-      expect(value).toEqual('10 H<sup>-</sup> + 10 p <span class=\'icon\'>&#8594;</span> 10 H<sub>2</sub>');
+      expect(value).toEqual('10 <sup>1</sup>H<sup>-</sup> + 10 p <span class=\'icon\'>&#8594;</span> 10 H<sub>2</sub>');
     });
 
     it('should format single compounds', function() {

@@ -102,6 +102,10 @@ for (let element in elements) {
 
 // we delete 1H+ because it doesn't exist, it is a single proton
 delete resources['1H+'];
+let index = elements.H.includes.indexOf('1H+');
+if (index > -1) {
+    elements.H.includes.splice(index, 1);
+}
 
 jsonfile.writeFileSync(path.join(basePath, '/resources.json'), resources, {
   spaces: 2
