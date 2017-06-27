@@ -10,7 +10,7 @@ angular
     function ($state, state, data, achievement) {
       this.initSave = function () {
         state.player = {};
-        versionControl();
+        this.versionControl();
         achievement.init();
         state.init();
         $state.go('matter');
@@ -21,9 +21,9 @@ angular
           let storedPlayer = localStorage.getItem('playerStoredITE');
           if(!storedPlayer){
             this.initSave();
-          }else{            
+          }else{
             state.player = JSON.parse(storedPlayer);
-            versionControl();
+            this.versionControl();
           }
         } catch (err) {
           alert('Error loading savegame, reset forced.');
@@ -31,7 +31,7 @@ angular
         }
       };
 
-      function versionControl() {
+      this.versionControl = function (){
         // delete saves older than this version
         if (state.player.version && versionCompare(state.player.version, '2.1.0') < 0) {
           state.player = {};

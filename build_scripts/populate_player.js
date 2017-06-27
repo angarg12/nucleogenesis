@@ -13,8 +13,8 @@ let resources = jsonfile.readFileSync(path.join(basePath,'/resources.json'));
 let elements = jsonfile.readFileSync(path.join(basePath,'/elements.json'));
 let generators = jsonfile.readFileSync(path.join(basePath,'/generators.json'));
 let upgrades = jsonfile.readFileSync(path.join(basePath,'/upgrades.json'));
-let exotic_upgrades = jsonfile.readFileSync(path.join(basePath,'/exotic_upgrades.json'));
-let dark_upgrades = jsonfile.readFileSync(path.join(basePath,'/dark_upgrades.json'));
+let exoticUpgrades = jsonfile.readFileSync(path.join(basePath,'/exotic_upgrades.json'));
+let darkUpgrades = jsonfile.readFileSync(path.join(basePath,'/dark_upgrades.json'));
 let achievements = jsonfile.readFileSync(path.join(basePath,'/achievements.json'));
 let syntheses = jsonfile.readFileSync(path.join(basePath,'/syntheses.json'));
 
@@ -49,7 +49,7 @@ for(let element in startPlayer.elements) {
     startPlayer.elements[element].upgrades[upgrade] = false;
   }
   startPlayer.elements[element].exotic_upgrades = {};
-  for(let upgrade in exotic_upgrades) {
+  for(let upgrade in exoticUpgrades) {
     startPlayer.elements[element].exotic_upgrades[upgrade] = false;
   }
   startPlayer.elements[element].generators = {};
@@ -59,18 +59,13 @@ for(let element in startPlayer.elements) {
 }
 
 startPlayer.dark_upgrades = {};
-for(let upgrade in dark_upgrades) {
+for(let upgrade in darkUpgrades) {
   startPlayer.dark_upgrades[upgrade] = false;
 }
-// start_player.encyclopedia = {};
-// for(let entry in encyclopedia) {
-//   start_player.encyclopedia[entry] = {
-//     is_new : true
-//   };
-// }
+
 startPlayer.achievements = {};
 for(let entry in achievements) {
-  startPlayer.achievements[entry] = false;
+  startPlayer.achievements[entry] = 0;
 }
 startPlayer.syntheses = {};
 for(let entry in syntheses) {
@@ -79,6 +74,8 @@ for(let entry in syntheses) {
     active : 0
   };
 }
+
+startPlayer.redox = [];
 
 startPlayer.elements.H.unlocked = true;
 

@@ -26,6 +26,9 @@ angular
         .state('core', {
           component: 'core'
         })
+        .state('achievements', {
+          component: 'achievements'
+        })
         .state('options', {
           component: 'options'
         });

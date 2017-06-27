@@ -1,74 +1,88 @@
 {
   "hydrogen": {
     "name": "Hydrogen",
-    "condition": "player.resources['1H'].number > 1"
-  },
-  "hydrogen_ii": {
-    "name": "Hydrogen II",
-    "condition": "player.resources['1H'].number > 1e6"
+    "description": "Gather Hydrogen",
+    "goals": [1e6, 1e9],
+    "progress": "player.resources['1H'].number"
   },
   "periodic_table": {
     "name": "Periodic table",
+    "description": "xxxxxxx",
     "condition": "player.resources['e-'].unlocked && player.resources.p.unlocked && player.resources.n.unlocked"
   },
   "isotope": {
     "name": "Isotope",
+    "description": "xxxxxxx",
     "condition": "player.resources['2H'].unlocked"
   },
   "ion": {
     "name": "Ion",
+    "description": "xxxxxxx",
     "condition": "player.resources['1H-'].unlocked"
   },
   "radioactivity": {
     "name": "Radioactivity",
+    "description": "xxxxxxx",
     "condition": "player.resources['3H'].unlocked"
   },
   "reactions": {
     "name": "Reactions",
+    "description": "xxxxxxx",
     "condition": "player.resources['e-'].unlocked"
   },
   "electron": {
     "name": "Electron",
+    "description": "xxxxxxx",
     "condition": "player.resources['e-'].unlocked"
   },
   "proton": {
     "name": "Proton",
+    "description": "xxxxxxx",
     "condition": "player.resources['p'].unlocked"
   },
   "neutron": {
     "name": "Neutron",
+    "description": "xxxxxxx",
     "condition": "player.resources['n'].unlocked"
   },
   "energy": {
     "name": "Energy",
+    "description": "xxxxxxx",
     "condition": "player.resources['eV'].unlocked"
   },
   "half_life": {
     "name": "Half-life",
+    "description": "xxxxxxx",
     "condition": "player.resources['3H'].unlocked"
   },
   "oxygen": {
     "name": "Oxygen",
+    "description": "xxxxxxx",
     "condition": "player.resources['16O'].unlocked"
   },
   "redox": {
     "name": "Redox",
+    "description": "xxxxxxx",
     "condition": "player.resources['e-'].unlocked"
   },
   "nuclear_binding_energy": {
     "name": "Nuclear binding energy",
+    "description": "xxxxxxx",
     "condition": "player.resources['e-'].unlocked && player.resources.p.unlocked"
   },
   "beta_decay": {
     "name": "Beta decay",
+    "description": "xxxxxxx",
     "condition": "player.resources['3H'].unlocked"
   },
   "molecule": {
     "name": "Molecule",
+    "description": "xxxxxxx",
     "condition": "player.resources['H2'].unlocked || player.resources['O2'].unlocked || player.resources['O3'].unlocked"
   },
   "synthesis": {
     "name": "Synthesis",
+    "description": "xxxxxxx",
     "condition": "player.resources['1H-'].unlocked"
   }
 }

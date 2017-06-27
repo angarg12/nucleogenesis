@@ -21,6 +21,7 @@ let commonSpec = function(spec) {
     // The injector unwraps the underscores (_) from around the parameter names when matching
     spec.$timeout = _$timeout_;
     spec.achievement = _$injector_.get('achievement');
+    spec.savegame = _$injector_.get('savegame');
     spec.util = _$injector_.get('util');
     spec.format = _$injector_.get('format');
     spec.reaction = _$injector_.get('reaction');

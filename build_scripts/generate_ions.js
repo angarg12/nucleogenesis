@@ -11,67 +11,22 @@ let basePath = path.join(args[0], '/data');
 
 let resources = jsonfile.readFileSync(path.join(basePath, '/resources.json'));
 let elements = jsonfile.readFileSync(path.join(basePath, '/elements.json'));
-let redox = {};
 
-for (let element in elements) {
-  elements[element].includes = elements[element].includes || [];
-
-  let isotopes = elements[element].isotopes;
-  for (let isotope in isotopes) {
-    elements[element].isotopes[isotope].oxides = [];
-    for (let i = 0; i < elements[element].ionization_energy.length; i++) {
-      generateOxidation(isotope, i+1, element);
-    }
-  }
+// Generates an ion resource
+function generateResource(isotope, charge, element){
+  let name = generateName(isotope, charge);
+  addResource(name, charge, isotope, element);
 }
 
-steps: make an array with all states concatenated
-electron affinity (with opposite sign!!) and ionization energy
-process back from the end for oxidation, and the inverse for reduction
-
-function generateOxidation(isotope, charge, element){
-  let from = generateName(isotope, charge-1);
-  let to = generateName(isotope, charge);
-
-  // 1H is unique!! an hydrogen cation is a lonely proton
-  if (to === '1H+') {
-    to = 'p';
-  }
-
-  addResource(from, charge);
-  addResource(to, charge-1);
-
-  let ion = {};
-
-  let energy = elements[element].ionization_energy[i];
-  ion.reactant = {};
-  ion.reactant[from] = 1;
-  ion.reactant.eV = energy;
-
-  ion.product = {};
-  ion.product[to] = 1;
-  ion.product['e-'] = 1;
-
-  // if the energy is negative, then energy is released
-  // if(energy < 0){
-  //   ion.product.eV = energy;
-  // }else{
-  //   ion.reactant.eV = energy;
-  // }
-
-  let key = generateKey(ion);
-  redox[key] = ion;
-  if(!elements[element].isotopes[isotope].oxides[key]){
-    elements[element].isotopes[isotope].oxides.push(key);
-  }
-}
-
-function addResource(name, charge){
+// Adds an isotope resource to the resources and elements list
+function addResource(name, charge, isotope, element){
   if(!resources[name]){
     resources[name] = {};
-    resources[name].elements = [element];
-    resources[name].html = isotopePrefix(isotope) + element + ionPostfix(charge);
+    resources[name].elements = {};
+    resources[name].elements[element] = 1;
+    resources[name].html = htmlPrefix(isotope) + element + htmlPostfix(charge);
     resources[name].charge = charge;
+    resources[name].type = ['isotope','ion'];
   }
 
   if(elements[element].includes.indexOf(name) === -1){
@@ -79,25 +34,7 @@ function addResource(name, charge){
   }
 }
 
-function generateKey(reaction) {
-  let key = '';
-  key += concatKeys(reaction.reactant);
-  key += concatKeys(reaction.product);
-
-  return key;
-}
-
-function concatKeys(map) {
-  let key = '';
-  for(let i in map){
-    if(i === 'eV'){
-      continue;
-    }
-    key += i;
-  }
-  return key;
-}
-
+// Generates the name of a ion, e.g. 18O3+
 function generateName(isotope, i) {
   if (i === 0) {
     return isotope;
@@ -106,34 +43,76 @@ function generateName(isotope, i) {
   if(Math.abs(i) > 1){
     postfix = Math.abs(i);
   }
-  if(i > 0){
-    postfix += '+';
-  }else{
-    postfix += '-';
-  }
+  postfix += getSign(i);
   return isotope + postfix;
 }
 
-function isotopePrefix(isotope) {
+function getSign(number){
+  return number > 0 ? '+': '-';
+}
+
+// Generates the HTML prefix of an isotope (e.g. 18)
+function htmlPrefix(isotope) {
   let prefix = isotope.replace(/(^\d+)(.+$)/i, '$1');
   return '<sup>' + prefix + '</sup>';
 }
 
-function ionPostfix(index) {
-  let prefix = '';
+// Generates the HTML postfix of an ion (+ or -)
+function htmlPostfix(index) {
+  let postfix = '';
   if(index === 0){
-    return prefix;
+    return postfix;
   }
-  prefix = index.toString();
-  return '<sup>' + prefix + '+<sup>';
+  postfix = Math.abs(index).toString();
+  postfix = postfix === '1' ? '' : postfix;
+  return '<sup>' + postfix + getSign(index) + '</sup>';
 }
 
-jsonfile.writeFileSync(path.join(base_path, '/resources.json'), resources, {
+let redox = {};
+for (let element in elements) {
+  elements[element].includes = elements[element].includes || [];
+// FIXME: keep this only until all elements all included
+  if(element.disabled){
+    continue;
+  }
+  let isotopes = elements[element].isotopes;
+  for (let isotope in isotopes) {
+    let energies = {};
+    let charge = -1;
+    for (let energy of elements[element].electron_affinity || []) {
+      generateResource(isotope, charge, element);
+      energies[charge] = -energy;
+      charge--;
+    }
+
+    energies[0] = 0;
+
+    charge = 1;
+    for (let energy of elements[element].ionization_energy) {
+      generateResource(isotope, charge, element);
+      energies[charge] = energy;
+      charge++;
+    }
+
+    if(typeof redox[element] === 'undefined'){
+      redox[element] = energies;
+    }
+  }
+}
+
+// we delete 1H+ because it doesn't exist, it is a single proton
+delete resources['1H+'];
+let index = elements.H.includes.indexOf('1H+');
+if (index > -1) {
+    elements.H.includes.splice(index, 1);
+}
+
+jsonfile.writeFileSync(path.join(basePath, '/resources.json'), resources, {
   spaces: 2
 });
-jsonfile.writeFileSync(path.join(base_path, '/elements.json'), elements, {
+jsonfile.writeFileSync(path.join(basePath, '/elements.json'), elements, {
   spaces: 2
 });
-jsonfile.writeFileSync(path.join(base_path, '/redox.json'), redox, {
+jsonfile.writeFileSync(path.join(basePath, '/redox.json'), redox, {
   spaces: 2
 });

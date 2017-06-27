@@ -46,7 +46,7 @@ describe('Visible service', function() {
 
     it('should show if an upgrade is visible', function() {
       spec.state.player = {elements:{}, achievements:{}};
-      spec.state.player.achievements = {upgrade:true};
+      spec.state.player.achievements = {upgrade:1};
       spec.state.player.elements.H = {generators:[],upgrades:[],exotic_upgrades:[]};
       spec.state.player.elements.H.generators['1'] = 1;
       spec.state.player.elements.H.upgrades['1-1'] = true;
@@ -69,7 +69,7 @@ describe('Visible service', function() {
 
     it('should show if an upgrade is visible 2', function() {
       spec.state.player = {elements:{}, achievements:{}};
-      spec.state.player.achievements = {upgrade:true};
+      spec.state.player.achievements = {upgrade:1};
       spec.state.player.elements.H = {generators:[],upgrades:[],exotic_upgrades:[]};
       spec.state.player.elements.H.generators['1'] = 1;
       spec.state.player.elements.H.upgrades['1-1'] = true;
@@ -133,8 +133,8 @@ describe('Visible service', function() {
     it('should show visible encyclopedia entries', function() {
       spec.state.player = {achievements:{}};
       spec.state.player.achievements = {};
-      spec.state.player.achievements.hydrogen = true;
-      spec.state.player.achievements.oxygen = false;
+      spec.state.player.achievements.hydrogen = 1;
+      spec.state.player.achievements.oxygen = 0;
       let temp = spec.data.encyclopedia;
       spec.data.encyclopedia = {};
       spec.data.encyclopedia.hydrogen = temp.hydrogen;
@@ -146,22 +146,42 @@ describe('Visible service', function() {
     });
 
     it('should show visible redoxes', function() {
-      spec.state.player = {achievements:{},resources:{}};
+      spec.state.player = {redox:[], achievements:{}};
       spec.state.player.achievements = {};
-      spec.state.player.achievements.redox = true;
-      spec.state.player.resources['1H'] = {unlocked:true};
-      spec.state.player.resources.eV = {unlocked:true};
-      spec.state.player.resources['e-'] = {unlocked:false};
+      spec.state.player.achievements.redox = 1;
+      spec.state.player.redox.push({
+        resource: '1H',
+        number: 50,
+        active: false,
+        element: 'H',
+        from: 0,
+        to: 1
+      });
+      spec.state.player.redox.push({
+        resource: '16O',
+        number: 50,
+        active: false,
+        element: 'O',
+        from: 0,
+        to: 1
+      });
 
       let values = spec.visibility.visibleRedox('H');
 
-      expect(values).toEqual(['1H+']);
+      expect(values).toEqual([{
+        resource: '1H',
+        number: 50,
+        active: false,
+        element: 'H',
+        from: 0,
+        to: 1
+      }]);
     });
 
     it('should not show redoxes if they are locked', function() {
       spec.state.player = {achievements:{},resources:{}};
       spec.state.player.achievements = {};
-      spec.state.player.achievements.redox = false;
+      spec.state.player.achievements.redox = 0;
       spec.state.player.resources['1H'] = {unlocked:true};
       spec.state.player.resources.eV = {unlocked:true};
       spec.state.player.resources['e-'] = {unlocked:false};
@@ -174,7 +194,7 @@ describe('Visible service', function() {
     it('should not show redoxes of other elements', function() {
       spec.state.player = {achievements:{},resources:{}};
       spec.state.player.achievements = {};
-      spec.state.player.achievements.redox = true;
+      spec.state.player.achievements.redox = 1;
       spec.state.player.resources['1H'] = {unlocked:true};
       spec.state.player.resources.eV = {unlocked:true};
       spec.state.player.resources['e-'] = {unlocked:false};
@@ -187,7 +207,7 @@ describe('Visible service', function() {
     it('should show visible bindings', function() {
       spec.state.player = {achievements:{},resources:{}};
       spec.state.player.achievements = {};
-      spec.state.player.achievements.nuclear_binding_energy = true;
+      spec.state.player.achievements.nuclear_binding_energy = 1;
       spec.state.player.resources.eV = {unlocked:true};
       spec.state.player.resources['2H'] = {unlocked:true};
       spec.state.player.resources['3H'] = {unlocked:false};
@@ -204,7 +224,7 @@ describe('Visible service', function() {
     it('should show visible syntheses', function() {
       spec.state.player = {achievements:{},resources:{}};
       spec.state.player.achievements = {};
-      spec.state.player.achievements.synthesis = true;
+      spec.state.player.achievements.synthesis = 1;
       spec.state.player.resources['1H-'] = {unlocked:true};
       spec.state.player.resources.p = {unlocked:true};
       spec.state.player.resources.H2 = {unlocked:true};

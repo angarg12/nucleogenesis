@@ -25,10 +25,8 @@
         }
       }
     },
-    "includes": ["1H-"],
     "ionization_energy": [13.5984],
     "electron_affinity": [-0.7545, 5.9498],
-    "redox": ["1H+", "1H-"],
     "number": 1
   },
   "He": {
@@ -41,7 +39,6 @@
         "ratio": 0.000002
       }
     },
-    "includes": ["3He+"],
     "ionization_energy": [24.58741, 54.41778],
     "electron_affinity": [19.7, 6.92802],
     "number": 2

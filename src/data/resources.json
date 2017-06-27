@@ -1,20 +1,4 @@
 {
-  "1H-": {
-    "html": "H<sup>-</sup>",
-    "elements": {
-      "H": 1
-    },
-    "type": ["isotope", "ion"],
-    "charge": -1
-  },
-  "3He+": {
-    "html": "<sup>3</sup>He<sup>+</sup>",
-    "elements": {
-      "He": 1
-    },
-    "type": ["isotope", "ion"],
-    "charge": 1
-  },
   "e-": {
     "elements": {}
   },

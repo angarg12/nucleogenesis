@@ -9,7 +9,9 @@ angular
 
       function visible(items, func, currentElement) {
         let visibles = [];
-        for (let item in items) {
+        for (let i in items) {
+          // if it is an array, we need to extract the item from the index
+          let item = Array.isArray(items) ? items[i] : i;
           if (func(item, currentElement)) {
             visibles.push(item);
           }
@@ -46,7 +48,7 @@ angular
       };
 
       this.visibleRedox = function(currentElement) {
-        return visible(data.redox, isRedoxVisible, currentElement);
+        return visible(state.player.redox, isRedoxVisible, currentElement);
       };
 
       this.visibleBindings = function(currentElement) {
@@ -165,7 +167,7 @@ angular
       }
 
       function isRedoxVisible(entry, currentElement) {
-        return isReactionVisible(data.redox[entry], currentElement, 'redox');
+        return entry.element === currentElement;
       }
 
       function isBindingVisible(entry, currentElement) {

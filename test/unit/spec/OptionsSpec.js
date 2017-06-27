@@ -120,11 +120,15 @@ describe('Options', function () {
 
     it('should import save', function () {
       spyOn(JSON, 'parse').and.returnValue('{}');
+      spyOn(spec.savegame, 'versionControl');
+      spyOn(window, 'atob');
       spec.state.export = 'test';
 
       spec.options.importExportSave();
 
       expect(JSON.parse).toHaveBeenCalled();
+      expect(spec.savegame.versionControl).toHaveBeenCalled();
+      expect(spec.state.player).toBe('{}');
     });
 
     it('should not import if save is not presented', function () {
