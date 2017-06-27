@@ -28,12 +28,13 @@ function matter(state, visibility, data, util) {
         player.resources[resource].number -= production;
 
         // and decay products
-        for (let product in data.resources[resource].decay.decay_product) {
-          player.resources[product].number += data.resources[resource].decay.decay_product[product] *
-            production;
-          if (!player.resources[product].unlocked) {
-            player.resources[product].unlocked = true;
-            visibility.addNew(product);
+        for (let type of data.resources[resource].decay.decay_types) {
+          for (let product of type.decay_product) {
+            player.resources[product].number += Math.floor(product * production * type.ratio);
+            if (!player.resources[product].unlocked) {
+              player.resources[product].unlocked = true;
+              visibility.addNew(product);
+            }
           }
         }
       }
@@ -81,10 +82,10 @@ function matter(state, visibility, data, util) {
     }
   }
 
-function update(player){
-  processDecay(player);
-  processGenerators(player);
-}
+  function update(player) {
+    processDecay(player);
+    processGenerators(player);
+  }
 
   ct.generatorPrice = function(name, element) {
     let level = state.player.elements[element].generators[name];
