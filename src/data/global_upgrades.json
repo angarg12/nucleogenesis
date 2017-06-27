@@ -1,0 +1,28 @@
+{
+  "redox_slots": {
+    "price": {
+      "eV": 10000
+    },
+    "name": "Redox slots",
+    "description": "Number of slots available for redoxes",
+    "tiers": [],
+    "deps": [],
+    "exotic_deps": [],
+    "dark_deps": [],
+    "price_factor": 2,
+    "repeatable": true
+  },
+  "redox_bandwidth": {
+    "price": {
+      "eV": 100
+    },
+    "name": "Redox bandwidth",
+    "description": "bandwidth available for redoxes",
+    "tiers": [],
+    "deps": [],
+    "exotic_deps": [],
+    "dark_deps": [],
+    "price_factor": 1.15,
+    "repeatable": true
+  }
+}

@@ -1,4 +1,21 @@
 <!DOCTYPE html>
+<h2>Global</h2>
+<div class="row">
+  <div ng-repeat="(key, up) in ct.data.global_upgrades"
+       ng-click="ct.buyGlobalUpgrade(key)"
+       class="col-lg-12 btn btn-default"
+       ng-class="{disabled: !ct.canBuyGlobalUpgrade(key)}">
+    <span class="pull-left">
+        {{up.name}}: {{up.description}}
+      </span>
+    <span class="pull-right"
+          ng-repeat="(resource, price) in up.price">
+        Level: &nbsp; {{ct.state.player.global_upgrades[key]}}
+        <pretty value="price*ct.priceMultiplier(key)"></pretty> &nbsp;
+        <get-html value="resource"></get-html>
+      </span>
+  </div>
+</div>
 <h2>{{ct.data.elements[ct.state.currentElement].name}}</h2>
 <div class="row">
   <div ng-repeat="up in ct.visibility.visibleUpgrades(ct.state.currentElement)"

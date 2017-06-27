@@ -1,4 +1,4 @@
-/* globals Ziggurat */
+/* globals Ziggurat, Poisson */
 'use strict';
 
 angular
