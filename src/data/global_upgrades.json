@@ -10,7 +10,7 @@
     "exotic_deps": [],
     "dark_deps": [],
     "power": 1,
-    "power_exp": 2,
+    "power_mult": 1,
     "price_exp": 2,
     "repeatable": true
   },

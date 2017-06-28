@@ -3,9 +3,9 @@
 <h3>Redox</h3>
 <button type="button"
         class="btn btn-default"
-        ng-click="ct.addRedox()">
+        ng-click="ct.addRedox(ct.state.player)">
 		Add
-	</button>
+	</button> Slots: {{ct.redoxSize(ct.state.player)}}/{{ct.redoxSlots(ct.state.player)}}
 <table class="table">
   <tbody>
     <tr class="animif">
@@ -37,7 +37,7 @@
           </form>
           <button type="button"
                   class="btn btn-default"
-                  ng-click="ct.removeRedox($index)">
+                  ng-click="ct.removeRedox(ct.state.player, $index)">
 					Remove
 				</button>
         </td>

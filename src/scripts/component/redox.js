@@ -39,7 +39,7 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       let upgrade = data.global_upgrades.redox_bandwidth;
       let basePower = upgrade.power;
       let polynomial = upgrade.power_poly;
-      return basePower * Math.pow(level, polynomial);
+      return basePower * Math.floor(Math.pow(level, polynomial));
     }
 
     ct.redoxReaction = function (redox) {
@@ -115,8 +115,24 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       return number > 0 ? '+' : '-';
     }
 
-    ct.addRedox = function () {
-      ct.state.player.redox.push({
+    ct.redoxSlots = function (player) {
+      let level = player.global_upgrades.redox_slots;
+      let upgrade = data.global_upgrades.redox_slots;
+      let basePower = upgrade.power;
+      let multiplier = upgrade.power_mult;
+      return basePower * Math.floor(multiplier * level);
+
+    };
+
+    ct.redoxSize = function (player) {
+      return player.redox.length;
+    }
+
+    ct.addRedox = function (player) {
+      if(ct.redoxSize(player) >= ct.redoxSlots(player)){
+        return;
+      }
+      player.redox.push({
         resource: data.elements[ct.state.currentElement].main,
         number: 50,
         active: false,
@@ -126,8 +142,8 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       });
     };
 
-    ct.removeRedox = function (index) {
-      ct.state.player.redox.splice(index, 1);
+    ct.removeRedox = function (player, index) {
+      player.redox.splice(index, 1);
     };
 
     state.registerUpdate('redox', update);
