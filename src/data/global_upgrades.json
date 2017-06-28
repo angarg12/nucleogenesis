@@ -9,7 +9,9 @@
     "deps": [],
     "exotic_deps": [],
     "dark_deps": [],
-    "price_factor": 2,
+    "power": 1,
+    "power_exp": 2,
+    "price_exp": 2,
     "repeatable": true
   },
   "redox_bandwidth": {
@@ -22,7 +24,9 @@
     "deps": [],
     "exotic_deps": [],
     "dark_deps": [],
-    "price_factor": 1.15,
+    "power": 100,
+    "power_poly": 2,
+    "price_exp": 1.15,
     "repeatable": true
   }
 }

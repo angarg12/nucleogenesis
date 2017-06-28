@@ -52,6 +52,6 @@ function nova(state, visibility, data) {
 
   ct.priceMultiplier = function (name) {
     let level = state.player.global_upgrades[name];
-    return Math.ceil(Math.pow(data.global_upgrades[name].price_factor, level));
+    return Math.ceil(Math.pow(data.global_upgrades[name].price_exp, level));
   };
 }

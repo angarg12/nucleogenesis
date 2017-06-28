@@ -42,7 +42,9 @@
 				</button>
         </td>
         <td class="col-lg-2">
-          <span ng-bind-html="ct.util.trustHTML(ct.format.reactionFormat(redox.number, ct.redoxReaction(redox)))"></span>
+          <span ng-bind-html="ct.util.trustHTML(
+            ct.format.reactionFormat(ct.redoxPower(ct.state.player),
+                                      ct.redoxReaction(redox)))"></span>
           <div>
             <label>From:</label>
             <rzslider rz-slider-model="redox.from"
@@ -63,7 +65,7 @@
           </div>
         </td>
         <td class="col-lg-1">
-          {{redox.number}}
+          <pretty value="ct.redoxPower(ct.state.player)"></pretty>
         </td>
         <td class="col-lg-1">
           <input type="checkbox"

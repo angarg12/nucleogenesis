@@ -26,11 +26,20 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
         }
 
         let reactant = ct.generateName(redox.resource, redox.from);
-        let number = Math.min(redox.number, player.resources[reactant].number);
+        let power = ct.redoxPower(player);
+        let number = Math.min(power, player.resources[reactant].number);
         let react = ct.redoxReaction(redox);
 
         ct.reaction.react(number, react, player);
       }
+    }
+
+    ct.redoxPower = function(player) {
+      let level = player.global_upgrades.redox_bandwidth;
+      let upgrade = data.global_upgrades.redox_bandwidth;
+      let basePower = upgrade.power;
+      let polynomial = upgrade.power_poly;
+      return basePower * Math.pow(level, polynomial);
     }
 
     ct.redoxReaction = function (redox) {
