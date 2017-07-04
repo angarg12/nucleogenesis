@@ -45,6 +45,7 @@
   <span ng-controller="ct_matter"></span>
   <span ng-controller="ct_reactor"></span>
   <span ng-controller="ct_redox"></span>
+  <span ng-controller="ct_achievements"></span>
   <div>
     <div class="navbar navbar-default animif">
       <div class="container">
@@ -140,16 +141,16 @@
     </div>
   </div>
   <div class="achieve achievealert animif"
-       ng-show="achievement.isToastVisible"
+       ng-show="state.isToastVisible"
        ng-cloak>
     <div class="container alert alert-success">
       <button type="button"
               class="close"
-              ng-click="achievement.removeToast()">
+              ng-click="state.removeToast()">
           <span aria-hidden="true">&times;</span>
         </button>
       <h3>Achievement</h3>
-      <h2>{{achievement.toast[0]}}</h2>
+      <h2>{{state.toast[0]}}</h2>
     </div>
   </div>
 </body>

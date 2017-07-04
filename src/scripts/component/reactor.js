@@ -18,25 +18,25 @@ function (state, data, visibility, util, format, reaction) {
   function update(player) {
     // We will process the synthesis
     for (let syn in player.syntheses) {
-      let power = ct.synthesisPower(syn);
+      let power = ct.synthesisPower(player, syn);
       if (power !== 0) {
         reaction.react(power, data.syntheses[syn], player);
       }
     }
   }
 
-  ct.synthesisPower = function (synthesis) {
-    let level = state.player.syntheses[synthesis].active;
+  ct.synthesisPower = function (player, synthesis) {
+    let level = player.syntheses[synthesis].active;
     return Math.ceil(Math.pow(level, data.constants.SYNTH_POWER_INCREASE));
   };
 
-  ct.synthesisMultiplier = function (synthesis) {
-    let level = state.player.syntheses[synthesis].number;
+  ct.synthesisMultiplier = function (player, synthesis) {
+    let level = player.syntheses[synthesis].number;
     return Math.ceil(Math.pow(data.constants.SYNTH_PRICE_INCREASE, level));
   };
 
-  function synthesisPrice(synthesis) {
-    let multiplier = ct.synthesisMultiplier(synthesis);
+  function synthesisPrice(player, synthesis) {
+    let multiplier = ct.synthesisMultiplier(player, synthesis);
     let price = {};
     let reactant = data.syntheses[synthesis].reactant;
     for (let resource in reactant) {
@@ -45,25 +45,25 @@ function (state, data, visibility, util, format, reaction) {
     return price;
   }
 
-  ct.isSynthesisCostMet = function (synthesis) {
-    let price = synthesisPrice(synthesis);
+  ct.isSynthesisCostMet = function (player, synthesis) {
+    let price = synthesisPrice(player, synthesis);
     for (let resource in price) {
-      if (state.player.resources[resource].number < price[resource]) {
+      if (player.resources[resource].number < price[resource]) {
         return false;
       }
     }
     return true;
   };
 
-  ct.buySynthesis = function (synthesis, number) {
+  ct.buySynthesis = function (player, synthesis, number) {
     let i = 0;
     // we need a loop since we use the ceil operator
-    while (i < number && ct.isSynthesisCostMet(synthesis)) {
-      let price = synthesisPrice(synthesis);
+    while (i < number && ct.isSynthesisCostMet(player, synthesis)) {
+      let price = synthesisPrice(player, synthesis);
       for (let resource in price) {
-        state.player.resources[resource].number -= price[resource];
+        player.resources[resource].number -= price[resource];
       }
-      state.player.syntheses[synthesis].number += 1;
+      player.syntheses[synthesis].number += 1;
       i++;
     }
   };

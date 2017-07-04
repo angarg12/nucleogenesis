@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <h2>{{ct.data.elements[ct.state.currentElement].name}}</h2>
 <h3>
-  <pretty value="ct.elementProduction(ct.state.currentElement)" id="production_total"></pretty>
+  <pretty value="ct.elementProduction(ct.state.player, ct.state.currentElement)" id="production_total"></pretty>
   {{ct.state.currentElement}}/s
 </h3>
 <ul ng-if="ct.state.player.achievements.isotope">
@@ -39,16 +39,16 @@
       {{ct.data.generators[gen].name}}
     </td>
     <td class="animif col-md-2">
-      <pretty value="ct.generatorProduction(gen, ct.state.currentElement)"></pretty>
+      <pretty value="ct.generatorProduction(ct.state.player, gen, ct.state.currentElement)"></pretty>
     </td>
     <td class="animif col-md-1">
       <pretty value="ct.state.player.elements[ct.state.currentElement].generators[gen]"></pretty>
     </td>
     <td class="animif col-md-3">
-      <pretty value="ct.tierProduction(gen, ct.state.currentElement)"></pretty>
+      <pretty value="ct.tierProduction(ct.state.player, gen, ct.state.currentElement)"></pretty>
     </td>
     <td class="animif col-md-3">
-      <pretty value="ct.generatorPrice(gen, ct.state.currentElement)"></pretty>
+      <pretty value="ct.generatorPrice(ct.state.player, gen, ct.state.currentElement)"></pretty>
       &nbsp;
       <get-html value="ct.data.elements[ct.state.currentElement].main"></get-html>
     </td>
@@ -56,21 +56,21 @@
       <div class="pull-left">
         <button type="button"
                 class="btn btn-default button-small"
-                ng-click="ct.buyGenerators(gen, ct.state.currentElement, 1)"
-                ng-class="{disabled: ct.generatorPrice(gen, ct.state.currentElement) > ct.state.player.resources[ct.state.currentElement].number}">1</button>
+                ng-click="ct.buyGenerators(ct.state.player, gen, ct.state.currentElement, 1)"
+                ng-class="{disabled: ct.generatorPrice(ct.state.player, gen, ct.state.currentElement) > ct.state.player.resources[ct.state.currentElement].number}">1</button>
       </div>
       <div class="pull-left">
         <button type="button"
                 class="btn btn-default button-small"
-                ng-click="ct.buyGenerators(gen, ct.state.currentElement, 10)"
-                ng-class="{disabled: ct.generatorPrice(gen, ct.state.currentElement) > ct.state.player.resources[ct.state.currentElement].number}">10</button>
+                ng-click="ct.buyGenerators(ct.state.player, gen, ct.state.currentElement, 10)"
+                ng-class="{disabled: ct.generatorPrice(ct.state.player, gen, ct.state.currentElement) > ct.state.player.resources[ct.state.currentElement].number}">10</button>
       </div>
       <!-- crappy workaround since it doesn't recognize the literal Infinity -->
       <div class="pull-left">
         <button type="button"
                 class="btn btn-default button-small"
-                ng-click="ct.buyGenerators(gen, ct.state.currentElement, 1/0)"
-                ng-class="{disabled: ct.generatorPrice(gen, ct.state.currentElement) > ct.state.player.resources[ct.state.currentElement].number}">&#8892;</button>
+                ng-click="ct.buyGenerators(ct.state.player, gen, ct.state.currentElement, 1/0)"
+                ng-class="{disabled: ct.generatorPrice(ct.state.player, gen, ct.state.currentElement) > ct.state.player.resources[ct.state.currentElement].number}">&#8892;</button>
       </div>
     </td>
   </tr>

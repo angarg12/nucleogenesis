@@ -6,12 +6,10 @@ angular
   .service('savegame', ['$state',
     'state',
     'data',
-    'achievement',
-    function ($state, state, data, achievement) {
+    function ($state, state, data) {
       this.initSave = function () {
         state.player = {};
         this.versionControl();
-        achievement.init();
         state.init();
         $state.go('matter');
       };

@@ -6,16 +6,14 @@ angular
     '$interval',
     '$timeout',
     'savegame',
-    'achievement',
     'util',
     'format',
     'reaction',
     'data',
     'visibility',
     'state',
-    function($scope, $interval, $timeout, savegame, achievement, util, format, reaction, data, visibility, state) {
+    function($scope, $interval, $timeout, savegame, util, format, reaction, data, visibility, state) {
       $scope.data = data;
-      $scope.achievement = achievement;
       $scope.util = util;
       $scope.format = format;
       $scope.reaction = reaction;
@@ -28,7 +26,6 @@ angular
       self.update = function() {
         // do the update in a copy
         playerCopy = angular.copy(state.player);
-        achievement.checkAchievements(playerCopy);
 
         state.update(playerCopy);
 

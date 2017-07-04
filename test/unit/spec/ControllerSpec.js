@@ -14,16 +14,12 @@ describe('controller main-loop', function() {
 
 	  expect(spec.state.currentElement).toEqual('H');
 	  expect(spec.state.hoverElement).toEqual('');
-	  expect(spec.achievement.toast).toEqual([]);
-	  expect(spec.achievement.isToastVisible).toEqual(false);
+	  expect(spec.state.toast).toEqual([]);
+	  expect(spec.state.isToastVisible).toEqual(false);
     });
   });
 
   describe('update', function() {
-    beforeEach(function() {
-      spyOn(spec.achievement, 'checkAchievements');
-    });
-
     it('should not update player if nothing is purchased', function() {
       spec.state.player = angular.copy(spec.data.start_player);
 

@@ -20,7 +20,7 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
     ct.bandwidth = 100;
 
     function update(player) {
-      for (let redox of ct.state.player.redox) {
+      for (let redox of player.redox) {
         if (!redox.resource || !redox.active) {
           continue;
         }

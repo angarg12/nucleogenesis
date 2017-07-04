@@ -2,25 +2,49 @@
 
 angular
   .module('game')
-  .service('state', [function() {
-    this.currentElement = 'H';
-    this.hoverElement = '';
-    this.export = '';
-    this.player = {};
-    this.loading = true;
+  .service('state', ['$timeout', function($timeout) {
+    let sv = this;
+    sv.currentElement = 'H';
+    sv.hoverElement = '';
+    sv.export = '';
+    sv.player = {};
+    sv.loading = true;
+    sv.toast = [];
+    sv.isToastVisible = false;
     let updateFunctions = {};
 
-    this.init = function() {
-      this.currentElement = 'H';
-      this.hoverElement = '';
-      this.export = '';
+    sv.deleteToast = function() {
+      sv.toast.shift();
+      if (sv.toast.length > 0) {
+        sv.isToastVisible = true;
+      }
     };
 
-    this.registerUpdate = function(name, func){
+    sv.removeToast = function() {
+      sv.isToastVisible = false;
+      $timeout(sv.deleteToast, 1100);
+    };
+
+    sv.addToast = function (t) {
+      sv.toast.push(t);
+      if (sv.toast.length === 1) {
+        sv.isToastVisible = true;
+      }
+    };
+
+    sv.init = function() {
+      sv.currentElement = 'H';
+      sv.hoverElement = '';
+      sv.export = '';
+      sv.toast = [];
+      sv.isToastVisible = false;
+    };
+
+    sv.registerUpdate = function(name, func){
       updateFunctions[name] = func;
     };
 
-    this.update = function(player){
+    sv.update = function(player){
       for(let func in updateFunctions){
         updateFunctions[func](player);
       }

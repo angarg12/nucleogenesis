@@ -51,7 +51,7 @@ function (state, visibility, data, util) {
       }
       // Prepare an array with the isotopes
       let isotopes = Object.keys(data.elements[element].isotopes);
-      let remaining = ct.elementProduction(element);
+      let remaining = ct.elementProduction(player, element);
       // We will create a random draw recalculate the mean and std
       for (let i = 0; i < isotopes.length - 1; i++) {
         // First we need to adjust the ratio for the remaining isotopes
@@ -89,45 +89,45 @@ function (state, visibility, data, util) {
     processGenerators(player);
   }
 
-  ct.generatorPrice = function(name, element) {
-    let level = state.player.elements[element].generators[name];
+  ct.generatorPrice = function(player, name, element) {
+    let level = player.elements[element].generators[name];
     let price = data.generators[name].price * Math.pow(data.generators[name].priceIncrease, level);
     return Math.ceil(price);
   };
 
-  ct.buyGenerators = function(name, element, number) {
-    let price = this.generatorPrice(name, element);
+  ct.buyGenerators = function(player, name, element, number) {
+    let price = this.generatorPrice(player, name, element);
     let i = 0;
     // we need a loop since we use the ceil operator
     let currency = data.elements[element].main;
-    while (i < number && state.player.resources[currency].number >= price) {
-      state.player.resources[currency].number -= price;
-      state.player.elements[element].generators[name]++;
-      price = this.generatorPrice(name, element);
+    while (i < number && player.resources[currency].number >= price) {
+      player.resources[currency].number -= price;
+      player.elements[element].generators[name]++;
+      price = this.generatorPrice(player, name, element);
       i++;
     }
   };
 
-  ct.generatorProduction = function(name, element) {
+  ct.generatorProduction = function(player, name, element) {
     let baseProduction = data.generators[name].power;
-    return upgradedProduction(baseProduction, name, element);
+    return upgradedProduction(player, baseProduction, name, element);
   };
 
-  ct.tierProduction = function(name, element) {
+  ct.tierProduction = function(player, name, element) {
     let baseProduction = data.generators[name].power *
-      state.player.elements[element].generators[name];
-    return upgradedProduction(baseProduction, name, element);
+      player.elements[element].generators[name];
+    return upgradedProduction(player, baseProduction, name, element);
   };
 
-  function upgradedProduction(production, name, element) {
+  function upgradedProduction(player, production, name, element) {
     for (let up in data.generators[name].upgrades) {
-      if (state.player.elements[element].upgrades[data.generators[name].upgrades[up]]) {
+      if (player.elements[element].upgrades[data.generators[name].upgrades[up]]) {
         let power = data.upgrades[data.generators[name].upgrades[up]].power;
         production = upgradeApply(production, power);
       }
     }
     let exotic = data.elements[element].exotic;
-    production += production * state.player.resources[exotic].number * data.constants.EXOTIC_POWER;
+    production += production * player.resources[exotic].number * data.constants.EXOTIC_POWER;
     return Math.floor(production);
   }
 
@@ -135,10 +135,10 @@ function (state, visibility, data, util) {
     return resource * power;
   }
 
-  ct.elementProduction = function(element) {
+  ct.elementProduction = function(player, element) {
     let total = 0;
     for (let tier in data.generators) {
-      total += ct.tierProduction(tier, element);
+      total += ct.tierProduction(player, tier, element);
     }
     return total;
   };

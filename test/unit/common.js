@@ -20,7 +20,6 @@ let commonSpec = function(spec) {
     window.ga = function () {};
     // The injector unwraps the underscores (_) from around the parameter names when matching
     spec.$timeout = _$timeout_;
-    spec.achievement = _$injector_.get('achievement');
     spec.savegame = _$injector_.get('savegame');
     spec.util = _$injector_.get('util');
     spec.format = _$injector_.get('format');
@@ -36,6 +35,7 @@ let commonSpec = function(spec) {
     spec.reactor = _$componentController_('reactor', null, null);
     spec.matter = _$componentController_('matter', null, null);
     spec.options = _$componentController_('options', null, null);
+    spec.achievements = _$componentController_('achievements', null, null);
 
     // asinine sanity check for components
 
@@ -44,6 +44,6 @@ let commonSpec = function(spec) {
     _$componentController_('pretty', null, null);
     _$componentController_('sidebar', null, null);
 
-    spec.controller = _$controller_('main-loop', {$scope:_$rootScope_.$new(), achievement:spec.achievement, util:spec.util, format:spec.format, reaction:spec.reaction, data:spec.data, state:spec.state});
+    spec.controller = _$controller_('main-loop', {$scope:_$rootScope_.$new(), util:spec.util, format:spec.format, reaction:spec.reaction, data:spec.data, state:spec.state});
   }));
 };

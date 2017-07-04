@@ -10,7 +10,7 @@ const fs = require('fs');
 const args = process.argv.slice(2);
 
 let achievements = jsonfile.readFileSync(args[0]+'/data/achievements.json');
-let achievementService = fs.readFileSync(args[0]+'/scripts/services/achievement.js').toString();
+let achievementService = fs.readFileSync(args[0]+'/scripts/component/achievements.js').toString();
 
 const FUNCTION_TEMPLATE = `this.<%= name %> = function (player){
   return <%= progress %>;
@@ -45,7 +45,7 @@ for(let i in functions){
 
 let serviceTemplate = template(achievementService);
 
-fs.writeFileSync(args[0]+'/scripts/services/achievement.js', serviceTemplate({'functions': concatFunctions}));
+fs.writeFileSync(args[0]+'/scripts/component/achievements.js', serviceTemplate({'functions': concatFunctions}));
 jsonfile.writeFileSync(args[0] + '/data/achievements.json', achievements, {
   spaces: 2
 });

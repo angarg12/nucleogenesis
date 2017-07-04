@@ -2,39 +2,83 @@
 
 angular.module('game').component('achievements', {
   templateUrl: 'views/achievements.html',
-  controller: ['state', 'data', 'achievement', achievements],
+  controller: 'ct_achievements',
   controllerAs: 'ct'
 });
 
-function achievements(state, data, achievement) {
-  let ct = this;
-  ct.state = state;
-  ct.data = data;
-  ct.achieve_service = achievement;
+angular.module('game').controller('ct_achievements', ['$window', 'state', 'data',
+  function ($window, state, data) {
+    /* Achievement functions are derived from the data file. This template
+    variable will be replaced with the achievement conditions */
+    <%= functions %>
 
-  ct.hasProgress = function (key) {
-    return data.achievements[key].goals.length > 1 ||
-      data.achievements[key].goals[0] !== 1;
-  };
+    let ct = this;
+    ct.state = state;
+    ct.data = data;
 
-  ct.maxed = function (key) {
-    return state.player.achievements[key] >= data.achievements[key].goals.length;
-  };
+    ct.hasProgress = function (key) {
+      return data.achievements[key].goals.length > 1 ||
+        data.achievements[key].goals[0] !== 1;
+    };
 
-  ct.inProgress = function (key) {
-    return ct.state.player.achievements[key] > 0 &&
-      ct.state.player.achievements[key] < data.achievements[key].goals.length;
-  };
+    ct.maxed = function (key, player) {
+      return player.achievements[key] >= data.achievements[key].goals.length;
+    };
 
-  ct.getLevel = function (key) {
-    return Math.min(data.achievements[key].goals.length, state.player.achievements[key]+1);
-  };
+    ct.inProgress = function (key, player) {
+      return player.achievements[key] > 0 &&
+        player.achievements[key] < data.achievements[key].goals.length;
+    };
 
-  ct.numberUnlocked = function () {
-    let total = 0;
-    for(let key in data.achievements){
-      total += state.player.achievements[key];
+    ct.getLevel = function (key, player) {
+      return Math.min(data.achievements[key].goals.length, player.achievements[key] + 1);
+    };
+
+    ct.numberUnlocked = function (player) {
+      let total = 0;
+      for (let key in data.achievements) {
+        total += player.achievements[key];
+      }
+      return total;
+    };
+
+    /* Checks if the player has unlocked any new achievement. */
+    function update(player) {
+      for (let key in data.achievements) {
+        let achievement = data.achievements[key];
+        let levels = achievement.goals.length;
+
+        if (player.achievements[key] < levels) {
+          checkAchievement(player, key, achievement);
+        }
+      }
     }
-    return total;
-  };
-}
+
+    /* Checks all the levels of an achievement that the player hasn't unlocked
+      yet. */
+    function checkAchievement(player, key, achievement) {
+      // start from the current achievement level and go up
+      for (let level = player.achievements[key]; level < achievement.goals.length; level++) {
+        // if the progress of the player is bigger than the goal, unlock it
+        let progress = ct.getProgress(key, player);
+
+        if (progress >= 100) {
+          state.addToast(achievement.name);
+          player.achievements[key] = level + 1;
+          $window.ga('send', 'event', 'achievement', key + '-' + level, player.id, Date.now());
+        }
+      }
+    }
+
+    ct.getProgress = function (key, player) {
+      let level = player.achievements[key];
+      let achievement = data.achievements[key];
+      let amount = ct[achievement.progress](player);
+      let progress = amount / achievement.goals[level] * 100;
+
+      return Math.min(100, progress);
+    };
+
+    state.registerUpdate('achievement', update);
+  }
+]);

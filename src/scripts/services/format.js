@@ -2,9 +2,8 @@
 
 angular
   .module('game')
-  .service('format', ['state',
-    'util',
-    function(state, util) {
+  .service('format', ['util',
+    function(util) {
       /*
        * Formats in HTML a compound i.e. a collection of resources of
        * the form x + y + z
