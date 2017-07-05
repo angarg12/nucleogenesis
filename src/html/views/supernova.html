@@ -18,8 +18,8 @@
 <p>You will sacrifice</p>
 <p ng-repeat="key in ct.data.elements[ct.state.currentElement].includes"
    ng-if="ct.state.player.resources[key].unlocked">
-  <pretty value="ct.state.player.resources[key].number"></pretty>
   <get-html value="key"></get-html>
+  <pretty value="ct.state.player.resources[key].number"></pretty>
 </p>
 <div class="row">
   <div ng-repeat="up in ct.visibility.visibleExoticUpgrades(ct.state.currentElement)"
