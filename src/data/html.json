@@ -2,5 +2,6 @@
   "beta-": "&#946;<sup>-</sup>",
   "2beta-": "&#946;<sup>-</sup>&#946;<sup>-</sup>",
   "beta+": "&#946;<sup>+</sup>",
-  "electron_capture": "&#x3B5"
+  "electron_capture": "&#x3B5",
+  "gamma": "&#x3b3"
 }

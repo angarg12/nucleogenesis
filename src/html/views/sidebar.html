@@ -30,14 +30,15 @@
         s
       </td>
     </tr>
-    <tr ng-if="ct.data.resources[key].decay != null"
+    <tr ng-repeat="(key, decay) in ct.data.resources[key].decay.decay_types"
         class="animif row">
       <td class="col-lg-2"></td>
       <td class="col-lg-4 text-center">
-        <get-html value="ct.data.resources[key].decay.decay_type"></get-html>
+        <span ng-if="decay.ratio !== 1">{{decay.ratio*100}}%</span>
+        <get-html value="key"></get-html>
       </td>
       <td class="col-lg-6">
-        <div ng-bind-html="ct.util.trustHTML(ct.format.decayFormat(ct.data.resources[key].decay))"
+        <div ng-bind-html="ct.util.trustHTML(ct.format.decayFormat(decay))"
              class="pull-left"></div>
       </td>
     </tr>
