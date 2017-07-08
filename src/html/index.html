@@ -24,8 +24,12 @@
         id="theme_css">
   <link rel="stylesheet"
         href="styles/main.css">
+
+  <link rel="stylesheet"
+        href="styles/simple-sidebar.css">
   <link rel="stylesheet"
         href="bower_components/angularjs-slider/dist/rzslider.min.css" />
+
   <title>Nucleogenesis</title>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -47,110 +51,100 @@
   <span ng-controller="ct_redox"></span>
   <span ng-controller="ct_achievements"></span>
   <div>
-    <div class="navbar navbar-default animif">
-      <div class="container">
-        <div class="navbar-header">
-          <span class="navbar-brand page-title">
-            Nucleogenesis
-            </span>
-          <span class="navbar-brand">
-            <span class="text-muted small">v{{data.version}}</span>
-          </span>
-        </div>
-      </div>
-    </div>
-    <div class="alert alert-danger"
-         role="alert">
-      <b>Warning:</b> This is an early beta version under heavy development. Expect unbalanced gameplay,
-      bugs, save wipes and broken features.
-    </div>
     <div>
       <div ng-if="state.loading"
            class="loader" />
     </div>
-    <div ng-if="!state.loading">
-      <div class="ng-scope ng-isolate-scope animif">
-        <ul class="nav nav-tabs ng-scope">
-          <li ui-sref="matter"
-              ui-sref-active="active">
-            <a>
+    <div id="wrapper"
+         class="toggled"
+         ng-if="!state.loading">
+      <sidebar id="sidebar-wrapper"></sidebar>
+      <div id="page-content-wrapper">
+        <div class="container">
+          <ul class="nav nav-tabs">
+            <li ui-sref="matter"
+                ui-sref-active="active">
+              <a>
               Matter
             </a>
-          </li>
-          <li ui-sref="nova"
-              ui-sref-active="active">
-            <a>
+            </li>
+            <li ui-sref="nova"
+                ui-sref-active="active">
+              <a>
               Upgrades
             </a>
-          </li>
-          <li ng-if="state.player.achievements.hydrogen"
-              ui-sref="supernova"
-              ui-sref-active="active">
-            <a>
+            </li>
+            <li ng-if="state.player.achievements.hydrogen"
+                ui-sref="supernova"
+                ui-sref-active="active">
+              <a>
               Exotic matter
             </a>
-          </li>
-          <li ng-if="state.player.achievements.redox"
-              ui-sref="redox"
-              ui-sref-active="active">
-            <a>
+            </li>
+            <li ng-if="state.player.achievements.redox"
+                ui-sref="redox"
+                ui-sref-active="active">
+              <a>
               Reactions
             </a>
-          </li>
-          <li ng-if="state.player.achievements.synthesis"
-              ui-sref="reactor"
-              ui-sref-active="active">
-            <a>
+            </li>
+            <li ng-if="state.player.achievements.synthesis"
+                ui-sref="reactor"
+                ui-sref-active="active">
+              <a>
               Syntheses
             </a>
-          </li>
-          <li ui-sref="encyclopedia"
-              ui-sref-active="active">
-            <a>
+            </li>
+            <li ui-sref="encyclopedia"
+                ui-sref-active="active">
+              <a>
               Encyclopedia
               <i class="mdi mdi-18px mdi-alert-decagram" ng-if="visibility.encyclopediaHasNew()"></i>
             </a>
-          </li>
-          <li ng-if="state.player.achievements.periodic_table"
-              ui-sref="core"
-              ui-sref-active="active">
-            <a>Periodic Table</a>
-          </li>
-          <li ui-sref="achievements"
-              ui-sref-active="active">
-            <a>Achievements</a>
-          </li>
-          <li ui-sref="options"
-              ui-sref-active="active">
-            <a>Options</a>
-          </li>
-        </ul>
-      </div>
-      <div class="tab-pane row">
-        <div class="col-lg-3">
-          <sidebar></sidebar>
-        </div>
-        <div class="col-lg-8">
-          <ui-view></ui-view>
-        </div>
-        <div ng-if="visibility.visibleElements().length > 1"
-             class="col-lg-1 right-box">
-          <element-select></element-select>
+            </li>
+            <li ng-if="state.player.achievements.periodic_table"
+                ui-sref="core"
+                ui-sref-active="active">
+              <a>Periodic Table</a>
+            </li>
+            <li ui-sref="achievements"
+                ui-sref-active="active">
+              <a>Achievements</a>
+            </li>
+            <li ui-sref="options"
+                ui-sref-active="active">
+              <a>Options</a>
+            </li>
+          </ul>
+          <div class="row">
+            <div class="col-lg-10">
+              <div class="alert alert-danger"
+                   role="alert">
+                <b>Warning:</b> This is an early beta version under heavy development. Expect unbalanced
+                gameplay, bugs, save wipes and broken features.
+              </div>
+              <ui-view></ui-view>
+            </div>
+            <div ng-if="visibility.visibleElements().length > 1"
+                 class="col-lg-1 right-box">
+              <element-select></element-select>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="achieve achievealert animif"
-       ng-show="state.isToastVisible"
-       ng-cloak>
-    <div class="container alert alert-success">
-      <button type="button"
-              class="close"
-              ng-click="state.removeToast()">
+    <div class="achieve achievealert animif"
+         ng-show="state.isToastVisible"
+         ng-cloak>
+      <div class="container alert alert-success">
+        <button type="button"
+                class="close"
+                ng-click="state.removeToast()">
           <span aria-hidden="true">&times;</span>
         </button>
-      <h3>Achievement</h3>
-      <h2>{{state.toast[0]}}</h2>
+        <h3>Achievement</h3>
+        <h2>{{state.toast[0]}}</h2>
+      </div>
     </div>
   </div>
 </body>
