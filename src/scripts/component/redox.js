@@ -134,7 +134,6 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       }
       player.redox.push({
         resource: data.elements[ct.state.currentElement].main,
-        number: 50,
         active: false,
         element: ct.state.currentElement,
         from: 0,
