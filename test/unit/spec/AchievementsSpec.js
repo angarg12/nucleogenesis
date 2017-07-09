@@ -115,7 +115,7 @@ describe('Achievements component', function () {
     it('should count the number of unlocked achivements 3', function () {
       let playerCopy = angular.copy(spec.data.start_player);
       playerCopy.achievements.hydrogen = 2;
-      playerCopy.achievements.isotopes = 1;
+      playerCopy.achievements.isotope = 1;
       let level = spec.achievements.numberUnlocked (playerCopy);
 
       expect(level).toEqual(3);
