@@ -1,6 +1,15 @@
 {
   "e-": {
-    "elements": {}
+    "elements": {},
+    "rest_mass": 511000,
+    "anti_particle": "e+",
+    "html": "e<sup>-</sup>"
+  },
+  "e+": {
+    "elements": {},
+    "rest_mass": 511000,
+    "anti_particle": "e-",
+    "html": "e<sup>+</sup>"
   },
   "n": {
     "elements": {}

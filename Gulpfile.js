@@ -144,6 +144,10 @@ gulp.task('generate_syntheses', function() {
   return plugins.run('node build_scripts/generate_syntheses.js build',{silent:true}).exec();
 });
 
+gulp.task('generate_antimatter', function() {
+  return plugins.run('node build_scripts/generate_antimatter.js build',{silent:true}).exec();
+});
+
 gulp.task('generate_achievement_functions', function() {
   return plugins.run('node build_scripts/generate_achievement_functions.js build',{silent:true}).exec();
 });
@@ -168,6 +172,7 @@ gulp.task('build', function(callback) {
     'generate_isotopes',
     'generate_ions',
     'generate_syntheses',
+    'generate_antimatter',
     'generate_achievement_functions',
     'sort_resources',
     'populate_player',

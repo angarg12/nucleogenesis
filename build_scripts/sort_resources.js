@@ -35,9 +35,13 @@ for (let element in elements) {
   }
 }
 
+let misc = [];
 
-
-let misc = ['e-','n','p','eV'];
+for (let resource in resources) {
+  if(typeof sortedResources[resource] === 'undefined'){
+    misc.push(resource);
+  }
+}
 
 for (let resource of misc) {
   sortedResources[resource] = resources[resource];

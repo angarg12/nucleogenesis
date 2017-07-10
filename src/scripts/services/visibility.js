@@ -157,6 +157,12 @@ angular
           }
         }
 
+        // for misc reactions
+        if(entry.elements.length === 0 &&
+           currentElement === ''){
+             return true;
+        }
+
         for (let element in entry.elements) {
           if (currentElement === entry.elements[element]) {
             return true;
