@@ -58,17 +58,23 @@ describe('Format service', function() {
     });
 
     it('should format decay', function() {
+      spec.data.resources['3He'].html = '<sup>3</sup>He<sup>+</sup>';
+      spec.data.resources['e-'].html = 'e<sup>-</sup>';
+
       let value = spec.format.decayFormat(spec.data.resources['3H'].decay.decay_types['beta-']);
 
-      expect(value).toEqual('<sup>3</sup>He<sup>+</sup> + e- + 18,610 eV');
+      expect(value).toEqual('<sup>3</sup>He<sup>+</sup> + e<sup>-</sup> + 18,610 eV');
     });
 
     it('should format decay without energy', function() {
+      spec.data.resources['3He'].html = '<sup>3</sup>He<sup>+</sup>';
+      spec.data.resources['e-'].html = 'e<sup>-</sup>';
+      // we delete the eV for the test
       delete spec.data.resources['3H'].decay.decay_types['beta-'].decay_product.eV;
 
       let value = spec.format.decayFormat(spec.data.resources['3H'].decay.decay_types['beta-']);
 
-      expect(value).toEqual('<sup>3</sup>He<sup>+</sup> + e-');
+      expect(value).toEqual('<sup>3</sup>He<sup>+</sup> + e<sup>-</sup>');
     });
   });
 });
