@@ -20,31 +20,27 @@
       <td class="col-md-2">
         <div class="pull-left"
              ng-if="ct.state.player.syntheses[syn].number > 0">
-          <button type="button"
-                  class="btn btn-default button-small"
-                  ng-disabled="ct.state.player.syntheses[syn].active >= ct.state.player.syntheses[syn].number"
-
-                  ng-click="ct.state.player.syntheses[syn].active = ct.state.player.syntheses[syn].number"
-                  ng-class="{disabled: ct.state.player.syntheses[syn].active >= ct.state.player.syntheses[syn].number}">&#8892;</button>
-          <button type="button"
-                  class="btn btn-default button-small"
-                  ng-disabled="ct.state.player.syntheses[syn].active >= ct.state.player.syntheses[syn].number"
-
-                  ng-click="ct.state.player.syntheses[syn].active = ct.state.player.syntheses[syn].active+1"
-
-                  ng-class="{disabled: ct.state.player.syntheses[syn].active >= ct.state.player.syntheses[syn].number}">+</button>
+          <adjust-button value="ct.state.player.syntheses[syn].number"
+                         limit="ct.state.player.syntheses[syn].number"
+                         text="'&#8892;'"
+                         player="ct.state.player"
+                         syn="syn"></adjust-button>
+          <adjust-button value="ct.state.player.syntheses[syn].active+1"
+                         limit="ct.state.player.syntheses[syn].number"
+                         text="'+'"
+                         player="ct.state.player"
+                         syn="syn"></adjust-button>
           <br>
-          <button type="button"
-                  class="btn btn-default button-small"
-                  ng-disabled="ct.state.player.syntheses[syn].active <= 0"
-                  ng-click="ct.state.player.syntheses[syn].active = 0"
-                  ng-class="{disabled: ct.state.player.syntheses[syn].active <= 0}">&#8891;</button>
-          <button type="button"
-                  class="btn btn-default button-small"
-                  ng-disabled="ct.state.player.syntheses[syn].active <= 0"
-                  ng-click="ct.state.player.syntheses[syn].active = ct.state.player.syntheses[syn].active-1"
-
-                  ng-class="{disabled: ct.state.player.syntheses[syn].active <= 0}">-</button>
+          <adjust-button value="0"
+                         limit="0"
+                         text="'&#8891;'"
+                         player="ct.state.player"
+                         syn="syn"></adjust-button>
+          <adjust-button value="ct.state.player.syntheses[syn].active-1"
+                         limit="0"
+                         text="'-'"
+                         player="ct.state.player"
+                         syn="syn"></adjust-button>
         </div>
       </td>
       <td class="col-md-2">
@@ -106,31 +102,27 @@
       <td class="col-md-2">
         <div class="pull-left"
              ng-if="ct.state.player.syntheses[syn].number > 0">
-          <button type="button"
-                  class="btn btn-default button-small"
-                  ng-disabled="ct.state.player.syntheses[syn].active >= ct.state.player.syntheses[syn].number"
-
-                  ng-click="ct.state.player.syntheses[syn].active = ct.state.player.syntheses[syn].number"
-                  ng-class="{disabled: ct.state.player.syntheses[syn].active >= ct.state.player.syntheses[syn].number}">&#8892;</button>
-          <button type="button"
-                  class="btn btn-default button-small"
-                  ng-disabled="ct.state.player.syntheses[syn].active >= ct.state.player.syntheses[syn].number"
-
-                  ng-click="ct.state.player.syntheses[syn].active = ct.state.player.syntheses[syn].active+1"
-
-                  ng-class="{disabled: ct.state.player.syntheses[syn].active >= ct.state.player.syntheses[syn].number}">+</button>
+          <adjust-button value="ct.state.player.syntheses[syn].number"
+                         limit="ct.state.player.syntheses[syn].number"
+                         text="'&#8892;'"
+                         player="ct.state.player"
+                         syn="syn"></adjust-button>
+          <adjust-button value="ct.state.player.syntheses[syn].active+1"
+                         limit="ct.state.player.syntheses[syn].number"
+                         text="'+'"
+                         player="ct.state.player"
+                         syn="syn"></adjust-button>
           <br>
-          <button type="button"
-                  class="btn btn-default button-small"
-                  ng-disabled="ct.state.player.syntheses[syn].active <= 0"
-                  ng-click="ct.state.player.syntheses[syn].active = 0"
-                  ng-class="{disabled: ct.state.player.syntheses[syn].active <= 0}">&#8891;</button>
-          <button type="button"
-                  class="btn btn-default button-small"
-                  ng-disabled="ct.state.player.syntheses[syn].active <= 0"
-                  ng-click="ct.state.player.syntheses[syn].active = ct.state.player.syntheses[syn].active-1"
-
-                  ng-class="{disabled: ct.state.player.syntheses[syn].active <= 0}">-</button>
+          <adjust-button value="0"
+                         limit="0"
+                         text="'&#8891;'"
+                         player="ct.state.player"
+                         syn="syn"></adjust-button>
+          <adjust-button value="ct.state.player.syntheses[syn].active-1"
+                         limit="0"
+                         text="'-'"
+                         player="ct.state.player"
+                         syn="syn"></adjust-button>
         </div>
       </td>
       <td class="col-md-2">
