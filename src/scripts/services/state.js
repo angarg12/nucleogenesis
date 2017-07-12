@@ -17,18 +17,20 @@ angular
       sv.toast.shift();
       if (sv.toast.length > 0) {
         sv.isToastVisible = true;
+        $timeout(sv.removeToast, 2500);
       }
     };
 
     sv.removeToast = function() {
       sv.isToastVisible = false;
-      $timeout(sv.deleteToast, 1100);
+      $timeout(sv.deleteToast, 350);
     };
 
     sv.addToast = function (t) {
       sv.toast.push(t);
       if (sv.toast.length === 1) {
         sv.isToastVisible = true;
+        $timeout(sv.removeToast, 2500);
       }
     };
 
