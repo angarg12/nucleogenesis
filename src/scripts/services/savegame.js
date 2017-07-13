@@ -16,7 +16,7 @@ angular
 
       this.load = function () {
         try {
-          let storedPlayer = localStorage.getItem('playerStoredITE');
+          let storedPlayer = localStorage.getItem('player');
           if(!storedPlayer){
             this.initSave();
           }else{

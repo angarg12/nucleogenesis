@@ -24,6 +24,9 @@ let achievement = achievements[i];
   if(typeof achievement.condition === 'undefined') {
     continue;
   }
+  if(achievement.condition.constructor === Array){
+    achievement.condition = achievement.condition.join('\n');
+  }
   achievement.progress = '('+achievement.condition+') ? 1 : 0';
   achievement.goals = [1];
   delete achievement.condition;

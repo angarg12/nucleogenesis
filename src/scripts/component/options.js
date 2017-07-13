@@ -17,7 +17,7 @@ function options($timeout, $state, state, savegame) {
     }
 
     if (confirmation === true) {
-      localStorage.removeItem('playerStoredITE');
+      localStorage.removeItem('player');
       savegame.initSave();
     }
   };

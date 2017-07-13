@@ -22,7 +22,8 @@
            ng-show="ct.state.player.elements.hasOwnProperty(element) && ct.state.player.elements[element].unlocked != true">
         <p>
           Cost:
-          <pretty value="ct.elementPrice(element)"></pretty> e-, p, n
+          <pretty value="ct.elementPrice(element)"></pretty>
+          <get-html value="'dark_matter'"></get-html>
         </p>
         <p ng-click="ct.buyElement(element)"
            class="btn btn-default">

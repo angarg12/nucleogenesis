@@ -127,7 +127,8 @@ function (state, visibility, data, util) {
       }
     }
     let exotic = data.elements[element].exotic;
-    production += production * player.resources[exotic].number * data.constants.EXOTIC_POWER;
+    production *= (1 + player.resources[exotic].number * data.constants.EXOTIC_POWER) *
+                  (1 + player.resources.dark_matter.number * data.constants.DARK_POWER);
     return Math.floor(production);
   }
 

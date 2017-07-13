@@ -51,7 +51,7 @@ describe('Supernova ', function() {
         spec.state.player.elements.H.generators['1'] = 99;
         spec.state.player.elements.H.generators['2'] = 99;
 
-        spec.supernova.prestige();
+        spec.supernova.exoticPrestige();
 
         expect(spec.state.player.elements.H.upgrades['1-1']).toBeFalsy();
         expect(spec.state.player.syntheses['H.OH-H2O'].active).toEqual(0);

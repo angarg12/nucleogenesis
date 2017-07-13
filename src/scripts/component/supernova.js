@@ -49,7 +49,7 @@ function supernova(state, format, visibility, data, util) {
     return production;
   };
 
-  ct.prestige = function() {
+  ct.exoticPrestige = function() {
     let resources = state.player.resources;
     let production = ct.exoticProduction();
 

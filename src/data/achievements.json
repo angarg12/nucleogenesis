@@ -55,10 +55,19 @@
     "description": "xxxxxxx",
     "condition": "player.resources['3H'].unlocked"
   },
-  "oxygen": {
-    "name": "Oxygen",
-    "description": "xxxxxxx",
-    "condition": "player.resources['16O'].unlocked"
+  "exotic_matter": {
+    "name": "Exotic matter",
+    "description": "Create exotic matter",
+    "condition": ["(() => {",
+      "for(let key in data.elements){",
+      " let exotic = data.elements[key].exotic;",
+      "  if (player.resources[exotic].unlocked) {",
+      "    return true;",
+      "  }",
+      "}",
+      "return false;",
+      "})()"
+    ]
   },
   "redox": {
     "name": "Redox",

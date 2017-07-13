@@ -10,6 +10,7 @@ describe('Element service', function() {
 
   describe('prices and cost', function() {
     it('should calculate element price', function() {
+      spec.data.constants.ELEMENT_PRICE_BASE = 2;
       spec.state.player = {};
       spec.state.player.elements_unlocked = 1;
 
@@ -19,6 +20,7 @@ describe('Element service', function() {
     });
 
     it('should calculate element price 2', function() {
+      spec.data.constants.ELEMENT_PRICE_BASE = 2;
       spec.state.player = {};
       spec.state.player.elements_unlocked = 5;
 
@@ -31,36 +33,30 @@ describe('Element service', function() {
 
   describe('purchase functions', function() {
     it('should purchase element if cost is met', function() {
+      spec.data.constants.ELEMENT_PRICE_BASE = 2;
       spec.state.player = {elements:{},resources:{},elements_unlocked:1};
-      spec.state.player.resources['e-'] = {number:256};
-      spec.state.player.resources.p = {number:257};
-      spec.state.player.resources.n = {number:258};
+      spec.state.player.resources.dark_matter = {number:256};
       spec.state.player.elements.O = {unlocked:false,generators:{}};
       spec.state.player.elements.O.generators['1'] = 0;
 
       spec.core.buyElement('O');
 
-      expect(spec.state.player.resources['e-'].number).toEqual(240);
-      expect(spec.state.player.resources.p.number).toEqual(241);
-      expect(spec.state.player.resources.n.number).toEqual(242);
+      expect(spec.state.player.resources.dark_matter.number).toEqual(240);
       expect(spec.state.player.elements.O.unlocked).toEqual(true);
       expect(spec.state.player.elements.O.generators['1']).toEqual(1);
       expect(spec.state.player.elements_unlocked).toEqual(2);
     });
 
     it('should not purchase element if cost is not met', function() {
+      spec.data.constants.ELEMENT_PRICE_BASE = 2;
       spec.state.player = {elements:{},resources:{},elements_unlocked:2};
-      spec.state.player.resources['e-'] = {number:1};
-      spec.state.player.resources.p = {number:20};
-      spec.state.player.resources.n = {number:30};
+      spec.state.player.resources.dark_matter = {number:1};
       spec.state.player.elements.O = {unlocked:false,generators:{}};
       spec.state.player.elements.O.generators['1'] = 0;
 
       spec.core.buyElement('O');
 
-      expect(spec.state.player.resources['e-'].number).toEqual(1);
-      expect(spec.state.player.resources.p.number).toEqual(20);
-      expect(spec.state.player.resources.n.number).toEqual(30);
+      expect(spec.state.player.resources.dark_matter.number).toEqual(1);
       expect(spec.state.player.elements.O.unlocked).toEqual(false);
       expect(spec.state.player.elements.O.generators['1']).toEqual(0);
       expect(spec.state.player.elements_unlocked).toEqual(2);
@@ -98,9 +94,7 @@ describe('Element service', function() {
       spec.state.player.elements = {};
       spec.state.player.elements.H = {unlocked: false};
       spec.state.player.resources = {};
-      spec.state.player.resources.p = {number: 1e6};
-      spec.state.player.resources.n = {number: 1e6};
-      spec.state.player.resources['e-'] = {number: 1e6};
+      spec.state.player.resources.dark_matter = {number: 1e6};
       spyOn(spec.core, 'elementPrice').and.returnValue(100);
 
       let clazz = spec.core.elementClass('H');
@@ -112,9 +106,7 @@ describe('Element service', function() {
       spec.state.player.elements = {};
       spec.state.player.elements.H = {unlocked: false};
       spec.state.player.resources = {};
-      spec.state.player.resources.p = {number: 0};
-      spec.state.player.resources.n = {number: 0};
-      spec.state.player.resources['e-'] = {number: 0};
+      spec.state.player.resources.dark_matter = {number: 0};
       spyOn(spec.core, 'elementPrice').and.returnValue(100);
 
       let clazz = spec.core.elementClass('H');

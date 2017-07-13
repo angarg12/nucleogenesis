@@ -81,18 +81,25 @@
               Exotic matter
             </a>
             </li>
-            <li ng-if="state.player.achievements.redox"
+            <li ng-if="state.player.achievements.exotic_matter"
+                ui-sref="void"
+                ui-sref-active="active">
+              <a>
+              Dark matter
+            </a>
+            </li>
+            <li ng-if="state.player.dark_upgrades.redox"
                 ui-sref="redox"
                 ui-sref-active="active">
               <a>
-              Reactions
+              Redox
             </a>
             </li>
-            <li ng-if="state.player.achievements.synthesis"
+            <li ng-if="state.player.dark_upgrades.reactions"
                 ui-sref="reactor"
                 ui-sref-active="active">
               <a>
-              Syntheses
+              Reactions
             </a>
             </li>
             <li ui-sref="encyclopedia"
@@ -102,7 +109,7 @@
               <i class="mdi mdi-18px mdi-alert-decagram" ng-if="visibility.encyclopediaHasNew()"></i>
             </a>
             </li>
-            <li ng-if="state.player.achievements.periodic_table"
+            <li ng-if="state.player.dark_upgrades.table"
                 ui-sref="core"
                 ui-sref-active="active">
               <a>Periodic Table</a>

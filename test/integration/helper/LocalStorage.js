@@ -6,7 +6,7 @@ let LocalStorage = function () {
     };
 
     this.setValue = function (key) {
-      return browser.executeScript("window.localStorage.setItem('playerStoredITE','" + key + "');");
+      return browser.executeScript("window.localStorage.setItem('player','" + key + "');");
     };
 
     this.clear = function () {

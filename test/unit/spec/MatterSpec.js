@@ -3,7 +3,7 @@
 /* jshint varstmt: false */
 'use strict';
 
-describe('Matter', function() {
+describe('Matter component', function() {
   let spec = {};
 
   commonSpec(spec);
@@ -85,6 +85,7 @@ describe('Matter', function() {
       spec.data.generators['1'].upgrades = ['1-1','1-2','1-3'];
       let player = {elements:{}, resources:{}};
       player.resources.xH = {number: 0};
+      player.resources.dark_matter = {number: 0};
       player.elements.H = {upgrades:{}};
       player.elements.H.upgrades['1-1'] = true;
       player.elements.H.upgrades['1-2'] = true;
@@ -96,9 +97,12 @@ describe('Matter', function() {
     });
 
     it('should calculate the generator production with exotic matter', function() {
+      spec.data.constants.EXOTIC_POWER = 0.001;
+      spec.data.constants.DARK_POWER = 0.01;
       spec.data.generators['1'].upgrades = ['1-1','1-2','1-3'];
       let player = {elements:{}, resources:{}};
       player.resources.xH = {number: 3250};
+      player.resources.dark_matter = {number: 0};
       player.elements.H = {upgrades:{}};
       player.elements.H.upgrades['1-1'] = true;
       player.elements.H.upgrades['1-2'] = true;
@@ -109,10 +113,45 @@ describe('Matter', function() {
       expect(value).toEqual(25);
     });
 
+    it('should calculate the generator production with dark matter', function() {
+      spec.data.constants.EXOTIC_POWER = 0.001;
+      spec.data.constants.DARK_POWER = 0.01;
+      spec.data.generators['1'].upgrades = ['1-1','1-2','1-3'];
+      let player = {elements:{}, resources:{}};
+      player.resources.xH = {number: 0};
+      player.resources.dark_matter = {number: 3250};
+      player.elements.H = {upgrades:{}};
+      player.elements.H.upgrades['1-1'] = true;
+      player.elements.H.upgrades['1-2'] = true;
+      player.elements.H.upgrades['1-3'] = false;
+
+      let value = spec.matter.generatorProduction(player, '1','H');
+
+      expect(value).toEqual(201);
+    });
+
+    it('should calculate the generator production with exotic and dark matter', function() {
+      spec.data.constants.EXOTIC_POWER = 0.001;
+      spec.data.constants.DARK_POWER = 0.01;
+      spec.data.generators['1'].upgrades = ['1-1','1-2','1-3'];
+      let player = {elements:{}, resources:{}};
+      player.resources.xH = {number: 3250};
+      player.resources.dark_matter = {number: 3250};
+      player.elements.H = {upgrades:{}};
+      player.elements.H.upgrades['1-1'] = true;
+      player.elements.H.upgrades['1-2'] = true;
+      player.elements.H.upgrades['1-3'] = false;
+
+      let value = spec.matter.generatorProduction(player, '1','H');
+
+      expect(value).toEqual(854);
+    });
+
     it('should calculate the tier production', function() {
       spec.data.generators['1'].upgrades = ['1-1','1-2','1-3'];
       let player = {elements:{}, resources:{}};
       player.resources.xH = {number: 0};
+      player.resources.dark_matter = {number: 0};
       player.elements.H = {upgrades:{},generators:{}};
       player.elements.H.upgrades['1-1'] = true;
       player.elements.H.upgrades['1-2'] = true;
@@ -138,6 +177,7 @@ describe('Matter', function() {
 
       let player = {elements:{}, resources:{}};
       player.resources.xH = {number: 0};
+      player.resources.dark_matter = {number: 0};
       player.elements.H = {generators:{}};
       player.elements.H.generators['1'] = 1;
       player.elements.H.generators['2'] = 1;

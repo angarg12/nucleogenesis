@@ -36,7 +36,7 @@ angular
       };
 
       function save() {
-        localStorage.setItem('playerStoredITE', JSON.stringify(state.player));
+        localStorage.setItem('player', JSON.stringify(state.player));
       }
 
       self.startup = function() {

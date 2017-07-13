@@ -20,6 +20,9 @@ angular
         .state('supernova', {
           component: 'supernova'
         })
+        .state('void', {
+          component: 'void'
+        })
         .state('encyclopedia', {
           templateUrl: 'views/encyclopedia.html'
         })

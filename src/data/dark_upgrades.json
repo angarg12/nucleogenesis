@@ -4,5 +4,17 @@
     "name": "Periodic Table",
     "description": "Unlocks the periodic table",
     "deps": []
+  },
+  "redox": {
+    "price": 100,
+    "name": "Redox",
+    "description": "Unlocks redox",
+    "deps": []
+  },
+  "reactions": {
+    "price": 100,
+    "name": "Reactions",
+    "description": "Unlocks reactions",
+    "deps": []
   }
 }

@@ -19,5 +19,9 @@
   },
   "eV": {
     "elements": {}
+  },
+  "dark_matter": {
+    "elements": {},
+    "html": "&#8709;"
   }
 }

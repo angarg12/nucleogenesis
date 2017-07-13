@@ -12,14 +12,13 @@ function core(state, data) {
   ct.data = data;
 
   ct.elementPrice = function (element) {
-    return Math.pow(2, state.player.elements_unlocked) * data.elements[element].number;
+    return Math.floor(Math.pow(data.constants.ELEMENT_PRICE_BASE, state.player.elements_unlocked) *
+                              data.elements[element].number);
   };
 
    function isElementCostMet(element) {
     let price = ct.elementPrice(element);
-    return state.player.resources['e-'].number >= price &&
-      state.player.resources.p.number >= price &&
-      state.player.resources.n.number >= price;
+    return state.player.resources.dark_matter.number >= price;
   }
 
   ct.buyElement = function (element) {
@@ -28,9 +27,7 @@ function core(state, data) {
     }
     if (isElementCostMet(element)) {
       let price = ct.elementPrice(element);
-      state.player.resources['e-'].number -= price;
-      state.player.resources.p.number -= price;
-      state.player.resources.n.number -= price;
+      state.player.resources.dark_matter.number -= price;
 
       state.player.elements[element].unlocked = true;
       state.player.elements[element].generators['1'] = 1;
