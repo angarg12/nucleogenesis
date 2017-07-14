@@ -2,11 +2,11 @@
 
 angular.module('game').component('supernova', {
   templateUrl: 'views/supernova.html',
-  controller: ['state', 'format', 'visibility', 'data', 'util', supernova],
+  controller: ['state', 'format', 'visibility', 'upgrade', 'data', 'util', supernova],
   controllerAs: 'ct'
 });
 
-function supernova(state, format, visibility, data, util) {
+function supernova(state, format, visibility, upgrade, data, util) {
   let ct = this;
   ct.state = state;
   ct.visibility = visibility;
@@ -58,40 +58,17 @@ function supernova(state, format, visibility, data, util) {
       resources[key].unlocked = true;
     }
 
-    for (let resource of data.elements[state.currentElement].includes) {
-      resources[resource].number = 0;
-    }
-
-    let upgrades = state.player.elements[state.currentElement].upgrades;
-    for (let upgrade in upgrades) {
-      upgrades[upgrade] = false;
-    }
-
-    let generators = state.player.elements[state.currentElement].generators;
-    for (let generator in generators) {
-      generators[generator] = 0;
-    }
-
-    let syntheses = data.elements[state.currentElement].syntheses;
-    for (let synthesis of syntheses) {
-      state.player.syntheses[synthesis].active = 0;
-    }
-    delete generators['0'];
-    let first = Object.keys(generators)[0];
-
-    state.player.elements[state.currentElement].generators[first] = 1;
+    upgrade.resetElement(state.player, state.currentElement);
   };
 
   ct.buyExoticUpgrade = function(name, element) {
-    if (state.player.elements[element].exotic_upgrades[name]) {
-      return;
-    }
+    let upgrades = state.player.elements[element].exotic_upgrades;
     let price = data.exotic_upgrades[name].price;
     let currency = data.elements[element].exotic;
-
-    if (state.player.resources[currency].number >= price) {
-      state.player.resources[currency].number -= price;
-      state.player.elements[element].exotic_upgrades[name] = true;
-    }
+    upgrade.buyUpgrade(state.player,
+      upgrades,
+      name,
+      price,
+      currency);
   };
 }

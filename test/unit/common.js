@@ -43,7 +43,8 @@ let commonSpec = function(spec) {
     _$componentController_('getHtml', null, null);
     _$componentController_('pretty', null, null);
     _$componentController_('sidebar', null, null);
+    _$componentController_('reactionTable', null, null);
 
-    spec.controller = _$controller_('main-loop', {$scope:_$rootScope_.$new(), util:spec.util, format:spec.format, reaction:spec.reaction, data:spec.data, state:spec.state});
+    spec.controller = _$controller_('main-loop', {$scope:_$rootScope_.$new(), visibility:spec.visibility, state:spec.state});
   }));
 };

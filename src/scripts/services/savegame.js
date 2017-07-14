@@ -14,12 +14,16 @@ angular
         $state.go('matter');
       };
 
+      this.save = function () {
+        localStorage.setItem('player', JSON.stringify(state.player));
+      }
+
       this.load = function () {
         try {
           let storedPlayer = localStorage.getItem('player');
-          if(!storedPlayer){
+          if (!storedPlayer) {
             this.initSave();
-          }else{
+          } else {
             state.player = JSON.parse(storedPlayer);
             this.versionControl();
           }
@@ -29,7 +33,7 @@ angular
         }
       };
 
-      this.versionControl = function (){
+      this.versionControl = function () {
         // delete saves older than this version
         if (state.player.version && versionCompare(state.player.version, '2.1.0') < 0) {
           state.player = {};

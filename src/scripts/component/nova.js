@@ -2,26 +2,25 @@
 
 angular.module('game').component('nova', {
   templateUrl: 'views/nova.html',
-  controller: ['state', 'visibility', 'data', nova],
+  controller: ['state', 'visibility', 'upgrade', 'data', nova],
   controllerAs: 'ct'
 });
 
-function nova(state, visibility, data) {
+function nova(state, visibility, upgrade, data) {
   let ct = this;
   ct.state = state;
   ct.visibility = visibility;
   ct.data = data;
 
   ct.buyUpgrade = function (name, element) {
-    if (state.player.elements[element].upgrades[name]) {
-      return;
-    }
+    let upgrades = state.player.elements[element].upgrades;
     let price = data.upgrades[name].price;
     let currency = data.elements[element].main;
-    if (state.player.resources[currency].number >= price) {
-      state.player.resources[currency].number -= price;
-      state.player.elements[element].upgrades[name] = true;
-    }
+    upgrade.buyUpgrade(state.player,
+      upgrades,
+      name,
+      price,
+      currency);
   };
 
   ct.buyGlobalUpgrade = function (name) {
