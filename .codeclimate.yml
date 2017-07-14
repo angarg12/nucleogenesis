@@ -10,13 +10,10 @@ engines:
     enabled: true
   fixme:
     enabled: true
-  markdownlint:
-    enabled: true
 ratings:
   paths:
   - "**.css"
   - "**.js"
-  - "**.md"
 exclude_paths:
   - "Gulpfile.js"
   - "test/"
