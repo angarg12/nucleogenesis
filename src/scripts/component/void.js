@@ -34,8 +34,18 @@ function _void(state, format, visibility, upgrade, data, util) {
     resources.dark_matter.number += production;
     resources.dark_matter.unlocked = true;
 
-    for(let element in data.elements){
-      upgrade.resetElement(state.player, element);
+    for(let key in data.elements){
+      // FIXME this is only necessary until all elements are implemented
+      if(!state.player.elements[key]){
+        continue;
+      }
+      let element = data.elements[key];
+      state.player.resources[element.exotic].number = 0;
+      let exoticUpgrades = state.player.elements[key].exotic_upgrades;
+      for (let up in exoticUpgrades) {
+        exoticUpgrades[up] = false;
+      }
+      upgrade.resetElement(state.player, key);
     }
   };
 

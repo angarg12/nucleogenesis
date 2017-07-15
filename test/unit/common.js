@@ -31,6 +31,7 @@ let commonSpec = function(spec) {
     spec.core = _$componentController_('core', null, null);
     spec.nova = _$componentController_('nova', null, null);
     spec.supernova = _$componentController_('supernova', null, null);
+    spec.void = _$componentController_('void', null, null);
     spec.redox = _$componentController_('redox', null, null);
     spec.reactor = _$componentController_('reactor', null, null);
     spec.matter = _$componentController_('matter', null, null);

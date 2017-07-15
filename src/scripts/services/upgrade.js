@@ -15,6 +15,11 @@ angular
       };
 
       this.resetElement = function(player, element) {
+        let exotic = data.elements[element].exotic;
+        if (!player.resources[exotic].unlocked) {
+          return;
+        }
+
         let resources = player.resources;
         for (let resource of data.elements[element].includes) {
           resources[resource].number = 0;
