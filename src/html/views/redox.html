@@ -10,10 +10,7 @@
   <tbody>
     <tr class="animif">
       <div class="row">
-        <th class="col-lg-2">
-          Resource
-        </th>
-        <th class="col-lg-8">
+        <th class="col-lg-10">
           Redox
         </th>
         <th class="col-lg-1">
@@ -27,21 +24,12 @@
     <tr class="animif"
         ng-repeat="redox in ct.visibility.visibleRedox(ct.state.currentElement) track by $index">
       <div class="row">
-        <td class="col-lg-2">
-          <form name="isotope">
-            <select name="isotope"
-                    id="isotope"
-                    ng-options="key as key for (key , value) in ct.data.elements[redox.element].isotopes"
-                    ng-model="redox.resource">
-            </select>
-          </form>
+        <td class="col-lg-10">
           <button type="button"
                   class="btn btn-default"
                   ng-click="ct.removeRedox(ct.state.player, $index)">
-					Remove
-				</button>
-        </td>
-        <td class="col-lg-2">
+  					Remove
+  				</button>
           <span ng-bind-html="ct.util.trustHTML(
             ct.format.reactionFormat(ct.redoxPower(ct.state.player),
                                       ct.redoxReaction(redox)))"></span>

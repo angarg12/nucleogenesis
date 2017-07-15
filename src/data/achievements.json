@@ -18,7 +18,7 @@
   "ion": {
     "name": "Ion",
     "description": "xxxxxxx",
-    "condition": "player.resources['1H-'].unlocked"
+    "condition": "player.resources['H-'].unlocked"
   },
   "radioactivity": {
     "name": "Radioactivity",
@@ -92,6 +92,6 @@
   "synthesis": {
     "name": "Synthesis",
     "description": "xxxxxxx",
-    "condition": "player.resources['1H-'].unlocked"
+    "condition": "player.resources['H-'].unlocked"
   }
 }

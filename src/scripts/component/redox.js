@@ -16,16 +16,13 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
     ct.format = format;
     ct.reaction = reaction;
 
-    ct.channels = 2;
-    ct.bandwidth = 100;
-
     function update(player) {
       for (let redox of player.redox) {
         if (!redox.resource || !redox.active) {
           continue;
         }
 
-        let reactant = ct.generateName(redox.resource, redox.from);
+        let reactant = ct.generateName(redox.element, redox.from);
         let power = ct.redoxPower(player);
         let number = Math.min(power, player.resources[reactant].number);
         let react = ct.redoxReaction(redox);
@@ -43,11 +40,9 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
     }
 
     ct.redoxReaction = function (redox) {
-      let reactant = ct.generateName(redox.resource, redox.from);
-      let product = ct.generateName(redox.resource, redox.to);
-      // we retrieve the element of the isotope from the resource
-      let element = Object.keys(data.resources[redox.resource].elements)[0];
-      let energy = redoxEnergy(redox.from, redox.to, element);
+      let reactant = ct.generateName(redox.element, redox.from);
+      let product = ct.generateName(redox.element, redox.to);
+      let energy = redoxEnergy(redox.from, redox.to, redox.element);
 
       let react = {
         'reactant': {},
@@ -93,19 +88,19 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       return energy;
     }
 
-    // Generates the name of a ion, e.g. 18O3+
-    ct.generateName = function (isotope, i) {
+    // Generates the name of a ion, e.g. O3+
+    ct.generateName = function (element, i) {
       if (i === 0) {
-        return isotope;
+        return data.elements[element].main;
       }
       let postfix = '';
       if (Math.abs(i) > 1) {
         postfix = Math.abs(i);
       }
       postfix += getSign(i);
-      let name = isotope + postfix;
-      // special case!! 1H+ is just a proton
-      if (name === '1H+') {
+      let name = element + postfix;
+      // special case!! H+ is just a proton
+      if (name === 'H+') {
         name = 'p';
       }
       return name;

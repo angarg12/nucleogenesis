@@ -79,7 +79,7 @@ describe('controller main-loop', function() {
       spec.controller.update();
 
       expect(spec.state.player.resources['3H'].number).toEqual(1000);
-      expect(spec.state.player.resources['3He+'].number).toEqual(0);
+      expect(spec.state.player.resources['He+'].number).toEqual(0);
       expect(spec.state.player.resources['e-'].number).toEqual(0);
       expect(spec.state.player.resources.eV.number).toBeCloseTo(0,4);
     });
@@ -93,7 +93,7 @@ describe('controller main-loop', function() {
       spec.controller.update();
 
       expect(spec.state.player.resources['3H'].number).toEqual(9999999982);
-      expect(spec.state.player.resources['3He+'].number).toEqual(18);
+      expect(spec.state.player.resources['He+'].number).toEqual(18);
       expect(spec.state.player.resources['e-'].number).toEqual(18);
       expect(spec.state.player.resources.eV.number).toBeCloseTo(334980,4);
     });

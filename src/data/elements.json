@@ -16,7 +16,7 @@
             "beta-": {
               "ratio": 1,
               "decay_product": {
-                "3He+": 1,
+                "He+": 1,
                 "e-": 1,
                 "eV": 18610
               }
