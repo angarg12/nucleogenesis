@@ -204,23 +204,6 @@ describe('Visible service', function() {
       expect(values).toEqual([]);
     });
 
-    it('should show visible bindings', function() {
-      spec.state.player = {achievements:{},resources:{}};
-      spec.state.player.achievements = {};
-      spec.state.player.achievements.nuclear_binding_energy = 1;
-      spec.state.player.resources.eV = {unlocked:true};
-      spec.state.player.resources['2H'] = {unlocked:true};
-      spec.state.player.resources['3H'] = {unlocked:false};
-      let temp = spec.data.binding_energy;
-      spec.data.binding_energy = {};
-      spec.data.binding_energy['2H'] = temp['2H'];
-      spec.data.binding_energy['3H'] = temp['3H'];
-
-      let values = spec.visibility.visibleBindings('H');
-
-      expect(values).toEqual(['2H']);
-    });
-
     it('should show visible syntheses', function() {
       spec.state.player = {achievements:{},resources:{}};
       spec.state.player.achievements = {};

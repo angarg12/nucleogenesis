@@ -51,10 +51,6 @@ angular
         return visible(state.player.redox, isRedoxVisible, currentElement);
       };
 
-      this.visibleBindings = function(currentElement) {
-        return visible(data.binding_energy, isBindingVisible, currentElement);
-      };
-
       this.visibleSyntheses = function(currentElement) {
         return visible(data.syntheses, isSynthesisVisible, currentElement);
       };
@@ -175,11 +171,7 @@ angular
       function isRedoxVisible(entry, currentElement) {
         return entry.element === currentElement;
       }
-
-      function isBindingVisible(entry, currentElement) {
-        return isReactionVisible(data.binding_energy[entry], currentElement, 'nuclear_binding_energy');
-      }
-
+      
       function isSynthesisVisible(entry, currentElement) {
         return isReactionVisible(data.syntheses[entry], currentElement, 'synthesis');
       }
