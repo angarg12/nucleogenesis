@@ -35,9 +35,9 @@ angular
           generators[generator] = 0;
         }
 
-        let syntheses = data.elements[element].syntheses;
-        for (let synthesis of syntheses) {
-          player.syntheses[synthesis].active = 0;
+        let reactions = data.elements[element].reactions;
+        for (let reaction of reactions) {
+          player.reactions[reaction].active = 0;
         }
         delete generators['0'];
         let first = Object.keys(generators)[0];

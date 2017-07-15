@@ -11,22 +11,22 @@ let resources = jsonfile.readFileSync(args[0]+'/data/resources.json');
 let elements = jsonfile.readFileSync(args[0]+'/data/elements.json');
 
 for (let element in elements) {
-  elements[element].syntheses = elements[element].syntheses || [];
+  elements[element].reactions = elements[element].reactions || [];
 }
 
 let lineReader = require('readline').createInterface({
-  input: require('fs').createReadStream(args[0]+'/data/raw_syntheses.txt')
+  input: require('fs').createReadStream(args[0]+'/data/raw_reactions.txt')
 });
 
-let syntheses = {};
+let reactions = {};
 // for each reaction
 lineReader.on('line', function (line) {
-  let synthesis = parseSynthesis(line);
-  let key = generateKey(synthesis);
-  syntheses[key] = {};
-  syntheses[key].reactant = vectorToMap(synthesis[0]);
-  syntheses[key].product = vectorToMap(synthesis[1]);
-  extractElements(syntheses[key], key);
+  let reaction = parseReaction(line);
+  let key = generateKey(reaction);
+  reactions[key] = {};
+  reactions[key].reactant = vectorToMap(reaction[0]);
+  reactions[key].product = vectorToMap(reaction[1]);
+  extractElements(reactions[key], key);
 });
 
 lineReader.on('close', function () {
@@ -36,7 +36,7 @@ lineReader.on('close', function () {
   jsonfile.writeFileSync(args[0]+'/data/elements.json', elements, {
     spaces: 2
   });
-  jsonfile.writeFileSync(args[0]+'/data/syntheses.json', syntheses, {
+  jsonfile.writeFileSync(args[0]+'/data/reactions.json', reactions, {
     spaces: 2
   });
 });
@@ -53,13 +53,13 @@ function vectorToMap(vector){
   return map;
 }
 
-function extractElements(synthesis, key) {
-  synthesis.elements = [];
-  elementsFromHalf(synthesis.reactant, synthesis.elements, key);
-  elementsFromHalf(synthesis.product, synthesis.elements, key);
+function extractElements(reaction, key) {
+  reaction.elements = [];
+  elementsFromHalf(reaction.reactant, reaction.elements, key);
+  elementsFromHalf(reaction.product, reaction.elements, key);
 }
 
-function elementsFromHalf(half, synthElements, key){
+function elementsFromHalf(half, reactElements, key){
   for (let molecule in half) {
     let breakdown = parser.decomposeFormula(molecule);
   	if (!resources[molecule] && !elements[molecule]) {
@@ -70,24 +70,24 @@ function elementsFromHalf(half, synthElements, key){
       }
     for (let j in breakdown) {
       // we add the elements involved in both parts
-      if (synthElements.indexOf(j) === -1) {
-        synthElements.push(j);
+      if (reactElements.indexOf(j) === -1) {
+        reactElements.push(j);
       }
       if (elements[j].includes.indexOf(molecule) === -1) {
         elements[j].includes.push(molecule);
       }
-      if (elements[j].syntheses.indexOf(key) === -1) {
-        elements[j].syntheses.push(key);
+      if (elements[j].reactions.indexOf(key) === -1) {
+        elements[j].reactions.push(key);
       }
     }
   }
 }
 
-function generateKey(synthesis) {
+function generateKey(reaction) {
   let key = '';
-  for (let half in synthesis) {
-    for (let i in synthesis[half]) {
-      key += synthesis[half][i] + '.';
+  for (let half in reaction) {
+    for (let i in reaction[half]) {
+      key += reaction[half][i] + '.';
     }
     key = key.replace(/.$/, '');
     key += '-';
@@ -96,13 +96,13 @@ function generateKey(synthesis) {
   return key;
 }
 
-function parseSynthesis(line) {
+function parseReaction(line) {
   let part = line.split('->');
-  let synthesis = [];
+  let reaction = [];
   for (let i in part) {
-    synthesis[i] = part[i].trim().split(' ').sort();
+    reaction[i] = part[i].trim().split(' ').sort();
   }
-  return synthesis;
+  return reaction;
 }
 
 function generateHTML(breakdown){

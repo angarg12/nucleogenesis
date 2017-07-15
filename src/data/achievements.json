@@ -84,8 +84,8 @@
     "description": "xxxxxxx",
     "condition": "player.resources['H2'].unlocked || player.resources['O2'].unlocked || player.resources['O3'].unlocked"
   },
-  "synthesis": {
-    "name": "Synthesis",
+  "reaction": {
+    "name": "Reactions",
     "description": "xxxxxxx",
     "condition": "player.resources['H-'].unlocked"
   }

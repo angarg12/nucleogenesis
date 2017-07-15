@@ -17,7 +17,7 @@ let globalUpgrades = jsonfile.readFileSync(path.join(basePath, '/global_upgrades
 let exoticUpgrades = jsonfile.readFileSync(path.join(basePath, '/exotic_upgrades.json'));
 let darkUpgrades = jsonfile.readFileSync(path.join(basePath, '/dark_upgrades.json'));
 let achievements = jsonfile.readFileSync(path.join(basePath, '/achievements.json'));
-let syntheses = jsonfile.readFileSync(path.join(basePath, '/syntheses.json'));
+let reactions = jsonfile.readFileSync(path.join(basePath, '/reactions.json'));
 
 let startPlayer = {
   elements_unlocked: 1
@@ -73,9 +73,9 @@ startPlayer.achievements = {};
 for (let entry in achievements) {
   startPlayer.achievements[entry] = 0;
 }
-startPlayer.syntheses = {};
-for (let entry in syntheses) {
-  startPlayer.syntheses[entry] = {
+startPlayer.reactions = {};
+for (let entry in reactions) {
+  startPlayer.reactions[entry] = {
     number: 0,
     active: 0
   };

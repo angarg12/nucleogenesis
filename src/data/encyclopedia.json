@@ -75,9 +75,9 @@
     "name": "Redox",
     "link": "https://en.wikipedia.org/wiki/Redox"
   },
-  "synthesis": {
-    "name": "Synthesis",
-    "link": "https://en.wikipedia.org/wiki/Chemical_synthesis"
+  "reactions": {
+    "name": "Reactions",
+    "link": "https://en.wikipedia.org/wiki/Chemical_reactions"
   },
   "ion": {
     "name": "Ion",

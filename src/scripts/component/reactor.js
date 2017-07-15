@@ -7,7 +7,7 @@ angular.module('game').component('reactor', {
 });
 
 angular.module('game').controller('ct_reactor', ['state', 'data', 'visibility', 'util', 'format', 'reaction',
-function (state, data, visibility, util, format, reaction) {
+function (state, data, visibility, util, format, reactionService) {
   let ct = this;
   ct.state = state;
   ct.data = data;
@@ -16,37 +16,37 @@ function (state, data, visibility, util, format, reaction) {
   ct.format = format;
 
   function update(player) {
-    // We will process the synthesis
-    for (let syn in player.syntheses) {
-      let power = ct.synthesisPower(player, syn);
+    // We will process the reaction
+    for (let syn in player.reactions) {
+      let power = ct.reactionPower(player, syn);
       if (power !== 0) {
-        reaction.react(power, data.syntheses[syn], player);
+        reactionService.react(power, data.reactions[syn], player);
       }
     }
   }
 
-  ct.synthesisPower = function (player, synthesis) {
-    let level = player.syntheses[synthesis].active;
-    return Math.ceil(Math.pow(level, data.constants.SYNTH_POWER_INCREASE));
+  ct.reactionPower = function (player, reaction) {
+    let level = player.reactions[reaction].active;
+    return Math.ceil(Math.pow(level, data.constants.REACT_POWER_INCREASE));
   };
 
-  ct.synthesisMultiplier = function (player, synthesis) {
-    let level = player.syntheses[synthesis].number;
-    return Math.ceil(Math.pow(data.constants.SYNTH_PRICE_INCREASE, level));
+  ct.reactionMultiplier = function (player, reaction) {
+    let level = player.reactions[reaction].number;
+    return Math.ceil(Math.pow(data.constants.REACT_PRICE_INCREASE, level));
   };
 
-  function synthesisPrice(player, synthesis) {
-    let multiplier = ct.synthesisMultiplier(player, synthesis);
+  function reactionPrice(player, reaction) {
+    let multiplier = ct.reactionMultiplier(player, reaction);
     let price = {};
-    let reactant = data.syntheses[synthesis].reactant;
+    let reactant = data.reactions[reaction].reactant;
     for (let resource in reactant) {
       price[resource] = reactant[resource] * multiplier;
     }
     return price;
   }
 
-  ct.isSynthesisCostMet = function (player, synthesis) {
-    let price = synthesisPrice(player, synthesis);
+  ct.isReactionCostMet = function (player, reaction) {
+    let price = reactionPrice(player, reaction);
     for (let resource in price) {
       if (player.resources[resource].number < price[resource]) {
         return false;
@@ -55,15 +55,15 @@ function (state, data, visibility, util, format, reaction) {
     return true;
   };
 
-  ct.buySynthesis = function (player, synthesis, number) {
+  ct.buyReaction = function (player, reaction, number) {
     let i = 0;
     // we need a loop since we use the ceil operator
-    while (i < number && ct.isSynthesisCostMet(player, synthesis)) {
-      let price = synthesisPrice(player, synthesis);
+    while (i < number && ct.isReactionCostMet(player, reaction)) {
+      let price = reactionPrice(player, reaction);
       for (let resource in price) {
         player.resources[resource].number -= price[resource];
       }
-      player.syntheses[synthesis].number += 1;
+      player.reactions[reaction].number += 1;
       i++;
     }
   };

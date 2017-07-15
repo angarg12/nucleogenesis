@@ -23,7 +23,7 @@ describe('Void component', function() {
         spec.state.player = spec.data.start_player;
         spec.state.player.resources['1H'] = {number:1e8, unlocked: true};
         spec.state.player.elements.H.upgrades['1-1'] = true;
-        spec.state.player.syntheses['H.OH-H2O'].active = 10;
+        spec.state.player.reactions['H.OH-H2O'].active = 10;
         spec.state.player.elements.H.generators['1'] = 99;
         spec.state.player.elements.H.generators['2'] = 99;
         spec.state.player.resources.xH = {number:1e8, unlocked: true};
@@ -33,7 +33,7 @@ describe('Void component', function() {
 
         expect(spec.state.player.elements.H.upgrades['1-1']).toBeFalsy();
         expect(spec.state.player.elements.H.exotic_upgrades.x3).toBeFalsy();
-        expect(spec.state.player.syntheses['H.OH-H2O'].active).toEqual(0);
+        expect(spec.state.player.reactions['H.OH-H2O'].active).toEqual(0);
         expect(spec.state.player.elements.H.generators['1']).toEqual(1);
         expect(spec.state.player.elements.H.generators['2']).toEqual(0);
         expect(spec.state.player.resources['1H'].number).toEqual(0);

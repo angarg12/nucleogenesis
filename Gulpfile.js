@@ -140,8 +140,8 @@ gulp.task('generate_ions', function() {
   return plugins.run('node build_scripts/generate_ions.js build',{silent:true}).exec();
 });
 
-gulp.task('generate_syntheses', function() {
-  return plugins.run('node build_scripts/generate_syntheses.js build',{silent:true}).exec();
+gulp.task('generate_reactions', function() {
+  return plugins.run('node build_scripts/generate_reactions.js build',{silent:true}).exec();
 });
 
 gulp.task('generate_antimatter', function() {
@@ -171,7 +171,7 @@ gulp.task('build', function(callback) {
     'copy-build',
     'generate_isotopes',
     'generate_ions',
-    'generate_syntheses',
+    'generate_reactions',
     'generate_antimatter',
     'generate_achievement_functions',
     'sort_resources',

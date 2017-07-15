@@ -52,7 +52,7 @@ angular
       };
 
       this.visibleSyntheses = function(currentElement) {
-        return visible(data.syntheses, isSynthesisVisible, currentElement);
+        return visible(data.reactions, isSynthesisVisible, currentElement);
       };
 
       function isElementVisible(element) {
@@ -171,9 +171,9 @@ angular
       function isRedoxVisible(entry, currentElement) {
         return entry.element === currentElement;
       }
-      
+
       function isSynthesisVisible(entry, currentElement) {
-        return isReactionVisible(data.syntheses[entry], currentElement, 'synthesis');
+        return isReactionVisible(data.reactions[entry], currentElement, 'reaction');
       }
 
       this.elementHasNew = function(element) {

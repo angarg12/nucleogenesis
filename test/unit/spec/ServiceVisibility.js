@@ -204,21 +204,21 @@ describe('Visible service', function() {
       expect(values).toEqual([]);
     });
 
-    it('should show visible syntheses', function() {
+    it('should show visible reactions', function() {
       spec.state.player = {achievements:{},resources:{}};
       spec.state.player.achievements = {};
-      spec.state.player.achievements.synthesis = 1;
+      spec.state.player.achievements.reaction = 1;
       spec.state.player.resources['1H-'] = {unlocked:true};
       spec.state.player.resources.p = {unlocked:true};
       spec.state.player.resources.H2 = {unlocked:true};
       spec.state.player.resources.O2 = {unlocked:false};
-      spec.data.syntheses = {};
-      spec.data.syntheses['1H-p'] = {
+      spec.data.reactions = {};
+      spec.data.reactions['1H-p'] = {
         'reactant': {'1H-':1,'p':1},
         'product': {'H2':1},
         'elements': [ 'H' ]
       };
-      spec.data.syntheses.H2O = {
+      spec.data.reactions.H2O = {
         'reactant': {'H2':2,'O2':1},
         'product': {'H2O':2},
         'elements': ['H','O']
