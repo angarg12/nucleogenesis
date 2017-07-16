@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<div class="row">
+  <a class="btn btn-default col-lg-2"
+     ng-repeat="entry in ct.visibility.visibleEncyclopediaEntries()"
+     ng-mouseover="ct.visibility.removeNew(entry)"
+     target="_blank"
+     href="{{ct.data.encyclopedia[entry].link}}">
+    <i class="mdi mdi-18px mdi-alert-decagram" ng-if="ct.visibility.hasNew(entry)"></i> {{ct.data.encyclopedia[entry].name}}
+  </a>
+</div>

@@ -23,8 +23,8 @@ angular
         .state('void', {
           component: 'void'
         })
-        .state('encyclopedia', {
-          templateUrl: 'views/encyclopedia.html'
+        .state('wiki', {
+          component: 'wiki'
         })
         .state('core', {
           component: 'core'

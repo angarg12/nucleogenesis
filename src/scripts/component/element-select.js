@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('game').component('elementSelect', {
-  templateUrl: 'views/element-select.html',
+  templateUrl: 'views/elementSelect.html',
   controller: ['state', 'visibility', 'data',
     function(state, visibility, data) {
       this.state = state;
