@@ -27,9 +27,6 @@ for (let element in elements) {
     resources[isotope] = {};
     resources[isotope].ratio = isotopes[isotope].ratio;
     resources[isotope].decay = isotopes[isotope].decay;
-    if (typeof isotopes[isotope].decay !== 'undefined') {
-      radioisotopes.push(isotope);
-    }
     resources[isotope].elements = {};
     resources[isotope].elements[element] = 1;
     resources[isotope].html = isotopePrefix(isotope) + element;
@@ -46,8 +43,8 @@ for (let element in elements) {
     }
   }
   let difference = 1 - ratioSum;
-  if ((Math.abs(difference) > 1e-6) && !elements[element].disabled) {
-    throw new Error('Ratios add up to '.concat(Math.round(ratioSum * 1000000) / 1000000, ' for ', element));
+  if (Math.abs(difference) > 1e-6 && !elements[element].disabled) {
+    throw new Error('Ratios add up to '.concat(1 - difference, ' for ', element));
   }
   elements[element].main = mainIsotope[1];
 }
@@ -55,6 +52,13 @@ for (let element in elements) {
 function isotopePrefix(isotope) {
   let prefix = isotope.replace(/(^\d+)(.+$)/i, '$1');
   return '<sup>' + prefix + '</sup>';
+}
+
+
+for (let resource in resources) {
+  if (typeof resources[resource].decay !== 'undefined') {
+    radioisotopes.push(resource);
+  }
 }
 
 jsonfile.writeFileSync(args[0] + '/data/resources.json', resources, {
