@@ -39,8 +39,19 @@ angular
         return visible(data.dark_upgrades, isDarkUpgradeVisible, currentElement);
       };
 
-      this.visibleResources = function(currentElement) {
-        return visible(data.resources, isResourceVisible, currentElement);
+      this.visibleResources = function(currentElement, type) {
+        let resources = visible(data.resources, isResourceVisible, currentElement);
+        if(type){
+          let filteredResources = [];
+          for(let resource of resources){
+            if(data.resources[resource].type &&
+               data.resources[resource].type.indexOf(type) !== -1){
+                filteredResources.push(resource);
+            }
+          }
+          return filteredResources;
+        }
+        return resources;
       };
 
       this.visibleEncyclopediaEntries = function() {

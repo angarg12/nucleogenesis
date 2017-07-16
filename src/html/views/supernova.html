@@ -7,14 +7,39 @@
     </h3>
 <p>Sacrifice your progress to obtain exotic matter. Exotic matter boosts your production for the element
   by {{ct.data.constants.EXOTIC_POWER*100}}% and unlocks new upgrades.</p>
-<p>Prestige now to obtain</p>
-<p ng-repeat="(key,value) in ct.exoticProduction()">
-  <pretty value="value"></pretty>
-  <get-html value="key"></get-html>
-</p>
-<button type="button"
-        class="btn btn-default"
-        ng-click="ct.exoticPrestige(ct.state.currentElement)">Prestige</button>
+<p>You can spend subatomic particles to boost your exotic matter production.</p>
+<form name="infuse">
+  <div ng-repeat="resource in ct.visibility.visibleResources(ct.state.currentElement, 'subatomic')">
+    {{resource}}: <input type="number"
+           ng-init="ct.infuse[resource] = 0"
+           min="0"
+           step="any"
+           ng-model="ct.infuse[resource]"
+           ng-change="ct.fixNumber(resource)"
+           pattern="^[^.]*$" />
+    <button type="button"
+            class="btn btn-default"
+            ng-click="ct.setPercentage(resource, 10)"> 10% </button>
+    <button type="button"
+            class="btn btn-default"
+            ng-click="ct.setPercentage(resource, 50)"> 50% </button>
+    <button type="button"
+            class="btn btn-default"
+            ng-click="ct.setPercentage(resource, 100)"> 100% </button> Boost: +
+    <pretty value="ct.infuse[resource]*ct.data.constants.INFUSE_POWER*100"></pretty>%
+  </div>
+  Total boost: +
+  <pretty value="ct.totalInfuseBoost()*100"></pretty>%
+  <p>Prestige now to obtain</p>
+  <p ng-repeat="(key,value) in ct.exoticProduction()">
+    <pretty value="value"></pretty>
+    <get-html value="key"></get-html>
+  </p>
+  <button type="button"
+          class="btn btn-default"
+          ng-class="{disabled: !ct.isValidInfusion()}"
+          ng-click="ct.exoticPrestige(ct.state.currentElement)">Prestige</button>
+</form>
 <p>You will sacrifice</p>
 <p ng-repeat="key in ct.data.elements[ct.state.currentElement].includes"
    ng-if="ct.state.player.resources[key].unlocked">

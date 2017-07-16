@@ -13,6 +13,7 @@ function supernova(state, format, visibility, upgrade, data, util) {
   ct.data = data;
   ct.util = util;
   ct.format = format;
+  ct.infuse = {};
 
   ct.exoticProduction = function() {
     let production = {};
@@ -44,6 +45,8 @@ function supernova(state, format, visibility, upgrade, data, util) {
       } else {
         production[key] = 0;
       }
+      // we adjust the infusion
+      production[key] += Math.floor(production[key]*ct.totalInfuseBoost());
     }
 
     return production;
@@ -71,4 +74,30 @@ function supernova(state, format, visibility, upgrade, data, util) {
       price,
       currency);
   };
+
+  ct.setPercentage = function(resource, percentage) {
+    ct.infuse[resource] = Math.floor(state.player.resources[resource].number*(percentage/100));
+  }
+
+  ct.fixNumber = function(resource) {
+    ct.infuse[resource] = Math.max(0, Math.min(state.player.resources[resource].number, ct.infuse[resource]));
+  }
+
+  ct.isValidInfusion = function() {
+    let valid = true;
+    for(let resource in ct.infuse){
+      console.log(resource+" "+ct.infuse[resource]+" "+Number.isFinite(ct.infuse[resource]));
+      valid = valid && Number.isFinite(ct.infuse[resource]);
+    }
+    return valid;
+  }
+
+  ct.totalInfuseBoost = function() {
+    let total = 1;
+    for(let resource in ct.infuse){
+      let number = Math.min(ct.infuse[resource], state.player.resources[resource].number);
+      total *= 1+number*ct.data.constants.INFUSE_POWER;
+    }
+    return total-1;
+  }
 }
