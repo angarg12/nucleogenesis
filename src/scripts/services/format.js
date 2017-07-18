@@ -1,3 +1,9 @@
+/**
+ format
+ Service that formats elements as HTML.
+
+ @namespace Services
+ */
 'use strict';
 
 angular

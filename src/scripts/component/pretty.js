@@ -1,3 +1,9 @@
+/**
+ pretty
+ Simple component to pretty print a number.
+
+ @namespace Components
+ */
 'use strict';
 
 angular.module('game').component('pretty', {

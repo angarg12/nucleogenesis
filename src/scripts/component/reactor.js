@@ -1,3 +1,9 @@
+/**
+ reactor
+ Component that handles reactions and molecules.
+
+ @namespace Components
+ */
 'use strict';
 
 angular.module('game').component('reactor', {
@@ -30,13 +36,13 @@ function (state, data, visibility, util, format, reactionService) {
     return Math.ceil(Math.pow(level, data.constants.REACT_POWER_INCREASE));
   };
 
-  ct.reactionMultiplier = function (player, reaction) {
+  ct.reactionPriceMultiplier = function (player, reaction) {
     let level = player.reactions[reaction].number;
     return Math.ceil(Math.pow(data.constants.REACT_PRICE_INCREASE, level));
   };
 
   function reactionPrice(player, reaction) {
-    let multiplier = ct.reactionMultiplier(player, reaction);
+    let multiplier = ct.reactionPriceMultiplier(player, reaction);
     let price = {};
     let reactant = data.reactions[reaction].reactant;
     for (let resource in reactant) {

@@ -1,3 +1,9 @@
+/**
+ sidebar
+ Simple component for the Wiki tab.
+
+ @namespace Components
+ */
 'use strict';
 
 angular.module('game').component('wiki', {

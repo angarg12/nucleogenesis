@@ -1,3 +1,9 @@
+/**
+ matter
+ Component that handles generators, resource creation, isotopes and decay.
+
+ @namespace Components
+ */
 'use strict';
 
 angular.module('game').component('matter', {
@@ -13,7 +19,11 @@ function (state, visibility, data, util) {
   ct.visibility = visibility;
   ct.data = data;
 
+  /* Proceses the decay of radiactive isotopes. It uses a random draw based on the
+  half life to decide how many atoms decay, and then spreads them over different
+  decay forms proportionally. */
   function processDecay(player) {
+    // for each radiactive isotope
     for (let i = 0; i < data.radioisotopes.length; i++) {
       let resource = data.radioisotopes[i];
       if (player.resources[resource].unlocked) {
@@ -43,27 +53,31 @@ function (state, visibility, data, util) {
     }
   }
 
+  /* Proceses the generation for each element. It generates isotopes with a random
+  draw proportionally to their probability. */
   function processGenerators(player) {
-    // We will simulate the production of isotopes proportional to their ratio
+    // we will simulate the production of isotopes proportional to their ratio
     for (let element in player.elements) {
       if (player.elements[element].unlocked === false) {
         continue;
       }
-      // Prepare an array with the isotopes
+      // prepare an array with the isotopes
       let isotopes = Object.keys(data.elements[element].isotopes);
       let remaining = ct.elementProduction(player, element);
-      // We will create a random draw recalculate the mean and std
+      // we will create a random draw recalculate the mean and std
       for (let i = 0; i < isotopes.length - 1; i++) {
-        // First we need to adjust the ratio for the remaining isotopes
+        // first we need to adjust the ratio for the remaining isotopes
         let remainingRatioSum = 0;
         for (let j = i; j < isotopes.length; j++) {
           remainingRatioSum += data.resources[isotopes[j]].ratio;
         }
 
+        // we calculate the production with a random draw
         let p = data.resources[isotopes[i]].ratio / remainingRatioSum;
         let production = util.randomDraw(remaining, p);
 
         if (production > 0) {
+          // assign the player the produced isotope
           player.resources[isotopes[i]].number += production;
           if (!player.resources[isotopes[i]].unlocked) {
             player.resources[isotopes[i]].unlocked = true;
@@ -72,7 +86,7 @@ function (state, visibility, data, util) {
         }
         remaining -= production;
       }
-      // The last isotope is just the remaining production that hasn't been consumed
+      // the last isotope is just the remaining production that hasn't been consumed
       if (remaining > 0) {
         let last = isotopes[isotopes.length - 1];
         player.resources[last].number += remaining;
@@ -119,6 +133,7 @@ function (state, visibility, data, util) {
     return upgradedProduction(player, baseProduction, name, element);
   };
 
+  /* Upgraded production includes upgrades, exotic matter and dark matter. */
   function upgradedProduction(player, production, name, element) {
     for (let up in data.generators[name].upgrades) {
       if (player.elements[element].upgrades[data.generators[name].upgrades[up]]) {

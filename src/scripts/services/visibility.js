@@ -1,3 +1,9 @@
+/**
+ visibility
+ Service that holds all functions that determine which elements are visible.
+
+ @namespace Services
+ */
 'use strict';
 
 angular

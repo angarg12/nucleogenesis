@@ -1,3 +1,9 @@
+/**
+ nova
+ Component that handles upgrades.
+
+ @namespace Components
+ */
 'use strict';
 
 angular.module('game').component('nova', {
@@ -23,6 +29,7 @@ function nova(state, visibility, upgrade, data) {
       currency);
   };
 
+  /* Global upgrades are non-resource specific, repeatable upgrades */
   ct.buyGlobalUpgrade = function (name) {
     if (!ct.canBuyGlobalUpgrade(name)) {
       return;

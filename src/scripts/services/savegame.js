@@ -1,4 +1,10 @@
 /* globals versionCompare, atob, btoa */
+/**
+ savegame
+ Service that handles save/load related functions.
+
+ @namespace Services
+ */
 'use strict';
 
 angular

@@ -1,3 +1,9 @@
+/**
+ reactionTable
+ Component for the table of reactions in the Reactor tab.
+
+ @namespace Components
+ */
 'use strict';
 
 angular.module('game').component('reactionTable', {

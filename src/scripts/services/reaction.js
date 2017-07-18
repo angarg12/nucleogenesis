@@ -1,3 +1,10 @@
+/**
+ reaction
+ Service that processes a reaction i.e. it converts reactants to products.
+ Many phenomenons, including decay, redox and reactions, use the react function.
+
+ @namespace Services
+ */
 'use strict';
 
 angular
@@ -17,6 +24,7 @@ angular
           return true;
         };
 
+      /* Transforms reactants to products */
       this.react = function(number, reaction, playerData) {
         if (!Number.isInteger(number) || number <= 0) {
           return;

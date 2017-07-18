@@ -1,3 +1,9 @@
+/**
+ elementSelect
+ Simple component to display the element selection list.
+
+ @namespace Components
+ */
 'use strict';
 
 angular.module('game').component('elementSelect', {

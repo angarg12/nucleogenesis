@@ -1,3 +1,10 @@
+/**
+ core
+ Component that handles the periodic table tab.
+ It includes the logic to purchase and display elements.
+
+ @namespace Components
+ */
 'use strict';
 
 angular.module('game').component('core', {
@@ -35,6 +42,8 @@ function core(state, data) {
     }
   };
 
+  /* This function returns the class that determines on which
+  colour an element card */
   ct.elementClass = function (element) {
     // FIXME: when all elements are implemented, this can be removed
     if (data.elements[element]) {
@@ -55,6 +64,8 @@ function core(state, data) {
     }
   };
 
+  /* This function returns the class that determines the secondary
+  colour of an element card */
   ct.elementSecondaryClass = function (element) {
     return ct.elementClass(element) + '_dark';
   };

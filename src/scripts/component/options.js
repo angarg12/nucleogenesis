@@ -1,3 +1,9 @@
+/**
+ options
+ Component that handles the options of the game.
+
+ @namespace Components
+ */
 'use strict';
 
 angular.module('game').component('options', {

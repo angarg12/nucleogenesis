@@ -1,3 +1,11 @@
+/**
+ upgrade
+ Auxiliary services aimed to reduce duplication. The behaviour for upgrades,
+ exotic upgrades and dark upgrades is almost the same. Also, both prestige loops
+ require to reset an element.
+
+ @namespace Services
+ */
 'use strict';
 
 angular

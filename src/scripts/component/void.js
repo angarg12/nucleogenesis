@@ -1,3 +1,12 @@
+/**
+ void
+ Component that handles dark matter and second prestige logic.
+ It handles dark matter production and dark upgrades.
+ A second prestige resets the progress of all elements with exotic
+ matter and produces dark matter.
+
+ @namespace Components
+ */
 'use strict';
 
 angular.module('game').component('void', {

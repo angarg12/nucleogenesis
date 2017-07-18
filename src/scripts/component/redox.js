@@ -1,3 +1,9 @@
+/**
+ redox
+ Component that handles reduction/oxidation and ions.
+
+ @namespace Components
+ */
 'use strict';
 
 angular.module('game').component('redox', {
@@ -31,6 +37,7 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       }
     }
 
+    /* Calculates the redox power based on the redox upgrades */
     ct.redoxPower = function(player) {
       let level = player.global_upgrades.redox_bandwidth;
       let upgrade = data.global_upgrades.redox_bandwidth;
@@ -39,6 +46,8 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       return basePower * Math.floor(Math.pow(level, polynomial));
     }
 
+    /* Writes a redox in the form of a reaction so that we can use the reaction
+    service to process it */
     ct.redoxReaction = function (redox) {
       let reactant = ct.generateName(redox.element, redox.from);
       let product = ct.generateName(redox.element, redox.to);
@@ -67,6 +76,8 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       return react;
     };
 
+    /* Calculates how much energy it takes to go from a redox level to another
+    for a given element */
     function redoxEnergy(from, to, element) {
       let energyFrom = cumulativeEnergy(element, from);
       let energyTo = cumulativeEnergy(element, to);
@@ -75,6 +86,10 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       return energy;
     }
 
+    /* Calculates the cummulative energy of a redox level.
+    The logic is the following: the redox array gives how much energy it costs
+    to go from a level to the next, e.g. from +2 to +3. This function calculates
+    how much it takes to go from level 0 to x by summing each successive level */
     function cumulativeEnergy(element, level) {
       let energy = 0;
       let start = Math.min(0, level);
@@ -88,7 +103,7 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       return energy;
     }
 
-    // Generates the name of a ion, e.g. O3+
+    /* Generates the name of a ion, e.g. O3+ */
     ct.generateName = function (element, i) {
       if (i === 0) {
         return data.elements[element].main;
@@ -110,19 +125,20 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       return number > 0 ? '+' : '-';
     }
 
+    /* Calculates the number of redox slots based on the redox upgrades */
     ct.redoxSlots = function (player) {
       let level = player.global_upgrades.redox_slots;
       let upgrade = data.global_upgrades.redox_slots;
       let basePower = upgrade.power;
       let multiplier = upgrade.power_mult;
       return basePower * Math.floor(multiplier * level);
-
     };
 
     ct.redoxSize = function (player) {
       return player.redox.length;
     }
 
+    /* Adds a new redox to the player list */
     ct.addRedox = function (player) {
       if(ct.redoxSize(player) >= ct.redoxSlots(player)){
         return;

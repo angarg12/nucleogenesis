@@ -1,3 +1,9 @@
+/**
+ sidebar
+ Simple component to display the resource sidebar.
+
+ @namespace Components
+ */
 'use strict';
 
 angular.module('game').component('sidebar', {

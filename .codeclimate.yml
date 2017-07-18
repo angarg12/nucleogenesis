@@ -17,3 +17,4 @@ ratings:
 exclude_paths:
   - "Gulpfile.js"
   - "test/"
+  - "build_scripts/"

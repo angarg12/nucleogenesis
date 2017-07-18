@@ -1,3 +1,11 @@
+/**
+ state
+ This service handles all the mutable data of the game, most importantly the player data.
+ It also binds together the main-loop with each component by keeping a list of update
+ functions where components can register themselves.
+
+ @namespace Services
+ */
 'use strict';
 
 angular

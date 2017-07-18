@@ -1,4 +1,10 @@
 /* globals Ziggurat, Poisson */
+/**
+ util
+ Utility service with misc. functions.
+
+ @namespace Services
+ */
 'use strict';
 
 angular
@@ -10,6 +16,8 @@ angular
       this.gaussian = new Ziggurat();
       this.poisson = new Poisson();
 
+      /* Return the HTML representation of an element, or the element itself
+      if it doesn't have one */
       this.getHTML = function(resource) {
         let html = data.html[resource];
         if (typeof html === 'undefined') {
@@ -49,8 +57,8 @@ angular
         let production;
         let mean = number * p;
         if (p < 0.01) {
-          // using Poisson distribution (would get slow for large numbers. there are fast formulas but I don't know
-          // how good they are)
+          // using Poisson distribution (would get slow for large numbers.
+          // there are fast formulas but I don't know how good they are)
           production = this.poisson.getPoisson(mean);
         } else {
           // Gaussian distribution

@@ -1,3 +1,13 @@
+/**
+ Achievement
+ This component is responsible for checking, unlocking and
+ displaying achievements.
+ Achievement progress functions are generated at build time
+ out of the achievements data, and replaces in the lodash
+ template parameter.
+
+ @namespace Components
+ */
 'use strict';
 
 angular.module('game').component('achievements', {
@@ -16,6 +26,7 @@ angular.module('game').controller('ct_achievements', ['$window', 'state', 'data'
     ct.state = state;
     ct.data = data;
 
+    /* Does the achievement have progress, or is it a boolean? */
     ct.hasProgress = function (key) {
       return data.achievements[key].goals.length > 1 ||
         data.achievements[key].goals[0] !== 1;
