@@ -25,10 +25,10 @@
             ng-click="ct.setPercentage(resource, 50)"> 50% </button>
     <button type="button"
             class="btn btn-default"
-            ng-click="ct.setPercentage(resource, 100)"> 100% </button> Boost: +
-    <pretty value="ct.infuse[resource]*ct.data.constants.INFUSE_POWER*100"></pretty>%
+            ng-click="ct.setPercentage(resource, 100)"> 100% </button> Boost:
+    <pretty value="ct.infuseBoost(resource)*100"></pretty>%
   </div>
-  Total boost: +
+  Total boost:
   <pretty value="ct.totalInfuseBoost()*100"></pretty>%
   <p>Prestige now to obtain</p>
   <p ng-repeat="(key,value) in ct.exoticProduction()">

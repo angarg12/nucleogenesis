@@ -1,3 +1,13 @@
+/**
+ supernova
+ Component that handles the exotic matter and prestige logic.
+ It includes exotic matter production, exotic upgrades, and infusion of
+ subatomic particles to boost exotic production.
+ A prestige erases the progress of a single element, and produces exotic
+ matter for said element.
+
+ @namespace Components
+ */
 'use strict';
 
 angular.module('game').component('supernova', {
@@ -15,6 +25,9 @@ function supernova(state, format, visibility, upgrade, data, util) {
   ct.format = format;
   ct.infuse = {};
 
+  /* Exotic production is a function of the different resources of each
+  element. Additionally, multi-element molecules count double, once for
+  each participating element. */
   ct.exoticProduction = function() {
     let production = {};
     let exotic = data.elements[state.currentElement].exotic;
@@ -46,7 +59,7 @@ function supernova(state, format, visibility, upgrade, data, util) {
         production[key] = 0;
       }
       // we adjust the infusion
-      production[key] += Math.floor(production[key]*ct.totalInfuseBoost());
+      production[key] = Math.floor(production[key]*ct.totalInfuseBoost());
     }
 
     return production;
@@ -59,6 +72,10 @@ function supernova(state, format, visibility, upgrade, data, util) {
     for (let key in production) {
       resources[key].number += production[key];
       resources[key].unlocked = true;
+    }
+
+    for(let resource in ct.infuse){
+      state.player.resources[resource].number -= ct.infuse[resource];
     }
 
     upgrade.resetElement(state.player, state.currentElement);
@@ -77,27 +94,35 @@ function supernova(state, format, visibility, upgrade, data, util) {
 
   ct.setPercentage = function(resource, percentage) {
     ct.infuse[resource] = Math.floor(state.player.resources[resource].number*(percentage/100));
-  }
+  };
 
   ct.fixNumber = function(resource) {
     ct.infuse[resource] = Math.max(0, Math.min(state.player.resources[resource].number, ct.infuse[resource]));
-  }
+  };
 
+  /* This function checks that values inserted in the text boxes are
+  valid numbers */
   ct.isValidInfusion = function() {
     let valid = true;
     for(let resource in ct.infuse){
-      console.log(resource+" "+ct.infuse[resource]+" "+Number.isFinite(ct.infuse[resource]));
       valid = valid && Number.isFinite(ct.infuse[resource]);
     }
     return valid;
-  }
+  };
 
+  /* The infusion boosts are multiplicative with respect to each other */
+  ct.infuseBoost = function(resource) {
+      let number = Math.min(ct.infuse[resource], state.player.resources[resource].number);
+      // sqrt adds diminishing returns to the infusion
+      return 1 + Math.sqrt(number)*ct.data.constants.INFUSE_POWER;
+  };
+
+  /* The infusion boosts are multiplicative with respect to each other */
   ct.totalInfuseBoost = function() {
     let total = 1;
     for(let resource in ct.infuse){
-      let number = Math.min(ct.infuse[resource], state.player.resources[resource].number);
-      total *= 1+number*ct.data.constants.INFUSE_POWER;
+      total *= ct.infuseBoost(resource);
     }
-    return total-1;
-  }
+    return total;
+  };
 }
