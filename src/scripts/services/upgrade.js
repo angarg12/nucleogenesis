@@ -47,6 +47,12 @@ angular
         for (let reaction of reactions) {
           player.reactions[reaction].active = 0;
         }
+
+        let redoxes = player.redox;
+        for (let redox of redoxes) {
+          redox.active = false;
+        }
+
         delete generators['0'];
         let first = Object.keys(generators)[0];
 
