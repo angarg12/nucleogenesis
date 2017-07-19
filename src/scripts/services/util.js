@@ -56,7 +56,7 @@ angular
       this.randomDraw = function(number, p) {
         let production;
         let mean = number * p;
-        if (p < 0.01) {
+        if (mean < 5) {
           // using Poisson distribution (would get slow for large numbers.
           // there are fast formulas but I don't know how good they are)
           production = this.poisson.getPoisson(mean);

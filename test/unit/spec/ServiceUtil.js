@@ -62,14 +62,6 @@ describe('Util service', function() {
 
   describe('random draw', function() {
     it('should return a normally distributed random number', function() {
-      spyOn(spec.util.gaussian,'nextGaussian').and.returnValues(0);
-
-      let value = spec.util.randomDraw(100, Math.log(2)/50);
-
-      expect(value).toEqual(1);
-    });
-
-    it('should return a normally distributed random number 2', function() {
       spyOn(spec.util.gaussian,'nextGaussian').and.returnValues(0.5);
 
       let value = spec.util.randomDraw(1000, Math.log(2)/50);
