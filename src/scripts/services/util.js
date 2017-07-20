@@ -56,17 +56,17 @@ angular
       this.randomDraw = function(number, p) {
         let production;
         let mean = number * p;
-        if (mean < 5) {
+        //if (p < 0.01) {
           // using Poisson distribution (would get slow for large numbers.
           // there are fast formulas but I don't know how good they are)
-          production = this.poisson.getPoisson(mean);
-        } else {
+          //production = this.poisson.getPoisson(mean);
+        //} else {
           // Gaussian distribution
           let q = 1 - p;
           let variance = number * p * q;
           let std = Math.sqrt(variance);
           production = Math.round(this.gaussian.nextGaussian() * std + mean);
-        }
+        //}
         if (production > number) {
           production = number;
         }
