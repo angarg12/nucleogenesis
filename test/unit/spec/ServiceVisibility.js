@@ -130,21 +130,6 @@ describe('Visible service', function() {
       expect(values).toEqual(['1H', 'eV']);
     });
 
-    it('should show visible encyclopedia entries', function() {
-      spec.state.player = {achievements:{}};
-      spec.state.player.achievements = {};
-      spec.state.player.achievements.hydrogen = 1;
-      spec.state.player.achievements.oxygen = 0;
-      let temp = spec.data.encyclopedia;
-      spec.data.encyclopedia = {};
-      spec.data.encyclopedia.hydrogen = temp.hydrogen;
-      spec.data.encyclopedia.oxygen = temp.oxygen;
-
-      let values = spec.visibility.visibleEncyclopediaEntries();
-
-      expect(values).toEqual(['hydrogen']);
-    });
-
     it('should show visible redoxes', function() {
       spec.state.player = {redox:[], achievements:{}};
       spec.state.player.achievements = {};

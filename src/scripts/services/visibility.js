@@ -59,10 +59,6 @@ angular
         return resources;
       };
 
-      this.visibleEncyclopediaEntries = function() {
-        return visible(data.encyclopedia, isEncyclopediaEntryVisible);
-      };
-
       this.visibleRedox = function(currentElement) {
         return visible(state.player.redox, isRedoxVisible, currentElement);
       };
@@ -152,10 +148,6 @@ angular
         }
 
         return false;
-      }
-
-      function isEncyclopediaEntryVisible(entry) {
-        return state.player.achievements[entry];
       }
 
       function isReactionVisible(entry, currentElement, reaction) {

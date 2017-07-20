@@ -23,9 +23,6 @@ angular
         .state('void', {
           component: 'void'
         })
-        .state('wiki', {
-          component: 'wiki'
-        })
         .state('core', {
           component: 'core'
         })
