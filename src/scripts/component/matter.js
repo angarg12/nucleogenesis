@@ -45,7 +45,7 @@ function (state, visibility, data, util) {
             player.resources[product].number += Math.floor(number * production * type.ratio);
             if (!player.resources[product].unlocked) {
               player.resources[product].unlocked = true;
-              visibility.addNew(product);
+              state.addNew(product);
             }
           }
         }
@@ -81,7 +81,7 @@ function (state, visibility, data, util) {
           player.resources[isotopes[i]].number += production;
           if (!player.resources[isotopes[i]].unlocked) {
             player.resources[isotopes[i]].unlocked = true;
-            visibility.addNew(isotopes[i]);
+            state.addNew(isotopes[i]);
           }
         }
         remaining -= production;
@@ -92,7 +92,7 @@ function (state, visibility, data, util) {
         player.resources[last].number += remaining;
         if (!player.resources[last].unlocked) {
           player.resources[last].unlocked = true;
-          visibility.addNew(last);
+          state.addNew(last);
         }
       }
     }

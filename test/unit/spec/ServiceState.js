@@ -69,4 +69,43 @@ describe('Achievement service', function () {
       expect(spec.state.toast).toEqual([]);
     });
   });
+
+  describe('has new functions', function() {
+    it('should return true if an element has new items', function() {
+      spec.data.elements.H.includes = ['1H'];
+      spec.state.addNew('1H');
+
+      let hasNew = spec.state.elementHasNew('H');
+      expect(hasNew).toBeTruthy();
+    });
+
+    it('should return false if an element has no new items', function() {
+      spec.data.elements.H.includes = ['2H','3H','1H-'];
+
+      let hasNew = spec.state.elementHasNew('H');
+      expect(hasNew).toBeFalsy();
+    });
+
+    it('should add and remove items correctly', function() {
+      spec.state.addNew('1H');
+
+      let hasNew = spec.state.hasNew('1H');
+
+      expect(hasNew).toBeTruthy();
+
+      spec.state.removeNew('1H');
+
+      hasNew = spec.state.hasNew('1H');
+
+      expect(hasNew).toBeFalsy();
+    });
+
+    it('should not remove items that aren\'t there', function() {
+      spec.state.removeNew('1H');
+
+      let hasNew = spec.state.hasNew('1H');
+
+      expect(hasNew).toBeFalsy();
+    });
+  });
 });

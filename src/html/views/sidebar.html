@@ -5,7 +5,7 @@
     Nucleogenesis v{{ct.data.version}}
   </li>
   <li ng-repeat="key in ct.visibility.visibleResources(ct.state.currentElement)"
-      ng-mouseover="ct.visibility.removeNew(key)"
+      ng-mouseover="ct.state.removeNew(key)"
       class="row">
     <get-html value="key"
               class="col-lg-2"></get-html>
@@ -13,7 +13,7 @@
             class="col-lg-6"></pretty>
     <span ng-if="ct.data.radioisotopes.indexOf(key) != -1"
           class="mdi mdi-18px mdi-radioactive"></span>
-    <span ng-if="ct.visibility.hasNew(key)"
+    <span ng-if="ct.state.hasNew(key)"
           class="mdi mdi-18px mdi-alert-decagram"></span>
     <ul ng-if="ct.data.resources[key].decay != null"
         class="sub-nav">

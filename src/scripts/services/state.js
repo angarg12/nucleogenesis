@@ -10,7 +10,9 @@
 
 angular
   .module('game')
-  .service('state', ['$timeout', function($timeout) {
+  .service('state', ['$timeout',
+    'data',
+  function($timeout, data) {
     let sv = this;
     sv.currentElement = 'H';
     sv.hoverElement = '';
@@ -19,6 +21,7 @@ angular
     sv.loading = true;
     sv.toast = [];
     sv.isToastVisible = false;
+    let newElements = [];
     let updateFunctions = {};
 
     sv.deleteToast = function() {
@@ -48,6 +51,31 @@ angular
       sv.export = '';
       sv.toast = [];
       sv.isToastVisible = false;
+      newElements = [];
+    };
+
+    sv.hasNew = function(entry) {
+      return newElements.indexOf(entry) !== -1;
+    };
+
+    sv.addNew = function(entry) {
+      newElements.push(entry);
+    };
+
+    sv.removeNew = function(entry) {
+      if (newElements.indexOf(entry) !== -1) {
+        newElements.splice(newElements.indexOf(entry), 1);
+      }
+    };
+
+    sv.elementHasNew = function(element) {
+      let includes = data.elements[element].includes;
+      for (let key in includes) {
+        if (sv.hasNew(includes[key])) {
+          return true;
+        }
+      }
+      return false;
     };
 
     sv.registerUpdate = function(name, func){

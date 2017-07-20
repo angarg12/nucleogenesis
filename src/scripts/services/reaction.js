@@ -9,8 +9,8 @@
 
 angular
   .module('game')
-  .service('reaction', ['visibility',
-    function(visibility) {
+  .service('reaction', ['state',
+    function(state) {
       // FIXME: move to util?
         this.isReactionCostMet = function(number, reaction, playerData) {
           let keys = Object.keys(reaction.reactant);
@@ -43,7 +43,7 @@ angular
             playerData.resources[product[i]].number = current + produced;
             if (!playerData.resources[product[i]].unlocked) {
               playerData.resources[product[i]].unlocked = true;
-              visibility.addNew(product[i]);
+              state.addNew(product[i]);
             }
           }
         }

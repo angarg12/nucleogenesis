@@ -11,7 +11,6 @@ angular
   .service('visibility', ['state',
     'data',
     function(state, data) {
-      let newElements = [];
 
       function visible(items, func, currentElement) {
         let visibles = [];
@@ -192,38 +191,5 @@ angular
       function isSynthesisVisible(entry, currentElement) {
         return isReactionVisible(data.reactions[entry], currentElement, 'reaction');
       }
-
-      this.elementHasNew = function(element) {
-        let includes = data.elements[element].includes;
-        for (let key in includes) {
-          if (this.hasNew(includes[key])) {
-            return true;
-          }
-        }
-        return false;
-      };
-
-      this.encyclopediaHasNew = function() {
-        for (let entry in data.encyclopedia) {
-          if (this.hasNew(entry)) {
-            return true;
-          }
-        }
-        return false;
-      };
-
-      this.hasNew = function(entry) {
-        return newElements.indexOf(entry) !== -1;
-      };
-
-      this.addNew = function(entry) {
-        newElements.push(entry);
-      };
-
-      this.removeNew = function(entry) {
-        if (newElements.indexOf(entry) !== -1) {
-          newElements.splice(newElements.indexOf(entry), 1);
-        }
-      };
     }
   ]);
