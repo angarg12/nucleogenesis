@@ -125,4 +125,12 @@ function supernova(state, format, visibility, upgrade, data, util) {
     }
     return total;
   };
+
+  ct.visibleExoticUpgrades = function(currentElement) {
+    return visibility.visible(data.exotic_upgrades, isExoticUpgradeVisible, currentElement);
+  };
+
+  function isExoticUpgradeVisible(name, currentElement) {
+    return visibility.isUpgradeVisible(name, currentElement, data.exotic_upgrades[name]);
+  }
 }

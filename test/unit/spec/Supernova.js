@@ -99,4 +99,17 @@ describe('Supernova ', function() {
       expect(spec.state.player.elements.H.exotic_upgrades.x3).toEqual(true);
     });
   });
+
+  describe('visibility functions', function() {
+      it('should show if an exotic upgrade is visible', function() {
+        spec.state.player = spec.data.start_player;
+        let temp = spec.data.exotic_upgrades;
+        spec.data.exotic_upgrades = {};
+        spec.data.exotic_upgrades.x3 = temp.x3;
+
+        let values = spec.supernova.visibleExoticUpgrades('H');
+
+        expect(values).toEqual(['x3']);
+      });
+  });
 });

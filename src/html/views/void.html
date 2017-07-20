@@ -22,7 +22,7 @@
   <pretty value="ct.state.player.resources[element.exotic].number"></pretty>
 </p>
 <div class="row">
-  <div ng-repeat="up in ct.visibility.visibleDarkUpgrades(ct.state.currentElement)"
+  <div ng-repeat="up in ct.visibleDarkUpgrades(ct.state.currentElement)"
        ng-click="ct.buyDarkUpgrade(up)"
        class="col-lg-12 btn btn-default"
        ng-class="{disabled: ct.data.dark_upgrades[up].price > ct.state.player.resources.dark_matter.number &&

@@ -87,4 +87,52 @@ describe('Nova ', function() {
       expect(spec.state.player.elements.H.upgrades['1-1']).toEqual(true);
     });
   });
+
+  describe('visibility functions', function() {
+      it('should show if an upgrade is visible', function() {
+        spec.state.player = {elements:{}, achievements:{}};
+        spec.state.player.achievements = {upgrade:1};
+        spec.state.player.elements.H = {generators:[],upgrades:[],exotic_upgrades:[]};
+        spec.state.player.elements.H.generators['1'] = 1;
+        spec.state.player.elements.H.upgrades['1-1'] = true;
+        spec.state.player.elements.H.upgrades['1-2'] = false;
+        spec.state.player.elements.H.upgrades['1-3'] = false;
+        spec.state.player.elements.H.exotic_upgrades.x3 = false;
+        spec.state.player.elements.H.generators['2'] = 0;
+        spec.state.player.elements.H.upgrades['2-1'] = false;
+        let temp = spec.data.upgrades;
+        spec.data.upgrades = {};
+        spec.data.upgrades['1-1'] = temp['1-1'];
+        spec.data.upgrades['1-2'] = temp['1-2'];
+        spec.data.upgrades['1-3'] = temp['1-3'];
+        spec.data.upgrades['2-1'] = temp['2-1'];
+
+        let values = spec.nova.visibleUpgrades('H');
+
+        expect(values).toEqual(['1-1']);
+      });
+
+      it('should show if an upgrade is visible 2', function() {
+        spec.state.player = {elements:{}, achievements:{}};
+        spec.state.player.achievements = {upgrade:1};
+        spec.state.player.elements.H = {generators:[],upgrades:[],exotic_upgrades:[]};
+        spec.state.player.elements.H.generators['1'] = 1;
+        spec.state.player.elements.H.upgrades['1-1'] = true;
+        spec.state.player.elements.H.upgrades['1-2'] = false;
+        spec.state.player.elements.H.upgrades['1-3'] = false;
+        spec.state.player.elements.H.exotic_upgrades.x3 = true;
+        spec.state.player.elements.H.generators['2'] = 0;
+        spec.state.player.elements.H.upgrades['2-1'] = false;
+        let temp = spec.data.upgrades;
+        spec.data.upgrades = {};
+        spec.data.upgrades['1-1'] = temp['1-1'];
+        spec.data.upgrades['1-2'] = temp['1-2'];
+        spec.data.upgrades['1-3'] = temp['1-3'];
+        spec.data.upgrades['2-1'] = temp['2-1'];
+
+        let values = spec.nova.visibleUpgrades('H');
+
+        expect(values).toEqual(['1-1','1-2']);
+      });
+  });
 });

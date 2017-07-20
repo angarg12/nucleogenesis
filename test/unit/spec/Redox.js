@@ -225,4 +225,65 @@ describe('Redox component', function () {
       expect(playerCopy.resources.p.number).toEqual(0);
     });
   });
+
+  describe('visibility functions', function() {
+    it('should show visible redoxes', function() {
+      spec.state.player = {redox:[], achievements:{}};
+      spec.state.player.achievements = {};
+      spec.state.player.achievements.redox = 1;
+      spec.state.player.redox.push({
+        resource: '1H',
+        number: 50,
+        active: false,
+        element: 'H',
+        from: 0,
+        to: 1
+      });
+      spec.state.player.redox.push({
+        resource: '16O',
+        number: 50,
+        active: false,
+        element: 'O',
+        from: 0,
+        to: 1
+      });
+
+      let values = spec.redox.visibleRedox('H');
+
+      expect(values).toEqual([{
+        resource: '1H',
+        number: 50,
+        active: false,
+        element: 'H',
+        from: 0,
+        to: 1
+      }]);
+    });
+
+    it('should not show redoxes if they are locked', function() {
+      spec.state.player = {achievements:{},resources:{}};
+      spec.state.player.achievements = {};
+      spec.state.player.achievements.redox = 0;
+      spec.state.player.resources['1H'] = {unlocked:true};
+      spec.state.player.resources.eV = {unlocked:true};
+      spec.state.player.resources['e-'] = {unlocked:false};
+
+      let values = spec.redox.visibleRedox('H');
+
+      expect(values).toEqual([]);
+    });
+
+    it('should not show redoxes of other elements', function() {
+      spec.state.player = {achievements:{},resources:{}};
+      spec.state.player.achievements = {};
+      spec.state.player.achievements.redox = 1;
+      spec.state.player.resources['1H'] = {unlocked:true};
+      spec.state.player.resources.eV = {unlocked:true};
+      spec.state.player.resources['e-'] = {unlocked:false};
+
+      let values = spec.redox.visibleRedox('O');
+
+      expect(values).toEqual([]);
+    });
+  });
 });

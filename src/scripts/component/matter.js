@@ -159,5 +159,20 @@ function (state, visibility, data, util) {
     return total;
   };
 
+  ct.visibleGenerators = function(currentElement) {
+    return visibility.visible(data.generators, isGeneratorVisible, currentElement);
+  };
+
+  function isGeneratorVisible(name, currentElement) {
+    let generator = data.generators[name];
+    for (let dep of generator.deps) {
+      if (state.player.elements[currentElement].generators[dep] === 0) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   state.registerUpdate('matter', update);
 }]);

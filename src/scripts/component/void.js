@@ -68,4 +68,12 @@ function _void(state, format, visibility, upgrade, data, util) {
       price,
       currency);
   };
+
+  ct.visibleDarkUpgrades = function(currentElement) {
+    return visibility.visible(data.dark_upgrades, isDarkUpgradeVisible, currentElement);
+  };
+
+  function isDarkUpgradeVisible(name, currentElement) {
+    return visibility.isUpgradeVisible(name, currentElement, data.dark_upgrades[name]);
+  }
 }

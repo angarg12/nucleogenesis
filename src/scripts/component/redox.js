@@ -156,6 +156,14 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       player.redox.splice(index, 1);
     };
 
+    ct.visibleRedox = function(currentElement) {
+      return visibility.visible(state.player.redox, isRedoxVisible, currentElement);
+    };
+
+    function isRedoxVisible(entry, currentElement) {
+      return entry.element === currentElement;
+    }
+
     state.registerUpdate('redox', update);
   }
 ]);

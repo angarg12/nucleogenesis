@@ -60,4 +60,12 @@ function nova(state, visibility, upgrade, data) {
     let level = state.player.global_upgrades[name];
     return Math.ceil(Math.pow(data.global_upgrades[name].price_exp, level));
   };
+
+  ct.visibleUpgrades = function(currentElement) {
+    return visibility.visible(data.upgrades, isBasicUpgradeVisible, currentElement);
+  };
+
+  function isBasicUpgradeVisible(name, currentElement) {
+    return visibility.isUpgradeVisible(name, currentElement, data.upgrades[name]);
+  }
 }

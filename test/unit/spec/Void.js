@@ -76,4 +76,17 @@ describe('Void component', function() {
       expect(spec.state.player.dark_upgrades.table).toEqual(true);
     });
   });
+
+  describe('visibility functions', function() {
+      it('should show if a dark upgrade is visible', function() {
+        spec.state.player = spec.data.start_player;
+        let temp = spec.data.dark_upgrades;
+        spec.data.dark_upgrades = {};
+        spec.data.dark_upgrades.table = temp.table;
+
+        let values = spec.void.visibleDarkUpgrades('H');
+
+        expect(values).toEqual(['table']);
+      });
+  });
 });

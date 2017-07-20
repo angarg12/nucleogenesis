@@ -188,4 +188,23 @@ describe('Matter component', function() {
       expect(value).toEqual(91);
     });
   });
+
+  describe('visibility functions', function() {
+      it('should show visible generators', function() {
+        spec.state.player = {elements:{}};
+        spec.state.player.elements.H = {generators:[]};
+        spec.state.player.elements.H.generators['1'] = 1;
+        spec.state.player.elements.H.generators['2'] = 0;
+        spec.state.player.elements.H.generators['3'] = 0;
+        let temp = spec.data.generators;
+        spec.data.generators = {};
+        spec.data.generators['1'] = temp['1'];
+        spec.data.generators['2'] = temp['2'];
+        spec.data.generators['3'] = temp['3'];
+
+        let values = spec.matter.visibleGenerators('H');
+
+        expect(values).toEqual(['1', '2']);
+      });
+  });
 });

@@ -168,4 +168,31 @@ describe('Reactor', function() {
       expect(player.resources.H2O.number).toEqual(8);
     });
   });
+
+  describe('visibility functions', function() {
+    it('should show visible reactions', function() {
+      spec.state.player = {achievements:{},resources:{}};
+      spec.state.player.achievements = {};
+      spec.state.player.achievements.reaction = 1;
+      spec.state.player.resources['1H-'] = {unlocked:true};
+      spec.state.player.resources.p = {unlocked:true};
+      spec.state.player.resources.H2 = {unlocked:true};
+      spec.state.player.resources.O2 = {unlocked:false};
+      spec.data.reactions = {};
+      spec.data.reactions['1H-p'] = {
+        'reactant': {'1H-':1,'p':1},
+        'product': {'H2':1},
+        'elements': [ 'H' ]
+      };
+      spec.data.reactions.H2O = {
+        'reactant': {'H2':2,'O2':1},
+        'product': {'H2O':2},
+        'elements': ['H','O']
+      };
+
+      let values = spec.reactor.visibleSyntheses('H');
+
+      expect(values).toEqual(['1H-p']);
+    });
+  });
 });

@@ -74,5 +74,32 @@ function (state, data, visibility, util, format, reactionService) {
     }
   };
 
+  this.visibleSyntheses = function(currentElement) {
+    return visibility.visible(data.reactions, isSynthesisVisible, currentElement);
+  };
+
+  function isSynthesisVisible(key, currentElement) {
+    let entry = data.reactions[key];
+    for (let reactant in entry.reactant) {
+      if (!state.player.resources[reactant].unlocked) {
+        return false;
+      }
+    }
+
+    // for misc reactions
+    if(entry.elements.length === 0 &&
+       currentElement === ''){
+         return true;
+    }
+
+    for (let element in entry.elements) {
+      if (currentElement === entry.elements[element]) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   state.registerUpdate('reactor', update);
 }]);
