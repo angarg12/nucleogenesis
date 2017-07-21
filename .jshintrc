@@ -2,7 +2,6 @@
   "maxerr": 50,
 
   "bitwise": true,
-  "camelcase": true,
   "forin": false,
   "newcap": true,
   "quotmark": "single",

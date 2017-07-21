@@ -4,7 +4,7 @@
   <li class="sidebar-brand">
     Nucleogenesis v{{ct.data.version}}
   </li>
-  <li ng-repeat="key in ct.visibility.visibleResources(ct.state.currentElement)"
+  <li ng-repeat="key in ct.visibleResources(ct.state.currentElement)"
       ng-mouseover="ct.state.removeNew(key)"
       class="row">
     <get-html value="key"

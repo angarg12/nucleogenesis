@@ -133,4 +133,21 @@ function supernova(state, format, visibility, upgrade, data, util) {
   function isExoticUpgradeVisible(name, currentElement) {
     return visibility.isUpgradeVisible(name, currentElement, data.exotic_upgrades[name]);
   }
+
+  ct.visibleSubatomic = function() {
+    return visibility.visible(data.resources, isSubatomicVisible, '');
+  };
+
+  function isSubatomicVisible(name, _) {
+    if (!state.player.resources[name].unlocked) {
+      return false;
+    }
+
+    if(data.resources[name].type &&
+       data.resources[name].type.indexOf('subatomic') !== -1){
+        return true;
+    }
+
+    return false;
+  }
 }

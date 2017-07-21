@@ -9,7 +9,7 @@
   by {{ct.data.constants.EXOTIC_POWER*100}}% and unlocks new upgrades.</p>
 <p>You can spend subatomic particles to boost your exotic matter production.</p>
 <form name="infuse">
-  <div ng-repeat="resource in ct.visibility.visibleResources(ct.state.currentElement, 'subatomic')">
+  <div ng-repeat="resource in ct.visibleSubatomic()">
     {{resource}}: <input type="number"
            ng-init="ct.infuse[resource] = 0"
            min="0"

@@ -22,7 +22,7 @@ describe('Visible service', function() {
       spec.state.player.resources['8C'] = {unlocked:false};
       spec.state.player.resources['16O'] = {unlocked:false};
 
-      let values = spec.visibility.visibleElements();
+      let values = spec.elementSelect.visibleElements();
 
       expect(values).toEqual(['H']);
     });
@@ -40,7 +40,7 @@ describe('Visible service', function() {
       spec.data.resources.eV = temp.eV;
       spec.data.resources['16O'] = temp['16O'];
 
-      let values = spec.visibility.visibleResources('H');
+      let values = spec.sidebar.visibleResources('H');
 
       expect(values).toEqual(['1H', 'eV']);
     });
