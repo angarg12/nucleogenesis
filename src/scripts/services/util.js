@@ -1,4 +1,4 @@
-/* globals Ziggurat, Poisson */
+/* globals Ziggurat */
 /**
  util
  Utility service with misc. functions.
@@ -14,7 +14,6 @@ angular
     'data',
     function(prettyNumber, $sce, data) {
       this.gaussian = new Ziggurat();
-      this.poisson = new Poisson();
 
       /* Return the HTML representation of an element, or the element itself
       if it doesn't have one */
@@ -56,17 +55,11 @@ angular
       this.randomDraw = function(number, p) {
         let production;
         let mean = number * p;
-        //if (p < 0.01) {
-          // using Poisson distribution (would get slow for large numbers.
-          // there are fast formulas but I don't know how good they are)
-          //production = this.poisson.getPoisson(mean);
-        //} else {
-          // Gaussian distribution
-          let q = 1 - p;
-          let variance = number * p * q;
-          let std = Math.sqrt(variance);
-          production = Math.round(this.gaussian.nextGaussian() * std + mean);
-        //}
+        // Gaussian distribution
+        let q = 1 - p;
+        let variance = number * p * q;
+        let std = Math.sqrt(variance);
+        production = Math.round(this.gaussian.nextGaussian() * std + mean);
         if (production > number) {
           production = number;
         }
