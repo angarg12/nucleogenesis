@@ -16,7 +16,6 @@ angular.module('game').controller('ct_matter', ['state', 'visibility', 'data', '
 function (state, visibility, data, util) {
   let ct = this;
   ct.state = state;
-  ct.visibility = visibility;
   ct.data = data;
 
   /* Proceses the decay of radiactive isotopes. It uses a random draw based on the

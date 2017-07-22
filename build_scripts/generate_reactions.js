@@ -45,7 +45,7 @@ function vectorToMap(vector){
   let map = {};
   for(let i in vector){
     let resource = vector[i];
-    if(elements[resource] !== undefined){
+    if(typeof elements[resource] !== 'undefined'){
       resource = elements[resource].main;
     }
     map[resource] = map[resource]+1 || 1;

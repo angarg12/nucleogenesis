@@ -190,7 +190,7 @@ describe('Reactor', function() {
         'elements': ['H','O']
       };
 
-      let values = spec.reactor.visibleSyntheses('H');
+      let values = spec.reactionTable.visibleSyntheses('H');
 
       expect(values).toEqual(['1H-p']);
     });

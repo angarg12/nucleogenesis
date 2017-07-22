@@ -17,7 +17,6 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
     let ct = this;
     ct.state = state;
     ct.data = data;
-    ct.visibility = visibility;
     ct.util = util;
     ct.format = format;
     ct.reaction = reaction;

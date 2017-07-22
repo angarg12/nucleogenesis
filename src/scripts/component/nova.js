@@ -15,7 +15,6 @@ angular.module('game').component('nova', {
 function nova(state, visibility, upgrade, data) {
   let ct = this;
   ct.state = state;
-  ct.visibility = visibility;
   ct.data = data;
 
   ct.buyUpgrade = function (name, element) {

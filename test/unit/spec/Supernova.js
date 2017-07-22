@@ -3,7 +3,7 @@
 /* jshint varstmt: false */
 'use strict';
 
-describe('Supernova ', function() {
+describe('Supernova', function() {
   let spec = {};
 
   commonSpec(spec);
@@ -47,7 +47,9 @@ describe('Supernova ', function() {
         spec.state.player = spec.data.start_player;
         spec.state.player.resources['1H'] = {number:1e8, unlocked: true};
         spec.state.player.elements.H.upgrades['1-1'] = true;
+        spec.state.player.reactions['H.OH-H2O'] = {};
         spec.state.player.reactions['H.OH-H2O'].active = 10;
+        spec.data.elements.H.reactions.push('H.OH-H2O');
         spec.state.player.elements.H.generators['1'] = 99;
         spec.state.player.elements.H.generators['2'] = 99;
 

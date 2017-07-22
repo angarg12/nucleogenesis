@@ -14,8 +14,21 @@ describe('Reaction service', function() {
       player.resources = {};
       player.resources['1H'] = {number:1};
       player.resources.OH = {number:0};
+      let reaction = {
+          'reactant': {
+            '1H': 1,
+            'OH': 1
+          },
+          'product': {
+            'H2O': 1
+          },
+          'elements': [
+            'H',
+            'O'
+          ]
+        };
 
-      let value = spec.reaction.isReactionCostMet(1, spec.data.reactions['H.OH-H2O'], player);
+      let value = spec.reaction.isReactionCostMet(1, reaction, player);
 
       expect(value).toEqual(false);
     });
@@ -25,8 +38,21 @@ describe('Reaction service', function() {
       player.resources = {};
       player.resources['1H'] = {number:0};
       player.resources.OH = {number:1};
+      let reaction = {
+          'reactant': {
+            '1H': 1,
+            'OH': 1
+          },
+          'product': {
+            'H2O': 1
+          },
+          'elements': [
+            'H',
+            'O'
+          ]
+        };
 
-      let value = spec.reaction.isReactionCostMet(1, spec.data.reactions['H.OH-H2O'], player);
+      let value = spec.reaction.isReactionCostMet(1, reaction, player);
 
       expect(value).toEqual(false);
     });
@@ -36,8 +62,21 @@ describe('Reaction service', function() {
       player.resources = {};
       player.resources['1H'] = {number:5};
       player.resources.OH = {number:5};
+      let reaction = {
+          'reactant': {
+            '1H': 1,
+            'OH': 1
+          },
+          'product': {
+            'H2O': 1
+          },
+          'elements': [
+            'H',
+            'O'
+          ]
+        };
 
-      let value = spec.reaction.isReactionCostMet(10, spec.data.reactions['H.OH-H2O'], player);
+      let value = spec.reaction.isReactionCostMet(10, reaction, player);
 
       expect(value).toEqual(false);
     });
@@ -47,8 +86,21 @@ describe('Reaction service', function() {
       player.resources = {};
       player.resources['1H'] = {number:5};
       player.resources.OH = {number:5};
+      let reaction = {
+          'reactant': {
+            '1H': 1,
+            'OH': 1
+          },
+          'product': {
+            'H2O': 1
+          },
+          'elements': [
+            'H',
+            'O'
+          ]
+        };
 
-      let value = spec.reaction.isReactionCostMet(1, spec.data.reactions['H.OH-H2O'], player);
+      let value = spec.reaction.isReactionCostMet(1, reaction, player);
 
       expect(value).toEqual(true);
     });
@@ -58,8 +110,21 @@ describe('Reaction service', function() {
       player.resources = {};
       player.resources['1H'] = {number:10};
       player.resources.OH = {number:10};
+      let reaction = {
+          'reactant': {
+            '1H': 1,
+            'OH': 1
+          },
+          'product': {
+            'H2O': 1
+          },
+          'elements': [
+            'H',
+            'O'
+          ]
+        };
 
-      let value = spec.reaction.isReactionCostMet(10, spec.data.reactions['H.OH-H2O'], player);
+      let value = spec.reaction.isReactionCostMet(10, reaction, player);
 
       expect(value).toEqual(true);
     });
@@ -72,8 +137,21 @@ describe('Reaction service', function() {
       player.resources['1H'] = {number:10};
       player.resources.OH = {number:10};
       player.resources.H2O = {number:0};
+      let reaction = {
+          'reactant': {
+            '1H': 1,
+            'OH': 1
+          },
+          'product': {
+            'H2O': 1
+          },
+          'elements': [
+            'H',
+            'O'
+          ]
+        };
 
-      spec.reaction.react(5,spec.data.reactions['H.OH-H2O'], player);
+      spec.reaction.react(5,reaction, player);
 
       expect(player.resources['1H'].number).toEqual(5);
       expect(player.resources.OH.number).toEqual(5);
@@ -87,8 +165,21 @@ describe('Reaction service', function() {
       player.resources.eV = {number:200};
       player.resources.p = {number:1};
       player.resources['e-'] = {number:0};
+      let reaction = {
+          'reactant': {
+            '1H': 1,
+            'OH': 1
+          },
+          'product': {
+            'H2O': 1
+          },
+          'elements': [
+            'H',
+            'O'
+          ]
+        };
 
-      spec.reaction.react(0.5,spec.data.reactions['H.OH-H2O'], player);
+      spec.reaction.react(0.5,reaction, player);
 
       expect(player.resources['1H'].number).toEqual(50);
       expect(player.resources.eV.number).toBeCloseTo(200,4);
@@ -103,8 +194,21 @@ describe('Reaction service', function() {
       player.resources.eV = {number:200};
       player.resources.p = {number:1};
       player.resources['e-'] = {number:0};
+      let reaction = {
+          'reactant': {
+            '1H': 1,
+            'OH': 1
+          },
+          'product': {
+            'H2O': 1
+          },
+          'elements': [
+            'H',
+            'O'
+          ]
+        };
 
-      spec.reaction.react(-10,spec.data.reactions['H.OH-H2O'], player);
+      spec.reaction.react(-10,reaction, player);
 
       expect(player.resources['1H'].number).toEqual(50);
       expect(player.resources.eV.number).toBeCloseTo(200,4);
@@ -118,8 +222,21 @@ describe('Reaction service', function() {
       player.resources['1H'] = {number:2};
       player.resources.OH = {number:2};
       player.resources.H2O = {number:0};
+      let reaction = {
+          'reactant': {
+            '1H': 1,
+            'OH': 1
+          },
+          'product': {
+            'H2O': 1
+          },
+          'elements': [
+            'H',
+            'O'
+          ]
+        };
 
-      spec.reaction.react(5,spec.data.reactions['H.OH-H2O'], player);
+      spec.reaction.react(5,reaction, player);
 
       expect(player.resources['1H'].number).toEqual(2);
       expect(player.resources.OH.number).toEqual(2);

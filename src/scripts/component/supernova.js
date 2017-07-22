@@ -19,7 +19,6 @@ angular.module('game').component('supernova', {
 function supernova(state, format, visibility, upgrade, data, util) {
   let ct = this;
   ct.state = state;
-  ct.visibility = visibility;
   ct.data = data;
   ct.util = util;
   ct.format = format;

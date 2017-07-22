@@ -18,7 +18,7 @@
 </div>
 <h2>{{ct.data.elements[ct.state.currentElement].name}}</h2>
 <div class="row">
-  <div ng-repeat="up in ct.visibility.visibleUpgrades(ct.state.currentElement)"
+  <div ng-repeat="up in ct.visibleUpgrades(ct.state.currentElement)"
        ng-click="ct.buyUpgrade(up, ct.state.currentElement)"
        class="col-lg-12 btn btn-default"
        ng-class="{disabled: ct.data.upgrades[up].price > ct.state.player.resources[ct.data.elements[ct.state.currentElement].main].number &&

@@ -6,10 +6,8 @@ angular
     '$interval',
     '$timeout',
     'savegame',
-    'visibility',
     'state',
-    function($scope, $interval, $timeout, savegame, visibility, state) {
-      $scope.visibility = visibility;
+    function($scope, $interval, $timeout, savegame, state) {
       $scope.state = state;
 
       let self = this;

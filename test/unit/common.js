@@ -39,11 +39,11 @@ let commonSpec = function(spec) {
     spec.achievements = _$componentController_('achievements', null, null);
     spec.elementSelect = _$componentController_('elementSelect', null, null);
     spec.sidebar = _$componentController_('sidebar', null, null);
+    spec.reactionTable = _$componentController_('reactionTable', null, null);
 
     // asinine sanity check for components
     _$componentController_('getHtml', null, null);
     _$componentController_('pretty', null, null);
-    _$componentController_('reactionTable', null, null);
 
     spec.controller = _$controller_('main-loop', {$scope:_$rootScope_.$new(), visibility:spec.visibility, state:spec.state});
   }));
