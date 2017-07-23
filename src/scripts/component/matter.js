@@ -104,27 +104,31 @@ function (state, visibility, data, util) {
     processGenerators(player);
   }
 
+  function generatorPrice (name, level) {
+    return data.generators[name].price * Math.pow(data.constants.GENERATOR_PRICE_INCREASE, level);
+  }
+
   ct.maxCanBuy = function (player, name, element){
     let level = player.elements[element].generators[name];
     let i = 0;
     let currency = data.elements[element].main;
-    let price = data.generators[name].price * Math.pow(data.generators[name].priceIncrease, level+i);
+    let price = generatorPrice(name, level);
     // we need a loop since we use the ceil operator
     while (player.resources[currency].number >= price) {
       i++;
-      price += data.generators[name].price * Math.pow(data.generators[name].priceIncrease, level+i);
+      price += generatorPrice(name, level + i);
     }
     return i;
   };
 
-  ct.generatorPrice = function(player, name, element, number) {
+  ct.generatorTotalPrice = function(player, name, element, number) {
     if(number === 'max'){
       number = ct.maxCanBuy(player, name, element);
     }
     let level = player.elements[element].generators[name];
     let totalPrice = 0;
     for(let i = 0; i < number; i++){
-      let price = data.generators[name].price * Math.pow(data.generators[name].priceIncrease, level+i);
+      let price = generatorPrice(name, level + i);
       totalPrice += Math.ceil(price);
     }
     return totalPrice;
@@ -134,7 +138,7 @@ function (state, visibility, data, util) {
     if(number === 'max'){
         number = ct.maxCanBuy(player, name, element);
     }
-    let price = this.generatorPrice(player, name, element, number);
+    let price = this.generatorTotalPrice(player, name, element, number);
     let currency = data.elements[element].main;
     if(ct.canBuy(player, element, price)){
       player.resources[currency].number -= price;

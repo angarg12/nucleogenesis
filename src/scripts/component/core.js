@@ -19,7 +19,7 @@ function core(state, data) {
   ct.data = data;
 
   ct.elementPrice = function (element) {
-    return Math.floor(Math.pow(data.constants.ELEMENT_PRICE_BASE, state.player.elements_unlocked) *
+    return Math.floor(Math.pow(data.constants.ELEMENT_PRICE_INCREASE, state.player.elements_unlocked) *
                               data.elements[element].number);
   };
 

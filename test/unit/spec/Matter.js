@@ -15,7 +15,7 @@ describe('Matter component', function() {
       player.elements.H = {'generators':{}};
       player.elements.H.generators['1'] = 5;
 
-      let value = spec.matter.generatorPrice(player, '1','H', 1);
+      let value = spec.matter.generatorTotalPrice(player, '1','H', 1);
 
       expect(value).toEqual(20);
     });
@@ -26,7 +26,7 @@ describe('Matter component', function() {
       player.elements.H = {'generators':{}};
       player.elements.H.generators['3'] = 10;
 
-      let value = spec.matter.generatorPrice(player, '3','H', 1);
+      let value = spec.matter.generatorTotalPrice(player, '3','H', 1);
 
       expect(value).toEqual(1792);
     });
@@ -37,7 +37,7 @@ describe('Matter component', function() {
       player.elements.H = {'generators':{}};
       player.elements.H.generators['1'] = 1;
 
-      let value = spec.matter.generatorPrice(player, '1','H', 10);
+      let value = spec.matter.generatorTotalPrice(player, '1','H', 10);
 
       expect(value).toEqual(205);
     });
@@ -48,7 +48,7 @@ describe('Matter component', function() {
       player.elements.H = {'generators':{}};
       player.elements.H.generators['1'] = 10;
 
-      let value = spec.matter.generatorPrice(player, '1','H', 100);
+      let value = spec.matter.generatorTotalPrice(player, '1','H', 100);
 
       expect(value).toEqual(63823);
     });
@@ -60,7 +60,7 @@ describe('Matter component', function() {
       player.elements.H.generators['1'] = 10;
       spyOn(spec.matter, 'maxCanBuy');
 
-      spec.matter.generatorPrice(player, '1','H', 'max');
+      spec.matter.generatorTotalPrice(player, '1','H', 'max');
 
       expect(spec.matter.maxCanBuy).toHaveBeenCalled();
     });

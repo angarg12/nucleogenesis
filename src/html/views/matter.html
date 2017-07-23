@@ -53,7 +53,7 @@
       <pretty value="ct.tierProduction(ct.state.player, gen, ct.state.currentElement)"></pretty>
     </td>
     <td class="animif col-md-3">
-      <pretty value="ct.generatorPrice(ct.state.player, gen, ct.state.currentElement, ct.getbuyAmount())"></pretty>
+      <pretty value="ct.generatorTotalPrice(ct.state.player, gen, ct.state.currentElement, ct.getbuyAmount())"></pretty>
       &nbsp;
       <get-html value="ct.data.elements[ct.state.currentElement].main"></get-html>
     </td>
@@ -66,7 +66,7 @@
                 class="btn btn-default"
                 ng-click="ct.buyGenerators(ct.state.player, gen, ct.state.currentElement, ct.getbuyAmount())"
 
-                ng-class="{disabled: !ct.canBuy(ct.state.player, ct.state.currentElement, ct.generatorPrice(ct.state.player, gen, ct.state.currentElement, ct.getbuyAmount()))}">
+                ng-class="{disabled: !ct.canBuy(ct.state.player, ct.state.currentElement, ct.generatorTotalPrice(ct.state.player, gen, ct.state.currentElement, ct.getbuyAmount()))}">
           <get-html value="ct.getbuyAmount().toString()"></get-html>
         </button>
         <button ng-if="ct.getbuyAmount() === 'max'"

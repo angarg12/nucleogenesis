@@ -10,7 +10,7 @@ describe('Element service', function() {
 
   describe('prices and cost', function() {
     it('should calculate element price', function() {
-      spec.data.constants.ELEMENT_PRICE_BASE = 2;
+      spec.data.constants.ELEMENT_PRICE_INCREASE = 2;
       spec.state.player = {};
       spec.state.player.elements_unlocked = 1;
 
@@ -20,7 +20,7 @@ describe('Element service', function() {
     });
 
     it('should calculate element price 2', function() {
-      spec.data.constants.ELEMENT_PRICE_BASE = 2;
+      spec.data.constants.ELEMENT_PRICE_INCREASE = 2;
       spec.state.player = {};
       spec.state.player.elements_unlocked = 5;
 
@@ -33,7 +33,7 @@ describe('Element service', function() {
 
   describe('purchase functions', function() {
     it('should purchase element if cost is met', function() {
-      spec.data.constants.ELEMENT_PRICE_BASE = 2;
+      spec.data.constants.ELEMENT_PRICE_INCREASE = 2;
       spec.state.player = {elements:{},resources:{},elements_unlocked:1};
       spec.state.player.resources.dark_matter = {number:256};
       spec.state.player.elements.O = {unlocked:false,generators:{}};
@@ -48,7 +48,7 @@ describe('Element service', function() {
     });
 
     it('should not purchase element if cost is not met', function() {
-      spec.data.constants.ELEMENT_PRICE_BASE = 2;
+      spec.data.constants.ELEMENT_PRICE_INCREASE = 2;
       spec.state.player = {elements:{},resources:{},elements_unlocked:2};
       spec.state.player.resources.dark_matter = {number:1};
       spec.state.player.elements.O = {unlocked:false,generators:{}};
