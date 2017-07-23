@@ -6,11 +6,10 @@
        class="col-lg-12 btn btn-default"
        ng-class="{disabled: !ct.canBuyGlobalUpgrade(key)}">
     <span class="pull-left">
-        {{up.name}}: {{up.description}}
-      </span>
+      Level: {{ct.state.player.global_upgrades[key]}} {{up.name}}: {{up.description}}
+    </span>
     <span class="pull-right"
           ng-repeat="(resource, price) in up.price">
-        Level: &nbsp; {{ct.state.player.global_upgrades[key]}}
         <pretty value="price*ct.priceMultiplier(key)"></pretty> &nbsp;
         <get-html value="resource"></get-html>
       </span>
