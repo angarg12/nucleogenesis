@@ -21,6 +21,7 @@ angular
     sv.loading = true;
     sv.toast = [];
     sv.isToastVisible = false;
+    sv.buyIndex = 0;
     let newElements = [];
     let updateFunctions = {};
 

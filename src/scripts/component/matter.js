@@ -18,7 +18,6 @@ function (state, visibility, data, util) {
   ct.state = state;
   ct.data = data;
   let buyAmount = [1,10,25,100,'max'];
-  let buyIndex = 0;
 
   /* Proceses the decay of radiactive isotopes. It uses a random draw based on the
   half life to decide how many atoms decay, and then spreads them over different
@@ -207,11 +206,11 @@ function (state, visibility, data, util) {
   }
 
   ct.nextBuyAmount = function() {
-    buyIndex = (buyIndex + 1) % buyAmount.length;
+    state.buyIndex = (state.buyIndex + 1) % buyAmount.length;
   };
 
   ct.getbuyAmount = function() {
-    return buyAmount[buyIndex];
+    return buyAmount[state.buyIndex];
   };
 
   state.registerUpdate('matter', update);
