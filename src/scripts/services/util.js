@@ -19,7 +19,7 @@ angular
       if it doesn't have one */
       this.getHTML = function(resource) {
         let html = data.html[resource];
-        if (typeof html === 'undefined') {
+        if (typeof html === 'undefined' && data.resources[resource]) {
           html = data.resources[resource].html;
         }
         if (typeof html === 'undefined') {

@@ -31,6 +31,11 @@
     </td>
     <td class="col-md-3">
       Buy
+      <button type="button"
+              class="btn btn-default"
+              ng-click="ct.nextBuyAmount()">
+        <get-html value="ct.getbuyAmount().toString()"></get-html>
+      </button>
     </td>
   </tr>
   <tr class="animif"
@@ -48,29 +53,28 @@
       <pretty value="ct.tierProduction(ct.state.player, gen, ct.state.currentElement)"></pretty>
     </td>
     <td class="animif col-md-3">
-      <pretty value="ct.generatorPrice(ct.state.player, gen, ct.state.currentElement)"></pretty>
+      <pretty value="ct.generatorPrice(ct.state.player, gen, ct.state.currentElement, ct.getbuyAmount())"></pretty>
       &nbsp;
       <get-html value="ct.data.elements[ct.state.currentElement].main"></get-html>
     </td>
     <td class="animif col-md-3">
       <div class="pull-left">
-        <button type="button"
-                class="btn btn-default button-small"
-                ng-click="ct.buyGenerators(ct.state.player, gen, ct.state.currentElement, 1)"
-                ng-class="{disabled: ct.generatorPrice(ct.state.player, gen, ct.state.currentElement) > ct.state.player.resources[ct.state.currentElement].number}">1</button>
-      </div>
-      <div class="pull-left">
-        <button type="button"
-                class="btn btn-default button-small"
-                ng-click="ct.buyGenerators(ct.state.player, gen, ct.state.currentElement, 10)"
-                ng-class="{disabled: ct.generatorPrice(ct.state.player, gen, ct.state.currentElement) > ct.state.player.resources[ct.state.currentElement].number}">10</button>
-      </div>
-      <!-- crappy workaround since it doesn't recognize the literal Infinity -->
-      <div class="pull-left">
-        <button type="button"
-                class="btn btn-default button-small"
-                ng-click="ct.buyGenerators(ct.state.player, gen, ct.state.currentElement, 1/0)"
-                ng-class="{disabled: ct.generatorPrice(ct.state.player, gen, ct.state.currentElement) > ct.state.player.resources[ct.state.currentElement].number}">&#8892;</button>
+        <!-- FIXME splitting the buttons in two seems like the easiest solution
+         but I'm open to suggestions -->
+        <button ng-if="ct.getbuyAmount() !== 'max'"
+                type="button"
+                class="btn btn-default"
+                ng-click="ct.buyGenerators(ct.state.player, gen, ct.state.currentElement, ct.getbuyAmount())"
+
+                ng-class="{disabled: !ct.canBuy(ct.state.player, ct.state.currentElement, ct.generatorPrice(ct.state.player, gen, ct.state.currentElement, ct.getbuyAmount()))}">
+          <get-html value="ct.getbuyAmount().toString()"></get-html>
+        </button>
+        <button ng-if="ct.getbuyAmount() === 'max'"
+                type="button"
+                class="btn btn-default"
+                ng-click="ct.buyGenerators(ct.state.player, gen, ct.state.currentElement, ct.getbuyAmount())">
+          <get-html value="ct.maxCanBuy(ct.state.player, gen, ct.state.currentElement).toString()"></get-html>
+        </button>
       </div>
     </td>
   </tr>

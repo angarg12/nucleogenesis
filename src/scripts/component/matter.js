@@ -17,6 +17,8 @@ function (state, visibility, data, util) {
   let ct = this;
   ct.state = state;
   ct.data = data;
+  let buyAmount = [1,10,25,100,'max'];
+  let buyIndex = 0;
 
   /* Proceses the decay of radiactive isotopes. It uses a random draw based on the
   half life to decide how many atoms decay, and then spreads them over different
@@ -102,23 +104,50 @@ function (state, visibility, data, util) {
     processGenerators(player);
   }
 
-  ct.generatorPrice = function(player, name, element) {
+  ct.maxCanBuy = function (player, name, element){
     let level = player.elements[element].generators[name];
-    let price = data.generators[name].price * Math.pow(data.generators[name].priceIncrease, level);
-    return Math.ceil(price);
+    let i = 0;
+    let currency = data.elements[element].main;
+    let price = data.generators[name].price * Math.pow(data.generators[name].priceIncrease, level+i);
+    // we need a loop since we use the ceil operator
+    while (player.resources[currency].number >= price) {
+      i++;
+      price += data.generators[name].price * Math.pow(data.generators[name].priceIncrease, level+i);
+    }
+    return i;
+  };
+
+  ct.generatorPrice = function(player, name, element, number) {
+    if(number === 'max'){
+      number = ct.maxCanBuy(player, name, element);
+    }
+    let level = player.elements[element].generators[name];
+    let totalPrice = 0;
+    for(let i = 0; i < number; i++){
+      let price = data.generators[name].price * Math.pow(data.generators[name].priceIncrease, level+i);
+      totalPrice += Math.ceil(price);
+    }
+    return totalPrice;
   };
 
   ct.buyGenerators = function(player, name, element, number) {
-    let price = this.generatorPrice(player, name, element);
-    let i = 0;
-    // we need a loop since we use the ceil operator
-    let currency = data.elements[element].main;
-    while (i < number && player.resources[currency].number >= price) {
-      player.resources[currency].number -= price;
-      player.elements[element].generators[name]++;
-      price = this.generatorPrice(player, name, element);
-      i++;
+    if(number === 'max'){
+        number = ct.maxCanBuy(player, name, element);
     }
+    let price = this.generatorPrice(player, name, element, number);
+    let currency = data.elements[element].main;
+    if(ct.canBuy(player, element, price)){
+      player.resources[currency].number -= price;
+      player.elements[element].generators[name]+= number;
+    }
+  };
+
+  ct.canBuy = function(player, element, price) {
+    let currency = data.elements[element].main;
+    if(price > player.resources[currency].number){
+      return false;
+    }
+    return true;
   };
 
   ct.generatorProduction = function(player, name, element) {
@@ -172,6 +201,14 @@ function (state, visibility, data, util) {
 
     return true;
   }
+
+  ct.nextBuyAmount = function() {
+    buyIndex = (buyIndex + 1) % buyAmount.length;
+  };
+
+  ct.getbuyAmount = function() {
+    return buyAmount[buyIndex];
+  };
 
   state.registerUpdate('matter', update);
 }]);
