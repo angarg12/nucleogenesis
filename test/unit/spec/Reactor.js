@@ -173,7 +173,6 @@ describe('Reactor', function() {
     it('should show visible reactions', function() {
       spec.state.player = {achievements:{},resources:{}};
       spec.state.player.achievements = {};
-      spec.state.player.achievements.reaction = 1;
       spec.state.player.resources['1H-'] = {unlocked:true};
       spec.state.player.resources.p = {unlocked:true};
       spec.state.player.resources.H2 = {unlocked:true};

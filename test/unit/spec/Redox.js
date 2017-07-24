@@ -230,7 +230,6 @@ describe('Redox component', function () {
     it('should show visible redoxes', function() {
       spec.state.player = {redox:[], achievements:{}};
       spec.state.player.achievements = {};
-      spec.state.player.achievements.redox = 1;
       spec.state.player.redox.push({
         resource: '1H',
         number: 50,
@@ -263,7 +262,6 @@ describe('Redox component', function () {
     it('should not show redoxes if they are locked', function() {
       spec.state.player = {achievements:{},resources:{}};
       spec.state.player.achievements = {};
-      spec.state.player.achievements.redox = 0;
       spec.state.player.resources['1H'] = {unlocked:true};
       spec.state.player.resources.eV = {unlocked:true};
       spec.state.player.resources['e-'] = {unlocked:false};
@@ -276,7 +274,6 @@ describe('Redox component', function () {
     it('should not show redoxes of other elements', function() {
       spec.state.player = {achievements:{},resources:{}};
       spec.state.player.achievements = {};
-      spec.state.player.achievements.redox = 1;
       spec.state.player.resources['1H'] = {unlocked:true};
       spec.state.player.resources.eV = {unlocked:true};
       spec.state.player.resources['e-'] = {unlocked:false};
