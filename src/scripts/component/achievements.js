@@ -45,6 +45,14 @@ angular.module('game').controller('ct_achievements', ['$window', 'state', 'data'
       return Math.min(data.achievements[key].goals.length, player.achievements[key] + 1);
     };
 
+    ct.numberTotal = function () {
+      let total = 0;
+      for (let key in data.achievements) {
+        total += data.achievements[key].goals.length;
+      }
+      return total;
+    };
+
     ct.numberUnlocked = function (player) {
       let total = 0;
       for (let key in data.achievements) {
