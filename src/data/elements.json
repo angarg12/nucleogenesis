@@ -1668,426 +1668,546 @@
   "Se": {
     "name": "Selenium",
     "isotopes": [],
+    "ionization_energy": [9.75238, 21.19, 30.8204, 42.9450, 68.3, 81.7, 155.4],
+    "electron_affinity": [-2.021, 6.1892],
     "number": 34,
     "disabled": true
   },
   "Br": {
     "name": "Bromine",
     "isotopes": [],
+    "ionization_energy": [11.81381, 21.8, 36, 47.3, 59.7, 88.6, 103.0, 192.8],
+    "electron_affinity": [-3.3642, 6.8083],
     "number": 35,
     "disabled": true
   },
   "Kr": {
     "name": "Krypton",
     "isotopes": [],
+    "ionization_energy": [13.99961, 24.35985, 36.950, 52.5, 64.7, 78.5, 111.0, 125.802, 230.85, 268.2, 308, 350, 391, 447, 492, 541, 592, 641, 786, 833, 884, 937, 998, 1051, 1151, 1205.3, 2928, 3070, 3227, 3381],
     "number": 36,
     "disabled": true
   },
   "Rb": {
     "name": "Rubidium",
     "isotopes": [],
+    "ionization_energy": [4.17713, 27.285, 40, 52.6, 71.0, 84.4, 99.2, 136, 150, 277.1],
+    "electron_affinity": [-0.4861],
     "number": 37,
     "disabled": true
   },
   "Sr": {
     "name": "Strontium",
     "isotopes": [],
+    "ionization_energy": [5.6949, 11.03013, 42.89, 57, 71.6, 90.8, 106, 122.3, 162, 177, 324.1],
+    "electron_affinity": [-0.0521],
     "number": 38,
     "disabled": true
   },
   "Y": {
     "name": "Yttrium",
     "isotopes": [],
+    "ionization_energy": [6.2171, 12.24, 20.52, 60.597, 77.0, 93.0, 116, 129, 146.2, 191, 206, 374.0],
+    "electron_affinity": [-0.3068],
     "number": 39,
     "disabled": true
   },
   "Zr": {
     "name": "Zirconium",
     "isotopes": [],
+    "ionization_energy": [6.63390, 13.13, 22.99, 34.34, 80.348, 98.461],
+    "electron_affinity": [-0.426],
     "number": 40,
     "disabled": true
   },
   "Nb": {
     "name": "Niobium",
     "isotopes": [],
+    "ionization_energy": [6.75885, 14.32, 25.04, 38.3, 50.55, 102.057, 125],
+    "electron_affinity": [-0.8924],
     "number": 41,
     "disabled": true
   },
   "Mo": {
     "name": "Molybdenum",
     "isotopes": [],
+    "ionization_energy": [7.09243, 16.16, 27.13, 46.4, 54.49, 68.8276, 125.664, 143.6, 164.12, 186.4, 209.3, 230.28, 279.1, 302.60, 544.0, 570, 636, 702, 767, 833, 902, 968, 1020, 1082, 1263, 1323, 1387, 1449, 1535, 1601],
+    "electron_affinity": [-0.7452],
     "number": 42,
     "disabled": true
   },
   "Tc": {
     "name": "Technetium",
     "isotopes": [],
+    "ionization_energy": [7.28, 15.26, 29.54],
+    "electron_affinity": [-0.5493],
     "number": 43,
     "disabled": true
   },
   "Ru": {
     "name": "Ruthenium",
     "isotopes": [],
+    "ionization_energy": [7.36050, 16.76, 28.47],
+    "electron_affinity": [-1.0499],
     "number": 44,
     "disabled": true
   },
   "Rh": {
     "name": "Rhodium",
     "isotopes": [],
+    "ionization_energy": [7.45890, 18.08, 31.06],
+    "electron_affinity": [-1.137],
     "number": 45,
     "disabled": true
   },
   "Pd": {
     "name": "Palladium",
     "isotopes": [],
+    "ionization_energy": [8.3369, 19.43, 32.93],
+    "electron_affinity": [-0.5566],
     "number": 46,
     "disabled": true
   },
   "Ag": {
     "name": "Silver",
     "isotopes": [],
+    "ionization_energy": [7.5762, 21.49, 34.83],
+    "electron_affinity": [-1.3017],
     "number": 47,
     "disabled": true
   },
   "Cd": {
     "name": "Cadmium",
     "isotopes": [],
+    "ionization_energy": [8.9938, 16.90832, 37.48],
     "number": 48,
     "disabled": true
   },
   "In": {
     "name": "Indium",
     "isotopes": [],
+    "ionization_energy": [5.78636, 18.8698, 28.03, 54],
+    "electron_affinity": [-0.2995],
     "number": 49,
     "disabled": true
   },
   "Sn": {
     "name": "Tin",
     "isotopes": [],
+    "ionization_energy": [7.3439, 14.63225, 30.50260, 40.73502, 72.28],
+    "electron_affinity": [-1.1121],
     "number": 50,
     "disabled": true
   },
   "Sb": {
     "name": "Antimony",
     "isotopes": [],
+    "ionization_energy": [8.6084, 16.53051, 25.3, 44.2, 56, 108],
+    "electron_affinity": [-1.0696],
     "number": 51,
     "disabled": true
   },
   "Te": {
     "name": "Tellurium",
     "isotopes": [],
+    "ionization_energy": [9.0096, 18.6, 27.96, 37.41, 58.75, 70.7, 137],
+    "electron_affinity": [-1.9713],
     "number": 52,
     "disabled": true
   },
   "I": {
     "name": "Iodine",
     "isotopes": [],
+    "ionization_energy": [10.45126, 19.1313, 33],
+    "electron_affinity": [-3.0595],
     "number": 53,
     "disabled": true
   },
   "Xe": {
     "name": "Xenon",
     "isotopes": [],
+    "ionization_energy": [12.1298, 21.20979, 32.1230],
+    "electron_affinity": [0.056],
     "number": 54,
     "disabled": true
   },
   "Cs": {
     "name": "Caesium",
     "isotopes": [],
+    "ionization_energy": [3.89390, 23.15745, 35.239],
+    "electron_affinity": [-0.4716],
     "number": 55,
     "disabled": true
   },
   "Ba": {
     "name": "Barium",
     "isotopes": [],
+    "ionization_energy": [5.21170, 10.00390, 37.311],
+    "electron_affinity": [-0.1446],
     "number": 56,
     "disabled": true
   },
   "La": {
     "name": "Lanthanum",
     "isotopes": [],
+    "ionization_energy": [5.5769, 11.060, 19.1773, 49.95, 61.6],
+    "electron_affinity": [-0.55],
     "number": 57,
     "disabled": true
   },
   "Ce": {
     "name": "Cerium",
     "isotopes": [],
+    "ionization_energy": [5.5387, 10.85, 20.198, 36.758, 65.55, 77.6],
+    "electron_affinity": [-0.57],
     "number": 58,
     "disabled": true
   },
   "Pr": {
     "name": "Praseodymium",
     "isotopes": [],
+    "ionization_energy": [5.473, 10.55, 21.624, 38.98, 57.53],
+    "electron_affinity": [-0.962],
     "number": 59,
     "disabled": true
   },
   "Nd": {
     "name": "Neodymium",
     "isotopes": [],
+    "ionization_energy": [5.5250, 10.73, 22.1, 40.41],
+    "electron_affinity": [-0.162],
     "number": 60,
     "disabled": true
   },
   "Pm": {
     "name": "Promethium",
     "isotopes": [],
+    "ionization_energy": [5.582, 10.90, 22.3, 41.1],
+    "electron_affinity": [-0.129],
     "number": 61,
     "disabled": true
   },
   "Sm": {
     "name": "Samarium",
     "isotopes": [],
+    "ionization_energy": [5.6436, 11.07, 23.4, 41.4],
+    "electron_affinity": [-0.162],
     "number": 62,
     "disabled": true
   },
   "Eu": {
     "name": "Europium",
     "isotopes": [],
+    "ionization_energy": [5.6704, 11.241, 24.92, 42.7],
+    "electron_affinity": [-0.116],
     "number": 63,
     "disabled": true
   },
   "Gd": {
     "name": "Gadolinium",
     "isotopes": [],
+    "ionization_energy": [6.1501, 12.09, 20.63, 44.0],
+    "electron_affinity": [-0.137],
     "number": 64,
     "disabled": true
   },
   "Tb": {
     "name": "Terbium",
     "isotopes": [],
+    "ionization_energy": [5.8638, 11.52, 21.91, 39.79],
+    "electron_affinity": [-0.436],
     "number": 65,
     "disabled": true
   },
   "Dy": {
     "name": "Dysprosium",
     "isotopes": [],
+    "ionization_energy": [5.9389, 11.67, 22.8, 41.47],
+    "electron_affinity": [-0.352],
     "number": 66,
     "disabled": true
   },
   "Ho": {
     "name": "Holmium",
     "isotopes": [],
+    "ionization_energy": [6.0215, 11.80, 22.84, 42.5],
+    "electron_affinity": [-0.338],
     "number": 67,
     "disabled": true
   },
   "Er": {
     "name": "Erbium",
     "isotopes": [],
+    "ionization_energy": [6.1077, 11.93, 22.74, 42.7],
+    "electron_affinity": [-0.312],
     "number": 68,
     "disabled": true
   },
   "Tm": {
     "name": "Thulium",
     "isotopes": [],
+    "ionization_energy": [6.18431, 12.05, 23.68, 42.7],
+    "electron_affinity": [-1.0261],
     "number": 69,
     "disabled": true
   },
   "Yb": {
     "name": "Ytterbium",
     "isotopes": [],
+    "ionization_energy": [6.25416, 12.1761, 25.05, 43.56],
+    "electron_affinity": [-0.003],
     "number": 70,
     "disabled": true
   },
   "Lu": {
     "name": "Lutetium",
     "isotopes": [],
+    "ionization_energy": [5.4259, 13.9, 20.9594, 45.25, 66.8],
+    "electron_affinity": [-0.3462],
     "number": 71,
     "disabled": true
   },
   "Hf": {
     "name": "Hafnium",
     "isotopes": [],
+    "ionization_energy": [6.82507, 14.9, 23.3, 33.33],
+    "electron_affinity": [-0.114],
     "number": 72,
     "disabled": true
   },
   "Ta": {
     "name": "Tantalum",
     "isotopes": [],
+    "ionization_energy": [7.5496],
+    "electron_affinity": [-0.3213],
     "number": 73,
     "disabled": true
   },
   "W": {
     "name": "Tungsten",
     "isotopes": [],
+    "ionization_energy": [7.8640, 17.619],
+    "electron_affinity": [-0.8146],
     "number": 74,
     "disabled": true
   },
   "Re": {
     "name": "Rhenium",
     "isotopes": [],
+    "ionization_energy": [7.8335, 13.059, 26.014, 37.726],
+    "electron_affinity": [-0.1503],
     "number": 75,
     "disabled": true
   },
   "Os": {
     "name": "Osmium",
     "isotopes": [],
+    "ionization_energy": [8.4382, 16.583],
+    "electron_affinity": [-1.0996],
     "number": 76,
     "disabled": true
   },
   "Ir": {
     "name": "Iridium",
     "isotopes": [],
+    "ionization_energy": [8.9670, 16.583],
+    "electron_affinity": [-1.565],
     "number": 77,
     "disabled": true
   },
   "Pt": {
     "name": "Platinum",
     "isotopes": [],
+    "ionization_energy": [8.9587, 18.563, 28],
+    "electron_affinity": [-2.1278],
     "number": 78,
     "disabled": true
   },
   "Au": {
     "name": "Gold",
     "isotopes": [],
+    "ionization_energy": [9.2255, 20.5, 30],
+    "electron_affinity": [-2.3092],
     "number": 79,
     "disabled": true
   },
   "Hg": {
     "name": "Mercury",
     "isotopes": [],
+    "ionization_energy": [10.43750, 18.756, 34.2],
     "number": 80,
     "disabled": true
   },
   "Tl": {
     "name": "Thallium",
     "isotopes": [],
+    "ionization_energy": [6.1082, 20.428, 29.83],
+    "electron_affinity": [-0.199],
     "number": 81,
     "disabled": true
   },
   "Pb": {
     "name": "Lead",
     "isotopes": [],
+    "ionization_energy": [7.41666, 15.0322, 31.9373, 42.32, 68.8],
+    "electron_affinity": [-0.3638],
     "number": 82,
     "disabled": true
   },
   "Bi": {
     "name": "Bismuth",
     "isotopes": [],
+    "ionization_energy": [7.2856, 16.69, 25.56, 45.3, 56.0, 88.3],
+    "electron_affinity": [-0.9452],
     "number": 83,
     "disabled": true
   },
   "Po": {
     "name": "Polonium",
     "isotopes": [],
+    "ionization_energy": [8.417],
+    "electron_affinity": [-1.8998],
     "number": 84,
     "disabled": true
   },
   "At": {
     "name": "Astatine",
     "isotopes": [],
+    "ionization_energy": [9.535],
+    "electron_affinity": [-2.7994],
     "number": 85,
     "disabled": true
   },
   "Rn": {
     "name": "Radon",
     "isotopes": [],
+    "ionization_energy": [10.74850],
     "number": 86,
     "disabled": true
   },
   "Fr": {
     "name": "Francium",
     "isotopes": [],
+    "ionization_energy": [4.0727],
     "number": 87,
     "disabled": true
   },
   "Ra": {
     "name": "Radium",
     "isotopes": [],
+    "ionization_energy": [5.2784, 10.14716],
     "number": 88,
     "disabled": true
   },
   "Ac": {
     "name": "Actinium",
     "isotopes": [],
+    "ionization_energy": [5.17, 12.1],
     "number": 89,
     "disabled": true
   },
   "Th": {
     "name": "Thorium",
     "isotopes": [],
+    "ionization_energy": [6.3067, 11.5, 20.0, 28.8],
     "number": 90,
     "disabled": true
   },
   "Pa": {
     "name": "Protactinium",
     "isotopes": [],
+    "ionization_energy": [5.89],
     "number": 91,
     "disabled": true
   },
   "U": {
     "name": "Uranium",
     "isotopes": [],
+    "ionization_energy": [6.19405, 14.717],
     "number": 92,
     "disabled": true
   },
   "Np": {
     "name": "Neptunium",
     "isotopes": [],
+    "ionization_energy": [6.2657],
     "number": 93,
     "disabled": true
   },
   "Pu": {
     "name": "Plutonium",
     "isotopes": [],
+    "ionization_energy": [6.0262],
     "number": 94,
     "disabled": true
   },
   "Am": {
     "name": "Americium",
     "isotopes": [],
+    "ionization_energy": [5.9738],
     "number": 95,
     "disabled": true
   },
   "Cm": {
     "name": "Curium",
     "isotopes": [],
+    "ionization_energy": [5.9915],
     "number": 96,
     "disabled": true
   },
   "Bk": {
     "name": "Berkelium",
     "isotopes": [],
+    "ionization_energy": [6.1979],
     "number": 97,
     "disabled": true
   },
   "Cf": {
     "name": "Californium",
     "isotopes": [],
+    "ionization_energy": [6.2817],
     "number": 98,
     "disabled": true
   },
   "Es": {
     "name": "Einsteinium",
     "isotopes": [],
+    "ionization_energy": [6.42],
     "number": 99,
     "disabled": true
   },
   "Fm": {
     "name": "Fermium",
     "isotopes": [],
+    "ionization_energy": [6.50],
     "number": 100,
     "disabled": true
   },
   "Md": {
     "name": "Mendelevium",
     "isotopes": [],
+    "ionization_energy": [6.58],
     "number": 101,
     "disabled": true
   },
   "No": {
     "name": "Nobelium",
     "isotopes": [],
+    "ionization_energy": [6.65],
     "number": 102,
     "disabled": true
   },
   "Lr": {
     "name": "Lawrencium",
     "isotopes": [],
+    "ionization_energy": [4.9],
     "number": 103,
     "disabled": true
   },
   "Rf": {
     "name": "Rutherfordium",
     "isotopes": [],
+    "ionization_energy": [6.0],
     "number": 104,
     "disabled": true
   },
