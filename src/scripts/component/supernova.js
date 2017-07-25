@@ -109,11 +109,13 @@ function supernova(state, format, visibility, upgrade, data, util) {
     return valid;
   };
 
-  /* The infusion boosts are multiplicative with respect to each other */
   ct.infuseBoost = function(resource) {
       let number = Math.min(ct.infuse[resource], state.player.resources[resource].number);
-      // sqrt adds diminishing returns to the infusion
-      return 1 + Math.sqrt(number)*ct.data.constants.INFUSE_POWER;
+      if(number === 0){
+        return 1;
+      }
+      // log adds diminishing returns to the infusion
+      return 1 + Math.log(number)*ct.data.constants.INFUSE_POWER;
   };
 
   /* The infusion boosts are multiplicative with respect to each other */
