@@ -22,7 +22,7 @@ angular
 
       this.save = function () {
         localStorage.setItem('player', JSON.stringify(state.player));
-      }
+      };
 
       this.load = function () {
         try {
@@ -51,6 +51,13 @@ angular
         if (!state.player.id) {
           state.player.id = Math.random().toString().substring(3);
         }
-      }
+
+        // old saves may have outdated reactions, which crash the game
+        for(let react in state.player.reactions){
+          if(typeof data.reactions[react] === 'undefined'){
+            delete state.player.reactions[react];
+          }
+        }
+      };
     }
   ]);
