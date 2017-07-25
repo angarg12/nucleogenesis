@@ -731,6 +731,22 @@
   "Sc": {
     "name": "Scandium",
     "isotopes": {
+      "44Sc": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 14299,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1,
+              "decay_product": {
+                "44C": 1,
+                "e+": 1,
+                "eV": 2630190
+              }
+            }
+          }
+        }
+      },
       "45Sc": {
         "ratio": 1
       },
