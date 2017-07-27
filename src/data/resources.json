@@ -1,7 +1,7 @@
 {
   "e-": {
     "elements": {},
-    "rest_mass": 511000,
+    "mass": 511000,
     "anti_particle": "e+",
     "html": "e<sup>-</sup>",
     "type": [
@@ -10,7 +10,7 @@
   },
   "e+": {
     "elements": {},
-    "rest_mass": 511000,
+    "mass": 511000,
     "anti_particle": "e-",
     "html": "e<sup>+</sup>",
     "type": [
@@ -19,7 +19,7 @@
   },
   "n": {
     "elements": {},
-    "rest_mass": 939565413,
+    "mass": 939565413,
     "decay": {
       "half_life": 881,
       "decay_types": {
@@ -39,7 +39,7 @@
   },
   "p": {
     "elements": {},
-    "rest_mass": 938272081,
+    "mass": 938272081,
     "type": [
       "subatomic"
     ]
