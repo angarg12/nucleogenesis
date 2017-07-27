@@ -16,7 +16,7 @@
             "beta-": {
               "ratio": 1,
               "decay_product": {
-                "He+": 1,
+                "3He": 1,
                 "e-": 1,
                 "eV": 18610
               }
@@ -162,23 +162,24 @@
   "N": {
     "name": "Nitrogen",
     "isotopes": {
-      "14N": {
-        "ratio": 0.96
-      },
       "13N": {
         "ratio": 0,
         "decay": {
           "half_life": 598,
           "decay_types": {
-            "electron_capture": {
+            "beta+": {
               "ratio": 1,
               "decay_product": {
                 "13C": 1,
-                "eV": 2220000
+                "e+": 1,
+                "eV": 1220000
               }
             }
           }
         }
+      },
+      "14N": {
+        "ratio": 0.96
       },
       "15N": {
         "ratio": 0.04
@@ -217,18 +218,11 @@
           "half_life": 6586,
           "decay_types": {
             "beta+": {
-              "ratio": 0.969,
+              "ratio": 1,
               "decay_product": {
                 "18O": 1,
                 "e+": 1,
                 "eV": 634000
-              }
-            },
-            "electron_capture": {
-              "ratio": 0.031,
-              "decay_product": {
-                "18O": 1,
-                "eV": 1656000
               }
             }
           }
@@ -264,18 +258,11 @@
           "half_life": 8.2056e+7,
           "decay_types": {
             "beta+": {
-              "ratio": 0.5,
+              "ratio": 1,
               "decay_product": {
                 "22Ne": 1,
                 "e+": 1,
                 "eV": 1820000
-              }
-            },
-            "electron_capture": {
-              "ratio": 0.5,
-              "decay_product": {
-                "22Ne": 1,
-                "eV": 1274532
               }
             }
           }
@@ -287,7 +274,7 @@
       "24Na": {
         "ratio": 0.000001,
         "decay": {
-          "half_life": "53856",
+          "half_life": 53856,
           "decay_types": {
             "beta-": {
               "ratio": 1,
@@ -330,17 +317,11 @@
           "half_life": 2.2611e+13,
           "decay_types": {
             "beta+": {
-              "ratio": 0.5,
+              "ratio": 1,
               "decay_product": {
                 "26Mg": 1,
                 "e+": 1,
-                "eV": 1.17e+6
-              }
-            },
-            "electron_capture": {
-              "ratio": 0.5,
-              "decay_product": {
-                "26Mg": 1
+                "eV": 2982073
               }
             }
           }
@@ -392,7 +373,7 @@
               "decay_product": {
                 "32P": 1,
                 "e-": 1,
-                "eV": 1.302e+7
+                "eV": 224311
               }
             }
           }
@@ -419,7 +400,7 @@
               "decay_product": {
                 "32S": 1,
                 "e-": 1,
-                "eV": 1.709000
+                "eV": 1709000
               }
             }
           }
@@ -494,17 +475,19 @@
           "half_life": 9.4923e+12,
           "decay_types": {
             "beta-": {
-              "ratio": 0.5,
+              "ratio": 0.981,
               "decay_product": {
                 "36Ar": 1,
                 "e-": 1,
                 "eV": 709000
               }
             },
-            "electron_capture": {
-              "ratio": 0.5,
+            "beta+": {
+              "ratio": 0.019,
               "decay_product": {
-                "36S": 1
+                "36S": 1,
+                "e+": 1,
+                "eV": 120000
               }
             }
           }
@@ -610,26 +593,19 @@
           "half_life": 3.93569e+16,
           "decay_types": {
             "beta-": {
-              "ratio": 0.333334,
+              "ratio": 0.8928,
               "decay_product": {
                 "40Ca": 1,
                 "e-": 1,
                 "eV": 1311000
               }
             },
-            "electron_capture": {
-              "ratio": 0.333333,
-              "decay_product": {
-                "40Ar": 1,
-                "eV": 1505000
-              }
-            },
             "beta+": {
-              "ratio": 0.333333,
+              "ratio": 0.1072,
               "decay_product": {
                 "40Ar": 1,
                 "e+": 1,
-                "eV": 1505000
+                "eV": 482000
               }
             }
           }
@@ -657,7 +633,8 @@
             "electron_capture": {
               "ratio": 1,
               "decay_product": {
-                "41K": 1
+                "41K": 1,
+                "eV": 421000
               }
             }
           }
@@ -712,8 +689,16 @@
         "decay": {
           "half_life": 1.356e+27,
           "decay_types": {
+            "beta-": {
+              "ratio": 0.5,
+              "decay_product": {
+                "48Sc": 1,
+                "e-": 1,
+                "eV": 281000
+              }
+            },
             "2beta-": {
-              "ratio": 1,
+              "ratio": 0.5,
               "decay_product": {
                 "48Ti": 1,
                 "e-": 2,
@@ -739,7 +724,7 @@
             "beta+": {
               "ratio": 1,
               "decay_product": {
-                "44C": 1,
+                "44Ca": 1,
                 "e+": 1,
                 "eV": 2630190
               }
@@ -760,7 +745,7 @@
               "decay_product": {
                 "46Ti": 1,
                 "e-": 1,
-                "eV": 356900
+                "eV": 2366000
               }
             }
           }
@@ -792,7 +777,7 @@
               "decay_product": {
                 "48Ti": 1,
                 "e-": 1,
-                "eV": 661000
+                "eV": 3991000
               }
             }
           }
@@ -815,7 +800,7 @@
               "ratio": 1,
               "decay_product": {
                 "44Sc": 1,
-                "eV": 0
+                "eV": 267000
               }
             }
           }
@@ -854,7 +839,7 @@
               "decay_product": {
                 "48Ti": 1,
                 "e+": 1,
-                "eV": 4012300
+                "eV": 2990000
               }
             }
           }
@@ -880,15 +865,16 @@
         "decay": {
           "half_life": 4.7304e+24,
           "decay_types": {
-            "electron_capture": {
-              "ratio": 0.5,
+            "beta+": {
+              "ratio": 0.83,
               "decay_product": {
                 "50Ti": 1,
-                "eV": 2208300
+                "e+": 1,
+                "eV": 1182000
               }
             },
             "beta-": {
-              "ratio": 0.5,
+              "ratio": 0.17,
               "decay_product": {
                 "50Cr": 1,
                 "e-": 1,
@@ -921,7 +907,7 @@
               "ratio": 1,
               "decay_product": {
                 "51V": 1,
-                "eV": 0
+                "eV": 752000
               }
             }
           }
@@ -950,17 +936,11 @@
           "half_life": 483840,
           "decay_types": {
             "beta+": {
-              "ratio": 0.5,
+              "ratio": 1,
               "decay_product": {
                 "52Cr": 1,
                 "e+": 1,
-                "eV": 575000
-              }
-            },
-            "electron_capture": {
-              "ratio": 0.5,
-              "decay_product": {
-                "52Cr": 1
+                "eV": 3689000
               }
             }
           }
@@ -975,7 +955,7 @@
               "ratio": 1,
               "decay_product": {
                 "53Cr": 1,
-                "eV": 0
+                "eV": 596000
               }
             }
           }
@@ -987,10 +967,18 @@
           "half_life": 2678400,
           "decay_types": {
             "electron_capture": {
-              "ratio": 1,
+              "ratio": 0.999997,
               "decay_product": {
                 "54Cr": 1,
                 "eV": 1377000
+              }
+            },
+            "beta-": {
+              "ratio": 0.000003,
+              "decay_product": {
+                "54Fe": 1,
+                "e-": 1,
+                "eV": 697000
               }
             }
           }
@@ -1060,7 +1048,7 @@
               "decay_product": {
                 "60Co": 1,
                 "e-": 1,
-                "eV": 3978000
+                "eV": 237000
               }
             }
           }
@@ -1083,7 +1071,8 @@
               "ratio": 1,
               "decay_product": {
                 "56Fe": 1,
-                "eV": 4566000
+                "e+": 1,
+                "eV": 3543000
               }
             }
           }
@@ -1109,11 +1098,11 @@
         "decay": {
           "half_life": 6122304,
           "decay_types": {
-            "electron_capture": {
+            "beta+": {
               "ratio": 1,
               "decay_product": {
                 "58Fe": 1,
-                "eV": 2307000
+                "eV": 1285000
               }
             }
           }
@@ -1154,10 +1143,11 @@
         "decay": {
           "half_life": 2.3652E+12,
           "decay_types": {
-            "electron_capture": {
+            "beta+": {
               "ratio": 1,
               "decay_product": {
                 "59Co": 1,
+                "e+": 1,
                 "eV": 50600
               }
             }
@@ -1208,18 +1198,20 @@
         "decay": {
           "half_life": 45720,
           "decay_types": {
-            "beta-": {
-              "ratio": 0.5,
+            "beta+": {
+              "ratio": 0.61,
               "decay_product": {
                 "64Ni": 1,
-                "e-": 1,
-                "eV": 0
+                "e+": 1,
+                "eV": 652000
               }
             },
-            "electron_capture": {
-              "ratio": 0.5,
+            "beta-": {
+              "ratio": 0.39,
               "decay_product": {
-                "64Zn": 1
+                "64Zn": 1,
+                "e-": 1,
+                "eV": 579000
               }
             }
           }
@@ -1238,7 +1230,7 @@
               "decay_product": {
                 "67Zn": 1,
                 "e-": 1,
-                "eV": 0
+                "eV": 2641000
               }
             }
           }
@@ -1265,7 +1257,7 @@
               "decay_product": {
                 "65Cu": 1,
                 "e+": 1,
-                "eV": 1351900
+                "eV": 329900
               }
             }
           }
@@ -1394,7 +1386,7 @@
           "half_life": 1260,
           "decay_types": {
             "beta-": {
-              "ratio": 0.5,
+              "ratio": 0.9959,
               "decay_product": {
                 "70Ge": 1,
                 "e-": 1,
@@ -1402,7 +1394,7 @@
               }
             },
             "electron_capture": {
-              "ratio": 0.5,
+              "ratio": 0.0041,
               "decay_product": {
                 "70Zn": 1,
                 "eV": 655000
@@ -1462,7 +1454,8 @@
             "electron_capture": {
               "ratio": 1,
               "decay_product": {
-                "68Ga": 1
+                "68Ga": 1,
+                "eV": 106000
               }
             }
           }
@@ -1479,7 +1472,8 @@
             "electron_capture": {
               "ratio": 1,
               "decay_product": {
-                "71Ga": 1
+                "71Ga": 1,
+                "eV": 232000
               }
             }
           }
@@ -1526,7 +1520,8 @@
             "electron_capture": {
               "ratio": 1,
               "decay_product": {
-                "73Ge": 1
+                "73Ge": 1,
+                "eV": 340000
               }
             }
           }
@@ -1538,20 +1533,15 @@
           "half_life": 1537920,
           "decay_types": {
             "beta+": {
-              "ratio": 0.3334,
+              "ratio": 0.66,
               "decay_product": {
                 "74Ge": 1,
-                "eV": 941000
-              }
-            },
-            "electron_capture": {
-              "ratio": 0.3333,
-              "decay_product": {
-                "74Ge": 1
+                "e+": 1,
+                "eV": 1540000
               }
             },
             "beta-": {
-              "ratio": 0.3333,
+              "ratio": 0.34,
               "decay_product": {
                 "74Se": 1,
                 "e-": 1,
