@@ -22,7 +22,7 @@ for (let i in resources) {
       };
       reaction.reactant[i] = 1;
       reaction.reactant[anti] = 1;
-      reaction.product.eV = resource.mass * 2;
+      reaction.product.eV = resource.energy * 2;
       reactions[key] = reaction;
     }
   }

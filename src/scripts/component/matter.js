@@ -12,8 +12,8 @@ angular.module('game').component('matter', {
   controllerAs: 'ct'
 });
 
-angular.module('game').controller('ct_matter', ['state', 'visibility', 'data', 'util',
-function (state, visibility, data, util) {
+angular.module('game').controller('ct_matter', ['state', 'visibility', 'data', 'util', 'reaction',
+function (state, visibility, data, util, reaction) {
   let ct = this;
   ct.state = state;
   ct.data = data;
@@ -36,19 +36,16 @@ function (state, visibility, data, util) {
         }
 
         // we decrease the number of radioactive element
-        player.resources[resource].number -= production;
+        //player.resources[resource].number -= production;
 
         // and decay products
-        for (let type of Object.values(data.resources[resource].decay.decay_types)) {
-          for (let product in type.decay_product) {
-            let number = type.decay_product[product];
-            player.resources[product].number += Math.floor(number * production * type.ratio);
-            if (!player.resources[product].unlocked) {
-              player.resources[product].unlocked = true;
-              state.addNew(product);
-            }
-          }
+        let type;
+        for (type of Object.values(data.resources[resource].decay.decay_types)) {
+          let decayNumber = Math.floor(production * type.ratio);
+          production -= decayNumber;
+          reaction.react(decayNumber, type.reaction, player);
         }
+        reaction.react(production, type.reaction, player);
       }
     }
   }

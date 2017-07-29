@@ -43,9 +43,5 @@ angular
         reactionHTML += this.compoundFormat(number, reaction.product);
         return reactionHTML;
       };
-
-      this.decayFormat = function(decay) {
-        return this.compoundFormat(1, decay.decay_product);
-      };
     }
   ]);

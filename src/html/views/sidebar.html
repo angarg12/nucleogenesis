@@ -34,7 +34,7 @@
 		    </span>
         <get-html value="key"
                   class="col-lg-2"></get-html>
-        <span ng-bind-html="ct.util.trustHTML(ct.format.decayFormat(decay))"
+        <span ng-bind-html="ct.util.trustHTML(ct.format.reactionFormat(1, decay.reaction))"
               class="col-lg-8"></span>
       </li>
     </ul>

@@ -1,7 +1,7 @@
 {
   "e-": {
     "elements": {},
-    "mass": 511000,
+    "energy": 511000,
     "anti_particle": "e+",
     "html": "e<sup>-</sup>",
     "type": [
@@ -10,7 +10,7 @@
   },
   "e+": {
     "elements": {},
-    "mass": 511000,
+    "energy": 511000,
     "anti_particle": "e-",
     "html": "e<sup>+</sup>",
     "type": [
@@ -19,16 +19,21 @@
   },
   "n": {
     "elements": {},
-    "mass": 939565413,
+    "energy": 939565413,
     "decay": {
       "half_life": 881,
       "decay_types": {
         "beta-": {
           "ratio": 1,
-          "decay_product": {
-            "p": 1,
-            "e-": 1,
-            "eV": 782343
+          "reaction": {
+            "reactant": {
+              "n": 1
+            },
+            "product": {
+              "p": 1,
+              "e-": 1,
+              "eV": 782343
+            }
           }
         }
       }
@@ -39,7 +44,7 @@
   },
   "p": {
     "elements": {},
-    "mass": 938272081,
+    "energy": 938272081,
     "type": [
       "subatomic"
     ]
@@ -52,6 +57,9 @@
   },
   "dark_matter": {
     "elements": {},
-    "html": "&#8709;"
+    "html": "&#8709;",
+    "type": [
+      "dark"
+    ]
   }
 }

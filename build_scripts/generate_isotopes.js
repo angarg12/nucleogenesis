@@ -26,6 +26,7 @@ for (let element in elements) {
   for (let isotope in isotopes) {
     resources[isotope] = {};
     resources[isotope].ratio = isotopes[isotope].ratio;
+    resources[isotope].energy = isotopes[isotope].energy;
     resources[isotope].decay = isotopes[isotope].decay;
     resources[isotope].elements = {};
     resources[isotope].elements[element] = 1;
