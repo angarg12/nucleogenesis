@@ -13,202 +13,209 @@ angular.module('game').component('matter', {
 });
 
 angular.module('game').controller('ct_matter', ['state', 'visibility', 'data', 'util', 'reaction',
-function (state, visibility, data, util, reaction) {
-  let ct = this;
-  ct.state = state;
-  ct.data = data;
-  let buyAmount = [1,10,25,100,'max'];
+  function (state, visibility, data, util, reaction) {
+    let ct = this;
+    ct.state = state;
+    ct.data = data;
+    let buyAmount = [1, 10, 25, 100, 'max'];
 
-  /* Proceses the decay of radiactive isotopes. It uses a random draw based on the
-  half life to decide how many atoms decay, and then spreads them over different
-  decay forms proportionally. */
-  function processDecay(player) {
-    // for each radiactive isotope
-    for (let i = 0; i < data.radioisotopes.length; i++) {
-      let resource = data.radioisotopes[i];
-      if (player.resources[resource].unlocked) {
-        let number = player.resources[resource].number;
-        let halfLife = data.resources[resource].decay.half_life;
-        let production = util.randomDraw(number, Math.log(2) / halfLife);
+    /* Proceses the decay of radiactive isotopes. It uses a random draw based on the
+    half life to decide how many atoms decay, and then spreads them over different
+    decay forms proportionally. */
+    function processDecay(player) {
+      // for each radiactive isotope
+      for (let i = 0; i < data.radioisotopes.length; i++) {
+        let resource = data.radioisotopes[i];
+        if (player.resources[resource].unlocked) {
+          let number = player.resources[resource].number;
+          let halfLife = data.resources[resource].decay.half_life;
+          let production = util.randomDraw(number, Math.log(2) / halfLife);
 
-        if (production === 0) {
+          if (production === 0) {
+            continue;
+          }
+
+          // we decrease the number of radioactive element
+          //player.resources[resource].number -= production;
+
+          // and decay products
+          let type;
+          for (type of Object.values(data.resources[resource].decay.decay_types)) {
+            let decayNumber = Math.floor(production * type.ratio);
+            // FIXME: this is a hack to fix decay not working if the number of
+            // neutrons is lower than the decay amount. Fixing starvation
+            // should fix this one as well
+            if (type.reaction.reactant && type.reaction.reactant.n) {
+              decayNumber = Math.min(decayNumber, player.resources.n.number);
+            }
+            production -= decayNumber;
+            reaction.react(decayNumber, type.reaction, player);
+          }
+          reaction.react(production, type.reaction, player);
+        }
+      }
+    }
+
+    /* Proceses the generation for each element. It generates isotopes with a random
+    draw proportionally to their probability. */
+    function processGenerators(player) {
+      // we will simulate the production of isotopes proportional to their ratio
+      for (let element in player.elements) {
+        if (player.elements[element].unlocked === false) {
           continue;
         }
+        // prepare an array with the isotopes
+        let isotopes = Object.keys(data.elements[element].isotopes);
+        let remaining = ct.elementProduction(player, element);
+        // we will create a random draw recalculate the mean and std
+        for (let i = 0; i < isotopes.length - 1; i++) {
+          // first we need to adjust the ratio for the remaining isotopes
+          let remainingRatioSum = 0;
+          for (let j = i; j < isotopes.length; j++) {
+            remainingRatioSum += data.resources[isotopes[j]].ratio;
+          }
 
-        // we decrease the number of radioactive element
-        //player.resources[resource].number -= production;
+          // we calculate the production with a random draw
+          let p = data.resources[isotopes[i]].ratio / remainingRatioSum;
+          let production = util.randomDraw(remaining, p);
 
-        // and decay products
-        let type;
-        for (type of Object.values(data.resources[resource].decay.decay_types)) {
-          let decayNumber = Math.floor(production * type.ratio);
-          production -= decayNumber;
-          reaction.react(decayNumber, type.reaction, player);
+          if (production > 0) {
+            // assign the player the produced isotope
+            player.resources[isotopes[i]].number += production;
+            if (!player.resources[isotopes[i]].unlocked) {
+              player.resources[isotopes[i]].unlocked = true;
+              state.addNew(isotopes[i]);
+            }
+          }
+          remaining -= production;
         }
-        reaction.react(production, type.reaction, player);
-      }
-    }
-  }
-
-  /* Proceses the generation for each element. It generates isotopes with a random
-  draw proportionally to their probability. */
-  function processGenerators(player) {
-    // we will simulate the production of isotopes proportional to their ratio
-    for (let element in player.elements) {
-      if (player.elements[element].unlocked === false) {
-        continue;
-      }
-      // prepare an array with the isotopes
-      let isotopes = Object.keys(data.elements[element].isotopes);
-      let remaining = ct.elementProduction(player, element);
-      // we will create a random draw recalculate the mean and std
-      for (let i = 0; i < isotopes.length - 1; i++) {
-        // first we need to adjust the ratio for the remaining isotopes
-        let remainingRatioSum = 0;
-        for (let j = i; j < isotopes.length; j++) {
-          remainingRatioSum += data.resources[isotopes[j]].ratio;
-        }
-
-        // we calculate the production with a random draw
-        let p = data.resources[isotopes[i]].ratio / remainingRatioSum;
-        let production = util.randomDraw(remaining, p);
-
-        if (production > 0) {
-          // assign the player the produced isotope
-          player.resources[isotopes[i]].number += production;
-          if (!player.resources[isotopes[i]].unlocked) {
-            player.resources[isotopes[i]].unlocked = true;
-            state.addNew(isotopes[i]);
+        // the last isotope is just the remaining production that hasn't been consumed
+        if (remaining > 0) {
+          let last = isotopes[isotopes.length - 1];
+          player.resources[last].number += remaining;
+          if (!player.resources[last].unlocked) {
+            player.resources[last].unlocked = true;
+            state.addNew(last);
           }
         }
-        remaining -= production;
-      }
-      // the last isotope is just the remaining production that hasn't been consumed
-      if (remaining > 0) {
-        let last = isotopes[isotopes.length - 1];
-        player.resources[last].number += remaining;
-        if (!player.resources[last].unlocked) {
-          player.resources[last].unlocked = true;
-          state.addNew(last);
-        }
       }
     }
-  }
 
-  function update(player) {
-    processDecay(player);
-    processGenerators(player);
-  }
-
-  function generatorPrice (name, level) {
-    return data.generators[name].price * Math.pow(data.constants.GENERATOR_PRICE_INCREASE, level);
-  }
-
-  ct.maxCanBuy = function (player, name, element){
-    let level = player.elements[element].generators[name];
-    let i = 0;
-    let currency = data.elements[element].main;
-    let price = generatorPrice(name, level);
-    // we need a loop since we use the ceil operator
-    while (player.resources[currency].number >= price) {
-      i++;
-      price += generatorPrice(name, level + i);
+    function update(player) {
+      processDecay(player);
+      processGenerators(player);
     }
-    return i;
-  };
 
-  ct.generatorTotalPrice = function(player, name, element, number) {
-    if(number === 'max'){
-      number = ct.maxCanBuy(player, name, element);
+    function generatorPrice(name, level) {
+      return data.generators[name].price * Math.pow(data.constants.GENERATOR_PRICE_INCREASE, level);
     }
-    let level = player.elements[element].generators[name];
-    let totalPrice = 0;
-    for(let i = 0; i < number; i++){
-      let price = generatorPrice(name, level + i);
-      totalPrice += Math.ceil(price);
-    }
-    return totalPrice;
-  };
 
-  ct.buyGenerators = function(player, name, element, number) {
-    if(number === 'max'){
+    ct.maxCanBuy = function (player, name, element) {
+      let level = player.elements[element].generators[name];
+      let i = 0;
+      let currency = data.elements[element].main;
+      let price = generatorPrice(name, level);
+      // we need a loop since we use the ceil operator
+      while (player.resources[currency].number >= price) {
+        i++;
+        price += generatorPrice(name, level + i);
+      }
+      return i;
+    };
+
+    ct.generatorTotalPrice = function (player, name, element, number) {
+      if (number === 'max') {
         number = ct.maxCanBuy(player, name, element);
-    }
-    let price = this.generatorTotalPrice(player, name, element, number);
-    let currency = data.elements[element].main;
-    if(ct.canBuy(player, element, price)){
-      player.resources[currency].number -= price;
-      player.elements[element].generators[name]+= number;
-    }
-  };
-
-  ct.canBuy = function(player, element, price) {
-    let currency = data.elements[element].main;
-    if(price > player.resources[currency].number){
-      return false;
-    }
-    return true;
-  };
-
-  ct.generatorProduction = function(player, name, element) {
-    let baseProduction = data.generators[name].power;
-    return upgradedProduction(player, baseProduction, name, element);
-  };
-
-  ct.tierProduction = function(player, name, element) {
-    let baseProduction = data.generators[name].power *
-      player.elements[element].generators[name];
-    return upgradedProduction(player, baseProduction, name, element);
-  };
-
-  /* Upgraded production includes upgrades, exotic matter and dark matter. */
-  function upgradedProduction(player, production, name, element) {
-    for (let up in data.generators[name].upgrades) {
-      if (player.elements[element].upgrades[data.generators[name].upgrades[up]]) {
-        let power = data.upgrades[data.generators[name].upgrades[up]].power;
-        production = upgradeApply(production, power);
       }
-    }
-    let exotic = data.elements[element].exotic;
-    production *= (1 + player.resources[exotic].number * data.constants.EXOTIC_POWER) *
-                  (1 + player.resources.dark_matter.number * data.constants.DARK_POWER);
-    return Math.floor(production);
-  }
+      let level = player.elements[element].generators[name];
+      let totalPrice = 0;
+      for (let i = 0; i < number; i++) {
+        let price = generatorPrice(name, level + i);
+        totalPrice += Math.ceil(price);
+      }
+      return totalPrice;
+    };
 
-  function upgradeApply(resource, power) {
-    return resource * power;
-  }
+    ct.buyGenerators = function (player, name, element, number) {
+      if (number === 'max') {
+        number = ct.maxCanBuy(player, name, element);
+      }
+      let price = this.generatorTotalPrice(player, name, element, number);
+      let currency = data.elements[element].main;
+      if (ct.canBuy(player, element, price)) {
+        player.resources[currency].number -= price;
+        player.elements[element].generators[name] += number;
+      }
+    };
 
-  ct.elementProduction = function(player, element) {
-    let total = 0;
-    for (let tier in data.generators) {
-      total += ct.tierProduction(player, tier, element);
-    }
-    return total;
-  };
-
-  ct.visibleGenerators = function(currentElement) {
-    return visibility.visible(data.generators, isGeneratorVisible, currentElement);
-  };
-
-  function isGeneratorVisible(name, currentElement) {
-    let generator = data.generators[name];
-    for (let dep of generator.deps) {
-      if (state.player.elements[currentElement].generators[dep] === 0) {
+    ct.canBuy = function (player, element, price) {
+      let currency = data.elements[element].main;
+      if (price > player.resources[currency].number) {
         return false;
       }
+      return true;
+    };
+
+    ct.generatorProduction = function (player, name, element) {
+      let baseProduction = data.generators[name].power;
+      return upgradedProduction(player, baseProduction, name, element);
+    };
+
+    ct.tierProduction = function (player, name, element) {
+      let baseProduction = data.generators[name].power *
+        player.elements[element].generators[name];
+      return upgradedProduction(player, baseProduction, name, element);
+    };
+
+    /* Upgraded production includes upgrades, exotic matter and dark matter. */
+    function upgradedProduction(player, production, name, element) {
+      for (let up in data.generators[name].upgrades) {
+        if (player.elements[element].upgrades[data.generators[name].upgrades[up]]) {
+          let power = data.upgrades[data.generators[name].upgrades[up]].power;
+          production = upgradeApply(production, power);
+        }
+      }
+      let exotic = data.elements[element].exotic;
+      production *= (1 + player.resources[exotic].number * data.constants.EXOTIC_POWER) *
+        (1 + player.resources.dark_matter.number * data.constants.DARK_POWER);
+      return Math.floor(production);
     }
 
-    return true;
+    function upgradeApply(resource, power) {
+      return resource * power;
+    }
+
+    ct.elementProduction = function (player, element) {
+      let total = 0;
+      for (let tier in data.generators) {
+        total += ct.tierProduction(player, tier, element);
+      }
+      return total;
+    };
+
+    ct.visibleGenerators = function (currentElement) {
+      return visibility.visible(data.generators, isGeneratorVisible, currentElement);
+    };
+
+    function isGeneratorVisible(name, currentElement) {
+      let generator = data.generators[name];
+      for (let dep of generator.deps) {
+        if (state.player.elements[currentElement].generators[dep] === 0) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    ct.nextBuyAmount = function () {
+      state.buyIndex = (state.buyIndex + 1) % buyAmount.length;
+    };
+
+    ct.getbuyAmount = function () {
+      return buyAmount[state.buyIndex];
+    };
+
+    state.registerUpdate('matter', update);
   }
-
-  ct.nextBuyAmount = function() {
-    state.buyIndex = (state.buyIndex + 1) % buyAmount.length;
-  };
-
-  ct.getbuyAmount = function() {
-    return buyAmount[state.buyIndex];
-  };
-
-  state.registerUpdate('matter', update);
-}]);
+]);
