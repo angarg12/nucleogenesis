@@ -24,6 +24,8 @@ function addResource(name, charge, element){
     resources[name] = {};
     resources[name].elements = {};
     resources[name].elements[element] = 1;
+    let isotopeEnergy = resources[elements[element].main].energy;
+    resources[name].energy = isotopeEnergy - resources['e-'].energy * charge;
     resources[name].html = element + htmlPostfix(charge);
     resources[name].charge = charge;
     resources[name].type = ['ion'];

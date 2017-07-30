@@ -1924,13 +1924,73 @@
   "Se": {
     "name": "Selenium",
     "isotopes": {
-      "74Se": {
+      "72Se": {
         "ratio": 0,
+        "decay": {
+          "half_life": 725760,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 66999645890
+      },
+      "74Se": {
+        "ratio": 0.0086,
         "energy": 68858314793
       },
-      "76Se": {
+      "75Se": {
         "ratio": 0,
+        "decay": {
+          "half_life": 10350720,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 69789852125
+      },
+      "76Se": {
+        "ratio": 0.0923,
         "energy": 70718262709
+      },
+      "77Se": {
+        "ratio": 0.076,
+        "energy": 71650408780
+      },
+      "78Se": {
+        "ratio": 0.2369,
+        "energy": 72579475903
+      },
+      "79Se": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 10313600000000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 73512078002
+      },
+      "80Se": {
+        "ratio": 0.497999,
+        "energy": 74441729284
+      },
+      "82Se": {
+        "ratio": 0.0882,
+        "decay": {
+          "half_life": 3.40632e+27,
+          "decay_types": {
+            "2beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 76304882441
       }
     },
     "ionization_energy": [
@@ -1945,12 +2005,20 @@
     "electron_affinity": [-2.021,
       6.1892
     ],
-    "number": 34,
-    "disabled": true
+    "number": 34
   },
   "Br": {
     "name": "Bromine",
-    "isotopes": [],
+    "isotopes": {
+      "79Br": {
+        "ratio": 0.51,
+        "energy": 73511927090
+      },
+      "81Br": {
+        "ratio": 0.49,
+        "energy": 75373007996
+      }
+    },
     "ionization_energy": [
       11.81381,
       21.8,
@@ -1964,12 +2032,80 @@
     "electron_affinity": [-3.3642,
       6.8083
     ],
-    "number": 35,
-    "disabled": true
+    "number": 35
   },
   "Kr": {
     "name": "Krypton",
-    "isotopes": [],
+    "isotopes": {
+      "78Kr": {
+        "ratio": 0.0036,
+        "decay": {
+          "half_life": 2.90168e+29,
+          "decay_types": {
+            "2beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 72582322261
+      },
+      "79Kr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 126000,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 73513552867
+      },
+      "80Kr": {
+        "ratio": 0.0229,
+        "energy": 74441596727
+      },
+      "81Kr": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 7254200000000,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 75373288796
+      },
+      "82Kr": {
+        "ratio": 0.1159,
+        "energy": 76301886943
+      },
+      "83Kr": {
+        "ratio": 0.115,
+        "energy": 77233988356
+      },
+      "84Kr": {
+        "ratio": 0.569799,
+        "energy": 78163032690
+      },
+      "85Kr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 346940000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 79095477029
+      },
+      "86Kr": {
+        "ratio": 0.1728,
+        "energy": 80025185341
+      }
+    },
     "ionization_energy": [
       13.99961,
       24.35985,
@@ -2002,12 +2138,70 @@
       3227,
       3381
     ],
-    "number": 36,
-    "disabled": true
+    "number": 36
   },
   "Rb": {
     "name": "Rubidium",
-    "isotopes": [],
+    "isotopes": {
+      "83Rb": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 7447680,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 77234895260
+      },
+      "84Rb": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 2842560,
+          "decay_types": {
+            "beta+": {
+              "ratio": 0.96
+            },
+            "beta-": {
+              "ratio": 0.04
+            }
+          }
+        },
+        "energy": 78165713654
+      },
+      "85Rb": {
+        "ratio": 0.7217,
+        "energy": 79094789965
+      },
+      "86Rb": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1615680,
+          "decay_types": {
+            "beta-": {
+              "ratio": 0.99995
+            },
+            "electron_capture": {
+              "ratio": 0.00005
+            }
+          }
+        },
+        "energy": 80025703894
+      },
+      "87Rb": {
+        "ratio": 0.2783,
+        "decay": {
+          "half_life": 1545460000000000000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 80955346731
+      }
+    },
     "ionization_energy": [
       4.17713,
       27.285,
@@ -2021,12 +2215,88 @@
       277.1
     ],
     "electron_affinity": [-0.4861],
-    "number": 37,
-    "disabled": true
+    "number": 37
   },
   "Sr": {
     "name": "Strontium",
-    "isotopes": [],
+    "isotopes": {
+      "82Sr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 2191104,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 76306468065
+      },
+      "83Sr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 116640,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 77237174625
+      },
+      "84Sr": {
+        "ratio": 0.0056,
+        "energy": 78164819843
+      },
+      "85Sr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 5602176,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 79095854723
+      },
+      "86Sr": {
+        "ratio": 0.0986,
+        "energy": 80023927336
+      },
+      "87Sr": {
+        "ratio": 0.07,
+        "energy": 80955064114
+      },
+      "88Sr": {
+        "ratio": 0.825799,
+        "energy": 81883516402
+      },
+      "89Sr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 4364928,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 82816722615
+      },
+      "90Sr": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 911506000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 83748483767
+      }
+    },
     "ionization_energy": [
       5.6949,
       11.03013,
@@ -2041,12 +2311,64 @@
       324.1
     ],
     "electron_affinity": [-0.0521],
-    "number": 38,
-    "disabled": true
+    "number": 38
   },
   "Y": {
     "name": "Yttrium",
-    "isotopes": [],
+    "isotopes": {
+      "87Y": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 293760,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 80956925803
+      },
+      "88Y": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 9210240,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 81887139001
+      },
+      "89Y": {
+        "ratio": 1,
+        "energy": 82815230009
+      },
+      "90Y": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 233280,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 83747937910
+      },
+      "91Y": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 5054400,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 84679573955
+      }
+    },
     "ionization_energy": [
       6.2171,
       12.24,
@@ -2062,12 +2384,76 @@
       374
     ],
     "electron_affinity": [-0.3068],
-    "number": 39,
-    "disabled": true
+    "number": 39
   },
   "Zr": {
     "name": "Zirconium",
-    "isotopes": [],
+    "isotopes": {
+      "88Zr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 7205760,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 81887815040
+      },
+      "89Zr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 282240,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 82818062872
+      },
+      "90Zr": {
+        "ratio": 0.514499,
+        "energy": 83745658107
+      },
+      "91Zr": {
+        "ratio": 0.1122,
+        "energy": 84678028585
+      },
+      "92Zr": {
+        "ratio": 0.1715,
+        "energy": 85608958720
+      },
+      "93Zr": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 48256200000000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 86541789177
+      },
+      "94Zr": {
+        "ratio": 0.1738,
+        "energy": 87473132994
+      },
+      "96Zr": {
+        "ratio": 0.028,
+        "decay": {
+          "half_life": 6.308e+26,
+          "decay_types": {
+            "2beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 89337944269
+      }
+    },
     "ionization_energy": [
       6.6339,
       13.13,
@@ -2077,12 +2463,91 @@
       98.461
     ],
     "electron_affinity": [-0.426],
-    "number": 40,
-    "disabled": true
+    "number": 40
   },
   "Nb": {
     "name": "Niobium",
-    "isotopes": [],
+    "isotopes": {
+      "90Nb": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 54000,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 83751769105
+      },
+      "91Nb": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 21447200000,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 0.99987
+            },
+            "beta+": {
+              "ratio": 0.00013
+            }
+          }
+        },
+        "energy": 84679286545
+      },
+      "92Nb": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 1094440000000000,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 85610964264
+      },
+      "93Nb": {
+        "ratio": 0.999998,
+        "energy": 86541697939
+      },
+      "94Nb": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 640262000000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 87474035328
+      },
+      "95Nb": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 3024000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 88405111545
+      },
+      "96Nb": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 86400,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 89337783364
+      }
+    },
     "ionization_energy": [
       6.75885,
       14.32,
@@ -2093,12 +2558,72 @@
       125
     ],
     "electron_affinity": [-0.8924],
-    "number": 41,
-    "disabled": true
+    "number": 41
   },
   "Mo": {
     "name": "Molybdenum",
-    "isotopes": [],
+    "isotopes": {
+      "92Mo": {
+        "ratio": 0.1465,
+        "energy": 85610607598
+      },
+      "93Mo": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 126160000000,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 86542102721
+      },
+      "94Mo": {
+        "ratio": 0.0919,
+        "energy": 87471990123
+      },
+      "95Mo": {
+        "ratio": 0.1587,
+        "energy": 88404185954
+      },
+      "96Mo": {
+        "ratio": 0.1667,
+        "energy": 89334596566
+      },
+      "97Mo": {
+        "ratio": 0.0958,
+        "energy": 90267340234
+      },
+      "98Mo": {
+        "ratio": 0.243,
+        "energy": 91198262568
+      },
+      "99Mo": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 237384,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 92131902065
+      },
+      "100Mo": {
+        "ratio": 0.0974,
+        "decay": {
+          "half_life": 2.46012e+26,
+          "decay_types": {
+            "2beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 93063177213
+      }
+    },
     "ionization_energy": [
       7.09243,
       16.16,
@@ -2132,83 +2657,442 @@
       1601
     ],
     "electron_affinity": [-0.7452],
-    "number": 42,
-    "disabled": true
+    "number": 42
   },
   "Tc": {
     "name": "Technetium",
-    "isotopes": [],
+    "isotopes": {
+      "96Tc": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 371520,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 89337569806
+      },
+      "97Tc": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 82004000000000,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 90267660568
+      },
+      "98Tc": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 132468000000000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 91199946519
+      },
+      "99Tc": {
+        "ratio": 1,
+        "decay": {
+          "half_life": 6658090000000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 92130544764
+      }
+    },
     "ionization_energy": [
       7.28,
       15.26,
       29.54
     ],
     "electron_affinity": [-0.5493],
-    "number": 43,
-    "disabled": true
+    "number": 43
   },
   "Ru": {
     "name": "Ruthenium",
-    "isotopes": [],
+    "isotopes": {
+      "96Ru": {
+        "ratio": 0.0554,
+        "energy": 89337314998
+      },
+      "97Ru": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 250560,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 90268768433
+      },
+      "98Ru": {
+        "ratio": 0.0187,
+        "energy": 91198149822
+      },
+      "99Ru": {
+        "ratio": 0.1276,
+        "energy": 92130250929
+      },
+      "100Ru": {
+        "ratio": 0.126,
+        "energy": 93060142537
+      },
+      "101Ru": {
+        "ratio": 0.1706,
+        "energy": 93992905416
+      },
+      "102Ru": {
+        "ratio": 0.3155,
+        "energy": 94923250708
+      },
+      "103Ru": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 3392064,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 95856583590
+      },
+      "104Ru": {
+        "ratio": 0.1862,
+        "energy": 96787247108
+      },
+      "106Ru": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 32278176,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 98652001131
+      }
+    },
     "ionization_energy": [
       7.3605,
       16.76,
       28.47
     ],
     "electron_affinity": [-1.0499],
-    "number": 44,
-    "disabled": true
+    "number": 44
   },
   "Rh": {
     "name": "Rhodium",
-    "isotopes": [],
+    "isotopes": {
+      "99Rh": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1391040,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 92132293510
+      },
+      "101Rh": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 104082000,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 93993447115
+      },
+      "102Rh": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 17884800,
+          "decay_types": {
+            "beta+": {
+              "ratio": 0.78
+            },
+            "beta-": {
+              "ratio": 0.22
+            }
+          }
+        },
+        "energy": 94925573745
+      },
+      "103Rh": {
+        "ratio": 1,
+        "energy": 95855820180
+      },
+      "105Rh": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 127296,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 97718983954
+      }
+    },
     "ionization_energy": [
       7.4589,
       18.08,
       31.06
     ],
     "electron_affinity": [-1.137],
-    "number": 45,
-    "disabled": true
+    "number": 45
   },
   "Pd": {
     "name": "Palladium",
-    "isotopes": [],
+    "isotopes": {
+      "100Pd": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 313632,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 93064135301
+      },
+      "102Pd": {
+        "ratio": 0.0102,
+        "energy": 94924423675
+      },
+      "103Pd": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1468022.4,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 95856363254
+      },
+      "104Pd": {
+        "ratio": 0.1114,
+        "energy": 96785945935
+      },
+      "105Pd": {
+        "ratio": 0.2233,
+        "energy": 97718416767
+      },
+      "106Pd": {
+        "ratio": 0.2733,
+        "energy": 98648420733
+      },
+      "107Pd": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 205010000000000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 99581449231
+      },
+      "108Pd": {
+        "ratio": 0.2646,
+        "energy": 100511786136
+      },
+      "110Pd": {
+        "ratio": 0.1172,
+        "energy": 102375948494
+      }
+    },
     "ionization_energy": [
       8.3369,
       19.43,
       32.93
     ],
     "electron_affinity": [-0.5566],
-    "number": 46,
-    "disabled": true
+    "number": 46
   },
   "Ag": {
     "name": "Silver",
-    "isotopes": [],
+    "isotopes": {
+      "105Ag": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 3559680,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 97719761603
+      },
+      "107Ag": {
+        "ratio": 0.51839,
+        "energy": 99581415082
+      },
+      "109Ag": {
+        "ratio": 0.48161,
+        "energy": 101444081386
+      },
+      "111Ag": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 643680,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 103307570565
+      }
+    },
     "ionization_energy": [
       7.5762,
       21.49,
       34.83
     ],
     "electron_affinity": [-1.3017],
-    "number": 47,
-    "disabled": true
+    "number": 47
   },
   "Cd": {
     "name": "Cadmium",
-    "isotopes": [],
+    "isotopes": {
+      "106Cd": {
+        "ratio": 0.0125,
+        "energy": 98651190711
+      },
+      "107Cd": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 23400,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 99582831984
+      },
+      "108Cd": {
+        "ratio": 0.0089,
+        "energy": 100512058115
+      },
+      "109Cd": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 39968640,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 101444295630
+      },
+      "110Cd": {
+        "ratio": 0.1247,
+        "energy": 102373944680
+      },
+      "111Cd": {
+        "ratio": 0.128,
+        "energy": 103306533766
+      },
+      "112Cd": {
+        "ratio": 0.2411,
+        "energy": 104236704382
+      },
+      "113Cd": {
+        "ratio": 0.1223,
+        "decay": {
+          "half_life": 2.42858e+23,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 105169729235
+      },
+      "114Cd": {
+        "ratio": 0.2874,
+        "energy": 106100251189
+      },
+      "115Cd": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 192456,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 107033675258
+      },
+      "116Cd": {
+        "ratio": 0.0751,
+        "decay": {
+          "half_life": 9.7774e+26,
+          "decay_types": {
+            "2beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 107964539965
+      }
+    },
     "ionization_energy": [
       8.9938,
       16.90832,
       37.48
     ],
-    "number": 48,
-    "disabled": true
+    "number": 48
   },
   "In": {
     "name": "Indium",
-    "isotopes": [],
+    "isotopes": {
+      "113In": {
+        "ratio": 0.0428,
+        "energy": 105169408894
+      },
+      "115In": {
+        "ratio": 0.9572,
+        "decay": {
+          "half_life": 1.39091e+22,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 107032229128
+      }
+    },
     "ionization_energy": [
       5.78636,
       18.8698,
@@ -2216,12 +3100,64 @@
       54
     ],
     "electron_affinity": [-0.2995],
-    "number": 49,
-    "disabled": true
+    "number": 49
   },
   "Sn": {
     "name": "Tin",
-    "isotopes": [],
+    "isotopes": {
+      "112Sn": {
+        "ratio": 0.0097,
+        "energy": 104238623629
+      },
+      "114Sn": {
+        "ratio": 0.0066,
+        "energy": 106099711229
+      },
+      "115Sn": {
+        "ratio": 0.0034,
+        "energy": 107031729766
+      },
+      "116Sn": {
+        "ratio": 0.1454,
+        "energy": 107961731252
+      },
+      "117Sn": {
+        "ratio": 0.0768,
+        "energy": 108894353023
+      },
+      "118Sn": {
+        "ratio": 0.2422,
+        "energy": 109824590529
+      },
+      "119Sn": {
+        "ratio": 0.0859,
+        "energy": 110757671841
+      },
+      "120Sn": {
+        "ratio": 0.3258,
+        "energy": 111688128746
+      },
+      "122Sn": {
+        "ratio": 0.0463,
+        "energy": 113552275098
+      },
+      "124Sn": {
+        "ratio": 0.0579,
+        "energy": 115416971526
+      },
+      "126Sn": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 7254200000000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 117282175090
+      }
+    },
     "ionization_energy": [
       7.3439,
       14.63225,
@@ -2230,12 +3166,32 @@
       72.28
     ],
     "electron_affinity": [-1.1121],
-    "number": 50,
-    "disabled": true
+    "number": 50
   },
   "Sb": {
     "name": "Antimony",
-    "isotopes": [],
+    "isotopes": {
+      "121Sb": {
+        "ratio": 0.5721,
+        "energy": 112621132321
+      },
+      "123Sb": {
+        "ratio": 0.4279,
+        "energy": 114484490550
+      },
+      "125Sb": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 86993628,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 116348446391
+      }
+    },
     "ionization_energy": [
       8.6084,
       16.53051,
@@ -2245,12 +3201,96 @@
       108
     ],
     "electron_affinity": [-1.0696],
-    "number": 51,
-    "disabled": true
+    "number": 51
   },
   "Te": {
     "name": "Tellurium",
-    "isotopes": [],
+    "isotopes": {
+      "120Te": {
+        "ratio": 0.0009,
+        "energy": 111689829230
+      },
+      "121Te": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1449792,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 112622176281
+      },
+      "122Te": {
+        "ratio": 0.0255,
+        "energy": 113551907020
+      },
+      "123Te": {
+        "ratio": 0.0089,
+        "energy": 114484542768
+      },
+      "124Te": {
+        "ratio": 0.0474,
+        "energy": 115414683731
+      },
+      "125Te": {
+        "ratio": 0.0707,
+        "energy": 116347679691
+      },
+      "126Te": {
+        "ratio": 0.1884,
+        "energy": 117278130932
+      },
+      "127Te": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 33660,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 118211408022
+      },
+      "128Te": {
+        "ratio": 0.3174,
+        "decay": {
+          "half_life": 6.9388e+31,
+          "decay_types": {
+            "2beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 119142190646
+      },
+      "129Te": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 4176,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 120075673169
+      },
+      "130Te": {
+        "ratio": 0.3408,
+        "decay": {
+          "half_life": 2.49166e+28,
+          "decay_types": {
+            "2beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 121006818555
+      }
+    },
     "ionization_energy": [
       9.0096,
       18.6,
@@ -2261,24 +3301,192 @@
       137
     ],
     "electron_affinity": [-1.9713],
-    "number": 52,
-    "disabled": true
+    "number": 52
   },
   "I": {
     "name": "Iodine",
-    "isotopes": [],
+    "isotopes": {
+      "123I": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 46800,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 114485771349
+      },
+      "124I": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 360806.4,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 115417843316
+      },
+      "125I": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 5132160,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 116347865462
+      },
+      "127I": {
+        "ratio": 1,
+        "energy": 118210705997
+      },
+      "129I": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 495178000000000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 120074172984
+      },
+      "131I": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 692988.48,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 121938219217
+      },
+      "135I": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 23652,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 125667848402
+      }
+    },
     "ionization_energy": [
       10.45126,
       19.1313,
       33
     ],
     "electron_affinity": [-3.0595],
-    "number": 53,
-    "disabled": true
+    "number": 53
   },
   "Xe": {
     "name": "Xenon",
-    "isotopes": [],
+    "isotopes": {
+      "124Xe": {
+        "ratio": 0.00095,
+        "energy": 115417548173
+      },
+      "125Xe": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 60840,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 116349509827
+      },
+      "126Xe": {
+        "ratio": 0.00089,
+        "energy": 117279026971
+      },
+      "127Xe": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 3140208,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 118211368328
+      },
+      "128Xe": {
+        "ratio": 0.0191,
+        "energy": 119141322698
+      },
+      "129Xe": {
+        "ratio": 0.26401,
+        "energy": 120073978966
+      },
+      "130Xe": {
+        "ratio": 0.04071,
+        "energy": 121004288254
+      },
+      "131Xe": {
+        "ratio": 0.21232,
+        "energy": 121937248370
+      },
+      "132Xe": {
+        "ratio": 0.26909,
+        "energy": 122867876716
+      },
+      "133Xe": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 453340.8,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 123801007212
+      },
+      "134Xe": {
+        "ratio": 0.10436,
+        "energy": 124732019936
+      },
+      "135Xe": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 32904,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 125665221007
+      },
+      "136Xe": {
+        "ratio": 0.08857,
+        "decay": {
+          "half_life": 6.82841e+28,
+          "decay_types": {
+            "2beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 126596706517
+      }
+    },
     "ionization_energy": [
       12.1298,
       21.20979,
@@ -2287,36 +3495,155 @@
     "electron_affinity": [
       0.056
     ],
-    "number": 54,
-    "disabled": true
+    "number": 54
   },
   "Cs": {
     "name": "Caesium",
-    "isotopes": [],
+    "isotopes": {
+      "133Cs": {
+        "ratio": 1,
+        "energy": 123800579852
+      },
+      "134Cs": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 65123792,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 124733253243
+      },
+      "135Cs": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 72542000000000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 125664056187
+      },
+      "137Cs": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 951561800,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 127528079670
+      }
+    },
     "ionization_energy": [
       3.8939,
       23.15745,
       35.239
     ],
     "electron_affinity": [-0.4716],
-    "number": 55,
-    "disabled": true
+    "number": 55
   },
   "Ba": {
     "name": "Barium",
-    "isotopes": [],
+    "isotopes": {
+      "130Ba": {
+        "ratio": 0.0011,
+        "decay": {
+          "half_life": 8.5158e+28,
+          "decay_types": {
+            "2beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 121006908363
+      },
+      "132Ba": {
+        "ratio": 0.001,
+        "energy": 122868722355
+      },
+      "133Ba": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 331485400,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 123801097351
+      },
+      "134Ba": {
+        "ratio": 0.0242,
+        "energy": 124731194557
+      },
+      "135Ba": {
+        "ratio": 0.0659,
+        "energy": 125663787528
+      },
+      "136Ba": {
+        "ratio": 0.0785,
+        "energy": 126594244720
+      },
+      "137Ba": {
+        "ratio": 0.1123,
+        "energy": 127526904042
+      },
+      "138Ba": {
+        "ratio": 0.717,
+        "energy": 128457857254
+      }
+    },
     "ionization_energy": [
       5.2117,
       10.0039,
       37.311
     ],
     "electron_affinity": [-0.1446],
-    "number": 56,
-    "disabled": true
+    "number": 56
   },
   "La": {
     "name": "Lanthanum",
-    "isotopes": [],
+    "isotopes": {
+      "137La": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1892400000000,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 127527524616
+      },
+      "138La": {
+        "ratio": 0.00089,
+        "decay": {
+          "half_life": 3311700000000000000,
+          "decay_types": {
+            "beta+": {
+              "ratio": 0.65
+            },
+            "beta-": {
+              "ratio": 0.35
+            }
+          }
+        },
+        "energy": 128459594204
+      },
+      "139La": {
+        "ratio": 0.99911,
+        "energy": 129390381129
+      }
+    },
     "ionization_energy": [
       5.5769,
       11.06,
@@ -2325,12 +3652,88 @@
       61.6
     ],
     "electron_affinity": [-0.55],
-    "number": 57,
-    "disabled": true
+    "number": 57
   },
   "Ce": {
     "name": "Cerium",
-    "isotopes": [],
+    "isotopes": {
+      "134Ce": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 273024,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 124735308441
+      },
+      "136Ce": {
+        "ratio": 0.00186,
+        "energy": 126596663322
+      },
+      "138Ce": {
+        "ratio": 0.00251,
+        "energy": 128458550363
+      },
+      "139Ce": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 11892096,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 129390660003
+      },
+      "140Ce": {
+        "ratio": 0.88449,
+        "energy": 130321022836
+      },
+      "141Ce": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 2808086.4,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 131255159623
+      },
+      "142Ce": {
+        "ratio": 0.11114,
+        "energy": 132187554864
+      },
+      "143Ce": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 2854569.6,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 133121974957
+      },
+      "144Ce": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 24614755.2,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 134054643582
+      }
+    },
     "ionization_energy": [
       5.5387,
       10.85,
@@ -2340,12 +3743,43 @@
       77.6
     ],
     "electron_affinity": [-0.57],
-    "number": 58,
-    "disabled": true
+    "number": 58
   },
   "Pr": {
     "name": "Praseodymium",
-    "isotopes": [],
+    "isotopes": {
+      "141Pr": {
+        "ratio": 1,
+        "energy": 131254578836
+      },
+      "142Pr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 68832,
+          "decay_types": {
+            "beta-": {
+              "ratio": 0.99984
+            },
+            "electron_capture": {
+              "ratio": 0.00016
+            }
+          }
+        },
+        "energy": 132188300618
+      },
+      "143Pr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1172448,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 133120513458
+      }
+    },
     "ionization_energy": [
       5.473,
       10.55,
@@ -2354,12 +3788,56 @@
       57.53
     ],
     "electron_affinity": [-0.962],
-    "number": 59,
-    "disabled": true
+    "number": 59
   },
   "Nd": {
     "name": "Neodymium",
-    "isotopes": [],
+    "isotopes": {
+      "142Nd": {
+        "ratio": 0.271,
+        "energy": 132186138147
+      },
+      "143Nd": {
+        "ratio": 0.122,
+        "energy": 133119579509
+      },
+      "144Nd": {
+        "ratio": 0.238,
+        "decay": {
+          "half_life": 7.22266e+22,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 134051327407
+      },
+      "145Nd": {
+        "ratio": 0.083,
+        "energy": 134985137052
+      },
+      "146Nd": {
+        "ratio": 0.172,
+        "energy": 135917136750
+      },
+      "148Nd": {
+        "ratio": 0.058,
+        "energy": 137783641625
+      },
+      "150Nd": {
+        "ratio": 0.056,
+        "decay": {
+          "half_life": 2.11318e+26,
+          "decay_types": {
+            "2beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 139650352593
+      }
+    },
     "ionization_energy": [
       5.525,
       10.73,
@@ -2367,12 +3845,51 @@
       40.41
     ],
     "electron_affinity": [-0.162],
-    "number": 60,
-    "disabled": true
+    "number": 60
   },
   "Pm": {
     "name": "Promethium",
-    "isotopes": [],
+    "isotopes": {
+      "145Pm": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 558258000,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 134985300424
+      },
+      "146Pm": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 174416200,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 0.66
+            },
+            "beta-": {
+              "ratio": 0.34
+            }
+          }
+        },
+        "energy": 135918607919
+      },
+      "147Pm": {
+        "ratio": 1,
+        "decay": {
+          "half_life": 82742036,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 136850513478
+      }
+    },
     "ionization_energy": [
       5.582,
       10.9,
@@ -2380,12 +3897,104 @@
       41.1
     ],
     "electron_affinity": [-0.129],
-    "number": 61,
-    "disabled": true
+    "number": 61
   },
   "Sm": {
     "name": "Samarium",
-    "isotopes": [],
+    "isotopes": {
+      "144Sm": {
+        "ratio": 0.0308,
+        "energy": 134053108612
+      },
+      "145Sm": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 29376000,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 134985916448
+      },
+      "146Sm": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 2144720000000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 135917065920
+      },
+      "147Sm": {
+        "ratio": 0.15,
+        "decay": {
+          "half_life": 3343240000000000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 136850289340
+      },
+      "148Sm": {
+        "ratio": 0.1125,
+        "decay": {
+          "half_life": 2.2078e+23,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 137781712861
+      },
+      "149Sm": {
+        "ratio": 0.1382,
+        "energy": 138715406720
+      },
+      "150Sm": {
+        "ratio": 0.0737,
+        "energy": 139646984919
+      },
+      "151Sm": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 2838600000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 140580953391
+      },
+      "152Sm": {
+        "ratio": 0.2674,
+        "energy": 141512260722
+      },
+      "153Sm": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 166622.4,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 142445957255
+      },
+      "154Sm": {
+        "ratio": 0.2274,
+        "energy": 143377555120
+      }
+    },
     "ionization_energy": [
       5.6436,
       11.07,
@@ -2393,12 +4002,82 @@
       41.4
     ],
     "electron_affinity": [-0.162],
-    "number": 62,
-    "disabled": true
+    "number": 62
   },
   "Eu": {
     "name": "Europium",
-    "isotopes": [],
+    "isotopes": {
+      "150Eu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1163826000,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 139649244983
+      },
+      "151Eu": {
+        "ratio": 0.478,
+        "decay": {
+          "half_life": 1.577e+26,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 140580876777
+      },
+      "152Eu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 427051600,
+          "decay_types": {
+            "beta+": {
+              "ratio": 0.72
+            },
+            "beta-": {
+              "ratio": 0.28
+            }
+          }
+        },
+        "energy": 141514134989
+      },
+      "153Eu": {
+        "ratio": 0.522,
+        "energy": 142445149634
+      },
+      "154Eu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 270928600,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            },
+            "electron_capture": {
+              "ratio": 0
+            }
+          }
+        },
+        "energy": 143378272336
+      },
+      "155Eu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 150130400,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 144309685864
+      }
+    },
     "ionization_energy": [
       5.6704,
       11.241,
@@ -2406,12 +4085,72 @@
       42.7
     ],
     "electron_affinity": [-0.116],
-    "number": 63,
-    "disabled": true
+    "number": 63
   },
   "Gd": {
     "name": "Gadolinium",
-    "isotopes": [],
+    "isotopes": {
+      "148Gd": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 2365500000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 137784779198
+      },
+      "150Gd": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 56772000000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 139648273488
+      },
+      "152Gd": {
+        "ratio": 0.002,
+        "decay": {
+          "half_life": 3.40632e+21,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 141512315280
+      },
+      "154Gd": {
+        "ratio": 0.0218,
+        "energy": 143376303495
+      },
+      "155Gd": {
+        "ratio": 0.148,
+        "energy": 144309433208
+      },
+      "156Gd": {
+        "ratio": 0.2047,
+        "energy": 145240461747
+      },
+      "157Gd": {
+        "ratio": 0.1565,
+        "energy": 146173666881
+      },
+      "158Gd": {
+        "ratio": 0.2484,
+        "energy": 147105294423
+      },
+      "160Gd": {
+        "ratio": 0.2186,
+        "energy": 148971029777
+      }
+    },
     "ionization_energy": [
       6.1501,
       12.09,
@@ -2419,12 +4158,43 @@
       44
     ],
     "electron_affinity": [-0.137],
-    "number": 64,
-    "disabled": true
+    "number": 64
   },
   "Tb": {
     "name": "Terbium",
-    "isotopes": [],
+    "isotopes": {
+      "157Tb": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 2239340000,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 146173726933
+      },
+      "158Tb": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 5677200000,
+          "decay_types": {
+            "beta+": {
+              "ratio": 0.83
+            },
+            "beta-": {
+              "ratio": 0.17
+            }
+          }
+        },
+        "energy": 147106513958
+      },
+      "159Tb": {
+        "ratio": 1,
+        "energy": 148037945740
+      }
+    },
     "ionization_energy": [
       5.8638,
       11.52,
@@ -2432,12 +4202,52 @@
       39.79
     ],
     "electron_affinity": [-0.436],
-    "number": 65,
-    "disabled": true
+    "number": 65
   },
   "Dy": {
     "name": "Dysprosium",
-    "isotopes": [],
+    "isotopes": {
+      "154Dy": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 94620000000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 143379618549
+      },
+      "156Dy": {
+        "ratio": 0.00056,
+        "energy": 145242474115
+      },
+      "158Dy": {
+        "ratio": 0.00095,
+        "energy": 147105579064
+      },
+      "160Dy": {
+        "ratio": 0.02329,
+        "energy": 148969300339
+      },
+      "161Dy": {
+        "ratio": 0.18889,
+        "energy": 149902410884
+      },
+      "162Dy": {
+        "ratio": 0.25475,
+        "energy": 150833778825
+      },
+      "163Dy": {
+        "ratio": 0.24896,
+        "energy": 151767072748
+      },
+      "164Dy": {
+        "ratio": 0.2826,
+        "energy": 152698979566
+      }
+    },
     "ionization_energy": [
       5.9389,
       11.67,
@@ -2445,12 +4255,67 @@
       41.47
     ],
     "electron_affinity": [-0.352],
-    "number": 66,
-    "disabled": true
+    "number": 66
   },
   "Ho": {
     "name": "Holmium",
-    "isotopes": [],
+    "isotopes": {
+      "163Ho": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 144138000000,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 151767075304
+      },
+      "164Ho": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1740,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 0.6
+            },
+            "beta-": {
+              "ratio": 0.4
+            }
+          }
+        },
+        "energy": 152699965791
+      },
+      "165Ho": {
+        "ratio": 1,
+        "energy": 153631541901
+      },
+      "166Ho": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 96346.8,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 154564863192
+      },
+      "167Ho": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 11160,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 155497147153
+      }
+    },
     "ionization_energy": [
       6.0215,
       11.8,
@@ -2458,12 +4323,96 @@
       42.5
     ],
     "electron_affinity": [-0.338],
-    "number": 67,
-    "disabled": true
+    "number": 67
   },
   "Er": {
     "name": "Erbium",
-    "isotopes": [],
+    "isotopes": {
+      "160Er": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 102888,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 148972919913
+      },
+      "162Er": {
+        "ratio": 0.00139,
+        "energy": 150835623012
+      },
+      "164Er": {
+        "ratio": 0.01601,
+        "energy": 152699003299
+      },
+      "165Er": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 37296,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 153631918162
+      },
+      "166Er": {
+        "ratio": 0.33503,
+        "energy": 154563008495
+      },
+      "167Er": {
+        "ratio": 0.22869,
+        "energy": 155496136972
+      },
+      "168Er": {
+        "ratio": 0.26978,
+        "energy": 156427930588
+      },
+      "169Er": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 812160,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 157361492249
+      },
+      "170Er": {
+        "ratio": 0.1491,
+        "energy": 158293799941
+      },
+      "171Er": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 27057.6,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 159227683299
+      },
+      "172Er": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 177480,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 160160412359
+      }
+    },
     "ionization_energy": [
       6.1077,
       11.93,
@@ -2471,12 +4420,70 @@
       42.7
     ],
     "electron_affinity": [-0.312],
-    "number": 68,
-    "disabled": true
+    "number": 68
   },
   "Tm": {
     "name": "Thulium",
-    "isotopes": [],
+    "isotopes": {
+      "167Tm": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 799200,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 155496885393
+      },
+      "168Tm": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 8043840,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            },
+            "beta-": {
+              "ratio": 0
+            }
+          }
+        },
+        "energy": 156429609654
+      },
+      "169Tm": {
+        "ratio": 1,
+        "energy": 157361140970
+      },
+      "170Tm": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 11111040,
+          "decay_types": {
+            "beta-": {
+              "ratio": 0.87
+            },
+            "electron_capture": {
+              "ratio": 0.13
+            }
+          }
+        },
+        "energy": 158294113934
+      },
+      "171Tm": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 60556800,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 159226192567
+      }
+    },
     "ionization_energy": [
       6.18431,
       12.05,
@@ -2484,12 +4491,88 @@
       42.7
     ],
     "electron_affinity": [-1.0261],
-    "number": 69,
-    "disabled": true
+    "number": 69
   },
   "Yb": {
     "name": "Ytterbium",
-    "isotopes": [],
+    "isotopes": {
+      "166Yb": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 204120,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 154566351607
+      },
+      "168Yb": {
+        "ratio": 0.00126,
+        "energy": 156429352673
+      },
+      "169Yb": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 2767046.4,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 157362050622
+      },
+      "170Yb": {
+        "ratio": 0.03023,
+        "energy": 158293145590
+      },
+      "171Yb": {
+        "ratio": 0.14216,
+        "energy": 159226096026
+      },
+      "172Yb": {
+        "ratio": 0.21754,
+        "energy": 160157641497
+      },
+      "173Yb": {
+        "ratio": 0.16098,
+        "energy": 161090839110
+      },
+      "174Yb": {
+        "ratio": 0.31896,
+        "energy": 162022939408
+      },
+      "175Yb": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 361584,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 162956681985
+      },
+      "176Yb": {
+        "ratio": 0.12887,
+        "energy": 163889382101
+      },
+      "177Yb": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 6879.6,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 164823380632
+      }
+    },
     "ionization_energy": [
       6.25416,
       12.1761,
@@ -2497,12 +4580,52 @@
       43.56
     ],
     "electron_affinity": [-0.003],
-    "number": 70,
-    "disabled": true
+    "number": 70
   },
   "Lu": {
     "name": "Lutetium",
-    "isotopes": [],
+    "isotopes": {
+      "173Lu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 43209800,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 161091509613
+      },
+      "174Lu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 104397400,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 162024313725
+      },
+      "175Lu": {
+        "ratio": 0.97401,
+        "energy": 162956211924
+      },
+      "176Lu": {
+        "ratio": 0.02599,
+        "decay": {
+          "half_life": 1192210000000000000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 163889488875
+      }
+    },
     "ionization_energy": [
       5.4259,
       13.9,
@@ -2511,12 +4634,68 @@
       66.8
     ],
     "electron_affinity": [-0.3462],
-    "number": 71,
-    "disabled": true
+    "number": 71
   },
   "Hf": {
     "name": "Hafnium",
-    "isotopes": [],
+    "isotopes": {
+      "172Hf": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 58979800,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 160160498231
+      },
+      "174Hf": {
+        "ratio": 0.0016,
+        "decay": {
+          "half_life": 6.308e+22,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 162024042380
+      },
+      "176Hf": {
+        "ratio": 0.0526,
+        "energy": 163888298725
+      },
+      "177Hf": {
+        "ratio": 0.186,
+        "energy": 164821480225
+      },
+      "178Hf": {
+        "ratio": 0.2728,
+        "energy": 165753419201
+      },
+      "179Hf": {
+        "ratio": 0.1362,
+        "energy": 166686885141
+      },
+      "180Hf": {
+        "ratio": 0.3508,
+        "energy": 167619062293
+      },
+      "182Hf": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 280706000000000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 169485779357
+      }
+    },
     "ionization_energy": [
       6.82507,
       14.9,
@@ -2524,33 +4703,175 @@
       33.33
     ],
     "electron_affinity": [-0.114],
-    "number": 72,
-    "disabled": true
+    "number": 72
   },
   "Ta": {
     "name": "Tantalum",
-    "isotopes": [],
+    "isotopes": {
+      "177Ta": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 203616,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 164822646224
+      },
+      "178Ta": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 8496,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 165755356200
+      },
+      "179Ta": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 57402800,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 166686990763
+      },
+      "180Ta": {
+        "ratio": 0.00012,
+        "energy": 167619914496
+      },
+      "181Ta": {
+        "ratio": 0.99988,
+        "energy": 168551902671
+      },
+      "182Ta": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 9886752,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 169485404666
+      },
+      "183Ta": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 440640,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 170418035418
+      }
+    },
     "ionization_energy": [
       7.5496
     ],
     "electron_affinity": [-0.3213],
-    "number": 73,
-    "disabled": true
+    "number": 73
   },
   "W": {
     "name": "Tungsten",
-    "isotopes": [],
+    "isotopes": {
+      "180W": {
+        "ratio": 0.0012,
+        "decay": {
+          "half_life": 5.6772e+25,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "2beta+": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 167619206215
+      },
+      "181W": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 10471680,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 168552090353
+      },
+      "182W": {
+        "ratio": 0.265,
+        "energy": 169483590403
+      },
+      "183W": {
+        "ratio": 0.1431,
+        "energy": 170416964512
+      },
+      "184W": {
+        "ratio": 0.3064,
+        "energy": 171349117845
+      },
+      "185W": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 6488640,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 172282929087
+      },
+      "186W": {
+        "ratio": 0.2843,
+        "energy": 173215302836
+      }
+    },
     "ionization_energy": [
       7.864,
       17.619
     ],
     "electron_affinity": [-0.8146],
-    "number": 74,
-    "disabled": true
+    "number": 74
   },
   "Re": {
     "name": "Rhenium",
-    "isotopes": [],
+    "isotopes": {
+      "185Re": {
+        "ratio": 0.374,
+        "energy": 172282496611
+      },
+      "187Re": {
+        "ratio": 0.626,
+        "decay": {
+          "half_life": 1299450000000000000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            },
+            "alpha": {
+              "ratio": 0
+            }
+          }
+        },
+        "energy": 174148090278
+      }
+    },
     "ionization_energy": [
       7.8335,
       13.059,
@@ -2558,81 +4879,450 @@
       37.726
     ],
     "electron_affinity": [-0.1503],
-    "number": 75,
-    "disabled": true
+    "number": 75
   },
   "Os": {
     "name": "Osmium",
-    "isotopes": [],
+    "isotopes": {
+      "184Os": {
+        "ratio": 0.0002,
+        "energy": 171350569003
+      },
+      "185Os": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 8087040,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 172283509408
+      },
+      "186Os": {
+        "ratio": 0.0159,
+        "decay": {
+          "half_life": 6.308e+22,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 173214812899
+      },
+      "187Os": {
+        "ratio": 0.0196,
+        "energy": 174148087809
+      },
+      "188Os": {
+        "ratio": 0.1324,
+        "energy": 175079663181
+      },
+      "189Os": {
+        "ratio": 0.1615,
+        "energy": 176013307840
+      },
+      "190Os": {
+        "ratio": 0.2626,
+        "energy": 176945080510
+      },
+      "191Os": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1330560,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 177878886716
+      },
+      "192Os": {
+        "ratio": 0.4078,
+        "energy": 178810893558
+      },
+      "193Os": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 2601504,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 179744875074
+      },
+      "194Os": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 189240000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 180677328611
+      }
+    },
     "ionization_energy": [
       8.4382,
       16.583
     ],
     "electron_affinity": [-1.0996],
-    "number": 76,
-    "disabled": true
+    "number": 76
   },
   "Ir": {
     "name": "Iridium",
-    "isotopes": [],
+    "isotopes": {
+      "188Ir": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 149472,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 175082471535
+      },
+      "189Ir": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1140480,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 176013840156
+      },
+      "190Ir": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1019520,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 176947035640
+      },
+      "191Ir": {
+        "ratio": 0.373,
+        "energy": 177878574040
+      },
+      "192Ir": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 6378652.8,
+          "decay_types": {
+            "beta-": {
+              "ratio": 0.951
+            },
+            "electron_capture": {
+              "ratio": 0.049
+            }
+          }
+        },
+        "energy": 178811940856
+      },
+      "193Ir": {
+        "ratio": 0.627,
+        "energy": 179743733870
+      },
+      "194Ir": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 69480,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 180677232011
+      }
+    },
     "ionization_energy": [
       8.967,
       16.583
     ],
     "electron_affinity": [-1.565],
-    "number": 77,
-    "disabled": true
+    "number": 77
   },
   "Pt": {
     "name": "Platinum",
-    "isotopes": [],
+    "isotopes": {
+      "190Pt": {
+        "ratio": 0.00012,
+        "decay": {
+          "half_life": 20501000000000000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 176946463412
+      },
+      "192Pt": {
+        "ratio": 0.00782,
+        "energy": 178810481199
+      },
+      "193Pt": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1577000000,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 179743790664
+      },
+      "194Pt": {
+        "ratio": 0.32864,
+        "energy": 180674998173
+      },
+      "195Pt": {
+        "ratio": 0.33775,
+        "energy": 181608458060
+      },
+      "196Pt": {
+        "ratio": 0.25211,
+        "energy": 182540101074
+      },
+      "198Pt": {
+        "ratio": 0.07356,
+        "energy": 184405828077
+      }
+    },
     "ionization_energy": [
       8.9587,
       18.563,
       28
     ],
     "electron_affinity": [-2.1278],
-    "number": 78,
-    "disabled": true
+    "number": 78
   },
   "Au": {
     "name": "Gold",
-    "isotopes": [],
+    "isotopes": {
+      "195Au": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 16079040,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 181608684884
+      },
+      "196Au": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 534211.2,
+          "decay_types": {
+            "beta+": {
+              "ratio": 0.92
+            },
+            "beta-": {
+              "ratio": 0.08
+            }
+          }
+        },
+        "energy": 182541608503
+      },
+      "197Au": {
+        "ratio": 1,
+        "energy": 183473101045
+      },
+      "198Au": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 232862.688,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 184406153646
+      },
+      "199Au": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 273801.6,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 185338134330
+      }
+    },
     "ionization_energy": [
       9.2255,
       20.5,
       30
     ],
     "electron_affinity": [-2.3092],
-    "number": 79,
-    "disabled": true
+    "number": 79
   },
   "Hg": {
     "name": "Mercury",
-    "isotopes": [],
+    "isotopes": {
+      "194Hg": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 14003760000,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 180677568309
+      },
+      "195Hg": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 35640,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 181610254891
+      },
+      "196Hg": {
+        "ratio": 0.0015,
+        "energy": 182540921839
+      },
+      "197Hg": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 230904,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 183473701156
+      },
+      "198Hg": {
+        "ratio": 0.1004,
+        "energy": 184404781304
+      },
+      "199Hg": {
+        "ratio": 0.1694,
+        "energy": 185337682312
+      },
+      "200Hg": {
+        "ratio": 0.2314,
+        "energy": 186269218843
+      },
+      "201Hg": {
+        "ratio": 0.1317,
+        "energy": 187202553335
+      },
+      "202Hg": {
+        "ratio": 0.2974,
+        "energy": 188134364350
+      },
+      "203Hg": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 4027276.8,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 189067934704
+      },
+      "204Hg": {
+        "ratio": 0.0682,
+        "energy": 190000007195
+      }
+    },
     "ionization_energy": [
       10.4375,
       18.756,
       34.2
     ],
-    "number": 80,
-    "disabled": true
+    "number": 80
   },
   "Tl": {
     "name": "Thallium",
-    "isotopes": [],
+    "isotopes": {
+      "203Tl": {
+        "ratio": 0.295,
+        "energy": 189067442630
+      },
+      "204Tl": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 119221200,
+          "decay_types": {
+            "beta-": {
+              "ratio": 0.97
+            },
+            "electron_capture": {
+              "ratio": 0.03
+            }
+          }
+        },
+        "energy": 190000351465
+      },
+      "205Tl": {
+        "ratio": 0.705,
+        "energy": 190932370460
+      }
+    },
     "ionization_energy": [
       6.1082,
       20.428,
       29.83
     ],
     "electron_affinity": [-0.199],
-    "number": 81,
-    "disabled": true
+    "number": 81
   },
   "Pb": {
     "name": "Lead",
-    "isotopes": [],
+    "isotopes": {
+      "204Pb": {
+        "ratio": 0.014,
+        "energy": 189999587702
+      },
+      "206Pb": {
+        "ratio": 0.241,
+        "energy": 191863899226
+      },
+      "207Pb": {
+        "ratio": 0.221,
+        "energy": 192796726376
+      },
+      "208Pb": {
+        "ratio": 0.524,
+        "energy": 193728923440
+      }
+    },
     "ionization_energy": [
       7.41666,
       15.0322,
@@ -2641,12 +5331,63 @@
       68.8
     ],
     "electron_affinity": [-0.3638],
-    "number": 82,
-    "disabled": true
+    "number": 82
   },
   "Bi": {
     "name": "Bismuth",
-    "isotopes": [],
+    "isotopes": {
+      "207Bi": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 995087000,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 192799123847
+      },
+      "208Bi": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 11606700000000,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 193731801871
+      },
+      "209Bi": {
+        "ratio": 1,
+        "decay": {
+          "half_life": 5.9926e+26,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 194663907047
+      },
+      "210Bi": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 433036.8,
+          "decay_types": {
+            "beta-": {
+              "ratio": 0.999999
+            },
+            "alpha": {
+              "ratio": 0.000001
+            }
+          }
+        },
+        "energy": 195598867343
+      }
+    },
     "ionization_energy": [
       7.2856,
       16.69,
@@ -2656,119 +5397,818 @@
       88.3
     ],
     "electron_affinity": [-0.9452],
-    "number": 83,
-    "disabled": true
+    "number": 83
   },
   "Po": {
     "name": "Polonium",
-    "isotopes": [],
+    "isotopes": {
+      "208Po": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 91402920,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.999978
+            },
+            "beta+": {
+              "ratio": 0.000022
+            }
+          }
+        },
+        "energy": 193733202378
+      },
+      "209Po": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 3948808000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.996
+            },
+            "beta+": {
+              "ratio": 0.004
+            }
+          }
+        },
+        "energy": 194665799564
+      },
+      "210Po": {
+        "ratio": 1,
+        "decay": {
+          "half_life": 11955686.4,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 195597706052
+      }
+    },
     "ionization_energy": [
       8.417
     ],
     "electron_affinity": [-1.8998],
-    "number": 84,
-    "disabled": true
+    "number": 84
   },
   "At": {
     "name": "Astatine",
-    "isotopes": [],
+    "isotopes": {
+      "209At": {
+        "ratio": 0.2611,
+        "decay": {
+          "half_life": 19476,
+          "decay_types": {
+            "beta+": {
+              "ratio": 0.95
+            },
+            "alpha": {
+              "ratio": 0.05
+            }
+          }
+        },
+        "energy": 194669285872
+      },
+      "210At": {
+        "ratio": 0.390927,
+        "decay": {
+          "half_life": 29160,
+          "decay_types": {
+            "beta+": {
+              "ratio": 0.9983
+            },
+            "alpha": {
+              "ratio": 0.0017
+            }
+          }
+        },
+        "energy": 195601687290
+      },
+      "211At": {
+        "ratio": 0.347973,
+        "decay": {
+          "half_life": 25956,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 0.58
+            },
+            "alpha": {
+              "ratio": 0.42
+            }
+          }
+        },
+        "energy": 196533505587
+      }
+    },
     "ionization_energy": [
       9.535
     ],
     "electron_affinity": [-2.7994],
-    "number": 85,
-    "disabled": true
+    "number": 85
   },
   "Rn": {
     "name": "Radon",
-    "isotopes": [],
+    "isotopes": {
+      "210Rn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 8640,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 195604061207
+      },
+      "211Rn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 52560,
+          "decay_types": {
+            "beta+": {
+              "ratio": 0.72
+            },
+            "alpha": {
+              "ratio": 0.28
+            }
+          }
+        },
+        "energy": 196536397178
+      },
+      "222Rn": {
+        "ratio": 1,
+        "decay": {
+          "half_life": 330350.4,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 206807956045
+      },
+      "224Rn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 6480,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 208677009405
+      }
+    },
     "ionization_energy": [
       10.7485
     ],
-    "number": 86,
-    "disabled": true
+    "number": 86
   },
   "Fr": {
     "name": "Francium",
-    "isotopes": [],
+    "isotopes": {
+      "221Fr": {
+        "ratio": 0.179104,
+        "decay": {
+          "half_life": 288,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.99996
+            },
+            "beta-": {
+              "ratio": 0.00004
+            }
+          }
+        },
+        "energy": 205873367099
+      },
+      "222Fr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 852,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 206807931819
+      },
+      "223Fr": {
+        "ratio": 0.820896,
+        "decay": {
+          "half_life": 1320,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 207741459934
+      }
+    },
     "ionization_energy": [
       4.0727
     ],
-    "number": 87,
-    "disabled": true
+    "number": 87
   },
   "Ra": {
     "name": "Radium",
-    "isotopes": [],
+    "isotopes": {
+      "223Ra": {
+        "ratio": 0.000019,
+        "decay": {
+          "half_life": 987552,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 207740310763
+      },
+      "224Ra": {
+        "ratio": 0.000008,
+        "decay": {
+          "half_life": 313796.16,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 208673396906
+      },
+      "225Ra": {
+        "ratio": 0.000025,
+        "decay": {
+          "half_life": 1287360,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 209608057360
+      },
+      "226Ra": {
+        "ratio": 0.996368,
+        "decay": {
+          "half_life": 50464000000,
+          "decay_types": {
+            "2beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 210541226041
+      },
+      "228Ra": {
+        "ratio": 0.00358,
+        "decay": {
+          "half_life": 181355000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 212409485962
+      }
+    },
     "ionization_energy": [
       5.2784,
       10.14716
     ],
-    "number": 88,
-    "disabled": true
+    "number": 88
   },
   "Ac": {
     "name": "Actinium",
-    "isotopes": [],
+    "isotopes": {
+      "225Ac": {
+        "ratio": 0.001257,
+        "decay": {
+          "half_life": 864000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 209607701549
+      },
+      "226Ac": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 105732,
+          "decay_types": {
+            "beta-": {
+              "ratio": 0.83
+            },
+            "electron_capture": {
+              "ratio": 0.17
+            }
+          }
+        },
+        "energy": 210541867157
+      },
+      "227Ac": {
+        "ratio": 0.998743,
+        "decay": {
+          "half_life": 686688880,
+          "decay_types": {
+            "beta-": {
+              "ratio": 0.983
+            },
+            "alpha": {
+              "ratio": 0.017
+            }
+          }
+        },
+        "energy": 211474901497
+      }
+    },
     "ionization_energy": [
       5.17,
       12.1
     ],
-    "number": 89,
-    "disabled": true
+    "number": 89
   },
   "Th": {
     "name": "Thorium",
-    "isotopes": [],
+    "isotopes": {
+      "227Th": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 1613952,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 211474856733
+      },
+      "228Th": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 60291864,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 212407316359
+      },
+      "229Th": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 249702000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 213341624299
+      },
+      "230Th": {
+        "ratio": 0.0002,
+        "decay": {
+          "half_life": 2378120000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 214274395376
+      },
+      "231Th": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 91800,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 215208842291
+      },
+      "232Th": {
+        "ratio": 0.999795,
+        "decay": {
+          "half_life": 443137000000000000,
+          "decay_types": {
+            "2beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 216141966935
+      },
+      "234Th": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 2082240,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 218010120140
+      }
+    },
     "ionization_energy": [
       6.3067,
       11.5,
       20,
       28.8
     ],
-    "number": 90,
-    "disabled": true
+    "number": 90
   },
   "Pa": {
     "name": "Protactinium",
-    "isotopes": [],
+    "isotopes": {
+      "229Pa": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 129600,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 0.996
+            },
+            "alpha": {
+              "ratio": 0.004
+            }
+          }
+        },
+        "energy": 213341935756
+      },
+      "230Pa": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1503360,
+          "decay_types": {
+            "beta+": {
+              "ratio": 0.91
+            },
+            "beta-": {
+              "ratio": 0.08997
+            },
+            "alpha": {
+              "ratio": 0.00003
+            }
+          }
+        },
+        "energy": 214275705905
+      },
+      "231Pa": {
+        "ratio": 0.999998,
+        "decay": {
+          "half_life": 1033250000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 215208450735
+      },
+      "232Pa": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 113184,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            },
+            "electron_capture": {
+              "ratio": 0
+            }
+          }
+        },
+        "energy": 216142466464
+      },
+      "233Pa": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 2329948.8,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 217075502339
+      },
+      "234Pa": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 24300,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 218009847052
+      }
+    },
     "ionization_energy": [
       5.89
     ],
-    "number": 91,
-    "disabled": true
+    "number": 91
   },
   "U": {
     "name": "Uranium",
-    "isotopes": [],
+    "isotopes": {
+      "232U": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 2173106000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 216141129361
+      },
+      "233U": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 5021170000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 217074932200
+      },
+      "234U": {
+        "ratio": 0.000058,
+        "decay": {
+          "half_life": 7743070000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 218007652481
+      },
+      "235U": {
+        "ratio": 0.0072,
+        "decay": {
+          "half_life": 22204200000000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 218941919925
+      },
+      "236U": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 738667000000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 219874939409
+      },
+      "238U": {
+        "ratio": 0.99274,
+        "decay": {
+          "half_life": 140921000000000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            },
+            "SF": {
+              "ratio": 5.4e-7
+            }
+          }
+        },
+        "energy": 221742789259
+      }
+    },
     "ionization_energy": [
       6.19405,
       14.717
     ],
-    "number": 92,
-    "disabled": true
+    "number": 92
   },
   "Np": {
     "name": "Neptunium",
-    "isotopes": [],
+    "isotopes": {
+      "235Np": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 34223040,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 0.99998
+            },
+            "alpha": {
+              "ratio": 0.00002
+            }
+          }
+        },
+        "energy": 218942044139
+      },
+      "236Np": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 4857160000000,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 0.879
+            },
+            "beta-": {
+              "ratio": 0.12
+            },
+            "alpha": {
+              "ratio": 0.001
+            }
+          }
+        },
+        "energy": 219875872387
+      },
+      "237Np": {
+        "ratio": 0.999999,
+        "decay": {
+          "half_life": 67621800000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 220808859972
+      },
+      "239Np": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 203558.4,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 222676286310
+      }
+    },
     "ionization_energy": [
       6.2657
     ],
-    "number": 93,
-    "disabled": true
+    "number": 93
   },
   "Pu": {
     "name": "Plutonium",
-    "isotopes": [],
+    "isotopes": {
+      "238Pu": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 2767319600,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 221741645056
+      },
+      "239Pu": {
+        "ratio": 0.0003,
+        "decay": {
+          "half_life": 760114000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 222675563803
+      },
+      "240Pu": {
+        "ratio": 0.00008,
+        "decay": {
+          "half_life": 205010000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 223608594535
+      },
+      "241Pu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 441560000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 0.999976
+            },
+            "alpha": {
+              "ratio": 0.000024
+            }
+          }
+        },
+        "energy": 224542917944
+      },
+      "242Pu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 11764400000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.999995
+            },
+            "SF": {
+              "ratio": 0.000005
+            }
+          }
+        },
+        "energy": 225476173158
+      },
+      "244Pu": {
+        "ratio": 0.99962,
+        "decay": {
+          "half_life": 2548430000000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.9988
+            },
+            "SF": {
+              "ratio": 0.0012
+            }
+          }
+        },
+        "energy": 227344247550
+      }
+    },
     "ionization_energy": [
       6.0262
     ],
-    "number": 94,
-    "disabled": true
+    "number": 94
   },
   "Am": {
     "name": "Americium",
-    "isotopes": [],
+    "isotopes": {
+      "241Am": {
+        "ratio": 0.055395,
+        "decay": {
+          "half_life": 13631588000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 224542897161
+      },
+      "242Am": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 57669.84,
+          "decay_types": {
+            "beta-": {
+              "ratio": 0.82
+            },
+            "electron_capture": {
+              "ratio": 0.18
+            }
+          }
+        },
+        "energy": 225476924452
+      },
+      "243Am": {
+        "ratio": 0.944605,
+        "decay": {
+          "half_life": 232450000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 226410124490
+      }
+    },
     "ionization_energy": [
       5.9738
     ],
@@ -2777,7 +6217,119 @@
   },
   "Cm": {
     "name": "Curium",
-    "isotopes": [],
+    "isotopes": {
+      "242Cm": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 13824000,
+          "decay_types": {
+            "2beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 225476259985
+      },
+      "243Cm": {
+        "ratio": 0.000002,
+        "decay": {
+          "half_life": 917814000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.998
+            },
+            "electron_capture": {
+              "ratio": 0.002
+            }
+          }
+        },
+        "energy": 226410131973
+      },
+      "244Cm": {
+        "ratio": 0.000001,
+        "decay": {
+          "half_life": 570874000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.999998
+            },
+            "SF": {
+              "ratio": 0.000001
+            }
+          }
+        },
+        "energy": 227342895646
+      },
+      "245Cm": {
+        "ratio": 0.000533,
+        "decay": {
+          "half_life": 268090000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 228276940316
+      },
+      "246Cm": {
+        "ratio": 0.000296,
+        "decay": {
+          "half_life": 149184000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.999729
+            },
+            "SF": {
+              "ratio": 0.000271
+            }
+          }
+        },
+        "energy": 229210047662
+      },
+      "247Cm": {
+        "ratio": 0.977304,
+        "decay": {
+          "half_life": 492024000000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 230144456738
+      },
+      "248Cm": {
+        "ratio": 0.0213,
+        "decay": {
+          "half_life": 10723600000000,
+          "decay_types": {
+            "2beta-": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 231077808653
+      },
+      "250Cm": {
+        "ratio": 0.000564,
+        "decay": {
+          "half_life": 283860000000,
+          "decay_types": {
+            "SF": {
+              "ratio": 0.74
+            },
+            "alpha": {
+              "ratio": 0.18
+            },
+            "beta-": {
+              "ratio": 0.08
+            }
+          }
+        },
+        "energy": 232946392717
+      }
+    },
     "ionization_energy": [
       5.9915
     ],
@@ -2786,7 +6338,74 @@
   },
   "Bk": {
     "name": "Berkelium",
-    "isotopes": [],
+    "isotopes": {
+      "245Bk": {
+        "ratio": 0.000008,
+        "decay": {
+          "half_life": 426816,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 0.999
+            },
+            "alpha": {
+              "ratio": 0.001
+            }
+          }
+        },
+        "energy": 228277751057
+      },
+      "246Bk": {
+        "ratio": 0.000003,
+        "decay": {
+          "half_life": 155520,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 229211397662
+      },
+      "247Bk": {
+        "ratio": 0.820978,
+        "decay": {
+          "half_life": 43525200000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 230144413461
+      },
+      "248Bk": {
+        "ratio": 0.178473,
+        "decay": {
+          "half_life": 9462000000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 231078495622
+      },
+      "249Bk": {
+        "ratio": 0.000538,
+        "decay": {
+          "half_life": 28512000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 0.999986
+            },
+            "alpha": {
+              "ratio": 0.000014
+            }
+          }
+        },
+        "energy": 232011759687
+      }
+    },
     "ionization_energy": [
       6.1979
     ],
@@ -2795,7 +6414,110 @@
   },
   "Cf": {
     "name": "Californium",
-    "isotopes": [],
+    "isotopes": {
+      "248Cf": {
+        "ratio": 0.000722,
+        "decay": {
+          "half_life": 28814400,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.99998
+            },
+            "SF": {
+              "ratio": 0.00002
+            }
+          }
+        },
+        "energy": 231077656217
+      },
+      "249Cf": {
+        "ratio": 0.277283,
+        "decay": {
+          "half_life": 11070540000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 232011635687
+      },
+      "250Cf": {
+        "ratio": 0.010333,
+        "decay": {
+          "half_life": 412543200,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.9993
+            },
+            "SF": {
+              "ratio": 0.0007
+            }
+          }
+        },
+        "energy": 232944575472
+      },
+      "251Cf": {
+        "ratio": 0.709403,
+        "decay": {
+          "half_life": 28322920000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.9999
+            },
+            "SF": {
+              "ratio": 0.0001
+            }
+          }
+        },
+        "energy": 233879031909
+      },
+      "252Cf": {
+        "ratio": 0.002089,
+        "decay": {
+          "half_life": 83423300,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.969
+            },
+            "SF": {
+              "ratio": 0.031
+            }
+          }
+        },
+        "energy": 234812424894
+      },
+      "253Cf": {
+        "ratio": 0.000039,
+        "decay": {
+          "half_life": 1538784,
+          "decay_types": {
+            "beta-": {
+              "ratio": 0.997
+            },
+            "alpha": {
+              "ratio": 0.003
+            }
+          }
+        },
+        "energy": 235747185535
+      },
+      "254Cf": {
+        "ratio": 0.000131,
+        "decay": {
+          "half_life": 5227200,
+          "decay_types": {
+            "SF": {
+              "ratio": 0.997
+            },
+            "alpha": {
+              "ratio": 0.003
+            }
+          }
+        },
+        "energy": 236680718901
+      }
+    },
     "ionization_energy": [
       6.2817
     ],
@@ -2804,7 +6526,68 @@
   },
   "Es": {
     "name": "Einsteinium",
-    "isotopes": [],
+    "isotopes": {
+      "252Es": {
+        "ratio": 0.584026,
+        "decay": {
+          "half_life": 40754880,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.78
+            },
+            "electron_capture": {
+              "ratio": 0.22
+            }
+          }
+        },
+        "energy": 234813684893
+      },
+      "253Es": {
+        "ratio": 0.025345,
+        "decay": {
+          "half_life": 1768608,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 235746898218
+      },
+      "254Es": {
+        "ratio": 0.341352,
+        "decay": {
+          "half_life": 23820480,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.999999
+            },
+            "beta-": {
+              "ratio": 0.000001
+            }
+          }
+        },
+        "energy": 236681370120
+      },
+      "255Es": {
+        "ratio": 0.049278,
+        "decay": {
+          "half_life": 3438720,
+          "decay_types": {
+            "beta-": {
+              "ratio": 0.91996
+            },
+            "alpha": {
+              "ratio": 0.08
+            },
+            "SF": {
+              "ratio": 0.00004
+            }
+          }
+        },
+        "energy": 237614960621
+      }
+    },
     "ionization_energy": [
       6.42
     ],
@@ -2813,7 +6596,68 @@
   },
   "Fm": {
     "name": "Fermium",
-    "isotopes": [],
+    "isotopes": {
+      "252Fm": {
+        "ratio": 0.010038,
+        "decay": {
+          "half_life": 91404,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.99998
+            },
+            "SF": {
+              "ratio": 0.00002
+            }
+          }
+        },
+        "energy": 234813208288
+      },
+      "253Fm": {
+        "ratio": 0.028465,
+        "decay": {
+          "half_life": 259200,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 0.88
+            },
+            "alpha": {
+              "ratio": 0.12
+            }
+          }
+        },
+        "energy": 235747234058
+      },
+      "255Fm": {
+        "ratio": 0.007934,
+        "decay": {
+          "half_life": 72252,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            },
+            "SF": {
+              "ratio": 2.0000000000000002e-7
+            }
+          }
+        },
+        "energy": 237614671001
+      },
+      "257Fm": {
+        "ratio": 0.953563,
+        "decay": {
+          "half_life": 8683200,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.998
+            },
+            "SF": {
+              "ratio": 0.002
+            }
+          }
+        },
+        "energy": 239482448457
+      }
+    },
     "ionization_energy": [
       6.5
     ],
@@ -2822,7 +6666,56 @@
   },
   "Md": {
     "name": "Mendelevium",
-    "isotopes": [],
+    "isotopes": {
+      "257Md": {
+        "ratio": 0.002754,
+        "decay": {
+          "half_life": 19872,
+          "decay_types": {
+            "electron_capture": {
+              "ratio": 0.77
+            },
+            "alpha": {
+              "ratio": 0.15
+            },
+            "SF": {
+              "ratio": 0.08
+            }
+          }
+        },
+        "energy": 239482855188
+      },
+      "258Md": {
+        "ratio": 0.616545,
+        "decay": {
+          "half_life": 4449600,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.99998
+            },
+            "beta-": {
+              "ratio": 0.00001
+            },
+            "beta+": {
+              "ratio": 0.00001
+            }
+          }
+        },
+        "energy": 240417040773
+      },
+      "260Md": {
+        "ratio": 0.380702,
+        "decay": {
+          "half_life": 2747520,
+          "decay_types": {
+            "SF": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 242284891034
+      }
+    },
     "ionization_energy": [
       6.58
     ],
@@ -2831,7 +6724,89 @@
   },
   "No": {
     "name": "Nobelium",
-    "isotopes": [],
+    "isotopes": {
+      "253No": {
+        "ratio": 0.025013,
+        "decay": {
+          "half_life": 96,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.8
+            },
+            "beta+": {
+              "ratio": 0.2
+            }
+          }
+        },
+        "energy": 235752350532
+      },
+      "254No": {
+        "ratio": 0.013288,
+        "decay": {
+          "half_life": 51,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.899
+            },
+            "beta+": {
+              "ratio": 0.1
+            },
+            "SF": {
+              "ratio": 0.001
+            }
+          }
+        },
+        "energy": 236684102406
+      },
+      "255No": {
+        "ratio": 0.048463,
+        "decay": {
+          "half_life": 186,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.61
+            },
+            "beta+": {
+              "ratio": 0.39
+            }
+          }
+        },
+        "energy": 237617725302
+      },
+      "257No": {
+        "ratio": 0.006514,
+        "decay": {
+          "half_life": 25,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.85
+            },
+            "beta+": {
+              "ratio": 0.15
+            }
+          }
+        },
+        "energy": 239484099497
+      },
+      "259No": {
+        "ratio": 0.906722,
+        "decay": {
+          "half_life": 3480,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.65
+            },
+            "electron_capture": {
+              "ratio": 0.25
+            },
+            "SF": {
+              "ratio": 0.1
+            }
+          }
+        },
+        "energy": 241350955975
+      }
+    },
     "ionization_energy": [
       6.65
     ],
@@ -2840,7 +6815,137 @@
   },
   "Lr": {
     "name": "Lawrencium",
-    "isotopes": [],
+    "isotopes": {
+      "266Lr": {
+        "ratio": 0.694582,
+        "decay": {
+          "half_life": 36000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 247888433393
+      },
+      "262Lr": {
+        "ratio": 0.25005,
+        "decay": {
+          "half_life": 12960,
+          "decay_types": {
+            "SF": {
+              "ratio": 0.1
+            },
+            "alpha": {
+              "ratio": 0.4
+            },
+            "beta+": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 244153450459
+      },
+      "261Lr": {
+        "ratio": 0.050936,
+        "decay": {
+          "half_life": 2640,
+          "decay_types": {
+            "SF": {
+              "ratio": 0.5
+            },
+            "alpha": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 243219394305
+      },
+      "260Lr": {
+        "ratio": 0.003126,
+        "decay": {
+          "half_life": 162,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.8
+            },
+            "beta+": {
+              "ratio": 0.2
+            }
+          }
+        },
+        "energy": 242286616160
+      },
+      "259Lr": {
+        "ratio": 0.00012,
+        "decay": {
+          "half_life": 6.2,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.78
+            },
+            "SF": {
+              "ratio": 0.22
+            },
+            "beta+": {
+              "ratio": 0
+            }
+          }
+        },
+        "energy": 241352697868
+      },
+      "256Lr": {
+        "ratio": 0.000521,
+        "decay": {
+          "half_life": 27,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.85
+            },
+            "beta+": {
+              "ratio": 0.15
+            },
+            "SF": {
+              "ratio": 0
+            }
+          }
+        },
+        "energy": 238554237682
+      },
+      "255Lr": {
+        "ratio": 0.000415,
+        "decay": {
+          "half_life": 21.5,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.69
+            },
+            "beta+": {
+              "ratio": 0.3
+            },
+            "SF": {
+              "ratio": 0.01
+            }
+          }
+        },
+        "energy": 237620929518
+      },
+      "254Lr": {
+        "ratio": 0.000251,
+        "decay": {
+          "half_life": 13,
+          "decay_types": {
+            "SF": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 236689224454
+      }
+    },
     "ionization_energy": [
       4.9
     ],
@@ -2849,7 +6954,80 @@
   },
   "Rf": {
     "name": "Rutherfordium",
-    "isotopes": [],
+    "isotopes": {
+      "261Rf": {
+        "ratio": 0.01221,
+        "decay": {
+          "half_life": 70,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.6
+            },
+            "SF": {
+              "ratio": 0.4
+            }
+          }
+        },
+        "energy": 243221148825
+      },
+      "263Rf": {
+        "ratio": 0.156986,
+        "decay": {
+          "half_life": 900,
+          "decay_types": {
+            "SF": {
+              "ratio": 0.7
+            },
+            "alpha": {
+              "ratio": 0.3
+            }
+          }
+        },
+        "energy": 245087657514
+      },
+      "265Rf": {
+        "ratio": 0.010466,
+        "decay": {
+          "half_life": 60,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 246954516963
+      },
+      "266Rf": {
+        "ratio": 0.004012,
+        "decay": {
+          "half_life": 23,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 247887176808
+      },
+      "267Rf": {
+        "ratio": 0.816327,
+        "decay": {
+          "half_life": 4680,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 248821998649
+      }
+    },
     "ionization_energy": [
       6
     ],
@@ -2858,85 +7036,951 @@
   },
   "Db": {
     "name": "Dubnium",
-    "isotopes": [],
+    "isotopes": {
+      "262Db": {
+        "ratio": 0.000292,
+        "decay": {
+          "half_life": 34,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.67
+            },
+            "SF": {
+              "ratio": 0.3
+            },
+            "beta+": {
+              "ratio": 0.03
+            }
+          }
+        },
+        "energy": 244157595605
+      },
+      "263Db": {
+        "ratio": 0.000232,
+        "decay": {
+          "half_life": 27,
+          "decay_types": {
+            "SF": {
+              "ratio": 0.56
+            },
+            "alpha": {
+              "ratio": 0.37
+            },
+            "beta+": {
+              "ratio": 0.07
+            }
+          }
+        },
+        "energy": 245089931290
+      },
+      "266Db": {
+        "ratio": 0.011323,
+        "decay": {
+          "half_life": 1320,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 247890039288
+      },
+      "267Db": {
+        "ratio": 0.03088,
+        "decay": {
+          "half_life": 3600,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 248822788556
+      },
+      "268Db": {
+        "ratio": 0.926395,
+        "decay": {
+          "half_life": 108000,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 249757139993
+      },
+      "270Db": {
+        "ratio": 0.03088,
+        "decay": {
+          "half_life": 3600,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 251625033400
+      }
+    },
     "number": 105,
     "disabled": true
   },
   "Sg": {
     "name": "Seaborgium",
-    "isotopes": [],
+    "isotopes": {
+      "271Sg": {
+        "ratio": 0.305421,
+        "decay": {
+          "half_life": 120,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 252559097937
+      },
+      "269Sg": {
+        "ratio": 0.458132,
+        "decay": {
+          "half_life": 180,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 250691716852
+      },
+      "267Sg": {
+        "ratio": 0.213795,
+        "decay": {
+          "half_life": 84,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 248824696255
+      },
+      "265Sg": {
+        "ratio": 0.022652,
+        "decay": {
+          "half_life": 8.9,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 246958625495
+      }
+    },
     "number": 106,
     "disabled": true
   },
   "Bh": {
     "name": "Bohrium",
-    "isotopes": [],
+    "isotopes": {
+      "278Bh": {
+        "ratio": 0.843521,
+        "decay": {
+          "half_life": 690,
+          "decay_types": {
+            "SF": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 259089843838
+      },
+      "274Bh": {
+        "ratio": 0.0489,
+        "decay": {
+          "half_life": 40,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 255361932416
+      },
+      "272Bh": {
+        "ratio": 0.012225,
+        "decay": {
+          "half_life": 10,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 253494839163
+      },
+      "271Bh": {
+        "ratio": 0.001222,
+        "decay": {
+          "half_life": 1,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 252560687997
+      },
+      "270Bh": {
+        "ratio": 0.07335,
+        "decay": {
+          "half_life": 60,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 251627738457
+      },
+      "267Bh": {
+        "ratio": 0.020782,
+        "decay": {
+          "half_life": 17,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 248827700322
+      }
+    },
     "number": 107,
     "disabled": true
   },
   "Hs": {
     "name": "Hassium",
-    "isotopes": [],
+    "isotopes": {
+      "277Hs": {
+        "ratio": 0.558659,
+        "decay": {
+          "half_life": 30,
+          "decay_types": {
+            "SF": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 258163307245
+      },
+      "271Hs": {
+        "ratio": 0.074488,
+        "decay": {
+          "half_life": 4,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 252562996238
+      },
+      "270Hs": {
+        "ratio": 0.18622,
+        "decay": {
+          "half_life": 10,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 251628701622
+      },
+      "269Hs": {
+        "ratio": 0.180633,
+        "decay": {
+          "half_life": 9.7,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 250696654700
+      }
+    },
     "number": 108,
     "disabled": true
   },
   "Mt": {
     "name": "Meitnerium",
-    "isotopes": [],
+    "isotopes": {
+      "282Mt": {
+        "ratio": 0.930556,
+        "decay": {
+          "half_life": 67,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 262817755260
+      },
+      "278Mt": {
+        "ratio": 0.055556,
+        "decay": {
+          "half_life": 4,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 259099431315
+      },
+      "276Mt": {
+        "ratio": 0.008333,
+        "decay": {
+          "half_life": 0.6,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 257233038544
+      },
+      "274Mt": {
+        "ratio": 0.005556,
+        "decay": {
+          "half_life": 0.4,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 255366638322
+      }
+    },
     "number": 109,
     "disabled": true
   },
   "Ds": {
     "name": "Darmstadtium",
-    "isotopes": [],
+    "isotopes": {
+      "281Ds": {
+        "ratio": 0.985915,
+        "decay": {
+          "half_life": 14,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 261900664556
+      },
+      "279Ds": {
+        "ratio": 0.014085,
+        "decay": {
+          "half_life": 0.2,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 260034696547
+      }
+    },
     "number": 110,
     "disabled": true
   },
   "Rg": {
     "name": "Roentgenium",
-    "isotopes": [],
+    "isotopes": {
+      "286Rg": {
+        "ratio": 0.819357,
+        "decay": {
+          "half_life": 640,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 266545666682
+      },
+      "282Rg": {
+        "ratio": 0.153629,
+        "decay": {
+          "half_life": 120,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 262837211524
+      },
+      "281Rg": {
+        "ratio": 0.021764,
+        "decay": {
+          "half_life": 17,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 261903748732
+      },
+      "280Rg": {
+        "ratio": 0.005121,
+        "decay": {
+          "half_life": 4,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 260971417704
+      },
+      "279Rg": {
+        "ratio": 0.000128,
+        "decay": {
+          "half_life": 0.1,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 260038056445
+      }
+    },
     "number": 111,
     "disabled": true
   },
   "Cn": {
     "name": "Copernicium",
-    "isotopes": [],
+    "isotopes": {
+      "286Cn": {
+        "ratio": 0.199058,
+        "decay": {
+          "half_life": 8.45,
+          "decay_types": {
+            "SF": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 266545666682
+      },
+      "285Cn": {
+        "ratio": 0.706714,
+        "decay": {
+          "half_life": 30,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 265637857925
+      },
+      "283Cn": {
+        "ratio": 0.094229,
+        "decay": {
+          "half_life": 4,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.9
+            },
+            "SF": {
+              "ratio": 0.1
+            }
+          }
+        },
+        "energy": 263772716150
+      }
+    },
     "number": 112,
     "disabled": true
   },
   "Nh": {
     "name": "Nihonium",
-    "isotopes": [],
+    "isotopes": {
+      "290Nh": {
+        "ratio": 0.131827,
+        "decay": {
+          "half_life": 2,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 270273578105
+      },
+      "286Nh": {
+        "ratio": 0.527308,
+        "decay": {
+          "half_life": 8,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 266575290743
+      },
+      "285Nh": {
+        "ratio": 0.263654,
+        "decay": {
+          "half_life": 4,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 265642167946
+      },
+      "284Nh": {
+        "ratio": 0.065913,
+        "decay": {
+          "half_life": 1,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 264710066997
+      },
+      "283Nh": {
+        "ratio": 0.006591,
+        "decay": {
+          "half_life": 0.1,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 263777055979
+      },
+      "282Nh": {
+        "ratio": 0.004614,
+        "decay": {
+          "half_life": 0.07,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 262817755260
+      },
+      "278Nh": {
+        "ratio": 0.000092,
+        "decay": {
+          "half_life": 0.0014,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 259089843838
+      }
+    },
     "number": 113,
     "disabled": true
   },
   "Fl": {
     "name": "Flerovium",
-    "isotopes": [],
+    "isotopes": {
+      "290Fl": {
+        "ratio": 0.848139,
+        "decay": {
+          "half_life": 19,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 270273578105
+      },
+      "289Fl": {
+        "ratio": 0.084814,
+        "decay": {
+          "half_life": 1.9,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 269376103881
+      },
+      "288Fl": {
+        "ratio": 0.028569,
+        "decay": {
+          "half_life": 0.64,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 268443129191
+      },
+      "287Fl": {
+        "ratio": 0.024105,
+        "decay": {
+          "half_life": 0.54,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 267511551742
+      },
+      "286Fl": {
+        "ratio": 0.007589,
+        "decay": {
+          "half_life": 0.17,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 266578433602
+      },
+      "285Fl": {
+        "ratio": 0.006696,
+        "decay": {
+          "half_life": 0.15,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 265646793743
+      },
+      "284Fl": {
+        "ratio": 0.000089,
+        "decay": {
+          "half_life": 0.002,
+          "decay_types": {
+            "SF": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 264681710971
+      }
+    },
     "number": 114,
     "disabled": true
   },
   "Mc": {
     "name": "Moscovium",
-    "isotopes": [],
+    "isotopes": {
+      "290Mc": {
+        "ratio": 0.597015,
+        "decay": {
+          "half_life": 0.8,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 270313989405
+      },
+      "289Mc": {
+        "ratio": 0.223881,
+        "decay": {
+          "half_life": 0.3,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 269381167480
+      },
+      "288Mc": {
+        "ratio": 0.149254,
+        "decay": {
+          "half_life": 0.2,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 268449466142
+      },
+      "287Mc": {
+        "ratio": 0.029851,
+        "decay": {
+          "half_life": 0.04,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 267516755997
+      }
+    },
     "number": 115,
     "disabled": true
   },
   "Lv": {
     "name": "Livermorium",
-    "isotopes": [],
+    "isotopes": {
+      "294Lv": {
+        "ratio": 0.355263,
+        "decay": {
+          "half_life": 0.054,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 274001489527
+      },
+      "293Lv": {
+        "ratio": 0.394737,
+        "decay": {
+          "half_life": 0.06,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 273069027430
+      },
+      "292Lv": {
+        "ratio": 0.078947,
+        "decay": {
+          "half_life": 0.012,
+          "decay_types": {
+            "alpha": {
+              "ratio": 1
+            }
+          }
+        },
+        "energy": 272182234916
+      },
+      "291Lv": {
+        "ratio": 0.118421,
+        "decay": {
+          "half_life": 0.018,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 271250950887
+      },
+      "290Lv": {
+        "ratio": 0.052632,
+        "decay": {
+          "half_life": 0.008,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 270318133620
+      }
+    },
     "number": 116,
     "disabled": true
   },
   "Ts": {
     "name": "Tennessine",
-    "isotopes": [],
+    "isotopes": {
+      "294Ts": {
+        "ratio": 0.714286,
+        "decay": {
+          "half_life": 0.05,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 274001489527
+      },
+      "293Ts": {
+        "ratio": 0.285714,
+        "decay": {
+          "half_life": 0.02,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 273069027430
+      }
+    },
     "number": 117,
     "disabled": true
   },
   "Og": {
     "name": "Oganesson",
-    "isotopes": [],
+    "isotopes": {
+      "294Og": {
+        "ratio": 1,
+        "decay": {
+          "half_life": 0.0007,
+          "decay_types": {
+            "alpha": {
+              "ratio": 0.5
+            },
+            "SF": {
+              "ratio": 0.5
+            }
+          }
+        },
+        "energy": 274001489527
+      }
+    },
     "number": 118,
     "disabled": true
   }
