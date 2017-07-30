@@ -26,7 +26,8 @@ angular
 
       /* Transforms reactants to products */
       this.react = function(number, reaction, playerData) {
-        if (!Number.isInteger(number) || number <= 0) {
+        if (!Number.isInteger(number) || number <= 0 ||
+            !reaction.reactant || !reaction.product) {
           return;
         }
         if (this.isReactionCostMet(number, reaction, playerData)) {
