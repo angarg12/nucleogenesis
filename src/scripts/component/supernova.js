@@ -115,7 +115,7 @@ function supernova(state, format, visibility, upgrade, data, util) {
         return 1;
       }
       // log adds diminishing returns to the infusion
-      return 1 + Math.log(number)*ct.data.constants.INFUSE_POWER;
+      return 1 + Math.log(number)/Math.log(1.25)*ct.data.constants.INFUSE_POWER;
   };
 
   /* The infusion boosts are multiplicative with respect to each other */
