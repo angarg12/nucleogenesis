@@ -21,4 +21,4 @@ Nucleogenesis is a chemistry-based incremental/idle game.
 * [Code of Conduct](CODE_OF_CONDUCT.md).
 * [GPL-3.0 License](LICENSE).
 
-Derivative works should include attribution to the original author, Andrés Garcia Garcia (angarg12).
+Derivative works should include attribution to the original authors.
