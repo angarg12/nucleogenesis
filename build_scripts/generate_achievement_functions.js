@@ -10,6 +10,7 @@ const fs = require('fs');
 const args = process.argv.slice(2);
 
 let achievements = jsonfile.readFileSync(args[0]+'/data/achievements.json');
+let unlocks = jsonfile.readFileSync(args[0]+'/data/unlocks.json');
 let achievementService = fs.readFileSync(args[0]+'/scripts/component/achievements.js').toString();
 
 const FUNCTION_TEMPLATE = `this.<%= name %> = function (player){
@@ -19,27 +20,35 @@ const FUNCTION_TEMPLATE = `this.<%= name %> = function (player){
 let functionTemplate = template(FUNCTION_TEMPLATE);
 
 // convert conditions to progress, to normalise the implementation
-for(let i in achievements){
-let achievement = achievements[i];
-  if(typeof achievement.condition === 'undefined') {
-    continue;
+function conditionToProgress(source){
+  for(let i in source){
+  let achievement = source[i];
+    if(typeof achievement.condition === 'undefined') {
+      continue;
+    }
+    if(achievement.condition.constructor === Array){
+      achievement.condition = achievement.condition.join('\n');
+    }
+    achievement.progress = '('+achievement.condition+') ? 1 : 0';
+    achievement.goals = [1];
+    delete achievement.condition;
   }
-  if(achievement.condition.constructor === Array){
-    achievement.condition = achievement.condition.join('\n');
+}
+function createFunctions(source){
+  for(let i in source){
+    let achievement = source[i];
+    let name = '_'+crypto.createHash('md5').update(achievement.progress).digest('hex');
+    functions[name] = functionTemplate({ 'name': name, 'progress': achievement.progress });
+    // we overwrite progress with the name
+    source[i].progress = name;
   }
-  achievement.progress = '('+achievement.condition+') ? 1 : 0';
-  achievement.goals = [1];
-  delete achievement.condition;
 }
 
 let functions = {};
-for(let i in achievements){
-  let achievement = achievements[i];
-  let name = '_'+crypto.createHash('md5').update(achievement.progress).digest('hex');
-  functions[name] = functionTemplate({ 'name': name, 'progress': achievement.progress });
-  // we overwrite progress with the name
-  achievements[i].progress = name;
-}
+conditionToProgress(achievements);
+conditionToProgress(unlocks);
+createFunctions(achievements);
+createFunctions(unlocks);
 
 let concatFunctions = '';
 for(let i in functions){
@@ -49,6 +58,10 @@ for(let i in functions){
 let serviceTemplate = template(achievementService);
 
 fs.writeFileSync(args[0]+'/scripts/component/achievements.js', serviceTemplate({'functions': concatFunctions}));
+
 jsonfile.writeFileSync(args[0] + '/data/achievements.json', achievements, {
+  spaces: 2
+});
+jsonfile.writeFileSync(args[0] + '/data/unlocks.json', unlocks, {
   spaces: 2
 });

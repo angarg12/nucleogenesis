@@ -16,14 +16,14 @@
         <div class="hidden_block progress"
              ng-show="ct.hasProgress(key) && !ct.maxed(key, ct.state.player)">
           <span class="progressbar-font">
-		{{ct.getProgress(key, ct.state.player) | prettyNumber : 2}}%
+		{{ct.getProgress(key, 'achievements', ct.state.player) | prettyNumber : 2}}%
 	  </span>
           <div class="progress-bar"
                role="progressbar"
-               aria-valuenow="{{ct.getProgress(key, ct.state.player)}}"
+               aria-valuenow="{{ct.getProgress(key, 'achievements', ct.state.player)}}"
                aria-valuemin="0"
                aria-valuemax="100"
-               style="width: {{ct.getProgress(key, ct.state.player)}}%;">
+               style="width: {{ct.getProgress(key, 'achievements', ct.state.player)}}%;">
           </div>
         </div>
       </div>

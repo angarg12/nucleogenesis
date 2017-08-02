@@ -1,0 +1,20 @@
+{
+  "hydrogen": {
+    "condition": "player.resources['1H'].number >= 1e6"
+  },
+  "isotope": {
+    "condition": "player.resources['2H'].unlocked"
+  },
+  "exotic_matter": {
+    "condition": ["(() => {",
+      "for(let key in data.elements){",
+      " let exotic = data.elements[key].exotic;",
+      "  if (player.resources[exotic].unlocked) {",
+      "    return true;",
+      "  }",
+      "}",
+      "return false;",
+      "})()"
+    ]
+  }
+}

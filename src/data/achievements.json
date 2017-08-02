@@ -4,24 +4,5 @@
     "description": "Gather Hydrogen",
     "goals": [1e6, 1e9],
     "progress": "player.resources['1H'].number"
-  },
-  "isotope": {
-    "name": "Isotope",
-    "description": "xxxxxxx",
-    "condition": "player.resources['2H'].unlocked"
-  },
-  "exotic_matter": {
-    "name": "Exotic matter",
-    "description": "Create exotic matter",
-    "condition": ["(() => {",
-      "for(let key in data.elements){",
-      " let exotic = data.elements[key].exotic;",
-      "  if (player.resources[exotic].unlocked) {",
-      "    return true;",
-      "  }",
-      "}",
-      "return false;",
-      "})()"
-    ]
   }
 }

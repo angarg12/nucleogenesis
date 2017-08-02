@@ -4,7 +4,7 @@
   <pretty value="ct.elementProduction(ct.state.player, ct.state.currentElement)" id="production_total"></pretty>
   {{ct.state.currentElement}}/s
 </h3>
-<ul ng-if="ct.state.player.achievements.isotope">
+<ul ng-if="ct.state.player.unlocks.isotope">
   <li ng-repeat="(isotope,_) in ct.data.elements[ct.state.currentElement].isotopes"
       ng-if="ct.state.player.resources[isotope].unlocked">
     <get-html value="isotope"></get-html>:

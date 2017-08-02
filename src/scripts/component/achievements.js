@@ -63,35 +63,41 @@ angular.module('game').controller('ct_achievements', ['$window', 'state', 'data'
 
     /* Checks if the player has unlocked any new achievement. */
     function update(player) {
-      for (let key in data.achievements) {
-        let achievement = data.achievements[key];
-        let levels = achievement.goals.length;
+      checkAchievements(player, 'achievements');
+      checkAchievements(player, 'unlocks');
+    }
 
-        if (player.achievements[key] < levels) {
-          checkAchievement(player, key, achievement);
+    function checkAchievements(player, source){
+      for (let key in data[source]) {
+        let achievement = data[source][key];
+        let levels = achievement.goals.length;
+        console.log(source+" "+key+" "+levels+" "+JSON.stringify(player[source]))
+
+        if (player[source][key] < levels) {
+          checkAchievement(player, source, key, achievement);
         }
       }
     }
 
     /* Checks all the levels of an achievement that the player hasn't unlocked
       yet. */
-    function checkAchievement(player, key, achievement) {
+    function checkAchievement(player, source, key, achievement) {
       // start from the current achievement level and go up
-      for (let level = player.achievements[key]; level < achievement.goals.length; level++) {
+      for (let level = player[source][key]; level < achievement.goals.length; level++) {
         // if the progress of the player is bigger than the goal, unlock it
-        let progress = ct.getProgress(key, player);
+        let progress = ct.getProgress(key, source, player);
 
         if (progress >= 100) {
+          player[source][key] = level + 1;
           state.addToast(achievement.name);
-          player.achievements[key] = level + 1;
           $window.ga('send', 'event', 'achievement', key + '-' + level, player.id, Date.now());
         }
       }
     }
 
-    ct.getProgress = function (key, player) {
-      let level = player.achievements[key];
-      let achievement = data.achievements[key];
+    ct.getProgress = function (key, source, player) {
+      let level = player[source][key];
+      let achievement = data[source][key];
       let amount = ct[achievement.progress](player);
       let progress = amount / achievement.goals[level] * 100;
 
