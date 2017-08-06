@@ -17,7 +17,7 @@ module.exports = function(config) {
       'test/unit/common.js',
       'test/unit/spec/*.js'
     ],
-    browsers: ['Firefox', 'Chrome'],
+    browsers: ['Chrome', 'Firefox'],
     reporters: ['progress', 'coverage'],
     preprocessors: {
       'build/scripts/**/*.js': ['coverage']

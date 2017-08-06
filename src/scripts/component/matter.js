@@ -27,31 +27,31 @@ angular.module('game').controller('ct_matter', ['state', 'visibility', 'data', '
       for (let i = 0; i < data.radioisotopes.length; i++) {
         let resource = data.radioisotopes[i];
         if (player.resources[resource].unlocked) {
+          let element = Object.keys(data.resources[resource].elements)[0];
           let number = player.resources[resource].number;
-          let halfLife = data.resources[resource].decay.half_life;
-          let production = util.randomDraw(number, Math.log(2) / halfLife);
-
-          if (production === 0) {
-            continue;
-          }
-
-          // we decrease the number of radioactive element
-          //player.resources[resource].number -= production;
-
+          let decay = data.elements[element].isotopes[resource].decay;
+          let halfLife = decay.half_life;
+          let exponent = 1/halfLife;
+          let factor = Math.pow(0.5, exponent);
+          let totalProduction = Math.floor(number - number * factor);
+          let remaining = totalProduction;
           // and decay products
-          let type;
-          for (type of Object.values(data.resources[resource].decay.decay_types)) {
-            let decayNumber = Math.floor(production * type.ratio);
+          let highestRatio;
+          for (let type of Object.values(decay.decay_types)) {
+            if(!highestRatio || highestRatio.ratio < type.ratio){
+              highestRatio = type;
+            }
+            let production = Math.floor(totalProduction * type.ratio);
             // FIXME: this is a hack to fix decay not working if the number of
             // neutrons is lower than the decay amount. Fixing starvation
             // should fix this one as well
             if (type.reaction.reactant && type.reaction.reactant.n) {
-              decayNumber = Math.min(decayNumber, player.resources.n.number);
+              production = Math.min(production, player.resources.n.number);
             }
-            production -= decayNumber;
-            reaction.react(decayNumber, type.reaction, player);
+            reaction.react(production, type.reaction, player);
+            remaining -= production;
           }
-          reaction.react(production, type.reaction, player);
+          reaction.react(remaining, highestRatio.reaction, player);
         }
       }
     }
@@ -61,42 +61,32 @@ angular.module('game').controller('ct_matter', ['state', 'visibility', 'data', '
     function processGenerators(player) {
       // we will simulate the production of isotopes proportional to their ratio
       for (let element in player.elements) {
-        if (player.elements[element].unlocked === false) {
+        if (!player.elements[element].unlocked) {
           continue;
         }
-        // prepare an array with the isotopes
-        let isotopes = Object.keys(data.elements[element].isotopes);
-        let remaining = ct.elementProduction(player, element);
-        // we will create a random draw recalculate the mean and std
-        for (let i = 0; i < isotopes.length - 1; i++) {
-          // first we need to adjust the ratio for the remaining isotopes
-          let remainingRatioSum = 0;
-          for (let j = i; j < isotopes.length; j++) {
-            remainingRatioSum += data.resources[isotopes[j]].ratio;
-          }
+        let totalProduction = ct.elementProduction(player, element);
+        let remaining = totalProduction;
+        // for each isotope
+        for (let key in data.elements[element].isotopes) {
+          let isotope = data.elements[element].isotopes[key];
+          // we calculate the production proportion
+          let production = Math.floor(isotope.ratio * totalProduction);
 
-          // we calculate the production with a random draw
-          let p = data.resources[isotopes[i]].ratio / remainingRatioSum;
-          let production = util.randomDraw(remaining, p);
-
+          // assign the player the produced isotope
+          player.resources[key].number += production;
           if (production > 0) {
-            // assign the player the produced isotope
-            player.resources[isotopes[i]].number += production;
-            if (!player.resources[isotopes[i]].unlocked) {
-              player.resources[isotopes[i]].unlocked = true;
-              state.addNew(isotopes[i]);
-            }
+            player.resources[key].unlocked = true;
+            state.addNew(key);
           }
+          // keep track of the remaining production
           remaining -= production;
         }
-        // the last isotope is just the remaining production that hasn't been consumed
+        // if there is remaining production, we assign it to the main isotope
+        let main = data.elements[element].main;
+        player.resources[main].number += remaining;
         if (remaining > 0) {
-          let last = isotopes[isotopes.length - 1];
-          player.resources[last].number += remaining;
-          if (!player.resources[last].unlocked) {
-            player.resources[last].unlocked = true;
-            state.addNew(last);
-          }
+          player.resources[main].unlocked = true;
+          state.addNew(main);
         }
       }
     }

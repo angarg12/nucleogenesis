@@ -4,7 +4,6 @@
 /* jshint varstmt: false */
 'use strict';
 
-let originalData = null;
 let commonSpec = function(spec) {
 
   beforeEach(angular.mock.module('game'));
@@ -14,19 +13,43 @@ let commonSpec = function(spec) {
   }));
 
   beforeEach(inject(function(_$rootScope_, _$controller_,_$timeout_, _$injector_, _$componentController_){
-    originalData = originalData || angular.copy(_$injector_.get('data'));
-    spec.$provide.value('data', angular.copy(originalData));
-
     window.ga = function () {};
     // The injector unwraps the underscores (_) from around the parameter names when matching
     spec.$timeout = _$timeout_;
+
+    spec.data = {};
+    spec.data.achievements = {};
+    spec.data.constants = {};
+    spec.data.elements = {};
+    spec.data.generators = {};
+    spec.data.reactions = {};
+    spec.data.redox = {};
+    spec.data.resources = {};
+    spec.data.upgrades = {};
+    spec.data.global_upgrades = {};
+    spec.data.exotic_upgrades = {};
+    spec.data.dark_upgrades = {};
+    spec.data.html = {};
+    spec.data.radioisotopes = [];
+    spec.$provide.value('data', spec.data);
+
     spec.savegame = _$injector_.get('savegame');
     spec.util = _$injector_.get('util');
     spec.format = _$injector_.get('format');
     spec.reaction = _$injector_.get('reaction');
     spec.visibility = _$injector_.get('visibility');
-    spec.data = _$injector_.get('data');
     spec.state = _$injector_.get('state');
+
+    spec.state.player.elements = {};
+    spec.state.player.unlocks = {};
+    spec.state.player.reactions = {};
+    spec.state.player.redox = [];
+    spec.state.player.resources = {};
+    spec.state.player.achievements = {};
+    spec.state.player.upgrades = {};
+    spec.state.player.exotic_upgrades = {};
+    spec.state.player.dark_upgrades = {};
+    spec.state.player.global_upgrades = {};
 
     spec.core = _$componentController_('core', null, null);
     spec.nova = _$componentController_('nova', null, null);

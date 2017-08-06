@@ -3,7 +3,7 @@
 /* jshint varstmt: false */
 'use strict';
 
-describe('Element service', function() {
+describe('Core component', function() {
   let spec = {};
 
   commonSpec(spec);
@@ -11,6 +11,7 @@ describe('Element service', function() {
   describe('prices and cost', function() {
     it('should calculate element price', function() {
       spec.data.constants.ELEMENT_PRICE_INCREASE = 2;
+      spec.data.elements.O = {number: 8};
       spec.state.player = {};
       spec.state.player.elements_unlocked = 1;
 
@@ -21,6 +22,7 @@ describe('Element service', function() {
 
     it('should calculate element price 2', function() {
       spec.data.constants.ELEMENT_PRICE_INCREASE = 2;
+      spec.data.elements.Sn = {number: 50};
       spec.state.player = {};
       spec.state.player.elements_unlocked = 5;
 
@@ -34,6 +36,7 @@ describe('Element service', function() {
   describe('purchase functions', function() {
     it('should purchase element if cost is met', function() {
       spec.data.constants.ELEMENT_PRICE_INCREASE = 2;
+      spec.data.elements.O = {number: 8};
       spec.state.player = {elements:{},resources:{},elements_unlocked:1};
       spec.state.player.resources.dark_matter = {number:256};
       spec.state.player.elements.O = {unlocked:false,generators:{}};
@@ -49,6 +52,7 @@ describe('Element service', function() {
 
     it('should not purchase element if cost is not met', function() {
       spec.data.constants.ELEMENT_PRICE_INCREASE = 2;
+      spec.data.elements.O = {number: 8};
       spec.state.player = {elements:{},resources:{},elements_unlocked:2};
       spec.state.player.resources.dark_matter = {number:1};
       spec.state.player.elements.O = {unlocked:false,generators:{}};
@@ -64,6 +68,7 @@ describe('Element service', function() {
 
     it('should skip if the element is already purchased', function() {
       spec.state.player = {elements:{}};
+      spec.data.elements.O = {number: 8};
       spec.state.player.elements.O = {unlocked:true};
 
       spec.core.buyElement('O');
@@ -74,6 +79,7 @@ describe('Element service', function() {
 
   describe('class functions', function() {
     it('should return the right class for unavailable elements', function() {
+      spec.data.elements.H = {};
       spec.state.player.elements = {};
 
       let clazz = spec.core.elementClass('H');
@@ -82,6 +88,7 @@ describe('Element service', function() {
     });
 
     it('should return the right class for purchased elements', function() {
+      spec.data.elements.H = {};
       spec.state.player.elements = {};
       spec.state.player.elements.H = {unlocked: true};
 
@@ -91,6 +98,7 @@ describe('Element service', function() {
     });
 
     it('should return the right class for elements where the cost is met', function() {
+      spec.data.elements.H = {};
       spec.state.player.elements = {};
       spec.state.player.elements.H = {unlocked: false};
       spec.state.player.resources = {};
@@ -103,6 +111,7 @@ describe('Element service', function() {
     });
 
     it('should return the right class for elements where the cost is not met', function() {
+      spec.data.elements.H = {};
       spec.state.player.elements = {};
       spec.state.player.elements.H = {unlocked: false};
       spec.state.player.resources = {};
@@ -115,6 +124,7 @@ describe('Element service', function() {
     });
 
     it('should return the right secondary class', function() {
+      spec.data.elements.H = {};
       spyOn(spec.core, 'elementClass').and.returnValue('available');
 
       let clazz = spec.core.elementSecondaryClass('H');

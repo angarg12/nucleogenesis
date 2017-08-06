@@ -10,7 +10,6 @@ describe('Visible service', function() {
 
   describe('visibility functions', function() {
     it('should show visible elements', function() {
-      spec.state.player = {elements:{},resources:{}};
       spec.data.elements = {'H':{disabled:false},'C':{disabled:true},'O':{disabled:false}};
       spec.state.player.elements.H = {unlocked:true};
       spec.data.elements.H.includes = ['1H'];
@@ -28,17 +27,18 @@ describe('Visible service', function() {
     });
 
     it('should show visible resources', function() {
-      spec.state.player = {resources:{}};
-      spec.state.player.resources['1H'] = {unlocked:true};
-      spec.state.player.resources['2H'] = {unlocked:false};
-      spec.state.player.resources.eV = {unlocked:true};
-      spec.state.player.resources['16O']= {unlocked:true};
-      let temp = spec.data.resources;
-      spec.data.resources = {};
-      spec.data.resources['1H'] = temp['1H'];
-      spec.data.resources['2H'] = temp['2H'];
-      spec.data.resources.eV = temp.eV;
-      spec.data.resources['16O'] = temp['16O'];
+      spec.state.player.resources = {
+        '1H': {unlocked:true},
+        '2H': {unlocked:false},
+        eV: {unlocked:true},
+        '16O': {unlocked:true}
+      };
+      spec.data.resources = {
+        '1H': {elements: {H:1}},
+        '2H': {elements: {H:1}},
+        eV: {elements: {}},
+        '16O': {elements: {O:1}}
+      };
 
       let values = spec.sidebar.visibleResources('H');
 

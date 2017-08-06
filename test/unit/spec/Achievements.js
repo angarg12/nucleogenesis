@@ -8,24 +8,51 @@ describe('Achievements component', function () {
 
   commonSpec(spec);
 
+  beforeEach(function () {
+    window.ga = function () {};
+    spec.state.player.resources['1H'] = {};
+    spec.state.player.resources['1H'].number = 0;
+    spec.state.player.resources['1H'].unlocked = true;
+    spec.state.player.resources['2H'] = {};
+    spec.state.player.resources['2H'].number = 0;
+    spec.state.player.resources['1H'].unlocked = false;
+    spec.state.player.achievements.hydrogen = 0;
+    spec.state.player.achievements.isotope = 0;
+
+    spec.data.achievements.hydrogen = {
+      'goals': [
+        1000000,
+        1000000000
+      ],
+      'progress': 'hydrogen'
+    };
+    spec.achievements.hydrogen = function(p){return p.resources['1H'].number;};
+    spec.data.achievements.isotope = {
+      'name': 'xxx',
+      'description': 'xxx',
+      'goals': [
+        1
+      ],
+      'progress': 'isotope'
+    };
+    spec.achievements.isotope = function(p){return p.resources['2H'].unlocked ? 1 : 0;};
+  });
+
   describe('achievements', function () {
     it('should not award achievements if conditions are not met', function () {
-      spec.data.start_player.resources['1H'] = 0;
-      let playerCopy = angular.copy(spec.data.start_player);
+      spec.state.update(spec.state.player);
 
-      spec.state.update(playerCopy);
-
-      expect(playerCopy.achievements).toEqual(spec.data.start_player.achievements);
+      expect(spec.state.player.achievements.hydrogen).toEqual(0);
     });
 
     it('should award achievements if conditions are met', function () {
-      window.ga = function () {};
-      let playerCopy = angular.copy(spec.data.start_player);
-      playerCopy.resources['1H'].number = spec.data.achievements.hydrogen.goals[1];
+      spec.state.player.resources['1H'] = {
+        number: 1000000000
+      };
 
-      spec.state.update(playerCopy);
+      spec.state.update(spec.state.player);
 
-      expect(playerCopy.achievements.hydrogen).toEqual(2);
+      expect(spec.state.player.achievements.hydrogen).toEqual(2);
     });
 
     it('should return true if an achievement has progress', function () {
@@ -41,82 +68,70 @@ describe('Achievements component', function () {
     });
 
     it('should return true if an achievement is maxed', function () {
-      let playerCopy = angular.copy(spec.data.start_player);
-      playerCopy.achievements.hydrogen = 2;
-      let maxed = spec.achievements.maxed('hydrogen', playerCopy);
+      spec.state.player.achievements.hydrogen = 2;
+      let maxed = spec.achievements.maxed('hydrogen', spec.state.player);
 
       expect(maxed).toBeTruthy();
     });
 
     it('should return false if an achievement is not maxed', function () {
-      let playerCopy = angular.copy(spec.data.start_player);
-      playerCopy.achievements.hydrogen = 1;
-      let maxed = spec.achievements.maxed('hydrogen', playerCopy);
+      spec.state.player.achievements.hydrogen = 1;
+      let maxed = spec.achievements.maxed('hydrogen', spec.state.player);
 
       expect(maxed).toBeFalsy();
     });
 
     it('should return false if an achievement is level 0', function () {
-      let playerCopy = angular.copy(spec.data.start_player);
-      playerCopy.achievements.hydrogen = 0;
-      let progress = spec.achievements.inProgress('hydrogen', playerCopy);
+      let progress = spec.achievements.inProgress('hydrogen', spec.state.player);
 
       expect(progress).toBeFalsy();
     });
 
     it('should return true if an achievement is in progress', function () {
-      let playerCopy = angular.copy(spec.data.start_player);
-      playerCopy.achievements.hydrogen = 1;
-      let progress = spec.achievements.inProgress('hydrogen', playerCopy);
+      spec.state.player.achievements.hydrogen = 1;
+      let progress = spec.achievements.inProgress('hydrogen', spec.state.player);
 
       expect(progress).toBeTruthy();
     });
 
     it('should return false if an achievement is maxed', function () {
-      let playerCopy = angular.copy(spec.data.start_player);
-      playerCopy.achievements.hydrogen = 2;
-      let progress = spec.achievements.inProgress('hydrogen', playerCopy);
+      spec.state.player.achievements.hydrogen = 2;
+      let progress = spec.achievements.inProgress('hydrogen', spec.state.player);
 
       expect(progress).toBeFalsy();
     });
 
     it('should return the level of the achievement', function () {
-      let playerCopy = angular.copy(spec.data.start_player);
-      playerCopy.achievements.hydrogen = 0;
-      let level = spec.achievements.getLevel('hydrogen', playerCopy);
+      let level = spec.achievements.getLevel('hydrogen', spec.state.player);
 
       expect(level).toEqual(1);
     });
 
     it('should cap the level at the maximum', function () {
-      let playerCopy = angular.copy(spec.data.start_player);
-      playerCopy.achievements.hydrogen = 10;
-      spec.data.achievements.hydrogen.goals = [1,2,3];
-      let level = spec.achievements.getLevel('hydrogen', playerCopy);
+      spec.state.player.achievements.hydrogen = 10;
+      spec.data.achievements.hydrogen.goals = [1, 2, 3];
+      let level = spec.achievements.getLevel('hydrogen', spec.state.player);
 
       expect(level).toEqual(3);
     });
 
     it('should count the number of unlocked achivements 1', function () {
-      let playerCopy = angular.copy(spec.data.start_player);
-      let level = spec.achievements.numberUnlocked (playerCopy);
+      let level = spec.achievements.numberUnlocked(spec.state.player);
 
       expect(level).toEqual(0);
     });
 
     it('should count the number of unlocked achivements 2', function () {
-      let playerCopy = angular.copy(spec.data.start_player);
-      playerCopy.achievements.hydrogen = 2;
-      let level = spec.achievements.numberUnlocked (playerCopy);
+      spec.state.player.achievements.hydrogen = 2;
+      let level = spec.achievements.numberUnlocked(spec.state.player);
 
       expect(level).toEqual(2);
     });
 
     it('should count the number of unlocked achivements 3', function () {
-      let playerCopy = angular.copy(spec.data.start_player);
-      playerCopy.achievements.hydrogen = 2;
-      playerCopy.achievements.isotope = 1;
-      let level = spec.achievements.numberUnlocked (playerCopy);
+      spec.state.player.achievements.hydrogen = 2;
+      spec.state.player.achievements.isotope = 1;
+      let level = spec.achievements.numberUnlocked(spec.state.player);
 
       expect(level).toEqual(3);
     });

@@ -3,14 +3,39 @@
 /* jshint varstmt: false */
 'use strict';
 
-describe('Nova ', function() {
+describe('Nova', function() {
   let spec = {};
 
   commonSpec(spec);
 
-  describe('purchase functions', function() {
+  beforeEach(function () {
+    spec.data.global_upgrades = {
+      redox_bandwidth: {
+        price: {
+          eV: 100
+        },
+        power: 100,
+        power_poly: 2,
+        price_exp: 1.15,
+        repeatable: true
+      }
+    };
+    spec.data.upgrades = {
+      '1-1': {
+        price: 100,
+        tiers: [
+          '1'
+        ],
+        deps: [],
+        exotic_deps: [],
+        dark_deps: [],
+        power: 2
+      }
+    };
+  });
+
+  describe('global purchase functions', function() {
     it('should return false if an upgrade can\'t be bought', function() {
-      spec.state.player = {resources:{}, global_upgrades:{}};
       spec.state.player.global_upgrades.redox_bandwidth = 0;
       spec.state.player.resources.eV = {number:0};
 
@@ -20,7 +45,6 @@ describe('Nova ', function() {
     });
 
     it('should return true if an upgrade can be bought', function() {
-      spec.state.player = {resources:{}, global_upgrades:{}};
       spec.state.player.global_upgrades.redox_bandwidth = 0;
       spec.state.player.resources.eV = {number:1e300};
 
@@ -30,7 +54,6 @@ describe('Nova ', function() {
     });
 
     it('should buy an upgrade', function() {
-      spec.state.player = {resources:{}, global_upgrades:{}};
       spec.state.player.global_upgrades.redox_bandwidth = 2;
       spec.state.player.resources.eV = {number:1e300};
 
@@ -40,7 +63,6 @@ describe('Nova ', function() {
     });
 
     it('should not buy an upgrade that it can\'t afford', function() {
-      spec.state.player = {resources:{}, global_upgrades:{}};
       spec.state.player.global_upgrades.redox_bandwidth = 2;
       spec.state.player.resources.eV = {number:0};
 
@@ -52,7 +74,7 @@ describe('Nova ', function() {
 
   describe('purchase functions', function() {
     it('should purchase an upgrade if cost is met', function() {
-      spec.state.player = {elements:{},resources:{}};
+      spec.data.elements.H = {main:'1H'};
       spec.state.player.resources['1H'] = {number:110};
       spec.state.player.elements.H = {upgrades:{}};
       spec.state.player.elements.H.upgrades['1-1'] = false;
@@ -64,7 +86,7 @@ describe('Nova ', function() {
     });
 
     it('should not purchase an upgrade if cost is not met', function() {
-      spec.state.player = {elements:{},resources:{}};
+      spec.data.elements.H = {main:'1H'};
       spec.state.player.resources['1H'] = {number:10};
       spec.state.player.elements.H = {upgrades:{}};
       spec.state.player.elements.H.upgrades['1-1'] = false;
@@ -76,7 +98,7 @@ describe('Nova ', function() {
     });
 
     it('should skip if the upgrade is already bought', function() {
-      spec.state.player = {elements:{},resources:{}};
+      spec.data.elements.H = {main:'1H'};
       spec.state.player.resources['1H'] = {number:10};
       spec.state.player.elements.H = {upgrades:{}};
       spec.state.player.elements.H.upgrades['1-1'] = true;
@@ -90,22 +112,63 @@ describe('Nova ', function() {
 
   describe('visibility functions', function() {
       it('should show if an upgrade is visible', function() {
-        spec.state.player = {elements:{}, achievements:{}};
-        spec.state.player.achievements = {upgrade:1};
-        spec.state.player.elements.H = {generators:[],upgrades:[],exotic_upgrades:[]};
-        spec.state.player.elements.H.generators['1'] = 1;
-        spec.state.player.elements.H.upgrades['1-1'] = true;
-        spec.state.player.elements.H.upgrades['1-2'] = false;
-        spec.state.player.elements.H.upgrades['1-3'] = false;
-        spec.state.player.elements.H.exotic_upgrades.x3 = false;
-        spec.state.player.elements.H.generators['2'] = 0;
-        spec.state.player.elements.H.upgrades['2-1'] = false;
-        let temp = spec.data.upgrades;
-        spec.data.upgrades = {};
-        spec.data.upgrades['1-1'] = temp['1-1'];
-        spec.data.upgrades['1-2'] = temp['1-2'];
-        spec.data.upgrades['1-3'] = temp['1-3'];
-        spec.data.upgrades['2-1'] = temp['2-1'];
+        spec.state.player.elements.H = {
+          generators:{
+            '1': 1,
+            '2': 0
+          },
+          upgrades:{
+            '1-1': true,
+            '1-2': false,
+            '1-3': false,
+            '2-1': false
+          },
+          exotic_upgrades: {
+            x3: false
+          }
+        };
+        spec.data.upgrades = {
+          '1-1': {
+            tiers: [
+              '1'
+            ],
+            deps: [],
+            exotic_deps: [],
+            dark_deps: []
+          },
+          '1-2': {
+            tiers: [
+              '1'
+            ],
+            deps: [
+              '1-1'
+            ],
+            exotic_deps: [
+              'x3'
+            ],
+            dark_deps: []
+          },
+          '1-3': {
+            tiers: [
+              '1'
+            ],
+            deps: [
+              '1-2'
+            ],
+            exotic_deps: [
+              'x4'
+            ],
+            dark_deps: []
+          },
+          '2-1': {
+            tiers: [
+              '2'
+            ],
+            deps: [],
+            exotic_deps: [],
+            dark_deps: []
+          }
+        };
 
         let values = spec.nova.visibleUpgrades('H');
 
@@ -113,22 +176,63 @@ describe('Nova ', function() {
       });
 
       it('should show if an upgrade is visible 2', function() {
-        spec.state.player = {elements:{}, achievements:{}};
-        spec.state.player.achievements = {upgrade:1};
-        spec.state.player.elements.H = {generators:[],upgrades:[],exotic_upgrades:[]};
-        spec.state.player.elements.H.generators['1'] = 1;
-        spec.state.player.elements.H.upgrades['1-1'] = true;
-        spec.state.player.elements.H.upgrades['1-2'] = false;
-        spec.state.player.elements.H.upgrades['1-3'] = false;
-        spec.state.player.elements.H.exotic_upgrades.x3 = true;
-        spec.state.player.elements.H.generators['2'] = 0;
-        spec.state.player.elements.H.upgrades['2-1'] = false;
-        let temp = spec.data.upgrades;
-        spec.data.upgrades = {};
-        spec.data.upgrades['1-1'] = temp['1-1'];
-        spec.data.upgrades['1-2'] = temp['1-2'];
-        spec.data.upgrades['1-3'] = temp['1-3'];
-        spec.data.upgrades['2-1'] = temp['2-1'];
+        spec.state.player.elements.H = {
+          generators:{
+            '1': 1,
+            '2': 0
+          },
+          upgrades:{
+            '1-1': true,
+            '1-2': false,
+            '1-3': false,
+            '2-1': false
+          },
+          exotic_upgrades: {
+            x3: true
+          }
+        };
+        spec.data.upgrades = {
+          '1-1': {
+            tiers: [
+              '1'
+            ],
+            deps: [],
+            exotic_deps: [],
+            dark_deps: []
+          },
+          '1-2': {
+            tiers: [
+              '1'
+            ],
+            deps: [
+              '1-1'
+            ],
+            exotic_deps: [
+              'x3'
+            ],
+            dark_deps: []
+          },
+          '1-3': {
+            tiers: [
+              '1'
+            ],
+            deps: [
+              '1-2'
+            ],
+            exotic_deps: [
+              'x4'
+            ],
+            dark_deps: []
+          },
+          '2-1': {
+            tiers: [
+              '2'
+            ],
+            deps: [],
+            exotic_deps: [],
+            dark_deps: []
+          }
+        };
 
         let values = spec.nova.visibleUpgrades('H');
 

@@ -10,43 +10,70 @@ describe('Void', function() {
 
   describe('prestige', function() {
     it('should produce prestige currency', function() {
-        spec.state.player = spec.data.start_player;
-        spec.state.player.resources.xH = {number:1e8, unlocked: true};
-        spec.state.player.resources.xO = {number:1e8, unlocked: true};
+      spec.data.elements.H = {
+        exotic:'xH'
+      };
+      spec.data.elements.O = {
+        exotic:'xO'
+      };
+      spec.state.player.resources.xH = {number:1e8, unlocked: true};
+      spec.state.player.resources.xO = {number:1e8, unlocked: true};
 
-        let production = spec.void.darkProduction();
+      let production = spec.void.darkProduction();
 
-        expect(production).toEqual(36);
+      expect(production).toEqual(36);
     });
 
     it('should prestige', function() {
-        spec.state.player = spec.data.start_player;
-        spec.state.player.resources['1H'] = {number:1e8, unlocked: true};
-        spec.state.player.elements.H.upgrades['1-1'] = true;
-        spec.state.player.reactions['H.OH-H2O'] = {};
-        spec.state.player.reactions['H.OH-H2O'].active = 10;
-        spec.data.elements.H.reactions.push('H.OH-H2O');
-        spec.state.player.elements.H.generators['1'] = 99;
-        spec.state.player.elements.H.generators['2'] = 99;
-        spec.state.player.resources.xH = {number:1e8, unlocked: true};
-        spec.state.player.elements.H.exotic_upgrades.x3 = true;
+      spec.data.elements.H = {
+        exotic:'xH',
+        includes: ['1H'],
+        reactions: ['H.OH-H2O']
+      };
+      spec.data.resources = {
+        '1H': {elements: {H: 1}, type: ['isotope']}
+      };
+      spec.state.current_element = 'H';
+      spec.state.player.resources['1H'] = {number:1e8, unlocked: true};
+      spec.state.player.resources.xH = {number:1e8, unlocked: true};
+      spec.state.player.resources.dark_matter = {number:0, unlocked: false};
+      spec.state.player.elements.H = {
+        upgrades: {
+          '1-1': true
+        },
+        exotic_upgrades: {
+          x3: true
+        },
+        generators: {
+          '1': 99,
+          '2': 99
+        }
+      };
+      spec.state.player.reactions['H.OH-H2O'] = {
+        active: 10
+      };
 
-        spec.void.darkPrestige();
+      spec.void.darkPrestige();
 
-        expect(spec.state.player.elements.H.upgrades['1-1']).toBeFalsy();
-        expect(spec.state.player.elements.H.exotic_upgrades.x3).toBeFalsy();
-        expect(spec.state.player.reactions['H.OH-H2O'].active).toEqual(0);
-        expect(spec.state.player.elements.H.generators['1']).toEqual(1);
-        expect(spec.state.player.elements.H.generators['2']).toEqual(0);
-        expect(spec.state.player.resources['1H'].number).toEqual(0);
-        expect(spec.state.player.resources.xH.number).toEqual(0);
-        expect(spec.state.player.resources.dark_matter.number).toEqual(18);
+      expect(spec.state.player.elements.H.upgrades['1-1']).toBeFalsy();
+      expect(spec.state.player.elements.H.exotic_upgrades.x3).toBeFalsy();
+      expect(spec.state.player.reactions['H.OH-H2O'].active).toEqual(0);
+      expect(spec.state.player.elements.H.generators['1']).toEqual(1);
+      expect(spec.state.player.elements.H.generators['2']).toEqual(0);
+      expect(spec.state.player.resources['1H'].number).toEqual(0);
+      expect(spec.state.player.resources.xH.number).toEqual(0);
+      expect(spec.state.player.resources.dark_matter.number).toEqual(18);
     });
   });
 
   describe('purchase functions', function() {
     it('should purchase an upgrade if cost is met', function() {
-      spec.state.player = {resources:{}, dark_upgrades:{}};
+      spec.data.dark_upgrades = {
+        table: {
+          price: 100,
+          deps: []
+        }
+      };
       spec.state.player.resources.dark_matter = {number:110};
       spec.state.player.dark_upgrades.table = false;
 
@@ -57,7 +84,12 @@ describe('Void', function() {
     });
 
     it('should not purchase an upgrade if cost is not met', function() {
-      spec.state.player = {resources:{}, dark_upgrades:{}};
+      spec.data.dark_upgrades = {
+        table: {
+          price: 100,
+          deps: []
+        }
+      };
       spec.state.player.resources.dark_matter = {number:10};
       spec.state.player.dark_upgrades.table = false;
 
@@ -68,7 +100,12 @@ describe('Void', function() {
     });
 
     it('should skip if the upgrade is already bought', function() {
-      spec.state.player = {resources:{}, dark_upgrades:{}};
+      spec.data.dark_upgrades = {
+        table: {
+          price: 100,
+          deps: []
+        }
+      };
       spec.state.player.resources.dark_matter = {number:110};
       spec.state.player.dark_upgrades.table = true;
 
@@ -81,10 +118,16 @@ describe('Void', function() {
 
   describe('visibility functions', function() {
       it('should show if a dark upgrade is visible', function() {
-        spec.state.player = spec.data.start_player;
-        let temp = spec.data.dark_upgrades;
-        spec.data.dark_upgrades = {};
-        spec.data.dark_upgrades.table = temp.table;
+        spec.data.dark_upgrades = {
+          table: {
+            price: 100,
+            deps: []
+          }
+        };
+        spec.state.player.elements.H = {
+          upgrades: [],
+          exotic_upgrades: []
+        };
 
         let values = spec.void.visibleDarkUpgrades('H');
 

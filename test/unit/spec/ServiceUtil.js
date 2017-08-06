@@ -42,18 +42,29 @@ describe('Util service', function() {
 
   describe('misc functions', function() {
     it('should return globally defined HTML code', function() {
+      spec.data.html = {
+        'beta-': '&#946;<sup>-</sup>'
+      };
       let value = spec.util.getHTML('beta-');
 
       expect(value).toEqual('&#946;<sup>-</sup>');
     });
 
     it('should return resource defined HTML code', function() {
+      spec.data.resources = {
+        '2H': {
+          html: '<sup>2</sup>H'
+        }
+      };
       let value = spec.util.getHTML('2H');
 
       expect(value).toEqual('<sup>2</sup>H');
     });
 
     it('should return resources that don\'t have defined HTML code', function() {
+      spec.data.resources = {
+        'p': {}
+      };
       let value = spec.util.getHTML('p');
 
       expect(value).toEqual('p');
@@ -84,7 +95,7 @@ describe('Util service', function() {
 
       expect(value).toEqual(1000);
     });
-    
+
     it('should use a gaussian distribution for very small probabilities', function() {
       let gaussian = spyOn(spec.util.gaussian,'nextGaussian');
 

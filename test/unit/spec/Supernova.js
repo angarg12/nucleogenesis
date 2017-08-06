@@ -10,63 +10,105 @@ describe('Supernova', function() {
 
   describe('prestige', function() {
     it('should produce prestige currency', function() {
-        spec.state.current_element = 'H';
-        spec.state.player = spec.data.start_player;
-        spec.state.player.resources['1H'] = {number:1e8, unlocked: true};
+      spec.data.elements.H = {
+        exotic:'xH',
+        includes: ['1H']
+      };
+      spec.data.resources = {
+        '1H': {elements: {H: 1}, type: ['isotope']}
+      };
+      spec.state.current_element = 'H';
+      spec.state.player.resources['1H'] = {number:1e8, unlocked: true};
 
-        let production = spec.supernova.exoticProduction();
+      let production = spec.supernova.exoticProduction();
 
-        expect(production).toEqual({'xH': 5});
-        //expect(spec.state.player.resources['1H'].number).toEqual(0);
-        //expect(spec.state.player.resources.xH.number).toEqual(5);
+      expect(production).toEqual({'xH': 5});
     });
 
     it('should not produce prestige currency for small quantities', function() {
-        spec.state.current_element = 'H';
-        spec.state.player = spec.data.start_player;
-        spec.state.player.resources['1H'] = {number:1e5, unlocked: true};
+      spec.data.elements.H = {
+        exotic:'xH',
+        includes: ['1H']
+      };
+      spec.data.resources = {
+        '1H': {elements: {H: 1}, type: ['isotope']}
+      };
+      spec.state.current_element = 'H';
+      spec.state.player.resources['1H'] = {number:1e5, unlocked: true};
 
-        let production = spec.supernova.exoticProduction();
+      let production = spec.supernova.exoticProduction();
 
-        expect(production).toEqual({'xH': 0});
+      expect(production).toEqual({'xH': 0});
     });
 
     it('should produce dual currency for compounds', function() {
-        spec.state.current_element = 'H';
-        spec.state.player = spec.data.start_player;
-        spec.state.player.resources['1H'] = {number:0, unlocked: true};
-        spec.state.player.resources.H2O = {number:1e8, unlocked: true};
+      spec.data.elements.H = {
+        exotic:'xH',
+        includes: ['1H', 'H2O']
+      };
+      spec.data.elements.O = {
+        exotic:'xO',
+        includes: ['H2O']
+      };
+      spec.data.resources = {
+        '1H': {elements: {H: 1}, type: ['isotope']},
+        'H2O': {elements: {H: 2, O: 1}, type: ['molecule']}
+      };
+      spec.state.current_element = 'H';
+      spec.state.player.resources['1H'] = {number:0, unlocked: true};
+      spec.state.player.resources.H2O = {number:1e8, unlocked: true};
 
-        let production = spec.supernova.exoticProduction();
+      let production = spec.supernova.exoticProduction();
 
-        expect(production).toEqual({'xH': 41, 'xO': 41});
+      expect(production).toEqual({'xH': 41, 'xO': 41});
     });
 
     it('should prestige', function() {
-        spec.state.current_element = 'H';
-        spec.state.player = spec.data.start_player;
-        spec.state.player.resources['1H'] = {number:1e8, unlocked: true};
-        spec.state.player.elements.H.upgrades['1-1'] = true;
-        spec.state.player.reactions['H.OH-H2O'] = {};
-        spec.state.player.reactions['H.OH-H2O'].active = 10;
-        spec.data.elements.H.reactions.push('H.OH-H2O');
-        spec.state.player.elements.H.generators['1'] = 99;
-        spec.state.player.elements.H.generators['2'] = 99;
+      spec.data.elements.H = {
+        exotic:'xH',
+        includes: ['1H'],
+        reactions: ['H.OH-H2O']
+      };
+      spec.data.resources = {
+        '1H': {elements: {H: 1}, type: ['isotope']}
+      };
+      spec.state.current_element = 'H';
+      spec.state.player.resources['1H'] = {number:1e8, unlocked: true};
+      spec.state.player.resources.xH = {number:0, unlocked: false};
+      spec.state.player.elements.H = {
+        upgrades: {
+          '1-1': true
+        },
+        generators: {
+          '1': 99,
+          '2': 99
+        }
+      };
+      spec.state.player.reactions['H.OH-H2O'] = {
+        active: 10
+      };
 
-        spec.supernova.exoticPrestige();
+      spec.supernova.exoticPrestige();
 
-        expect(spec.state.player.elements.H.upgrades['1-1']).toBeFalsy();
-        expect(spec.state.player.reactions['H.OH-H2O'].active).toEqual(0);
-        expect(spec.state.player.elements.H.generators['1']).toEqual(1);
-        expect(spec.state.player.elements.H.generators['2']).toEqual(0);
-        expect(spec.state.player.resources['1H'].number).toEqual(0);
-        expect(spec.state.player.resources.xH.number).toEqual(5);
+      expect(spec.state.player.elements.H.upgrades['1-1']).toBeFalsy();
+      expect(spec.state.player.reactions['H.OH-H2O'].active).toEqual(0);
+      expect(spec.state.player.elements.H.generators['1']).toEqual(1);
+      expect(spec.state.player.elements.H.generators['2']).toEqual(0);
+      expect(spec.state.player.resources['1H'].number).toEqual(0);
+      expect(spec.state.player.resources.xH.number).toEqual(5);
     });
   });
 
   describe('purchase functions', function() {
     it('should purchase an upgrade if cost is met', function() {
-      spec.state.player = {elements:{},resources:{}};
+      spec.data.elements.H = {exotic:'xH'};
+      spec.data.exotic_upgrades = {
+        x3: {
+          price: 100,
+          exotic_deps: [],
+          dark_deps: []
+        }
+      };
       spec.state.player.resources.xH = {number:110};
       spec.state.player.elements.H = {exotic_upgrades:{}};
       spec.state.player.elements.H.exotic_upgrades.x3 = false;
@@ -78,7 +120,14 @@ describe('Supernova', function() {
     });
 
     it('should not purchase an upgrade if cost is not met', function() {
-      spec.state.player = {elements:{},resources:{}};
+      spec.data.elements.H = {exotic:'xH'};
+      spec.data.exotic_upgrades = {
+        x3: {
+          price: 100,
+          exotic_deps: [],
+          dark_deps: []
+        }
+      };
       spec.state.player.resources.xH = {number:10};
       spec.state.player.elements.H = {exotic_upgrades:{}};
       spec.state.player.elements.H.exotic_upgrades.x3 = false;
@@ -90,7 +139,14 @@ describe('Supernova', function() {
     });
 
     it('should skip if the upgrade is already bought', function() {
-      spec.state.player = {elements:{},resources:{}};
+      spec.data.elements.H = {exotic:'xH'};
+      spec.data.exotic_upgrades = {
+        x3: {
+          price: 100,
+          exotic_deps: [],
+          dark_deps: []
+        }
+      };
       spec.state.player.resources.xH = {number:110};
       spec.state.player.elements.H = {exotic_upgrades:{}};
       spec.state.player.elements.H.exotic_upgrades.x3 = true;
@@ -104,10 +160,17 @@ describe('Supernova', function() {
 
   describe('visibility functions', function() {
       it('should show if an exotic upgrade is visible', function() {
-        spec.state.player = spec.data.start_player;
-        let temp = spec.data.exotic_upgrades;
-        spec.data.exotic_upgrades = {};
-        spec.data.exotic_upgrades.x3 = temp.x3;
+        spec.data.exotic_upgrades = {
+          x3: {
+            price: 100,
+            exotic_deps: [],
+            dark_deps: []
+          }
+        };
+        spec.state.player.elements.H = {
+          upgrades: [],
+          exotic_upgrades: []
+        };
 
         let values = spec.supernova.visibleExoticUpgrades('H');
 

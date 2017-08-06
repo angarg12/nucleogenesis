@@ -3,10 +3,44 @@
 /* jshint varstmt: false */
 'use strict';
 
-describe('controller main-loop', function() {
+describe('MainLoop', function() {
   let spec = {};
 
   commonSpec(spec);
+
+  beforeEach(function () {
+    spec.data.elements.O = {
+      'main': '16O',
+      'isotopes': {
+        '16O': {
+          'ratio': 0.9976,
+          'energy': 14899160838
+        },
+        '17O': {
+          'ratio': 0.00039,
+          'energy': 15834582639
+        },
+        '18O': {
+          'ratio': 0.00201,
+          'energy': 16766103545
+        }
+      }
+    };
+    spec.state.player.resources = {
+      '16O': {
+        unlocked: false,
+        number: 0
+      },
+      '17O': {
+        unlocked: false,
+        number: 0
+      },
+      '18O': {
+        unlocked: false,
+        number: 0
+      }
+    };
+  });
 
   describe('initialization functions', function() {
     it('should init all the variables', function() {
@@ -21,18 +55,18 @@ describe('controller main-loop', function() {
 
   describe('update', function() {
     it('should not update player if nothing is purchased', function() {
-      spec.state.player = angular.copy(spec.data.start_player);
+      let copy = angular.copy(spec.state.player);
 
       spec.controller.update();
 
-      expect(spec.state.player).toEqual(spec.data.start_player);
+      expect(spec.state.player).toEqual(copy);
     });
 
     it('should generate isotopes', function() {
-      spec.state.player = spec.data.start_player;
-      spec.state.player.elements.O.unlocked = true;
-      spec.state.player.elements.O.generators['1'] = 200;
-      spyOn(spec.util.gaussian,'nextGaussian').and.returnValue(0);
+      spec.state.player.elements.O = {
+        unlocked: true
+      };
+      spyOn(spec.matter,'elementProduction').and.returnValue(200);
 
       spec.controller.update();
 
@@ -42,103 +76,160 @@ describe('controller main-loop', function() {
     });
 
     it('should generate isotopes 2', function() {
-      spec.state.player = spec.data.start_player;
-      spec.state.player.elements.O.unlocked = true;
-      spec.state.player.elements.O.generators['1'] = 1200;
-      spyOn(spec.util.gaussian,'nextGaussian').and.returnValue(0);
+      spec.state.player.elements.O = {
+        unlocked: true
+      };
+      spyOn(spec.matter,'elementProduction').and.returnValue(1200);
 
       spec.controller.update();
 
-      expect(spec.state.player.resources['16O'].number).toEqual(1197);
+      expect(spec.state.player.resources['16O'].number).toEqual(1198);
       expect(spec.state.player.resources['17O'].number).toEqual(0);
-      expect(spec.state.player.resources['18O'].number).toEqual(3);
+      expect(spec.state.player.resources['18O'].number).toEqual(2);
     });
 
     it('should generate isotopes 3', function() {
-      spec.state.player = spec.data.start_player;
-      spec.state.player.elements.O.unlocked = true;
-      spec.state.player.elements.O.generators['1'] = 32000;
-      spyOn(spec.util.gaussian,'nextGaussian').and.returnValue(0);
+      spec.state.player.elements.O = {
+        unlocked: true
+      };
+      spyOn(spec.matter,'elementProduction').and.returnValue(32000);
 
       spec.controller.update();
 
-      expect(spec.state.player.resources['16O'].number).toEqual(31923);
-      expect(spec.state.player.resources['17O'].number).toEqual(13);
+      expect(spec.state.player.resources['16O'].number).toEqual(31924);
+      expect(spec.state.player.resources['17O'].number).toEqual(12);
       expect(spec.state.player.resources['18O'].number).toEqual(64);
     });
 
     it('should process radioactivity', function() {
-      spec.state.player = spec.data.start_player;
-      spec.state.player.resources['3H'].unlocked = true;
-      spec.state.player.resources['3H'].number = 1000;
-      spyOn(spec.util,'randomDraw').and.returnValue(0);
+      spec.data.radioisotopes = ['3H'];
+      spec.data.elements = {
+        H: {
+          isotopes: {
+            '3H':{
+              decay: {
+                half_life: 388520000,
+                decay_types: {
+                  'beta-': {
+                    ratio: 1,
+                    reaction: {
+                      reactant: {
+                        '3H': 1
+                      },
+                      product: {
+                        '3He': 1,
+                        'e-': 1,
+                        eV: 18591
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      };
+      spec.data.resources['3H'] = {
+        elements: {'H':1}
+      };
+      spec.state.player.resources['3H'] = {
+        unlocked: true,
+        number: 1e+10
+      };
+      spec.state.player.resources['3He'] = {
+        unlocked: true,
+        number: 0
+      };
+      spec.state.player.resources['e-'] = {
+        unlocked: true,
+        number: 0
+      };
+      spec.state.player.resources.eV = {
+        unlocked: true,
+        number: 0
+      };
 
       spec.controller.update();
 
-      expect(spec.state.player.resources['3H'].number).toEqual(1000);
-      expect(spec.state.player.resources['3He'].number).toEqual(0);
-      expect(spec.state.player.resources['e-'].number).toEqual(0);
-      expect(spec.state.player.resources.eV.number).toBeCloseTo(0,4);
-    });
-
-    it('should process radioactivity 2', function() {
-      spec.state.player = spec.data.start_player;
-      spec.state.player.resources['3H'].unlocked = true;
-      spec.state.player.resources['3H'].number = 1e+10;
-      spec.data.resources['3H'].decay.decay_types['beta-'].reaction = {};
-      spec.data.resources['3H'].decay.decay_types['beta-'].reaction.reactant = {};
-      spec.data.resources['3H'].decay.decay_types['beta-'].reaction.reactant['3H'] = 1;
-      spec.data.resources['3H'].decay.decay_types['beta-'].reaction.product = {};
-      spec.data.resources['3H'].decay.decay_types['beta-'].reaction.product['3He'] = 1;
-      spec.data.resources['3H'].decay.decay_types['beta-'].reaction.product['e-'] = 1;
-      spec.data.resources['3H'].decay.decay_types['beta-'].reaction.product.eV = 18610;
-      spyOn(spec.util,'randomDraw').and.returnValue(18);
-
-      spec.controller.update();
-
-      expect(spec.state.player.resources['3H'].number).toEqual(9999999982);
-      expect(spec.state.player.resources['3He'].number).toEqual(18);
-      expect(spec.state.player.resources['e-'].number).toEqual(18);
-      expect(spec.state.player.resources.eV.number).toBeCloseTo(334980,4);
+      expect(spec.state.player.resources['3H'].number).toEqual(9999999983);
+      expect(spec.state.player.resources['3He'].number).toEqual(17);
+      expect(spec.state.player.resources['e-'].number).toEqual(17);
+      expect(spec.state.player.resources.eV.number).toBeCloseTo(316047,4);
     });
 
     it('should process multi decay', function() {
-      spec.state.player = spec.data.start_player;
-      spec.state.player.resources['70Ga'].unlocked = true;
-      spec.state.player.resources['70Ga'].number = 10;
-      spec.data.resources['70Ga'].decay.decay_types['beta-'].ratio = 0.75;
-      spec.data.resources['70Ga'].decay.decay_types['beta-'].reaction = {};
-      spec.data.resources['70Ga'].decay.decay_types['beta-'].reaction.reactant = {};
-      spec.data.resources['70Ga'].decay.decay_types['beta-'].reaction.reactant['70Ga'] = 1;
-      spec.data.resources['70Ga'].decay.decay_types['beta-'].reaction.product = {};
-      spec.data.resources['70Ga'].decay.decay_types['beta-'].reaction.product['70Ge'] = 1;
-      spec.data.resources['70Ga'].decay.decay_types['beta-'].reaction.product['e-'] = 1;
-      spec.data.resources['70Ga'].decay.decay_types['beta-'].reaction.product.eV = 1000;
-
-      spec.data.resources['70Ga'].decay.decay_types.electron_capture.ratio = 0.25;
-      spec.data.resources['70Ga'].decay.decay_types.electron_capture.reaction = {};
-      spec.data.resources['70Ga'].decay.decay_types.electron_capture.reaction.reactant = {};
-      spec.data.resources['70Ga'].decay.decay_types.electron_capture.reaction.reactant['70Ga'] = 1;
-      spec.data.resources['70Ga'].decay.decay_types.electron_capture.reaction.product = {};
-      spec.data.resources['70Ga'].decay.decay_types.electron_capture.reaction.product['70Zn'] = 1;
-      spec.data.resources['70Ga'].decay.decay_types.electron_capture.reaction.product.eV = 100;
-
-      spyOn(spec.util,'randomDraw').and.returnValue(10);
+      spec.data.radioisotopes = ['70Ga'];
+      spec.data.elements = {
+        Ga: {
+          isotopes: {
+            '70Ga':{
+              decay: {
+                half_life: 2,
+                decay_types: {
+                  'beta-': {
+                    ratio: 0.75,
+                    reaction: {
+                      reactant: {
+                        '70Ga': 1
+                      },
+                      product: {
+                        '70Ge': 1,
+                        'e-': 1,
+                        eV: 1000
+                      }
+                    }
+                  },
+                  electron_capture: {
+                    ratio: 0.25,
+                    reaction: {
+                      reactant: {
+                        '70Ga': 1
+                      },
+                      product: {
+                        '70Zn': 1,
+                        eV: 100
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      };
+      spec.data.resources['70Ga'] = {
+        elements: {Ga:1}
+      };
+      spec.state.player.resources = {
+        '70Ga': {
+          unlocked: true,
+          number: 100
+        },
+        '70Ge': {
+          unlocked: false,
+          number: 0
+        },
+        '70Zn': {
+          unlocked: false,
+          number: 0
+        },
+        'e-': {
+          unlocked: false,
+          number: 0
+        },
+        eV: {
+          unlocked: false,
+          number: 0
+        }
+      };
 
       spec.controller.update();
 
-      expect(spec.state.player.resources['70Ga'].number).toEqual(0);
-      expect(spec.state.player.resources['70Ge'].number).toEqual(7);
-      expect(spec.state.player.resources['70Zn'].number).toEqual(3);
-      expect(spec.state.player.resources.eV.number).toBeCloseTo(7300,4);
-    });
-  });
-
-  describe('xxxxxxxxxxxxxxxx', function() {
-    it('should ', function() {
-      //value = spec.$scope.xxxxxx();
-
-      //expect(value).toEqual('xxxxxx');
+      expect(spec.state.player.resources['70Ga'].number).toEqual(71);
+      expect(spec.state.player.resources['70Ge'].number).toEqual(22);
+      expect(spec.state.player.resources['70Zn'].number).toEqual(7);
+      expect(spec.state.player.resources['e-'].number).toEqual(22);
+      expect(spec.state.player.resources.eV.number).toBeCloseTo(22700,4);
     });
   });
 });

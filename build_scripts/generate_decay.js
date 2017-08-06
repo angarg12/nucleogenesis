@@ -9,20 +9,19 @@ let args = process.argv.slice(2);
 let resources = jsonfile.readFileSync(args[0] + '/data/resources.json');
 let elements = jsonfile.readFileSync(args[0] + '/data/elements.json');
 
-for (let key in resources) {
-  let resource = resources[key];
-  if(resource.type.indexOf('isotope') === -1){
-    continue;
-  }
-  if (resource.decay) {
-    let ratioSum = 0;
-    for (let decay in resource.decay.decay_types) {
-      ratioSum += resource.decay.decay_types[decay].ratio;
-      resource.decay.decay_types[decay].reaction = generateReaction(key, decay);
-    }
-    let difference = 1 - ratioSum;
-    if (Math.abs(difference) > 1e-6) {
-      throw new Error('Ratios add up to '.concat(1 - difference, ' for ', key));
+for (let element in elements) {
+  for(let key in elements[element].isotopes){
+    let isotope = elements[element].isotopes[key];
+    if (isotope.decay) {
+      let ratioSum = 0;
+      for (let decay in isotope.decay.decay_types) {
+        ratioSum += isotope.decay.decay_types[decay].ratio;
+        isotope.decay.decay_types[decay].reaction = generateReaction(key, decay);
+      }
+      let difference = 1 - ratioSum;
+      if (Math.abs(difference) > 1e-7) {
+        throw new Error('Ratios add up to '.concat(1 - difference, ' for ', key));
+      }
     }
   }
 }
@@ -120,4 +119,6 @@ jsonfile.writeFileSync(args[0] + '/data/resources.json', resources, {
   spaces: 2
 });
 
-//console.log(JSON.stringify(originalElements, null,2))
+jsonfile.writeFileSync(args[0] + '/data/elements.json', elements, {
+  spaces: 2
+});

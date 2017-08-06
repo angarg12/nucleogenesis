@@ -43,7 +43,7 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       let basePower = upgrade.power;
       let polynomial = upgrade.power_poly;
       return basePower * Math.floor(Math.pow(level, polynomial));
-    }
+    };
 
     /* Writes a redox in the form of a reaction so that we can use the reaction
     service to process it */
@@ -135,7 +135,7 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
 
     ct.redoxSize = function (player) {
       return player.redox.length;
-    }
+    };
 
     /* Adds a new redox to the player list */
     ct.addRedox = function (player) {

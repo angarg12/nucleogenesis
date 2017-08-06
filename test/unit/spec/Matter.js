@@ -8,112 +8,144 @@ describe('Matter component', function() {
 
   commonSpec(spec);
 
+  beforeEach(function () {
+      spec.data.generators['1'] = {
+        price: 15,
+        power: 1
+      };
+      spec.data.constants.GENERATOR_PRICE_INCREASE = 1.05;
+      spec.state.player.elements = {
+        'H':{
+          'generators':{}
+        }
+      };
+  });
+
   describe('purchase', function() {
     it('should return the price of a generator', function() {
-      let player = {};
-      player.elements = {'H':{}};
-      player.elements.H = {'generators':{}};
-      player.elements.H.generators['1'] = 5;
+      spec.state.player.elements.H.generators = {'1': 5};
 
-      let value = spec.matter.generatorTotalPrice(player, '1','H', 1);
+      let value = spec.matter.generatorTotalPrice(spec.state.player, '1','H', 1);
 
       expect(value).toEqual(20);
     });
 
     it('should return the price of a generator 2', function() {
-      let player = {};
-      player.elements = {'H':{}};
-      player.elements.H = {'generators':{}};
-      player.elements.H.generators['3'] = 10;
+      spec.data.generators['3'] = {
+        price: 1100
+      };
+      spec.state.player.elements.H.generators = {'3': 10};
 
-      let value = spec.matter.generatorTotalPrice(player, '3','H', 1);
+      let value = spec.matter.generatorTotalPrice(spec.state.player, '3','H', 1);
 
       expect(value).toEqual(1792);
     });
 
     it('should return the price of a generator 3', function() {
-      let player = {};
-      player.elements = {'H':{}};
-      player.elements.H = {'generators':{}};
-      player.elements.H.generators['1'] = 1;
+      spec.state.player.elements.H.generators = {'1': 1};
 
-      let value = spec.matter.generatorTotalPrice(player, '1','H', 10);
+      let value = spec.matter.generatorTotalPrice(spec.state.player, '1','H', 10);
 
       expect(value).toEqual(205);
     });
 
     it('should return the price of a generator 4', function() {
-      let player = {};
-      player.elements = {'H':{}};
-      player.elements.H = {'generators':{}};
-      player.elements.H.generators['1'] = 10;
+      spec.state.player.elements.H.generators = {'1': 10};
 
-      let value = spec.matter.generatorTotalPrice(player, '1','H', 100);
+      let value = spec.matter.generatorTotalPrice(spec.state.player, '1','H', 100);
 
       expect(value).toEqual(63823);
     });
 
-    it('should return the price of a generator 4', function() {
-      let player = {};
-      player.elements = {'H':{}};
-      player.elements.H = {'generators':{}};
-      player.elements.H.generators['1'] = 10;
+    it('should return the price of a generator 5', function() {
+      spec.state.player.elements.H.generators = {'1': 10};
       spyOn(spec.matter, 'maxCanBuy');
 
-      spec.matter.generatorTotalPrice(player, '1','H', 'max');
+      spec.matter.generatorTotalPrice(spec.state.player, '1','H', 'max');
 
       expect(spec.matter.maxCanBuy).toHaveBeenCalled();
     });
 
     it('should purchase as many generators as requested', function() {
-      let player = {elements:{},resources:{}};
-      player.resources['1H'] = {number:65};
-      player.elements.H = {generators:{}};
-      player.elements.H.generators['1'] = 5;
+      spec.state.player.elements.H.generators = {'1': 5};
+      spec.state.player.resources['1H'] = {number:65};
+      spec.data.elements = {
+        H: {
+          main: '1H'
+        }
+      };
 
-      spec.matter.buyGenerators(player, '1','H',3);
+      spec.matter.buyGenerators(spec.state.player, '1','H',3);
 
-      expect(player.resources['1H'].number).toEqual(2);
-      expect(player.elements.H.generators['1']).toEqual(8);
+      expect(spec.state.player.resources['1H'].number).toEqual(2);
+      expect(spec.state.player.elements.H.generators['1']).toEqual(8);
     });
 
     it('should purchase as many generators as possible', function() {
-      let player = {elements:{},resources:{}};
-      player.resources['1H'] = {number:45};
-      player.elements.H = {generators:{}};
-      player.elements.H.generators['1'] = 5;
+      spec.state.player.elements.H.generators = {'1': 5};
+      spec.state.player.resources['1H'] = {number:45};
+      spec.data.elements = {
+        H: {
+          main: '1H'
+        }
+      };
 
-      spec.matter.buyGenerators(player, '1','H','max');
+      spec.matter.buyGenerators(spec.state.player, '1','H','max');
 
-      expect(player.resources['1H'].number).toEqual(4);
-      expect(player.elements.H.generators['1']).toEqual(7);
+      expect(spec.state.player.resources['1H'].number).toEqual(4);
+      expect(spec.state.player.elements.H.generators['1']).toEqual(7);
     });
 
     it('should not purchase generator if cost is not met', function() {
-      let player = {elements:{},resources:{}};
-      player.resources['1H'] = {number:10};
-      player.elements.H = {generators:{}};
-      player.elements.H.generators['1'] = 5;
+      spec.state.player.elements.H.generators = {'1': 5};
+      spec.state.player.resources['1H'] = {number:10};
+      spec.data.elements = {
+        H: {
+          main: '1H'
+        }
+      };
 
-      spec.matter.buyGenerators(player, '1','H',10);
+      spec.matter.buyGenerators(spec.state.player, '1','H',10);
 
-      expect(player.resources['1H'].number).toEqual(10);
-      expect(player.elements.H.generators['1']).toEqual(5);
+      expect(spec.state.player.resources['1H'].number).toEqual(10);
+      expect(spec.state.player.elements.H.generators['1']).toEqual(5);
     });
   });
 
   describe('production functions', function() {
     it('should calculate the generator production', function() {
+      spec.data.constants.EXOTIC_POWER = 0.001;
+      spec.data.constants.DARK_POWER = 0.01;
       spec.data.generators['1'].upgrades = ['1-1','1-2','1-3'];
-      let player = {elements:{}, resources:{}};
-      player.resources.xH = {number: 0};
-      player.resources.dark_matter = {number: 0};
-      player.elements.H = {upgrades:{}};
-      player.elements.H.upgrades['1-1'] = true;
-      player.elements.H.upgrades['1-2'] = true;
-      player.elements.H.upgrades['1-3'] = false;
+      spec.data.elements.H = {
+        exotic: 'xH'
+      };
+      spec.data.upgrades = {
+        '1-1': {
+          tiers: ['1'],
+          power: 2
+        },
+        '1-2': {
+          tiers: ['1'],
+          power: 3
+        },
+        '1-3': {
+          tiers: ['1'],
+          power: 4
+        }
+      };
+      spec.state.player.resources.xH = {number: 0};
+      spec.state.player.resources.dark_matter = {number: 0};
+      spec.state.player.elements.H.generators = {'1': 1};
+      spec.state.player.elements.H = {
+        upgrades:{
+          '1-1': true,
+          '1-2': true,
+          '1-3': false
+        }
+      };
 
-      let value = spec.matter.generatorProduction(player, '1','H');
+      let value = spec.matter.generatorProduction(spec.state.player, '1','H');
 
       expect(value).toEqual(6);
     });
@@ -122,15 +154,41 @@ describe('Matter component', function() {
       spec.data.constants.EXOTIC_POWER = 0.001;
       spec.data.constants.DARK_POWER = 0.01;
       spec.data.generators['1'].upgrades = ['1-1','1-2','1-3'];
-      let player = {elements:{}, resources:{}};
-      player.resources.xH = {number: 3250};
-      player.resources.dark_matter = {number: 0};
-      player.elements.H = {upgrades:{}};
-      player.elements.H.upgrades['1-1'] = true;
-      player.elements.H.upgrades['1-2'] = true;
-      player.elements.H.upgrades['1-3'] = false;
+      spec.data.elements.H = {
+        exotic: 'xH'
+      };
+      spec.data.upgrades = {
+        '1-1': {
+          tiers: [
+            '1'
+          ],
+          power: 2
+        },
+        '1-2': {
+          tiers: [
+            '1'
+          ],
+          power: 3
+        },
+        '1-3': {
+          tiers: [
+            '1'
+          ],
+          power: 4
+        }
+      };
+      spec.state.player.resources.xH = {number: 3250};
+      spec.state.player.resources.dark_matter = {number: 0};
+      spec.state.player.elements.H = {
+        upgrades:{
+          '1-1': true,
+          '1-2': true,
+          '1-3': false
+        }
+      };
+      spec.state.player.elements.H.generators = {'1': 1};
 
-      let value = spec.matter.generatorProduction(player, '1','H');
+      let value = spec.matter.generatorProduction(spec.state.player, '1','H');
 
       expect(value).toEqual(25);
     });
@@ -139,15 +197,40 @@ describe('Matter component', function() {
       spec.data.constants.EXOTIC_POWER = 0.001;
       spec.data.constants.DARK_POWER = 0.01;
       spec.data.generators['1'].upgrades = ['1-1','1-2','1-3'];
-      let player = {elements:{}, resources:{}};
-      player.resources.xH = {number: 0};
-      player.resources.dark_matter = {number: 3250};
-      player.elements.H = {upgrades:{}};
-      player.elements.H.upgrades['1-1'] = true;
-      player.elements.H.upgrades['1-2'] = true;
-      player.elements.H.upgrades['1-3'] = false;
+      spec.data.elements.H = {
+        exotic: 'xH'
+      };
+      spec.data.upgrades = {
+        '1-1': {
+          tiers: [
+            '1'
+          ],
+          power: 2
+        },
+        '1-2': {
+          tiers: [
+            '1'
+          ],
+          power: 3
+        },
+        '1-3': {
+          tiers: [
+            '1'
+          ],
+          power: 4
+        }
+      };
+      spec.state.player.resources.xH = {number: 0};
+      spec.state.player.resources.dark_matter = {number: 3250};
+      spec.state.player.elements.H = {
+        upgrades:{
+          '1-1': true,
+          '1-2': true,
+          '1-3': false
+        }
+      };
 
-      let value = spec.matter.generatorProduction(player, '1','H');
+      let value = spec.matter.generatorProduction(spec.state.player, '1','H');
 
       expect(value).toEqual(201);
     });
@@ -156,56 +239,124 @@ describe('Matter component', function() {
       spec.data.constants.EXOTIC_POWER = 0.001;
       spec.data.constants.DARK_POWER = 0.01;
       spec.data.generators['1'].upgrades = ['1-1','1-2','1-3'];
-      let player = {elements:{}, resources:{}};
-      player.resources.xH = {number: 3250};
-      player.resources.dark_matter = {number: 3250};
-      player.elements.H = {upgrades:{}};
-      player.elements.H.upgrades['1-1'] = true;
-      player.elements.H.upgrades['1-2'] = true;
-      player.elements.H.upgrades['1-3'] = false;
+      spec.data.elements.H = {
+        exotic: 'xH'
+      };
+      spec.data.upgrades = {
+        '1-1': {
+          tiers: [
+            '1'
+          ],
+          power: 2
+        },
+        '1-2': {
+          tiers: [
+            '1'
+          ],
+          power: 3
+        },
+        '1-3': {
+          tiers: [
+            '1'
+          ],
+          power: 4
+        }
+      };
+      spec.state.player.resources.xH = {number: 3250};
+      spec.state.player.resources.dark_matter = {number: 3250};
+      spec.state.player.elements.H = {
+        upgrades:{
+          '1-1': true,
+          '1-2': true,
+          '1-3': false
+        }
+      };
 
-      let value = spec.matter.generatorProduction(player, '1','H');
+      let value = spec.matter.generatorProduction(spec.state.player, '1','H');
 
       expect(value).toEqual(854);
     });
 
     it('should calculate the tier production', function() {
+      spec.data.constants.EXOTIC_POWER = 0.001;
+      spec.data.constants.DARK_POWER = 0.01;
       spec.data.generators['1'].upgrades = ['1-1','1-2','1-3'];
-      let player = {elements:{}, resources:{}};
-      player.resources.xH = {number: 0};
-      player.resources.dark_matter = {number: 0};
-      player.elements.H = {upgrades:{},generators:{}};
-      player.elements.H.upgrades['1-1'] = true;
-      player.elements.H.upgrades['1-2'] = true;
-      player.elements.H.upgrades['1-3'] = false;
-      player.elements.H.generators['1'] = 10;
+      spec.data.elements.H = {
+        exotic: 'xH'
+      };
+      spec.data.upgrades = {
+        '1-1': {
+          tiers: [
+            '1'
+          ],
+          power: 2
+        },
+        '1-2': {
+          tiers: [
+            '1'
+          ],
+          power: 3
+        },
+        '1-3': {
+          tiers: [
+            '1'
+          ],
+          power: 4
+        }
+      };
+      spec.state.player.resources.xH = {number: 0};
+      spec.state.player.resources.dark_matter = {number: 0};
+      spec.state.player.elements.H = {
+        upgrades:{
+          '1-1': true,
+          '1-2': true,
+          '1-3': false
+        },
+        generators: {
+          '1': 10
+        }
+      };
 
-      let value = spec.matter.tierProduction(player, '1','H');
+      let value = spec.matter.tierProduction(spec.state.player, '1','H');
 
       expect(value).toEqual(60);
     });
 
     it('should calculate the element production', function() {
-      spec.data.generators['1'].upgrades = [];
-      spec.data.generators['2'].upgrades = [];
-      spec.data.generators['3'].upgrades = [];
-      let temp1 = spec.data.generators['1'];
-      let temp2 = spec.data.generators['2'];
-      let temp3 = spec.data.generators['3'];
-      spec.data.generators = {};
-      spec.data.generators['1'] = temp1;
-      spec.data.generators['2'] = temp2;
-      spec.data.generators['3'] = temp3;
+      spec.data.constants.EXOTIC_POWER = 0.001;
+      spec.data.constants.DARK_POWER = 0.01;
+      spec.data.generators = {
+        '1': {
+          price: 15,
+          power: 1
+        },
+        '2': {
+          price: 100,
+          power: 10
+        },
+        '3': {
+          price: 1100,
+          power: 80
+        }
+      };
+      spec.data.elements.H = {
+        exotic: 'xH'
+      };
 
-      let player = {elements:{}, resources:{}};
-      player.resources.xH = {number: 0};
-      player.resources.dark_matter = {number: 0};
-      player.elements.H = {generators:{}};
-      player.elements.H.generators['1'] = 1;
-      player.elements.H.generators['2'] = 1;
-      player.elements.H.generators['3'] = 1;
+      spec.state.player.resources.xH = {number: 0};
+      spec.state.player.resources.dark_matter = {number: 0};
+      spec.state.player.elements.H = {
+        generators: {
+          '1': 1,
+          '2': 1,
+          '3': 1
+        }
+      };
+      spec.state.player.elements.H.generators['1'] = 1;
+      spec.state.player.elements.H.generators['2'] = 1;
+      spec.state.player.elements.H.generators['3'] = 1;
 
-      let value = spec.matter.elementProduction(player, 'H');
+      let value = spec.matter.elementProduction(spec.state.player, 'H');
 
       expect(value).toEqual(91);
     });
@@ -213,16 +364,24 @@ describe('Matter component', function() {
 
   describe('visibility functions', function() {
       it('should show visible generators', function() {
-        spec.state.player = {elements:{}};
-        spec.state.player.elements.H = {generators:[]};
         spec.state.player.elements.H.generators['1'] = 1;
         spec.state.player.elements.H.generators['2'] = 0;
         spec.state.player.elements.H.generators['3'] = 0;
-        let temp = spec.data.generators;
-        spec.data.generators = {};
-        spec.data.generators['1'] = temp['1'];
-        spec.data.generators['2'] = temp['2'];
-        spec.data.generators['3'] = temp['3'];
+        spec.data.generators = {
+          '1': {
+            'deps': []
+          },
+          '2': {
+            'deps': [
+              '1'
+            ]
+          },
+          '3': {
+            'deps': [
+              '2'
+            ]
+          }
+        };
 
         let values = spec.matter.visibleGenerators('H');
 

@@ -45,22 +45,17 @@ function core(state, data) {
   /* This function returns the class that determines on which
   colour an element card */
   ct.elementClass = function (element) {
-    // FIXME: when all elements are implemented, this can be removed
-    if (data.elements[element]) {
-      if(!state.player.elements[element]){
-        return 'element_unavailable';
-      }
-      if (state.player.elements[element].unlocked) {
-        return 'element_purchased';
-      }else{
-        if(isElementCostMet(element)) {
-          return 'element_cost_met';
-        }else{
-          return 'element_cost_not_met';
-        }
-      }
+    if(!state.player.elements[element]){
+      return 'element_unavailable';
+    }
+    if (state.player.elements[element].unlocked) {
+      return 'element_purchased';
     }else{
-      return null;
+      if(isElementCostMet(element)) {
+        return 'element_cost_met';
+      }else{
+        return 'element_cost_not_met';
+      }
     }
   };
 

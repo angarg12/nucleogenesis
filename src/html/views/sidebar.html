@@ -15,24 +15,25 @@
           class="mdi mdi-18px mdi-radioactive"></span>
     <span ng-if="ct.state.hasNew(key)"
           class="mdi mdi-18px mdi-alert-decagram"></span>
-    <ul ng-if="ct.data.resources[key].decay != null"
+    <ul ng-if="ct.data.radioisotopes.indexOf(key) != -1"
         class="sub-nav">
       <li class="row">
         <span class="col-lg-2">
     			t<sub>1/2</sub>
     		</span>
         <span class="col-lg-10">
-    			<pretty value="ct.data.resources[key].decay.half_life"></pretty>
+    			<pretty value="ct.data.elements[ct.state.currentElement].isotopes[key].decay.half_life"></pretty>
     			s
     		</span>
       </li>
-      <li ng-repeat="(key, decay) in ct.data.resources[key].decay.decay_types"
+      <li ng-repeat="(type, decay) in ct.data.elements[ct.state.currentElement].isotopes[key].decay.decay_types"
+
           class="row">
         <span ng-if="decay.ratio !== 1"
               class="col-lg-2">
 			    {{decay.ratio*1000/10}}%
 		    </span>
-        <get-html value="key"
+        <get-html value="type"
                   class="col-lg-2"></get-html>
         <span ng-bind-html="ct.util.trustHTML(ct.format.reactionFormat(1, decay.reaction))"
               class="col-lg-8"></span>

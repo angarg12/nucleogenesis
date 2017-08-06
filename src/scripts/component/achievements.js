@@ -71,7 +71,6 @@ angular.module('game').controller('ct_achievements', ['$window', 'state', 'data'
       for (let key in data[source]) {
         let achievement = data[source][key];
         let levels = achievement.goals.length;
-        console.log(source+" "+key+" "+levels+" "+JSON.stringify(player[source]))
 
         if (player[source][key] < levels) {
           checkAchievement(player, source, key, achievement);

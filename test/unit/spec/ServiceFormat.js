@@ -10,12 +10,12 @@ describe('Format service', function() {
 
   describe('formatting functions', function() {
     it('should format reactions', function() {
-      spec.data.reactions = {};
       spec.data.reactions['1H-p'] = {
         'reactant': {'1H-':1,'p':1},
         'product': {'H2':1},
         'elements': [ 'H' ]
       };
+      spec.data.resources.H2 = {html:'H<sub>2</sub>'};
       spec.data.resources['1H-'] = {html:'<sup>1</sup>H<sup>-</sup>'};
 
       let value = spec.format.reactionFormat(1, spec.data.reactions['1H-p']);
@@ -24,12 +24,12 @@ describe('Format service', function() {
     });
 
     it('should format multiple reactions', function() {
-      spec.data.reactions = {};
       spec.data.reactions['1H-p'] = {
         'reactant': {'1H-':1,'p':1},
         'product': {'H2':1},
         'elements': [ 'H' ]
       };
+      spec.data.resources.H2 = {html:'H<sub>2</sub>'};
       spec.data.resources['1H-'] = {html:'<sup>1</sup>H<sup>-</sup>'};
 
       let value = spec.format.reactionFormat(10, spec.data.reactions['1H-p']);
@@ -38,12 +38,12 @@ describe('Format service', function() {
     });
 
     it('should format single compounds', function() {
-      spec.data.reactions = {};
       spec.data.reactions['1H-p'] = {
         'reactant': {'1H-':1,'p':1},
         'product': {'H2':1},
         'elements': [ 'H' ]
       };
+      spec.data.resources.H2 = {html:'H<sub>2</sub>'};
       spec.data.resources['1H-'] = {html:'<sup>1</sup>H<sup>-</sup>'};
 
       let value = spec.format.compoundFormat(1, spec.data.reactions['1H-p'].product);
@@ -52,12 +52,12 @@ describe('Format service', function() {
     });
 
     it('should format mutiple compounds', function() {
-      spec.data.reactions = {};
       spec.data.reactions['1H-p'] = {
         'reactant': {'1H-':1,'p':1},
         'product': {'H2':1},
         'elements': [ 'H' ]
       };
+      spec.data.resources.H2 = {html:'H<sub>2</sub>'};
       spec.data.resources['1H-'] = {html:'<sup>1</sup>H<sup>-</sup>'};
 
       let value = spec.format.compoundFormat(10, spec.data.reactions['1H-p'].product);

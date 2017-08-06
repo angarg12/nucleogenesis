@@ -8,37 +8,78 @@ describe('Redox component', function () {
 
   commonSpec(spec);
 
+  beforeEach(function () {
+    spec.data.global_upgrades = {
+      redox_slots: {
+        price: {
+          eV: 10000
+        },
+        tiers: [],
+        deps: [],
+        exotic_deps: [],
+        dark_deps: [],
+        power: 1,
+        power_mult: 1,
+        price_exp: 2,
+        repeatable: true
+      },
+      redox_bandwidth: {
+        price: {
+          eV: 100
+        },
+        tiers: [],
+        deps: [],
+        exotic_deps: [],
+        dark_deps: [],
+        power: 100,
+        power_poly: 2,
+        price_exp: 1.15,
+        repeatable: true
+      }
+    };
+    spec.data.elements = {
+      H: {
+        main: '1H'
+      }
+    };
+    spec.data.redox = {
+      H: {
+        '0': 0,
+        '1': 13.5984,
+        '-1': 0.7545,
+        '-2': -5.9498
+      }
+    };
+  });
+
   describe('redox', function () {
     it('should add redox', function () {
-      let playerCopy = angular.copy(spec.data.start_player);
-      playerCopy.global_upgrades.redox_slots = 1;
+      spec.state.player.global_upgrades.redox_slots = 1;
 
-      spec.redox.addRedox(playerCopy);
+      spec.redox.addRedox(spec.state.player);
 
-      expect(playerCopy.redox.length).toEqual(1);
+      expect(spec.state.player.redox.length).toEqual(1);
     });
 
     it('should not add redox if no slots are available', function () {
-      let playerCopy = angular.copy(spec.data.start_player);
-      playerCopy.global_upgrades.redox_slots = 1;
-      playerCopy.redox = [1];
+      spec.state.player.global_upgrades.redox_slots = 1;
+      spec.state.player.redox = [1];
 
-      expect(playerCopy.redox.length).toEqual(1);
+      expect(spec.state.player.redox.length).toEqual(1);
 
-      spec.redox.addRedox(playerCopy);
+      spec.redox.addRedox(spec.state.player);
 
-      expect(playerCopy.redox.length).toEqual(1);
+      expect(spec.state.player.redox.length).toEqual(1);
     });
 
     it('should remove redox', function () {
-      let playerCopy = angular.copy(spec.data.start_player);
-      playerCopy.redox = [1];
+      spec.state.player.redox = [1];
 
-      expect(playerCopy.redox.length).toEqual(1);
+      expect(spec.state.player.redox.length).toEqual(1);
 
-      spec.redox.removeRedox(playerCopy, 0);
+      spec.redox.removeRedox(spec.state.player, 0);
 
-      expect(playerCopy.redox.length).toEqual(0);
+      expect(spec.state.player.redox.length).toEqual(0);
     });
 
     it('should generate the ion name', function () {
@@ -134,30 +175,35 @@ describe('Redox component', function () {
     });
 
     it('should process redoxes', function () {
-      let playerCopy = angular.copy(spec.data.start_player);
-      let redox = {
+      spec.state.player.redox = [{
         resource: '1H',
         active: true,
         element: 'H',
         from: 0,
         to: 1
+      }];
+      spec.state.player.resources = {
+        '1H': {number: 100},
+        'e-': {number: 0},
+        p: {number: 0},
+        eV: {number: 200}
       };
-      playerCopy.redox = [redox];
-      playerCopy.resources['1H'].number = 100;
-      playerCopy.resources.eV.number = 200;
+      spec.state.player.resources['1H'].number = 100;
+      spec.state.player.resources['e-'].number = 0;
+      spec.state.player.resources.p.number = 0;
+      spec.state.player.resources.eV.number = 200;
       // mock redoxPower
       spec.redox.redoxPower = function() {return 10;};
 
-      spec.state.update(playerCopy);
+      spec.state.update(spec.state.player);
 
-      expect(playerCopy.resources['1H'].number).toEqual(90);
-      expect(playerCopy.resources.eV.number).toBeCloseTo(64.016);
-      expect(playerCopy.resources['e-'].number).toEqual(10);
-      expect(playerCopy.resources.p.number).toEqual(10);
+      expect(spec.state.player.resources['1H'].number).toEqual(90);
+      expect(spec.state.player.resources.eV.number).toBeCloseTo(64.016);
+      expect(spec.state.player.resources['e-'].number).toEqual(10);
+      expect(spec.state.player.resources.p.number).toEqual(10);
     });
 
     it('should not process inactive redoxes', function () {
-      let playerCopy = angular.copy(spec.data.start_player);
       let redox = {
         resource: '1H',
         active: false,
@@ -165,22 +211,25 @@ describe('Redox component', function () {
         from: 0,
         to: 1
       };
-      playerCopy.redox = [redox];
-      playerCopy.resources['1H'].number = 100;
-      playerCopy.resources.eV.number = 200;
+      spec.state.player.redox = [redox];
+      spec.state.player.resources = {
+        '1H': {number: 100},
+        'e-': {number: 0},
+        p: {number: 0},
+        eV: {number: 200}
+      };
       // mock redoxPower
       spec.redox.redoxPower = function() {return 10;};
 
-      spec.state.update(playerCopy);
+      spec.state.update(spec.state.player);
 
-      expect(playerCopy.resources['1H'].number).toEqual(100);
-      expect(playerCopy.resources.eV.number).toEqual(200);
-      expect(playerCopy.resources['e-'].number).toEqual(0);
-      expect(playerCopy.resources.p.number).toEqual(0);
+      expect(spec.state.player.resources['1H'].number).toEqual(100);
+      expect(spec.state.player.resources.eV.number).toEqual(200);
+      expect(spec.state.player.resources['e-'].number).toEqual(0);
+      expect(spec.state.player.resources.p.number).toEqual(0);
     });
 
     it('should cap at the resource number', function () {
-      let playerCopy = angular.copy(spec.data.start_player);
       let redox = {
         resource: '1H',
         active: true,
@@ -188,22 +237,25 @@ describe('Redox component', function () {
         from: 0,
         to: 1
       };
-      playerCopy.redox = [redox];
-      playerCopy.resources['1H'].number = 100;
-      playerCopy.resources.eV.number = 2000;
+      spec.state.player.redox = [redox];
+      spec.state.player.resources = {
+        '1H': {number: 100},
+        'e-': {number: 0},
+        p: {number: 0},
+        eV: {number: 2000}
+      };
       // mock redoxPower
       spec.redox.redoxPower = function() {return 2000;};
 
-      spec.state.update(playerCopy);
+      spec.state.update(spec.state.player);
 
-      expect(playerCopy.resources['1H'].number).toEqual(0);
-      expect(playerCopy.resources.eV.number).toBeCloseTo(640.16);
-      expect(playerCopy.resources['e-'].number).toEqual(100);
-      expect(playerCopy.resources.p.number).toEqual(100);
+      expect(spec.state.player.resources['1H'].number).toEqual(0);
+      expect(spec.state.player.resources.eV.number).toBeCloseTo(640.16);
+      expect(spec.state.player.resources['e-'].number).toEqual(100);
+      expect(spec.state.player.resources.p.number).toEqual(100);
     });
 
     it('should not react of not enough colaterals are available', function () {
-      let playerCopy = angular.copy(spec.data.start_player);
       let redox = {
         resource: '1H',
         active: true,
@@ -211,25 +263,27 @@ describe('Redox component', function () {
         from: 0,
         to: 1
       };
-      playerCopy.redox = [redox];
-      playerCopy.resources['1H'].number = 100;
-      playerCopy.resources.eV.number = 200;
+      spec.state.player.redox = [redox];
+      spec.state.player.resources = {
+        '1H': {number: 100},
+        'e-': {number: 0},
+        p: {number: 0},
+        eV: {number: 200}
+      };
       // mock redoxPower
       spec.redox.redoxPower = function() {return 2000;};
 
-      spec.state.update(playerCopy);
+      spec.state.update(spec.state.player);
 
-      expect(playerCopy.resources['1H'].number).toEqual(100);
-      expect(playerCopy.resources.eV.number).toEqual(200);
-      expect(playerCopy.resources['e-'].number).toEqual(0);
-      expect(playerCopy.resources.p.number).toEqual(0);
+      expect(spec.state.player.resources['1H'].number).toEqual(100);
+      expect(spec.state.player.resources.eV.number).toEqual(200);
+      expect(spec.state.player.resources['e-'].number).toEqual(0);
+      expect(spec.state.player.resources.p.number).toEqual(0);
     });
   });
 
   describe('visibility functions', function() {
     it('should show visible redoxes', function() {
-      spec.state.player = {redox:[], achievements:{}};
-      spec.state.player.achievements = {};
       spec.state.player.redox.push({
         resource: '1H',
         number: 50,
@@ -260,8 +314,6 @@ describe('Redox component', function () {
     });
 
     it('should not show redoxes if they are locked', function() {
-      spec.state.player = {achievements:{},resources:{}};
-      spec.state.player.achievements = {};
       spec.state.player.resources['1H'] = {unlocked:true};
       spec.state.player.resources.eV = {unlocked:true};
       spec.state.player.resources['e-'] = {unlocked:false};
@@ -272,8 +324,6 @@ describe('Redox component', function () {
     });
 
     it('should not show redoxes of other elements', function() {
-      spec.state.player = {achievements:{},resources:{}};
-      spec.state.player.achievements = {};
       spec.state.player.resources['1H'] = {unlocked:true};
       spec.state.player.resources.eV = {unlocked:true};
       spec.state.player.resources['e-'] = {unlocked:false};

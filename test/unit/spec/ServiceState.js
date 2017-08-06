@@ -3,7 +3,7 @@
 /* jshint varstmt: false */
 'use strict';
 
-describe('Achievement service', function () {
+describe('State', function () {
   let spec = {};
 
   commonSpec(spec);
@@ -72,7 +72,9 @@ describe('Achievement service', function () {
 
   describe('has new functions', function() {
     it('should return true if an element has new items', function() {
-      spec.data.elements.H.includes = ['1H'];
+      spec.data.elements.H = {
+        includes: ['1H']
+      };
       spec.state.addNew('1H');
 
       let hasNew = spec.state.elementHasNew('H');
@@ -80,7 +82,9 @@ describe('Achievement service', function () {
     });
 
     it('should return false if an element has no new items', function() {
-      spec.data.elements.H.includes = ['2H','3H','1H-'];
+      spec.data.elements.H = {
+        includes: ['2H','3H','1H-']
+      };
 
       let hasNew = spec.state.elementHasNew('H');
       expect(hasNew).toBeFalsy();
