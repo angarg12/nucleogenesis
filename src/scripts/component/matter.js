@@ -74,7 +74,7 @@ angular.module('game').controller('ct_matter', ['state', 'visibility', 'data', '
 
           // assign the player the produced isotope
           player.resources[key].number += production;
-          if (production > 0) {
+          if (production > 0 && !player.resources[key].unlocked) {
             player.resources[key].unlocked = true;
             state.addNew(key);
           }
@@ -84,7 +84,7 @@ angular.module('game').controller('ct_matter', ['state', 'visibility', 'data', '
         // if there is remaining production, we assign it to the main isotope
         let main = data.elements[element].main;
         player.resources[main].number += remaining;
-        if (remaining > 0) {
+        if (remaining > 0 && !player.resources[main].unlocked) {
           player.resources[main].unlocked = true;
           state.addNew(main);
         }
