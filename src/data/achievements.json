@@ -1,8 +1,1 @@
-{
-  "hydrogen": {
-    "name": "Hydrogen",
-    "description": "Gather Hydrogen",
-    "goals": [1e6, 1e9],
-    "progress": "player.resources['1H'].number"
-  }
-}
+{}

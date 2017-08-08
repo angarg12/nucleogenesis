@@ -152,6 +152,10 @@ gulp.task('generate_antimatter', function() {
   return plugins.run('node build_scripts/generate_antimatter.js build',{silent:true}).exec();
 });
 
+gulp.task('generate_achievements', function() {
+  return plugins.run('node build_scripts/generate_achievements.js build',{silent:true}).exec();
+});
+
 gulp.task('generate_achievement_functions', function() {
   return plugins.run('node build_scripts/generate_achievement_functions.js build',{silent:true}).exec();
 });
@@ -178,6 +182,7 @@ gulp.task('build', function(callback) {
     'generate_decay',
     'generate_reactions',
     'generate_antimatter',
+    'generate_achievements',
     'generate_achievement_functions',
     'sort_resources',
     'populate_player',

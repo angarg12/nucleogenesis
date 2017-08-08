@@ -37,6 +37,9 @@ function conditionToProgress(source){
 function createFunctions(source){
   for(let i in source){
     let achievement = source[i];
+    if(achievement.progress.constructor === Array){
+      achievement.progress = achievement.progress.join('\n');
+    }
     let name = '_'+crypto.createHash('md5').update(achievement.progress).digest('hex');
     functions[name] = functionTemplate({ 'name': name, 'progress': achievement.progress });
     // we overwrite progress with the name

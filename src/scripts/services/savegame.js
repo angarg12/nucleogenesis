@@ -58,6 +58,13 @@ angular
             delete state.player.reactions[react];
           }
         }
+
+        // old saves may have outdated resources, which crash the game
+        for(let resource in state.player.resources){
+          if(typeof data.resources[resource] === 'undefined'){
+            delete state.player.resources[resource];
+          }
+        }
       };
     }
   ]);
