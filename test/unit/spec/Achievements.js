@@ -38,6 +38,16 @@ describe('Achievements component', function () {
     spec.achievements.isotope = function(p){return p.resources['2H'].unlocked ? 1 : 0;};
   });
 
+  describe('achievement functions', function () {
+    it('should execute all achievement functions', function () {
+      for(let key of Object.keys(spec.originalData)){
+        spec.data[key] = angular.copy(spec.originalData[key]);
+      }
+      
+      spec.state.update(spec.data.start_player);
+    });
+  });
+
   describe('achievements', function () {
     it('should not award achievements if conditions are not met', function () {
       spec.state.update(spec.state.player);

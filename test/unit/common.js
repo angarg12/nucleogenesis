@@ -5,7 +5,7 @@
 'use strict';
 
 let commonSpec = function(spec) {
-
+  spec.originalData = null;
   beforeEach(angular.mock.module('game'));
 
   beforeEach(angular.mock.module(function (_$provide_) {
@@ -17,6 +17,9 @@ let commonSpec = function(spec) {
     // The injector unwraps the underscores (_) from around the parameter names when matching
     spec.$timeout = _$timeout_;
 
+    if(!spec.originalData){
+      spec.originalData = angular.copy(_$injector_.get('data'));
+    }
     spec.data = {};
     spec.data.achievements = {};
     spec.data.constants = {};
@@ -31,7 +34,7 @@ let commonSpec = function(spec) {
     spec.data.dark_upgrades = {};
     spec.data.html = {};
     spec.data.radioisotopes = [];
-    spec.$provide.value('data', spec.data);
+    spec.$provide.constant('data', spec.data);
 
     spec.savegame = _$injector_.get('savegame');
     spec.util = _$injector_.get('util');
