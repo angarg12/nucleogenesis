@@ -80,15 +80,8 @@ for (let entry in unlocks) {
   startPlayer.unlocks[entry] = 0;
 }
 
-startPlayer.reactions = {};
-for (let entry in reactions) {
-  startPlayer.reactions[entry] = {
-    number: 0,
-    active: 0
-  };
-}
-
 startPlayer.redox = [];
+startPlayer.reactions = [];
 
 startPlayer.elements.H.unlocked = true;
 

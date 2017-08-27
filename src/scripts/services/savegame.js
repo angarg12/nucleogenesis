@@ -52,10 +52,18 @@ angular
           state.player.id = Math.random().toString().substring(3);
         }
 
+        // pre slots, reactions was an object
+        if(!Array.isArray(state.player.reactions)){
+          state.player.reactions = [];
+        }
+
         // old saves may have outdated reactions, which crash the game
-        for(let react in state.player.reactions){
-          if(typeof data.reactions[react] === 'undefined'){
-            delete state.player.reactions[react];
+        for(let index in state.player.reactions){
+          let reaction = state.player.reactions[index].reaction;
+          for(let resource in reaction.reactant){
+            if(typeof data.resources[resource] === 'undefined'){
+              state.player.reactions.splice(index, 1);
+            }
           }
         }
 

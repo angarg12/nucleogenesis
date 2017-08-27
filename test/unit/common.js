@@ -45,7 +45,7 @@ let commonSpec = function(spec) {
 
     spec.state.player.elements = {};
     spec.state.player.unlocks = {};
-    spec.state.player.reactions = {};
+    spec.state.player.reactions = [];
     spec.state.player.redox = [];
     spec.state.player.resources = {};
     spec.state.player.achievements = {};
@@ -65,7 +65,7 @@ let commonSpec = function(spec) {
     spec.achievements = _$componentController_('achievements', null, null);
     spec.elementSelect = _$componentController_('elementSelect', null, null);
     spec.sidebar = _$componentController_('sidebar', null, null);
-    spec.reactionTable = _$componentController_('reactionTable', null, null);
+    spec.reactionTable = _$componentController_('reactionTable', null, {reactor: spec.reactor});
 
     // asinine sanity check for components
     _$componentController_('getHtml', null, null);

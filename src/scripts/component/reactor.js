@@ -21,57 +21,100 @@ function (state, data, visibility, util, format, reactionService) {
   ct.format = format;
 
   function update(player) {
-    // We will process the reaction
-    for (let syn in player.reactions) {
-      let power = ct.reactionPower(player, syn);
-      if (power !== 0) {
-        reactionService.react(power, data.reactions[syn], player);
+    for (let reaction of player.reactions) {
+      if (!reaction.active) {
+        continue;
       }
+      reactionService.react(numberToReact(player, reaction.reaction), reaction.reaction, player);
     }
   }
 
-  ct.reactionPower = function (player, reaction) {
-    let level = player.reactions[reaction].active;
-    return Math.ceil(Math.pow(level, data.constants.REACT_POWER_INCREASE));
-  };
-
-  ct.reactionPriceMultiplier = function (player, reaction) {
-    let level = player.reactions[reaction].number;
-    return Math.ceil(Math.pow(data.constants.REACT_PRICE_INCREASE, level));
-  };
-
-  function reactionPrice(player, reaction) {
-    let multiplier = ct.reactionPriceMultiplier(player, reaction);
-    let price = {};
-    let reactant = data.reactions[reaction].reactant;
-    for (let resource in reactant) {
-      price[resource] = reactant[resource] * multiplier;
+  function numberToReact(player, reaction) {
+    let power = ct.reactionPower(player);
+    let number = power;
+    for(let resource in reaction.reactants){
+      number = Math.min(number, player.resources[resource].number);
     }
-    return price;
+    return number;
   }
 
-  ct.isReactionCostMet = function (player, reaction) {
-    let price = reactionPrice(player, reaction);
-    for (let resource in price) {
-      if (player.resources[resource].number < price[resource]) {
-        return false;
-      }
-    }
-    return true;
+  /* Calculates the redox power based on the redox upgrades */
+  ct.reactionPower = function(player) {
+    let level = player.global_upgrades.reaction_bandwidth;
+    let upgrade = data.global_upgrades.reaction_bandwidth;
+    let basePower = upgrade.power;
+    let polynomial = upgrade.power_poly;
+    return basePower * Math.floor(Math.pow(level, polynomial));
   };
 
-  ct.buyReaction = function (player, reaction, number) {
-    let i = 0;
-    // we need a loop since we use the ceil operator
-    while (i < number && ct.isReactionCostMet(player, reaction)) {
-      let price = reactionPrice(player, reaction);
-      for (let resource in price) {
-        player.resources[resource].number -= price[resource];
+  /* Calculates the number of redox slots based on the redox upgrades */
+  ct.reactionSlots = function (player) {
+    let level = player.global_upgrades.reaction_slots;
+    let upgrade = data.global_upgrades.reaction_slots;
+    let basePower = upgrade.power;
+    let multiplier = upgrade.power_mult;
+    return basePower * Math.floor(multiplier * level);
+  };
+
+  ct.reactionSize = function (player) {
+    return player.reactions.length;
+  };
+
+  /* Adds a new reaction to the player list */
+  ct.addReaction = function (player, key) {
+    if(ct.reactionSize(player) >= ct.reactionSlots(player)){
+      return;
+    }
+    let reaction = data.reactions[key];
+    player.reactions.push({
+      active: false,
+      reaction: angular.copy(reaction)
+    });
+  };
+
+  ct.removeReaction = function (player, item) {
+    for(let i = 0; i < player.reactions.length; i++){
+      if(player.reactions[i] === item){
+        player.reactions.splice(i, 1);
       }
-      player.reactions[reaction].number += 1;
-      i++;
     }
   };
+
+  ct.visibleReactions = function(currentElement) {
+    return visibility.visible(state.player.reactions, isReactionVisible, currentElement);
+  };
+
+  function isReactionVisible(entry, currentElement) {
+    let reaction = entry.reaction;
+    for(let resource in reaction.reactant){
+      let elements = data.resources[resource].elements;
+      if(Object.keys(elements).length === 0 && currentElement === ''){
+        return true;
+      }
+      for(let element in elements){
+        if(element === currentElement){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  ct.availableReactions = function(currentElement) {
+    return visibility.visible(data.reactions, isReactionAvailable, currentElement);
+  };
+
+  function isReactionAvailable(entry, currentElement) {
+    let available = true;
+    let reaction = data.reactions[entry];
+    for(let resource in reaction.reactant){
+      available = available && state.player.resources[resource].unlocked;
+    }
+    // Workaround to reuse the visibility function. It expects an object with the
+    // reaction inside
+    let reactionObject = {reaction:reaction};
+    return available && isReactionVisible(reactionObject, currentElement);
+  }
 
   state.registerUpdate('reactor', update);
 }]);
