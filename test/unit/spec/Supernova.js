@@ -84,14 +84,15 @@ describe('Supernova', function() {
           '2': 99
         }
       };
-      spec.state.player.reactions['H.OH-H2O'] = {
-        active: 10
-      };
+      spec.state.player.reactions = [{
+        active: true,
+        reaction: ['H.OH-H2O']
+      }];
 
       spec.supernova.exoticPrestige();
 
       expect(spec.state.player.elements.H.upgrades['1-1']).toBeFalsy();
-      expect(spec.state.player.reactions['H.OH-H2O'].active).toEqual(0);
+      expect(spec.state.player.reactions[0].active).toBeFalsy();
       expect(spec.state.player.elements.H.generators['1']).toEqual(1);
       expect(spec.state.player.elements.H.generators['2']).toEqual(0);
       expect(spec.state.player.resources['1H'].number).toEqual(0);

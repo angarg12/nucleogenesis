@@ -43,9 +43,9 @@ angular
           generators[generator] = 0;
         }
 
-        let reactions = data.elements[element].reactions;
+        let reactions = player.reactions;
         for (let reaction of reactions) {
-          player.reactions[reaction].active = 0;
+          reaction.active = false;
         }
 
         let redoxes = player.redox;
