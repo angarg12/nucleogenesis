@@ -160,6 +160,10 @@ gulp.task('generate_achievement_functions', function() {
   return plugins.run('node build_scripts/generate_achievement_functions.js build',{silent:true}).exec();
 });
 
+gulp.task('generate_upgrade_functions', function() {
+  return plugins.run('node build_scripts/generate_upgrade_functions.js build',{silent:true}).exec();
+});
+
 gulp.task('sort_resources', function() {
   return plugins.run('node build_scripts/sort_resources.js build',{silent:true}).exec();
 });
@@ -184,6 +188,7 @@ gulp.task('build', function(callback) {
     'generate_antimatter',
     'generate_achievements',
     'generate_achievement_functions',
+    'generate_upgrade_functions',
     'sort_resources',
     'populate_player',
     'populate_data',
