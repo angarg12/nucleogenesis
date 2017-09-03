@@ -100,6 +100,61 @@ describe('Supernova', function() {
     });
   });
 
+  describe('infusion', function() {
+    it('should set infusion percentage', function() {
+      spec.data.resources = {
+        p: {elements: {}, type: ['subatomic']}
+      };
+      spec.state.player.resources.p = {number:1001, unlocked: true};
+
+      spec.supernova.setPercentage('p', 25);
+
+      expect(spec.supernova.infuse.p).toEqual(250);
+    });
+
+    it('should calculate the infusion power', function() {
+      spec.data.resources = {
+        p: {elements: {}, type: ['subatomic']}
+      };
+      spec.state.player.resources.p = {number:0, unlocked: true};
+      spec.data.constants.INFUSE_POWER = 0.01;
+      spec.supernova.infuse.p = 0;
+
+      let value = spec.supernova.infuseBoost('p');
+
+      expect(value).toEqual(1);
+    });
+
+    it('should calculate the infusion power 2', function() {
+      spec.data.resources = {
+        p: {elements: {}, type: ['subatomic']}
+      };
+      spec.state.player.resources.p = {number:1000, unlocked: true};
+      spec.data.constants.INFUSE_POWER = 0.01;
+      spec.supernova.infuse.p = 1000;
+
+      let value = spec.supernova.infuseBoost('p');
+
+      expect(value).toBeCloseTo(1.309565534755485, 4);
+    });
+
+    it('should calculate the total infusion power', function() {
+      spec.data.resources = {
+        p: {elements: {}, type: ['subatomic']},
+        n: {elements: {}, type: ['subatomic']}
+      };
+      spec.state.player.resources.p = {number:1000, unlocked: true};
+      spec.state.player.resources.n = {number:1000, unlocked: true};
+      spec.data.constants.INFUSE_POWER = 0.01;
+      spec.supernova.infuse.p = 1000;
+      spec.supernova.infuse.n = 1000;
+
+      let value = spec.supernova.totalInfuseBoost();
+
+      expect(value).toBeCloseTo(1.7149618898, 4);
+    });
+  });
+
   describe('purchase functions', function() {
     it('should purchase an upgrade if cost is met', function() {
       spec.data.elements.H = {exotic:'xH'};
@@ -160,22 +215,34 @@ describe('Supernova', function() {
   });
 
   describe('visibility functions', function() {
-      it('should show if an exotic upgrade is visible', function() {
-        spec.data.exotic_upgrades = {
-          x3: {
-            price: 100,
-            exotic_deps: [],
-            dark_deps: []
-          }
-        };
-        spec.state.player.elements.H = {
-          upgrades: [],
-          exotic_upgrades: []
-        };
+    it('should show if an exotic upgrade is visible', function() {
+      spec.data.exotic_upgrades = {
+        x3: {
+          price: 100,
+          exotic_deps: [],
+          dark_deps: []
+        }
+      };
+      spec.state.player.elements.H = {
+        upgrades: [],
+        exotic_upgrades: []
+      };
 
-        let values = spec.supernova.visibleExoticUpgrades('H');
+      let values = spec.supernova.visibleExoticUpgrades('H');
 
-        expect(values).toEqual(['x3']);
-      });
+      expect(values).toEqual(['x3']);
+    });
+    it('should show visibile subatomic', function() {
+      spec.data.resources = {
+        p: {elements: {}, type: ['subatomic']},
+        n: {elements: {}, type: ['subatomic']}
+      };
+      spec.state.player.resources.p = {number:0, unlocked: true};
+      spec.state.player.resources.n = {number:0, unlocked: false};
+
+      let values = spec.supernova.visibleSubatomic();
+
+      expect(values).toEqual(['p']);
+    });
   });
 });

@@ -139,7 +139,7 @@ function supernova(state, format, visibility, upgrade, data, util) {
     return visibility.visible(data.resources, isSubatomicVisible, '');
   };
 
-  function isSubatomicVisible(name, _) {
+  function isSubatomicVisible(name) {
     if (!state.player.resources[name].unlocked) {
       return false;
     }

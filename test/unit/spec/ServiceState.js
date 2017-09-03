@@ -9,6 +9,17 @@ describe('State', function () {
   commonSpec(spec);
 
   describe('toast functions', function () {
+    it('should add toasts', function () {
+      spec.data.achievements.test = {};
+      spec.state.toast = [];
+      spec.state.isToastVisible = false;
+
+      spec.state.addToast('test');
+
+      expect(spec.state.toast).toEqual(['test']);
+      expect(spec.state.isToastVisible).toEqual(true);
+    });
+
     it('should remove toasts', function () {
       spec.state.toast = ['test'];
       spec.state.isToastVisible = true;

@@ -22,6 +22,22 @@ describe('Matter component', function() {
   });
 
   describe('purchase', function() {
+    it('should return the purchase amount', function() {
+      spec.state.buyIndex = 0;
+
+      let value = spec.matter.getbuyAmount();
+
+      expect(value).toEqual(1);
+    });
+
+    it('should cycle through purchase amounts', function() {
+      spec.state.buyIndex = 0;
+
+      spec.matter.nextBuyAmount();
+
+      expect(spec.state.buyIndex).toEqual(1);
+    });
+
     it('should return the price of a generator', function() {
       spec.state.player.elements.H.generators = {'1': 5};
 

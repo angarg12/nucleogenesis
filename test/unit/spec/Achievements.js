@@ -43,7 +43,18 @@ describe('Achievements component', function () {
       for(let key of Object.keys(spec.originalData)){
         spec.data[key] = angular.copy(spec.originalData[key]);
       }
-      
+
+      spec.state.update(spec.data.start_player);
+    });
+
+    it('should execute all achievement functions 2', function () {
+      for(let key of Object.keys(spec.originalData)){
+        spec.data[key] = angular.copy(spec.originalData[key]);
+      }
+      for(let resource in spec.data.resources){
+        spec.data.start_player.resources[resource].unlocked = true;
+      }
+
       spec.state.update(spec.data.start_player);
     });
   });
@@ -121,6 +132,12 @@ describe('Achievements component', function () {
       spec.state.player.achievements.hydrogen = 10;
       spec.data.achievements.hydrogen.goals = [1, 2, 3];
       let level = spec.achievements.getLevel('hydrogen', spec.state.player);
+
+      expect(level).toEqual(3);
+    });
+
+    it('should count the total number of achievement levels', function () {
+      let level = spec.achievements.numberTotal();
 
       expect(level).toEqual(3);
     });
