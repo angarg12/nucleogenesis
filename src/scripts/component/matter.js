@@ -19,6 +19,8 @@ angular.module('game').controller('ct_matter', ['state', 'visibility', 'data', '
     ct.data = data;
     let buyAmount = [1, 10, 25, 100, 'max'];
 
+    <%= upgradeFunctions %>
+
     /* Proceses the decay of radiactive isotopes. It uses a random draw based on the
     half life to decide how many atoms decay, and then spreads them over different
     decay forms proportionally. */
@@ -159,20 +161,16 @@ angular.module('game').controller('ct_matter', ['state', 'visibility', 'data', '
 
     /* Upgraded production includes upgrades, exotic matter and dark matter. */
     function upgradedProduction(player, production, name, element) {
-      for (let up in data.generators[name].upgrades) {
-        if (player.elements[element].upgrades[data.generators[name].upgrades[up]]) {
-          let power = data.upgrades[data.generators[name].upgrades[up]].power;
-          production = upgradeApply(production, power);
+      for (let up of data.generators[name].upgrades) {
+        if (player.elements[element].upgrades[up]) {
+          let func = data.upgrades[up].function;
+          production = ct[func](player, production);
         }
       }
       let exotic = data.elements[element].exotic;
       production *= (1 + player.resources[exotic].number * data.constants.EXOTIC_POWER) *
         (1 + player.resources.dark_matter.number * data.constants.DARK_POWER);
       return Math.floor(production);
-    }
-
-    function upgradeApply(resource, power) {
-      return resource * power;
     }
 
     ct.elementProduction = function (player, element) {

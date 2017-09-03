@@ -34,9 +34,9 @@ function nova(state, visibility, upgrade, data) {
       return;
     }
 
-    let upgrade = data.global_upgrades[name];
-    for (let currency in upgrade.price) {
-      let value = upgrade.price[currency] * ct.priceMultiplier(name);
+    let up = data.global_upgrades[name];
+    for (let currency in up.price) {
+      let value = up.price[currency] * ct.priceMultiplier(name);
       state.player.resources[currency].number -= value;
     }
 
@@ -44,9 +44,9 @@ function nova(state, visibility, upgrade, data) {
   };
 
   ct.canBuyGlobalUpgrade = function (name) {
-    let upgrade = data.global_upgrades[name];
-    for (let currency in upgrade.price) {
-      let value = upgrade.price[currency] * ct.priceMultiplier(name);
+    let up = data.global_upgrades[name];
+    for (let currency in up.price) {
+      let value = up.price[currency] * ct.priceMultiplier(name);
       if (state.player.resources[currency].number < value) {
         return false;
       }

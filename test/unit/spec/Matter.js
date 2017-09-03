@@ -139,17 +139,20 @@ describe('Matter component', function() {
       spec.data.upgrades = {
         '1-1': {
           tiers: ['1'],
-          power: 2
+          function: 'two'
         },
         '1-2': {
           tiers: ['1'],
-          power: 3
+          function: 'three'
         },
         '1-3': {
           tiers: ['1'],
-          power: 4
+          function: 'four'
         }
       };
+      spec.matter.two = function(player, production) {return production*2;};
+      spec.matter.three = function(player, production) {return production*3;};
+      spec.matter.four = function(player, production) {return production*4;};
       spec.state.player.resources.xH = {number: 0};
       spec.state.player.resources.dark_matter = {number: 0};
       spec.state.player.elements.H.generators = {'1': 1};
@@ -175,24 +178,21 @@ describe('Matter component', function() {
       };
       spec.data.upgrades = {
         '1-1': {
-          tiers: [
-            '1'
-          ],
-          power: 2
+          tiers: ['1'],
+          function: 'two'
         },
         '1-2': {
-          tiers: [
-            '1'
-          ],
-          power: 3
+          tiers: ['1'],
+          function: 'three'
         },
         '1-3': {
-          tiers: [
-            '1'
-          ],
-          power: 4
+          tiers: ['1'],
+          function: 'four'
         }
       };
+      spec.matter.two = function(player, production) {return production*2;};
+      spec.matter.three = function(player, production) {return production*3;};
+      spec.matter.four = function(player, production) {return production*4;};
       spec.state.player.resources.xH = {number: 3250};
       spec.state.player.resources.dark_matter = {number: 0};
       spec.state.player.elements.H = {
@@ -218,24 +218,21 @@ describe('Matter component', function() {
       };
       spec.data.upgrades = {
         '1-1': {
-          tiers: [
-            '1'
-          ],
-          power: 2
+          tiers: ['1'],
+          function: 'two'
         },
         '1-2': {
-          tiers: [
-            '1'
-          ],
-          power: 3
+          tiers: ['1'],
+          function: 'three'
         },
         '1-3': {
-          tiers: [
-            '1'
-          ],
-          power: 4
+          tiers: ['1'],
+          function: 'four'
         }
       };
+      spec.matter.two = function(player, production) {return production*2;};
+      spec.matter.three = function(player, production) {return production*3;};
+      spec.matter.four = function(player, production) {return production*4;};
       spec.state.player.resources.xH = {number: 0};
       spec.state.player.resources.dark_matter = {number: 3250};
       spec.state.player.elements.H = {
@@ -260,24 +257,21 @@ describe('Matter component', function() {
       };
       spec.data.upgrades = {
         '1-1': {
-          tiers: [
-            '1'
-          ],
-          power: 2
+          tiers: ['1'],
+          function: 'two'
         },
         '1-2': {
-          tiers: [
-            '1'
-          ],
-          power: 3
+          tiers: ['1'],
+          function: 'three'
         },
         '1-3': {
-          tiers: [
-            '1'
-          ],
-          power: 4
+          tiers: ['1'],
+          function: 'four'
         }
       };
+      spec.matter.two = function(player, production) {return production*2;};
+      spec.matter.three = function(player, production) {return production*3;};
+      spec.matter.four = function(player, production) {return production*4;};
       spec.state.player.resources.xH = {number: 3250};
       spec.state.player.resources.dark_matter = {number: 3250};
       spec.state.player.elements.H = {
@@ -302,24 +296,21 @@ describe('Matter component', function() {
       };
       spec.data.upgrades = {
         '1-1': {
-          tiers: [
-            '1'
-          ],
-          power: 2
+          tiers: ['1'],
+          function: 'two'
         },
         '1-2': {
-          tiers: [
-            '1'
-          ],
-          power: 3
+          tiers: ['1'],
+          function: 'three'
         },
         '1-3': {
-          tiers: [
-            '1'
-          ],
-          power: 4
+          tiers: ['1'],
+          function: 'four'
         }
       };
+      spec.matter.two = function(player, production) {return production*2;};
+      spec.matter.three = function(player, production) {return production*3;};
+      spec.matter.four = function(player, production) {return production*4;};
       spec.state.player.resources.xH = {number: 0};
       spec.state.player.resources.dark_matter = {number: 0};
       spec.state.player.elements.H = {
@@ -344,15 +335,18 @@ describe('Matter component', function() {
       spec.data.generators = {
         '1': {
           price: 15,
-          power: 1
+          power: 1,
+          upgrades: []
         },
         '2': {
           price: 100,
-          power: 10
+          power: 10,
+          upgrades: []
         },
         '3': {
           price: 1100,
-          power: 80
+          power: 80,
+          upgrades: []
         }
       };
       spec.data.elements.H = {
@@ -388,14 +382,10 @@ describe('Matter component', function() {
             'deps': []
           },
           '2': {
-            'deps': [
-              '1'
-            ]
+            'deps': ['1']
           },
           '3': {
-            'deps': [
-              '2'
-            ]
+            'deps': ['2']
           }
         };
 
