@@ -164,7 +164,7 @@ angular.module('game').controller('ct_matter', ['state', 'visibility', 'data', '
       for (let up of data.generators[name].upgrades) {
         if (player.elements[element].upgrades[up]) {
           let func = data.upgrades[up].function;
-          production = ct[func](player, production);
+          production = ct[func](player, production, element);
         }
       }
       let exotic = data.elements[element].exotic;

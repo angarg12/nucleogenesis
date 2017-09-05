@@ -1,7 +1,7 @@
 {
   "1-1": {
     "price": 100,
-    "name": "I boost 1",
+    "name": "I multiplier 1",
     "description": "Tier I production x2",
     "tiers": [
       "1"
@@ -16,7 +16,7 @@
   },
   "1-2": {
     "price": 500,
-    "name": "I boost 2",
+    "name": "I multiplier 2",
     "description": "Tier I production x3",
     "tiers": [
       "1"
@@ -35,7 +35,7 @@
   },
   "1-3": {
     "price": 10000,
-    "name": "I boost 3",
+    "name": "I multiplier 3",
     "description": "Tier I production x4",
     "tiers": [
       "1"
@@ -54,7 +54,7 @@
   },
   "1-4": {
     "price": 100000,
-    "name": "I boost 4",
+    "name": "I multiplier 4",
     "description": "Tier I production x5",
     "tiers": [
       "1"
@@ -73,7 +73,7 @@
   },
   "1-5": {
     "price": 10000000,
-    "name": "I boost 5",
+    "name": "I multiplier 5",
     "description": "Tier I production x6",
     "tiers": [
       "1"
@@ -92,7 +92,7 @@
   },
   "1-6": {
     "price": 100000000,
-    "name": "I boost 6",
+    "name": "I multiplier 6",
     "description": "Tier I production x7",
     "tiers": [
       "1"
@@ -111,7 +111,7 @@
   },
   "1-7": {
     "price": 1000000000,
-    "name": "I boost 7",
+    "name": "I multiplier 7",
     "description": "Tier I production x8",
     "tiers": [
       "1"
@@ -130,7 +130,7 @@
   },
   "1-8": {
     "price": 10000000000,
-    "name": "I boost 8",
+    "name": "I multiplier 8",
     "description": "Tier I production x9",
     "tiers": [
       "1"
@@ -149,7 +149,7 @@
   },
   "2-1": {
     "price": 1000,
-    "name": "II boost 1",
+    "name": "II multiplier 1",
     "description": "Tier II production x2",
     "tiers": [
       "2"
@@ -164,7 +164,7 @@
   },
   "2-2": {
     "price": 5000,
-    "name": "II boost 2",
+    "name": "II multiplier 2",
     "description": "Tier II production x3",
     "tiers": [
       "2"
@@ -183,7 +183,7 @@
   },
   "2-3": {
     "price": 50000,
-    "name": "II boost 3",
+    "name": "II multiplier 3",
     "description": "Tier II production x4",
     "tiers": [
       "2"
@@ -202,7 +202,7 @@
   },
   "2-4": {
     "price": 5000000,
-    "name": "II boost 4",
+    "name": "II multiplier 4",
     "description": "Tier II production x5",
     "tiers": [
       "2"
@@ -221,7 +221,7 @@
   },
   "2-5": {
     "price": 500000000,
-    "name": "II boost 5",
+    "name": "II multiplier 5",
     "description": "Tier II production x6",
     "tiers": [
       "2"
@@ -240,7 +240,7 @@
   },
   "2-6": {
     "price": 50000000000,
-    "name": "II boost 6",
+    "name": "II multiplier 6",
     "description": "Tier II production x7",
     "tiers": [
       "2"
@@ -259,7 +259,7 @@
   },
   "2-7": {
     "price": 50000000000000,
-    "name": "II boost 7",
+    "name": "II multiplier 7",
     "description": "Tier II production x8",
     "tiers": [
       "2"
@@ -278,7 +278,7 @@
   },
   "2-8": {
     "price": 50000000000000000,
-    "name": "II boost 8",
+    "name": "II multiplier 8",
     "description": "Tier II production x9",
     "tiers": [
       "2"
@@ -297,7 +297,7 @@
   },
   "3-1": {
     "price": 10000,
-    "name": "III boost 1",
+    "name": "III multiplier 1",
     "description": "Tier III production x2",
     "tiers": [
       "3"
@@ -312,7 +312,7 @@
   },
   "3-2": {
     "price": 55000,
-    "name": "III boost 2",
+    "name": "III multiplier 2",
     "description": "Tier III production x3",
     "tiers": [
       "3"
@@ -331,7 +331,7 @@
   },
   "3-3": {
     "price": 550000,
-    "name": "III boost 3",
+    "name": "III multiplier 3",
     "description": "Tier III production x4",
     "tiers": [
       "3"
@@ -350,7 +350,7 @@
   },
   "3-4": {
     "price": 55000000,
-    "name": "III boost 4",
+    "name": "III multiplier 4",
     "description": "Tier III production x5",
     "tiers": [
       "3"
@@ -369,7 +369,7 @@
   },
   "3-5": {
     "price": 5500000000,
-    "name": "III boost 5",
+    "name": "III multiplier 5",
     "description": "Tier III production x6",
     "tiers": [
       "3"
@@ -388,7 +388,7 @@
   },
   "3-6": {
     "price": 550000000000,
-    "name": "III boost 6",
+    "name": "III multiplier 6",
     "description": "Tier III production x7",
     "tiers": [
       "3"
@@ -407,7 +407,7 @@
   },
   "3-7": {
     "price": 550000000000000,
-    "name": "III boost 7",
+    "name": "III multiplier 7",
     "description": "Tier III production x8",
     "tiers": [
       "3"
@@ -426,7 +426,7 @@
   },
   "3-8": {
     "price": 550000000000000000,
-    "name": "III boost 8",
+    "name": "III multiplier 8",
     "description": "Tier III production x9",
     "tiers": [
       "3"
@@ -445,7 +445,7 @@
   },
   "4-1": {
     "price": 120000,
-    "name": "IV boost 1",
+    "name": "IV multiplier 1",
     "description": "Tier IV production x2",
     "tiers": [
       "4"
@@ -460,7 +460,7 @@
   },
   "4-2": {
     "price": 600000,
-    "name": "IV boost 2",
+    "name": "IV multiplier 2",
     "description": "Tier IV production x3",
     "tiers": [
       "4"
@@ -479,7 +479,7 @@
   },
   "4-3": {
     "price": 6000000,
-    "name": "IV boost 3",
+    "name": "IV multiplier 3",
     "description": "Tier IV production x4",
     "tiers": [
       "4"
@@ -498,7 +498,7 @@
   },
   "4-4": {
     "price": 600000000,
-    "name": "IV boost 4",
+    "name": "IV multiplier 4",
     "description": "Tier IV production x5",
     "tiers": [
       "4"
@@ -517,7 +517,7 @@
   },
   "4-5": {
     "price": 60000000000,
-    "name": "IV boost 5",
+    "name": "IV multiplier 5",
     "description": "Tier IV production x6",
     "tiers": [
       "4"
@@ -536,7 +536,7 @@
   },
   "4-6": {
     "price": 6000000000000,
-    "name": "IV boost 6",
+    "name": "IV multiplier 6",
     "description": "Tier IV production x7",
     "tiers": [
       "4"
@@ -555,7 +555,7 @@
   },
   "4-7": {
     "price": 6000000000000000,
-    "name": "IV boost 7",
+    "name": "IV multiplier 7",
     "description": "Tier IV production x8",
     "tiers": [
       "4"
@@ -574,7 +574,7 @@
   },
   "4-8": {
     "price": 6000000000000000000,
-    "name": "IV boost 8",
+    "name": "IV multiplier 8",
     "description": "Tier IV production x9",
     "tiers": [
       "4"
@@ -593,7 +593,7 @@
   },
   "5-1": {
     "price": 1300000,
-    "name": "V boost 1",
+    "name": "V multiplier 1",
     "description": "Tier V production x2",
     "tiers": [
       "5"
@@ -608,7 +608,7 @@
   },
   "5-2": {
     "price": 6500000,
-    "name": "V boost 2",
+    "name": "V multiplier 2",
     "description": "Tier V production x3",
     "tiers": [
       "5"
@@ -627,7 +627,7 @@
   },
   "5-3": {
     "price": 65000000,
-    "name": "V boost 3",
+    "name": "V multiplier 3",
     "description": "Tier V production x4",
     "tiers": [
       "5"
@@ -646,7 +646,7 @@
   },
   "5-4": {
     "price": 6500000000,
-    "name": "V boost 4",
+    "name": "V multiplier 4",
     "description": "Tier V production x5",
     "tiers": [
       "5"
@@ -665,7 +665,7 @@
   },
   "5-5": {
     "price": 650000000000,
-    "name": "V boost 5",
+    "name": "V multiplier 5",
     "description": "Tier V production x6",
     "tiers": [
       "5"
@@ -684,7 +684,7 @@
   },
   "5-6": {
     "price": 65000000000000,
-    "name": "V boost 6",
+    "name": "V multiplier 6",
     "description": "Tier V production x7",
     "tiers": [
       "5"
@@ -703,7 +703,7 @@
   },
   "5-7": {
     "price": 65000000000000000,
-    "name": "V boost 7",
+    "name": "V multiplier 7",
     "description": "Tier V production x8",
     "tiers": [
       "5"
@@ -722,7 +722,7 @@
   },
   "5-8": {
     "price": 65000000000000000000,
-    "name": "V boost 8",
+    "name": "V multiplier 8",
     "description": "Tier V production x9",
     "tiers": [
       "5"
@@ -741,7 +741,7 @@
   },
   "6-1": {
     "price": 14000000,
-    "name": "VI boost 1",
+    "name": "VI multiplier 1",
     "description": "Tier VI production x2",
     "tiers": [
       "6"
@@ -756,7 +756,7 @@
   },
   "6-2": {
     "price": 70000000,
-    "name": "VI boost 2",
+    "name": "VI multiplier 2",
     "description": "Tier VI production x3",
     "tiers": [
       "6"
@@ -775,7 +775,7 @@
   },
   "6-3": {
     "price": 700000000,
-    "name": "VI boost 3",
+    "name": "VI multiplier 3",
     "description": "Tier VI production x4",
     "tiers": [
       "6"
@@ -794,7 +794,7 @@
   },
   "6-4": {
     "price": 70000000000,
-    "name": "VI boost 4",
+    "name": "VI multiplier 4",
     "description": "Tier VI production x5",
     "tiers": [
       "6"
@@ -813,7 +813,7 @@
   },
   "6-5": {
     "price": 7000000000000,
-    "name": "VI boost 5",
+    "name": "VI multiplier 5",
     "description": "Tier VI production x6",
     "tiers": [
       "6"
@@ -832,7 +832,7 @@
   },
   "6-6": {
     "price": 700000000000000,
-    "name": "VI boost 6",
+    "name": "VI multiplier 6",
     "description": "Tier VI production x7",
     "tiers": [
       "6"
@@ -851,7 +851,7 @@
   },
   "6-7": {
     "price": 700000000000000000,
-    "name": "VI boost 7",
+    "name": "VI multiplier 7",
     "description": "Tier VI production x8",
     "tiers": [
       "6"
@@ -870,7 +870,7 @@
   },
   "6-8": {
     "price": 700000000000000000000,
-    "name": "VI boost 8",
+    "name": "VI multiplier 8",
     "description": "Tier VI production x9",
     "tiers": [
       "6"
@@ -889,7 +889,7 @@
   },
   "7-1": {
     "price": 200000000,
-    "name": "VII boost 1",
+    "name": "VII multiplier 1",
     "description": "Tier VII production x2",
     "tiers": [
       "7"
@@ -904,7 +904,7 @@
   },
   "7-2": {
     "price": 1000000000,
-    "name": "VII boost 2",
+    "name": "VII multiplier 2",
     "description": "Tier VII production x3",
     "tiers": [
       "7"
@@ -923,7 +923,7 @@
   },
   "7-3": {
     "price": 10000000000,
-    "name": "VII boost 3",
+    "name": "VII multiplier 3",
     "description": "Tier VII production x4",
     "tiers": [
       "7"
@@ -942,7 +942,7 @@
   },
   "7-4": {
     "price": 1000000000000,
-    "name": "VII boost 4",
+    "name": "VII multiplier 4",
     "description": "Tier VII production x5",
     "tiers": [
       "7"
@@ -961,7 +961,7 @@
   },
   "7-5": {
     "price": 100000000000000,
-    "name": "VII boost 5",
+    "name": "VII multiplier 5",
     "description": "Tier VII production x6",
     "tiers": [
       "7"
@@ -980,7 +980,7 @@
   },
   "7-6": {
     "price": 10000000000000000,
-    "name": "VII boost 6",
+    "name": "VII multiplier 6",
     "description": "Tier VII production x7",
     "tiers": [
       "7"
@@ -999,7 +999,7 @@
   },
   "7-7": {
     "price": 10000000000000000000,
-    "name": "VII boost 7",
+    "name": "VII multiplier 7",
     "description": "Tier VII production x8",
     "tiers": [
       "7"
@@ -1018,7 +1018,7 @@
   },
   "7-8": {
     "price": 1e+22,
-    "name": "VII boost 8",
+    "name": "VII multiplier 8",
     "description": "Tier VII production x9",
     "tiers": [
       "7"
@@ -1037,7 +1037,7 @@
   },
   "8-1": {
     "price": 3300000000,
-    "name": "VIII boost 1",
+    "name": "VIII multiplier 1",
     "description": "Tier VIII production x2",
     "tiers": [
       "8"
@@ -1052,7 +1052,7 @@
   },
   "8-2": {
     "price": 16500000000,
-    "name": "VIII boost 2",
+    "name": "VIII multiplier 2",
     "description": "Tier VIII production x3",
     "tiers": [
       "8"
@@ -1071,7 +1071,7 @@
   },
   "8-3": {
     "price": 165000000000,
-    "name": "VIII boost 3",
+    "name": "VIII multiplier 3",
     "description": "Tier VIII production x4",
     "tiers": [
       "8"
@@ -1090,7 +1090,7 @@
   },
   "8-4": {
     "price": 16500000000000,
-    "name": "VIII boost 4",
+    "name": "VIII multiplier 4",
     "description": "Tier VIII production x5",
     "tiers": [
       "8"
@@ -1109,7 +1109,7 @@
   },
   "8-5": {
     "price": 1650000000000000,
-    "name": "VIII boost 5",
+    "name": "VIII multiplier 5",
     "description": "Tier VIII production x6",
     "tiers": [
       "8"
@@ -1128,7 +1128,7 @@
   },
   "8-6": {
     "price": 165000000000000000,
-    "name": "VIII boost 6",
+    "name": "VIII multiplier 6",
     "description": "Tier VIII production x7",
     "tiers": [
       "8"
@@ -1147,7 +1147,7 @@
   },
   "8-7": {
     "price": 165000000000000000000,
-    "name": "VIII boost 7",
+    "name": "VIII multiplier 7",
     "description": "Tier VIII production x8",
     "tiers": [
       "8"
@@ -1166,7 +1166,7 @@
   },
   "8-8": {
     "price": 1.65e+23,
-    "name": "VIII boost 8",
+    "name": "VIII multiplier 8",
     "description": "Tier VIII production x9",
     "tiers": [
       "8"
@@ -1185,7 +1185,7 @@
   },
   "9-1": {
     "price": 51000000000,
-    "name": "IX boost 1",
+    "name": "IX multiplier 1",
     "description": "Tier IX production x2",
     "tiers": [
       "9"
@@ -1200,7 +1200,7 @@
   },
   "9-2": {
     "price": 255000000000,
-    "name": "IX boost 2",
+    "name": "IX multiplier 2",
     "description": "Tier IX production x3",
     "tiers": [
       "9"
@@ -1219,7 +1219,7 @@
   },
   "9-3": {
     "price": 2550000000000,
-    "name": "IX boost 3",
+    "name": "IX multiplier 3",
     "description": "Tier IX production x4",
     "tiers": [
       "9"
@@ -1238,7 +1238,7 @@
   },
   "9-4": {
     "price": 255000000000000,
-    "name": "IX boost 4",
+    "name": "IX multiplier 4",
     "description": "Tier IX production x5",
     "tiers": [
       "9"
@@ -1257,7 +1257,7 @@
   },
   "9-5": {
     "price": 25500000000000000,
-    "name": "IX boost 5",
+    "name": "IX multiplier 5",
     "description": "Tier IX production x6",
     "tiers": [
       "9"
@@ -1276,7 +1276,7 @@
   },
   "9-6": {
     "price": 2550000000000000000,
-    "name": "IX boost 6",
+    "name": "IX multiplier 6",
     "description": "Tier IX production x7",
     "tiers": [
       "9"
@@ -1295,7 +1295,7 @@
   },
   "9-7": {
     "price": 2.55e+21,
-    "name": "IX boost 7",
+    "name": "IX multiplier 7",
     "description": "Tier IX production x8",
     "tiers": [
       "9"
@@ -1314,7 +1314,7 @@
   },
   "9-8": {
     "price": 2.55e+24,
-    "name": "IX boost 8",
+    "name": "IX multiplier 8",
     "description": "Tier IX production x9",
     "tiers": [
       "9"
@@ -1333,7 +1333,7 @@
   },
   "10-1": {
     "price": 750000000000,
-    "name": "X boost 1",
+    "name": "X multiplier 1",
     "description": "Tier X production x2",
     "tiers": [
       "10"
@@ -1348,7 +1348,7 @@
   },
   "10-2": {
     "price": 3750000000000,
-    "name": "X boost 2",
+    "name": "X multiplier 2",
     "description": "Tier X production x3",
     "tiers": [
       "10"
@@ -1367,7 +1367,7 @@
   },
   "10-3": {
     "price": 37500000000000,
-    "name": "X boost 3",
+    "name": "X multiplier 3",
     "description": "Tier X production x4",
     "tiers": [
       "10"
@@ -1386,7 +1386,7 @@
   },
   "10-4": {
     "price": 3750000000000000,
-    "name": "X boost 4",
+    "name": "X multiplier 4",
     "description": "Tier X production x5",
     "tiers": [
       "10"
@@ -1405,7 +1405,7 @@
   },
   "10-5": {
     "price": 375000000000000000,
-    "name": "X boost 5",
+    "name": "X multiplier 5",
     "description": "Tier X production x6",
     "tiers": [
       "10"
@@ -1424,7 +1424,7 @@
   },
   "10-6": {
     "price": 37500000000000000000,
-    "name": "X boost 6",
+    "name": "X multiplier 6",
     "description": "Tier X production x7",
     "tiers": [
       "10"
@@ -1443,7 +1443,7 @@
   },
   "10-7": {
     "price": 3.75e+22,
-    "name": "X boost 7",
+    "name": "X multiplier 7",
     "description": "Tier X production x8",
     "tiers": [
       "10"
@@ -1462,7 +1462,7 @@
   },
   "10-8": {
     "price": 3.75e+25,
-    "name": "X boost 8",
+    "name": "X multiplier 8",
     "description": "Tier X production x9",
     "tiers": [
       "10"
@@ -1476,6 +1476,74 @@
     "dark_deps": [],
     "function": ["(() => {",
       "return production*9;",
+      "})()"
+    ]
+  },
+  "1-boost-1": {
+    "price": 100,
+    "name": "I boost 1",
+    "description": "Tier I +5% production for every 10 generators",
+    "tiers": [
+      "1"
+    ],
+    "deps": [],
+    "exotic_deps": [
+      "boosts1"
+    ],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "return production*(1+Math.floor(player.elements[element].generators['1']/10)*0.05);",
+      "})()"
+    ]
+  },
+  "1-boost-2": {
+    "price": 500,
+    "name": "I boost 2",
+    "description": "Tier I +25% production for every 25 generators",
+    "tiers": [
+      "1"
+    ],
+    "deps": [],
+    "exotic_deps": [
+      "boosts2"
+    ],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "return production*(1+Math.floor(player.elements[element].generators['1']/25)*0.25);",
+      "})()"
+    ]
+  },
+  "1-boost-3": {
+    "price": 10000,
+    "name": "I boost 3",
+    "description": "Tier I +100% production for every 50 generators",
+    "tiers": [
+      "1"
+    ],
+    "deps": [],
+    "exotic_deps": [
+      "boosts3"
+    ],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "return production*(1+Math.floor(player.elements[element].generators['1']/50)*1);",
+      "})()"
+    ]
+  },
+  "1-boost-4": {
+    "price": 100000,
+    "name": "I boost 4",
+    "description": "Tier I +250% production for every 100 generators",
+    "tiers": [
+      "1"
+    ],
+    "deps": [],
+    "exotic_deps": [
+      "boosts4"
+    ],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "return production*(1+Math.floor(player.elements[element].generators['1']/100)*2.5);",
       "})()"
     ]
   }

@@ -13,7 +13,7 @@ let upgrades = jsonfile.readFileSync(args[0]+'/data/upgrades.json');
 let generators = jsonfile.readFileSync(args[0]+'/data/generators.json');
 let upgradeComponent = fs.readFileSync(args[0]+'/scripts/component/matter.js').toString();
 
-const FUNCTION_TEMPLATE = `this.<%= name %> = function (player, production){
+const FUNCTION_TEMPLATE = `this.<%= name %> = function (player, production, element){
   return <%= func %>;
 };`;
 

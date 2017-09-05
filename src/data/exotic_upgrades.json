@@ -2,50 +2,78 @@
   "x3": {
     "price": 100,
     "name": "Extra prod 1",
-    "description": "Unlocks x3 boosts",
+    "description": "Unlocks x3 multipliers",
     "exotic_deps": [],
     "dark_deps": []
   },
   "x4": {
     "price": 200,
     "name": "Extra prod 2",
-    "description": "Unlocks x4 boosts",
+    "description": "Unlocks x4 multipliers",
     "exotic_deps": ["x3"],
     "dark_deps": []
   },
   "x5": {
     "price": 400,
     "name": "Extra prod 3",
-    "description": "Unlocks x5 boosts",
+    "description": "Unlocks x5 multipliers",
     "exotic_deps": ["x4"],
     "dark_deps": []
   },
   "x6": {
     "price": 800,
     "name": "Extra prod 4",
-    "description": "Unlocks x6 boosts",
+    "description": "Unlocks x6 multipliers",
     "exotic_deps": ["x5"],
     "dark_deps": []
   },
   "x7": {
     "price": 1600,
     "name": "Extra prod 5",
-    "description": "Unlocks x7 boosts",
+    "description": "Unlocks x7 multipliers",
     "exotic_deps": ["x6"],
     "dark_deps": []
   },
   "x8": {
     "price": 3200,
     "name": "Extra prod 6",
-    "description": "Unlocks x8 boosts",
+    "description": "Unlocks x8 multipliers",
     "exotic_deps": ["x7"],
     "dark_deps": []
   },
   "x9": {
     "price": 6400,
     "name": "Extra prod 7",
-    "description": "Unlocks x9 boosts",
+    "description": "Unlocks x9 multipliers",
     "exotic_deps": ["x8"],
+    "dark_deps": []
+  },
+  "boosts1": {
+    "price": 20,
+    "name": "Boost 1",
+    "description": "Unlocks boosts for every 10 generators",
+    "exotic_deps": [],
+    "dark_deps": []
+  },
+  "boosts2": {
+    "price": 100,
+    "name": "Boost 2",
+    "description": "Unlocks boosts for every 25 generators",
+    "exotic_deps": ["boosts1"],
+    "dark_deps": []
+  },
+  "boosts3": {
+    "price": 300,
+    "name": "Boost 3",
+    "description": "Unlocks boosts for every 50 generators",
+    "exotic_deps": ["boosts2"],
+    "dark_deps": []
+  },
+  "boosts4": {
+    "price": 1000,
+    "name": "Boost 4",
+    "description": "Unlocks boosts for every 100 generators",
+    "exotic_deps": ["boosts3"],
     "dark_deps": []
   }
 }
