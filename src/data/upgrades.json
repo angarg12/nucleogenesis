@@ -1,11 +1,20 @@
 {
-  "1-1": {
-    "price": 100,
-    "name": "I multiplier 1",
-    "description": "Tier I production x2",
-    "tiers": [
-      "1"
-    ],
+  "multiplier-1": {
+    "prices": {
+      "1": 100,
+      "2": 1000,
+      "3": 10000,
+      "4": 120000,
+      "5": 1300000,
+      "6": 14000000,
+      "7": 200000000,
+      "8": 3300000000,
+      "9": 51000000000,
+      "10": 750000000000
+    },
+    "name": "<%= name %> multiplier 1",
+    "description": "Tier <%= name %> production x2",
+    "tier": "<%= id %>",
     "deps": [],
     "exotic_deps": [],
     "dark_deps": [],
@@ -14,15 +23,24 @@
       "})()"
     ]
   },
-  "1-2": {
-    "price": 500,
-    "name": "I multiplier 2",
-    "description": "Tier I production x3",
-    "tiers": [
-      "1"
-    ],
+  "multiplier-2": {
+    "prices": {
+      "1": 500,
+      "2": 5000,
+      "3": 55000,
+      "4": 600000,
+      "5": 6500000,
+      "6": 70000000,
+      "7": 1000000000,
+      "8": 16500000000,
+      "9": 255000000000,
+      "10": 3750000000000
+    },
+    "name": "<%= name %> multiplier 2",
+    "description": "Tier <%= name %> production x3",
+    "tier": "<%= id %>",
     "deps": [
-      "1-1"
+      "multiplier-1-<%= id %>"
     ],
     "exotic_deps": [
       "x3"
@@ -33,163 +51,24 @@
       "})()"
     ]
   },
-  "1-3": {
-    "price": 10000,
-    "name": "I multiplier 3",
-    "description": "Tier I production x4",
-    "tiers": [
-      "1"
-    ],
+  "multiplier-3": {
+    "prices": {
+      "1": 10000,
+      "2": 50000,
+      "3": 550000,
+      "4": 6000000,
+      "5": 65000000,
+      "6": 700000000,
+      "7": 10000000000,
+      "8": 165000000000,
+      "9": 2550000000000,
+      "10": 37500000000000
+    },
+    "name": "<%= name %> multiplier 3",
+    "description": "Tier <%= name %> production x4",
+    "tier": "<%= id %>",
     "deps": [
-      "1-2"
-    ],
-    "exotic_deps": [
-      "x4"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*4;",
-      "})()"
-    ]
-  },
-  "1-4": {
-    "price": 100000,
-    "name": "I multiplier 4",
-    "description": "Tier I production x5",
-    "tiers": [
-      "1"
-    ],
-    "deps": [
-      "1-3"
-    ],
-    "exotic_deps": [
-      "x5"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*5;",
-      "})()"
-    ]
-  },
-  "1-5": {
-    "price": 10000000,
-    "name": "I multiplier 5",
-    "description": "Tier I production x6",
-    "tiers": [
-      "1"
-    ],
-    "deps": [
-      "1-4"
-    ],
-    "exotic_deps": [
-      "x6"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*6;",
-      "})()"
-    ]
-  },
-  "1-6": {
-    "price": 100000000,
-    "name": "I multiplier 6",
-    "description": "Tier I production x7",
-    "tiers": [
-      "1"
-    ],
-    "deps": [
-      "1-5"
-    ],
-    "exotic_deps": [
-      "x7"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*7;",
-      "})()"
-    ]
-  },
-  "1-7": {
-    "price": 1000000000,
-    "name": "I multiplier 7",
-    "description": "Tier I production x8",
-    "tiers": [
-      "1"
-    ],
-    "deps": [
-      "1-6"
-    ],
-    "exotic_deps": [
-      "x8"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*8;",
-      "})()"
-    ]
-  },
-  "1-8": {
-    "price": 10000000000,
-    "name": "I multiplier 8",
-    "description": "Tier I production x9",
-    "tiers": [
-      "1"
-    ],
-    "deps": [
-      "1-7"
-    ],
-    "exotic_deps": [
-      "x9"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*9;",
-      "})()"
-    ]
-  },
-  "2-1": {
-    "price": 1000,
-    "name": "II multiplier 1",
-    "description": "Tier II production x2",
-    "tiers": [
-      "2"
-    ],
-    "deps": [],
-    "exotic_deps": [],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*2;",
-      "})()"
-    ]
-  },
-  "2-2": {
-    "price": 5000,
-    "name": "II multiplier 2",
-    "description": "Tier II production x3",
-    "tiers": [
-      "2"
-    ],
-    "deps": [
-      "2-1"
-    ],
-    "exotic_deps": [
-      "x3"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*3;",
-      "})()"
-    ]
-  },
-  "2-3": {
-    "price": 50000,
-    "name": "II multiplier 3",
-    "description": "Tier II production x4",
-    "tiers": [
-      "2"
-    ],
-    "deps": [
-      "2-2"
+      "multiplier-2-<%= id %>"
     ],
     "exotic_deps": [
       "x4"
@@ -200,15 +79,24 @@
       "})()"
     ]
   },
-  "2-4": {
-    "price": 5000000,
-    "name": "II multiplier 4",
-    "description": "Tier II production x5",
-    "tiers": [
-      "2"
-    ],
+  "multiplier-4": {
+    "prices": {
+      "1": 100000,
+      "2": 5000000,
+      "3": 55000000,
+      "4": 600000000,
+      "5": 6500000000,
+      "6": 70000000000,
+      "7": 1000000000000,
+      "8": 16500000000000,
+      "9": 255000000000000,
+      "10": 3750000000000000
+    },
+    "name": "<%= name %> multiplier 4",
+    "description": "Tier <%= name %> production x5",
+    "tier": "<%= id %>",
     "deps": [
-      "2-3"
+      "multiplier-3-<%= id %>"
     ],
     "exotic_deps": [
       "x5"
@@ -219,15 +107,24 @@
       "})()"
     ]
   },
-  "2-5": {
-    "price": 500000000,
-    "name": "II multiplier 5",
-    "description": "Tier II production x6",
-    "tiers": [
-      "2"
-    ],
+  "multiplier-5": {
+    "prices": {
+      "1": 10000000,
+      "2": 500000000,
+      "3": 5500000000,
+      "4": 60000000000,
+      "5": 650000000000,
+      "6": 7000000000000,
+      "7": 100000000000000,
+      "8": 1650000000000000,
+      "9": 25500000000000000,
+      "10": 375000000000000000
+    },
+    "name": "<%= name %> multiplier 5",
+    "description": "Tier <%= name %> production x6",
+    "tier": "<%= id %>",
     "deps": [
-      "2-4"
+      "multiplier-4-<%= id %>"
     ],
     "exotic_deps": [
       "x6"
@@ -238,15 +135,24 @@
       "})()"
     ]
   },
-  "2-6": {
-    "price": 50000000000,
-    "name": "II multiplier 6",
-    "description": "Tier II production x7",
-    "tiers": [
-      "2"
-    ],
+  "multiplier-6": {
+    "prices": {
+      "1": 100000000,
+      "2": 50000000000,
+      "3": 550000000000,
+      "4": 6000000000000,
+      "5": 65000000000000,
+      "6": 700000000000000,
+      "7": 10000000000000000,
+      "8": 165000000000000000,
+      "9": 2550000000000000000,
+      "10": 37500000000000000000
+    },
+    "name": "<%= name %> multiplier 6",
+    "description": "Tier <%= name %> production x7",
+    "tier": "<%= id %>",
     "deps": [
-      "2-5"
+      "multiplier-5-<%= id %>"
     ],
     "exotic_deps": [
       "x7"
@@ -257,15 +163,24 @@
       "})()"
     ]
   },
-  "2-7": {
-    "price": 50000000000000,
-    "name": "II multiplier 7",
-    "description": "Tier II production x8",
-    "tiers": [
-      "2"
-    ],
+  "multiplier-7": {
+    "prices": {
+      "1": 1000000000,
+      "2": 50000000000000,
+      "3": 550000000000000,
+      "4": 6000000000000000,
+      "5": 65000000000000000,
+      "6": 700000000000000000,
+      "7": 10000000000000000000,
+      "8": 165000000000000000000,
+      "9": 2.55e+21,
+      "10": 3.75e+22
+    },
+    "name": "<%= name %> multiplier 7",
+    "description": "Tier <%= name %> production x8",
+    "tier": "<%= id %>",
     "deps": [
-      "2-6"
+      "multiplier-6-<%= id %>"
     ],
     "exotic_deps": [
       "x8"
@@ -276,15 +191,24 @@
       "})()"
     ]
   },
-  "2-8": {
-    "price": 50000000000000000,
-    "name": "II multiplier 8",
-    "description": "Tier II production x9",
-    "tiers": [
-      "2"
-    ],
+  "multiplier-8": {
+    "prices": {
+      "1": 10000000000,
+      "2": 50000000000000000,
+      "3": 550000000000000000,
+      "4": 6000000000000000000,
+      "5": 65000000000000000000,
+      "6": 700000000000000000000,
+      "7": 1e+22,
+      "8": 1.65e+23,
+      "9": 2.55e+24,
+      "10": 3.75e+25
+    },
+    "name": "<%= name %> multiplier 8",
+    "description": "Tier <%= name %> production x9",
+    "tier": "<%= id %>",
     "deps": [
-      "2-7"
+      "multiplier-7-<%= id %>"
     ],
     "exotic_deps": [
       "x9"
@@ -295,1255 +219,113 @@
       "})()"
     ]
   },
-  "3-1": {
-    "price": 10000,
-    "name": "III multiplier 1",
-    "description": "Tier III production x2",
-    "tiers": [
-      "3"
-    ],
-    "deps": [],
-    "exotic_deps": [],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*2;",
-      "})()"
-    ]
-  },
-  "3-2": {
-    "price": 55000,
-    "name": "III multiplier 2",
-    "description": "Tier III production x3",
-    "tiers": [
-      "3"
-    ],
-    "deps": [
-      "3-1"
-    ],
-    "exotic_deps": [
-      "x3"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*3;",
-      "})()"
-    ]
-  },
-  "3-3": {
-    "price": 550000,
-    "name": "III multiplier 3",
-    "description": "Tier III production x4",
-    "tiers": [
-      "3"
-    ],
-    "deps": [
-      "3-2"
-    ],
-    "exotic_deps": [
-      "x4"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*4;",
-      "})()"
-    ]
-  },
-  "3-4": {
-    "price": 55000000,
-    "name": "III multiplier 4",
-    "description": "Tier III production x5",
-    "tiers": [
-      "3"
-    ],
-    "deps": [
-      "3-3"
-    ],
-    "exotic_deps": [
-      "x5"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*5;",
-      "})()"
-    ]
-  },
-  "3-5": {
-    "price": 5500000000,
-    "name": "III multiplier 5",
-    "description": "Tier III production x6",
-    "tiers": [
-      "3"
-    ],
-    "deps": [
-      "3-4"
-    ],
-    "exotic_deps": [
-      "x6"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*6;",
-      "})()"
-    ]
-  },
-  "3-6": {
-    "price": 550000000000,
-    "name": "III multiplier 6",
-    "description": "Tier III production x7",
-    "tiers": [
-      "3"
-    ],
-    "deps": [
-      "3-5"
-    ],
-    "exotic_deps": [
-      "x7"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*7;",
-      "})()"
-    ]
-  },
-  "3-7": {
-    "price": 550000000000000,
-    "name": "III multiplier 7",
-    "description": "Tier III production x8",
-    "tiers": [
-      "3"
-    ],
-    "deps": [
-      "3-6"
-    ],
-    "exotic_deps": [
-      "x8"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*8;",
-      "})()"
-    ]
-  },
-  "3-8": {
-    "price": 550000000000000000,
-    "name": "III multiplier 8",
-    "description": "Tier III production x9",
-    "tiers": [
-      "3"
-    ],
-    "deps": [
-      "3-7"
-    ],
-    "exotic_deps": [
-      "x9"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*9;",
-      "})()"
-    ]
-  },
-  "4-1": {
-    "price": 120000,
-    "name": "IV multiplier 1",
-    "description": "Tier IV production x2",
-    "tiers": [
-      "4"
-    ],
-    "deps": [],
-    "exotic_deps": [],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*2;",
-      "})()"
-    ]
-  },
-  "4-2": {
-    "price": 600000,
-    "name": "IV multiplier 2",
-    "description": "Tier IV production x3",
-    "tiers": [
-      "4"
-    ],
-    "deps": [
-      "4-1"
-    ],
-    "exotic_deps": [
-      "x3"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*3;",
-      "})()"
-    ]
-  },
-  "4-3": {
-    "price": 6000000,
-    "name": "IV multiplier 3",
-    "description": "Tier IV production x4",
-    "tiers": [
-      "4"
-    ],
-    "deps": [
-      "4-2"
-    ],
-    "exotic_deps": [
-      "x4"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*4;",
-      "})()"
-    ]
-  },
-  "4-4": {
-    "price": 600000000,
-    "name": "IV multiplier 4",
-    "description": "Tier IV production x5",
-    "tiers": [
-      "4"
-    ],
-    "deps": [
-      "4-3"
-    ],
-    "exotic_deps": [
-      "x5"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*5;",
-      "})()"
-    ]
-  },
-  "4-5": {
-    "price": 60000000000,
-    "name": "IV multiplier 5",
-    "description": "Tier IV production x6",
-    "tiers": [
-      "4"
-    ],
-    "deps": [
-      "4-4"
-    ],
-    "exotic_deps": [
-      "x6"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*6;",
-      "})()"
-    ]
-  },
-  "4-6": {
-    "price": 6000000000000,
-    "name": "IV multiplier 6",
-    "description": "Tier IV production x7",
-    "tiers": [
-      "4"
-    ],
-    "deps": [
-      "4-5"
-    ],
-    "exotic_deps": [
-      "x7"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*7;",
-      "})()"
-    ]
-  },
-  "4-7": {
-    "price": 6000000000000000,
-    "name": "IV multiplier 7",
-    "description": "Tier IV production x8",
-    "tiers": [
-      "4"
-    ],
-    "deps": [
-      "4-6"
-    ],
-    "exotic_deps": [
-      "x8"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*8;",
-      "})()"
-    ]
-  },
-  "4-8": {
-    "price": 6000000000000000000,
-    "name": "IV multiplier 8",
-    "description": "Tier IV production x9",
-    "tiers": [
-      "4"
-    ],
-    "deps": [
-      "4-7"
-    ],
-    "exotic_deps": [
-      "x9"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*9;",
-      "})()"
-    ]
-  },
-  "5-1": {
-    "price": 1300000,
-    "name": "V multiplier 1",
-    "description": "Tier V production x2",
-    "tiers": [
-      "5"
-    ],
-    "deps": [],
-    "exotic_deps": [],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*2;",
-      "})()"
-    ]
-  },
-  "5-2": {
-    "price": 6500000,
-    "name": "V multiplier 2",
-    "description": "Tier V production x3",
-    "tiers": [
-      "5"
-    ],
-    "deps": [
-      "5-1"
-    ],
-    "exotic_deps": [
-      "x3"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*3;",
-      "})()"
-    ]
-  },
-  "5-3": {
-    "price": 65000000,
-    "name": "V multiplier 3",
-    "description": "Tier V production x4",
-    "tiers": [
-      "5"
-    ],
-    "deps": [
-      "5-2"
-    ],
-    "exotic_deps": [
-      "x4"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*4;",
-      "})()"
-    ]
-  },
-  "5-4": {
-    "price": 6500000000,
-    "name": "V multiplier 4",
-    "description": "Tier V production x5",
-    "tiers": [
-      "5"
-    ],
-    "deps": [
-      "5-3"
-    ],
-    "exotic_deps": [
-      "x5"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*5;",
-      "})()"
-    ]
-  },
-  "5-5": {
-    "price": 650000000000,
-    "name": "V multiplier 5",
-    "description": "Tier V production x6",
-    "tiers": [
-      "5"
-    ],
-    "deps": [
-      "5-4"
-    ],
-    "exotic_deps": [
-      "x6"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*6;",
-      "})()"
-    ]
-  },
-  "5-6": {
-    "price": 65000000000000,
-    "name": "V multiplier 6",
-    "description": "Tier V production x7",
-    "tiers": [
-      "5"
-    ],
-    "deps": [
-      "5-5"
-    ],
-    "exotic_deps": [
-      "x7"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*7;",
-      "})()"
-    ]
-  },
-  "5-7": {
-    "price": 65000000000000000,
-    "name": "V multiplier 7",
-    "description": "Tier V production x8",
-    "tiers": [
-      "5"
-    ],
-    "deps": [
-      "5-6"
-    ],
-    "exotic_deps": [
-      "x8"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*8;",
-      "})()"
-    ]
-  },
-  "5-8": {
-    "price": 65000000000000000000,
-    "name": "V multiplier 8",
-    "description": "Tier V production x9",
-    "tiers": [
-      "5"
-    ],
-    "deps": [
-      "5-7"
-    ],
-    "exotic_deps": [
-      "x9"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*9;",
-      "})()"
-    ]
-  },
-  "6-1": {
-    "price": 14000000,
-    "name": "VI multiplier 1",
-    "description": "Tier VI production x2",
-    "tiers": [
-      "6"
-    ],
-    "deps": [],
-    "exotic_deps": [],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*2;",
-      "})()"
-    ]
-  },
-  "6-2": {
-    "price": 70000000,
-    "name": "VI multiplier 2",
-    "description": "Tier VI production x3",
-    "tiers": [
-      "6"
-    ],
-    "deps": [
-      "6-1"
-    ],
-    "exotic_deps": [
-      "x3"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*3;",
-      "})()"
-    ]
-  },
-  "6-3": {
-    "price": 700000000,
-    "name": "VI multiplier 3",
-    "description": "Tier VI production x4",
-    "tiers": [
-      "6"
-    ],
-    "deps": [
-      "6-2"
-    ],
-    "exotic_deps": [
-      "x4"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*4;",
-      "})()"
-    ]
-  },
-  "6-4": {
-    "price": 70000000000,
-    "name": "VI multiplier 4",
-    "description": "Tier VI production x5",
-    "tiers": [
-      "6"
-    ],
-    "deps": [
-      "6-3"
-    ],
-    "exotic_deps": [
-      "x5"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*5;",
-      "})()"
-    ]
-  },
-  "6-5": {
-    "price": 7000000000000,
-    "name": "VI multiplier 5",
-    "description": "Tier VI production x6",
-    "tiers": [
-      "6"
-    ],
-    "deps": [
-      "6-4"
-    ],
-    "exotic_deps": [
-      "x6"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*6;",
-      "})()"
-    ]
-  },
-  "6-6": {
-    "price": 700000000000000,
-    "name": "VI multiplier 6",
-    "description": "Tier VI production x7",
-    "tiers": [
-      "6"
-    ],
-    "deps": [
-      "6-5"
-    ],
-    "exotic_deps": [
-      "x7"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*7;",
-      "})()"
-    ]
-  },
-  "6-7": {
-    "price": 700000000000000000,
-    "name": "VI multiplier 7",
-    "description": "Tier VI production x8",
-    "tiers": [
-      "6"
-    ],
-    "deps": [
-      "6-6"
-    ],
-    "exotic_deps": [
-      "x8"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*8;",
-      "})()"
-    ]
-  },
-  "6-8": {
-    "price": 700000000000000000000,
-    "name": "VI multiplier 8",
-    "description": "Tier VI production x9",
-    "tiers": [
-      "6"
-    ],
-    "deps": [
-      "6-7"
-    ],
-    "exotic_deps": [
-      "x9"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*9;",
-      "})()"
-    ]
-  },
-  "7-1": {
-    "price": 200000000,
-    "name": "VII multiplier 1",
-    "description": "Tier VII production x2",
-    "tiers": [
-      "7"
-    ],
-    "deps": [],
-    "exotic_deps": [],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*2;",
-      "})()"
-    ]
-  },
-  "7-2": {
-    "price": 1000000000,
-    "name": "VII multiplier 2",
-    "description": "Tier VII production x3",
-    "tiers": [
-      "7"
-    ],
-    "deps": [
-      "7-1"
-    ],
-    "exotic_deps": [
-      "x3"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*3;",
-      "})()"
-    ]
-  },
-  "7-3": {
-    "price": 10000000000,
-    "name": "VII multiplier 3",
-    "description": "Tier VII production x4",
-    "tiers": [
-      "7"
-    ],
-    "deps": [
-      "7-2"
-    ],
-    "exotic_deps": [
-      "x4"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*4;",
-      "})()"
-    ]
-  },
-  "7-4": {
-    "price": 1000000000000,
-    "name": "VII multiplier 4",
-    "description": "Tier VII production x5",
-    "tiers": [
-      "7"
-    ],
-    "deps": [
-      "7-3"
-    ],
-    "exotic_deps": [
-      "x5"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*5;",
-      "})()"
-    ]
-  },
-  "7-5": {
-    "price": 100000000000000,
-    "name": "VII multiplier 5",
-    "description": "Tier VII production x6",
-    "tiers": [
-      "7"
-    ],
-    "deps": [
-      "7-4"
-    ],
-    "exotic_deps": [
-      "x6"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*6;",
-      "})()"
-    ]
-  },
-  "7-6": {
-    "price": 10000000000000000,
-    "name": "VII multiplier 6",
-    "description": "Tier VII production x7",
-    "tiers": [
-      "7"
-    ],
-    "deps": [
-      "7-5"
-    ],
-    "exotic_deps": [
-      "x7"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*7;",
-      "})()"
-    ]
-  },
-  "7-7": {
-    "price": 10000000000000000000,
-    "name": "VII multiplier 7",
-    "description": "Tier VII production x8",
-    "tiers": [
-      "7"
-    ],
-    "deps": [
-      "7-6"
-    ],
-    "exotic_deps": [
-      "x8"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*8;",
-      "})()"
-    ]
-  },
-  "7-8": {
-    "price": 1e+22,
-    "name": "VII multiplier 8",
-    "description": "Tier VII production x9",
-    "tiers": [
-      "7"
-    ],
-    "deps": [
-      "7-7"
-    ],
-    "exotic_deps": [
-      "x9"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*9;",
-      "})()"
-    ]
-  },
-  "8-1": {
-    "price": 3300000000,
-    "name": "VIII multiplier 1",
-    "description": "Tier VIII production x2",
-    "tiers": [
-      "8"
-    ],
-    "deps": [],
-    "exotic_deps": [],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*2;",
-      "})()"
-    ]
-  },
-  "8-2": {
-    "price": 16500000000,
-    "name": "VIII multiplier 2",
-    "description": "Tier VIII production x3",
-    "tiers": [
-      "8"
-    ],
-    "deps": [
-      "8-1"
-    ],
-    "exotic_deps": [
-      "x3"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*3;",
-      "})()"
-    ]
-  },
-  "8-3": {
-    "price": 165000000000,
-    "name": "VIII multiplier 3",
-    "description": "Tier VIII production x4",
-    "tiers": [
-      "8"
-    ],
-    "deps": [
-      "8-2"
-    ],
-    "exotic_deps": [
-      "x4"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*4;",
-      "})()"
-    ]
-  },
-  "8-4": {
-    "price": 16500000000000,
-    "name": "VIII multiplier 4",
-    "description": "Tier VIII production x5",
-    "tiers": [
-      "8"
-    ],
-    "deps": [
-      "8-3"
-    ],
-    "exotic_deps": [
-      "x5"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*5;",
-      "})()"
-    ]
-  },
-  "8-5": {
-    "price": 1650000000000000,
-    "name": "VIII multiplier 5",
-    "description": "Tier VIII production x6",
-    "tiers": [
-      "8"
-    ],
-    "deps": [
-      "8-4"
-    ],
-    "exotic_deps": [
-      "x6"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*6;",
-      "})()"
-    ]
-  },
-  "8-6": {
-    "price": 165000000000000000,
-    "name": "VIII multiplier 6",
-    "description": "Tier VIII production x7",
-    "tiers": [
-      "8"
-    ],
-    "deps": [
-      "8-5"
-    ],
-    "exotic_deps": [
-      "x7"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*7;",
-      "})()"
-    ]
-  },
-  "8-7": {
-    "price": 165000000000000000000,
-    "name": "VIII multiplier 7",
-    "description": "Tier VIII production x8",
-    "tiers": [
-      "8"
-    ],
-    "deps": [
-      "8-6"
-    ],
-    "exotic_deps": [
-      "x8"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*8;",
-      "})()"
-    ]
-  },
-  "8-8": {
-    "price": 1.65e+23,
-    "name": "VIII multiplier 8",
-    "description": "Tier VIII production x9",
-    "tiers": [
-      "8"
-    ],
-    "deps": [
-      "8-7"
-    ],
-    "exotic_deps": [
-      "x9"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*9;",
-      "})()"
-    ]
-  },
-  "9-1": {
-    "price": 51000000000,
-    "name": "IX multiplier 1",
-    "description": "Tier IX production x2",
-    "tiers": [
-      "9"
-    ],
-    "deps": [],
-    "exotic_deps": [],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*2;",
-      "})()"
-    ]
-  },
-  "9-2": {
-    "price": 255000000000,
-    "name": "IX multiplier 2",
-    "description": "Tier IX production x3",
-    "tiers": [
-      "9"
-    ],
-    "deps": [
-      "9-1"
-    ],
-    "exotic_deps": [
-      "x3"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*3;",
-      "})()"
-    ]
-  },
-  "9-3": {
-    "price": 2550000000000,
-    "name": "IX multiplier 3",
-    "description": "Tier IX production x4",
-    "tiers": [
-      "9"
-    ],
-    "deps": [
-      "9-2"
-    ],
-    "exotic_deps": [
-      "x4"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*4;",
-      "})()"
-    ]
-  },
-  "9-4": {
-    "price": 255000000000000,
-    "name": "IX multiplier 4",
-    "description": "Tier IX production x5",
-    "tiers": [
-      "9"
-    ],
-    "deps": [
-      "9-3"
-    ],
-    "exotic_deps": [
-      "x5"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*5;",
-      "})()"
-    ]
-  },
-  "9-5": {
-    "price": 25500000000000000,
-    "name": "IX multiplier 5",
-    "description": "Tier IX production x6",
-    "tiers": [
-      "9"
-    ],
-    "deps": [
-      "9-4"
-    ],
-    "exotic_deps": [
-      "x6"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*6;",
-      "})()"
-    ]
-  },
-  "9-6": {
-    "price": 2550000000000000000,
-    "name": "IX multiplier 6",
-    "description": "Tier IX production x7",
-    "tiers": [
-      "9"
-    ],
-    "deps": [
-      "9-5"
-    ],
-    "exotic_deps": [
-      "x7"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*7;",
-      "})()"
-    ]
-  },
-  "9-7": {
-    "price": 2.55e+21,
-    "name": "IX multiplier 7",
-    "description": "Tier IX production x8",
-    "tiers": [
-      "9"
-    ],
-    "deps": [
-      "9-6"
-    ],
-    "exotic_deps": [
-      "x8"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*8;",
-      "})()"
-    ]
-  },
-  "9-8": {
-    "price": 2.55e+24,
-    "name": "IX multiplier 8",
-    "description": "Tier IX production x9",
-    "tiers": [
-      "9"
-    ],
-    "deps": [
-      "9-7"
-    ],
-    "exotic_deps": [
-      "x9"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*9;",
-      "})()"
-    ]
-  },
-  "10-1": {
-    "price": 750000000000,
-    "name": "X multiplier 1",
-    "description": "Tier X production x2",
-    "tiers": [
-      "10"
-    ],
-    "deps": [],
-    "exotic_deps": [],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*2;",
-      "})()"
-    ]
-  },
-  "10-2": {
-    "price": 3750000000000,
-    "name": "X multiplier 2",
-    "description": "Tier X production x3",
-    "tiers": [
-      "10"
-    ],
-    "deps": [
-      "10-1"
-    ],
-    "exotic_deps": [
-      "x3"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*3;",
-      "})()"
-    ]
-  },
-  "10-3": {
-    "price": 37500000000000,
-    "name": "X multiplier 3",
-    "description": "Tier X production x4",
-    "tiers": [
-      "10"
-    ],
-    "deps": [
-      "10-2"
-    ],
-    "exotic_deps": [
-      "x4"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*4;",
-      "})()"
-    ]
-  },
-  "10-4": {
-    "price": 3750000000000000,
-    "name": "X multiplier 4",
-    "description": "Tier X production x5",
-    "tiers": [
-      "10"
-    ],
-    "deps": [
-      "10-3"
-    ],
-    "exotic_deps": [
-      "x5"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*5;",
-      "})()"
-    ]
-  },
-  "10-5": {
-    "price": 375000000000000000,
-    "name": "X multiplier 5",
-    "description": "Tier X production x6",
-    "tiers": [
-      "10"
-    ],
-    "deps": [
-      "10-4"
-    ],
-    "exotic_deps": [
-      "x6"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*6;",
-      "})()"
-    ]
-  },
-  "10-6": {
-    "price": 37500000000000000000,
-    "name": "X multiplier 6",
-    "description": "Tier X production x7",
-    "tiers": [
-      "10"
-    ],
-    "deps": [
-      "10-5"
-    ],
-    "exotic_deps": [
-      "x7"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*7;",
-      "})()"
-    ]
-  },
-  "10-7": {
-    "price": 3.75e+22,
-    "name": "X multiplier 7",
-    "description": "Tier X production x8",
-    "tiers": [
-      "10"
-    ],
-    "deps": [
-      "10-6"
-    ],
-    "exotic_deps": [
-      "x8"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*8;",
-      "})()"
-    ]
-  },
-  "10-8": {
-    "price": 3.75e+25,
-    "name": "X multiplier 8",
-    "description": "Tier X production x9",
-    "tiers": [
-      "10"
-    ],
-    "deps": [
-      "10-7"
-    ],
-    "exotic_deps": [
-      "x9"
-    ],
-    "dark_deps": [],
-    "function": ["(() => {",
-      "return production*9;",
-      "})()"
-    ]
-  },
-  "1-boost-1": {
-    "price": 100,
-    "name": "I boost 1",
-    "description": "Tier I +5% production for every 10 generators",
-    "tiers": [
-      "1"
-    ],
+  "boost-1": {
+    "prices": {
+      "1": 100,
+      "2": 5000,
+      "3": 55000,
+      "4": 600000,
+      "5": 6500000,
+      "6": 70000000,
+      "7": 100000000,
+      "8": 1650000000,
+      "9": 25500000000,
+      "10": 375000000000
+    },
+    "name": "<%= name %> boost 1",
+    "description": "Tier <%= name %> +5% production for every 10 generators",
+    "tier": "<%= id %>",
     "deps": [],
     "exotic_deps": [
       "boosts1"
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+Math.floor(player.elements[element].generators['1']/10)*0.05);",
+      "return production*(1+Math.floor(player.elements[element].generators['<%= id %>']/10)*0.05);",
       "})()"
     ]
   },
-  "1-boost-2": {
-    "price": 500,
-    "name": "I boost 2",
-    "description": "Tier I +25% production for every 25 generators",
-    "tiers": [
-      "1"
+  "boost-2": {
+    "prices": {
+      "1": 500,
+      "2": 25000,
+      "3": 275000,
+      "4": 3000000,
+      "5": 32500000,
+      "6": 350000000,
+      "7": 500000000,
+      "8": 8250000000,
+      "9": 127500000000,
+      "10": 1875000000000
+    },
+    "name": "<%= name %> boost 2",
+    "description": "Tier <%= name %> +25% production for every 25 generators",
+    "tier": "<%= id %>",
+    "deps": [
+      "boost-1-<%= id %>"
     ],
-    "deps": [],
     "exotic_deps": [
       "boosts2"
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+Math.floor(player.elements[element].generators['1']/25)*0.25);",
+      "return production*(1+Math.floor(player.elements[element].generators['<%= id %>']/25)*0.25);",
       "})()"
     ]
   },
-  "1-boost-3": {
-    "price": 10000,
-    "name": "I boost 3",
-    "description": "Tier I +100% production for every 50 generators",
-    "tiers": [
-      "1"
+  "boost-3": {
+    "prices": {
+      "1": 10000,
+      "2": 500000,
+      "3": 5500000,
+      "4": 60000000,
+      "5": 650000000,
+      "6": 7000000000,
+      "7": 10000000000,
+      "8": 165000000000,
+      "9": 2550000000000,
+      "10": 37500000000000
+    },
+    "name": "<%= name %> boost 3",
+    "description": "Tier <%= name %> +100% production for every 50 generators",
+    "tier": "<%= id %>",
+    "deps": [
+      "boost-2-<%= id %>"
     ],
-    "deps": [],
     "exotic_deps": [
       "boosts3"
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+Math.floor(player.elements[element].generators['1']/50)*1);",
+      "return production*(1+Math.floor(player.elements[element].generators['<%= id %>']/50)*1);",
       "})()"
     ]
   },
-  "1-boost-4": {
-    "price": 100000,
-    "name": "I boost 4",
-    "description": "Tier I +250% production for every 100 generators",
-    "tiers": [
-      "1"
+  "boost-4": {
+    "prices": {
+      "1": 100000,
+      "2": 5000000,
+      "3": 55000000,
+      "4": 600000000,
+      "5": 6500000000,
+      "6": 70000000000,
+      "7": 100000000000,
+      "8": 1650000000000,
+      "9": 25500000000000,
+      "10": 375000000000000
+    },
+    "name": "<%= name %> boost 4",
+    "description": "Tier <%= name %> +250% production for every 100 generators",
+    "tier": "<%= id %>",
+    "deps": [
+      "boost-3-<%= id %>"
     ],
-    "deps": [],
     "exotic_deps": [
       "boosts4"
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+Math.floor(player.elements[element].generators['1']/100)*2.5);",
+      "return production*(1+Math.floor(player.elements[element].generators['<%= id %>']/100)*2.5);",
       "})()"
     ]
   }
