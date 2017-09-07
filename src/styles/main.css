@@ -286,3 +286,13 @@ body {
   right: 0;
   left: 0;
 }
+
+#sidebar-wrapper .sidebar-nav {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+#sidebar-wrapper .sidebar-nav .row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
