@@ -290,9 +290,19 @@ body {
 #sidebar-wrapper .sidebar-nav {
   margin-left: -15px;
   margin-right: -15px;
+  padding-left: 15px;
 }
 
-#sidebar-wrapper .sidebar-nav .row {
-  margin-left: 0px;
-  margin-right: 0px;
+#sidebar-wrapper .sidebar-nav li {
+  margin-right: 0;
+  text-indent: 0;
+}
+
+#sidebar-wrapper .sidebar-nav .sidebar-brand {
+  text-align: center;
+  margin-left: -15px;
+}
+
+#sidebar-wrapper .sidebar-icons {
+  text-align: right;
 }
