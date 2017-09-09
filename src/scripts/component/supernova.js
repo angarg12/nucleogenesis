@@ -44,25 +44,33 @@ function supernova(state, format, visibility, upgrade, data, util) {
         for (let element in data.resources[resource].elements) {
           let newExotic = data.elements[element].exotic;
           production[newExotic] = production[newExotic] || 0;
-          production[newExotic] += Math.floor(Math.max(0, Math.log(state.player.resources[resource].number))) * multiplier;
+          production[newExotic] += prestigeFormula(state.player.resources[resource].number)*multiplier;
         }
       }else{
-        production[exotic] += Math.floor(Math.max(0, Math.log(state.player.resources[resource].number)));
+        production[exotic] += prestigeFormula(state.player.resources[resource].number);
       }
     }
     for (let key in production) {
       // we adjust the production to start at 1e6 resources
-      if (production[key] >= 13) {
-        production[key] -= 13;
-      } else {
-        production[key] = 0;
-      }
+      // if (production[key] >= 13) {
+      //   production[key] -= 13;
+      // } else {
+      //   production[key] = 0;
+      // }
       // we adjust the infusion
       production[key] = Math.floor(production[key]*ct.totalInfuseBoost());
     }
 
     return production;
   };
+
+  function prestigeFormula(resource){
+    let stepFactor = Math.max(Math.pow(10, Math.floor(Math.log10(resource))), 1);
+    let step = stepFactor/1e5;
+    let sigmoidQuotient = 1+Math.pow(Math.E, -(resource/stepFactor-5.747734128));
+    let sigmoid = 1/sigmoidQuotient+0.1;
+    return Math.floor(step * sigmoid);
+  }
 
   ct.exoticPrestige = function() {
     let resources = state.player.resources;

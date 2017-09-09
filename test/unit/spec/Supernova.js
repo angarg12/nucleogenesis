@@ -22,7 +22,7 @@ describe('Supernova', function() {
 
       let production = spec.supernova.exoticProduction();
 
-      expect(production).toEqual({'xH': 5});
+      expect(production).toEqual({'xH': 108});
     });
 
     it('should not produce prestige currency for small quantities', function() {
@@ -60,7 +60,7 @@ describe('Supernova', function() {
 
       let production = spec.supernova.exoticProduction();
 
-      expect(production).toEqual({'xH': 41, 'xO': 41});
+      expect(production).toEqual({'xH': 324, 'xO': 324});
     });
 
     it('should prestige', function() {
@@ -96,7 +96,7 @@ describe('Supernova', function() {
       expect(spec.state.player.elements.H.generators['1']).toEqual(1);
       expect(spec.state.player.elements.H.generators['2']).toEqual(0);
       expect(spec.state.player.resources['1H'].number).toEqual(0);
-      expect(spec.state.player.resources.xH.number).toEqual(5);
+      expect(spec.state.player.resources.xH.number).toEqual(108);
     });
   });
 
