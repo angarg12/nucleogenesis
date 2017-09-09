@@ -6,74 +6,58 @@
     "exotic_deps": [],
     "dark_deps": []
   },
-  "x4": {
-    "price": 200,
-    "name": "Extra prod 2",
-    "description": "Unlocks x4 multipliers",
-    "exotic_deps": ["x3"],
+  "x": {
+    "prices": {
+      "4": 200,
+      "5": 400,
+      "6": 800,
+      "7": 1600,
+      "8": 3200,
+      "9": 6400
+    },
+    "name": "Extra prod <% print(parseInt(id)-2) %>",
+    "description": "Unlocks x<% print(parseInt(id)) %> multipliers",
+    "exotic_deps": [
+      "x-<% print(parseInt(id)-1) %>"
+    ],
     "dark_deps": []
   },
-  "x5": {
-    "price": 400,
-    "name": "Extra prod 3",
-    "description": "Unlocks x5 multipliers",
-    "exotic_deps": ["x4"],
-    "dark_deps": []
-  },
-  "x6": {
-    "price": 800,
-    "name": "Extra prod 4",
-    "description": "Unlocks x6 multipliers",
-    "exotic_deps": ["x5"],
-    "dark_deps": []
-  },
-  "x7": {
-    "price": 1600,
-    "name": "Extra prod 5",
-    "description": "Unlocks x7 multipliers",
-    "exotic_deps": ["x6"],
-    "dark_deps": []
-  },
-  "x8": {
-    "price": 3200,
-    "name": "Extra prod 6",
-    "description": "Unlocks x8 multipliers",
-    "exotic_deps": ["x7"],
-    "dark_deps": []
-  },
-  "x9": {
-    "price": 6400,
-    "name": "Extra prod 7",
-    "description": "Unlocks x9 multipliers",
-    "exotic_deps": ["x8"],
-    "dark_deps": []
-  },
-  "boosts1": {
+  "boosts-1": {
     "price": 20,
     "name": "Boost 1",
     "description": "Unlocks boosts for every 10 generators",
     "exotic_deps": [],
     "dark_deps": []
   },
-  "boosts2": {
-    "price": 100,
-    "name": "Boost 2",
-    "description": "Unlocks boosts for every 25 generators",
-    "exotic_deps": ["boosts1"],
+  "boosts": {
+    "prices": {
+      "2": 100,
+      "3": 300,
+      "4": 1000
+    },
+    "name": "Boost <%= id %>",
+    "description": "Unlocks boosts for every <% print([25,50,100][parseInt(id)-2]) %> generators",
+    "exotic_deps": [
+      "boosts-<% print(parseInt(id)-1) %>"
+    ],
     "dark_deps": []
   },
-  "boosts3": {
-    "price": 300,
-    "name": "Boost 3",
-    "description": "Unlocks boosts for every 50 generators",
-    "exotic_deps": ["boosts2"],
-    "dark_deps": []
-  },
-  "boosts4": {
-    "price": 1000,
-    "name": "Boost 4",
-    "description": "Unlocks boosts for every 100 generators",
-    "exotic_deps": ["boosts3"],
+  "synergy": {
+    "prices": {
+      "1": 500000,
+      "2": 100000,
+      "3": 500000,
+      "4": 100000,
+      "5": 50000,
+      "6": 10000,
+      "7": 5000,
+      "8": 1000,
+      "9": 500,
+      "10": 100
+    },
+    "name": "Synergy <%= id %>",
+    "description": "Unlocks synergy ugrades for Tier <% print(['I','II','III','IV','V','VI','VII','VIII','IX','X'][parseInt(id)-1]) %>",
+    "exotic_deps": [],
     "dark_deps": []
   }
 }

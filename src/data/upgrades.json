@@ -328,5 +328,275 @@
       "return production*(1+Math.floor(player.elements[element].generators['<%= id %>']/100)*2.5);",
       "})()"
     ]
+  },
+  "synergies-1": {
+    "prices": {
+      "1": 100,
+      "2": 10000,
+      "3": 1000000,
+      "4": 100000000,
+      "5": 10000000000,
+      "6": 1000000000000,
+      "7": 100000000000000,
+      "8": 10000000000000000,
+      "9": 1000000000000000000,
+      "10": 10000000000000000000
+    },
+    "name": "<%= name %> synergy I",
+    "description": "Increases Tier <%= name %> production by 1% for every Tier I generator",
+    "tier": "<%= id %>",
+    "deps": [],
+    "exotic_deps": [
+      "synergy-1",
+      "synergy-<%= id %>"
+    ],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "return production*(1+player.elements[element].generators['1']/100);",
+      "})()"
+    ]
+  },
+  "synergies-2": {
+    "prices": {
+      "1": 80,
+      "2": 8000,
+      "3": 800000,
+      "4": 80000000,
+      "5": 8000000000,
+      "6": 800000000000,
+      "7": 80000000000000,
+      "8": 8000000000000000,
+      "9": 800000000000000000,
+      "10": 8000000000000000000
+    },
+    "name": "<%= name %> synergy II",
+    "description": "Increases Tier <%= name %> production by 1% for every Tier II generator",
+    "tier": "<%= id %>",
+    "deps": [],
+    "exotic_deps": [
+      "synergy-2",
+      "synergy-<%= id %>"
+    ],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "return production*(1+player.elements[element].generators['2']/100);",
+      "})()"
+    ]
+  },
+  "synergies-3": {
+    "prices": {
+      "1": 50,
+      "2": 5000,
+      "3": 500000,
+      "4": 50000000,
+      "5": 5000000000,
+      "6": 500000000000,
+      "7": 50000000000000,
+      "8": 5000000000000000,
+      "9": 500000000000000000,
+      "10": 5000000000000000000
+    },
+    "name": "<%= name %> synergy III",
+    "description": "Increases Tier <%= name %> production by 1% for every Tier III generator",
+    "tier": "<%= id %>",
+    "deps": [],
+    "exotic_deps": [
+      "synergy-3",
+      "synergy-<%= id %>"
+    ],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "return production*(1+player.elements[element].generators['3']/100);",
+      "})()"
+    ]
+  },
+  "synergies-4": {
+    "prices": {
+      "1": 20,
+      "2": 2000,
+      "3": 200000,
+      "4": 20000000,
+      "5": 2000000000,
+      "6": 200000000000,
+      "7": 20000000000000,
+      "8": 2000000000000000,
+      "9": 200000000000000000,
+      "10": 2000000000000000000
+    },
+    "name": "<%= name %> synergy IV",
+    "description": "Increases Tier <%= name %> production by 1% for every Tier IV generator",
+    "tier": "<%= id %>",
+    "deps": [],
+    "exotic_deps": [
+      "synergy-4",
+      "synergy-<%= id %>"
+    ],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "return production*(1+player.elements[element].generators['4']/100);",
+      "})()"
+    ]
+  },
+  "synergies-5": {
+    "prices": {
+      "1": 10,
+      "2": 1000,
+      "3": 100000,
+      "4": 10000000,
+      "5": 1000000000,
+      "6": 100000000000,
+      "7": 10000000000000,
+      "8": 1000000000000000,
+      "9": 100000000000000000,
+      "10": 1000000000000000000
+    },
+    "name": "<%= name %> synergy V",
+    "description": "Increases Tier <%= name %> production by 1% for every Tier V generator",
+    "tier": "<%= id %>",
+    "deps": [],
+    "exotic_deps": [
+      "synergy-5",
+      "synergy-<%= id %>"
+    ],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "return production*(1+player.elements[element].generators['5']/100);",
+      "})()"
+    ]
+  },
+  "synergies-6": {
+    "prices": {
+      "1": 5,
+      "2": 500,
+      "3": 50000,
+      "4": 5000000,
+      "5": 500000000,
+      "6": 50000000000,
+      "7": 5000000000000,
+      "8": 500000000000000,
+      "9": 50000000000000000,
+      "10": 500000000000000000
+    },
+    "name": "<%= name %> synergy VI",
+    "description": "Increases Tier <%= name %> production by 1% for every Tier VI generator",
+    "tier": "<%= id %>",
+    "deps": [],
+    "exotic_deps": [
+      "synergy-6",
+      "synergy-<%= id %>"
+    ],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "return production*(1+player.elements[element].generators['6']/100);",
+      "})()"
+    ]
+  },
+  "synergies-7": {
+    "prices": {
+      "1": 5,
+      "2": 250,
+      "3": 25000,
+      "4": 2500000,
+      "5": 250000000,
+      "6": 25000000000,
+      "7": 2500000000000,
+      "8": 250000000000000,
+      "9": 25000000000000000,
+      "10": 250000000000000000
+    },
+    "name": "<%= name %> synergy VII",
+    "description": "Increases Tier <%= name %> production by 1% for every Tier VII generator",
+    "tier": "<%= id %>",
+    "deps": [],
+    "exotic_deps": [
+      "synergy-7",
+      "synergy-<%= id %>"
+    ],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "return production*(1+player.elements[element].generators['7']/100);",
+      "})()"
+    ]
+  },
+  "synergies-8": {
+    "prices": {
+      "1": 5,
+      "2": 100,
+      "3": 10000,
+      "4": 1000000,
+      "5": 100000000,
+      "6": 10000000000,
+      "7": 1000000000000,
+      "8": 100000000000000,
+      "9": 10000000000000000,
+      "10": 100000000000000000
+    },
+    "name": "<%= name %> synergy VIII",
+    "description": "Increases Tier <%= name %> production by 1% for every Tier VIII generator",
+    "tier": "<%= id %>",
+    "deps": [],
+    "exotic_deps": [
+      "synergy-8",
+      "synergy-<%= id %>"
+    ],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "return production*(1+player.elements[element].generators['8']/100);",
+      "})()"
+    ]
+  },
+  "synergies-9": {
+    "prices": {
+      "1": 5,
+      "2": 50,
+      "3": 5000,
+      "4": 500000,
+      "5": 50000000,
+      "6": 5000000000,
+      "7": 500000000000,
+      "8": 50000000000000,
+      "9": 5000000000000000,
+      "10": 50000000000000000
+    },
+    "name": "<%= name %> synergy IX",
+    "description": "Increases Tier <%= name %> production by 1% for every Tier IX generator",
+    "tier": "<%= id %>",
+    "deps": [],
+    "exotic_deps": [
+      "synergy-9",
+      "synergy-<%= id %>"
+    ],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "return production*(1+player.elements[element].generators['9']/100);",
+      "})()"
+    ]
+  },
+  "synergies-10": {
+    "prices": {
+      "1": 5,
+      "2": 20,
+      "3": 2000,
+      "4": 200000,
+      "5": 20000000,
+      "6": 2000000000,
+      "7": 200000000000,
+      "8": 20000000000000,
+      "9": 2000000000000000,
+      "10": 20000000000000000
+    },
+    "name": "<%= name %> synergy X",
+    "description": "Increases Tier <%= name %> production by 1% for every Tier X generator",
+    "tier": "<%= id %>",
+    "deps": [],
+    "exotic_deps": [
+      "synergy-10",
+      "synergy-<%= id %>"
+    ],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "return production*(1+player.elements[element].generators['10']/100);",
+      "})()"
+    ]
   }
 }

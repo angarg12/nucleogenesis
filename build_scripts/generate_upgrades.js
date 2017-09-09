@@ -34,6 +34,9 @@ for(let key in upgrades){
     for(let index in generatedUpgrade.deps){
       generatedUpgrade.deps[index] = template(generatedUpgrade.deps[index])({'id': generator});
     }
+    for(let index in generatedUpgrade.exotic_deps){
+      generatedUpgrade.exotic_deps[index] = template(generatedUpgrade.exotic_deps[index])({'id': generator});
+    }
     let id = key+'-'+generator;
     upgrades[id] = generatedUpgrade;
   }
