@@ -39,9 +39,6 @@ angular
     };
 
     sv.addToast = function (t) {
-      if(!data.achievements[t]){
-        return;
-      }
       sv.toast.push(t);
       if (sv.toast.length === 1) {
         sv.isToastVisible = true;

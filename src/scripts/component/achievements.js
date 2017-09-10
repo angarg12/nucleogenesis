@@ -88,7 +88,9 @@ angular.module('game').controller('ct_achievements', ['$window', 'state', 'data'
 
         if (progress >= 100) {
           player[source][key] = level + 1;
-          state.addToast(achievement.name);
+          if(achievement.name){
+            state.addToast(achievement.name);
+          }
           $window.ga('send', 'event', 'achievement', key + '-' + level, player.id, Date.now());
         }
       }
