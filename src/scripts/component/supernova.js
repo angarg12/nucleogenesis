@@ -66,8 +66,8 @@ function supernova(state, format, visibility, upgrade, data, util) {
 
   function prestigeFormula(resource){
     let stepFactor = Math.max(Math.pow(10, Math.floor(Math.log10(resource))), 1);
-    let step = stepFactor/1e5;
-    let sigmoidQuotient = 1+Math.pow(Math.E, -(resource/stepFactor-5.747734128));
+    let step = stepFactor/data.constants.EXOTIC_STEP_QUOTIENT;
+    let sigmoidQuotient = 1+Math.pow(Math.E, -(resource/stepFactor-data.constants.EXOTIC_SIGMOID_MAGIC));
     let sigmoid = 1/sigmoidQuotient+0.1;
     return Math.floor(step * sigmoid);
   }
