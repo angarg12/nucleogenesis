@@ -170,7 +170,7 @@ describe('Nova', function() {
           }
         };
 
-        let values = spec.nova.visibleUpgrades('H');
+        let values = spec.nova.visibleUpgrades('H', spec.data.upgrades);
 
         expect(values).toEqual(['1-1']);
       });
@@ -234,7 +234,7 @@ describe('Nova', function() {
           }
         };
 
-        let values = spec.nova.visibleUpgrades('H');
+        let values = spec.nova.visibleUpgrades('H', spec.data.upgrades);
 
         expect(values).toEqual(['1-1','1-2']);
       });
