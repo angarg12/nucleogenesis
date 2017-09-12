@@ -8,6 +8,13 @@ describe('Supernova', function() {
 
   commonSpec(spec);
 
+  beforeEach(function () {
+    spec.data.constants = {
+      'EXOTIC_POWER': 0.001,
+      'EXOTIC_STEP_QUOTIENT': 1e5,
+      'EXOTIC_SIGMOID_MAGIC': 5.747734128
+    };
+  });
   describe('prestige', function() {
     it('should produce prestige currency', function() {
       spec.data.elements.H = {
