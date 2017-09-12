@@ -16,6 +16,7 @@ function nova(state, visibility, upgrade, data) {
   let ct = this;
   ct.state = state;
   ct.data = data;
+  ct.hideBought = false;
 
   // tries to buy all the upgrades it can, starting from the cheapest
   ct.buyAll = function (element) {
@@ -95,7 +96,11 @@ function nova(state, visibility, upgrade, data) {
 
   function createVisibleFunction(source){
     return function isBasicUpgradeVisible(name, currentElement) {
-      return visibility.isUpgradeVisible(name, currentElement, source[name]);
+      let isVisible = visibility.isUpgradeVisible(name, currentElement, source[name]);
+      if(source === data.upgrades){
+        return isVisible && (!ct.hideBought || !state.player.elements[currentElement].upgrades[name]);
+      }
+      return isVisible;
     };
   }
 }
