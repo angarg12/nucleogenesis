@@ -73,6 +73,15 @@ angular
             delete state.player.resources[resource];
           }
         }
+
+        // old saves may have outdated upgrades, which crash the game
+        for(let element in state.player.elements){
+          for(let up in state.player.elements[element].upgrades){
+            if(typeof data.upgrades[up] === 'undefined'){
+              delete state.player.elements[element].upgrades[up];
+            }
+          }
+        }
       };
     }
   ]);

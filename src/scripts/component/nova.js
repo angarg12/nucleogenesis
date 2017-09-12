@@ -17,6 +17,35 @@ function nova(state, visibility, upgrade, data) {
   ct.state = state;
   ct.data = data;
 
+  // tries to buy all the upgrades it can, starting from the cheapest
+  ct.buyAll = function (element) {
+    let currency = data.elements[element].main;
+    let cheapest;
+    let cheapestPrice;
+    do{
+      cheapest = null;
+      cheapestPrice = Infinity;
+      for(let up of ct.visibleUpgrades(element, data.upgrades)){
+        let price = data.upgrades[up].price;
+        if(!state.player.elements[element].upgrades[up] &&
+          price <= state.player.resources[currency].number){
+          if(price < cheapestPrice){
+            cheapest = up;
+            cheapestPrice = price;
+          }
+        }
+      }
+      if(cheapest){
+        let upgrades = state.player.elements[element].upgrades;
+        upgrade.buyUpgrade(state.player,
+          upgrades,
+          cheapest,
+          cheapestPrice,
+          currency);
+      }
+    }while(cheapest);
+  };
+
   ct.buyUpgrade = function (name, element) {
     let upgrades = state.player.elements[element].upgrades;
     let price = data.upgrades[name].price;

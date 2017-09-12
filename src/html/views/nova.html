@@ -18,6 +18,7 @@
   </div>
 </div>
 <h2>{{ct.data.elements[ct.state.currentElement].name}}</h2>
+<button class="btn btn-default" ng-click="ct.buyAll(ct.state.currentElement)">Buy all</button>
 <div class="row">
   <div ng-repeat="up in ct.visibleUpgrades(ct.state.currentElement, ct.data.upgrades)"
        ng-click="ct.buyUpgrade(up, ct.state.currentElement)"
