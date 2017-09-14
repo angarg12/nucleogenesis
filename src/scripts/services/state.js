@@ -19,6 +19,10 @@ angular
     sv.export = '';
     sv.player = {};
     sv.loading = true;
+    sv.processingOffline = false;
+    sv.offlineCyclesTotal = 0;
+    sv.offlineCyclesCurrent = 0;
+    sv.cancelOffline = false;
     sv.toast = [];
     sv.isToastVisible = false;
     sv.buyIndex = 0;

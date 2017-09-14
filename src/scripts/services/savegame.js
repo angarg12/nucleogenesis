@@ -21,6 +21,7 @@ angular
       };
 
       this.save = function () {
+        state.player.last_login = Math.floor(Date.now()/1000);
         localStorage.setItem('player', JSON.stringify(state.player));
       };
 
@@ -50,6 +51,11 @@ angular
         // append an id if it doesn't exist
         if (!state.player.id) {
           state.player.id = Math.random().toString().substring(3);
+        }
+
+        // append last_login if it doesn't exists
+        if (!state.player.last_login){
+          state.player.last_login = Math.floor(Date.now()/1000);
         }
 
         // pre slots, reactions was an object

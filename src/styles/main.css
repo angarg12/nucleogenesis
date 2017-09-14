@@ -2,6 +2,19 @@
 
 
 /* https://github.com/angular/angular.js/issues/8224 */
+progress[value] {
+  width: 100%;
+}
+
+.offline-progress {
+  position: absolute;
+  width: 500px;
+  height: 50px;
+  top: 33%;
+  left: 50%;
+  margin-left: -250px; /* margin is -0.5 * dimension */
+  margin-top: -25px;
+}
 
 .loader.ng-animate {
   -moz-animation: none 0s;

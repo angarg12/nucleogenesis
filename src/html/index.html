@@ -53,10 +53,20 @@
     <div>
       <div ng-if="state.loading"
            class="loader" />
-    </div>
+      </div>
+      <div ng-if="state.processingOffline"
+           class="offline-progress"/>
+        <center>
+          <h2>Processing offline progress {{state.offlineCyclesCurrent}}/{{state.offlineCyclesTotal}}</h2>
+        </center>
+        <progress value="{{state.offlineCyclesCurrent/state.offlineCyclesTotal*100}}" max="100">{{state.offlineCyclesCurrent/state.offlineCyclesTotal*100}} %</progress>
+        <button type="button"
+                class="btn btn-default"
+                ng-click="state.cancelOffline = true">Cancel</button>
+      </div>
     <div id="wrapper"
          class="toggled"
-         ng-if="!state.loading">
+         ng-if="!state.loading && !state.processingOffline">
       <sidebar id="sidebar-wrapper"
                class="container-fluid"></sidebar>
       <div id="page-content-wrapper">
