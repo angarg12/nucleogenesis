@@ -5,10 +5,8 @@
 const jsonfile = require('jsonfile');
 const template = require('lodash.template');
 
-const args = process.argv.slice(2);
-
-let upgrades = jsonfile.readFileSync(args[0]+'/data/upgrades.json');
-let generators = jsonfile.readFileSync(args[0]+'/data/generators.json');
+let upgrades = jsonfile.readFileSync('build/data/upgrades.json');
+let generators = jsonfile.readFileSync('build/data/generators.json');
 
 for(let key in upgrades){
   let upgrade = upgrades[key];
@@ -47,9 +45,9 @@ function clone(a) {
    return JSON.parse(JSON.stringify(a));
 }
 
-jsonfile.writeFileSync(args[0] + '/data/upgrades.json', upgrades, {
+jsonfile.writeFileSync('build/data/upgrades.json', upgrades, {
   spaces: 2
 });
-jsonfile.writeFileSync(args[0] + '/data/generators.json', generators, {
+jsonfile.writeFileSync('build/data/generators.json', generators, {
   spaces: 2
 });

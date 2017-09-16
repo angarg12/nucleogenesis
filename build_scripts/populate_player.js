@@ -5,20 +5,16 @@
 let jsonfile = require('jsonfile');
 let path = require('path');
 
-let args = process.argv.slice(2);
-
-let basePath = path.join(args[0], '/data');
-
-let resources = jsonfile.readFileSync(path.join(basePath, '/resources.json'));
-let elements = jsonfile.readFileSync(path.join(basePath, '/elements.json'));
-let generators = jsonfile.readFileSync(path.join(basePath, '/generators.json'));
-let upgrades = jsonfile.readFileSync(path.join(basePath, '/upgrades.json'));
-let globalUpgrades = jsonfile.readFileSync(path.join(basePath, '/global_upgrades.json'));
-let exoticUpgrades = jsonfile.readFileSync(path.join(basePath, '/exotic_upgrades.json'));
-let darkUpgrades = jsonfile.readFileSync(path.join(basePath, '/dark_upgrades.json'));
-let achievements = jsonfile.readFileSync(path.join(basePath, '/achievements.json'));
-let unlocks = jsonfile.readFileSync(path.join(basePath, '/unlocks.json'));
-let reactions = jsonfile.readFileSync(path.join(basePath, '/reactions.json'));
+let resources = jsonfile.readFileSync('build/data/resources.json');
+let elements = jsonfile.readFileSync('build/data/elements.json');
+let generators = jsonfile.readFileSync('build/data/generators.json');
+let upgrades = jsonfile.readFileSync('build/data/upgrades.json');
+let globalUpgrades = jsonfile.readFileSync('build/data/global_upgrades.json');
+let exoticUpgrades = jsonfile.readFileSync('build/data/exotic_upgrades.json');
+let darkUpgrades = jsonfile.readFileSync('build/data/dark_upgrades.json');
+let achievements = jsonfile.readFileSync('build/data/achievements.json');
+let unlocks = jsonfile.readFileSync('build/data/unlocks.json');
+let reactions = jsonfile.readFileSync('build/data/reactions.json');
 
 let startPlayer = {
   elements_unlocked: 1
@@ -91,6 +87,6 @@ startPlayer.resources[mainHydrogen].unlocked = true;
 let first = Object.keys(generators)[0];
 startPlayer.resources[mainHydrogen].number = generators[first].price;
 
-jsonfile.writeFileSync(args[0] + '/data/start_player.json', startPlayer, {
+jsonfile.writeFileSync('build/data/start_player.json', startPlayer, {
   spaces: 2
 });

@@ -5,10 +5,8 @@
 const jsonfile = require('jsonfile');
 const naturalSort = require('node-natural-sort');
 
-let args = process.argv.slice(2);
-
-let resources = jsonfile.readFileSync(args[0]+'/data/resources.json');
-let elements = jsonfile.readFileSync(args[0]+'/data/elements.json');
+let resources = jsonfile.readFileSync('build/data/resources.json');
+let elements = jsonfile.readFileSync('build/data/elements.json');
 
 let sortedResources = {};
 
@@ -47,6 +45,6 @@ for (let resource of misc) {
   sortedResources[resource] = resources[resource];
 }
 
-jsonfile.writeFileSync(args[0]+'/data/resources.json', sortedResources, {
+jsonfile.writeFileSync('build/data/resources.json', sortedResources, {
   spaces: 2
 });

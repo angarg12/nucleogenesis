@@ -5,12 +5,8 @@
 let jsonfile = require('jsonfile');
 let path = require('path');
 
-let args = process.argv.slice(2);
-
-let basePath = path.join(args[0], '/data');
-
-let resources = jsonfile.readFileSync(path.join(basePath, '/resources.json'));
-let elements = jsonfile.readFileSync(path.join(basePath, '/elements.json'));
+let resources = jsonfile.readFileSync('build/data/resources.json');
+let elements = jsonfile.readFileSync('build/data/elements.json');
 
 // Generates an ion resource
 function generateResource(element, charge){
@@ -101,12 +97,12 @@ if (index > -1) {
     elements.H.includes.splice(index, 1);
 }
 
-jsonfile.writeFileSync(path.join(basePath, '/resources.json'), resources, {
+jsonfile.writeFileSync('build/data/resources.json', resources, {
   spaces: 2
 });
-jsonfile.writeFileSync(path.join(basePath, '/elements.json'), elements, {
+jsonfile.writeFileSync('build/data/elements.json', elements, {
   spaces: 2
 });
-jsonfile.writeFileSync(path.join(basePath, '/redox.json'), redox, {
+jsonfile.writeFileSync('build/data/redox.json', redox, {
   spaces: 2
 });

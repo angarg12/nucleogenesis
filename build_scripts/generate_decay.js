@@ -4,10 +4,8 @@
 
 let jsonfile = require('jsonfile');
 
-let args = process.argv.slice(2);
-
-let resources = jsonfile.readFileSync(args[0] + '/data/resources.json');
-let elements = jsonfile.readFileSync(args[0] + '/data/elements.json');
+let resources = jsonfile.readFileSync('build/data/resources.json');
+let elements = jsonfile.readFileSync('build/data/elements.json');
 
 let isotopeMatrix = {};
 
@@ -180,10 +178,10 @@ function calculateSF(isotope) {
   return reaction;
 }
 
-jsonfile.writeFileSync(args[0] + '/data/resources.json', resources, {
+jsonfile.writeFileSync('build/data/resources.json', resources, {
   spaces: 2
 });
 
-jsonfile.writeFileSync(args[0] + '/data/elements.json', elements, {
+jsonfile.writeFileSync('build/data/elements.json', elements, {
   spaces: 2
 });

@@ -5,17 +5,15 @@
 let jsonfile = require('jsonfile');
 let parser = require('molecular-parser');
 
-let args = process.argv.slice(2);
-
-let resources = jsonfile.readFileSync(args[0]+'/data/resources.json');
-let elements = jsonfile.readFileSync(args[0]+'/data/elements.json');
+let resources = jsonfile.readFileSync('build/data/resources.json');
+let elements = jsonfile.readFileSync('build/data/elements.json');
 
 for (let element in elements) {
   elements[element].reactions = elements[element].reactions || [];
 }
 
 let lineReader = require('readline').createInterface({
-  input: require('fs').createReadStream(args[0]+'/data/raw_reactions.txt')
+  input: require('fs').createReadStream('build/data/raw_reactions.txt')
 });
 
 let reactions = {};
@@ -30,13 +28,13 @@ lineReader.on('line', function (line) {
 });
 
 lineReader.on('close', function () {
-  jsonfile.writeFileSync(args[0]+'/data/resources.json', resources, {
+  jsonfile.writeFileSync('build/data/resources.json', resources, {
     spaces: 2
   });
-  jsonfile.writeFileSync(args[0]+'/data/elements.json', elements, {
+  jsonfile.writeFileSync('build/data/elements.json', elements, {
     spaces: 2
   });
-  jsonfile.writeFileSync(args[0]+'/data/reactions.json', reactions, {
+  jsonfile.writeFileSync('build/data/reactions.json', reactions, {
     spaces: 2
   });
 });

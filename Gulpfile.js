@@ -125,55 +125,55 @@ gulp.task('copy-build', ['copy-js', 'copy-data', 'copy-html',
 // build
 
 gulp.task('populate_player', function() {
-  return plugins.run('node build_scripts/populate_player.js build',{silent:true}).exec();
+  return plugins.run('node build_scripts/populate_player.js',{silent:true}).exec();
 });
 
 gulp.task('populate_data', function() {
-  return plugins.run('node build_scripts/populate_data.js build',{silent:true}).exec();
+  return plugins.run('node build_scripts/populate_data.js',{silent:true}).exec();
 });
 
 gulp.task('generate_isotopes', function() {
-  return plugins.run('node build_scripts/generate_isotopes.js build',{silent:true}).exec();
+  return plugins.run('node build_scripts/generate_isotopes.js',{silent:true}).exec();
 });
 
 gulp.task('generate_decay', function() {
-  return plugins.run('node build_scripts/generate_decay.js build',{silent:true}).exec();
+  return plugins.run('node build_scripts/generate_decay.js',{silent:true}).exec();
 });
 
 gulp.task('generate_ions', function() {
-  return plugins.run('node build_scripts/generate_ions.js build',{silent:true}).exec();
+  return plugins.run('node build_scripts/generate_ions.js',{silent:true}).exec();
 });
 
 gulp.task('generate_reactions', function() {
-  return plugins.run('node build_scripts/generate_reactions.js build',{silent:true}).exec();
+  return plugins.run('node build_scripts/generate_reactions.js',{silent:true}).exec();
 });
 
 gulp.task('generate_antimatter', function() {
-  return plugins.run('node build_scripts/generate_antimatter.js build',{silent:true}).exec();
+  return plugins.run('node build_scripts/generate_antimatter.js',{silent:true}).exec();
 });
 
 gulp.task('generate_achievements', function() {
-  return plugins.run('node build_scripts/generate_achievements.js build',{silent:true}).exec();
+  return plugins.run('node build_scripts/generate_achievements.js',{silent:true}).exec();
 });
 
 gulp.task('generate_achievement_functions', function() {
-  return plugins.run('node build_scripts/generate_achievement_functions.js build',{silent:false}).exec();
+  return plugins.run('node build_scripts/generate_achievement_functions.js',{silent:false}).exec();
 });
 
 gulp.task('generate_upgrades', function() {
-  return plugins.run('node build_scripts/generate_upgrades.js build',{silent:false}).exec();
+  return plugins.run('node build_scripts/generate_upgrades.js',{silent:false}).exec();
 });
 
 gulp.task('generate_exotic_upgrades', function() {
-  return plugins.run('node build_scripts/generate_exotic_upgrades.js build',{silent:false}).exec();
+  return plugins.run('node build_scripts/generate_exotic_upgrades.js',{silent:false}).exec();
 });
 
 gulp.task('generate_upgrade_functions', function() {
-  return plugins.run('node build_scripts/generate_upgrade_functions.js build',{silent:true}).exec();
+  return plugins.run('node build_scripts/generate_upgrade_functions.js',{silent:true}).exec();
 });
 
 gulp.task('sort_resources', function() {
-  return plugins.run('node build_scripts/sort_resources.js build',{silent:true}).exec();
+  return plugins.run('node build_scripts/sort_resources.js',{silent:true}).exec();
 });
 
 gulp.task('concat', function() {

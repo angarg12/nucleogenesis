@@ -4,12 +4,10 @@
 
 const jsonfile = require('jsonfile');
 
-const args = process.argv.slice(2);
-
-let achievements = jsonfile.readFileSync(args[0]+'/data/achievements.json');
-let elements = jsonfile.readFileSync(args[0]+'/data/elements.json');
-let resources = jsonfile.readFileSync(args[0]+'/data/resources.json');
-let radioisotopes = jsonfile.readFileSync(args[0]+'/data/radioisotopes.json');
+let achievements = jsonfile.readFileSync('build/data/achievements.json');
+let elements = jsonfile.readFileSync('build/data/elements.json');
+let resources = jsonfile.readFileSync('build/data/resources.json');
+let radioisotopes = jsonfile.readFileSync('build/data/radioisotopes.json');
 
 for(let element in elements){
   if(elements[element].disabled){
@@ -356,6 +354,6 @@ achievements.resources_all = {
   ]
 };
 
-jsonfile.writeFileSync(args[0] + '/data/achievements.json', achievements, {
+jsonfile.writeFileSync('build/data/achievements.json', achievements, {
   spaces: 2
 });

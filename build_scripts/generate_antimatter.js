@@ -4,10 +4,8 @@
 
 let jsonfile = require('jsonfile');
 
-let args = process.argv.slice(2);
-
-let resources = jsonfile.readFileSync(args[0] + '/data/resources.json');
-let reactions = jsonfile.readFileSync(args[0] + '/data/reactions.json');
+let resources = jsonfile.readFileSync('build/data/resources.json');
+let reactions = jsonfile.readFileSync('build/data/reactions.json');
 
 for (let i in resources) {
   let resource = resources[i];
@@ -28,9 +26,9 @@ for (let i in resources) {
   }
 }
 
-jsonfile.writeFileSync(args[0] + '/data/resources.json', resources, {
+jsonfile.writeFileSync('build/data/resources.json', resources, {
   spaces: 2
 });
-jsonfile.writeFileSync(args[0] + '/data/reactions.json', reactions, {
+jsonfile.writeFileSync('build/data/reactions.json', reactions, {
   spaces: 2
 });

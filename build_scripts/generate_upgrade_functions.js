@@ -7,11 +7,9 @@ const template = require('lodash.template');
 const crypto = require('crypto');
 const fs = require('fs');
 
-const args = process.argv.slice(2);
-
-let upgrades = jsonfile.readFileSync(args[0]+'/data/upgrades.json');
-let generators = jsonfile.readFileSync(args[0]+'/data/generators.json');
-let upgradeComponent = fs.readFileSync(args[0]+'/scripts/component/matter.js').toString();
+let upgrades = jsonfile.readFileSync('build/data/upgrades.json');
+let generators = jsonfile.readFileSync('build/data/generators.json');
+let upgradeComponent = fs.readFileSync('build/scripts/component/matter.js').toString();
 
 const FUNCTION_TEMPLATE = `this.<%= name %> = function (player, production, element){
   return <%= func %>;
@@ -49,11 +47,11 @@ for(let i in functions){
 
 let componentTemplate = template(upgradeComponent);
 
-fs.writeFileSync(args[0]+'/scripts/component/matter.js', componentTemplate({'upgradeFunctions': concatFunctions}));
+fs.writeFileSync('build/scripts/component/matter.js', componentTemplate({'upgradeFunctions': concatFunctions}));
 
-jsonfile.writeFileSync(args[0] + '/data/upgrades.json', upgrades, {
+jsonfile.writeFileSync('build/data/upgrades.json', upgrades, {
   spaces: 2
 });
-jsonfile.writeFileSync(args[0] + '/data/generators.json', generators, {
+jsonfile.writeFileSync('build/data/generators.json', generators, {
   spaces: 2
 });

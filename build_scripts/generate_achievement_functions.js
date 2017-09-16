@@ -7,11 +7,9 @@ const template = require('lodash.template');
 const crypto = require('crypto');
 const fs = require('fs');
 
-const args = process.argv.slice(2);
-
-let achievements = jsonfile.readFileSync(args[0]+'/data/achievements.json');
-let unlocks = jsonfile.readFileSync(args[0]+'/data/unlocks.json');
-let achievementService = fs.readFileSync(args[0]+'/scripts/component/achievements.js').toString();
+let achievements = jsonfile.readFileSync('build/data/achievements.json');
+let unlocks = jsonfile.readFileSync('build/data/unlocks.json');
+let achievementService = fs.readFileSync('build/scripts/component/achievements.js').toString();
 
 const FUNCTION_TEMPLATE = `this.<%= name %> = function (player){
   return <%= progress %>;
@@ -60,11 +58,11 @@ for(let i in functions){
 
 let serviceTemplate = template(achievementService);
 
-fs.writeFileSync(args[0]+'/scripts/component/achievements.js', serviceTemplate({'functions': concatFunctions}));
+fs.writeFileSync('build/scripts/component/achievements.js', serviceTemplate({'functions': concatFunctions}));
 
-jsonfile.writeFileSync(args[0] + '/data/achievements.json', achievements, {
+jsonfile.writeFileSync('build/data/achievements.json', achievements, {
   spaces: 2
 });
-jsonfile.writeFileSync(args[0] + '/data/unlocks.json', unlocks, {
+jsonfile.writeFileSync('build/data/unlocks.json', unlocks, {
   spaces: 2
 });
