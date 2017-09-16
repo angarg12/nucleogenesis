@@ -17,7 +17,7 @@ angular
         state.player = {};
         this.versionControl();
         state.init();
-        $state.go('matter');
+        $state.go('generators');
       };
 
       this.save = function () {

@@ -3,7 +3,7 @@
 /* jshint varstmt: false */
 'use strict';
 
-describe('Supernova', function() {
+describe('Exotic', function() {
   let spec = {};
 
   commonSpec(spec);
@@ -27,7 +27,7 @@ describe('Supernova', function() {
       spec.state.current_element = 'H';
       spec.state.player.resources['1H'] = {number:1e8, unlocked: true};
 
-      let production = spec.supernova.exoticProduction();
+      let production = spec.exotic.exoticProduction();
 
       expect(production).toEqual({'xH': 108});
     });
@@ -43,7 +43,7 @@ describe('Supernova', function() {
       spec.state.current_element = 'H';
       spec.state.player.resources['1H'] = {number:1e5, unlocked: true};
 
-      let production = spec.supernova.exoticProduction();
+      let production = spec.exotic.exoticProduction();
 
       expect(production).toEqual({'xH': 0});
     });
@@ -65,7 +65,7 @@ describe('Supernova', function() {
       spec.state.player.resources['1H'] = {number:0, unlocked: true};
       spec.state.player.resources.H2O = {number:1e8, unlocked: true};
 
-      let production = spec.supernova.exoticProduction();
+      let production = spec.exotic.exoticProduction();
 
       expect(production).toEqual({'xH': 324, 'xO': 324});
     });
@@ -96,7 +96,7 @@ describe('Supernova', function() {
         reaction: ['H.OH-H2O']
       }];
 
-      spec.supernova.exoticPrestige();
+      spec.exotic.exoticPrestige();
 
       expect(spec.state.player.elements.H.upgrades['1-1']).toBeFalsy();
       expect(spec.state.player.reactions[0].active).toBeFalsy();
@@ -114,9 +114,9 @@ describe('Supernova', function() {
       };
       spec.state.player.resources.p = {number:1001, unlocked: true};
 
-      spec.supernova.setPercentage('p', 25);
+      spec.exotic.setPercentage('p', 25);
 
-      expect(spec.supernova.infuse.p).toEqual(250);
+      expect(spec.exotic.infuse.p).toEqual(250);
     });
 
     it('should calculate the infusion power', function() {
@@ -125,9 +125,9 @@ describe('Supernova', function() {
       };
       spec.state.player.resources.p = {number:0, unlocked: true};
       spec.data.constants.INFUSE_POWER = 0.01;
-      spec.supernova.infuse.p = 0;
+      spec.exotic.infuse.p = 0;
 
-      let value = spec.supernova.infuseBoost('p');
+      let value = spec.exotic.infuseBoost('p');
 
       expect(value).toEqual(1);
     });
@@ -138,9 +138,9 @@ describe('Supernova', function() {
       };
       spec.state.player.resources.p = {number:1000, unlocked: true};
       spec.data.constants.INFUSE_POWER = 0.01;
-      spec.supernova.infuse.p = 1000;
+      spec.exotic.infuse.p = 1000;
 
-      let value = spec.supernova.infuseBoost('p');
+      let value = spec.exotic.infuseBoost('p');
 
       expect(value).toBeCloseTo(1.309565534755485, 4);
     });
@@ -153,10 +153,10 @@ describe('Supernova', function() {
       spec.state.player.resources.p = {number:1000, unlocked: true};
       spec.state.player.resources.n = {number:1000, unlocked: true};
       spec.data.constants.INFUSE_POWER = 0.01;
-      spec.supernova.infuse.p = 1000;
-      spec.supernova.infuse.n = 1000;
+      spec.exotic.infuse.p = 1000;
+      spec.exotic.infuse.n = 1000;
 
-      let value = spec.supernova.totalInfuseBoost();
+      let value = spec.exotic.totalInfuseBoost();
 
       expect(value).toBeCloseTo(1.7149618898, 4);
     });
@@ -176,7 +176,7 @@ describe('Supernova', function() {
       spec.state.player.elements.H = {exotic_upgrades:{}};
       spec.state.player.elements.H.exotic_upgrades.x3 = false;
 
-      spec.supernova.buyExoticUpgrade('x3','H');
+      spec.exotic.buyExoticUpgrade('x3','H');
 
       expect(spec.state.player.resources.xH.number).toEqual(10);
       expect(spec.state.player.elements.H.exotic_upgrades.x3).toEqual(true);
@@ -195,7 +195,7 @@ describe('Supernova', function() {
       spec.state.player.elements.H = {exotic_upgrades:{}};
       spec.state.player.elements.H.exotic_upgrades.x3 = false;
 
-      spec.supernova.buyExoticUpgrade('x3','H');
+      spec.exotic.buyExoticUpgrade('x3','H');
 
       expect(spec.state.player.resources.xH.number).toEqual(10);
       expect(spec.state.player.elements.H.exotic_upgrades.x3).toEqual(false);
@@ -214,7 +214,7 @@ describe('Supernova', function() {
       spec.state.player.elements.H = {exotic_upgrades:{}};
       spec.state.player.elements.H.exotic_upgrades.x3 = true;
 
-      spec.supernova.buyExoticUpgrade('x3','H');
+      spec.exotic.buyExoticUpgrade('x3','H');
 
       expect(spec.state.player.resources.xH.number).toEqual(110);
       expect(spec.state.player.elements.H.exotic_upgrades.x3).toEqual(true);
@@ -235,7 +235,7 @@ describe('Supernova', function() {
         exotic_upgrades: []
       };
 
-      let values = spec.supernova.visibleExoticUpgrades('H');
+      let values = spec.exotic.visibleExoticUpgrades('H');
 
       expect(values).toEqual(['x3']);
     });
@@ -247,7 +247,7 @@ describe('Supernova', function() {
       spec.state.player.resources.p = {number:0, unlocked: true};
       spec.state.player.resources.n = {number:0, unlocked: false};
 
-      let values = spec.supernova.visibleSubatomic();
+      let values = spec.exotic.visibleSubatomic();
 
       expect(values).toEqual(['p']);
     });

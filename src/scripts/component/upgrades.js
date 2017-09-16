@@ -1,18 +1,18 @@
 /**
- nova
+ upgrades
  Component that handles upgrades.
 
  @namespace Components
  */
 'use strict';
 
-angular.module('game').component('nova', {
-  templateUrl: 'views/nova.html',
-  controller: ['state', 'visibility', 'upgrade', 'data', nova],
+angular.module('game').component('upgrades', {
+  templateUrl: 'views/upgrades.html',
+  controller: ['state', 'visibility', 'upgrade', 'data', upgrades],
   controllerAs: 'ct'
 });
 
-function nova(state, visibility, upgrade, data) {
+function upgrades(state, visibility, upgrade, data) {
   let ct = this;
   ct.state = state;
   ct.data = data;

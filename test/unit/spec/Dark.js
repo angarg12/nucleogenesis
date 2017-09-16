@@ -3,7 +3,7 @@
 /* jshint varstmt: false */
 'use strict';
 
-describe('Void', function() {
+describe('Dark', function() {
   let spec = {};
 
   commonSpec(spec);
@@ -19,7 +19,7 @@ describe('Void', function() {
       spec.state.player.resources.xH = {number:1e8, unlocked: true};
       spec.state.player.resources.xO = {number:1e8, unlocked: true};
 
-      let production = spec.void.darkProduction();
+      let production = spec.dark.darkProduction();
 
       expect(production).toEqual(36);
     });
@@ -54,7 +54,7 @@ describe('Void', function() {
         reaction: ['H.OH-H2O']
       }];
 
-      spec.void.darkPrestige();
+      spec.dark.darkPrestige();
 
       expect(spec.state.player.elements.H.upgrades['1-1']).toBeFalsy();
       expect(spec.state.player.elements.H.exotic_upgrades.x3).toBeFalsy();
@@ -78,7 +78,7 @@ describe('Void', function() {
       spec.state.player.resources.dark_matter = {number:110};
       spec.state.player.dark_upgrades.table = false;
 
-      spec.void.buyDarkUpgrade('table');
+      spec.dark.buyDarkUpgrade('table');
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(10);
       expect(spec.state.player.dark_upgrades.table).toEqual(true);
@@ -94,7 +94,7 @@ describe('Void', function() {
       spec.state.player.resources.dark_matter = {number:10};
       spec.state.player.dark_upgrades.table = false;
 
-      spec.void.buyDarkUpgrade('table');
+      spec.dark.buyDarkUpgrade('table');
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(10);
       expect(spec.state.player.dark_upgrades.table).toEqual(false);
@@ -110,7 +110,7 @@ describe('Void', function() {
       spec.state.player.resources.dark_matter = {number:110};
       spec.state.player.dark_upgrades.table = true;
 
-      spec.void.buyDarkUpgrade('table');
+      spec.dark.buyDarkUpgrade('table');
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(110);
       expect(spec.state.player.dark_upgrades.table).toEqual(true);
@@ -130,7 +130,7 @@ describe('Void', function() {
           exotic_upgrades: []
         };
 
-        let values = spec.void.visibleDarkUpgrades('H');
+        let values = spec.dark.visibleDarkUpgrades('H');
 
         expect(values).toEqual(['table']);
       });

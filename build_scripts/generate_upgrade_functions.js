@@ -9,7 +9,7 @@ const fs = require('fs');
 
 let upgrades = jsonfile.readFileSync('build/data/upgrades.json');
 let generators = jsonfile.readFileSync('build/data/generators.json');
-let upgradeComponent = fs.readFileSync('build/scripts/component/matter.js').toString();
+let upgradeComponent = fs.readFileSync('build/scripts/component/generators.js').toString();
 
 const FUNCTION_TEMPLATE = `this.<%= name %> = function (player, production, element){
   return <%= func %>;
@@ -47,7 +47,7 @@ for(let i in functions){
 
 let componentTemplate = template(upgradeComponent);
 
-fs.writeFileSync('build/scripts/component/matter.js', componentTemplate({'upgradeFunctions': concatFunctions}));
+fs.writeFileSync('build/scripts/component/generators.js', componentTemplate({'upgradeFunctions': concatFunctions}));
 
 jsonfile.writeFileSync('build/data/upgrades.json', upgrades, {
   spaces: 2

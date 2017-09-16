@@ -3,7 +3,7 @@
 /* jshint varstmt: false */
 'use strict';
 
-describe('Matter component', function() {
+describe('Generators component', function() {
   let spec = {};
 
   commonSpec(spec);
@@ -25,7 +25,7 @@ describe('Matter component', function() {
     it('should return the purchase amount', function() {
       spec.state.buyIndex = 0;
 
-      let value = spec.matter.getbuyAmount();
+      let value = spec.generators.getbuyAmount();
 
       expect(value).toEqual(1);
     });
@@ -33,7 +33,7 @@ describe('Matter component', function() {
     it('should cycle through purchase amounts', function() {
       spec.state.buyIndex = 0;
 
-      spec.matter.nextBuyAmount();
+      spec.generators.nextBuyAmount();
 
       expect(spec.state.buyIndex).toEqual(1);
     });
@@ -41,7 +41,7 @@ describe('Matter component', function() {
     it('should return the price of a generator', function() {
       spec.state.player.elements.H.generators = {'1': 5};
 
-      let value = spec.matter.generatorTotalPrice(spec.state.player, '1','H', 1);
+      let value = spec.generators.generatorTotalPrice(spec.state.player, '1','H', 1);
 
       expect(value).toEqual(20);
     });
@@ -52,7 +52,7 @@ describe('Matter component', function() {
       };
       spec.state.player.elements.H.generators = {'3': 10};
 
-      let value = spec.matter.generatorTotalPrice(spec.state.player, '3','H', 1);
+      let value = spec.generators.generatorTotalPrice(spec.state.player, '3','H', 1);
 
       expect(value).toEqual(1792);
     });
@@ -60,7 +60,7 @@ describe('Matter component', function() {
     it('should return the price of a generator 3', function() {
       spec.state.player.elements.H.generators = {'1': 1};
 
-      let value = spec.matter.generatorTotalPrice(spec.state.player, '1','H', 10);
+      let value = spec.generators.generatorTotalPrice(spec.state.player, '1','H', 10);
 
       expect(value).toEqual(205);
     });
@@ -68,18 +68,18 @@ describe('Matter component', function() {
     it('should return the price of a generator 4', function() {
       spec.state.player.elements.H.generators = {'1': 10};
 
-      let value = spec.matter.generatorTotalPrice(spec.state.player, '1','H', 100);
+      let value = spec.generators.generatorTotalPrice(spec.state.player, '1','H', 100);
 
       expect(value).toEqual(63823);
     });
 
     it('should return the price of a generator 5', function() {
       spec.state.player.elements.H.generators = {'1': 10};
-      spyOn(spec.matter, 'maxCanBuy');
+      spyOn(spec.generators, 'maxCanBuy');
 
-      spec.matter.generatorTotalPrice(spec.state.player, '1','H', 'max');
+      spec.generators.generatorTotalPrice(spec.state.player, '1','H', 'max');
 
-      expect(spec.matter.maxCanBuy).toHaveBeenCalled();
+      expect(spec.generators.maxCanBuy).toHaveBeenCalled();
     });
 
     it('should purchase as many generators as requested', function() {
@@ -91,7 +91,7 @@ describe('Matter component', function() {
         }
       };
 
-      spec.matter.buyGenerators(spec.state.player, '1','H',3);
+      spec.generators.buyGenerators(spec.state.player, '1','H',3);
 
       expect(spec.state.player.resources['1H'].number).toEqual(2);
       expect(spec.state.player.elements.H.generators['1']).toEqual(8);
@@ -106,7 +106,7 @@ describe('Matter component', function() {
         }
       };
 
-      spec.matter.buyGenerators(spec.state.player, '1','H','max');
+      spec.generators.buyGenerators(spec.state.player, '1','H','max');
 
       expect(spec.state.player.resources['1H'].number).toEqual(4);
       expect(spec.state.player.elements.H.generators['1']).toEqual(7);
@@ -121,7 +121,7 @@ describe('Matter component', function() {
         }
       };
 
-      spec.matter.buyGenerators(spec.state.player, '1','H',10);
+      spec.generators.buyGenerators(spec.state.player, '1','H',10);
 
       expect(spec.state.player.resources['1H'].number).toEqual(10);
       expect(spec.state.player.elements.H.generators['1']).toEqual(5);
@@ -150,9 +150,9 @@ describe('Matter component', function() {
           function: 'four'
         }
       };
-      spec.matter.two = function(player, production) {return production*2;};
-      spec.matter.three = function(player, production) {return production*3;};
-      spec.matter.four = function(player, production) {return production*4;};
+      spec.generators.two = function(player, production) {return production*2;};
+      spec.generators.three = function(player, production) {return production*3;};
+      spec.generators.four = function(player, production) {return production*4;};
       spec.state.player.resources.xH = {number: 0};
       spec.state.player.resources.dark_matter = {number: 0};
       spec.state.player.elements.H.generators = {'1': 1};
@@ -164,7 +164,7 @@ describe('Matter component', function() {
         }
       };
 
-      let value = spec.matter.generatorProduction(spec.state.player, '1','H');
+      let value = spec.generators.generatorProduction(spec.state.player, '1','H');
 
       expect(value).toEqual(6);
     });
@@ -190,9 +190,9 @@ describe('Matter component', function() {
           function: 'four'
         }
       };
-      spec.matter.two = function(player, production) {return production*2;};
-      spec.matter.three = function(player, production) {return production*3;};
-      spec.matter.four = function(player, production) {return production*4;};
+      spec.generators.two = function(player, production) {return production*2;};
+      spec.generators.three = function(player, production) {return production*3;};
+      spec.generators.four = function(player, production) {return production*4;};
       spec.state.player.resources.xH = {number: 3250};
       spec.state.player.resources.dark_matter = {number: 0};
       spec.state.player.elements.H = {
@@ -204,7 +204,7 @@ describe('Matter component', function() {
       };
       spec.state.player.elements.H.generators = {'1': 1};
 
-      let value = spec.matter.generatorProduction(spec.state.player, '1','H');
+      let value = spec.generators.generatorProduction(spec.state.player, '1','H');
 
       expect(value).toEqual(25);
     });
@@ -230,9 +230,9 @@ describe('Matter component', function() {
           function: 'four'
         }
       };
-      spec.matter.two = function(player, production) {return production*2;};
-      spec.matter.three = function(player, production) {return production*3;};
-      spec.matter.four = function(player, production) {return production*4;};
+      spec.generators.two = function(player, production) {return production*2;};
+      spec.generators.three = function(player, production) {return production*3;};
+      spec.generators.four = function(player, production) {return production*4;};
       spec.state.player.resources.xH = {number: 0};
       spec.state.player.resources.dark_matter = {number: 3250};
       spec.state.player.elements.H = {
@@ -243,7 +243,7 @@ describe('Matter component', function() {
         }
       };
 
-      let value = spec.matter.generatorProduction(spec.state.player, '1','H');
+      let value = spec.generators.generatorProduction(spec.state.player, '1','H');
 
       expect(value).toEqual(201);
     });
@@ -269,9 +269,9 @@ describe('Matter component', function() {
           function: 'four'
         }
       };
-      spec.matter.two = function(player, production) {return production*2;};
-      spec.matter.three = function(player, production) {return production*3;};
-      spec.matter.four = function(player, production) {return production*4;};
+      spec.generators.two = function(player, production) {return production*2;};
+      spec.generators.three = function(player, production) {return production*3;};
+      spec.generators.four = function(player, production) {return production*4;};
       spec.state.player.resources.xH = {number: 3250};
       spec.state.player.resources.dark_matter = {number: 3250};
       spec.state.player.elements.H = {
@@ -282,7 +282,7 @@ describe('Matter component', function() {
         }
       };
 
-      let value = spec.matter.generatorProduction(spec.state.player, '1','H');
+      let value = spec.generators.generatorProduction(spec.state.player, '1','H');
 
       expect(value).toEqual(854);
     });
@@ -308,9 +308,9 @@ describe('Matter component', function() {
           function: 'four'
         }
       };
-      spec.matter.two = function(player, production) {return production*2;};
-      spec.matter.three = function(player, production) {return production*3;};
-      spec.matter.four = function(player, production) {return production*4;};
+      spec.generators.two = function(player, production) {return production*2;};
+      spec.generators.three = function(player, production) {return production*3;};
+      spec.generators.four = function(player, production) {return production*4;};
       spec.state.player.resources.xH = {number: 0};
       spec.state.player.resources.dark_matter = {number: 0};
       spec.state.player.elements.H = {
@@ -324,7 +324,7 @@ describe('Matter component', function() {
         }
       };
 
-      let value = spec.matter.tierProduction(spec.state.player, '1','H');
+      let value = spec.generators.tierProduction(spec.state.player, '1','H');
 
       expect(value).toEqual(60);
     });
@@ -366,7 +366,7 @@ describe('Matter component', function() {
       spec.state.player.elements.H.generators['2'] = 1;
       spec.state.player.elements.H.generators['3'] = 1;
 
-      let value = spec.matter.elementProduction(spec.state.player, 'H');
+      let value = spec.generators.elementProduction(spec.state.player, 'H');
 
       expect(value).toEqual(91);
     });
@@ -389,7 +389,7 @@ describe('Matter component', function() {
           }
         };
 
-        let values = spec.matter.visibleGenerators('H');
+        let values = spec.generators.visibleGenerators('H');
 
         expect(values).toEqual(['1', '2']);
       });

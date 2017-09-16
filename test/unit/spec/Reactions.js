@@ -3,7 +3,7 @@
 /* jshint varstmt: false */
 'use strict';
 
-describe('Reactor', function() {
+describe('Reactions', function() {
   let spec = {};
 
   commonSpec(spec);

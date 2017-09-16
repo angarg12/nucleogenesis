@@ -3,7 +3,7 @@
 /* jshint varstmt: false */
 'use strict';
 
-describe('Nova', function() {
+describe('Upgrades', function() {
   let spec = {};
 
   commonSpec(spec);
@@ -39,7 +39,7 @@ describe('Nova', function() {
       spec.state.player.global_upgrades.redox_bandwidth = 0;
       spec.state.player.resources.eV = {number:0};
 
-      let canBuy = spec.nova.canBuyGlobalUpgrade('redox_bandwidth');
+      let canBuy = spec.upgrades.canBuyGlobalUpgrade('redox_bandwidth');
 
       expect(canBuy).toBeFalsy();
     });
@@ -48,7 +48,7 @@ describe('Nova', function() {
       spec.state.player.global_upgrades.redox_bandwidth = 0;
       spec.state.player.resources.eV = {number:1e300};
 
-      let canBuy = spec.nova.canBuyGlobalUpgrade('redox_bandwidth');
+      let canBuy = spec.upgrades.canBuyGlobalUpgrade('redox_bandwidth');
 
       expect(canBuy).toBeTruthy();
     });
@@ -57,7 +57,7 @@ describe('Nova', function() {
       spec.state.player.global_upgrades.redox_bandwidth = 2;
       spec.state.player.resources.eV = {number:1e300};
 
-      spec.nova.buyGlobalUpgrade('redox_bandwidth');
+      spec.upgrades.buyGlobalUpgrade('redox_bandwidth');
 
       expect(spec.state.player.global_upgrades.redox_bandwidth).toEqual(3);
     });
@@ -66,7 +66,7 @@ describe('Nova', function() {
       spec.state.player.global_upgrades.redox_bandwidth = 2;
       spec.state.player.resources.eV = {number:0};
 
-      spec.nova.buyGlobalUpgrade('redox_bandwidth');
+      spec.upgrades.buyGlobalUpgrade('redox_bandwidth');
 
       expect(spec.state.player.global_upgrades.redox_bandwidth).toEqual(2);
     });
@@ -79,7 +79,7 @@ describe('Nova', function() {
       spec.state.player.elements.H = {upgrades:{}};
       spec.state.player.elements.H.upgrades['1-1'] = false;
 
-      spec.nova.buyUpgrade('1-1','H');
+      spec.upgrades.buyUpgrade('1-1','H');
 
       expect(spec.state.player.resources['1H'].number).toEqual(10);
       expect(spec.state.player.elements.H.upgrades['1-1']).toEqual(true);
@@ -91,7 +91,7 @@ describe('Nova', function() {
       spec.state.player.elements.H = {upgrades:{}};
       spec.state.player.elements.H.upgrades['1-1'] = false;
 
-      spec.nova.buyUpgrade('1-1','H');
+      spec.upgrades.buyUpgrade('1-1','H');
 
       expect(spec.state.player.resources['1H'].number).toEqual(10);
       expect(spec.state.player.elements.H.upgrades['1-1']).toEqual(false);
@@ -103,7 +103,7 @@ describe('Nova', function() {
       spec.state.player.elements.H = {upgrades:{}};
       spec.state.player.elements.H.upgrades['1-1'] = true;
 
-      spec.nova.buyUpgrade('1-1','H');
+      spec.upgrades.buyUpgrade('1-1','H');
 
       expect(spec.state.player.resources['1H'].number).toEqual(10);
       expect(spec.state.player.elements.H.upgrades['1-1']).toEqual(true);
@@ -170,7 +170,7 @@ describe('Nova', function() {
           }
         };
 
-        let values = spec.nova.visibleUpgrades('H', spec.data.upgrades);
+        let values = spec.upgrades.visibleUpgrades('H', spec.data.upgrades);
 
         expect(values).toEqual(['1-1']);
       });
@@ -234,7 +234,7 @@ describe('Nova', function() {
           }
         };
 
-        let values = spec.nova.visibleUpgrades('H', spec.data.upgrades);
+        let values = spec.upgrades.visibleUpgrades('H', spec.data.upgrades);
 
         expect(values).toEqual(['1-1','1-2']);
       });

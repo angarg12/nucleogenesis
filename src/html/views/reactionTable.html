@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <h2>{{ct.title}}</h2>
-<div ng-if="ct.reactor.availableReactions(ct.element).length > 0">
+<div ng-if="ct.reactions.availableReactions(ct.element).length > 0">
 <button type="button"
         class="btn btn-default"
-        ng-click="ct.reactor.addReaction(ct.state.player, ct.reactionSelect)">
+        ng-click="ct.reactions.addReaction(ct.state.player, ct.reactionSelect)">
 		Add
   <br>
 </button>
 <select name="reactionSelect"
         ng-model="ct.reactionSelect">
-    <option ng-repeat="reaction in ct.reactor.availableReactions(ct.element)"
+    <option ng-repeat="reaction in ct.reactions.availableReactions(ct.element)"
   value="{{reaction}}">{{reaction}}</option>
-  </select> Slots: {{ct.reactor.reactionSize(ct.state.player)}}/{{ct.reactor.reactionSlots(ct.state.player)}}
+  </select> Slots: {{ct.reactions.reactionSize(ct.state.player)}}/{{ct.reactions.reactionSlots(ct.state.player)}}
 <table class="table">
   <tbody>
     <tr class="animif">
@@ -28,20 +28,20 @@
       </div>
     </tr>
     <tr class="animif"
-        ng-repeat="reaction in ct.reactor.visibleReactions(ct.element) track by $index">
+        ng-repeat="reaction in ct.reactions.visibleReactions(ct.element) track by $index">
       <div class="row">
         <td class="col-lg-10">
           <button type="button"
                   class="btn btn-default"
-                  ng-click="ct.reactor.removeReaction(ct.state.player, reaction)">
+                  ng-click="ct.reactions.removeReaction(ct.state.player, reaction)">
   					Remove
   				</button>
           <span ng-bind-html="ct.util.trustHTML(
-            ct.format.reactionFormat(ct.reactor.reactionPower(ct.state.player),
+            ct.format.reactionFormat(ct.reactions.reactionPower(ct.state.player),
                                       reaction.reaction))"></span>
         </td>
         <td class="col-lg-1">
-          <pretty value="ct.reactor.reactionPower(ct.state.player)"></pretty>
+          <pretty value="ct.reactions.reactionPower(ct.state.player)"></pretty>
         </td>
         <td class="col-lg-1">
           <input type="checkbox"

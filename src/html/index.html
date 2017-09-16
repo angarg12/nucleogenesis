@@ -45,8 +45,8 @@
       ng-controller="main-loop">
   <!-- FIXME: ugly hack to preload components/controllers. If you have a better solution
       please get in touch -->
-  <span ng-controller="ct_matter"></span>
-  <span ng-controller="ct_reactor"></span>
+  <span ng-controller="ct_generators"></span>
+  <span ng-controller="ct_reactions"></span>
   <span ng-controller="ct_redox"></span>
   <span ng-controller="ct_achievements"></span>
   <div>
@@ -72,27 +72,27 @@
       <div id="page-content-wrapper">
         <div class="container-fluid">
           <ul class="nav nav-tabs">
-            <li ui-sref="matter"
+            <li ui-sref="generators"
                 ui-sref-active="active">
               <a>
               Matter
             </a>
             </li>
-            <li ui-sref="nova"
+            <li ui-sref="upgrades"
                 ui-sref-active="active">
               <a>
               Upgrades
             </a>
             </li>
             <li ng-if="state.player.unlocks.hydrogen"
-                ui-sref="supernova"
+                ui-sref="exotic"
                 ui-sref-active="active">
               <a>
               Exotic matter
             </a>
             </li>
             <li ng-if="state.player.unlocks.exotic_matter"
-                ui-sref="void"
+                ui-sref="dark"
                 ui-sref-active="active">
               <a>
               Dark matter
@@ -106,14 +106,14 @@
             </a>
             </li>
             <li ng-if="state.player.dark_upgrades.reactions"
-                ui-sref="reactor"
+                ui-sref="reactions"
                 ui-sref-active="active">
               <a>
               Reactions
             </a>
             </li>
             <li ng-if="state.player.dark_upgrades.table"
-                ui-sref="core"
+                ui-sref="elements"
                 ui-sref-active="active">
               <a>Periodic Table</a>
             </li>

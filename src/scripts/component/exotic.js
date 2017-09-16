@@ -1,5 +1,5 @@
 /**
- supernova
+ exotic
  Component that handles the exotic matter and prestige logic.
  It includes exotic matter production, exotic upgrades, and infusion of
  subatomic particles to boost exotic production.
@@ -10,13 +10,13 @@
  */
 'use strict';
 
-angular.module('game').component('supernova', {
-  templateUrl: 'views/supernova.html',
-  controller: ['state', 'format', 'visibility', 'upgrade', 'data', 'util', supernova],
+angular.module('game').component('exotic', {
+  templateUrl: 'views/exotic.html',
+  controller: ['state', 'format', 'visibility', 'upgrade', 'data', 'util', exotic],
   controllerAs: 'ct'
 });
 
-function supernova(state, format, visibility, upgrade, data, util) {
+function exotic(state, format, visibility, upgrade, data, util) {
   let ct = this;
   ct.state = state;
   ct.data = data;

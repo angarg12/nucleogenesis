@@ -16,7 +16,7 @@ angular
       /**
        * Polyfill for Object.values from the TS39 Proposal. Reflect.ownKeys
        * swapped out for an equivalent using Object instead. Placing it here so
-       * it'll fire before it's needed in ct_matter, and at the top of this
+       * it'll fire before it's needed in ct_generators, and at the top of this
        * controller so it'll only fire once.
        *
        * Polyfill: https://github.com/tc39/proposal-object-values-entries

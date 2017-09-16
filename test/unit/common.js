@@ -54,18 +54,18 @@ let commonSpec = function(spec) {
     spec.state.player.dark_upgrades = {};
     spec.state.player.global_upgrades = {};
 
-    spec.core = _$componentController_('core', null, null);
-    spec.nova = _$componentController_('nova', null, null);
-    spec.supernova = _$componentController_('supernova', null, null);
-    spec.void = _$componentController_('void', null, null);
+    spec.elements = _$componentController_('elements', null, null);
+    spec.upgrades = _$componentController_('upgrades', null, null);
+    spec.exotic = _$componentController_('exotic', null, null);
+    spec.dark = _$componentController_('dark', null, null);
     spec.redox = _$componentController_('redox', null, null);
-    spec.reactor = _$componentController_('reactor', null, null);
-    spec.matter = _$componentController_('matter', null, null);
+    spec.reactions = _$componentController_('reactions', null, null);
+    spec.generators = _$componentController_('generators', null, null);
     spec.options = _$componentController_('options', null, null);
     spec.achievements = _$componentController_('achievements', null, null);
     spec.elementSelect = _$componentController_('elementSelect', null, null);
     spec.sidebar = _$componentController_('sidebar', null, null);
-    spec.reactionTable = _$componentController_('reactionTable', null, {reactor: spec.reactor});
+    spec.reactionTable = _$componentController_('reactionTable', null, {reactions: spec.reactions});
 
     // asinine sanity check for components
     _$componentController_('getHtml', null, null);

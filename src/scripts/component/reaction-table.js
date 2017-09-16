@@ -1,6 +1,6 @@
 /**
  reactionTable
- Component for the table of reactions in the Reactor tab.
+ Component for the table of reactions in the reactions tab.
 
  @namespace Components
  */
@@ -11,7 +11,7 @@ angular.module('game').component('reactionTable', {
   controller: ['$scope', 'util', 'format', 'visibility', 'data', 'state', reactionTable],
   controllerAs: 'ct',
   bindings: {
-    reactor: '<',
+    reactions: '<',
     element: '<',
     title: '<'
   }
@@ -25,6 +25,6 @@ function reactionTable($scope, util, format, visibility, data, state) {
   ct.state = state;
 
   $scope.$watch('ct.element', function() {
-      ct.reactionSelect = ct.reactor.availableReactions(ct.element)[0];
+      ct.reactionSelect = ct.reactions.availableReactions(ct.element)[0];
   });
 }

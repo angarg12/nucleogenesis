@@ -1,5 +1,5 @@
 /**
- void
+ dark
  Component that handles dark matter and second prestige logic.
  It handles dark matter production and dark upgrades.
  A second prestige resets the progress of all elements with exotic
@@ -9,13 +9,13 @@
  */
 'use strict';
 
-angular.module('game').component('void', {
-  templateUrl: 'views/void.html',
-  controller: ['state', 'format', 'visibility', 'upgrade', 'data', 'util', _void],
+angular.module('game').component('dark', {
+  templateUrl: 'views/dark.html',
+  controller: ['state', 'format', 'visibility', 'upgrade', 'data', 'util', dark],
   controllerAs: 'ct'
 });
 
-function _void(state, format, visibility, upgrade, data, util) {
+function dark(state, format, visibility, upgrade, data, util) {
   let ct = this;
   ct.state = state;
   ct.data = data;

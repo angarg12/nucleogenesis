@@ -66,7 +66,7 @@ describe('MainLoop', function() {
       spec.state.player.elements.O = {
         unlocked: true
       };
-      spyOn(spec.matter,'elementProduction').and.returnValue(200);
+      spyOn(spec.generators,'elementProduction').and.returnValue(200);
 
       spec.controller.update();
 
@@ -79,7 +79,7 @@ describe('MainLoop', function() {
       spec.state.player.elements.O = {
         unlocked: true
       };
-      spyOn(spec.matter,'elementProduction').and.returnValue(1200);
+      spyOn(spec.generators,'elementProduction').and.returnValue(1200);
 
       spec.controller.update();
 
@@ -92,7 +92,7 @@ describe('MainLoop', function() {
       spec.state.player.elements.O = {
         unlocked: true
       };
-      spyOn(spec.matter,'elementProduction').and.returnValue(32000);
+      spyOn(spec.generators,'elementProduction').and.returnValue(32000);
 
       spec.controller.update();
 

@@ -1,18 +1,18 @@
 /**
- matter
+ generators
  Component that handles generators, resource creation, isotopes and decay.
 
  @namespace Components
  */
 'use strict';
 
-angular.module('game').component('matter', {
-  templateUrl: 'views/matter.html',
-  controller: 'ct_matter',
+angular.module('game').component('generators', {
+  templateUrl: 'views/generators.html',
+  controller: 'ct_generators',
   controllerAs: 'ct'
 });
 
-angular.module('game').controller('ct_matter', ['state', 'visibility', 'data', 'util', 'reaction',
+angular.module('game').controller('ct_generators', ['state', 'visibility', 'data', 'util', 'reaction',
   function (state, visibility, data, util, reaction) {
     let ct = this;
     ct.state = state;
@@ -204,6 +204,6 @@ angular.module('game').controller('ct_matter', ['state', 'visibility', 'data', '
       return buyAmount[state.buyIndex];
     };
 
-    state.registerUpdate('matter', update);
+    state.registerUpdate('generators', update);
   }
 ]);

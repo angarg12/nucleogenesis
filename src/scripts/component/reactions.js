@@ -1,18 +1,18 @@
 /**
- reactor
+ reactions
  Component that handles reactions and molecules.
 
  @namespace Components
  */
 'use strict';
 
-angular.module('game').component('reactor', {
-  templateUrl: 'views/reactor.html',
-  controller:  'ct_reactor',
+angular.module('game').component('reactions', {
+  templateUrl: 'views/reactions.html',
+  controller:  'ct_reactions',
   controllerAs: 'ct'
 });
 
-angular.module('game').controller('ct_reactor', ['state', 'data', 'visibility', 'util', 'format', 'reaction',
+angular.module('game').controller('ct_reactions', ['state', 'data', 'visibility', 'util', 'format', 'reaction',
 function (state, data, visibility, util, format, reactionService) {
   let ct = this;
   ct.state = state;
@@ -116,5 +116,5 @@ function (state, data, visibility, util, format, reactionService) {
     return available && isReactionVisible(reactionObject, currentElement);
   }
 
-  state.registerUpdate('reactor', update);
+  state.registerUpdate('reactions', update);
 }]);

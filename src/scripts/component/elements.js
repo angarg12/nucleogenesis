@@ -1,5 +1,5 @@
 /**
- core
+ elements
  Component that handles the periodic table tab.
  It includes the logic to purchase and display elements.
 
@@ -7,13 +7,13 @@
  */
 'use strict';
 
-angular.module('game').component('core', {
-  templateUrl: 'views/core.html',
-  controller: ['state', 'data', core],
+angular.module('game').component('elements', {
+  templateUrl: 'views/elements.html',
+  controller: ['state', 'data', elements],
   controllerAs: 'ct'
 });
 
-function core(state, data) {
+function elements(state, data) {
   let ct = this;
   ct.state = state;
   ct.data = data;
