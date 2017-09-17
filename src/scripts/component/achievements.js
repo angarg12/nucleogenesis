@@ -16,8 +16,8 @@ angular.module('game').component('achievements', {
   controllerAs: 'ct'
 });
 
-angular.module('game').controller('ct_achievements', ['$window', 'state', 'data',
-  function ($window, state, data) {
+angular.module('game').controller('ct_achievements', ['$window', 'state', 'data', 'visibility',
+  function ($window, state, data, visibility) {
     /* Achievement functions are derived from the data file. This template
     variable will be replaced with the achievement conditions */
     <%= functions %>
@@ -104,6 +104,21 @@ angular.module('game').controller('ct_achievements', ['$window', 'state', 'data'
 
       return Math.min(100, progress);
     };
+
+    ct.visibleAchievements = function (currentElement) {
+      return visibility.visible(data.achievements, isAchievementVisible, currentElement);
+    };
+
+    function isAchievementVisible(name, currentElement) {
+      let achievement = data.achievements[name];
+      for (let dep of achievement.deps) {
+        if (state.player.unlocks[dep] === 0) {
+          return false;
+        }
+      }
+
+      return true;
+    }
 
     state.registerUpdate('achievement', update);
   }

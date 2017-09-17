@@ -1,9 +1,40 @@
 {
-  "hydrogen": {
+  "hydrogen_million": {
     "condition": "player.resources['1H'].number >= 1e6"
   },
   "isotope": {
-    "condition": "player.resources['2H'].unlocked"
+    "condition": ["(() => {",
+      "for(let key in player.resources){",
+      "  if (data.resources[key].type.indexOf('isotope') !== -1 &&",
+      "      key !== '1H' &&",
+      "      player.resources[key].unlocked) {",
+      "    return true;",
+      "  }",
+      "}",
+      "})()"
+    ]
+  },
+  "molecule": {
+    "condition": ["(() => {",
+      "for(let key in player.resources){",
+      "  if (data.resources[key].type.indexOf('molecule') !== -1 &&",
+      "      player.resources[key].unlocked) {",
+      "    return true;",
+      "  }",
+      "}",
+      "})()"
+    ]
+  },
+  "ion": {
+    "condition": ["(() => {",
+      "for(let key in player.resources){",
+      "  if (data.resources[key].type.indexOf('ion') !== -1 &&",
+      "      player.resources[key].unlocked) {",
+      "    return true;",
+      "  }",
+      "}",
+      "})()"
+    ]
   },
   "exotic_matter": {
     "condition": ["(() => {",
@@ -16,5 +47,38 @@
       "return false;",
       "})()"
     ]
+  },
+  "dark": {
+    "condition": "player.resources['dark_matter'].unlocked"
+  },
+  "radioactive": {
+    "condition": ["(() => {",
+      "for(let key of data.radioisotopes){",
+      "  if (player.resources[key].unlocked) {",
+      "    return true;",
+      "  }",
+      "}",
+      "return false;",
+      "})()"
+    ]
+  },
+  "misc": {
+    "condition": ["(() => {",
+      "for(let key in player.resources){",
+      "  if (data.resources[key].type.indexOf('isotope') === -1 &&",
+      "      data.resources[key].type.indexOf('ion') === -1 &&",
+      "      data.resources[key].type.indexOf('molecule') === -1 &&",
+      "      player.resources[key].unlocked) {",
+      "    return true;",
+      "  }",
+      "}",
+      "})()"
+    ]
+  },
+  "redox": {
+    "condition": "player.dark_upgrades.redox"
+  },
+  "reaction": {
+    "condition": "player.dark_upgrades.reactions"
   }
 }

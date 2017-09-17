@@ -156,6 +156,10 @@ gulp.task('generate_achievements', function() {
   return plugins.run('node build_scripts/generate_achievements.js',{silent:true}).exec();
 });
 
+gulp.task('generate_unlocks', function() {
+  return plugins.run('node build_scripts/generate_unlocks.js',{silent:true}).exec();
+});
+
 gulp.task('generate_achievement_functions', function() {
   return plugins.run('node build_scripts/generate_achievement_functions.js',{silent:false}).exec();
 });
@@ -195,6 +199,7 @@ gulp.task('build', function(callback) {
     'generate_reactions',
     'generate_antimatter',
     'generate_achievements',
+    'generate_unlocks',
     'generate_upgrades',
     'generate_exotic_upgrades',
     'generate_achievement_functions',

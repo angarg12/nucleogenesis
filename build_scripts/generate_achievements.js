@@ -23,7 +23,8 @@ for(let element in elements){
     name: name,
     description: 'Gather '+name,
     goals: goals,
-    progress: 'player.resources["'+main+'"].number'
+    progress: 'player.resources["'+main+'"].number',
+    deps: [element]
   };
 
   let isotopeNumber = Object.keys(elements[element].isotopes).length;
@@ -42,7 +43,8 @@ for(let element in elements){
       '}',
       'return count;',
       '})()'
-    ]
+    ],
+    deps: [element]
   };
 
   let ionNumber = 0;
@@ -68,7 +70,8 @@ for(let element in elements){
         '}',
         'return count;',
         '})()'
-      ]
+      ],
+      deps: [element, 'redox']
     };
   }
 
@@ -96,7 +99,9 @@ for(let element in elements){
         '}',
         'return count;',
         '})()'
-      ]
+      ],
+      deps: [],
+      deps: [element, 'reaction']
     };
   }
 }
@@ -122,7 +127,8 @@ achievements.total_elements = {
     '}',
     'return count;',
     '})()'
-  ]
+  ],
+  deps: ['dark']
 };
 
 // Total isotopes
@@ -147,7 +153,8 @@ achievements.total_isotopes = {
     '}',
     'return count;',
     '})()'
-  ]
+  ],
+  deps: []
 };
 
 // Total ions
@@ -172,7 +179,8 @@ achievements.total_ions = {
     '}',
     'return count;',
     '})()'
-  ]
+  ],
+  deps: ['ion']
 };
 
 // Total molecules
@@ -197,7 +205,8 @@ achievements.total_molecules = {
     '}',
     'return count;',
     '})()'
-  ]
+  ],
+  deps: ['molecule']
 };
 
 // Total misc
@@ -222,7 +231,8 @@ achievements.total_misc = {
     '}',
     'return count;',
     '})()'
-  ]
+  ],
+  deps: ['misc']
 };
 
 // Total radioisotopes
@@ -241,7 +251,8 @@ achievements.total_radioisotopes = {
     '}',
     'return count;',
     '})()'
-  ]
+  ],
+  deps: ['radioactive']
 };
 
 // 'The most' achievements
@@ -266,7 +277,8 @@ achievements.most_unstable = {
     '}',
     'return false;',
     '})()'
-  ]
+  ],
+  deps: []
 };
 
 let mostCharged = 0;
@@ -296,7 +308,8 @@ achievements.most_charged = {
     '}',
     'return false;',
     '})()'
-  ]
+  ],
+  deps: ['ion']
 };
 
 let largestSize = 0;
@@ -334,7 +347,8 @@ achievements.most_large = {
     '}',
     'return false;',
     '})()'
-  ]
+  ],
+  deps: ['molecule']
 };
 
 // All
@@ -351,7 +365,8 @@ achievements.resources_all = {
     '}',
     'return count;',
     '})()'
-  ]
+  ],
+  deps: ['isotope']
 };
 
 jsonfile.writeFileSync('build/data/achievements.json', achievements, {
