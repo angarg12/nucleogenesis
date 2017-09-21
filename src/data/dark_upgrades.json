@@ -1,10 +1,4 @@
 {
-  "table": {
-    "price": 100,
-    "name": "Periodic Table",
-    "description": "Unlocks the periodic table",
-    "deps": []
-  },
   "redox": {
     "price": 100,
     "name": "Redox",
