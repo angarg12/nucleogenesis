@@ -38,7 +38,7 @@ function (state, data, visibility, util, format, reactionService) {
     return number;
   }
 
-  /* Calculates the redox power based on the redox upgrades */
+  /* Calculates the reaction power based on the reaction upgrades */
   ct.reactionPower = function(player) {
     let level = player.global_upgrades.reaction_bandwidth;
     let upgrade = data.global_upgrades.reaction_bandwidth;
@@ -47,7 +47,7 @@ function (state, data, visibility, util, format, reactionService) {
     return basePower * Math.floor(Math.pow(level, polynomial));
   };
 
-  /* Calculates the number of redox slots based on the redox upgrades */
+  /* Calculates the number of reaction slots based on the reaction upgrades */
   ct.reactionSlots = function (player) {
     let level = player.global_upgrades.reaction_slots;
     let upgrade = data.global_upgrades.reaction_slots;
@@ -86,15 +86,12 @@ function (state, data, visibility, util, format, reactionService) {
 
   function isReactionVisible(entry, currentElement) {
     let reaction = entry.reaction;
-    for(let resource in reaction.reactant){
-      let elements = data.resources[resource].elements;
-      if(Object.keys(elements).length === 0 && currentElement === ''){
+    if(reaction.elements.length === 0 && currentElement === ''){
+      return true;
+    }
+    for(let element of reaction.elements){
+      if(element === currentElement){
         return true;
-      }
-      for(let element in elements){
-        if(element === currentElement){
-          return true;
-        }
       }
     }
     return false;

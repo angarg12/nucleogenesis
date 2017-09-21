@@ -35,6 +35,18 @@ describe('Upgrades', function() {
   });
 
   describe('global purchase functions', function() {
+    it('should execute all upgrade functions', function () {
+      for(let key of Object.keys(spec.originalData)){
+        spec.data[key] = angular.copy(spec.originalData[key]);
+      }
+      let player = angular.copy(spec.data.start_player);
+      for(let key in spec.data.upgrades){
+        player.elements.H.upgrades[key] = true;
+      }
+
+      spec.state.update(player);
+    });
+
     it('should return false if an upgrade can\'t be bought', function() {
       spec.state.player.global_upgrades.redox_bandwidth = 0;
       spec.state.player.resources.eV = {number:0};
@@ -107,6 +119,56 @@ describe('Upgrades', function() {
 
       expect(spec.state.player.resources['1H'].number).toEqual(10);
       expect(spec.state.player.elements.H.upgrades['1-1']).toEqual(true);
+    });
+
+    it('should buy all upgrades it can afford', function() {
+      spec.data.elements.H = {main:'1H'};
+      spec.state.player.resources['1H'] = {number:1500};
+      spec.state.player.elements.H = {upgrades:{}};
+      spec.state.player.elements.H.upgrades['1-1'] = false;
+      spec.state.player.elements.H.upgrades['1-2'] = false;
+      spec.state.player.elements.H.upgrades['1-3'] = false;
+      spec.data.upgrades = {
+        '1-3': {
+          price: 10000,
+          tiers: [
+            '1'
+          ],
+          deps: [],
+          exotic_deps: [],
+          dark_deps: [],
+          power: 2
+        },
+        '1-2': {
+          price: 1000,
+          tiers: [
+            '1'
+          ],
+          deps: [],
+          exotic_deps: [],
+          dark_deps: [],
+          power: 2
+        },
+        '1-1': {
+          price: 100,
+          tiers: [
+            '1'
+          ],
+          deps: [],
+          exotic_deps: [],
+          dark_deps: [],
+          power: 2
+        }
+      };
+
+      spec.upgrades.visibleUpgrades = function(){return ['1-1','1-2','1-3']}
+
+      spec.upgrades.buyAll('H');
+
+      expect(spec.state.player.resources['1H'].number).toEqual(400);
+      expect(spec.state.player.elements.H.upgrades['1-1']).toEqual(true);
+      expect(spec.state.player.elements.H.upgrades['1-2']).toEqual(true);
+      expect(spec.state.player.elements.H.upgrades['1-3']).toEqual(false);
     });
   });
 

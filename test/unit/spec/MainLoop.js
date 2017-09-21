@@ -1,5 +1,5 @@
 /* eslint no-var: 0 */
-/* globals describe,commonSpec,it,expect,spyOn, */
+/* globals describe,commonSpec,it,expect,spyOn,beforeEach */
 /* jshint varstmt: false */
 'use strict';
 
@@ -60,6 +60,21 @@ describe('MainLoop', function() {
       spec.controller.update();
 
       expect(spec.state.player).toEqual(copy);
+    });
+
+    it('should process offline gains', function() {
+      spec.state.player.elements.O = {
+        unlocked: true
+      };
+      spyOn(spec.generators,'elementProduction').and.returnValue(1);
+
+      spec.state.offlineCyclesTotal = 100;
+      spec.state.offlineCyclesCurrent = 32;
+
+      spec.controller.processOffline();
+
+      expect(spec.state.player.resources['16O'].number).toEqual(32);
+      expect(spec.state.offlineCyclesCurrent).toEqual(64);
     });
 
     it('should generate isotopes', function() {

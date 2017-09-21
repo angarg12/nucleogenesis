@@ -109,7 +109,7 @@ angular.module('game').controller('ct_achievements', ['$window', 'state', 'data'
       return visibility.visible(data.achievements, isAchievementVisible, currentElement);
     };
 
-    function isAchievementVisible(name, currentElement) {
+    function isAchievementVisible(name) {
       let achievement = data.achievements[name];
       for (let dep of achievement.deps) {
         if (state.player.unlocks[dep] === 0) {

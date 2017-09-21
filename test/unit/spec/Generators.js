@@ -1,5 +1,5 @@
 /* eslint no-var: 0 */
-/* globals describe,commonSpec,it,expect */
+/* globals describe,commonSpec,it,expect,beforeEach */
 /* jshint varstmt: false */
 'use strict';
 

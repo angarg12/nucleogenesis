@@ -1,5 +1,5 @@
 /* eslint no-var: 0 */
-/* globals describe,commonSpec,it,expect */
+/* globals describe,commonSpec,it,expect,beforeEach */
 /* jshint varstmt: false */
 'use strict';
 
@@ -12,7 +12,8 @@ describe('Exotic', function() {
     spec.data.constants = {
       'EXOTIC_POWER': 0.001,
       'EXOTIC_STEP_QUOTIENT': 1e5,
-      'EXOTIC_SIGMOID_MAGIC': 5.747734128
+      'EXOTIC_SIGMOID_MAGIC': 5.747734128,
+      'INFUSE_POWER': 0.01
     };
   });
   describe('prestige', function() {
@@ -124,7 +125,6 @@ describe('Exotic', function() {
         p: {elements: {}, type: ['subatomic']}
       };
       spec.state.player.resources.p = {number:0, unlocked: true};
-      spec.data.constants.INFUSE_POWER = 0.01;
       spec.exotic.infuse.p = 0;
 
       let value = spec.exotic.infuseBoost('p');
@@ -137,7 +137,6 @@ describe('Exotic', function() {
         p: {elements: {}, type: ['subatomic']}
       };
       spec.state.player.resources.p = {number:1000, unlocked: true};
-      spec.data.constants.INFUSE_POWER = 0.01;
       spec.exotic.infuse.p = 1000;
 
       let value = spec.exotic.infuseBoost('p');
@@ -152,13 +151,39 @@ describe('Exotic', function() {
       };
       spec.state.player.resources.p = {number:1000, unlocked: true};
       spec.state.player.resources.n = {number:1000, unlocked: true};
-      spec.data.constants.INFUSE_POWER = 0.01;
       spec.exotic.infuse.p = 1000;
       spec.exotic.infuse.n = 1000;
 
       let value = spec.exotic.totalInfuseBoost();
 
       expect(value).toBeCloseTo(1.7149618898, 4);
+    });
+
+    it('should include infusion into exotic production', function() {
+      spec.data.elements.H = {
+        exotic:'xH',
+        includes: ['1H']
+      };
+      spec.data.resources = {
+        '1H': {elements: {H: 1}, type: ['isotope']},
+          p: {elements: {}, type: ['subatomic']},
+          n: {elements: {}, type: ['subatomic']}
+      };
+      spec.state.player.elements.H = {
+        upgrades: {},
+        generators: {}
+      };
+      spec.state.current_element = 'H';
+      spec.state.player.resources['1H'] = {number:1e8, unlocked: true};
+      spec.state.player.resources.xH = {number:0, unlocked: false};
+      spec.state.player.resources.p = {number:1000, unlocked: true};
+      spec.state.player.resources.n = {number:1000, unlocked: true};
+      spec.exotic.infuse.p = 1000;
+      spec.exotic.infuse.n = 1000;
+
+      spec.exotic.exoticPrestige();
+
+      expect(spec.state.player.resources.xH.number).toEqual(185);
     });
   });
 

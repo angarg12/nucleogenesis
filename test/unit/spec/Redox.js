@@ -1,5 +1,5 @@
 /* eslint no-var: 0 */
-/* globals describe,commonSpec,it,expect */
+/* globals describe,commonSpec,it,expect,beforeEach */
 /* jshint varstmt: false */
 'use strict';
 
@@ -174,6 +174,14 @@ describe('Redox component', function () {
       });
     });
 
+    it('should calculate redox power', function () {
+      spec.state.player.global_upgrades.redox_bandwidth = 2;
+
+      let power = spec.redox.redoxPower(spec.state.player);
+
+      expect(power).toEqual(400);
+    });
+
     it('should process redoxes', function () {
       spec.state.player.redox = [{
         resource: '1H',
@@ -255,7 +263,7 @@ describe('Redox component', function () {
       expect(spec.state.player.resources.p.number).toEqual(100);
     });
 
-    it('should not react of not enough colaterals are available', function () {
+    it('should not react of not enough collaterals are available', function () {
       let redox = {
         resource: '1H',
         active: true,

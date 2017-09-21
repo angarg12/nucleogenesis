@@ -1,5 +1,5 @@
 /* eslint no-var: 0 */
-/* globals describe,commonSpec,it,expect */
+/* globals describe,commonSpec,it,expect,beforeEach */
 /* jshint varstmt: false */
 'use strict';
 
@@ -24,7 +24,10 @@ describe('Achievements component', function () {
         1000000,
         1000000000
       ],
-      'progress': 'hydrogen'
+      'progress': 'hydrogen',
+      'deps': [
+        'H'
+      ]
     };
     spec.achievements.hydrogen = function(p){return p.resources['1H'].number;};
     spec.data.achievements.isotope = {
@@ -33,7 +36,10 @@ describe('Achievements component', function () {
       'goals': [
         1
       ],
-      'progress': 'isotope'
+      'progress': 'isotope',
+      'deps': [
+        'isotope'
+      ]
     };
     spec.achievements.isotope = function(p){return p.resources['2H'].unlocked ? 1 : 0;};
   });
@@ -161,6 +167,24 @@ describe('Achievements component', function () {
       let level = spec.achievements.numberUnlocked(spec.state.player);
 
       expect(level).toEqual(3);
+    });
+
+    it('should hide achievements that are not visible', function () {
+      spec.state.player.unlocks.H = 0;
+      spec.state.player.unlocks.isotope = 0;
+
+      let visible = spec.achievements.visibleAchievements('H');
+
+      expect(visible).toEqual([]);
+    });
+
+    it('should show visible achievements', function () {
+      spec.state.player.unlocks.H = 1;
+      spec.state.player.unlocks.isotope = 0;
+
+      let visible = spec.achievements.visibleAchievements('H');
+
+      expect(visible).toEqual(['hydrogen']);
     });
   });
 });
