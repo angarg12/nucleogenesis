@@ -9,58 +9,53 @@ describe('Elements component', function() {
   commonSpec(spec);
 
   describe('prices and cost', function() {
-    it('should calculate element price', function() {
-      spec.data.constants.ELEMENT_PRICE_INCREASE = 2;
-      spec.data.elements.O = {number: 8};
-      spec.state.player = {};
-      spec.state.player.elements_unlocked = 1;
-
-      let value = spec.elements.elementPrice('O');
-
-      expect(value).toEqual(16);
-    });
-
-    it('should calculate element price 2', function() {
-      spec.data.constants.ELEMENT_PRICE_INCREASE = 2;
-      spec.data.elements.Sn = {number: 50};
-      spec.state.player = {};
-      spec.state.player.elements_unlocked = 5;
-
-      let value = spec.elements.elementPrice('Sn');
-
-      // without the precision it doesn't work!!
-      expect(value.toPrecision(6)).toBeCloseTo(1600,6);
-    });
   });
 
   describe('purchase functions', function() {
-    it('should purchase element if cost is met', function() {
-      spec.data.constants.ELEMENT_PRICE_INCREASE = 2;
-      spec.data.elements.O = {number: 8};
+    it('should not purchase element if roll is failed', function() {
+      spec.data.elements.O = {abundance: 0.5};
       spec.state.player = {elements:{},resources:{},elements_unlocked:1};
-      spec.state.player.resources.dark_matter = {number:256};
+      spec.state.player.resources.dark_matter = {number:1};
       spec.state.player.elements.O = {unlocked:false,generators:{}};
       spec.state.player.elements.O.generators['1'] = 0;
 
+      spyOn(Math, 'random').and.returnValue(0.7);
+
       spec.elements.buyElement('O');
 
-      expect(spec.state.player.resources.dark_matter.number).toEqual(240);
+      expect(spec.state.player.resources.dark_matter.number).toEqual(0);
+      expect(spec.state.player.elements.O.unlocked).toEqual(false);
+      expect(spec.state.player.elements.O.generators['1']).toEqual(0);
+      expect(spec.state.player.elements_unlocked).toEqual(1);
+    });
+
+    it('should purchase element if roll is successful', function() {
+      spec.data.elements.O = {abundance: 0.5};
+      spec.state.player = {elements:{},resources:{},elements_unlocked:1};
+      spec.state.player.resources.dark_matter = {number:1};
+      spec.state.player.elements.O = {unlocked:false,generators:{}};
+      spec.state.player.elements.O.generators['1'] = 0;
+
+      spyOn(Math, 'random').and.returnValue(0.2);
+
+      spec.elements.buyElement('O');
+
+      expect(spec.state.player.resources.dark_matter.number).toEqual(0);
       expect(spec.state.player.elements.O.unlocked).toEqual(true);
       expect(spec.state.player.elements.O.generators['1']).toEqual(1);
       expect(spec.state.player.elements_unlocked).toEqual(2);
     });
 
     it('should not purchase element if cost is not met', function() {
-      spec.data.constants.ELEMENT_PRICE_INCREASE = 2;
-      spec.data.elements.O = {number: 8};
+      spec.data.elements.O = {abundance: 1};
       spec.state.player = {elements:{},resources:{},elements_unlocked:2};
-      spec.state.player.resources.dark_matter = {number:1};
+      spec.state.player.resources.dark_matter = {number:0};
       spec.state.player.elements.O = {unlocked:false,generators:{}};
       spec.state.player.elements.O.generators['1'] = 0;
 
       spec.elements.buyElement('O');
 
-      expect(spec.state.player.resources.dark_matter.number).toEqual(1);
+      expect(spec.state.player.resources.dark_matter.number).toEqual(0);
       expect(spec.state.player.elements.O.unlocked).toEqual(false);
       expect(spec.state.player.elements.O.generators['1']).toEqual(0);
       expect(spec.state.player.elements_unlocked).toEqual(2);
@@ -102,8 +97,7 @@ describe('Elements component', function() {
       spec.state.player.elements = {};
       spec.state.player.elements.H = {unlocked: false};
       spec.state.player.resources = {};
-      spec.state.player.resources.dark_matter = {number: 1e6};
-      spyOn(spec.elements, 'elementPrice').and.returnValue(100);
+      spec.state.player.resources.dark_matter = {number: 1};
 
       let clazz = spec.elements.elementClass('H');
 
@@ -116,7 +110,6 @@ describe('Elements component', function() {
       spec.state.player.elements.H = {unlocked: false};
       spec.state.player.resources = {};
       spec.state.player.resources.dark_matter = {number: 0};
-      spyOn(spec.elements, 'elementPrice').and.returnValue(100);
 
       let clazz = spec.elements.elementClass('H');
 

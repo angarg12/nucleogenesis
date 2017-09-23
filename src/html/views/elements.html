@@ -13,6 +13,9 @@
         {{value.name}}
       </div>
       <p>
+        Abundance: <pretty value="ct.data.elements[element].abundance*100"></pretty>%
+      </p>
+      <p>
         Isotopes: {{ct.data.elements[element].isotopes | keylength}}
       </p>
       <p>
@@ -22,12 +25,16 @@
            ng-show="ct.state.player.elements.hasOwnProperty(element) && ct.state.player.elements[element].unlocked != true">
         <p>
           Cost:
-          <pretty value="ct.elementPrice(element)"></pretty>
+          <pretty value="ct.elementPrice"></pretty>
           <get-html value="'dark_matter'"></get-html>
         </p>
         <p ng-click="ct.buyElement(element)"
            class="btn btn-default">
           Buy
+        </p>
+        {{ct.outcome[element]}}
+        <p>
+          Success: <pretty value="ct.getChance(element)*100"></pretty>%
         </p>
       </div>
     </div>

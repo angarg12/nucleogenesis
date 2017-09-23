@@ -9,37 +9,46 @@
 
 angular.module('game').component('elements', {
   templateUrl: 'views/elements.html',
-  controller: ['state', 'data', elements],
+  controller: ['$timeout', 'state', 'data', elements],
   controllerAs: 'ct'
 });
 
-function elements(state, data) {
+function elements($timeout, state, data) {
   let ct = this;
+  ct.elementPrice = 1;
   ct.state = state;
   ct.data = data;
+  ct.outcome = {};
 
-  ct.elementPrice = function (element) {
-    return Math.floor(Math.pow(data.constants.ELEMENT_PRICE_INCREASE, state.player.elements_unlocked) *
-                              data.elements[element].number);
+  ct.getChance = function(element) {
+    let bonus = 0;
+    for(let isotope in data.elements[element].isotopes){
+      bonus += state.player.resources[isotope].number*data.constants.ELEMENT_CHANCE_BONUS;
+    }
+    return Math.min(1, data.elements[element].abundance*(1+bonus));
   };
-
-   function isElementCostMet(element) {
-    let price = ct.elementPrice(element);
-    return state.player.resources.dark_matter.number >= price;
-  }
 
   ct.buyElement = function (element) {
     if (state.player.elements[element].unlocked) {
       return;
     }
-    if (isElementCostMet(element)) {
-      let price = ct.elementPrice(element);
-      state.player.resources.dark_matter.number -= price;
+    if (state.player.resources.dark_matter.number >= ct.elementPrice) {
+      state.player.resources.dark_matter.number -= ct.elementPrice;
 
-      state.player.elements[element].unlocked = true;
-      state.player.elements[element].generators['1'] = 1;
-      state.player.elements_unlocked++;
+      if(Math.random() < ct.getChance(element)){
+        state.player.elements[element].unlocked = true;
+        state.player.elements[element].generators['1'] = 1;
+        state.player.elements_unlocked++;
+        ct.outcome[element] = 'Success';
+      }else{
+        ct.outcome[element] = 'Fail';
+      }
+      $timeout(function(){ct.clearMessage(element);}, 1000)
     }
+  };
+
+  ct.clearMessage = function (element) {
+    ct.outcome[element] = '';
   };
 
   /* This function returns the class that determines on which
@@ -51,7 +60,7 @@ function elements(state, data) {
     if (state.player.elements[element].unlocked) {
       return 'element_purchased';
     }else{
-      if(isElementCostMet(element)) {
+      if(state.player.resources.dark_matter.number >= ct.elementPrice) {
         return 'element_cost_met';
       }else{
         return 'element_cost_not_met';

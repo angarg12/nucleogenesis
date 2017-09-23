@@ -38,6 +38,9 @@ angular
         if (number === Infinity) {
           return '&infin;';
         }
+        if (number === 0) {
+          return '0';
+        }
         if (number > 1e6) {
           // Very ugly way to extract the mantisa and exponent from an exponential string
           let exponential = number.toPrecision(6).split('e');
@@ -48,8 +51,18 @@ angular
             this.prettifyNumber(exponent) +
             '</sup>';
         }
+        if (number < 1e-6) {
+          // Very ugly way to extract the mantisa and exponent from an exponential string
+          let exponential = number.toPrecision(6).split('e');
+          let exponent = parseFloat(exponential[1].split('-')[1]);
+          // And it is displayed with superscript
+          return Number.parseFloat(exponential[0]).toFixed(4) +
+            ' &#215; 10<sup>-' +
+            this.prettifyNumber(exponent) +
+            '</sup>';
+        }
         // we use a regex to remove trailing zeros, plus . (if necessary)
-        return prettyNumber(number, 4);
+        return prettyNumber(number, 6);
       };
 
       this.randomDraw = function(number, p) {

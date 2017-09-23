@@ -26,10 +26,12 @@
     "ionization_energy": [
       13.5984
     ],
-    "electron_affinity": [-0.7545,
+    "electron_affinity": [
+      -0.7545,
       5.9498
     ],
-    "number": 1
+    "number": 1,
+    "abundance": 0.91075
   },
   "He": {
     "name": "Helium",
@@ -51,7 +53,8 @@
       19.7,
       6.92802
     ],
-    "number": 2
+    "number": 2,
+    "abundance": 0.087822
   },
   "Li": {
     "name": "Lithium",
@@ -70,10 +73,12 @@
       75.64018,
       122.45429
     ],
-    "electron_affinity": [-0.6177,
+    "electron_affinity": [
+      -0.6177,
       8.1321
     ],
-    "number": 3
+    "number": 3,
+    "abundance": 1.854e-9
   },
   "Be": {
     "name": "Beryllium",
@@ -117,7 +122,8 @@
       2.4,
       7.8287
     ],
-    "number": 4
+    "number": 4,
+    "abundance": 2.2769e-11
   },
   "B": {
     "name": "Boron",
@@ -138,10 +144,12 @@
       259.37521,
       340.2258
     ],
-    "electron_affinity": [-0.2767,
+    "electron_affinity": [
+      -0.2767,
       7.5824
     ],
-    "number": 5
+    "number": 5,
+    "abundance": 6.8306e-10
   },
   "C": {
     "name": "Carbon",
@@ -187,10 +195,12 @@
       392.087,
       489.99334
     ],
-    "electron_affinity": [-1.5951,
+    "electron_affinity": [
+      -1.5951,
       10.1104
     ],
-    "number": 6
+    "number": 6,
+    "abundance": 0.00032527
   },
   "N": {
     "name": "Nitrogen",
@@ -229,7 +239,8 @@
       1.7,
       9.5145
     ],
-    "number": 7
+    "number": 7,
+    "abundance": 0.00010083
   },
   "O": {
     "name": "Oxygen",
@@ -257,10 +268,12 @@
       739.29,
       871.4101
     ],
-    "electron_affinity": [-1.4614,
+    "electron_affinity": [
+      -1.4614,
       8.8899
     ],
-    "number": 8
+    "number": 8,
+    "abundance": 0.00078064
   },
   "F": {
     "name": "Fluorine",
@@ -293,10 +306,12 @@
       953.9112,
       1103.1176
     ],
-    "electron_affinity": [-3.3995,
+    "electron_affinity": [
+      -3.3995,
       7.8287
     ],
-    "number": 9
+    "number": 9,
+    "abundance": 2.7648e-8
   },
   "Ne": {
     "name": "Neon",
@@ -326,7 +341,8 @@
       1195.8286,
       1362.1995
     ],
-    "number": 10
+    "number": 10,
+    "abundance": 0.00009758
   },
   "Na": {
     "name": "Sodium",
@@ -373,10 +389,12 @@
       1465.121,
       1648.702
     ],
-    "electron_affinity": [-0.5472,
+    "electron_affinity": [
+      -0.5472,
       7.7838
     ],
-    "number": 11
+    "number": 11,
+    "abundance": 0.000001854
   },
   "Mg": {
     "name": "Magnesium",
@@ -408,7 +426,8 @@
       1761.805,
       1962.665
     ],
-    "number": 12
+    "number": 12,
+    "abundance": 0.000035779
   },
   "Al": {
     "name": "Aluminium",
@@ -445,10 +464,12 @@
       2085.98,
       2304.141
     ],
-    "electron_affinity": [-0.4405,
+    "electron_affinity": [
+      -0.4405,
       6.792
     ],
-    "number": 13
+    "number": 13,
+    "abundance": 0.0000027648
   },
   "Si": {
     "name": "Silicon",
@@ -506,10 +527,12 @@
       2437.63,
       2673.182
     ],
-    "electron_affinity": [-1.3847,
+    "electron_affinity": [
+      -1.3847,
       7.3661
     ],
-    "number": 14
+    "number": 14,
+    "abundance": 0.000032527
   },
   "P": {
     "name": "Phosphorus",
@@ -560,10 +583,12 @@
       2816.91,
       3069.842
     ],
-    "electron_affinity": [-0.7462,
+    "electron_affinity": [
+      -0.7462,
       8.2682
     ],
-    "number": 15
+    "number": 15,
+    "abundance": 3.2527e-7
   },
   "S": {
     "name": "Sulfur",
@@ -615,10 +640,12 @@
       3223.78,
       3494.1892
     ],
-    "electron_affinity": [-2.0729,
+    "electron_affinity": [
+      -2.0729,
       6.4885
     ],
-    "number": 16
+    "number": 16,
+    "abundance": 0.000016914
   },
   "Cl": {
     "name": "Chlorine",
@@ -666,10 +693,12 @@
       3658.521,
       3946.296
     ],
-    "electron_affinity": [-3.6171,
+    "electron_affinity": [
+      -3.6171,
       7.0613
     ],
-    "number": 17
+    "number": 17,
+    "abundance": 1.6914e-7
   },
   "Ar": {
     "name": "Argon",
@@ -747,7 +776,8 @@
       11.5,
       6.8681
     ],
-    "number": 18
+    "number": 18,
+    "abundance": 0.0000032527
   },
   "K": {
     "name": "Potassium",
@@ -797,10 +827,12 @@
       4610.8,
       4934.046
     ],
-    "electron_affinity": [-0.5016,
+    "electron_affinity": [
+      -0.5016,
       6.8695
     ],
-    "number": 19
+    "number": 19,
+    "abundance": 1.236e-7
   },
   "Ca": {
     "name": "Calcium",
@@ -899,10 +931,12 @@
       5128.8,
       5469.864
     ],
-    "electron_affinity": [-0.0246,
+    "electron_affinity": [
+      -0.0246,
       6.4504
     ],
-    "number": 20
+    "number": 20,
+    "abundance": 0.0000019841
   },
   "Sc": {
     "name": "Scandium",
@@ -983,10 +1017,12 @@
       5674.8,
       6033.712
     ],
-    "electron_affinity": [-0.1876,
+    "electron_affinity": [
+      -0.1876,
       8.5471
     ],
-    "number": 21
+    "number": 21,
+    "abundance": 1.1059e-9
   },
   "Ti": {
     "name": "Titanium",
@@ -1048,10 +1084,12 @@
       6249,
       6625.82
     ],
-    "electron_affinity": [-0.0788,
+    "electron_affinity": [
+      -0.0788,
       9.3988
     ],
-    "number": 22
+    "number": 22,
+    "abundance": 7.8064e-8
   },
   "V": {
     "name": "Vanadium",
@@ -1125,10 +1163,12 @@
       6851.3,
       7246.12
     ],
-    "electron_affinity": [-0.5244,
+    "electron_affinity": [
+      -0.5244,
       7.8654
     ],
-    "number": 23
+    "number": 23,
+    "abundance": 9.4327e-9
   },
   "Cr": {
     "name": "Chromium",
@@ -1188,10 +1228,12 @@
       7481.7,
       7894.81
     ],
-    "electron_affinity": [-0.6664,
+    "electron_affinity": [
+      -0.6664,
       11.378
     ],
-    "number": 24
+    "number": 24,
+    "abundance": 4.2285e-7
   },
   "Mn": {
     "name": "Manganese",
@@ -1271,7 +1313,8 @@
       1,
       10.8546
     ],
-    "number": 25
+    "number": 25,
+    "abundance": 3.09e-7
   },
   "Fe": {
     "name": "Iron",
@@ -1357,10 +1400,12 @@
       8828,
       9277.69
     ],
-    "electron_affinity": [-0.1627,
+    "electron_affinity": [
+      -0.1627,
       10.3879
     ],
-    "number": 26
+    "number": 26,
+    "abundance": 0.000029274
   },
   "Co": {
     "name": "Cobalt",
@@ -1447,10 +1492,12 @@
       9544.1,
       10012.12
     ],
-    "electron_affinity": [-0.6602,
+    "electron_affinity": [
+      -0.6602,
       13.7077
     ],
-    "number": 27
+    "number": 27,
+    "abundance": 7.4811e-8
   },
   "Ni": {
     "name": "Nickel",
@@ -1530,10 +1577,12 @@
       10288.8,
       10775.4
     ],
-    "electron_affinity": [-1.1608,
+    "electron_affinity": [
+      -1.1608,
       7.2818
     ],
-    "number": 28
+    "number": 28,
+    "abundance": 0.0000016263
   },
   "Cu": {
     "name": "Copper",
@@ -1605,10 +1654,12 @@
       11062.38,
       11567.617
     ],
-    "electron_affinity": [-1.2271,
+    "electron_affinity": [
+      -1.2271,
       8.5933
     ],
-    "number": 29
+    "number": 29,
+    "abundance": 1.6914e-8
   },
   "Zn": {
     "name": "Zinc",
@@ -1705,7 +1756,8 @@
       738,
       1856
     ],
-    "number": 30
+    "number": 30,
+    "abundance": 4.2285e-8
   },
   "Ga": {
     "name": "Gallium",
@@ -1800,10 +1852,12 @@
       30.71,
       64
     ],
-    "electron_affinity": [-0.2995,
+    "electron_affinity": [
+      -0.2995,
       6.9471
     ],
-    "number": 31
+    "number": 31,
+    "abundance": 1.236e-9
   },
   "Ge": {
     "name": "Germanium",
@@ -1868,10 +1922,12 @@
       45.7131,
       93.5
     ],
-    "electron_affinity": [-1.2333,
+    "electron_affinity": [
+      -1.2333,
       8.1444
     ],
-    "number": 32
+    "number": 32,
+    "abundance": 3.9032e-9
   },
   "As": {
     "name": "Arsenic",
@@ -1916,10 +1972,12 @@
       62.63,
       127.6
     ],
-    "electron_affinity": [-0.8084,
+    "electron_affinity": [
+      -0.8084,
       7.1375
     ],
-    "number": 33
+    "number": 33,
+    "abundance": 2.1468e-10
   },
   "Se": {
     "name": "Selenium",
@@ -2002,10 +2060,12 @@
       81.7,
       155.4
     ],
-    "electron_affinity": [-2.021,
+    "electron_affinity": [
+      -2.021,
       6.1892
     ],
-    "number": 34
+    "number": 34,
+    "abundance": 2.0492e-9
   },
   "Br": {
     "name": "Bromine",
@@ -2029,10 +2089,12 @@
       103,
       192.8
     ],
-    "electron_affinity": [-3.3642,
+    "electron_affinity": [
+      -3.3642,
       6.8083
     ],
-    "number": 35
+    "number": 35,
+    "abundance": 3.9032e-10
   },
   "Kr": {
     "name": "Krypton",
@@ -2138,7 +2200,8 @@
       3227,
       3381
     ],
-    "number": 36
+    "number": 36,
+    "abundance": 1.5613e-9
   },
   "Rb": {
     "name": "Rubidium",
@@ -2214,8 +2277,11 @@
       150,
       277.1
     ],
-    "electron_affinity": [-0.4861],
-    "number": 37
+    "electron_affinity": [
+      -0.4861
+    ],
+    "number": 37,
+    "abundance": 2.2769e-10
   },
   "Sr": {
     "name": "Strontium",
@@ -2310,8 +2376,11 @@
       177,
       324.1
     ],
-    "electron_affinity": [-0.0521],
-    "number": 38
+    "electron_affinity": [
+      -0.0521
+    ],
+    "number": 38,
+    "abundance": 7.8064e-10
   },
   "Y": {
     "name": "Yttrium",
@@ -2383,8 +2452,11 @@
       206,
       374
     ],
-    "electron_affinity": [-0.3068],
-    "number": 39
+    "electron_affinity": [
+      -0.3068
+    ],
+    "number": 39,
+    "abundance": 1.4962e-10
   },
   "Zr": {
     "name": "Zirconium",
@@ -2462,8 +2534,11 @@
       80.348,
       98.461
     ],
-    "electron_affinity": [-0.426],
-    "number": 40
+    "electron_affinity": [
+      -0.426
+    ],
+    "number": 40,
+    "abundance": 3.708e-10
   },
   "Nb": {
     "name": "Niobium",
@@ -2557,8 +2632,11 @@
       102.057,
       125
     ],
-    "electron_affinity": [-0.8924],
-    "number": 41
+    "electron_affinity": [
+      -0.8924
+    ],
+    "number": 41,
+    "abundance": 2.2769e-11
   },
   "Mo": {
     "name": "Molybdenum",
@@ -2656,8 +2734,11 @@
       1535,
       1601
     ],
-    "electron_affinity": [-0.7452],
-    "number": 42
+    "electron_affinity": [
+      -0.7452
+    ],
+    "number": 42,
+    "abundance": 8.4569e-11
   },
   "Tc": {
     "name": "Technetium",
@@ -2716,8 +2797,11 @@
       15.26,
       29.54
     ],
-    "electron_affinity": [-0.5493],
-    "number": 43
+    "electron_affinity": [
+      -0.5493
+    ],
+    "number": 43,
+    "abundance": 0
   },
   "Ru": {
     "name": "Ruthenium",
@@ -2792,8 +2876,11 @@
       16.76,
       28.47
     ],
-    "electron_affinity": [-1.0499],
-    "number": 44
+    "electron_affinity": [
+      -1.0499
+    ],
+    "number": 44,
+    "abundance": 6.1801e-11
   },
   "Rh": {
     "name": "Rhodium",
@@ -2859,8 +2946,11 @@
       18.08,
       31.06
     ],
-    "electron_affinity": [-1.137],
-    "number": 45
+    "electron_affinity": [
+      -1.137
+    ],
+    "number": 45,
+    "abundance": 1.1059e-11
   },
   "Pd": {
     "name": "Palladium",
@@ -2931,8 +3021,11 @@
       19.43,
       32.93
     ],
-    "electron_affinity": [-0.5566],
-    "number": 46
+    "electron_affinity": [
+      -0.5566
+    ],
+    "number": 46,
+    "abundance": 4.5537e-11
   },
   "Ag": {
     "name": "Silver",
@@ -2975,8 +3068,11 @@
       21.49,
       34.83
     ],
-    "electron_affinity": [-1.3017],
-    "number": 47
+    "electron_affinity": [
+      -1.3017
+    ],
+    "number": 47,
+    "abundance": 1.5938e-11
   },
   "Cd": {
     "name": "Cadmium",
@@ -3071,7 +3167,8 @@
       16.90832,
       37.48
     ],
-    "number": 48
+    "number": 48,
+    "abundance": 5.2043e-11
   },
   "In": {
     "name": "Indium",
@@ -3099,8 +3196,11 @@
       28.03,
       54
     ],
-    "electron_affinity": [-0.2995],
-    "number": 49
+    "electron_affinity": [
+      -0.2995
+    ],
+    "number": 49,
+    "abundance": 6.1801e-12
   },
   "Sn": {
     "name": "Tin",
@@ -3165,8 +3265,11 @@
       40.73502,
       72.28
     ],
-    "electron_affinity": [-1.1121],
-    "number": 50
+    "electron_affinity": [
+      -1.1121
+    ],
+    "number": 50,
+    "abundance": 1.2685e-10
   },
   "Sb": {
     "name": "Antimony",
@@ -3200,8 +3303,11 @@
       56,
       108
     ],
-    "electron_affinity": [-1.0696],
-    "number": 51
+    "electron_affinity": [
+      -1.0696
+    ],
+    "number": 51,
+    "abundance": 1.0083e-11
   },
   "Te": {
     "name": "Tellurium",
@@ -3300,8 +3406,11 @@
       70.7,
       137
     ],
-    "electron_affinity": [-1.9713],
-    "number": 52
+    "electron_affinity": [
+      -1.9713
+    ],
+    "number": 52,
+    "abundance": 1.5938e-10
   },
   "I": {
     "name": "Iodine",
@@ -3388,8 +3497,11 @@
       19.1313,
       33
     ],
-    "electron_affinity": [-3.0595],
-    "number": 53
+    "electron_affinity": [
+      -3.0595
+    ],
+    "number": 53,
+    "abundance": 2.9274e-11
   },
   "Xe": {
     "name": "Xenon",
@@ -3495,7 +3607,8 @@
     "electron_affinity": [
       0.056
     ],
-    "number": 54
+    "number": 54,
+    "abundance": 1.5613e-10
   },
   "Cs": {
     "name": "Caesium",
@@ -3546,8 +3659,11 @@
       23.15745,
       35.239
     ],
-    "electron_affinity": [-0.4716],
-    "number": 55
+    "electron_affinity": [
+      -0.4716
+    ],
+    "number": 55,
+    "abundance": 1.2035e-11
   },
   "Ba": {
     "name": "Barium",
@@ -3606,8 +3722,11 @@
       10.0039,
       37.311
     ],
-    "electron_affinity": [-0.1446],
-    "number": 56
+    "electron_affinity": [
+      -0.1446
+    ],
+    "number": 56,
+    "abundance": 1.4637e-10
   },
   "La": {
     "name": "Lanthanum",
@@ -3651,8 +3770,11 @@
       49.95,
       61.6
     ],
-    "electron_affinity": [-0.55],
-    "number": 57
+    "electron_affinity": [
+      -0.55
+    ],
+    "number": 57,
+    "abundance": 1.4312e-11
   },
   "Ce": {
     "name": "Cerium",
@@ -3742,8 +3864,11 @@
       65.55,
       77.6
     ],
-    "electron_affinity": [-0.57],
-    "number": 58
+    "electron_affinity": [
+      -0.57
+    ],
+    "number": 58,
+    "abundance": 3.5779e-11
   },
   "Pr": {
     "name": "Praseodymium",
@@ -3787,8 +3912,11 @@
       38.98,
       57.53
     ],
-    "electron_affinity": [-0.962],
-    "number": 59
+    "electron_affinity": [
+      -0.962
+    ],
+    "number": 59,
+    "abundance": 5.5295e-12
   },
   "Nd": {
     "name": "Neodymium",
@@ -3844,8 +3972,11 @@
       22.1,
       40.41
     ],
-    "electron_affinity": [-0.162],
-    "number": 60
+    "electron_affinity": [
+      -0.162
+    ],
+    "number": 60,
+    "abundance": 2.6997e-11
   },
   "Pm": {
     "name": "Promethium",
@@ -3896,8 +4027,11 @@
       22.3,
       41.1
     ],
-    "electron_affinity": [-0.129],
-    "number": 61
+    "electron_affinity": [
+      -0.129
+    ],
+    "number": 61,
+    "abundance": 0
   },
   "Sm": {
     "name": "Samarium",
@@ -4001,8 +4135,11 @@
       23.4,
       41.4
     ],
-    "electron_affinity": [-0.162],
-    "number": 62
+    "electron_affinity": [
+      -0.162
+    ],
+    "number": 62,
+    "abundance": 8.4569e-12
   },
   "Eu": {
     "name": "Europium",
@@ -4084,8 +4221,11 @@
       24.92,
       42.7
     ],
-    "electron_affinity": [-0.116],
-    "number": 63
+    "electron_affinity": [
+      -0.116
+    ],
+    "number": 63,
+    "abundance": 3.1551e-12
   },
   "Gd": {
     "name": "Gadolinium",
@@ -4157,8 +4297,11 @@
       20.63,
       44
     ],
-    "electron_affinity": [-0.137],
-    "number": 64
+    "electron_affinity": [
+      -0.137
+    ],
+    "number": 64,
+    "abundance": 1.0734e-11
   },
   "Tb": {
     "name": "Terbium",
@@ -4201,8 +4344,11 @@
       21.91,
       39.79
     ],
-    "electron_affinity": [-0.436],
-    "number": 65
+    "electron_affinity": [
+      -0.436
+    ],
+    "number": 65,
+    "abundance": 1.9516e-12
   },
   "Dy": {
     "name": "Dysprosium",
@@ -4254,8 +4400,11 @@
       22.8,
       41.47
     ],
-    "electron_affinity": [-0.352],
-    "number": 66
+    "electron_affinity": [
+      -0.352
+    ],
+    "number": 66,
+    "abundance": 1.3011e-11
   },
   "Ho": {
     "name": "Holmium",
@@ -4322,8 +4471,11 @@
       22.84,
       42.5
     ],
-    "electron_affinity": [-0.338],
-    "number": 67
+    "electron_affinity": [
+      -0.338
+    ],
+    "number": 67,
+    "abundance": 2.8949e-12
   },
   "Er": {
     "name": "Erbium",
@@ -4419,8 +4571,11 @@
       22.74,
       42.7
     ],
-    "electron_affinity": [-0.312],
-    "number": 68
+    "electron_affinity": [
+      -0.312
+    ],
+    "number": 68,
+    "abundance": 8.1317e-12
   },
   "Tm": {
     "name": "Thulium",
@@ -4490,8 +4645,11 @@
       23.68,
       42.7
     ],
-    "electron_affinity": [-1.0261],
-    "number": 69
+    "electron_affinity": [
+      -1.0261
+    ],
+    "number": 69,
+    "abundance": 1.236e-12
   },
   "Yb": {
     "name": "Ytterbium",
@@ -4579,8 +4737,11 @@
       25.05,
       43.56
     ],
-    "electron_affinity": [-0.003],
-    "number": 70
+    "electron_affinity": [
+      -0.003
+    ],
+    "number": 70,
+    "abundance": 8.1317e-12
   },
   "Lu": {
     "name": "Lutetium",
@@ -4633,8 +4794,11 @@
       45.25,
       66.8
     ],
-    "electron_affinity": [-0.3462],
-    "number": 71
+    "electron_affinity": [
+      -0.3462
+    ],
+    "number": 71,
+    "abundance": 1.2035e-12
   },
   "Hf": {
     "name": "Hafnium",
@@ -4702,8 +4866,11 @@
       23.3,
       33.33
     ],
-    "electron_affinity": [-0.114],
-    "number": 72
+    "electron_affinity": [
+      -0.114
+    ],
+    "number": 72,
+    "abundance": 4.879e-12
   },
   "Ta": {
     "name": "Tantalum",
@@ -4780,8 +4947,11 @@
     "ionization_energy": [
       7.5496
     ],
-    "electron_affinity": [-0.3213],
-    "number": 73
+    "electron_affinity": [
+      -0.3213
+    ],
+    "number": 73,
+    "abundance": 1.236e-12
   },
   "W": {
     "name": "Tungsten",
@@ -4846,8 +5016,11 @@
       7.864,
       17.619
     ],
-    "electron_affinity": [-0.8146],
-    "number": 74
+    "electron_affinity": [
+      -0.8146
+    ],
+    "number": 74,
+    "abundance": 4.2285e-12
   },
   "Re": {
     "name": "Rhenium",
@@ -4878,8 +5051,11 @@
       26.014,
       37.726
     ],
-    "electron_affinity": [-0.1503],
-    "number": 75
+    "electron_affinity": [
+      -0.1503
+    ],
+    "number": 75,
+    "abundance": 1.6263e-12
   },
   "Os": {
     "name": "Osmium",
@@ -4973,8 +5149,11 @@
       8.4382,
       16.583
     ],
-    "electron_affinity": [-1.0996],
-    "number": 76
+    "electron_affinity": [
+      -1.0996
+    ],
+    "number": 76,
+    "abundance": 2.1793e-11
   },
   "Ir": {
     "name": "Iridium",
@@ -5055,8 +5234,11 @@
       8.967,
       16.583
     ],
-    "electron_affinity": [-1.565],
-    "number": 77
+    "electron_affinity": [
+      -1.565
+    ],
+    "number": 77,
+    "abundance": 2.1468e-11
   },
   "Pt": {
     "name": "Platinum",
@@ -5111,8 +5293,11 @@
       18.563,
       28
     ],
-    "electron_affinity": [-2.1278],
-    "number": 78
+    "electron_affinity": [
+      -2.1278
+    ],
+    "number": 78,
+    "abundance": 4.3586e-11
   },
   "Au": {
     "name": "Gold",
@@ -5178,8 +5363,11 @@
       20.5,
       30
     ],
-    "electron_affinity": [-2.3092],
-    "number": 79
+    "electron_affinity": [
+      -2.3092
+    ],
+    "number": 79,
+    "abundance": 6.1801e-12
   },
   "Hg": {
     "name": "Mercury",
@@ -5266,7 +5454,8 @@
       18.756,
       34.2
     ],
-    "number": 80
+    "number": 80,
+    "abundance": 1.1059e-11
   },
   "Tl": {
     "name": "Thallium",
@@ -5300,8 +5489,11 @@
       20.428,
       29.83
     ],
-    "electron_affinity": [-0.199],
-    "number": 81
+    "electron_affinity": [
+      -0.199
+    ],
+    "number": 81,
+    "abundance": 6.1801e-12
   },
   "Pb": {
     "name": "Lead",
@@ -5330,8 +5522,11 @@
       42.32,
       68.8
     ],
-    "electron_affinity": [-0.3638],
-    "number": 82
+    "electron_affinity": [
+      -0.3638
+    ],
+    "number": 82,
+    "abundance": 1.0083e-10
   },
   "Bi": {
     "name": "Bismuth",
@@ -5396,8 +5591,11 @@
       56,
       88.3
     ],
-    "electron_affinity": [-0.9452],
-    "number": 83
+    "electron_affinity": [
+      -0.9452
+    ],
+    "number": 83,
+    "abundance": 4.5537e-12
   },
   "Po": {
     "name": "Polonium",
@@ -5448,8 +5646,11 @@
     "ionization_energy": [
       8.417
     ],
-    "electron_affinity": [-1.8998],
-    "number": 84
+    "electron_affinity": [
+      -1.8998
+    ],
+    "number": 84,
+    "abundance": 0
   },
   "At": {
     "name": "Astatine",
@@ -5503,8 +5704,11 @@
     "ionization_energy": [
       9.535
     ],
-    "electron_affinity": [-2.7994],
-    "number": 85
+    "electron_affinity": [
+      -2.7994
+    ],
+    "number": 85,
+    "abundance": 0
   },
   "Rn": {
     "name": "Radon",
@@ -5564,7 +5768,8 @@
     "ionization_energy": [
       10.7485
     ],
-    "number": 86
+    "number": 86,
+    "abundance": 0
   },
   "Fr": {
     "name": "Francium",
@@ -5612,7 +5817,8 @@
     "ionization_energy": [
       4.0727
     ],
-    "number": 87
+    "number": 87,
+    "abundance": 0
   },
   "Ra": {
     "name": "Radium",
@@ -5682,7 +5888,8 @@
       5.2784,
       10.14716
     ],
-    "number": 88
+    "number": 88,
+    "abundance": 0
   },
   "Ac": {
     "name": "Actinium",
@@ -5734,7 +5941,8 @@
       5.17,
       12.1
     ],
-    "number": 89
+    "number": 89,
+    "abundance": 0
   },
   "Th": {
     "name": "Thorium",
@@ -5830,7 +6038,8 @@
       20,
       28.8
     ],
-    "number": 90
+    "number": 90,
+    "abundance": 1.4637e-12
   },
   "Pa": {
     "name": "Protactinium",
@@ -5923,7 +6132,8 @@
     "ionization_energy": [
       5.89
     ],
-    "number": 91
+    "number": 91,
+    "abundance": 0
   },
   "U": {
     "name": "Uranium",
@@ -6005,7 +6215,8 @@
       6.19405,
       14.717
     ],
-    "number": 92
+    "number": 92,
+    "abundance": 5.8548e-13
   },
   "Np": {
     "name": "Neptunium",
@@ -6071,7 +6282,8 @@
     "ionization_energy": [
       6.2657
     ],
-    "number": 93
+    "number": 93,
+    "abundance": 0
   },
   "Pu": {
     "name": "Plutonium",
@@ -6161,7 +6373,8 @@
     "ionization_energy": [
       6.0262
     ],
-    "number": 94
+    "number": 94,
+    "abundance": 0
   },
   "Am": {
     "name": "Americium",
@@ -6210,7 +6423,8 @@
       5.9738
     ],
     "number": 95,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Cm": {
     "name": "Curium",
@@ -6331,7 +6545,8 @@
       5.9915
     ],
     "number": 96,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Bk": {
     "name": "Berkelium",
@@ -6407,7 +6622,8 @@
       6.1979
     ],
     "number": 97,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Cf": {
     "name": "Californium",
@@ -6519,7 +6735,8 @@
       6.2817
     ],
     "number": 98,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Es": {
     "name": "Einsteinium",
@@ -6589,7 +6806,8 @@
       6.42
     ],
     "number": 99,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Fm": {
     "name": "Fermium",
@@ -6656,7 +6874,8 @@
       6.5
     ],
     "number": 100,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Md": {
     "name": "Mendelevium",
@@ -6714,7 +6933,8 @@
       6.58
     ],
     "number": 101,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "No": {
     "name": "Nobelium",
@@ -6805,7 +7025,8 @@
       6.65
     ],
     "number": 102,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Lr": {
     "name": "Lawrencium",
@@ -6944,7 +7165,8 @@
       4.9
     ],
     "number": 103,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Rf": {
     "name": "Rutherfordium",
@@ -7026,7 +7248,8 @@
       6
     ],
     "number": 104,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Db": {
     "name": "Dubnium",
@@ -7129,7 +7352,8 @@
       }
     },
     "number": 105,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Sg": {
     "name": "Seaborgium",
@@ -7193,7 +7417,8 @@
       }
     },
     "number": 106,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Bh": {
     "name": "Bohrium",
@@ -7284,7 +7509,8 @@
       }
     },
     "number": 107,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Hs": {
     "name": "Hassium",
@@ -7342,7 +7568,8 @@
       }
     },
     "number": 108,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Mt": {
     "name": "Meitnerium",
@@ -7409,7 +7636,8 @@
       }
     },
     "number": 109,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Ds": {
     "name": "Darmstadtium",
@@ -7443,7 +7671,8 @@
       }
     },
     "number": 110,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Rg": {
     "name": "Roentgenium",
@@ -7525,7 +7754,8 @@
       }
     },
     "number": 111,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Cn": {
     "name": "Copernicium",
@@ -7571,7 +7801,8 @@
       }
     },
     "number": 112,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Nh": {
     "name": "Nihonium",
@@ -7683,7 +7914,8 @@
       }
     },
     "number": 113,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Fl": {
     "name": "Flerovium",
@@ -7777,7 +8009,8 @@
       }
     },
     "number": 114,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Mc": {
     "name": "Moscovium",
@@ -7844,7 +8077,8 @@
       }
     },
     "number": 115,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Lv": {
     "name": "Livermorium",
@@ -7917,7 +8151,8 @@
       }
     },
     "number": 116,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Ts": {
     "name": "Tennessine",
@@ -7954,7 +8189,8 @@
       }
     },
     "number": 117,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   },
   "Og": {
     "name": "Oganesson",
@@ -7976,6 +8212,7 @@
       }
     },
     "number": 118,
-    "disabled": true
+    "disabled": true,
+    "abundance": 0
   }
 }
