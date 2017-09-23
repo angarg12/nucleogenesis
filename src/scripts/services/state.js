@@ -28,6 +28,7 @@ angular
     sv.buyIndex = 0;
     let newElements = [];
     let updateFunctions = {};
+    sv.hideBought = false;
 
     sv.deleteToast = function() {
       sv.toast.shift();

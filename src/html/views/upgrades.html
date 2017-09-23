@@ -19,7 +19,7 @@
 </div>
 <h2>{{ct.data.elements[ct.state.currentElement].name}}</h2>
 <label>Hide bought upgrades:
-   <input type="checkbox" ng-model="ct.hideBought">
+   <input type="checkbox" ng-model="ct.state.hideBought">
 </label>
 <button class="btn btn-default" ng-click="ct.buyAll(ct.state.currentElement)">Buy all</button>
 <div class="row">
