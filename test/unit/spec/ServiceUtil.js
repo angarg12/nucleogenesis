@@ -28,16 +28,6 @@ describe('Util service', function() {
       let value = spec.util.prettifyNumber(1);
       expect(value).toEqual('1');
     });
-
-    it('should format numbers with group separation commas', function() {
-      let value = spec.util.prettifyNumber(500000);
-      expect(value).toEqual('500,000');
-    });
-
-    it('should format numbers in scientific notation', function() {
-      let value = spec.util.prettifyNumber(1e24);
-      expect(value).toEqual('1.0000 &#215; 10<sup>24</sup>');
-    });
   });
 
   describe('misc functions', function() {

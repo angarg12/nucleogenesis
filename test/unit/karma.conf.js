@@ -12,6 +12,7 @@ module.exports = function(config) {
       'build/bower_components/bootstrap/dist/js/bootstrap.min.js',
       'build/bower_components/angularjs-slider/dist/rzslider.min.js',
       'build/bower_components/ziggurat/ziggurat.js',
+      'build/bower_components/swarm-numberformat/dist/swarm-numberformat.js',
       'build/bower_components/angular-mocks/angular-mocks.js',
       'build/scripts/app.min.js',
       'test/unit/common.js',
