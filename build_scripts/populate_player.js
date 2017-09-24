@@ -24,6 +24,20 @@ let startPlayer = {
 let npm = jsonfile.readFileSync('package.json');
 
 startPlayer.version = npm.version;
+
+/**
+     * Default numberformat to be used with swarm-numberformat.
+     *
+     * Formats are:
+     *    - standard
+     *    - scientific
+     *    - hybrid
+     *    - engineering
+     * Flavors are:
+     *    - full
+     *    - short
+     */
+startPlayer.numberformat = {format: 'standard', flavor: 'full'};
 startPlayer.resources = {};
 for (let entry in resources) {
   startPlayer.resources[entry] = {
