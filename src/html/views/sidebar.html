@@ -24,11 +24,11 @@
     			t<sub>1/2</sub>
     		</span>
         <span class="col-xs-10">
-    			<pretty value="ct.data.elements[ct.state.currentElement].isotopes[key].decay.half_life"></pretty>
+    			<pretty value="ct.data.resources[key].decay.half_life"></pretty>
     			s
     		</span>
       </li>
-      <li ng-repeat="(type, decay) in ct.data.elements[ct.state.currentElement].isotopes[key].decay.decay_types"
+      <li ng-repeat="(type, decay) in ct.data.resources[key].decay.decay_types"
 
           class="row">
         <span ng-if="decay.ratio !== 1"

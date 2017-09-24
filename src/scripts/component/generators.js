@@ -29,9 +29,8 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
       for (let i = 0; i < data.radioisotopes.length; i++) {
         let resource = data.radioisotopes[i];
         if (player.resources[resource].unlocked) {
-          let element = Object.keys(data.resources[resource].elements)[0];
           let number = player.resources[resource].number;
-          let decay = data.elements[element].isotopes[resource].decay;
+          let decay = data.resources[resource].decay;
           let halfLife = decay.half_life;
           let exponent = 1/halfLife;
           let factor = Math.pow(0.5, exponent);

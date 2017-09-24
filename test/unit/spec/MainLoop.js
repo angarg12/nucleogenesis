@@ -118,33 +118,25 @@ describe('MainLoop', function() {
 
     it('should process radioactivity', function() {
       spec.data.radioisotopes = ['3H'];
-      spec.data.elements = {
-        H: {
-          isotopes: {
-            '3H':{
-              decay: {
-                half_life: 388520000,
-                decay_types: {
-                  'beta-': {
-                    ratio: 1,
-                    reaction: {
-                      reactant: {
-                        '3H': 1
-                      },
-                      product: {
-                        '3He': 1,
-                        'e-': 1,
-                        eV: 18591
-                      }
-                    }
-                  }
+      spec.data.resources['3H'] = {
+        decay: {
+          half_life: 388520000,
+          decay_types: {
+            'beta-': {
+              ratio: 1,
+              reaction: {
+                reactant: {
+                  '3H': 1
+                },
+                product: {
+                  '3He': 1,
+                  'e-': 1,
+                  eV: 18591
                 }
               }
             }
           }
-        }
-      };
-      spec.data.resources['3H'] = {
+        },
         elements: {'H':1}
       };
       spec.state.player.resources['3H'] = {
@@ -174,45 +166,37 @@ describe('MainLoop', function() {
 
     it('should process multi decay', function() {
       spec.data.radioisotopes = ['70Ga'];
-      spec.data.elements = {
-        Ga: {
-          isotopes: {
-            '70Ga':{
-              decay: {
-                half_life: 2,
-                decay_types: {
-                  'beta-': {
-                    ratio: 0.75,
-                    reaction: {
-                      reactant: {
-                        '70Ga': 1
-                      },
-                      product: {
-                        '70Ge': 1,
-                        'e-': 1,
-                        eV: 1000
-                      }
-                    }
-                  },
-                  electron_capture: {
-                    ratio: 0.25,
-                    reaction: {
-                      reactant: {
-                        '70Ga': 1
-                      },
-                      product: {
-                        '70Zn': 1,
-                        eV: 100
-                      }
-                    }
-                  }
+      spec.data.resources['70Ga'] = {
+        decay: {
+          half_life: 2,
+          decay_types: {
+            'beta-': {
+              ratio: 0.75,
+              reaction: {
+                reactant: {
+                  '70Ga': 1
+                },
+                product: {
+                  '70Ge': 1,
+                  'e-': 1,
+                  eV: 1000
+                }
+              }
+            },
+            electron_capture: {
+              ratio: 0.25,
+              reaction: {
+                reactant: {
+                  '70Ga': 1
+                },
+                product: {
+                  '70Zn': 1,
+                  eV: 100
                 }
               }
             }
           }
-        }
-      };
-      spec.data.resources['70Ga'] = {
+        },
         elements: {Ga:1}
       };
       spec.state.player.resources = {

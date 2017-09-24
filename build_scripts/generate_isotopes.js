@@ -22,16 +22,15 @@ for (let element in elements) {
   let ratioSum = 0;
   let mainIsotope = [0, ''];
   for (let isotope in isotopes) {
-    if (typeof isotopes[isotope].decay !== 'undefined') {
-      radioisotopes.push(isotope);
-    }
-
     resources[isotope] = {};
     resources[isotope].energy = isotopes[isotope].energy;
     resources[isotope].elements = {};
     resources[isotope].elements[element] = 1;
     resources[isotope].html = isotopePrefix(isotope) + element;
+    resources[isotope].decay = isotopes[isotope].decay;
     resources[isotope].type = ['isotope'];
+
+    delete isotopes[isotope].decay;
 
     if (elements[element].includes.indexOf(isotope) === -1) {
       elements[element].includes.push(isotope);
@@ -48,6 +47,12 @@ for (let element in elements) {
     throw new Error('Ratios add up to '.concat(1 - difference, ' for ', element));
   }
   elements[element].main = mainIsotope[1];
+}
+
+for (let resource in resources) {
+  if (typeof resources[resource].decay !== 'undefined') {
+    radioisotopes.push(resource);
+  }
 }
 
 function isotopePrefix(isotope) {

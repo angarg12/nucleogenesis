@@ -32,7 +32,7 @@ for (let element in elements) {
 
 for (let element in elements) {
   for (let key in elements[element].isotopes) {
-    let isotope = elements[element].isotopes[key];
+    let isotope = resources[key];
     if (isotope.decay) {
       let ratioSum = 0;
       for (let decay in isotope.decay.decay_types) {

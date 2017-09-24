@@ -259,8 +259,7 @@ achievements.total_radioisotopes = {
 let mostUnstable = '';
 let lowestHalfLife = Infinity;
 for(let isotope of radioisotopes){
-  let element = Object.keys(resources[isotope].elements)[0];
-  let halfLife = elements[element].isotopes[isotope].decay.half_life;
+  let halfLife = resources[isotope].decay.half_life;
   if(halfLife < lowestHalfLife){
     lowestHalfLife = halfLife;
     mostUnstable = isotope;
