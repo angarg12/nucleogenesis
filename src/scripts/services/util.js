@@ -1,4 +1,5 @@
 /* globals Ziggurat */
+/* globals numberformat */
 /**
  util
  Utility service with misc. functions.
@@ -12,7 +13,8 @@ angular
   .service('util', ['prettyNumberFilter',
     '$sce',
     'data',
-    function(prettyNumber, $sce, data) {
+    'state',
+    function(prettyNumber, $sce, data, state) {
       this.gaussian = new Ziggurat();
 
       /* Return the HTML representation of an element, or the element itself
@@ -41,28 +43,7 @@ angular
         if (number === 0) {
           return '0';
         }
-        if (number > 1e6) {
-          // Very ugly way to extract the mantisa and exponent from an exponential string
-          let exponential = number.toPrecision(6).split('e');
-          let exponent = parseFloat(exponential[1].split('+')[1]);
-          // And it is displayed with superscript
-          return Number.parseFloat(exponential[0]).toFixed(4) +
-            ' &#215; 10<sup>' +
-            this.prettifyNumber(exponent) +
-            '</sup>';
-        }
-        if (number < 1e-6) {
-          // Very ugly way to extract the mantisa and exponent from an exponential string
-          let exponential = number.toPrecision(6).split('e');
-          let exponent = parseFloat(exponential[1].split('-')[1]);
-          // And it is displayed with superscript
-          return Number.parseFloat(exponential[0]).toFixed(4) +
-            ' &#215; 10<sup>-' +
-            this.prettifyNumber(exponent) +
-            '</sup>';
-        }
-        // we use a regex to remove trailing zeros, plus . (if necessary)
-        return prettyNumber(number, 6);
+        return numberformat.format(number, state.player.numberformat);
       };
 
       this.randomDraw = function(number, p) {
