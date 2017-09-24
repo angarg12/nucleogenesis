@@ -29,6 +29,9 @@ angular
         .state('achievements', {
           component: 'achievements'
         })
+        .state('dashboard', {
+          component: 'dashboard'
+        })
         .state('options', {
           component: 'options'
         });
