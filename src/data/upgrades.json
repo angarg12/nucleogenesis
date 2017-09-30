@@ -44,6 +44,7 @@
     ],
     "exotic_deps": [
       "x3"
+      "x-3"
     ],
     "dark_deps": [],
     "function": ["(() => {",
@@ -72,6 +73,7 @@
     ],
     "exotic_deps": [
       "x4"
+      "x-4"
     ],
     "dark_deps": [],
     "function": ["(() => {",
@@ -100,6 +102,7 @@
     ],
     "exotic_deps": [
       "x5"
+      "x-5"
     ],
     "dark_deps": [],
     "function": ["(() => {",
@@ -128,6 +131,7 @@
     ],
     "exotic_deps": [
       "x6"
+      "x-6"
     ],
     "dark_deps": [],
     "function": ["(() => {",
@@ -156,6 +160,7 @@
     ],
     "exotic_deps": [
       "x7"
+      "x-7"
     ],
     "dark_deps": [],
     "function": ["(() => {",
@@ -184,6 +189,7 @@
     ],
     "exotic_deps": [
       "x8"
+      "x-8"
     ],
     "dark_deps": [],
     "function": ["(() => {",
@@ -212,6 +218,7 @@
     ],
     "exotic_deps": [
       "x9"
+      "x-9"
     ],
     "dark_deps": [],
     "function": ["(() => {",
@@ -238,6 +245,7 @@
     "deps": [],
     "exotic_deps": [
       "boosts1"
+      "boosts-1"
     ],
     "dark_deps": [],
     "function": ["(() => {",
@@ -266,6 +274,7 @@
     ],
     "exotic_deps": [
       "boosts2"
+      "boosts-2"
     ],
     "dark_deps": [],
     "function": ["(() => {",
@@ -294,6 +303,7 @@
     ],
     "exotic_deps": [
       "boosts3"
+      "boosts-3"
     ],
     "dark_deps": [],
     "function": ["(() => {",
@@ -322,6 +332,7 @@
     ],
     "exotic_deps": [
       "boosts4"
+      "boosts-4"
     ],
     "dark_deps": [],
     "function": ["(() => {",
