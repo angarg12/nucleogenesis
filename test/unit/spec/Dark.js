@@ -33,34 +33,49 @@ describe('Dark', function() {
       spec.data.resources = {
         '1H': {elements: {H: 1}, type: ['isotope']}
       };
-      spec.state.current_element = 'H';
-      spec.state.player.resources['1H'] = {number:1e8, unlocked: true};
+      spec.state.player.elements.H = true;
+      spec.state.player.resources['1H'] = {number:1e4, unlocked: true};
       spec.state.player.resources.xH = {number:1e8, unlocked: true};
       spec.state.player.resources.dark_matter = {number:0, unlocked: false};
-      spec.state.player.elements.H = {
-        upgrades: {
-          '1-1': true
-        },
-        exotic_upgrades: {
+      spec.state.player.exotic_upgrades = {
+        'H':{
           x3: true
+        }
+      }
+      spec.data.element_slot = {
+        upgrades: {
+          '1-1': false
         },
         generators: {
-          '1': 99,
-          '2': 99
-        }
+          '1': 0,
+          '2': 0
+        },
+        reactions: [],
+        redoxes: []
       };
-      spec.state.player.reactions = [{
-        active: true,
-        reaction: ['H.OH-H2O']
-      }];
+      spec.state.player.element_slots = [{
+          element: 'H',
+          upgrades: {
+            '1-1': true
+          },
+          generators: {
+            '1': 99,
+            '2': 99
+          },
+          reactions: [{
+            active: true,
+            reaction: ['H.OH-H2O']
+          }]
+        }
+      ]
 
       spec.dark.darkPrestige();
 
-      expect(spec.state.player.elements.H.upgrades['1-1']).toBeFalsy();
-      expect(spec.state.player.elements.H.exotic_upgrades.x3).toBeFalsy();
-      expect(spec.state.player.reactions[0].active).toBeFalsy();
-      expect(spec.state.player.elements.H.generators['1']).toEqual(1);
-      expect(spec.state.player.elements.H.generators['2']).toEqual(0);
+      expect(spec.state.player.element_slots[0].upgrades['1-1']).toBeFalsy();
+      expect(spec.state.player.exotic_upgrades.H.x3).toBeFalsy();
+      expect(spec.state.player.element_slots[0].reactions.length).toEqual(0);
+      expect(spec.state.player.element_slots[0].generators['1']).toEqual(1);
+      expect(spec.state.player.element_slots[0].generators['2']).toEqual(0);
       expect(spec.state.player.resources['1H'].number).toEqual(0);
       expect(spec.state.player.resources.xH.number).toEqual(0);
       expect(spec.state.player.resources.dark_matter.number).toEqual(18);
@@ -125,10 +140,9 @@ describe('Dark', function() {
             deps: []
           }
         };
-        spec.state.player.elements.H = {
-          upgrades: [],
-          exotic_upgrades: []
-        };
+        spec.state.player.element_slots = [{
+          element: 'H'
+        }];
 
         let values = spec.dark.visibleDarkUpgrades('H');
 

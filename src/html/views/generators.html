@@ -1,81 +1,70 @@
 <!DOCTYPE html>
-<h2>{{ct.data.elements[ct.state.currentElement].name}}</h2>
-<h3>
-  <pretty value="ct.elementProduction(ct.state.player, ct.state.currentElement)" id="production_total"></pretty>
-  {{ct.state.currentElement}}/s
+<div ng-repeat="slot in ct.state.player.element_slots track by $index">
+  <h2>{{ct.data.elements[slot.element].name}}</h2>
+  <h3>
+  <pretty value="ct.elementProduction(ct.state.player, slot)" id="production_total"></pretty>
+  {{slot.element}}/s
 </h3>
-<ul ng-if="ct.state.player.unlocks.isotope">
-  <li ng-repeat="(isotope,_) in ct.data.elements[ct.state.currentElement].isotopes"
-      ng-if="ct.state.player.resources[isotope].unlocked">
-    <get-html value="isotope"></get-html>:
-    <pretty value="ct.data.elements[ct.state.currentElement].isotopes[isotope].ratio*100"></pretty>%
-  </li>
-</ul>
-<table class="table"
-       ng-if="ct.state.player.elements[ct.state.currentElement].unlocked">
-  <tr>
-    <td class="col-md-1">
-      Generator
-    </td>
-    <td class="col-md-2">
-      {{ct.state.currentElement}}/s
-    </td>
-    <td class="col-md-1">
-      Number
-    </td>
-    <td class="col-md-3">
-      Total {{ct.state.currentElement}}/s
-    </td>
-    <td class="col-md-3">
-      Price
-    </td>
-    <td class="col-md-3">
-      Buy
-      <button type="button"
-              class="btn btn-default"
-              ng-click="ct.nextBuyAmount()">
+  <ul ng-if="ct.state.player.unlocks.isotope">
+    <li ng-repeat="(isotope,_) in ct.data.elements[slot.element].isotopes" ng-if="ct.state.player.resources[isotope].unlocked">
+      <get-html value="isotope"></get-html>:
+      <pretty value="ct.data.elements[slot.element].isotopes[isotope].ratio*100"></pretty>%
+    </li>
+  </ul>
+  <table class="table">
+    <tr>
+      <td class="col-md-1">
+        Generator
+      </td>
+      <td class="col-md-2">
+        {{slot.element}}/s
+      </td>
+      <td class="col-md-1">
+        Number
+      </td>
+      <td class="col-md-3">
+        Total {{slot.element}}/s
+      </td>
+      <td class="col-md-3">
+        Price
+      </td>
+      <td class="col-md-3">
+        Buy
+        <button type="button" class="btn btn-default" ng-click="ct.nextBuyAmount()">
         <get-html value="ct.getbuyAmount().toString()"></get-html>
       </button>
-    </td>
-  </tr>
-  <tr class="animif"
-      ng-repeat="gen in ct.visibleGenerators(ct.state.currentElement)">
-    <td class="animif col-md-1">
-      {{ct.data.generators[gen].name}}
-    </td>
-    <td class="animif col-md-2">
-      <pretty value="ct.generatorProduction(ct.state.player, gen, ct.state.currentElement)"></pretty>
-    </td>
-    <td class="animif col-md-1">
-      <pretty value="ct.state.player.elements[ct.state.currentElement].generators[gen]"></pretty>
-    </td>
-    <td class="animif col-md-3">
-      <pretty value="ct.tierProduction(ct.state.player, gen, ct.state.currentElement)"></pretty>
-    </td>
-    <td class="animif col-md-3">
-      <pretty value="ct.generatorTotalPrice(ct.state.player, gen, ct.state.currentElement, ct.getbuyAmount())"></pretty>
-      &nbsp;
-      <get-html value="ct.data.elements[ct.state.currentElement].main"></get-html>
-    </td>
-    <td class="animif col-md-3">
-      <div class="pull-left">
-        <!-- FIXME splitting the buttons in two seems like the easiest solution
+      </td>
+    </tr>
+    <tr class="animif" ng-repeat="gen in ct.visibleGenerators(slot)">
+      <td class="animif col-md-1">
+        {{ct.data.generators[gen].name}}
+      </td>
+      <td class="animif col-md-2">
+        <pretty value="ct.generatorProduction(ct.state.player, gen, slot)"></pretty>
+      </td>
+      <td class="animif col-md-1">
+        <pretty value="slot.generators[gen]"></pretty>
+      </td>
+      <td class="animif col-md-3">
+        <pretty value="ct.tierProduction(ct.state.player, gen, slot)"></pretty>
+      </td>
+      <td class="animif col-md-3">
+        <pretty value="ct.generatorTotalPrice(ct.state.player, gen, slot, ct.getbuyAmount())"></pretty>
+        &nbsp;
+        <get-html value="ct.data.elements[slot.element].main"></get-html>
+      </td>
+      <td class="animif col-md-3">
+        <div class="pull-left">
+          <!-- FIXME splitting the buttons in two seems like the easiest solution
          but I'm open to suggestions -->
-        <button ng-if="ct.getbuyAmount() !== 'max'"
-                type="button"
-                class="btn btn-default"
-                ng-click="ct.buyGenerators(ct.state.player, gen, ct.state.currentElement, ct.getbuyAmount())"
-
-                ng-class="{disabled: !ct.canBuy(ct.state.player, ct.state.currentElement, ct.generatorTotalPrice(ct.state.player, gen, ct.state.currentElement, ct.getbuyAmount()))}">
+          <button ng-if="ct.getbuyAmount() !== 'max'" type="button" class="btn btn-default" ng-click="ct.buyGenerators(ct.state.player, gen, slot, ct.getbuyAmount())" ng-class="{disabled: !ct.canBuy(ct.state.player, slot, ct.generatorTotalPrice(ct.state.player, gen, slot, ct.getbuyAmount()))}">
           <get-html value="ct.getbuyAmount().toString()"></get-html>
         </button>
-        <button ng-if="ct.getbuyAmount() === 'max'"
-                type="button"
-                class="btn btn-default"
-                ng-click="ct.buyGenerators(ct.state.player, gen, ct.state.currentElement, ct.getbuyAmount())">
-          <get-html value="ct.maxCanBuy(ct.state.player, gen, ct.state.currentElement).toString()"></get-html>
+          <button ng-if="ct.getbuyAmount() === 'max'" type="button" class="btn btn-default" ng-click="ct.buyGenerators(ct.state.player, gen, slot, ct.getbuyAmount())">
+          <get-html value="ct.maxCanBuy(ct.state.player, gen, slot).toString()"></get-html>
         </button>
-      </div>
-    </td>
-  </tr>
-</table>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -46,9 +46,18 @@ describe('Reactions', function() {
 
   describe('update', function() {
     it('should process reaction', function() {
+      spec.data.elements = {
+        'H': {
+          main: '1H'
+        }
+      };
       spec.state.player.global_upgrades.reaction_slots = 1;
       spec.state.player.global_upgrades.reaction_bandwidth = 1;
       spec.state.player.resources = {
+        '1H': {
+          number: 0,
+          unlocked: true
+        },
         'H2': {
           number: 300
         },
@@ -59,16 +68,18 @@ describe('Reactions', function() {
           number: 0
         }
       };
-      spec.state.player.reactions = [
-        {
+      spec.state.player.element_slots = [{
+        element: 'H',
+        reactions: [{
           active: true,
           reaction: {
             reactant: {'H2':2,'O2':1},
             product: {'H2O':2},
             elements: ['H','O']
           }
-        }
-      ];
+        }],
+        redoxes: []
+      }];
 
       spec.state.update(spec.state.player);
 
@@ -81,7 +92,6 @@ describe('Reactions', function() {
       spec.state.player.global_upgrades.reaction_slots = 1;
       spec.data.reactions = {
         '1': {
-          active: true,
           reaction: {
             reactant: {'H2':2,'O2':1},
             product: {'H2O':2},
@@ -89,31 +99,41 @@ describe('Reactions', function() {
           }
         }
       };
+      spec.state.player.element_slots = [{
+        element: 'H',
+        reactions: []
+      }];
 
-      spec.reactions.addReaction(spec.state.player, '1');
+      spec.reactions.addReaction(spec.state.player, spec.state.player.element_slots[0], '1');
 
-      expect(spec.state.player.reactions.length).toEqual(1);
+      expect(spec.state.player.element_slots[0].reactions.length).toEqual(1);
     });
 
     it('should not add reaction if no slots are available', function () {
       spec.state.player.global_upgrades.reaction_slots = 1;
-      spec.state.player.reactions = [1];
+      spec.state.player.element_slots = [{
+        element: 'H',
+        reactions: [1]
+      }];
 
-      expect(spec.state.player.reactions.length).toEqual(1);
+      expect(spec.state.player.element_slots[0].reactions.length).toEqual(1);
 
-      spec.reactions.addReaction(spec.state.player);
+      spec.reactions.addReaction(spec.state.player, spec.state.player.element_slots[0], null);
 
-      expect(spec.state.player.reactions.length).toEqual(1);
+      expect(spec.state.player.element_slots[0].reactions.length).toEqual(1);
     });
 
     it('should remove reaction', function () {
-      spec.state.player.reactions = ['item'];
+      spec.state.player.element_slots = [{
+        element: 'H',
+        reactions: ['item']
+      }];
 
-      expect(spec.state.player.reactions.length).toEqual(1);
+      expect(spec.state.player.element_slots[0].reactions.length).toEqual(1);
 
-      spec.reactions.removeReaction(spec.state.player, 'item');
+      spec.reactions.removeReaction(spec.state.player.element_slots[0], 'item');
 
-      expect(spec.state.player.reactions.length).toEqual(0);
+      expect(spec.state.player.element_slots[0].reactions.length).toEqual(0);
     });
 
     it('should calculate reaction power', function () {
@@ -127,67 +147,29 @@ describe('Reactions', function() {
 
   describe('visibility functions', function() {
     it('should show visible reactions', function() {
-      spec.state.player.reactions = [
-        {
-          active: true,
-          reaction: {
-            reactant: {'H2':2,'O2':1},
-            product: {'H2O':2},
-            elements: ['H','O']
-          }
-        },
-        {
-          active: true,
-          reaction: {
-            reactant: {'He':2},
-            product: {'2He':1},
-            elements: ['He']
-          }
-        }
-      ];
-
-      let visible = spec.reactions.visibleReactions('H');
-
-      expect(visible).toEqual([{
+      let reactions = [{
         active: true,
         reaction: {
           reactant: {'H2':2,'O2':1},
           product: {'H2O':2},
           elements: ['H','O']
         }
-      }]);
-    });
-
-    it('should show misc reactions', function() {
-      spec.state.player.reactions = [
-        {
-          active: true,
-          reaction: {
-            reactant: {'H2':2,'O2':1},
-            product: {'H2O':2},
-            elements: ['H','O']
-          }
-        },
-        {
-          active: true,
-          reaction: {
-            reactant: {'e-':1, 'e+':1},
-            product: {'eV':1000},
-            elements: []
-          }
-        }
-      ];
-
-      let visible = spec.reactions.visibleReactions('');
-
-      expect(visible).toEqual([{
+      },{
         active: true,
         reaction: {
           reactant: {'e-':1, 'e+':1},
           product: {'eV':1000},
           elements: []
         }
-      }]);
+      }];
+      spec.state.player.element_slots = [{
+        element: 'H',
+        reactions: reactions
+      }];
+
+      let visible = spec.reactions.visibleReactions(spec.state.player.element_slots[0]);
+
+      expect(visible).toEqual(reactions);
     });
 
     it('should show available reactions', function() {
@@ -231,15 +213,17 @@ describe('Reactions', function() {
           ]
         }
       };
-
       spec.state.player.resources = {
         H: {unlocked: true},
         He: {unlocked: false},
         C: {unlocked: true},
         O: {unlocked: true}
       };
+      spec.state.player.element_slots = [{
+        element: 'H'
+      }];
 
-      let available = spec.reactions.availableReactions('H');
+      let available = spec.reactions.availableReactions(spec.state.player.element_slots[0]);
 
       expect(available).toEqual(['1']);
     });

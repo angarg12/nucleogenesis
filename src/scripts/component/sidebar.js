@@ -19,8 +19,8 @@ function sidebar(state, visibility, data, format, util) {
   ct.format = format;
   ct.util = util;
 
-  ct.visibleResources = function(currentElement) {
-    return visibility.visible(data.resources, isResourceVisible, currentElement);
+  ct.visibleResources = function(element) {
+    return visibility.visible(data.resources, isResourceVisible, element);
   };
 
   function isResourceVisible(name, currentElement) {

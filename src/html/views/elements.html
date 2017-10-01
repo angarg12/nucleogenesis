@@ -21,8 +21,9 @@
       <p>
         Redox: {{-ct.data.elements[element].electron_affinity.length}},+{{ct.data.elements[element].ionization_energy.length}}
       </p>
+      <!-- FIXME: hasownproperty can be deleted after all elements are enabled -->
       <div class="hidden_block"
-           ng-show="ct.state.player.elements.hasOwnProperty(element) && ct.state.player.elements[element].unlocked != true">
+           ng-show="ct.state.player.elements.hasOwnProperty(element) && ct.state.player.elements[element] != true">
         <p>
           Cost:
           <pretty value="ct.elementPrice"></pretty>

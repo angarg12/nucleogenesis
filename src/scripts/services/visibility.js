@@ -22,21 +22,21 @@ angular
         return visibles;
       };
 
-      this.isUpgradeVisible = function(name, currentElement, upgrade) {
+      this.isUpgradeVisible = function(name, slot, upgrade) {
         if (upgrade.tiers) {
           for (let tier of upgrade.tiers) {
-            if (state.player.elements[currentElement].generators[tier] === 0) {
+            if (slot.generators[tier] === 0) {
               return false;
             }
           }
         }
-        return meetDependencies(state.player.elements[currentElement].upgrades, upgrade.deps) &&
-          meetDependencies(state.player.elements[currentElement].exotic_upgrades, upgrade.exotic_deps) &&
+        return meetDependencies(slot.upgrades, upgrade.deps) &&
+          meetDependencies(state.player.exotic_upgrades[slot.element], upgrade.exotic_deps) &&
           meetDependencies(state.player.dark_upgrades, upgrade.dark_deps);
       };
 
       function meetDependencies(upgrades, dependencies) {
-        if (!dependencies) {
+        if(!dependencies){
           return true;
         }
         for (let dep of dependencies) {

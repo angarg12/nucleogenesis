@@ -176,6 +176,10 @@ gulp.task('generate_upgrade_functions', function() {
   return plugins.run('node build_scripts/generate_upgrade_functions.js',{silent:true}).exec();
 });
 
+gulp.task('generate_element_slot', function() {
+  return plugins.run('node build_scripts/generate_element_slot.js',{silent:true}).exec();
+});
+
 gulp.task('sort_resources', function() {
   return plugins.run('node build_scripts/sort_resources.js',{silent:true}).exec();
 });
@@ -204,6 +208,7 @@ gulp.task('build', function(callback) {
     'generate_exotic_upgrades',
     'generate_achievement_functions',
     'generate_upgrade_functions',
+    'generate_element_slot',
     'sort_resources',
     'populate_player',
     'populate_data',

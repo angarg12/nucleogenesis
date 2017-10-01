@@ -121,7 +121,7 @@ achievements.total_elements = {
   progress: ['(() => {',
     'let count = 0;',
     'for(let key in player.elements){',
-    '  if (player.elements[key].unlocked) {',
+    '  if (player.elements[key]) {',
     '    count++;',
     '  }',
     '}',

@@ -61,15 +61,12 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
     draw proportionally to their probability. */
     function processGenerators(player) {
       // we will simulate the production of isotopes proportional to their ratio
-      for (let element in player.elements) {
-        if (!player.elements[element].unlocked) {
-          continue;
-        }
-        let totalProduction = ct.elementProduction(player, element);
+      for (let slot of player.element_slots) {
+        let totalProduction = ct.elementProduction(player, slot);
         let remaining = totalProduction;
         // for each isotope
-        for (let key in data.elements[element].isotopes) {
-          let isotope = data.elements[element].isotopes[key];
+        for (let key in data.elements[slot.element].isotopes) {
+          let isotope = data.elements[slot.element].isotopes[key];
           // we calculate the production proportion
           let production = Math.floor(isotope.ratio * totalProduction);
 
@@ -83,7 +80,7 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
           remaining -= production;
         }
         // if there is remaining production, we assign it to the main isotope
-        let main = data.elements[element].main;
+        let main = data.elements[slot.element].main;
         player.resources[main].number += remaining;
         if (remaining > 0 && !player.resources[main].unlocked) {
           player.resources[main].unlocked = true;
@@ -101,10 +98,10 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
       return data.generators[name].price * Math.pow(data.constants.GENERATOR_PRICE_INCREASE, level);
     }
 
-    ct.maxCanBuy = function (player, name, element) {
-      let level = player.elements[element].generators[name];
+    ct.maxCanBuy = function (player, name, slot) {
+      let level = slot.generators[name];
       let i = 0;
-      let currency = data.elements[element].main;
+      let currency = data.elements[slot.element].main;
       let price = generatorPrice(name, level);
       // we need a loop since we use the ceil operator
       while (player.resources[currency].number >= price) {
@@ -114,11 +111,11 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
       return i;
     };
 
-    ct.generatorTotalPrice = function (player, name, element, number) {
+    ct.generatorTotalPrice = function (player, name, slot, number) {
       if (number === 'max') {
-        number = ct.maxCanBuy(player, name, element);
+        number = ct.maxCanBuy(player, name, slot);
       }
-      let level = player.elements[element].generators[name];
+      let level = slot.generators[name];
       let totalPrice = 0;
       for (let i = 0; i < number; i++) {
         let price = generatorPrice(name, level + i);
@@ -127,67 +124,67 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
       return totalPrice;
     };
 
-    ct.buyGenerators = function (player, name, element, number) {
+    ct.buyGenerators = function (player, name, slot, number) {
       if (number === 'max') {
-        number = ct.maxCanBuy(player, name, element);
+        number = ct.maxCanBuy(player, name, slot);
       }
-      let price = this.generatorTotalPrice(player, name, element, number);
-      let currency = data.elements[element].main;
-      if (ct.canBuy(player, element, price)) {
+      let price = this.generatorTotalPrice(player, name, slot, number);
+      let currency = data.elements[slot.element].main;
+      if (ct.canBuy(player, slot, price)) {
         player.resources[currency].number -= price;
-        player.elements[element].generators[name] += number;
+        slot.generators[name] += number;
       }
     };
 
-    ct.canBuy = function (player, element, price) {
-      let currency = data.elements[element].main;
+    ct.canBuy = function (player, slot, price) {
+      let currency = data.elements[slot.element].main;
       if (price > player.resources[currency].number) {
         return false;
       }
       return true;
     };
 
-    ct.generatorProduction = function (player, name, element) {
+    ct.generatorProduction = function (player, name, slot) {
       let baseProduction = data.generators[name].power;
-      return upgradedProduction(player, baseProduction, name, element);
+      return upgradedProduction(player, baseProduction, name, slot);
     };
 
-    ct.tierProduction = function (player, name, element) {
+    ct.tierProduction = function (player, name, slot) {
       let baseProduction = data.generators[name].power *
-        player.elements[element].generators[name];
-      return upgradedProduction(player, baseProduction, name, element);
+        slot.generators[name];
+      return upgradedProduction(player, baseProduction, name, slot);
     };
 
     /* Upgraded production includes upgrades, exotic matter and dark matter. */
-    function upgradedProduction(player, production, name, element) {
+    function upgradedProduction(player, production, name, slot) {
       for (let up of data.generators[name].upgrades) {
-        if (player.elements[element].upgrades[up]) {
+        if (slot.upgrades[up]) {
           let func = data.upgrades[up].function;
-          production = ct[func](player, production, element);
+          production = ct[func](player, production, slot);
         }
       }
-      let exotic = data.elements[element].exotic;
+      let exotic = data.elements[slot.element].exotic;
       production *= (1 + player.resources[exotic].number * data.constants.EXOTIC_POWER) *
         (1 + player.resources.dark_matter.number * data.constants.DARK_POWER);
       return Math.floor(production);
     }
 
-    ct.elementProduction = function (player, element) {
+    ct.elementProduction = function (player, slot) {
       let total = 0;
       for (let tier in data.generators) {
-        total += ct.tierProduction(player, tier, element);
+        total += ct.tierProduction(player, tier, slot);
       }
       return total;
     };
 
-    ct.visibleGenerators = function (currentElement) {
-      return visibility.visible(data.generators, isGeneratorVisible, currentElement);
+    ct.visibleGenerators = function (slot) {
+      return visibility.visible(data.generators, isGeneratorVisible, slot);
     };
 
-    function isGeneratorVisible(name, currentElement) {
+    function isGeneratorVisible(name, slot) {
       let generator = data.generators[name];
       for (let dep of generator.deps) {
-        if (state.player.elements[currentElement].generators[dep] === 0) {
+        if (slot.generators[dep] === 0) {
           return false;
         }
       }

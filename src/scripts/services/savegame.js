@@ -42,52 +42,12 @@ angular
 
       this.versionControl = function () {
         // delete saves older than this version
-        if (state.player.version && versionCompare(state.player.version, '2.1.0') < 0) {
+        if (state.player.version && versionCompare(state.player.version, '2.6.0') < 0) {
           state.player = {};
         }
         // we merge the properties of the player with the start player to
         // avoid undefined errors with new properties
         state.player = angular.merge({}, data.start_player, state.player);
-        // append an id if it doesn't exist
-        if (!state.player.id) {
-          state.player.id = Math.random().toString().substring(3);
-        }
-
-        // append last_login if it doesn't exists
-        if (!state.player.last_login){
-          state.player.last_login = Math.floor(Date.now()/1000);
-        }
-
-        // pre slots, reactions was an object
-        if(!Array.isArray(state.player.reactions)){
-          state.player.reactions = [];
-        }
-
-        // old saves may have outdated reactions, which crash the game
-        for(let index in state.player.reactions){
-          let reaction = state.player.reactions[index].reaction;
-          for(let resource in reaction.reactant){
-            if(typeof data.resources[resource] === 'undefined'){
-              state.player.reactions.splice(index, 1);
-            }
-          }
-        }
-
-        // old saves may have outdated resources, which crash the game
-        for(let resource in state.player.resources){
-          if(typeof data.resources[resource] === 'undefined'){
-            delete state.player.resources[resource];
-          }
-        }
-
-        // old saves may have outdated upgrades, which crash the game
-        for(let element in state.player.elements){
-          for(let up in state.player.elements[element].upgrades){
-            if(typeof data.upgrades[up] === 'undefined'){
-              delete state.player.elements[element].upgrades[up];
-            }
-          }
-        }
       };
     }
   ]);

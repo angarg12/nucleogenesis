@@ -3,7 +3,7 @@
 /* jshint varstmt: false */
 'use strict';
 
-describe('Redox component', function () {
+describe('Redox', function () {
   let spec = {};
 
   commonSpec(spec);
@@ -55,31 +55,41 @@ describe('Redox component', function () {
   describe('redox', function () {
     it('should add redox', function () {
       spec.state.player.global_upgrades.redox_slots = 1;
+      spec.state.player.element_slots = [{
+        element: 'H',
+        redoxes: []
+      }];
 
-      spec.redox.addRedox(spec.state.player);
+      spec.redox.addRedox(spec.state.player, spec.state.player.element_slots[0]);
 
-      expect(spec.state.player.redox.length).toEqual(1);
+      expect(spec.state.player.element_slots[0].redoxes.length).toEqual(1);
     });
 
     it('should not add redox if no slots are available', function () {
       spec.state.player.global_upgrades.redox_slots = 1;
-      spec.state.player.redox = [1];
+      spec.state.player.element_slots = [{
+        element: 'H',
+        redoxes: [1]
+      }];
 
-      expect(spec.state.player.redox.length).toEqual(1);
+      expect(spec.state.player.element_slots[0].redoxes.length).toEqual(1);
 
-      spec.redox.addRedox(spec.state.player);
+      spec.redox.addRedox(spec.state.player, spec.state.player.element_slots[0]);
 
-      expect(spec.state.player.redox.length).toEqual(1);
+      expect(spec.state.player.element_slots[0].redoxes.length).toEqual(1);
     });
 
     it('should remove redox', function () {
-      spec.state.player.redox = [1];
+      spec.state.player.element_slots = [{
+        element: 'H',
+        redoxes: [1]
+      }];
 
-      expect(spec.state.player.redox.length).toEqual(1);
+      expect(spec.state.player.element_slots[0].redoxes.length).toEqual(1);
 
-      spec.redox.removeRedox(spec.state.player, 0);
+      spec.redox.removeRedox(spec.state.player.element_slots[0], 0);
 
-      expect(spec.state.player.redox.length).toEqual(0);
+      expect(spec.state.player.element_slots[0].redoxes.length).toEqual(0);
     });
 
     it('should generate the ion name', function () {
@@ -183,12 +193,16 @@ describe('Redox component', function () {
     });
 
     it('should process redoxes', function () {
-      spec.state.player.redox = [{
-        resource: '1H',
-        active: true,
+      spec.state.player.element_slots = [{
         element: 'H',
-        from: 0,
-        to: 1
+        reactions: [],
+        redoxes: [{
+          resource: '1H',
+          active: true,
+          element: 'H',
+          from: 0,
+          to: 1
+        }]
       }];
       spec.state.player.resources = {
         '1H': {number: 100},
@@ -212,14 +226,17 @@ describe('Redox component', function () {
     });
 
     it('should not process inactive redoxes', function () {
-      let redox = {
-        resource: '1H',
-        active: false,
+      spec.state.player.element_slots = [{
         element: 'H',
-        from: 0,
-        to: 1
-      };
-      spec.state.player.redox = [redox];
+        reactions: [],
+        redoxes: [{
+          resource: '1H',
+          active: false,
+          element: 'H',
+          from: 0,
+          to: 1
+        }]
+      }];
       spec.state.player.resources = {
         '1H': {number: 100},
         'e-': {number: 0},
@@ -238,14 +255,17 @@ describe('Redox component', function () {
     });
 
     it('should cap at the resource number', function () {
-      let redox = {
-        resource: '1H',
-        active: true,
+      spec.state.player.element_slots = [{
         element: 'H',
-        from: 0,
-        to: 1
-      };
-      spec.state.player.redox = [redox];
+        reactions: [],
+        redoxes: [{
+          resource: '1H',
+          active: true,
+          element: 'H',
+          from: 0,
+          to: 1
+        }]
+      }];
       spec.state.player.resources = {
         '1H': {number: 100},
         'e-': {number: 0},
@@ -264,14 +284,17 @@ describe('Redox component', function () {
     });
 
     it('should not react of not enough collaterals are available', function () {
-      let redox = {
-        resource: '1H',
-        active: true,
+      spec.state.player.element_slots = [{
         element: 'H',
-        from: 0,
-        to: 1
-      };
-      spec.state.player.redox = [redox];
+        reactions: [],
+        redoxes: [{
+          resource: '1H',
+          active: true,
+          element: 'H',
+          from: 0,
+          to: 1
+        }]
+      }];
       spec.state.player.resources = {
         '1H': {number: 100},
         'e-': {number: 0},
@@ -292,53 +315,29 @@ describe('Redox component', function () {
 
   describe('visibility functions', function() {
     it('should show visible redoxes', function() {
-      spec.state.player.redox.push({
+      let redoxes = [{
         resource: '1H',
         number: 50,
         active: false,
         element: 'H',
         from: 0,
         to: 1
-      });
-      spec.state.player.redox.push({
+      },{
         resource: '16O',
         number: 50,
         active: false,
         element: 'O',
         from: 0,
         to: 1
-      });
-
-      let values = spec.redox.visibleRedox('H');
-
-      expect(values).toEqual([{
-        resource: '1H',
-        number: 50,
-        active: false,
+      }];
+      spec.state.player.element_slots = [{
         element: 'H',
-        from: 0,
-        to: 1
-      }]);
-    });
+        redoxes: redoxes
+      }];
 
-    it('should not show redoxes if they are locked', function() {
-      spec.state.player.resources['1H'] = {unlocked:true};
-      spec.state.player.resources.eV = {unlocked:true};
-      spec.state.player.resources['e-'] = {unlocked:false};
+      let values = spec.redox.visibleRedox(spec.state.player.element_slots[0]);
 
-      let values = spec.redox.visibleRedox('H');
-
-      expect(values).toEqual([]);
-    });
-
-    it('should not show redoxes of other elements', function() {
-      spec.state.player.resources['1H'] = {unlocked:true};
-      spec.state.player.resources.eV = {unlocked:true};
-      spec.state.player.resources['e-'] = {unlocked:false};
-
-      let values = spec.redox.visibleRedox('O');
-
-      expect(values).toEqual([]);
+      expect(values).toEqual(redoxes);
     });
   });
 });

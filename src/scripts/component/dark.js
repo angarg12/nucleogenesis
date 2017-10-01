@@ -49,11 +49,16 @@ function dark(state, format, visibility, upgrade, data, util) {
       }
       let element = data.elements[key];
       state.player.resources[element.exotic].number = 0;
-      let exoticUpgrades = state.player.elements[key].exotic_upgrades;
-      for (let up in exoticUpgrades) {
-        exoticUpgrades[up] = false;
-      }
-      upgrade.resetElement(state.player, key);
+      state.player.exotic_upgrades[key] = angular.copy(data.exotic_upgrades);
+    }
+    for(let slot of state.player.element_slots){
+      upgrade.resetElement(state.player, slot.element);
+    }
+    // FIXME: copy the hydrogen for the time being. actually should be set to null
+    for(let index in state.player.element_slots){
+      state.player.element_slots[index] = angular.copy(data.element_slot);
+      state.player.element_slots[index].generators['1'] = 1;
+      state.player.element_slots[index].element = 'H';
     }
   };
 
@@ -68,11 +73,12 @@ function dark(state, format, visibility, upgrade, data, util) {
       currency);
   };
 
-  ct.visibleDarkUpgrades = function(currentElement) {
-    return visibility.visible(data.dark_upgrades, isDarkUpgradeVisible, currentElement);
+  ct.visibleDarkUpgrades = function() {
+    return visibility.visible(data.dark_upgrades, isDarkUpgradeVisible, 0);
   };
 
-  function isDarkUpgradeVisible(name, currentElement) {
-    return visibility.isUpgradeVisible(name, currentElement, data.dark_upgrades[name]);
+  // here we receive not the name of the element, but the index in the element_slots
+  function isDarkUpgradeVisible(name, index) {
+    return visibility.isUpgradeVisible(name, index, data.dark_upgrades[name]);
   }
 }

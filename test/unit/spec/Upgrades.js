@@ -1,5 +1,5 @@
 /* eslint no-var: 0 */
-/* globals describe,commonSpec,it,expect */
+/* globals describe,commonSpec,it,expect,beforeEach */
 /* jshint varstmt: false */
 'use strict';
 
@@ -40,8 +40,10 @@ describe('Upgrades', function() {
         spec.data[key] = angular.copy(spec.originalData[key]);
       }
       let player = angular.copy(spec.data.start_player);
+      player.element_slots = [angular.copy(spec.data.element_slot)];
+      player.element_slots[0].element = 'H';
       for(let key in spec.data.upgrades){
-        player.elements.H.upgrades[key] = true;
+        player.element_slots[0].upgrades[key] = true;
       }
 
       spec.state.update(player);
@@ -88,46 +90,66 @@ describe('Upgrades', function() {
     it('should purchase an upgrade if cost is met', function() {
       spec.data.elements.H = {main:'1H'};
       spec.state.player.resources['1H'] = {number:110};
-      spec.state.player.elements.H = {upgrades:{}};
-      spec.state.player.elements.H.upgrades['1-1'] = false;
+      spec.state.player.elements.H = true;
+      spec.state.player.element_slots = [{
+        element: 'H',
+        upgrades: {
+          '1-1': false
+        }
+      }];
 
-      spec.upgrades.buyUpgrade('1-1','H');
+      spec.upgrades.buyUpgrade('1-1',spec.state.player.element_slots[0]);
 
       expect(spec.state.player.resources['1H'].number).toEqual(10);
-      expect(spec.state.player.elements.H.upgrades['1-1']).toEqual(true);
+      expect(spec.state.player.element_slots[0].upgrades['1-1']).toEqual(true);
     });
 
     it('should not purchase an upgrade if cost is not met', function() {
       spec.data.elements.H = {main:'1H'};
       spec.state.player.resources['1H'] = {number:10};
-      spec.state.player.elements.H = {upgrades:{}};
-      spec.state.player.elements.H.upgrades['1-1'] = false;
+      spec.state.player.elements.H = true;
+      spec.state.player.element_slots = [{
+        element: 'H',
+        upgrades: {
+          '1-1': false
+        }
+      }];
 
-      spec.upgrades.buyUpgrade('1-1','H');
+      spec.upgrades.buyUpgrade('1-1',spec.state.player.element_slots[0]);
 
       expect(spec.state.player.resources['1H'].number).toEqual(10);
-      expect(spec.state.player.elements.H.upgrades['1-1']).toEqual(false);
+      expect(spec.state.player.element_slots[0].upgrades['1-1']).toEqual(false);
     });
 
     it('should skip if the upgrade is already bought', function() {
       spec.data.elements.H = {main:'1H'};
       spec.state.player.resources['1H'] = {number:10};
-      spec.state.player.elements.H = {upgrades:{}};
-      spec.state.player.elements.H.upgrades['1-1'] = true;
+      spec.state.player.elements.H = true;
+      spec.state.player.element_slots = [{
+        element: 'H',
+        upgrades: {
+          '1-1': true
+        }
+      }];
 
-      spec.upgrades.buyUpgrade('1-1','H');
+      spec.upgrades.buyUpgrade('1-1',spec.state.player.element_slots[0]);
 
       expect(spec.state.player.resources['1H'].number).toEqual(10);
-      expect(spec.state.player.elements.H.upgrades['1-1']).toEqual(true);
+      expect(spec.state.player.element_slots[0].upgrades['1-1']).toEqual(true);
     });
 
     it('should buy all upgrades it can afford', function() {
       spec.data.elements.H = {main:'1H'};
       spec.state.player.resources['1H'] = {number:1500};
-      spec.state.player.elements.H = {upgrades:{}};
-      spec.state.player.elements.H.upgrades['1-1'] = false;
-      spec.state.player.elements.H.upgrades['1-2'] = false;
-      spec.state.player.elements.H.upgrades['1-3'] = false;
+      spec.state.player.elements.H = true;
+      spec.state.player.element_slots = [{
+        element: 'H',
+        upgrades: {
+          '1-1': false,
+          '1-2': false,
+          '1-3': false
+        }
+      }];
       spec.data.upgrades = {
         '1-3': {
           price: 10000,
@@ -163,32 +185,35 @@ describe('Upgrades', function() {
 
       spec.upgrades.visibleUpgrades = function(){return ['1-1','1-2','1-3']}
 
-      spec.upgrades.buyAll('H');
+      spec.upgrades.buyAll(spec.state.player.element_slots[0]);
 
       expect(spec.state.player.resources['1H'].number).toEqual(400);
-      expect(spec.state.player.elements.H.upgrades['1-1']).toEqual(true);
-      expect(spec.state.player.elements.H.upgrades['1-2']).toEqual(true);
-      expect(spec.state.player.elements.H.upgrades['1-3']).toEqual(false);
+      expect(spec.state.player.element_slots[0].upgrades['1-1']).toEqual(true);
+      expect(spec.state.player.element_slots[0].upgrades['1-2']).toEqual(true);
+      expect(spec.state.player.element_slots[0].upgrades['1-3']).toEqual(false);
     });
   });
 
   describe('visibility functions', function() {
       it('should show if an upgrade is visible', function() {
-        spec.state.player.elements.H = {
+        spec.state.player.exotic_upgrades = {
+          H: {
+            x3: false
+          }
+        };
+        spec.state.player.element_slots = [{
+          element: 'H',
           generators:{
             '1': 1,
             '2': 0
           },
-          upgrades:{
+          upgrades: {
             '1-1': true,
             '1-2': false,
             '1-3': false,
             '2-1': false
-          },
-          exotic_upgrades: {
-            x3: false
           }
-        };
+        }];
         spec.data.upgrades = {
           '1-1': {
             tiers: [
@@ -232,27 +257,30 @@ describe('Upgrades', function() {
           }
         };
 
-        let values = spec.upgrades.visibleUpgrades('H', spec.data.upgrades);
+        let values = spec.upgrades.visibleUpgrades(spec.state.player.element_slots[0], spec.data.upgrades);
 
         expect(values).toEqual(['1-1']);
       });
 
       it('should show if an upgrade is visible 2', function() {
-        spec.state.player.elements.H = {
+        spec.state.player.exotic_upgrades = {
+          H: {
+            x3: true
+          }
+        };
+        spec.state.player.element_slots = [{
+          element: 'H',
           generators:{
             '1': 1,
             '2': 0
           },
-          upgrades:{
+          upgrades: {
             '1-1': true,
             '1-2': false,
             '1-3': false,
             '2-1': false
-          },
-          exotic_upgrades: {
-            x3: true
           }
-        };
+        }];
         spec.data.upgrades = {
           '1-1': {
             tiers: [
@@ -296,7 +324,7 @@ describe('Upgrades', function() {
           }
         };
 
-        let values = spec.upgrades.visibleUpgrades('H', spec.data.upgrades);
+        let values = spec.upgrades.visibleUpgrades(spec.state.player.element_slots[0], spec.data.upgrades);
 
         expect(values).toEqual(['1-1','1-2']);
       });

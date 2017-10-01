@@ -27,11 +27,11 @@ function exotic(state, format, visibility, upgrade, data, util) {
   /* Exotic production is a function of the different resources of each
   element. Additionally, multi-element molecules count double, once for
   each participating element. */
-  ct.exoticProduction = function() {
+  ct.exoticProduction = function(element) {
     let production = {};
-    let exotic = data.elements[state.currentElement].exotic;
-    production[exotic] = 0;
-    for (let resource of data.elements[state.currentElement].includes) {
+    let exoticResource = data.elements[element].exotic;
+    production[exoticResource] = 0;
+    for (let resource of data.elements[element].includes) {
       if (!state.player.resources[resource].unlocked) {
         continue;
       }
@@ -41,22 +41,16 @@ function exotic(state, format, visibility, upgrade, data, util) {
           let number = data.resources[resource].elements[key];
           multiplier += number;
         }
-        for (let element in data.resources[resource].elements) {
-          let newExotic = data.elements[element].exotic;
+        for (let elem in data.resources[resource].elements) {
+          let newExotic = data.elements[elem].exotic;
           production[newExotic] = production[newExotic] || 0;
           production[newExotic] += prestigeFormula(state.player.resources[resource].number)*multiplier;
         }
       }else{
-        production[exotic] += prestigeFormula(state.player.resources[resource].number);
+        production[exoticResource] += prestigeFormula(state.player.resources[resource].number);
       }
     }
     for (let key in production) {
-      // we adjust the production to start at 1e6 resources
-      // if (production[key] >= 13) {
-      //   production[key] -= 13;
-      // } else {
-      //   production[key] = 0;
-      // }
       // we adjust the infusion
       production[key] = Math.floor(production[key]*ct.totalInfuseBoost());
     }
@@ -72,9 +66,9 @@ function exotic(state, format, visibility, upgrade, data, util) {
     return Math.floor(step * sigmoid);
   }
 
-  ct.exoticPrestige = function() {
+  ct.exoticPrestige = function(slot) {
     let resources = state.player.resources;
-    let production = ct.exoticProduction();
+    let production = ct.exoticProduction(slot.element);
 
     for (let key in production) {
       resources[key].number += production[key];
@@ -85,15 +79,35 @@ function exotic(state, format, visibility, upgrade, data, util) {
       state.player.resources[resource].number -= ct.infuse[resource];
     }
 
-    upgrade.resetElement(state.player, state.currentElement);
+    upgrade.resetElement(state.player, slot.element);
+
+    // we deactivate reactions and redoxes
+    for (let reaction of slot.reactions) {
+      reaction.active = false;
+    }
+
+    for (let redox of slot.redoxes) {
+      redox.active = false;
+    }
+
+    // we cache them in case players want to pick up the same element
+    // the cache only lasts the current session
+    state.reactionsCache[slot.element] = slot.reactions;
+    state.redoxesCache[slot.element] = slot.redoxes;
+
+    // FIXME: copy the hydrogen for the time being. actually should be set to null
+    for(let key in data.element_slot){
+      slot[key] = angular.copy(data.element_slot[key]);
+    }
+    slot.generators['1'] = 1;
+    slot.element = 'H';
   };
 
-  ct.buyExoticUpgrade = function(name, element) {
-    let upgrades = state.player.elements[element].exotic_upgrades;
+  ct.buyExoticUpgrade = function(name, slot) {
     let price = data.exotic_upgrades[name].price;
-    let currency = data.elements[element].exotic;
+    let currency = data.elements[slot.element].exotic;
     upgrade.buyUpgrade(state.player,
-      upgrades,
+      state.player.exotic_upgrades[slot.element],
       name,
       price,
       currency);
@@ -135,12 +149,12 @@ function exotic(state, format, visibility, upgrade, data, util) {
     return total;
   };
 
-  ct.visibleExoticUpgrades = function(currentElement) {
-    return visibility.visible(data.exotic_upgrades, isExoticUpgradeVisible, currentElement);
+  ct.visibleExoticUpgrades = function(slot) {
+    return visibility.visible(data.exotic_upgrades, isExoticUpgradeVisible, slot);
   };
 
-  function isExoticUpgradeVisible(name, currentElement) {
-    return visibility.isUpgradeVisible(name, currentElement, data.exotic_upgrades[name]);
+  function isExoticUpgradeVisible(name, slot) {
+    return visibility.isUpgradeVisible(name, slot, data.exotic_upgrades[name]);
   }
 
   ct.visibleSubatomic = function() {

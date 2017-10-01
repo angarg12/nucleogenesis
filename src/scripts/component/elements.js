@@ -29,15 +29,15 @@ function elements($timeout, state, data) {
   };
 
   ct.buyElement = function (element) {
-    if (state.player.elements[element].unlocked) {
+    if (state.player.elements[element]) {
       return;
     }
     if (state.player.resources.dark_matter.number >= ct.elementPrice) {
       state.player.resources.dark_matter.number -= ct.elementPrice;
 
       if(Math.random() < ct.getChance(element)){
-        state.player.elements[element].unlocked = true;
-        state.player.elements[element].generators['1'] = 1;
+        state.player.elements[element] = true;
+        state.player.exotic_upgrades[element] = angular.copy(data.exotic_upgrades);
         state.player.elements_unlocked++;
         ct.outcome[element] = 'Success';
       }else{
@@ -57,7 +57,7 @@ function elements($timeout, state, data) {
     if(!state.player.elements[element]){
       return 'element_unavailable';
     }
-    if (state.player.elements[element].unlocked) {
+    if (state.player.elements[element]) {
       return 'element_purchased';
     }else{
       if(state.player.resources.dark_matter.number >= ct.elementPrice) {

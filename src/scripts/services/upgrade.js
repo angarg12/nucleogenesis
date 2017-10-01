@@ -32,31 +32,6 @@ angular
         for (let resource of data.elements[element].includes) {
           resources[resource].number = 0;
         }
-
-        let upgrades = player.elements[element].upgrades;
-        for (let upgrade in upgrades) {
-          upgrades[upgrade] = false;
-        }
-
-        let generators = player.elements[element].generators;
-        for (let generator in generators) {
-          generators[generator] = 0;
-        }
-
-        let reactions = player.reactions;
-        for (let reaction of reactions) {
-          reaction.active = false;
-        }
-
-        let redoxes = player.redox;
-        for (let redox of redoxes) {
-          redox.active = false;
-        }
-
-        delete generators['0'];
-        let first = Object.keys(generators)[0];
-
-        player.elements[element].generators[first] = 1;
       };
     }
   ]);

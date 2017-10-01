@@ -25,10 +25,12 @@ describe('Exotic', function() {
       spec.data.resources = {
         '1H': {elements: {H: 1}, type: ['isotope']}
       };
-      spec.state.current_element = 'H';
       spec.state.player.resources['1H'] = {number:1e8, unlocked: true};
+      spec.state.player.element_slots = [{
+        element: 'H'
+      }];
 
-      let production = spec.exotic.exoticProduction();
+      let production = spec.exotic.exoticProduction('H');
 
       expect(production).toEqual({'xH': 108});
     });
@@ -41,10 +43,12 @@ describe('Exotic', function() {
       spec.data.resources = {
         '1H': {elements: {H: 1}, type: ['isotope']}
       };
-      spec.state.current_element = 'H';
       spec.state.player.resources['1H'] = {number:1e5, unlocked: true};
+      spec.state.player.element_slots = [{
+        element: 'H'
+      }];
 
-      let production = spec.exotic.exoticProduction();
+      let production = spec.exotic.exoticProduction('H');
 
       expect(production).toEqual({'xH': 0});
     });
@@ -62,16 +66,29 @@ describe('Exotic', function() {
         '1H': {elements: {H: 1}, type: ['isotope']},
         'H2O': {elements: {H: 2, O: 1}, type: ['molecule']}
       };
-      spec.state.current_element = 'H';
       spec.state.player.resources['1H'] = {number:0, unlocked: true};
       spec.state.player.resources.H2O = {number:1e8, unlocked: true};
+      spec.state.player.element_slots = [{
+        element: 'H'
+      }];
 
-      let production = spec.exotic.exoticProduction();
+      let production = spec.exotic.exoticProduction('H');
 
       expect(production).toEqual({'xH': 324, 'xO': 324});
     });
 
     it('should prestige', function() {
+      spec.data.element_slot = {
+        upgrades: {
+          '1-1': false
+        },
+        generators: {
+          '1': 0,
+          '2': 0
+        },
+        reactions: [],
+        redoxes: []
+      };
       spec.data.elements.H = {
         exotic:'xH',
         includes: ['1H'],
@@ -80,29 +97,37 @@ describe('Exotic', function() {
       spec.data.resources = {
         '1H': {elements: {H: 1}, type: ['isotope']}
       };
-      spec.state.current_element = 'H';
       spec.state.player.resources['1H'] = {number:1e8, unlocked: true};
       spec.state.player.resources.xH = {number:0, unlocked: false};
-      spec.state.player.elements.H = {
+      spec.state.player.elements.H = true;
+      spec.state.player.exotic_upgrades = {
+        H: {
+          x3: true
+        }
+      };
+      spec.state.player.element_slots = [{
+        element: 'H',
         upgrades: {
           '1-1': true
         },
         generators: {
           '1': 99,
           '2': 99
-        }
-      };
-      spec.state.player.reactions = [{
-        active: true,
-        reaction: ['H.OH-H2O']
+        },
+        reactions: [{
+          active: true,
+          reaction: ['H.OH-H2O']
+        }],
+        redoxes: []
       }];
 
-      spec.exotic.exoticPrestige();
+      spec.exotic.exoticPrestige(spec.state.player.element_slots[0]);
 
-      expect(spec.state.player.elements.H.upgrades['1-1']).toBeFalsy();
-      expect(spec.state.player.reactions[0].active).toBeFalsy();
-      expect(spec.state.player.elements.H.generators['1']).toEqual(1);
-      expect(spec.state.player.elements.H.generators['2']).toEqual(0);
+      expect(spec.state.player.element_slots[0].upgrades['1-1']).toBeFalsy();
+      expect(spec.state.player.exotic_upgrades.H.x3).toBeTruthy();
+      expect(spec.state.player.element_slots[0].reactions.length).toEqual(0);
+      expect(spec.state.player.element_slots[0].generators['1']).toEqual(1);
+      expect(spec.state.player.element_slots[0].generators['2']).toEqual(0);
       expect(spec.state.player.resources['1H'].number).toEqual(0);
       expect(spec.state.player.resources.xH.number).toEqual(108);
     });
@@ -169,19 +194,21 @@ describe('Exotic', function() {
           p: {elements: {}, type: ['subatomic']},
           n: {elements: {}, type: ['subatomic']}
       };
-      spec.state.player.elements.H = {
-        upgrades: {},
-        generators: {}
-      };
-      spec.state.current_element = 'H';
       spec.state.player.resources['1H'] = {number:1e8, unlocked: true};
       spec.state.player.resources.xH = {number:0, unlocked: false};
       spec.state.player.resources.p = {number:1000, unlocked: true};
       spec.state.player.resources.n = {number:1000, unlocked: true};
       spec.exotic.infuse.p = 1000;
       spec.exotic.infuse.n = 1000;
+      spec.state.player.element_slots = [{
+        element: 'H',
+        upgrades: {},
+        generators: {},
+        reactions: [],
+        redoxes: []
+      }];
 
-      spec.exotic.exoticPrestige();
+      spec.exotic.exoticPrestige(spec.state.player.element_slots[0]);
 
       expect(spec.state.player.resources.xH.number).toEqual(185);
     });
@@ -198,13 +225,19 @@ describe('Exotic', function() {
         }
       };
       spec.state.player.resources.xH = {number:110};
-      spec.state.player.elements.H = {exotic_upgrades:{}};
-      spec.state.player.elements.H.exotic_upgrades.x3 = false;
+      spec.state.player.exotic_upgrades = {
+        H: {
+          x3: false
+        }
+      };
+      spec.state.player.element_slots = [{
+        element: 'H'
+      }];
 
-      spec.exotic.buyExoticUpgrade('x3','H');
+      spec.exotic.buyExoticUpgrade('x3',spec.state.player.element_slots[0]);
 
       expect(spec.state.player.resources.xH.number).toEqual(10);
-      expect(spec.state.player.elements.H.exotic_upgrades.x3).toEqual(true);
+      expect(spec.state.player.exotic_upgrades.H.x3).toEqual(true);
     });
 
     it('should not purchase an upgrade if cost is not met', function() {
@@ -217,13 +250,19 @@ describe('Exotic', function() {
         }
       };
       spec.state.player.resources.xH = {number:10};
-      spec.state.player.elements.H = {exotic_upgrades:{}};
-      spec.state.player.elements.H.exotic_upgrades.x3 = false;
+      spec.state.player.exotic_upgrades = {
+        H: {
+          x3: false
+        }
+      };
+      spec.state.player.element_slots = [{
+        element: 'H'
+      }];
 
-      spec.exotic.buyExoticUpgrade('x3','H');
+      spec.exotic.buyExoticUpgrade('x3',spec.state.player.element_slots[0]);
 
       expect(spec.state.player.resources.xH.number).toEqual(10);
-      expect(spec.state.player.elements.H.exotic_upgrades.x3).toEqual(false);
+      expect(spec.state.player.exotic_upgrades.H.x3).toEqual(false);
     });
 
     it('should skip if the upgrade is already bought', function() {
@@ -236,13 +275,19 @@ describe('Exotic', function() {
         }
       };
       spec.state.player.resources.xH = {number:110};
-      spec.state.player.elements.H = {exotic_upgrades:{}};
-      spec.state.player.elements.H.exotic_upgrades.x3 = true;
+      spec.state.player.exotic_upgrades = {
+        H: {
+          x3: true
+        }
+      };
+      spec.state.player.element_slots = [{
+        element: 'H'
+      }];
 
-      spec.exotic.buyExoticUpgrade('x3','H');
+      spec.exotic.buyExoticUpgrade('x3',spec.state.player.element_slots[0]);
 
       expect(spec.state.player.resources.xH.number).toEqual(110);
-      expect(spec.state.player.elements.H.exotic_upgrades.x3).toEqual(true);
+      expect(spec.state.player.exotic_upgrades.H.x3).toEqual(true);
     });
   });
 
@@ -255,12 +300,15 @@ describe('Exotic', function() {
           dark_deps: []
         }
       };
-      spec.state.player.elements.H = {
-        upgrades: [],
-        exotic_upgrades: []
+      spec.state.player.exotic_upgrades = {
+        H: {}
       };
+      spec.state.player.element_slots = [{
+        element: 'H',
+        upgrades: {}
+      }];
 
-      let values = spec.exotic.visibleExoticUpgrades('H');
+      let values = spec.exotic.visibleExoticUpgrades(spec.state.player.element_slots[0]);
 
       expect(values).toEqual(['x3']);
     });

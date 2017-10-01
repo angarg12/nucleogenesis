@@ -14,7 +14,7 @@ for(let element in elements){
 
   // Generate element unlocks
   unlocks[element] = {
-    condition: 'player.elements.'+element+'.unlocked'
+    condition: 'player.elements.'+element
   };
 }
 

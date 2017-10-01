@@ -4,7 +4,8 @@
   <li class="sidebar-brand">
     Nucleogenesis v{{ct.data.version}}
   </li>
-  <li ng-repeat="key in ct.visibleResources(ct.state.currentElement)"
+<div ng-repeat="slot in ct.state.player.element_slots">
+  <li ng-repeat="key in ct.visibleResources(slot.element)"
       ng-mouseover="ct.state.removeNew(key)"
       class="row">
     <get-html value="key"
@@ -43,3 +44,4 @@
     </ul>
   </li>
 </ul>
+</div>

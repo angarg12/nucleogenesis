@@ -8,41 +8,34 @@ describe('Elements component', function() {
 
   commonSpec(spec);
 
-  describe('prices and cost', function() {
-  });
-
   describe('purchase functions', function() {
     it('should not purchase element if roll is failed', function() {
       spec.data.elements.O = {abundance: 0.5};
       spec.state.player = {elements:{},resources:{},elements_unlocked:1};
       spec.state.player.resources.dark_matter = {number:1};
-      spec.state.player.elements.O = {unlocked:false,generators:{}};
-      spec.state.player.elements.O.generators['1'] = 0;
+      spec.state.player.elements.O = false;
 
       spyOn(Math, 'random').and.returnValue(0.7);
 
       spec.elements.buyElement('O');
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(0);
-      expect(spec.state.player.elements.O.unlocked).toEqual(false);
-      expect(spec.state.player.elements.O.generators['1']).toEqual(0);
+      expect(spec.state.player.elements.O).toEqual(false);
       expect(spec.state.player.elements_unlocked).toEqual(1);
     });
 
     it('should purchase element if roll is successful', function() {
       spec.data.elements.O = {abundance: 0.5};
-      spec.state.player = {elements:{},resources:{},elements_unlocked:1};
+      spec.state.player = {elements:{},exotic_upgrades:{},resources:{},elements_unlocked:1};
       spec.state.player.resources.dark_matter = {number:1};
-      spec.state.player.elements.O = {unlocked:false,generators:{}};
-      spec.state.player.elements.O.generators['1'] = 0;
+      spec.state.player.elements.O = false;
 
       spyOn(Math, 'random').and.returnValue(0.2);
 
       spec.elements.buyElement('O');
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(0);
-      expect(spec.state.player.elements.O.unlocked).toEqual(true);
-      expect(spec.state.player.elements.O.generators['1']).toEqual(1);
+      expect(spec.state.player.elements.O).toEqual(true);
       expect(spec.state.player.elements_unlocked).toEqual(2);
     });
 
@@ -50,28 +43,26 @@ describe('Elements component', function() {
       spec.data.elements.O = {abundance: 1};
       spec.state.player = {elements:{},resources:{},elements_unlocked:2};
       spec.state.player.resources.dark_matter = {number:0};
-      spec.state.player.elements.O = {unlocked:false,generators:{}};
-      spec.state.player.elements.O.generators['1'] = 0;
+      spec.state.player.elements.O = false;
 
       spec.elements.buyElement('O');
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(0);
-      expect(spec.state.player.elements.O.unlocked).toEqual(false);
-      expect(spec.state.player.elements.O.generators['1']).toEqual(0);
+      expect(spec.state.player.elements.O).toEqual(false);
       expect(spec.state.player.elements_unlocked).toEqual(2);
     });
 
     it('should skip if the element is already purchased', function() {
       spec.state.player = {elements:{}};
       spec.data.elements.O = {number: 8};
-      spec.state.player.elements.O = {unlocked:true};
+      spec.state.player.elements.O = true;
 
       spec.elements.buyElement('O');
 
-      expect(spec.state.player.elements.O.unlocked).toEqual(true);
+      expect(spec.state.player.elements.O).toEqual(true);
     });
   });
-
+/*
   describe('class functions', function() {
     it('should return the right class for unavailable elements', function() {
       spec.data.elements.H = {};
@@ -125,4 +116,5 @@ describe('Elements component', function() {
       expect(clazz).toEqual('available_dark');
     });
   });
+  */
 });

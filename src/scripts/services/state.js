@@ -14,7 +14,6 @@ angular
     'data',
   function($timeout, data) {
     let sv = this;
-    sv.currentElement = 'H';
     sv.hoverElement = '';
     sv.export = '';
     sv.player = {};
@@ -29,6 +28,8 @@ angular
     let newElements = [];
     let updateFunctions = {};
     sv.hideBought = false;
+    sv.reactionsCache = {};
+    sv.redoxesCache = {};
 
     sv.deleteToast = function() {
       sv.toast.shift();
@@ -52,7 +53,6 @@ angular
     };
 
     sv.init = function() {
-      sv.currentElement = 'H';
       sv.hoverElement = '';
       sv.export = '';
       sv.toast = [];

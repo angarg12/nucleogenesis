@@ -43,7 +43,6 @@
       "multiplier-1-<%= id %>"
     ],
     "exotic_deps": [
-      "x3"
       "x-3"
     ],
     "dark_deps": [],
@@ -72,7 +71,6 @@
       "multiplier-2-<%= id %>"
     ],
     "exotic_deps": [
-      "x4"
       "x-4"
     ],
     "dark_deps": [],
@@ -101,7 +99,6 @@
       "multiplier-3-<%= id %>"
     ],
     "exotic_deps": [
-      "x5"
       "x-5"
     ],
     "dark_deps": [],
@@ -130,7 +127,6 @@
       "multiplier-4-<%= id %>"
     ],
     "exotic_deps": [
-      "x6"
       "x-6"
     ],
     "dark_deps": [],
@@ -159,7 +155,6 @@
       "multiplier-5-<%= id %>"
     ],
     "exotic_deps": [
-      "x7"
       "x-7"
     ],
     "dark_deps": [],
@@ -188,7 +183,6 @@
       "multiplier-6-<%= id %>"
     ],
     "exotic_deps": [
-      "x8"
       "x-8"
     ],
     "dark_deps": [],
@@ -217,7 +211,6 @@
       "multiplier-7-<%= id %>"
     ],
     "exotic_deps": [
-      "x9"
       "x-9"
     ],
     "dark_deps": [],
@@ -244,12 +237,11 @@
     "tier": "<%= id %>",
     "deps": [],
     "exotic_deps": [
-      "boosts1"
       "boosts-1"
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+Math.floor(player.elements[element].generators['<%= id %>']/10)*0.05);",
+      "return production*(1+Math.floor(slot.generators['<%= id %>']/10)*0.05);",
       "})()"
     ]
   },
@@ -273,12 +265,11 @@
       "boost-1-<%= id %>"
     ],
     "exotic_deps": [
-      "boosts2"
       "boosts-2"
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+Math.floor(player.elements[element].generators['<%= id %>']/25)*0.25);",
+      "return production*(1+Math.floor(slot.generators['<%= id %>']/25)*0.25);",
       "})()"
     ]
   },
@@ -302,12 +293,11 @@
       "boost-2-<%= id %>"
     ],
     "exotic_deps": [
-      "boosts3"
       "boosts-3"
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+Math.floor(player.elements[element].generators['<%= id %>']/50)*1);",
+      "return production*(1+Math.floor(slot.generators['<%= id %>']/50)*1);",
       "})()"
     ]
   },
@@ -331,12 +321,11 @@
       "boost-3-<%= id %>"
     ],
     "exotic_deps": [
-      "boosts4"
       "boosts-4"
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+Math.floor(player.elements[element].generators['<%= id %>']/100)*2.5);",
+      "return production*(1+Math.floor(slot.generators['<%= id %>']/100)*2.5);",
       "})()"
     ]
   },
@@ -363,7 +352,7 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+player.elements[element].generators['1']/100);",
+      "return production*(1+slot.generators['1']/100);",
       "})()"
     ]
   },
@@ -390,7 +379,7 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+player.elements[element].generators['2']/100);",
+      "return production*(1+slot.generators['2']/100);",
       "})()"
     ]
   },
@@ -417,7 +406,7 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+player.elements[element].generators['3']/100);",
+      "return production*(1+slot.generators['3']/100);",
       "})()"
     ]
   },
@@ -444,7 +433,7 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+player.elements[element].generators['4']/100);",
+      "return production*(1+slot.generators['4']/100);",
       "})()"
     ]
   },
@@ -471,7 +460,7 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+player.elements[element].generators['5']/100);",
+      "return production*(1+slot.generators['5']/100);",
       "})()"
     ]
   },
@@ -498,7 +487,7 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+player.elements[element].generators['6']/100);",
+      "return production*(1+slot.generators['6']/100);",
       "})()"
     ]
   },
@@ -525,7 +514,7 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+player.elements[element].generators['7']/100);",
+      "return production*(1+slot.generators['7']/100);",
       "})()"
     ]
   },
@@ -552,7 +541,7 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+player.elements[element].generators['8']/100);",
+      "return production*(1+slot.generators['8']/100);",
       "})()"
     ]
   },
@@ -579,7 +568,7 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+player.elements[element].generators['9']/100);",
+      "return production*(1+slot.generators['9']/100);",
       "})()"
     ]
   },
@@ -606,7 +595,7 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+player.elements[element].generators['10']/100);",
+      "return production*(1+slot.generators['10']/100);",
       "})()"
     ]
   }

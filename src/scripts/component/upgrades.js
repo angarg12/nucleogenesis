@@ -18,16 +18,16 @@ function upgrades(state, visibility, upgrade, data) {
   ct.data = data;
 
   // tries to buy all the upgrades it can, starting from the cheapest
-  ct.buyAll = function (element) {
-    let currency = data.elements[element].main;
+  ct.buyAll = function (slot) {
+    let currency = data.elements[slot.element].main;
     let cheapest;
     let cheapestPrice;
     do{
       cheapest = null;
       cheapestPrice = Infinity;
-      for(let up of ct.visibleUpgrades(element, data.upgrades)){
+      for(let up of ct.visibleUpgrades(slot, data.upgrades)){
         let price = data.upgrades[up].price;
-        if(!state.player.elements[element].upgrades[up] &&
+        if(!slot.upgrades[up] &&
           price <= state.player.resources[currency].number){
           if(price < cheapestPrice){
             cheapest = up;
@@ -36,9 +36,8 @@ function upgrades(state, visibility, upgrade, data) {
         }
       }
       if(cheapest){
-        let upgrades = state.player.elements[element].upgrades;
         upgrade.buyUpgrade(state.player,
-          upgrades,
+          slot.upgrades,
           cheapest,
           cheapestPrice,
           currency);
@@ -46,12 +45,11 @@ function upgrades(state, visibility, upgrade, data) {
     }while(cheapest);
   };
 
-  ct.buyUpgrade = function (name, element) {
-    let upgrades = state.player.elements[element].upgrades;
+  ct.buyUpgrade = function (name, slot) {
     let price = data.upgrades[name].price;
-    let currency = data.elements[element].main;
+    let currency = data.elements[slot.element].main;
     upgrade.buyUpgrade(state.player,
-      upgrades,
+      slot.upgrades,
       name,
       price,
       currency);
@@ -89,15 +87,15 @@ function upgrades(state, visibility, upgrade, data) {
     return Math.ceil(Math.pow(data.global_upgrades[name].price_exp, level));
   };
 
-  ct.visibleUpgrades = function(currentElement, source) {
-    return visibility.visible(source, createVisibleFunction(source), currentElement);
+  ct.visibleUpgrades = function(slot, source) {
+    return visibility.visible(source, createVisibleFunction(source), slot);
   };
 
   function createVisibleFunction(source){
-    return function isBasicUpgradeVisible(name, currentElement) {
-      let isVisible = visibility.isUpgradeVisible(name, currentElement, source[name]);
+    return function isBasicUpgradeVisible(name, slot) {
+      let isVisible = visibility.isUpgradeVisible(name, slot, source[name]);
       if(source === data.upgrades){
-        return isVisible && (!state.hideBought || !state.player.elements[currentElement].upgrades[name]);
+        return isVisible && (!state.hideBought || !slot.upgrades[name]);
       }
       return isVisible;
     };

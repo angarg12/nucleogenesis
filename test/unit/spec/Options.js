@@ -155,6 +155,18 @@ describe('Options', function () {
       });
 
       it('should load the game', function() {
+        spec.state.player.element_slots = [{
+          element: 'H',
+          upgrades: {
+            '1-1': false
+          },
+          generators: {
+            '1': 0
+          },
+          reactions: [],
+          redoxes: []
+        }];
+
         // flush onload
         spec.$timeout.flush();
 
@@ -162,6 +174,17 @@ describe('Options', function () {
       });
 
       it('should not init if the player exists', function() {
+        spec.state.player.element_slots = [{
+          element: 'H',
+          upgrades: {
+            '1-1': false
+          },
+          generators: {
+            '1': 0
+          },
+          reactions: [],
+          redoxes: []
+        }];
         getItem.and.returnValue('{}');
 
         // flush onload

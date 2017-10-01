@@ -11,7 +11,7 @@ let upgrades = jsonfile.readFileSync('build/data/upgrades.json');
 let generators = jsonfile.readFileSync('build/data/generators.json');
 let upgradeComponent = fs.readFileSync('build/scripts/component/generators.js').toString();
 
-const FUNCTION_TEMPLATE = `this.<%= name %> = function (player, production, element){
+const FUNCTION_TEMPLATE = `this.<%= name %> = function (player, production, slot){
   return <%= func %>;
 };`;
 

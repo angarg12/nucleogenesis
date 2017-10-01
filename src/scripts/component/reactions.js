@@ -21,11 +21,13 @@ function (state, data, visibility, util, format, reactionService) {
   ct.format = format;
 
   function update(player) {
-    for (let reaction of player.reactions) {
-      if (!reaction.active) {
-        continue;
+    for(let slot of player.element_slots){
+      for (let reaction of slot.reactions) {
+        if (!reaction.active) {
+          continue;
+        }
+        reactionService.react(numberToReact(player, reaction.reaction), reaction.reaction, player);
       }
-      reactionService.react(numberToReact(player, reaction.reaction), reaction.reaction, player);
     }
   }
 
@@ -57,48 +59,39 @@ function (state, data, visibility, util, format, reactionService) {
   };
 
   ct.reactionSize = function (player) {
-    return player.reactions.length;
+    let size = 0;
+    for(let slot of player.element_slots){
+      size += slot.reactions.length;
+    }
+    return size;
   };
 
   /* Adds a new reaction to the player list */
-  ct.addReaction = function (player, key) {
+  ct.addReaction = function (player, slot, key) {
     if(ct.reactionSize(player) >= ct.reactionSlots(player)){
       return;
     }
     let reaction = data.reactions[key];
-    player.reactions.push({
+    slot.reactions.push({
       active: false,
       reaction: angular.copy(reaction)
     });
   };
 
-  ct.removeReaction = function (player, item) {
-    for(let i = 0; i < player.reactions.length; i++){
-      if(player.reactions[i] === item){
-        player.reactions.splice(i, 1);
+  ct.removeReaction = function (slot, item) {
+    for(let i = 0; i < slot.reactions.length; i++){
+      if(slot.reactions[i] === item){
+        slot.reactions.splice(i, 1);
       }
     }
   };
 
-  ct.visibleReactions = function(currentElement) {
-    return visibility.visible(state.player.reactions, isReactionVisible, currentElement);
+  ct.visibleReactions = function(slot) {
+    return slot.reactions;
   };
 
-  function isReactionVisible(entry, currentElement) {
-    let reaction = entry.reaction;
-    if(reaction.elements.length === 0 && currentElement === ''){
-      return true;
-    }
-    for(let element of reaction.elements){
-      if(element === currentElement){
-        return true;
-      }
-    }
-    return false;
-  }
-
-  ct.availableReactions = function(currentElement) {
-    return visibility.visible(data.reactions, isReactionAvailable, currentElement);
+  ct.availableReactions = function(slot) {
+    return visibility.visible(data.reactions, isReactionAvailable, slot.element);
   };
 
   function isReactionAvailable(entry, currentElement) {
@@ -111,6 +104,19 @@ function (state, data, visibility, util, format, reactionService) {
     // reaction inside
     let reactionObject = {reaction:reaction};
     return available && isReactionVisible(reactionObject, currentElement);
+  }
+
+  function isReactionVisible(entry, currentElement) {
+    let reaction = entry.reaction;
+    if(reaction.elements.length === 0){
+      return true;
+    }
+    for(let element of reaction.elements){
+      if(element === currentElement){
+        return true;
+      }
+    }
+    return false;
   }
 
   state.registerUpdate('reactions', update);

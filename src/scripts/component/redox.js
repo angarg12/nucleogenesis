@@ -22,17 +22,19 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
     ct.reaction = reaction;
 
     function update(player) {
-      for (let redox of player.redox) {
-        if (!redox.resource || !redox.active) {
-          continue;
+      for(let slot of player.element_slots){
+        for (let redox of slot.redoxes) {
+          if (!redox.resource || !redox.active) {
+            continue;
+          }
+
+          let reactant = ct.generateName(redox.element, redox.from);
+          let power = ct.redoxPower(player);
+          let number = Math.min(power, player.resources[reactant].number);
+          let react = ct.redoxReaction(redox);
+
+          ct.reaction.react(number, react, player);
         }
-
-        let reactant = ct.generateName(redox.element, redox.from);
-        let power = ct.redoxPower(player);
-        let number = Math.min(power, player.resources[reactant].number);
-        let react = ct.redoxReaction(redox);
-
-        ct.reaction.react(number, react, player);
       }
     }
 
@@ -134,34 +136,34 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
     };
 
     ct.redoxSize = function (player) {
-      return player.redox.length;
+      let size = 0;
+      for(let slot of player.element_slots){
+        size += slot.redoxes.length;
+      }
+      return size;
     };
 
     /* Adds a new redox to the player list */
-    ct.addRedox = function (player) {
+    ct.addRedox = function (player, slot) {
       if(ct.redoxSize(player) >= ct.redoxSlots(player)){
         return;
       }
-      player.redox.push({
-        resource: data.elements[ct.state.currentElement].main,
+      slot.redoxes.push({
+        resource: data.elements[slot.element].main,
         active: false,
-        element: ct.state.currentElement,
+        element: slot.element,
         from: 0,
         to: 1
       });
     };
 
-    ct.removeRedox = function (player, index) {
-      player.redox.splice(index, 1);
+    ct.removeRedox = function (slot, index) {
+      slot.redoxes.splice(index, 1);
     };
 
-    ct.visibleRedox = function(currentElement) {
-      return visibility.visible(state.player.redox, isRedoxVisible, currentElement);
+    ct.visibleRedox = function(slot) {
+      return slot.redoxes;
     };
-
-    function isRedoxVisible(entry, currentElement) {
-      return entry.element === currentElement;
-    }
 
     state.registerUpdate('redox', update);
   }

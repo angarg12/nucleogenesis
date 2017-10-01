@@ -46,7 +46,6 @@ describe('MainLoop', function() {
     it('should init all the variables', function() {
     spec.state.init();
 
-	  expect(spec.state.currentElement).toEqual('H');
 	  expect(spec.state.hoverElement).toEqual('');
 	  expect(spec.state.toast).toEqual([]);
 	  expect(spec.state.isToastVisible).toEqual(false);
@@ -63,10 +62,13 @@ describe('MainLoop', function() {
     });
 
     it('should process offline gains', function() {
-      spec.state.player.elements.O = {
-        unlocked: true
-      };
+      spec.state.player.elements.O = true;
       spyOn(spec.generators,'elementProduction').and.returnValue(1);
+      spec.state.player.element_slots = [{
+        element: 'O',
+        reactions: [],
+        redoxes: []
+      }];
 
       spec.state.offlineCyclesTotal = 100;
       spec.state.offlineCyclesCurrent = 32;
@@ -78,10 +80,13 @@ describe('MainLoop', function() {
     });
 
     it('should generate isotopes', function() {
-      spec.state.player.elements.O = {
-        unlocked: true
-      };
+      spec.state.player.elements.O = true;
       spyOn(spec.generators,'elementProduction').and.returnValue(200);
+      spec.state.player.element_slots = [{
+        element: 'O',
+        reactions: [],
+        redoxes: []
+      }];
 
       spec.controller.update();
 
@@ -91,10 +96,13 @@ describe('MainLoop', function() {
     });
 
     it('should generate isotopes 2', function() {
-      spec.state.player.elements.O = {
-        unlocked: true
-      };
+      spec.state.player.elements.O = true;
       spyOn(spec.generators,'elementProduction').and.returnValue(1200);
+      spec.state.player.element_slots = [{
+        element: 'O',
+        reactions: [],
+        redoxes: []
+      }];
 
       spec.controller.update();
 
@@ -104,10 +112,13 @@ describe('MainLoop', function() {
     });
 
     it('should generate isotopes 3', function() {
-      spec.state.player.elements.O = {
-        unlocked: true
-      };
+      spec.state.player.elements.O = true;
       spyOn(spec.generators,'elementProduction').and.returnValue(32000);
+      spec.state.player.element_slots = [{
+        element: 'O',
+        reactions: [],
+        redoxes: []
+      }];
 
       spec.controller.update();
 

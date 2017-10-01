@@ -19,8 +19,8 @@ function dashboardList(data, state, util, visibility) {
   ct.util = util;
   ct.searchText = '';
 
-  ct.resourcesForElement = function(currentElement) {
-    return visibility.visible(data.resources, filter, currentElement);
+  ct.resourcesForElement = function(element) {
+    return visibility.visible(data.resources, filter, element);
   };
 
   function filter(name, currentElement) {

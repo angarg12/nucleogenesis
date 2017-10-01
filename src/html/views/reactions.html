@@ -1,9 +1,59 @@
 <!DOCTYPE html>
-<reaction-table reactions="ct"
-                element="ct.state.currentElement"
-                title="ct.data.elements[ct.state.currentElement].name"
-                player="ct.state.player"></reaction-table>
-<reaction-table reactions="ct"
-                element="''"
-                title="'Misc.'"
-                player="ct.state.player"></reaction-table>
+<div ng-repeat="slot in ct.state.player.element_slots track by $index">
+  <h2>{{ct.data.elements[slot.element].name}}</h2>
+  <div ng-if="ct.availableReactions(slot).length > 0">
+    <button type="button"
+            class="btn btn-default"
+            ng-click="ct.addReaction(ct.state.player, slot, ct.reactionSelect)">
+    		Add
+      <br>
+    </button>
+    <select name="reactionSelect"
+            ng-init="ct.reactionSelect = ct.availableReactions(slot)[0]"
+            ng-model="ct.reactionSelect">
+      <option ng-repeat="reaction in ct.availableReactions(slot)"
+              value="{{reaction}}">{{reaction}}</option>
+    </select>
+    Slots: {{ct.reactionSize(ct.state.player)}}/{{ct.reactionSlots(ct.state.player)}}
+    <table class="table">
+      <tbody>
+        <tr class="animif">
+          <div class="row">
+            <th class="col-lg-10">
+              Reaction
+            </th>
+            <th class="col-lg-1">
+              Number
+            </th>
+            <th class="col-lg-1">
+              Active
+            </th>
+          </div>
+        </tr>
+        <tr class="animif"
+            ng-repeat="reaction in ct.visibleReactions(slot) track by $index">
+          <div class="row">
+            <td class="col-lg-10">
+              <button type="button"
+                      class="btn btn-default"
+                      ng-click="ct.removeReaction(slot, reaction)">
+                    					Remove
+                    				</button>
+              <span ng-bind-html="ct.util.trustHTML(
+                              ct.format.reactionFormat(ct.reactionPower(ct.state.player),
+                                                        reaction.reaction))"></span>
+            </td>
+            <td class="col-lg-1">
+              <pretty value="ct.reactionPower(ct.state.player)"></pretty>
+            </td>
+            <td class="col-lg-1">
+              <input type="checkbox"
+                     ng-model="reaction.active">
+            </td>
+          </div>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
