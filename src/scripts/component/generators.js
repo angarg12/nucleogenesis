@@ -62,6 +62,9 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
     function processGenerators(player) {
       // we will simulate the production of isotopes proportional to their ratio
       for (let slot of player.element_slots) {
+        if(!slot){
+          continue;
+        } 
         let totalProduction = ct.elementProduction(player, slot);
         let remaining = totalProduction;
         // for each isotope

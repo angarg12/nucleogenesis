@@ -11,11 +11,11 @@ describe('Visible service', function() {
   describe('visibility functions', function() {
     it('should show visible elements', function() {
       spec.data.elements = {'H':{disabled:false},'C':{disabled:true},'O':{disabled:false}};
-      spec.state.player.elements.H = {unlocked:true};
+      spec.state.player.elements.H = true;
       spec.data.elements.H.includes = ['1H'];
-      spec.state.player.elements.C = {unlocked:false};
+      spec.state.player.elements.C = true;
       spec.data.elements.C.includes = ['8C'];
-      spec.state.player.elements.O = {unlocked:false};
+      spec.state.player.elements.O = false;
       spec.data.elements.O.includes = ['16O'];
       spec.state.player.resources['1H'] = {unlocked:true};
       spec.state.player.resources['8C'] = {unlocked:false};
@@ -23,7 +23,7 @@ describe('Visible service', function() {
 
       let values = spec.elementSelect.visibleElements();
 
-      expect(values).toEqual(['H']);
+      expect(values).toEqual(['H', 'C']);
     });
 
     it('should show visible resources', function() {

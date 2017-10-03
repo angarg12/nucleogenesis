@@ -23,6 +23,9 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
 
     function update(player) {
       for(let slot of player.element_slots){
+        if(!slot){
+          continue;
+        }
         for (let redox of slot.redoxes) {
           if (!redox.resource || !redox.active) {
             continue;
@@ -138,6 +141,9 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
     ct.redoxSize = function (player) {
       let size = 0;
       for(let slot of player.element_slots){
+        if(!slot){
+          continue;
+        } 
         size += slot.redoxes.length;
       }
       return size;

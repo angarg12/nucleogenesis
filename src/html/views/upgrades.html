@@ -1,43 +1,49 @@
 <!DOCTYPE html>
+
 <div ng-repeat="slot in ct.state.player.element_slots track by $index">
-  <div ng-if="ct.visibleUpgrades(slot, ct.data.global_upgrades).length > 0">
-    <h2>Global</h2>
-    <div class="row">
-      <div ng-repeat="key in ct.visibleUpgrades(slot, ct.data.global_upgrades)"
-           ng-click="ct.buyGlobalUpgrade(key)"
-           class="col-lg-12 btn btn-default"
-           ng-class="{disabled: !ct.canBuyGlobalUpgrade(key)}">
-        <span class="pull-left">
-      Level: {{ct.state.player.global_upgrades[key]}} {{ct.data.global_upgrades[key].name}}: {{ct.data.global_upgrades[key].description}}
-    </span>
-        <span class="pull-right"
-              ng-repeat="(resource, price) in ct.data.global_upgrades[key].price">
-        <pretty value="price*ct.priceMultiplier(key)"></pretty> &nbsp;
-        <get-html value="resource"></get-html>
+  <element-select index="$index"
+                  ng-if="!slot"></element-select>
+  <div ng-if="slot">
+    <!-- FIXME: keep these here for the time being until we refactor them as their own thing -->
+    <div ng-if="ct.visibleUpgrades(slot, ct.data.global_upgrades).length > 0">
+      <h2>Global</h2>
+      <div class="row">
+        <div ng-repeat="key in ct.visibleUpgrades(slot, ct.data.global_upgrades)"
+             ng-click="ct.buyGlobalUpgrade(key)"
+             class="col-lg-12 btn btn-default"
+             ng-class="{disabled: !ct.canBuyGlobalUpgrade(key)}">
+          <span class="pull-left">
+        Level: {{ct.state.player.global_upgrades[key]}} {{ct.data.global_upgrades[key].name}}: {{ct.data.global_upgrades[key].description}}
       </span>
+          <span class="pull-right"
+                ng-repeat="(resource, price) in ct.data.global_upgrades[key].price">
+          <pretty value="price*ct.priceMultiplier(key)"></pretty> &nbsp;
+          <get-html value="resource"></get-html>
+        </span>
+        </div>
       </div>
     </div>
-  </div>
-  <h2>{{ct.data.elements[slot.element].name}}</h2>
-  <label>Hide bought upgrades:
-   <input type="checkbox" ng-model="ct.state.hideBought">
-</label>
-  <button class="btn btn-default"
-          ng-click="ct.buyAll(slot)">Buy all</button>
-  <div class="row">
-    <div ng-repeat="up in ct.visibleUpgrades(slot, ct.data.upgrades)"
-         ng-click="ct.buyUpgrade(up, slot)"
-         class="col-lg-12 btn btn-default"
-         ng-class="{disabled: ct.data.upgrades[up].price > ct.state.player.resources[ct.data.elements[slot.element].main].number &&
+    <h2>{{ct.data.elements[slot.element].name}}</h2>
+    <label>Hide bought upgrades:
+       <input type="checkbox" ng-model="ct.state.hideBought">
+    </label>
+    <button class="btn btn-default"
+            ng-click="ct.buyAll(slot)">Buy all</button>
+    <div class="row">
+      <div ng-repeat="up in ct.visibleUpgrades(slot, ct.data.upgrades)"
+           ng-click="ct.buyUpgrade(up, slot)"
+           class="col-lg-12 btn btn-default"
+           ng-class="{disabled: ct.data.upgrades[up].price > ct.state.player.resources[ct.data.elements[slot.element].main].number &&
          !slot.upgrades[up],
          active: slot.upgrades[up]}">
-      <span class="pull-left">
+        <span class="pull-left">
         {{ct.data.upgrades[up].name}}: {{ct.data.upgrades[up].description}}
       </span>
-      <span class="pull-right">
+        <span class="pull-right">
         <pretty value="ct.data.upgrades[up].price"></pretty> &nbsp;
         <get-html value="ct.data.elements[slot.element].main"></get-html>
       </span>
+      </div>
     </div>
   </div>
 </div>

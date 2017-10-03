@@ -76,7 +76,7 @@ describe('Elements component', function() {
     it('should return the right class for purchased elements', function() {
       spec.data.elements.H = {};
       spec.state.player.elements = {};
-      spec.state.player.elements.H = {unlocked: true};
+      spec.state.player.elements.H = true;
 
       let clazz = spec.elements.elementClass('H');
 
@@ -86,7 +86,7 @@ describe('Elements component', function() {
     it('should return the right class for elements where the cost is met', function() {
       spec.data.elements.H = {};
       spec.state.player.elements = {};
-      spec.state.player.elements.H = {unlocked: false};
+      spec.state.player.elements.H = false;
       spec.state.player.resources = {};
       spec.state.player.resources.dark_matter = {number: 1};
 
@@ -98,7 +98,7 @@ describe('Elements component', function() {
     it('should return the right class for elements where the cost is not met', function() {
       spec.data.elements.H = {};
       spec.state.player.elements = {};
-      spec.state.player.elements.H = {unlocked: false};
+      spec.state.player.elements.H = false;
       spec.state.player.resources = {};
       spec.state.player.resources.dark_matter = {number: 0};
 

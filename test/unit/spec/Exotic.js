@@ -121,13 +121,10 @@ describe('Exotic', function() {
         redoxes: []
       }];
 
-      spec.exotic.exoticPrestige(spec.state.player.element_slots[0]);
+      spec.exotic.exoticPrestige(0);
 
-      expect(spec.state.player.element_slots[0].upgrades['1-1']).toBeFalsy();
+      expect(spec.state.player.element_slots[0]).toBeNull();
       expect(spec.state.player.exotic_upgrades.H.x3).toBeTruthy();
-      expect(spec.state.player.element_slots[0].reactions.length).toEqual(0);
-      expect(spec.state.player.element_slots[0].generators['1']).toEqual(1);
-      expect(spec.state.player.element_slots[0].generators['2']).toEqual(0);
       expect(spec.state.player.resources['1H'].number).toEqual(0);
       expect(spec.state.player.resources.xH.number).toEqual(108);
     });
@@ -208,7 +205,7 @@ describe('Exotic', function() {
         redoxes: []
       }];
 
-      spec.exotic.exoticPrestige(spec.state.player.element_slots[0]);
+      spec.exotic.exoticPrestige(0);
 
       expect(spec.state.player.resources.xH.number).toEqual(185);
     });

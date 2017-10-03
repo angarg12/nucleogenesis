@@ -66,7 +66,8 @@ function exotic(state, format, visibility, upgrade, data, util) {
     return Math.floor(step * sigmoid);
   }
 
-  ct.exoticPrestige = function(slot) {
+  ct.exoticPrestige = function(index) {
+    let slot = state.player.element_slots[index];
     let resources = state.player.resources;
     let production = ct.exoticProduction(slot.element);
 
@@ -95,12 +96,7 @@ function exotic(state, format, visibility, upgrade, data, util) {
     state.reactionsCache[slot.element] = slot.reactions;
     state.redoxesCache[slot.element] = slot.redoxes;
 
-    // FIXME: copy the hydrogen for the time being. actually should be set to null
-    for(let key in data.element_slot){
-      slot[key] = angular.copy(data.element_slot[key]);
-    }
-    slot.generators['1'] = 1;
-    slot.element = 'H';
+    state.player.element_slots[index] = null;
   };
 
   ct.buyExoticUpgrade = function(name, slot) {

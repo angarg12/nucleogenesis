@@ -33,6 +33,9 @@ describe('Dark', function() {
       spec.data.resources = {
         '1H': {elements: {H: 1}, type: ['isotope']}
       };
+      spec.data.exotic_upgrades = {
+        x3: {}
+      }
       spec.state.player.elements.H = true;
       spec.state.player.resources['1H'] = {number:1e4, unlocked: true};
       spec.state.player.resources.xH = {number:1e8, unlocked: true};
@@ -71,11 +74,8 @@ describe('Dark', function() {
 
       spec.dark.darkPrestige();
 
-      expect(spec.state.player.element_slots[0].upgrades['1-1']).toBeFalsy();
+      expect(spec.state.player.element_slots[0]).toBeNull();
       expect(spec.state.player.exotic_upgrades.H.x3).toBeFalsy();
-      expect(spec.state.player.element_slots[0].reactions.length).toEqual(0);
-      expect(spec.state.player.element_slots[0].generators['1']).toEqual(1);
-      expect(spec.state.player.element_slots[0].generators['2']).toEqual(0);
       expect(spec.state.player.resources['1H'].number).toEqual(0);
       expect(spec.state.player.resources.xH.number).toEqual(0);
       expect(spec.state.player.resources.dark_matter.number).toEqual(18);

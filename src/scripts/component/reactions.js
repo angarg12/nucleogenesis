@@ -22,6 +22,9 @@ function (state, data, visibility, util, format, reactionService) {
 
   function update(player) {
     for(let slot of player.element_slots){
+      if(!slot){
+        continue;
+      }
       for (let reaction of slot.reactions) {
         if (!reaction.active) {
           continue;
@@ -61,6 +64,9 @@ function (state, data, visibility, util, format, reactionService) {
   ct.reactionSize = function (player) {
     let size = 0;
     for(let slot of player.element_slots){
+      if(!slot){
+        continue;
+      } 
       size += slot.reactions.length;
     }
     return size;

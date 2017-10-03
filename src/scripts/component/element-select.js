@@ -7,10 +7,13 @@
 'use strict';
 
 angular.module('game').component('elementSelect', {
-  templateUrl: 'views/elementSelect.html',
+  templateUrl: 'views/element-select.html',
   controller: ['state', 'visibility', 'data', elementSelect
   ],
-  controllerAs: 'ct'
+  controllerAs: 'ct',
+  bindings: {
+    index: '<'
+  }
 });
 
 function elementSelect (state, visibility, data) {
@@ -18,21 +21,31 @@ function elementSelect (state, visibility, data) {
   ct.state = state;
   ct.data = data;
 
+  ct.selectElement = function(element, index) {
+    let slot = {};
+    for(let key in data.element_slot){
+      slot[key] = angular.copy(data.element_slot[key]);
+    }
+    let first = Object.keys(data.generators)[0];
+    slot.generators[first] = 1;
+    slot.element = element;
+    state.player.element_slots[index] = slot;
+
+    let cachedReactions = state.reactionsCache[slot.element];
+    if(cachedReactions){
+      slot.reactions = cachedReactions;
+    }
+    let cachedRedoxes = state.redoxesCache[slot.element];
+    if(cachedRedoxes){
+      slot.redoxes = cachedRedoxes;
+    }
+  };
+
   ct.visibleElements = function() {
     return visibility.visible(data.elements, isElementVisible);
   };
 
   function isElementVisible(element) {
-    if (data.elements[element].disabled) {
-      return false;
-    }
-
-    for (let resource of data.elements[element].includes) {
-      if (state.player.resources[resource].unlocked) {
-        return true;
-      }
-    }
-
-    return false;
+    return state.player.elements[element];
   }
 }

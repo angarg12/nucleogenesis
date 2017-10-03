@@ -49,16 +49,19 @@ function dark(state, format, visibility, upgrade, data, util) {
       }
       let element = data.elements[key];
       state.player.resources[element.exotic].number = 0;
-      state.player.exotic_upgrades[key] = angular.copy(data.exotic_upgrades);
+      for(let up in data.exotic_upgrades){
+        state.player.exotic_upgrades[key][up] = false;
+      }
     }
     for(let slot of state.player.element_slots){
+      if(!slot){
+        continue;
+      }
       upgrade.resetElement(state.player, slot.element);
     }
-    // FIXME: copy the hydrogen for the time being. actually should be set to null
-    for(let index in state.player.element_slots){
-      state.player.element_slots[index] = angular.copy(data.element_slot);
-      state.player.element_slots[index].generators['1'] = 1;
-      state.player.element_slots[index].element = 'H';
+
+    for(let i in state.player.element_slots){
+      state.player.element_slots[i] = null;
     }
   };
 
