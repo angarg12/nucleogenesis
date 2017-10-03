@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <input ng-model="ct.searchText"><span class="mdi mdi-18px mdi-magnify"></span>
 <div ng-repeat="(symbol, element) in ct.data.elements"
-    ng-if="ct.state.player.elements[symbol] && ct.resourcesForElement(symbol).length > 0">
-  <p>{{element.name}}</p>
+    ng-if="ct.resourcesForElement(symbol).length > 0">
+  <p><b>{{element.name}}</b></p>
   <p ng-repeat="key in ct.resourcesForElement(symbol)"
       class="row">
     <get-html value="key"
@@ -16,7 +16,7 @@
   </p>
 </div>
 <div ng-if="ct.resourcesForElement('').length > 0">
-  <p>Misc.</p>
+  <p><b>Misc.</b></p>
   <p ng-repeat="key in ct.resourcesForElement('')"
       class="row">
     <get-html value="key"
