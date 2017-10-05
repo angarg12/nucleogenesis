@@ -10,5 +10,25 @@
     "name": "Reactions",
     "description": "Unlocks reactions",
     "deps": []
+  },
+  "extra_element_slot_1": {
+    "price": 100,
+    "name": "Extra element slot I",
+    "description": "Unlocks another slot to produce matter",
+    "deps": [],
+    "fire_once_function": ["(() => {",
+      "player.element_slots.push(null);",
+      "})()"
+    ]
+  },
+  "extra_element_slot_2": {
+    "price": 1000,
+    "name": "Extra element slot II",
+    "description": "Unlocks another slot to produce matter",
+    "deps": [],
+    "fire_once_function": ["(() => {",
+      "player.element_slots.push(null);",
+      "})()"
+    ]
   }
 }

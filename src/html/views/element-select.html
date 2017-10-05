@@ -4,8 +4,10 @@ Select an element for slot {{ct.index+1}}
   <div class="col-lg-3">
     <button type="button"
             class="btn btn-default btn-block"
+            ng-if="!ct.isElementSelected(key, ct.state.player)"
             ng-click="ct.selectElement(key, ct.index)">
       {{ct.data.elements[key].name}}
     </button>
   </div>
+  <br>
 </div>

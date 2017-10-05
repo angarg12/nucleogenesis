@@ -104,6 +104,7 @@ function exotic(state, format, visibility, upgrade, data, util) {
     let currency = data.elements[slot.element].exotic;
     upgrade.buyUpgrade(state.player,
       state.player.exotic_upgrades[slot.element],
+      data.exotic_upgrades[name],
       name,
       price,
       currency);

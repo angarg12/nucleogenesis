@@ -41,6 +41,15 @@ function elementSelect (state, visibility, data) {
     }
   };
 
+  ct.isElementSelected = function(name, player) {
+    for(let slot of player.element_slots){
+      if(slot && slot.element === name){
+        return true;
+      }
+    }
+    return false;
+  };
+
   ct.visibleElements = function() {
     return visibility.visible(data.elements, isElementVisible);
   };

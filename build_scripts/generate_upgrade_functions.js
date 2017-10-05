@@ -8,16 +8,24 @@ const crypto = require('crypto');
 const fs = require('fs');
 
 let upgrades = jsonfile.readFileSync('build/data/upgrades.json');
+let exoticUpgrades = jsonfile.readFileSync('build/data/exotic_upgrades.json');
+let darkUpgrades = jsonfile.readFileSync('build/data/dark_upgrades.json');
 let generators = jsonfile.readFileSync('build/data/generators.json');
 let upgradeComponent = fs.readFileSync('build/scripts/component/generators.js').toString();
+let upgradeService = fs.readFileSync('build/scripts/services/upgrade.js').toString();
 
 const FUNCTION_TEMPLATE = `this.<%= name %> = function (player, production, slot){
   return <%= func %>;
 };`;
 
-let functionTemplate = template(FUNCTION_TEMPLATE);
-let functions = {};
+const FIRE_ONCE_FUNCTION_TEMPLATE = `this.<%= name %> = function (player){
+  return <%= func %>;
+};`;
 
+let functionTemplate = template(FUNCTION_TEMPLATE);
+let fireOnceFunctionTemplate = template(FIRE_ONCE_FUNCTION_TEMPLATE);
+
+// add upgrades to generators
 for(let key in upgrades){
   let upgrade = upgrades[key];
   for(let generator of upgrade.tiers){
@@ -28,28 +36,59 @@ for(let key in upgrades){
   }
 }
 
-for(let i in upgrades){
-  let upgrade = upgrades[i];
-  if(upgrade.function.constructor === Array){
-    upgrade.function = upgrade.function.join('\n');
-  }
+function generateFunctions(upgradesData, functionType, result, upgradeTemplate) {
+  for(let i in upgradesData){
+    let upgrade = upgradesData[i];
+    //console.log(i+" "+functionType+ " "+upgrade[functionType])
+    if(!upgrade[functionType]){
+      continue;
+    }
+    if(upgrade[functionType].constructor === Array){
+      upgrade[functionType] = upgrade[functionType].join('\n');
+    }
 
-  let name = '_'+crypto.createHash('md5').update(upgrade.function).digest('hex');
-  functions[name] = functionTemplate({ 'name': name, 'func': upgrade.function });
-  // we overwrite progress with the name
-  upgrade.function = name;
+    let name = '_'+crypto.createHash('md5').update(upgrade[functionType]).digest('hex');
+    result[name] = upgradeTemplate({ 'name': name, 'func': upgrade[functionType] });
+    // we overwrite progress with the name
+    upgrade[functionType] = name;
+  }
 }
+
+let functions = {};
+let fireOncefunctions = {};
+
+generateFunctions(upgrades, 'function', functions, functionTemplate);
+generateFunctions(upgrades, 'fire_once_function', fireOncefunctions, fireOnceFunctionTemplate);
+generateFunctions(exoticUpgrades, 'function', functions, functionTemplate);
+generateFunctions(exoticUpgrades, 'fire_once_function', fireOncefunctions, fireOnceFunctionTemplate);
+generateFunctions(darkUpgrades, 'function', functions, functionTemplate);
+generateFunctions(darkUpgrades, 'fire_once_function', fireOncefunctions, fireOnceFunctionTemplate);
 
 let concatFunctions = '';
 for(let i in functions){
   concatFunctions += functions[i]+'\n';
 }
 
-let componentTemplate = template(upgradeComponent);
+let sourceTemplate = template(upgradeComponent);
 
-fs.writeFileSync('build/scripts/component/generators.js', componentTemplate({'upgradeFunctions': concatFunctions}));
+fs.writeFileSync('build/scripts/component/generators.js', sourceTemplate({'upgradeFunctions': concatFunctions}));
+
+concatFunctions = '';
+for(let i in fireOncefunctions){
+  concatFunctions += fireOncefunctions[i]+'\n';
+}
+
+sourceTemplate = template(upgradeService);
+
+fs.writeFileSync('build/scripts/services/upgrade.js', sourceTemplate({'fireOnceFunctions': concatFunctions}));
 
 jsonfile.writeFileSync('build/data/upgrades.json', upgrades, {
+  spaces: 2
+});
+jsonfile.writeFileSync('build/data/exotic_upgrades.json', exoticUpgrades, {
+  spaces: 2
+});
+jsonfile.writeFileSync('build/data/dark_upgrades.json', darkUpgrades, {
   spaces: 2
 });
 jsonfile.writeFileSync('build/data/generators.json', generators, {

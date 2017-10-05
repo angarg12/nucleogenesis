@@ -42,7 +42,26 @@ describe('Visible service', function() {
 
       let values = spec.sidebar.visibleResources('H');
 
-      expect(values).toEqual(['1H', 'eV']);
+      expect(values).toEqual(['1H']);
+    });
+
+    it('should show misc resources', function() {
+      spec.state.player.resources = {
+        '1H': {unlocked:true},
+        '2H': {unlocked:false},
+        eV: {unlocked:true},
+        '16O': {unlocked:true}
+      };
+      spec.data.resources = {
+        '1H': {elements: {H:1}},
+        '2H': {elements: {H:1}},
+        eV: {elements: {}},
+        '16O': {elements: {O:1}}
+      };
+
+      let values = spec.sidebar.visibleResources('');
+
+      expect(values).toEqual(['eV']);
     });
   });
 });

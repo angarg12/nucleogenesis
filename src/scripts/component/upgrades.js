@@ -38,6 +38,7 @@ function upgrades(state, visibility, upgrade, data) {
       if(cheapest){
         upgrade.buyUpgrade(state.player,
           slot.upgrades,
+          data.upgrades[cheapest],
           cheapest,
           cheapestPrice,
           currency);
@@ -50,6 +51,7 @@ function upgrades(state, visibility, upgrade, data) {
     let currency = data.elements[slot.element].main;
     upgrade.buyUpgrade(state.player,
       slot.upgrades,
+      data.upgrades[name],
       name,
       price,
       currency);

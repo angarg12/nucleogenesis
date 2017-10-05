@@ -71,6 +71,7 @@ function dark(state, format, visibility, upgrade, data, util) {
     let currency = 'dark_matter';
     upgrade.buyUpgrade(state.player,
       upgrades,
+      data.dark_upgrades[name],
       name,
       price,
       currency);

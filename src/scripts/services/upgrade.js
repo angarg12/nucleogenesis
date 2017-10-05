@@ -12,13 +12,21 @@ angular
   .module('game')
   .service('upgrade', ['data',
     function(data) {
-      this.buyUpgrade = function (player, upgrades, name, price, currency) {
+      let sv = this;
+
+      <%= fireOnceFunctions %>
+
+      this.buyUpgrade = function (player, upgrades, upgradeData, name, price, currency) {
         if (upgrades[name]) {
           return;
         }
         if (player.resources[currency].number >= price) {
           player.resources[currency].number -= price;
           upgrades[name] = true;
+          let func = upgradeData.fire_once_function;
+          if(func){
+            sv[func](player);
+          }
         }
       };
 
