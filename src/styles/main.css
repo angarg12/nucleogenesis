@@ -192,26 +192,18 @@ body {
 }
 
 .element_unavailable {
-  background-color: #cfcfcf;
-}
-
-.element_unavailable_dark {
-  background-color: #858585;
-}
-
-.element_cost_not_met {
   background-color: #f07049;
 }
 
-.element_cost_not_met_dark {
+.element_unavailable_dark {
   background-color: #e72a00;
 }
 
-.element_cost_met {
+.element_available {
   background-color: #eada24;
 }
 
-.element_cost_met_dark {
+.element_available_dark {
   background-color: #9d6d00;
 }
 
@@ -273,6 +265,21 @@ body {
   padding-bottom: 20px;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.element_number {
+  font-size: 135%;
+  margin-right: 30px;
+  margin-top: 5px;
+  position: absolute;
+  right: 0;
+}
+
+.element_label {
+  font-size: 110%;
+  margin-left: 5px;
+  margin-top: 5px;
+  position: absolute;
 }
 
 .symbol_name {

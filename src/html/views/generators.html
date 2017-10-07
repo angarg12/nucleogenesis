@@ -11,7 +11,7 @@
       <li ng-repeat="(isotope,_) in ct.data.elements[slot.element].isotopes"
           ng-if="ct.state.player.resources[isotope].unlocked">
         <get-html value="isotope"></get-html>:
-        <pretty value="ct.data.elements[slot.element].isotopes[isotope].ratio*100"></pretty>%
+        {{ct.data.elements[slot.element].isotopes[isotope].ratio*100 | number: 4}}%
       </li>
     </ul>
     <table class="table">

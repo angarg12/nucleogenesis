@@ -54,19 +54,23 @@ function elements($timeout, state, data) {
   /* This function returns the class that determines on which
   colour an element card */
   ct.elementClass = function (element) {
-    if(!state.player.elements[element]){
-      return 'element_unavailable';
-    }
     if (state.player.elements[element]) {
       return 'element_purchased';
-    }else{
-      if(state.player.resources.dark_matter.number >= ct.elementPrice) {
-        return 'element_cost_met';
-      }else{
-        return 'element_cost_not_met';
+    }
+    if (isElementAvailable(element)) {
+      return 'element_available';
+    }
+    return 'element_unavailable';
+  };
+
+  function isElementAvailable(element) {
+    for(let resource of data.elements[element].includes){
+      if(state.player.resources[resource].unlocked){
+        return true;
       }
     }
-  };
+    return false;
+  }
 
   /* This function returns the class that determines the secondary
   colour of an element card */

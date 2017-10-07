@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<p>Buy new elements to unlock generators and upgrades. Be aware that the price of new elements increases
-  with each purchase.</p>
+<p>Buy new elements to unlock generators and upgrades. Success rate is proportional to each element abundance. Accumulate isotopes or spend more
+  <get-html value="'dark_matter'"></get-html> to increase the chance of success.</p>
 <div class="row">
   <div ng-repeat="(element, value) in ct.data.elements"
        class="col-lg-4">
     <div class="thumbnail">
       <div ng-class="ct.elementClass(element)">
+        <span class="label label-default element_label"
+              ng-if="ct.data.elements[element].abundance === 0">Synthetic</span>
+        <div class="element_number">{{ct.data.elements[element].number}}</div>
         <h2 class="element_symbol">{{element}}</h2>
       </div>
       <div class="symbol_name"
@@ -13,29 +16,27 @@
         {{value.name}}
       </div>
       <p>
-        Abundance: <pretty value="ct.data.elements[element].abundance*100"></pretty>%
+        Abundance: {{ct.data.elements[element].abundance*100}}%
       </p>
       <p>
         Isotopes: {{ct.data.elements[element].isotopes | keylength}}
       </p>
       <p>
-        Redox: {{-ct.data.elements[element].electron_affinity.length}},+{{ct.data.elements[element].ionization_energy.length}}
+        Redoxes: <span ng-if="ct.data.elements[element].ionization_energy.length > 0">
+                 +{{ct.data.elements[element].ionization_energy.length}},
+               </span>
+               {{-ct.data.elements[element].electron_affinity.length}}
       </p>
-      <!-- FIXME: hasownproperty can be deleted after all elements are enabled -->
       <div class="hidden_block"
-           ng-show="ct.state.player.elements.hasOwnProperty(element) && ct.state.player.elements[element] != true">
-        <p>
-          Cost:
-          <pretty value="ct.elementPrice"></pretty>
-          <get-html value="'dark_matter'"></get-html>
-        </p>
+           ng-hide="ct.data.elements[element].abundance === 0 ||
+                    ct.state.player.elements[element]">
         <p ng-click="ct.buyElement(element)"
            class="btn btn-default">
           Buy
         </p>
         {{ct.outcome[element]}}
         <p>
-          Success: <pretty value="ct.getChance(element)*100"></pretty>%
+          Success: {{ct.getChance(element)*100}}%
         </p>
       </div>
     </div>
