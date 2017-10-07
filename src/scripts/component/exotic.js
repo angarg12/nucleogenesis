@@ -35,19 +35,10 @@ function exotic(state, format, visibility, upgrade, data, util) {
       if (!state.player.resources[resource].unlocked) {
         continue;
       }
-      if (data.resources[resource].type.indexOf('molecule') !== -1) {
-        let multiplier = 0;
-        for (let key in data.resources[resource].elements) {
-          let number = data.resources[resource].elements[key];
-          multiplier += number;
-        }
-        for (let elem in data.resources[resource].elements) {
-          let newExotic = data.elements[elem].exotic;
-          production[newExotic] = production[newExotic] || 0;
-          production[newExotic] += prestigeFormula(state.player.resources[resource].number)*multiplier;
-        }
-      }else{
-        production[exoticResource] += prestigeFormula(state.player.resources[resource].number);
+      for (let elem in data.resources[resource].elements) {
+        let newExotic = data.elements[elem].exotic;
+        production[newExotic] = production[newExotic] || 0;
+        production[newExotic] += prestigeFormula(state.player.resources[resource].number);
       }
     }
     for (let key in production) {
