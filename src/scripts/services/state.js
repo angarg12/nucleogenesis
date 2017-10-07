@@ -25,6 +25,7 @@ angular
     sv.toast = [];
     sv.isToastVisible = false;
     sv.buyIndex = 0;
+    sv.elementBuyIndex = 0;
     let newElements = [];
     let updateFunctions = {};
     sv.hideBought = false;

@@ -19,13 +19,17 @@ function elements($timeout, state, data) {
   ct.state = state;
   ct.data = data;
   ct.outcome = {};
+  let buyAmount = [1, 10, 25, 100, 'max'];
 
   ct.getChance = function(element) {
     let bonus = 0;
     for(let isotope in data.elements[element].isotopes){
       bonus += state.player.resources[isotope].number*data.constants.ELEMENT_CHANCE_BONUS;
     }
-    return Math.min(1, data.elements[element].abundance*(1+bonus));
+    let singleChance = data.elements[element].abundance*(1+bonus);
+    let chance = 1 - Math.pow(Math.max(0, 1-singleChance), ct.getbuyAmount(state.player));
+
+    return Math.min(1, chance);
   };
 
   ct.buyElement = function (element) {
@@ -76,5 +80,17 @@ function elements($timeout, state, data) {
   colour of an element card */
   ct.elementSecondaryClass = function (element) {
     return ct.elementClass(element) + '_dark';
+  };
+
+  ct.nextBuyAmount = function () {
+    state.elementBuyIndex = (state.elementBuyIndex + 1) % buyAmount.length;
+  };
+
+  ct.getbuyAmount = function (player) {
+    let result = buyAmount[state.elementBuyIndex];
+    if(result === 'max'){
+      result = player.resources.dark_matter.number;
+    }
+    return result;
   };
 }

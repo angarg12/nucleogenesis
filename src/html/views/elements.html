@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <p>Buy new elements to unlock generators and upgrades. Success rate is proportional to each element abundance. Accumulate isotopes or spend more
   <get-html value="'dark_matter'"></get-html> to increase the chance of success.</p>
+  Buy amount:
+          <button type="button"
+                  class="btn btn-default"
+                  ng-click="ct.nextBuyAmount()">
+            {{ct.getbuyAmount(ct.state.player)}}
+          </button>
+          <get-html value="'dark_matter'"></get-html>
 <div class="row">
   <div ng-repeat="(element, value) in ct.data.elements"
        class="col-lg-4">
