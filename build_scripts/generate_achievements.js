@@ -10,9 +10,6 @@ let resources = jsonfile.readFileSync('build/data/resources.json');
 let radioisotopes = jsonfile.readFileSync('build/data/radioisotopes.json');
 
 for(let element in elements){
-  if(elements[element].disabled){
-    continue;
-  }
   let main = elements[element].main;
   let name = elements[element].name;
   let goals = [1e6, 1e9, 1e12, 1e15];
@@ -109,7 +106,7 @@ for(let element in elements){
 // Total achievements
 let totalElements = 0;
 for(let element in elements){
-  if(!elements[element].disabled){
+  if(elements[element].abundance > 0){
     totalElements++;
   }
 }

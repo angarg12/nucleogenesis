@@ -6423,7 +6423,6 @@
       5.9738
     ],
     "number": 95,
-    "disabled": true,
     "abundance": 0
   },
   "Cm": {
@@ -6545,7 +6544,6 @@
       5.9915
     ],
     "number": 96,
-    "disabled": true,
     "abundance": 0
   },
   "Bk": {
@@ -6622,7 +6620,6 @@
       6.1979
     ],
     "number": 97,
-    "disabled": true,
     "abundance": 0
   },
   "Cf": {
@@ -6735,7 +6732,6 @@
       6.2817
     ],
     "number": 98,
-    "disabled": true,
     "abundance": 0
   },
   "Es": {
@@ -6806,7 +6802,6 @@
       6.42
     ],
     "number": 99,
-    "disabled": true,
     "abundance": 0
   },
   "Fm": {
@@ -6874,7 +6869,6 @@
       6.5
     ],
     "number": 100,
-    "disabled": true,
     "abundance": 0
   },
   "Md": {
@@ -6933,7 +6927,6 @@
       6.58
     ],
     "number": 101,
-    "disabled": true,
     "abundance": 0
   },
   "No": {
@@ -7025,7 +7018,6 @@
       6.65
     ],
     "number": 102,
-    "disabled": true,
     "abundance": 0
   },
   "Lr": {
@@ -7165,7 +7157,6 @@
       4.9
     ],
     "number": 103,
-    "disabled": true,
     "abundance": 0
   },
   "Rf": {
@@ -7248,7 +7239,6 @@
       6
     ],
     "number": 104,
-    "disabled": true,
     "abundance": 0
   },
   "Db": {
@@ -7352,7 +7342,6 @@
       }
     },
     "number": 105,
-    "disabled": true,
     "abundance": 0
   },
   "Sg": {
@@ -7417,7 +7406,6 @@
       }
     },
     "number": 106,
-    "disabled": true,
     "abundance": 0
   },
   "Bh": {
@@ -7509,7 +7497,6 @@
       }
     },
     "number": 107,
-    "disabled": true,
     "abundance": 0
   },
   "Hs": {
@@ -7568,7 +7555,6 @@
       }
     },
     "number": 108,
-    "disabled": true,
     "abundance": 0
   },
   "Mt": {
@@ -7636,7 +7622,6 @@
       }
     },
     "number": 109,
-    "disabled": true,
     "abundance": 0
   },
   "Ds": {
@@ -7671,7 +7656,6 @@
       }
     },
     "number": 110,
-    "disabled": true,
     "abundance": 0
   },
   "Rg": {
@@ -7754,7 +7738,6 @@
       }
     },
     "number": 111,
-    "disabled": true,
     "abundance": 0
   },
   "Cn": {
@@ -7801,7 +7784,6 @@
       }
     },
     "number": 112,
-    "disabled": true,
     "abundance": 0
   },
   "Nh": {
@@ -7914,7 +7896,6 @@
       }
     },
     "number": 113,
-    "disabled": true,
     "abundance": 0
   },
   "Fl": {
@@ -8009,7 +7990,6 @@
       }
     },
     "number": 114,
-    "disabled": true,
     "abundance": 0
   },
   "Mc": {
@@ -8077,7 +8057,6 @@
       }
     },
     "number": 115,
-    "disabled": true,
     "abundance": 0
   },
   "Lv": {
@@ -8151,7 +8130,6 @@
       }
     },
     "number": 116,
-    "disabled": true,
     "abundance": 0
   },
   "Ts": {
@@ -8189,7 +8167,6 @@
       }
     },
     "number": 117,
-    "disabled": true,
     "abundance": 0
   },
   "Og": {
@@ -8212,7 +8189,6 @@
       }
     },
     "number": 118,
-    "disabled": true,
     "abundance": 0
   }
 }

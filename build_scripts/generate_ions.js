@@ -63,10 +63,6 @@ function htmlPostfix(index) {
 let redox = {};
 for (let element in elements) {
   elements[element].includes = elements[element].includes || [];
-// FIXME: keep this only until all elements all included
-  if(elements[element].disabled){
-    continue;
-  }
 
   let energies = {};
   let charge = -1;
@@ -79,7 +75,7 @@ for (let element in elements) {
   energies[0] = 0;
 
   charge = 1;
-  for (let energy of elements[element].ionization_energy) {
+  for (let energy of elements[element].ionization_energy || []) {
     generateResource(element, charge);
     energies[charge] = energy;
     charge++;

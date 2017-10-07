@@ -46,7 +46,7 @@ for (let entry in resources) {
 
 startPlayer.elements = {};
 for (let element in elements) {
-  if (!elements[element].disabled) {
+  if (!elements[element].abundance > 0) {
     startPlayer.elements[element] = false;
   }
 }

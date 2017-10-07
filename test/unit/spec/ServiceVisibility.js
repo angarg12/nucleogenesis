@@ -10,7 +10,7 @@ describe('Visible service', function() {
 
   describe('visibility functions', function() {
     it('should show visible elements', function() {
-      spec.data.elements = {'H':{disabled:false},'C':{disabled:true},'O':{disabled:false}};
+      spec.data.elements = {'H':{},'C':{},'O':{}};
       spec.state.player.elements.H = true;
       spec.data.elements.H.includes = ['1H'];
       spec.state.player.elements.C = true;

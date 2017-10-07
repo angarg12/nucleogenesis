@@ -43,7 +43,7 @@ for (let element in elements) {
     }
   }
   let difference = 1 - ratioSum;
-  if (Math.abs(difference) > 1e-7 && !elements[element].disabled) {
+  if (Math.abs(difference) > 1e-7 && elements[element].abundance > 0) {
     throw new Error('Ratios add up to '.concat(1 - difference, ' for ', element));
   }
   elements[element].main = mainIsotope[1];
