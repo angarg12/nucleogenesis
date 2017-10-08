@@ -7,13 +7,13 @@
     <div ng-if="ct.availableReactions(slot).length > 0">
       <button type="button"
               class="btn btn-default"
-              ng-click="ct.addReaction(ct.state.player, slot, ct.reactionSelect)">
+              ng-click="ct.addReaction(ct.state.player, slot, ct.reactionSelect[$index])">
     		Add
       <br>
     </button>
       <select name="reactionSelect"
-              ng-init="ct.reactionSelect = ct.availableReactions(slot)[0]"
-              ng-model="ct.reactionSelect">
+              ng-init="ct.reactionSelect[$index] = ct.availableReactions(slot)[0]"
+              ng-model="ct.reactionSelect[$index]">
       <option ng-repeat="reaction in ct.availableReactions(slot)"
               value="{{reaction}}">{{reaction}}</option>
     </select> Slots: {{ct.reactionSize(ct.state.player)}}/{{ct.reactionSlots(ct.state.player)}}
