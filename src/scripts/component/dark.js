@@ -45,6 +45,9 @@ function dark(state, format, visibility, upgrade, data, util) {
     for(let key in data.elements){
       let element = data.elements[key];
       state.player.resources[element.exotic].number = 0;
+      if(!state.player.exotic_upgrades[key]){
+        continue;
+      }
       for(let up in data.exotic_upgrades){
         state.player.exotic_upgrades[key][up] = false;
       }
