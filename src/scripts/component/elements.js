@@ -41,7 +41,10 @@ function elements($timeout, state, data) {
 
       if(Math.random() < ct.getChance(element)){
         state.player.elements[element] = true;
-        state.player.exotic_upgrades[element] = angular.copy(data.exotic_upgrades);
+        state.player.exotic_upgrades[element] = {};
+        for(let up in data.exotic_upgrades){
+          state.player.exotic_upgrades[element][up] = false;
+        }
         state.player.elements_unlocked++;
         ct.outcome[element] = 'Success';
       }else{
