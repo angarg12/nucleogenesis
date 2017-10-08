@@ -37,8 +37,17 @@ function exotic(state, format, visibility, upgrade, data, util) {
       }
       for (let elem in data.resources[resource].elements) {
         let newExotic = data.elements[elem].exotic;
-        production[newExotic] = production[newExotic] || 0;
-        production[newExotic] += prestigeFormula(state.player.resources[resource].number);
+        let prod = prestigeFormula(state.player.resources[resource].number);
+
+        let args = {
+          production: prod,
+          resource: resource
+        }
+
+        upgrade.executeAll(data.exotic_upgrades, state.player.exotic_upgrades[elem], ['production', 'exotic'], args);
+
+        // extract back the value from applying the upgrades
+        production[newExotic] = (production[newExotic] || 0) + args.production;
       }
     }
     for (let key in production) {

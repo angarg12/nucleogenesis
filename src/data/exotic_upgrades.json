@@ -59,5 +59,97 @@
     "description": "Unlocks synergy ugrades for Tier <% print(['I','II','III','IV','V','VI','VII','VIII','IX','X'][parseInt(id)-1]) %>",
     "exotic_deps": [],
     "dark_deps": []
+  },
+  "isotopes-2": {
+    "price": 1000,
+    "name": "Isotopes x2",
+    "description": "Isotopes produce x2 exotic matter",
+    "exotic_deps": [],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "if(data.resources[args.resource].type.indexOf('isotope') !== -1){",
+      "  args.production*=2;",
+      "}",
+      "})()"
+    ],
+    "tags": ["production", "exotic", "isotope"]
+  },
+  "readioactive-2": {
+    "price": 1000,
+    "name": "Radioactive bonus",
+    "description": "Radioactive isotopes produce +10% exotic matter per order of magnitude of its half life",
+    "exotic_deps": [],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "if(data.resources[args.resource].type.indexOf('isotope') !== -1 &&",
+      "   data.resources[args.resource].decay){",
+      "  let halfLife = data.resources[args.resource].decay.half_life",
+      "  let magnitude = Math.max(0, Math.floor(Math.log10(halfLife)))",
+      "  args.production *= 1 + magnitude*0.1;",
+      "}",
+      "})()"
+    ],
+    "tags": ["production", "exotic", "isotope"]
+  },
+  "ions-2": {
+    "price": 1000,
+    "name": "Ions x2",
+    "description": "Ions produce x2 exotic matter",
+    "exotic_deps": [],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "if(data.resources[args.resource].type.indexOf('ion') !== -1){",
+      "  args.production*=2;",
+      "}",
+      "})()"
+    ],
+    "tags": ["production", "exotic", "ion"]
+  },
+  "ions-charge": {
+    "price": 1000,
+    "name": "Ions charge bonus",
+    "description": "Ions produce +10% exotic matter per charge",
+    "exotic_deps": [],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "if(data.resources[args.resource].type.indexOf('ion') !== -1){",
+      "  let charge = Math.abs(data.resources[args.resource].charge)",
+      "  args.production *= 1 + charge*0.1;",
+      "}",
+      "})()"
+    ],
+    "tags": ["production", "exotic", "ion"]
+  },
+  "molecules-2": {
+    "price": 1000,
+    "name": "Molecules x2",
+    "description": "Molecules produce x2 exotic matter",
+    "exotic_deps": [],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "if(data.resources[args.resource].type.indexOf('molecule') !== -1){",
+      "  args.production*=2;",
+      "}",
+      "})()"
+    ],
+    "tags": ["production", "exotic", "molecule"]
+  },
+  "molecules-size": {
+    "price": 1000,
+    "name": "Molecules size bonus",
+    "description": "Molecules produce +5% exotic matter per atom",
+    "exotic_deps": [],
+    "dark_deps": [],
+    "function": ["(() => {",
+      "if(data.resources[args.resource].type.indexOf('molecule') !== -1){",
+      "  let size = 0;",
+      "  for(let elem in data.resources[args.resource].elements){",
+      "    size += data.resources[args.resource].elements[elem];",
+      "  }",
+      "  args.production *= 1 + size*0.05;",
+      "}",
+      "})()"
+    ],
+    "tags": ["production", "exotic", "molecule"]
   }
 }
