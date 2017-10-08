@@ -12,14 +12,12 @@ angular.module('game').component('generators', {
   controllerAs: 'ct'
 });
 
-angular.module('game').controller('ct_generators', ['state', 'visibility', 'data', 'util', 'reaction',
-  function (state, visibility, data, util, reaction) {
+angular.module('game').controller('ct_generators', ['state', 'visibility', 'data', 'util', 'reaction', 'upgrade',
+  function (state, visibility, data, util, reaction, upgrade) {
     let ct = this;
     ct.state = state;
     ct.data = data;
     let buyAmount = [1, 10, 25, 100, 'max'];
-
-    <%= upgradeFunctions %>
 
     /* Proceses the decay of radiactive isotopes. It uses a random draw based on the
     half life to decide how many atoms decay, and then spreads them over different
@@ -64,7 +62,7 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
       for (let slot of player.element_slots) {
         if(!slot){
           continue;
-        } 
+        }
         let totalProduction = ct.elementProduction(player, slot);
         let remaining = totalProduction;
         // for each isotope
@@ -160,16 +158,20 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
 
     /* Upgraded production includes upgrades, exotic matter and dark matter. */
     function upgradedProduction(player, production, name, slot) {
-      for (let up of data.generators[name].upgrades) {
-        if (slot.upgrades[up]) {
-          let func = data.upgrades[up].function;
-          production = ct[func](player, production, slot);
-        }
+      let args = {
+        production: production,
+        slot: slot
       }
+      
+      upgrade.executeAll(data.upgrades, slot.upgrades, [name, 'production'], args);
+
+      // extract back the value from applying the upgrades
+      let newProduction = args.production;
+
       let exotic = data.elements[slot.element].exotic;
-      production *= (1 + player.resources[exotic].number * data.constants.EXOTIC_POWER) *
+      newProduction *= (1 + player.resources[exotic].number * data.constants.EXOTIC_POWER) *
         (1 + player.resources.dark_matter.number * data.constants.DARK_POWER);
-      return Math.floor(production);
+      return Math.floor(newProduction);
     }
 
     ct.elementProduction = function (player, slot) {

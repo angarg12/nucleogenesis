@@ -19,9 +19,10 @@
     "exotic_deps": [],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*2;",
+      "args.production*=2;",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "multiplier-2": {
     "prices": {
@@ -47,9 +48,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*3;",
+      "args.production*=3;",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "multiplier-3": {
     "prices": {
@@ -75,9 +77,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*4;",
+      "args.production*=4;",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "multiplier-4": {
     "prices": {
@@ -103,9 +106,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*5;",
+      "args.production*=5;",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "multiplier-5": {
     "prices": {
@@ -131,9 +135,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*6;",
+      "args.production*=6;",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "multiplier-6": {
     "prices": {
@@ -159,9 +164,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*7;",
+      "args.production*=7;",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "multiplier-7": {
     "prices": {
@@ -187,9 +193,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*8;",
+      "args.production*=8;",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "multiplier-8": {
     "prices": {
@@ -215,9 +222,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*9;",
+      "args.production*=9;",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "boost-1": {
     "prices": {
@@ -241,9 +249,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+Math.floor(slot.generators['<%= id %>']/10)*0.05);",
+      "args.production*=(1+Math.floor(args.slot.generators['<%= id %>']/10)*0.05);",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "boost-2": {
     "prices": {
@@ -269,9 +278,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+Math.floor(slot.generators['<%= id %>']/25)*0.25);",
+      "args.production*=(1+Math.floor(args.slot.generators['<%= id %>']/25)*0.25);",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "boost-3": {
     "prices": {
@@ -297,9 +307,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+Math.floor(slot.generators['<%= id %>']/50)*1);",
+      "args.production*=(1+Math.floor(args.slot.generators['<%= id %>']/50)*1);",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "boost-4": {
     "prices": {
@@ -325,9 +336,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+Math.floor(slot.generators['<%= id %>']/100)*2.5);",
+      "args.production*=(1+Math.floor(args.slot.generators['<%= id %>']/100)*2.5);",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "synergies-1": {
     "prices": {
@@ -352,9 +364,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+slot.generators['1']/100);",
+      "args.production*=(1+args.slot.generators['1']/100);",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "synergies-2": {
     "prices": {
@@ -379,9 +392,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+slot.generators['2']/100);",
+      "args.production*=(1+args.slot.generators['2']/100);",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "synergies-3": {
     "prices": {
@@ -406,9 +420,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+slot.generators['3']/100);",
+      "args.production*=(1+args.slot.generators['3']/100);",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "synergies-4": {
     "prices": {
@@ -433,9 +448,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+slot.generators['4']/100);",
+      "args.production*=(1+args.slot.generators['4']/100);",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "synergies-5": {
     "prices": {
@@ -460,9 +476,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+slot.generators['5']/100);",
+      "args.production*=(1+args.slot.generators['5']/100);",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "synergies-6": {
     "prices": {
@@ -487,9 +504,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+slot.generators['6']/100);",
+      "args.production*=(1+args.slot.generators['6']/100);",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "synergies-7": {
     "prices": {
@@ -514,9 +532,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+slot.generators['7']/100);",
+      "args.production*=(1+args.slot.generators['7']/100);",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "synergies-8": {
     "prices": {
@@ -541,9 +560,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+slot.generators['8']/100);",
+      "args.production*=(1+args.slot.generators['8']/100);",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "synergies-9": {
     "prices": {
@@ -568,9 +588,10 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+slot.generators['9']/100);",
+      "args.production*=(1+args.slot.generators['9']/100);",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   },
   "synergies-10": {
     "prices": {
@@ -595,8 +616,9 @@
     ],
     "dark_deps": [],
     "function": ["(() => {",
-      "return production*(1+slot.generators['10']/100);",
+      "args.production*=(1+args.slot.generators['10']/100);",
       "})()"
-    ]
+    ],
+    "tags": ["production"]
   }
 }

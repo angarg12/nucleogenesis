@@ -14,23 +14,21 @@ angular
     function(data) {
       let sv = this;
 
-      <%= fireOnceFunctions %>
+      <%= upgradeFunctions %>
 
-      this.buyUpgrade = function (player, upgrades, upgradeData, name, price, currency) {
+      sv.buyUpgrade = function (player, upgrades, upgradeData, name, price, currency) {
         if (upgrades[name]) {
           return;
         }
         if (player.resources[currency].number >= price) {
           player.resources[currency].number -= price;
           upgrades[name] = true;
-          let func = upgradeData.fire_once_function;
-          if(func){
-            sv[func](player);
-          }
+          let args = {player: player};
+          sv.executeOnce(upgradeData, ['once'], args);
         }
       };
 
-      this.resetElement = function(player, element) {
+      sv.resetElement = function(player, element) {
         let exotic = data.elements[element].exotic;
         if (!player.resources[exotic].unlocked) {
           return;
@@ -41,5 +39,27 @@ angular
           resources[resource].number = 0;
         }
       };
+
+      sv.executeOnce = function(upgrade, tags, args) {
+        for(let tag of tags){
+          if((upgrade.tags || []).indexOf(tag) === -1){
+            return;
+          }
+        }
+        let func = upgrade.function;
+        if(func){
+          sv[func](args);
+        }
+      };
+      
+      sv.executeAll = function(upgradesData, playerUpgrades, tags, args){
+        for(let key in upgradesData){
+          if(!playerUpgrades[key]){
+            continue;
+          }
+          let upgrade = upgradesData[key];
+          sv.executeOnce(upgrade, tags, args);
+        }
+      }
     }
   ]);

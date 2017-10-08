@@ -42,6 +42,7 @@ let commonSpec = function(spec) {
     spec.reaction = _$injector_.get('reaction');
     spec.visibility = _$injector_.get('visibility');
     spec.state = _$injector_.get('state');
+    spec.upgradeService = _$injector_.get('upgrade');
 
     spec.state.player.elements = {};
     spec.state.player.unlocks = {};

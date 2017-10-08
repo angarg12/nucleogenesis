@@ -138,20 +138,23 @@ describe('Generators component', function() {
       spec.data.upgrades = {
         '1-1': {
           tiers: ['1'],
-          function: 'two'
+          function: 'two',
+          tags: ['production', '1']
         },
         '1-2': {
           tiers: ['1'],
-          function: 'three'
+          function: 'three',
+          tags: ['production', '1']
         },
         '1-3': {
           tiers: ['1'],
-          function: 'four'
+          function: 'four',
+          tags: ['production', '1']
         }
       };
-      spec.generators.two = function(player, production) {return production*2;};
-      spec.generators.three = function(player, production) {return production*3;};
-      spec.generators.four = function(player, production) {return production*4;};
+      spec.upgradeService.two = function(args) {args.production*=2;};
+      spec.upgradeService.three = function(args) {args.production*=3;};
+      spec.upgradeService.four = function(args) {args.production*=4;};
       spec.state.player.resources.xH = {number: 0};
       spec.state.player.resources.dark_matter = {number: 0};
       spec.state.player.element_slots[0].generators = {'1': 1};
@@ -161,7 +164,7 @@ describe('Generators component', function() {
         '1-3': false
       };
 
-      let value = spec.generators.generatorProduction(spec.state.player, '1',spec.state.player.element_slots[0]);
+      let value = spec.generators.generatorProduction(spec.state.player, '1', spec.state.player.element_slots[0]);
 
       expect(value).toEqual(6);
     });
@@ -176,20 +179,23 @@ describe('Generators component', function() {
       spec.data.upgrades = {
         '1-1': {
           tiers: ['1'],
-          function: 'two'
+          function: 'two',
+          tags: ['production', '1']
         },
         '1-2': {
           tiers: ['1'],
-          function: 'three'
+          function: 'three',
+          tags: ['production', '1']
         },
         '1-3': {
           tiers: ['1'],
-          function: 'four'
+          function: 'four',
+          tags: ['production', '1']
         }
       };
-      spec.generators.two = function(player, production) {return production*2;};
-      spec.generators.three = function(player, production) {return production*3;};
-      spec.generators.four = function(player, production) {return production*4;};
+      spec.upgradeService.two = function(args) {args.production*=2;};
+      spec.upgradeService.three = function(args) {args.production*=3;};
+      spec.upgradeService.four = function(args) {args.production*=4;};
       spec.state.player.resources.xH = {number: 3250};
       spec.state.player.resources.dark_matter = {number: 0};
       spec.state.player.element_slots[0].upgrades = {
@@ -214,20 +220,23 @@ describe('Generators component', function() {
       spec.data.upgrades = {
         '1-1': {
           tiers: ['1'],
-          function: 'two'
+          function: 'two',
+          tags: ['production', '1']
         },
         '1-2': {
           tiers: ['1'],
-          function: 'three'
+          function: 'three',
+          tags: ['production', '1']
         },
         '1-3': {
           tiers: ['1'],
-          function: 'four'
+          function: 'four',
+          tags: ['production', '1']
         }
       };
-      spec.generators.two = function(player, production) {return production*2;};
-      spec.generators.three = function(player, production) {return production*3;};
-      spec.generators.four = function(player, production) {return production*4;};
+      spec.upgradeService.two = function(args) {args.production*=2;};
+      spec.upgradeService.three = function(args) {args.production*=3;};
+      spec.upgradeService.four = function(args) {args.production*=4;};
       spec.state.player.resources.xH = {number: 0};
       spec.state.player.resources.dark_matter = {number: 3250};
       spec.state.player.element_slots[0].upgrades = {
@@ -251,20 +260,23 @@ describe('Generators component', function() {
       spec.data.upgrades = {
         '1-1': {
           tiers: ['1'],
-          function: 'two'
+          function: 'two',
+          tags: ['production', '1']
         },
         '1-2': {
           tiers: ['1'],
-          function: 'three'
+          function: 'three',
+          tags: ['production', '1']
         },
         '1-3': {
           tiers: ['1'],
-          function: 'four'
+          function: 'four',
+          tags: ['production', '1']
         }
       };
-      spec.generators.two = function(player, production) {return production*2;};
-      spec.generators.three = function(player, production) {return production*3;};
-      spec.generators.four = function(player, production) {return production*4;};
+      spec.upgradeService.two = function(args) {args.production*=2;};
+      spec.upgradeService.three = function(args) {args.production*=3;};
+      spec.upgradeService.four = function(args) {args.production*=4;};
       spec.state.player.resources.xH = {number: 3250};
       spec.state.player.resources.dark_matter = {number: 3250};
       spec.state.player.element_slots[0].upgrades = {
@@ -288,20 +300,23 @@ describe('Generators component', function() {
       spec.data.upgrades = {
         '1-1': {
           tiers: ['1'],
-          function: 'two'
+          function: 'two',
+          tags: ['production', '1']
         },
         '1-2': {
           tiers: ['1'],
-          function: 'three'
+          function: 'three',
+          tags: ['production', '1']
         },
         '1-3': {
           tiers: ['1'],
-          function: 'four'
+          function: 'four',
+          tags: ['production', '1']
         }
       };
-      spec.generators.two = function(player, production) {return production*2;};
-      spec.generators.three = function(player, production) {return production*3;};
-      spec.generators.four = function(player, production) {return production*4;};
+      spec.upgradeService.two = function(args) {args.production*=2;};
+      spec.upgradeService.three = function(args) {args.production*=3;};
+      spec.upgradeService.four = function(args) {args.production*=4;};
       spec.state.player.resources.xH = {number: 0};
       spec.state.player.resources.dark_matter = {number: 0};
       spec.state.player.element_slots[0] = {

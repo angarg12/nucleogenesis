@@ -11,19 +11,14 @@ let upgrades = jsonfile.readFileSync('build/data/upgrades.json');
 let exoticUpgrades = jsonfile.readFileSync('build/data/exotic_upgrades.json');
 let darkUpgrades = jsonfile.readFileSync('build/data/dark_upgrades.json');
 let generators = jsonfile.readFileSync('build/data/generators.json');
-let upgradeComponent = fs.readFileSync('build/scripts/component/generators.js').toString();
 let upgradeService = fs.readFileSync('build/scripts/services/upgrade.js').toString();
 
-const FUNCTION_TEMPLATE = `this.<%= name %> = function (player, production, slot){
-  return <%= func %>;
-};`;
-
-const FIRE_ONCE_FUNCTION_TEMPLATE = `this.<%= name %> = function (player){
+const FUNCTION_TEMPLATE = `this.<%= name %> = function (args){
   return <%= func %>;
 };`;
 
 let functionTemplate = template(FUNCTION_TEMPLATE);
-let fireOnceFunctionTemplate = template(FIRE_ONCE_FUNCTION_TEMPLATE);
+
 
 // add upgrades to generators
 for(let key in upgrades){
@@ -39,7 +34,7 @@ for(let key in upgrades){
 function generateFunctions(upgradesData, functionType, result, upgradeTemplate) {
   for(let i in upgradesData){
     let upgrade = upgradesData[i];
-    //console.log(i+" "+functionType+ " "+upgrade[functionType])
+
     if(!upgrade[functionType]){
       continue;
     }
@@ -55,32 +50,19 @@ function generateFunctions(upgradesData, functionType, result, upgradeTemplate) 
 }
 
 let functions = {};
-let fireOncefunctions = {};
 
 generateFunctions(upgrades, 'function', functions, functionTemplate);
-generateFunctions(upgrades, 'fire_once_function', fireOncefunctions, fireOnceFunctionTemplate);
 generateFunctions(exoticUpgrades, 'function', functions, functionTemplate);
-generateFunctions(exoticUpgrades, 'fire_once_function', fireOncefunctions, fireOnceFunctionTemplate);
 generateFunctions(darkUpgrades, 'function', functions, functionTemplate);
-generateFunctions(darkUpgrades, 'fire_once_function', fireOncefunctions, fireOnceFunctionTemplate);
 
 let concatFunctions = '';
 for(let i in functions){
   concatFunctions += functions[i]+'\n';
 }
 
-let sourceTemplate = template(upgradeComponent);
+let sourceTemplate = template(upgradeService);
 
-fs.writeFileSync('build/scripts/component/generators.js', sourceTemplate({'upgradeFunctions': concatFunctions}));
-
-concatFunctions = '';
-for(let i in fireOncefunctions){
-  concatFunctions += fireOncefunctions[i]+'\n';
-}
-
-sourceTemplate = template(upgradeService);
-
-fs.writeFileSync('build/scripts/services/upgrade.js', sourceTemplate({'fireOnceFunctions': concatFunctions}));
+fs.writeFileSync('build/scripts/services/upgrade.js', sourceTemplate({'upgradeFunctions': concatFunctions}));
 
 jsonfile.writeFileSync('build/data/upgrades.json', upgrades, {
   spaces: 2

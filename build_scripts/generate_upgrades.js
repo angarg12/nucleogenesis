@@ -26,6 +26,7 @@ for(let key in upgrades){
     generatedUpgrade.name = nameTemplate({'name': generatorName});
     generatedUpgrade.description = descriptionTemplate({'name': generatorName});
     generatedUpgrade.tiers = [tierTemplate({'id': generator})];
+    generatedUpgrade.tags.push(tierTemplate({'id': generator}));
     for(let index in generatedUpgrade.function){
       generatedUpgrade.function[index] = template(generatedUpgrade.function[index])({'id': generator});
     }

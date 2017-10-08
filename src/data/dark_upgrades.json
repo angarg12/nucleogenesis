@@ -16,19 +16,21 @@
     "name": "Extra element slot I",
     "description": "Unlocks another slot to produce matter",
     "deps": [],
-    "fire_once_function": ["(() => {",
-      "player.element_slots.push(null);",
+    "function": ["(() => {",
+      "args.player.element_slots.push(null);",
       "})()"
-    ]
+    ],
+    "tags": ["once"]
   },
   "extra_element_slot_2": {
     "price": 1000,
     "name": "Extra element slot II",
     "description": "Unlocks another slot to produce matter",
     "deps": [],
-    "fire_once_function": ["(() => {",
-      "player.element_slots.push(null);",
+    "function": ["(() => {",
+      "args.player.element_slots.push(null);",
       "})()"
-    ]
+    ],
+    "tags": ["once"]
   }
 }
