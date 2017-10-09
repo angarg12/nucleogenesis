@@ -36,8 +36,8 @@ function exotic(state, format, visibility, upgrade, data, util) {
         continue;
       }
       for (let elem in data.resources[resource].elements) {
-        let newExotic = data.elements[elem].exotic;
-        let prod = prestigeFormula(state.player.resources[resource].number);
+        let numberAtoms = data.resources[resource].elements[elem];
+        let prod = prestigeFormula(state.player.resources[resource].number*numberAtoms);
 
         let args = {
           production: prod,
@@ -47,6 +47,7 @@ function exotic(state, format, visibility, upgrade, data, util) {
         upgrade.executeAll(data.exotic_upgrades, state.player.exotic_upgrades[elem], ['production', 'exotic'], args);
 
         // extract back the value from applying the upgrades
+        let newExotic = data.elements[elem].exotic;
         production[newExotic] = (production[newExotic] || 0) + args.production;
       }
     }

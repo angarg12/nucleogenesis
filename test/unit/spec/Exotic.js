@@ -74,7 +74,7 @@ describe('Exotic', function() {
 
       let production = spec.exotic.exoticProduction('H');
 
-      expect(production).toEqual({'xH': 108, 'xO': 108});
+      expect(production).toEqual({'xH': 123, 'xO': 108});
     });
 
     it('should prestige', function() {
