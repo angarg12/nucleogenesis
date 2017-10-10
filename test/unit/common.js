@@ -65,6 +65,7 @@ let commonSpec = function(spec) {
     spec.achievements = _$componentController_('achievements', null, null);
     spec.elementSelect = _$componentController_('elementSelect', null, null);
     spec.sidebar = _$componentController_('sidebar', null, null);
+    spec.mechanics = _$componentController_('mechanics', null, null);
 
     // asinine sanity check for components
     _$componentController_('getHtml', null, null);

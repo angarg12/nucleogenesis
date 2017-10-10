@@ -85,57 +85,57 @@ describe('Dark', function() {
   describe('purchase functions', function() {
     it('should purchase an upgrade if cost is met', function() {
       spec.data.dark_upgrades = {
-        redox: {
+        test: {
           price: 100,
           deps: []
         }
       };
       spec.state.player.resources.dark_matter = {number:110};
-      spec.state.player.dark_upgrades.redox = false;
+      spec.state.player.dark_upgrades.test = false;
 
-      spec.dark.buyDarkUpgrade('redox');
+      spec.dark.buyDarkUpgrade('test');
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(10);
-      expect(spec.state.player.dark_upgrades.redox).toEqual(true);
+      expect(spec.state.player.dark_upgrades.test).toEqual(true);
     });
 
     it('should not purchase an upgrade if cost is not met', function() {
       spec.data.dark_upgrades = {
-        redox: {
+        test: {
           price: 100,
           deps: []
         }
       };
       spec.state.player.resources.dark_matter = {number:10};
-      spec.state.player.dark_upgrades.redox = false;
+      spec.state.player.dark_upgrades.test = false;
 
-      spec.dark.buyDarkUpgrade('redox');
+      spec.dark.buyDarkUpgrade('test');
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(10);
-      expect(spec.state.player.dark_upgrades.redox).toEqual(false);
+      expect(spec.state.player.dark_upgrades.test).toEqual(false);
     });
 
     it('should skip if the upgrade is already bought', function() {
       spec.data.dark_upgrades = {
-        redox: {
+        test: {
           price: 100,
           deps: []
         }
       };
       spec.state.player.resources.dark_matter = {number:110};
-      spec.state.player.dark_upgrades.redox = true;
+      spec.state.player.dark_upgrades.test = true;
 
-      spec.dark.buyDarkUpgrade('redox');
+      spec.dark.buyDarkUpgrade('test');
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(110);
-      expect(spec.state.player.dark_upgrades.redox).toEqual(true);
+      expect(spec.state.player.dark_upgrades.test).toEqual(true);
     });
   });
 
   describe('visibility functions', function() {
       it('should show if a dark upgrade is visible', function() {
         spec.data.dark_upgrades = {
-          redox: {
+          test: {
             price: 100,
             deps: []
           }
@@ -146,7 +146,7 @@ describe('Dark', function() {
 
         let values = spec.dark.visibleDarkUpgrades('H');
 
-        expect(values).toEqual(['redox']);
+        expect(values).toEqual(['test']);
       });
   });
 });

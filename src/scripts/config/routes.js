@@ -8,6 +8,9 @@ angular
         .state('generators', {
           component: 'generators'
         })
+        .state('mechanics', {
+          component: 'mechanics'
+        })
         .state('redox', {
           component: 'redox'
         })

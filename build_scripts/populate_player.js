@@ -13,6 +13,7 @@ let darkUpgrades = jsonfile.readFileSync('build/data/dark_upgrades.json');
 let achievements = jsonfile.readFileSync('build/data/achievements.json');
 let unlocks = jsonfile.readFileSync('build/data/unlocks.json');
 let element_slot = jsonfile.readFileSync('build/data/element_slot.json');
+let mechanics = jsonfile.readFileSync('build/data/mechanics.json');
 
 let startPlayer = {
   elements_unlocked: 1
@@ -78,6 +79,13 @@ for (let entry in unlocks) {
 
 element_slot.element = 'H';
 startPlayer.element_slots = [element_slot];
+
+startPlayer.mechanics = {};
+for(let mechanic in mechanics){
+  startPlayer.mechanics[mechanic] = false;
+}
+
+startPlayer.mechanic_slots = 1;
 
 startPlayer.elements.H = true;
 

@@ -97,14 +97,21 @@
               Dark matter
             </a>
             </li>
-            <li ng-if="state.player.dark_upgrades.redox"
+            <li ng-if="state.player.unlocks.dark"
+                ui-sref="mechanics"
+                ui-sref-active="active">
+              <a>
+              Mechanics
+            </a>
+            </li>
+            <li ng-if="state.player.mechanics.redoxes"
                 ui-sref="redox"
                 ui-sref-active="active">
               <a>
               Redox
             </a>
             </li>
-            <li ng-if="state.player.dark_upgrades.reactions"
+            <li ng-if="state.player.mechanics.reactions"
                 ui-sref="reactions"
                 ui-sref-active="active">
               <a>

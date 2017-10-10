@@ -32,5 +32,16 @@
       "})()"
     ],
     "tags": ["once"]
+  },
+  "extra_mechanic_slot_1": {
+    "price": 100,
+    "name": "Extra mechanic slot I",
+    "description": "Unlocks another slot for mechanics",
+    "deps": [],
+    "function": ["(() => {",
+      "args.player.mechanic_slots++;",
+      "})()"
+    ],
+    "tags": ["once"]
   }
 }

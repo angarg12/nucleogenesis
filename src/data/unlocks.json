@@ -74,11 +74,5 @@
       "}",
       "})()"
     ]
-  },
-  "redox": {
-    "condition": "player.dark_upgrades.redox"
-  },
-  "reaction": {
-    "condition": "player.dark_upgrades.reactions"
   }
 }

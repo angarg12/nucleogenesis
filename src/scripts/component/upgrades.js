@@ -57,49 +57,12 @@ function upgrades(state, visibility, upgrade, data) {
       currency);
   };
 
-  /* Global upgrades are non-resource specific, repeatable upgrades */
-  ct.buyGlobalUpgrade = function (name) {
-    if (!ct.canBuyGlobalUpgrade(name)) {
-      return;
-    }
-
-    let up = data.global_upgrades[name];
-    for (let currency in up.price) {
-      let value = up.price[currency] * ct.priceMultiplier(name);
-      state.player.resources[currency].number -= value;
-    }
-
-    state.player.global_upgrades[name]++;
+  ct.visibleUpgrades = function(slot) {
+    return visibility.visible(data.upgrades, isBasicUpgradeVisible, slot);
   };
 
-  ct.canBuyGlobalUpgrade = function (name) {
-    let up = data.global_upgrades[name];
-    for (let currency in up.price) {
-      let value = up.price[currency] * ct.priceMultiplier(name);
-      if (state.player.resources[currency].number < value) {
-        return false;
-      }
-    }
-
-    return true;
+  function isBasicUpgradeVisible(name, slot) {
+    let isVisible = visibility.isUpgradeVisible(name, slot, data.upgrades[name]);
+    return isVisible && (!state.hideBought || !slot.upgrades[name]);
   };
-
-  ct.priceMultiplier = function (name) {
-    let level = state.player.global_upgrades[name];
-    return Math.ceil(Math.pow(data.global_upgrades[name].price_exp, level));
-  };
-
-  ct.visibleUpgrades = function(slot, source) {
-    return visibility.visible(source, createVisibleFunction(source), slot);
-  };
-
-  function createVisibleFunction(source){
-    return function isBasicUpgradeVisible(name, slot) {
-      let isVisible = visibility.isUpgradeVisible(name, slot, source[name]);
-      if(source === data.upgrades){
-        return isVisible && (!state.hideBought || !slot.upgrades[name]);
-      }
-      return isVisible;
-    };
-  }
 }
