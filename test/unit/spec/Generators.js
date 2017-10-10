@@ -10,10 +10,10 @@ describe('Generators component', function() {
 
   beforeEach(function () {
       spec.data.generators['1'] = {
-        price: 15,
+        price: 10,
+        price_exp: 1.12,
         power: 1
       };
-      spec.data.constants.GENERATOR_PRICE_INCREASE = 1.05;
       spec.state.player.element_slots = [{
         element: 'H',
         generators: {}
@@ -42,18 +42,19 @@ describe('Generators component', function() {
 
       let value = spec.generators.generatorTotalPrice(spec.state.player, '1',spec.state.player.element_slots[0], 1);
 
-      expect(value).toEqual(20);
+      expect(value).toEqual(18);
     });
 
     it('should return the price of a generator 2', function() {
-      spec.data.generators['3'] = {
-        price: 1100
+      spec.data.generators['6'] = {
+        price: 1e6,
+        price_exp: 1.14
       };
-      spec.state.player.element_slots[0].generators = {'3': 10};
+      spec.state.player.element_slots[0].generators = {'6': 10};
 
-      let value = spec.generators.generatorTotalPrice(spec.state.player, '3',spec.state.player.element_slots[0], 1);
+      let value = spec.generators.generatorTotalPrice(spec.state.player, '6',spec.state.player.element_slots[0], 1);
 
-      expect(value).toEqual(1792);
+      expect(value).toEqual(3707222);
     });
 
     it('should return the price of a generator 3', function() {
@@ -61,7 +62,7 @@ describe('Generators component', function() {
 
       let value = spec.generators.generatorTotalPrice(spec.state.player, '1',spec.state.player.element_slots[0], 10);
 
-      expect(value).toEqual(205);
+      expect(value).toEqual(202);
     });
 
     it('should return the price of a generator 4', function() {
@@ -69,7 +70,7 @@ describe('Generators component', function() {
 
       let value = spec.generators.generatorTotalPrice(spec.state.player, '1',spec.state.player.element_slots[0], 100);
 
-      expect(value).toEqual(63823);
+      expect(value).toEqual(21617082);
     });
 
     it('should return the price of a generator 5', function() {
@@ -92,7 +93,7 @@ describe('Generators component', function() {
 
       spec.generators.buyGenerators(spec.state.player, '1',spec.state.player.element_slots[0],3);
 
-      expect(spec.state.player.resources['1H'].number).toEqual(2);
+      expect(spec.state.player.resources['1H'].number).toEqual(4);
       expect(spec.state.player.element_slots[0].generators['1']).toEqual(8);
     });
 
@@ -107,7 +108,7 @@ describe('Generators component', function() {
 
       spec.generators.buyGenerators(spec.state.player, '1',spec.state.player.element_slots[0],'max');
 
-      expect(spec.state.player.resources['1H'].number).toEqual(4);
+      expect(spec.state.player.resources['1H'].number).toEqual(7);
       expect(spec.state.player.element_slots[0].generators['1']).toEqual(7);
     });
 

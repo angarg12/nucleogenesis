@@ -1,7 +1,8 @@
 {
   "1": {
     "name": "I",
-    "price": 15,
+    "price": 10,
+    "price_exp": 1.12,
     "power": 1,
     "deps": [
 
@@ -10,71 +11,80 @@
   "2": {
     "name": "II",
     "price": 100,
-    "power": 10,
+    "price_exp": 1.12,
+    "power": 5,
     "deps": [
       "1"
     ]
   },
   "3": {
     "name": "III",
-    "price": 1100,
-    "power": 80,
+    "price": 1000,
+    "price_exp": 1.12,
+    "power": 10,
     "deps": [
       "2"
     ]
   },
   "4": {
     "name": "IV",
-    "price": 12000,
-    "power": 470,
+    "price": 1e4,
+    "price_exp": 1.12,
+    "power": 25,
     "deps": [
       "3"
     ]
   },
   "5": {
     "name": "V",
-    "price": 130000,
-    "power": 2600,
+    "price": 1e5,
+    "price_exp": 1.13,
+    "power": 50,
     "deps": [
       "4"
     ]
   },
   "6": {
     "name": "VI",
-    "price": 1400000,
-    "power": 14000,
+    "price": 1e6,
+    "price_exp": 1.14,
+    "power": 100,
     "deps": [
       "5"
     ]
   },
   "7": {
     "name": "VII",
-    "price": 2000000,
-    "power": 78000,
+    "price": 1e7,
+    "price_exp": 1.14,
+    "power": 250,
     "deps": [
       "6"
     ]
   },
   "8": {
     "name": "VIII",
-    "price": 330000000,
-    "power": 440000,
+    "price": 1e8,
+    "price_exp": 1.14,
+    "power": 500,
     "deps": [
       "7"
     ]
   },
   "9": {
     "name": "IX",
-    "price": 5100000000,
-    "power": 2600000,
+    "price": 1e9,
+    "price_exp": 1.15,
+    "power": 750,
     "deps": [
       "8"
     ]
   },
   "10": {
     "name": "X",
-    "price": 75000000000,
-    "power": 16000000,
+    "price": 1e10,
+    "price_exp": 1.15,
+    "power": 1000,
     "deps": [
       "9"
     ]

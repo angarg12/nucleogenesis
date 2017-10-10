@@ -96,7 +96,7 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
     }
 
     function generatorPrice(name, level) {
-      return data.generators[name].price * Math.pow(data.constants.GENERATOR_PRICE_INCREASE, level);
+      return data.generators[name].price * Math.pow(data.generators[name].price_exp, level);
     }
 
     ct.maxCanBuy = function (player, name, slot) {
@@ -162,7 +162,7 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
         production: production,
         slot: slot
       }
-      
+
       upgrade.executeAll(data.upgrades, slot.upgrades, [name, 'production'], args);
 
       // extract back the value from applying the upgrades
