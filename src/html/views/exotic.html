@@ -9,37 +9,42 @@
     <get-html value="ct.data.elements[slot.element].exotic"></get-html>
     (+<pretty value="ct.state.player.resources[ct.data.elements[slot.element].exotic].number*ct.data.constants.EXOTIC_POWER*100"></pretty>%)
     </h3>
-    <p>Sacrifice your progress to obtain exotic matter. Exotic matter boosts your production for the element by {{ct.data.constants.EXOTIC_POWER*100}}% and unlocks
-      new upgrades.
-    </p>
-    <p>You can spend subatomic particles to boost your exotic matter production.</p>
-    <form name="infuse">
-      <div ng-repeat="resource in ct.visibleSubatomic()">
-        {{resource}}: <input type="number"
-               ng-init="ct.infuse[resource] = 0"
-               min="0"
-               step="any"
-               ng-model="ct.infuse[resource]"
-               ng-change="ct.fixNumber(resource)"
-               pattern="^[^.]*$" />
-        <button type="button"
-                class="btn btn-default"
-                ng-click="ct.setPercentage(resource, 10)"> 10% </button>
-        <button type="button"
-                class="btn btn-default"
-                ng-click="ct.setPercentage(resource, 50)"> 50% </button>
-        <button type="button"
-                class="btn btn-default"
-                ng-click="ct.setPercentage(resource, 100)"> 100% </button> Boost:
-        <pretty value="ct.infuseBoost(resource)*100"></pretty>%
-      </div>
-      Total boost:
-      <pretty value="ct.totalInfuseBoost()*100"></pretty>%
-      <p>Prestige now to obtain</p>
-      <p ng-repeat="(key,value) in ct.exoticProduction(slot.element)">
-        <pretty value="value"></pretty>
-        <get-html value="key"></get-html>
+    <div ng-if="ct.state.player.cooldowns[$index] === 0">
+      <p>Sacrifice your progress to obtain exotic matter. Exotic matter boosts your production for the element by {{ct.data.constants.EXOTIC_POWER*100}}% and unlocks
+        new upgrades.
       </p>
+      <p>You can spend subatomic particles to boost your exotic matter production.</p>
+      <form name="infuse">
+        <div ng-repeat="resource in ct.visibleSubatomic()">
+          {{resource}}: <input type="number"
+                 ng-init="ct.infuse[resource] = 0"
+                 min="0"
+                 step="any"
+                 ng-model="ct.infuse[resource]"
+                 ng-change="ct.fixNumber(resource)"
+                 pattern="^[^.]*$" />
+          <button type="button"
+                  class="btn btn-default"
+                  ng-click="ct.setPercentage(resource, 10)"> 10% </button>
+          <button type="button"
+                  class="btn btn-default"
+                  ng-click="ct.setPercentage(resource, 50)"> 50% </button>
+          <button type="button"
+                  class="btn btn-default"
+                  ng-click="ct.setPercentage(resource, 100)"> 100% </button> Boost:
+          <pretty value="ct.infuseBoost(resource)*100"></pretty>%
+        </div>
+        Total boost:
+        <pretty value="ct.totalInfuseBoost()*100"></pretty>%
+        <p>Prestige now to obtain</p>
+        <p ng-repeat="(key,value) in ct.exoticProduction(slot.element)">
+          <pretty value="value"></pretty>
+          <get-html value="key"></get-html>
+        </p>
+      </div>
+      <div ng-if="ct.state.player.cooldowns[$index] > 0">
+        <p>Cooldown {{ct.state.player.cooldowns[$index]}} s. During cooldown, no exotic matter will be produced.</p>
+      </div>
       <button type="button"
               class="btn btn-default"
               ng-class="{disabled: !ct.isValidInfusion()}"

@@ -80,6 +80,11 @@ for (let entry in unlocks) {
 element_slot.element = 'H';
 startPlayer.element_slots = [element_slot];
 
+// cooldowns for exotic prestige. Maps to indexes in the element_slots
+startPlayer.cooldowns = {
+  0: 0
+}
+
 startPlayer.mechanics = {};
 for(let mechanic in mechanics){
   startPlayer.mechanics[mechanic] = false;
