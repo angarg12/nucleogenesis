@@ -36,7 +36,7 @@ startPlayer.version = npm.version;
      *    - full
      *    - short
      */
-startPlayer.numberformat = {format: 'standard', flavor: 'full'};
+startPlayer.numberformat = {format: 'standard', flavor: 'short'};
 startPlayer.resources = {};
 for (let entry in resources) {
   startPlayer.resources[entry] = {
