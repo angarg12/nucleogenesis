@@ -21,8 +21,20 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
     ct.format = format;
 
     ct.getReactorArea = function(player) {
-      return 1;
+      let level = player.global_upgrades.fusion_area;
+      let upgrade = data.global_upgrades.fusion_area;
+      let basePower = upgrade.power;
+      let multiplier = upgrade.power_mult;
+      return basePower * Math.floor(multiplier * level);
     };
+
+    ct.getBandwidth = function(player){
+        let level = player.global_upgrades.fusion_bandwidth;
+        let upgrade = data.global_upgrades.fusion_bandwidth;
+        let basePower = upgrade.power;
+        let exp = upgrade.power_exp;
+        return basePower * Math.pow(exp, level);
+    }
 
     function getRadius(resource) {
       let isotope = data.resources[resource];
@@ -43,6 +55,10 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
     };
 
     ct.getProductIsotope = function(beam, target) {
+      if(!beam || !target) {
+        return false;
+      }
+
       let beamN = parseInt(beam, 10);
       let targetN = parseInt(target, 10);
 

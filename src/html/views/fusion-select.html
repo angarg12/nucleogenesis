@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <select name="fusionBeam"
-        ng-init="ct.state[ct.source].name = ct.availableIsotopes(ct.state.player)[0]"
-        ng-model="ct.state[ct.source].name">
+        ng-init="ct.state[ct.source].name = ct.state[ct.source].name || ct.availableIsotopes(ct.state.player)[0]"
+        ng-model="ct.state[ct.source].name"
+        ng-change="ct.fixNumber(ct.state.player)">
   <option ng-repeat="isotope in ct.availableIsotopes(ct.state.player)"
             value="{{isotope}}">{{isotope}}</option>
 </select>
-Capacity: <pretty value="ct.getCapacity({resource: ct.state[ct.source].name, player:ct.player})"></pretty>
+Capacity: <pretty value="ct.getCapacity({resource: ct.state[ct.source].name, player:ct.state.player})"></pretty>
 <form name="beam">
   <div>
     {{ct.state[ct.source].name}}:
     <input type="number"
-           ng-init="ct.state[ct.source].number = 0"
+           ng-init="ct.state[ct.source].number = ct.state[ct.source].number || 0"
            min="0"
            step="any"
            ng-model="ct.state[ct.source].number"

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <p> Area: {{ct.getReactorArea(ct.state.player)}} m<sup>2</sup></p>
+<p> eV bandwidth: <pretty value="ct.getBandwidth(ct.state.player)"></pretty> </p>
 <h2>Beam</h2>
 <fusion-select source="beam"
                get-capacity="ct.getCapacity(resource, player)"></fusion-select>
@@ -16,6 +17,7 @@
   <p>Coulomb barrier: <pretty value="ct.getCoulombBarrier(ct.state.beam.name, ct.state.target.name)"></pretty> eV</p>
   <p>Yield %: {{ct.getYieldPercent(ct.state.beam.name, ct.state.target.name, ct.state.player)*100}}%</p>
   <p>Yield total: <pretty value="ct.getYield(ct.state.beam.name, ct.state.target.name, ct.state.player)"></pretty></p>
+  <p>Total time: <pretty value="ct.getFusionReaction(ct.state.player).reactant.eV/ct.getBandwidth(ct.state.player)"></pretty>s</p>
   <h2>Reaction</h2>
   <span ng-bind-html="ct.util.trustHTML(
                 ct.format.reactionFormat(1,

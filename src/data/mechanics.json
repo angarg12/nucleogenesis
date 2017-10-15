@@ -4,5 +4,8 @@
   },
   "reactions":{
     "name": "Reactions"
+  },
+  "fusion":{
+    "name": "Fusion"
   }
 }

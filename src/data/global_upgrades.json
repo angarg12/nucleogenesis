@@ -43,11 +43,35 @@
       "eV": 100
     },
     "name": "Reaction bandwidth",
-    "description": "bandwidth available for reactions",
+    "description": "Bandwidth available for reactions",
     "mechanic": "reactions",
     "power": 100,
     "power_poly": 2,
     "price_exp": 1.15,
+    "repeatable": true
+  },
+  "fusion_area": {
+    "price": {
+      "eV": 1e30
+    },
+    "name": "Fusion area",
+    "description": "Area of the fusion reactor",
+    "mechanic": "fusion",
+    "power": 1,
+    "power_mult": 1,
+    "price_exp": 10,
+    "repeatable": true
+  },
+  "fusion_bandwidth": {
+    "price": {
+      "eV": 100
+    },
+    "name": "Fusion bandwidth",
+    "description": "Bandwidth available for fusion",
+    "mechanic": "fusion",
+    "power": 100,
+    "power_exp": 2,
+    "price_exp": 2,
     "repeatable": true
   }
 }
