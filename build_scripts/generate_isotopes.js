@@ -24,6 +24,7 @@ for (let element in elements) {
   for (let isotope in isotopes) {
     resources[isotope] = {};
     resources[isotope].energy = isotopes[isotope].energy;
+    resources[isotope].binding_energy = isotopes[isotope].binding_energy;
     resources[isotope].elements = {};
     resources[isotope].elements[element] = 1;
     resources[isotope].html = isotopePrefix(isotope) + element;
@@ -31,6 +32,7 @@ for (let element in elements) {
     resources[isotope].type = ['isotope'];
 
     delete isotopes[isotope].decay;
+    delete isotopes[isotope].binding_energy;
 
     if (elements[element].includes.indexOf(isotope) === -1) {
       elements[element].includes.push(isotope);

@@ -1,16 +1,4 @@
 {
-  "redox": {
-    "price": 100,
-    "name": "Redox",
-    "description": "Unlocks redox",
-    "deps": []
-  },
-  "reactions": {
-    "price": 100,
-    "name": "Reactions",
-    "description": "Unlocks reactions",
-    "deps": []
-  },
   "extra_element_slot_1": {
     "price": 100,
     "name": "Extra element slot I",

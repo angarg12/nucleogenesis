@@ -17,6 +17,9 @@ angular
         .state('reactions', {
           component: 'reactions'
         })
+        .state('fusion', {
+          component: 'fusion'
+        })
         .state('upgrades', {
           component: 'upgrades'
         })

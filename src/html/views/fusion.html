@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<p> Area: {{ct.getReactorArea(ct.state.player)}} m<sup>2</sup></p>
+<h2>Beam</h2>
+<fusion-select source="beam"
+               get-capacity="ct.getCapacity(resource, player)"></fusion-select>
+<h2>Target</h2>
+<fusion-select source="target"
+               get-capacity="ct.getCapacity(resource, player)"></fusion-select>
+<div ng-if="!ct.getProductIsotope(ct.state.beam.name, ct.state.target.name)">
+  <h2>No product for these source isotopes</h2>
+</div>
+<div ng-if="ct.getProductIsotope(ct.state.beam.name, ct.state.target.name)">
+  <h2>Product</h2>
+  <p>Isotope: {{ct.getProductIsotope(ct.state.beam.name, ct.state.target.name)}}</p>
+  <p>Energy: <pretty value="ct.getProductEnergy(ct.state.beam.name, ct.state.target.name)"></pretty> eV</p>
+  <p>Coulomb barrier: <pretty value="ct.getCoulombBarrier(ct.state.beam.name, ct.state.target.name)"></pretty> eV</p>
+  <p>Yield %: {{ct.getYieldPercent(ct.state.beam.name, ct.state.target.name, ct.state.player)*100}}%</p>
+  <p>Yield total: <pretty value="ct.getYield(ct.state.beam.name, ct.state.target.name, ct.state.player)"></pretty></p>
+  <h2>Reaction</h2>
+  <span ng-bind-html="ct.util.trustHTML(
+                ct.format.reactionFormat(1,
+                                          ct.getFusionReaction(ct.state.player)))"></span>
+</div>
