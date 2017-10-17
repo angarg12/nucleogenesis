@@ -12,8 +12,8 @@ angular.module('game').component('fusion', {
   controllerAs: 'ct'
 });
 
-angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility', 'data', 'util',
-  function (state, format, visibility, data, util) {
+angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility', 'data', 'util', 'reaction',
+  function (state, format, visibility, data, util, reactionService) {
     let ct = this;
     ct.state = state;
     ct.data = data;
@@ -29,6 +29,8 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
     };
 
     ct.getBandwidth = function(player){
+      // FIXME FIXME
+      return 1e7;
         let level = player.global_upgrades.fusion_bandwidth;
         let upgrade = data.global_upgrades.fusion_bandwidth;
         let basePower = upgrade.power;
@@ -54,11 +56,13 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
       return ct.getReactorArea(player)/area;
     };
 
-    ct.getProductIsotope = function(beam, target) {
-      if(!beam || !target) {
-        return false;
-      }
+    ct.getTime = function(player) {
+      let time = ct.getFusionReaction(player).reactant.eV/ct.getBandwidth(player);
+      time = Math.floor(time);
+      return Math.max(1, time);
+    }
 
+    ct.getProductIsotope = function(beam, target) {
       let beamN = parseInt(beam, 10);
       let targetN = parseInt(target, 10);
 
@@ -95,44 +99,47 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
       return coulombBarrier * data.constants.JOULE_TO_EV;
     };
 
-    ct.getYieldPercent = function(beam, target, player) {
-      let beamR = getRadius(beam);
-      let targetR = getRadius(target);
+    ct.getYieldPercent = function(player) {
+      let beam = state.player.fusion[0].beam;
+      let target = state.player.fusion[0].target;
+      let beamR = getRadius(beam.name);
+      let targetR = getRadius(target.name);
       let beamArea = Math.PI*beamR*beamR;
       let targetArea = Math.PI*targetR*targetR;
 
-      let beamPercentArea = beamArea*ct.state.beam.number/ct.getReactorArea(player);
-      let targetPercentArea = targetArea*ct.state.target.number/ct.getReactorArea(player);
+      let beamPercentArea = beamArea*beam.number/ct.getReactorArea(player);
+      let targetPercentArea = targetArea*target.number/ct.getReactorArea(player);
 
       return beamPercentArea*targetPercentArea;
     };
 
-    ct.getYield = function(beam, target, player){
-      let percentYield = ct.getYieldPercent(beam, target, player);
-      return Math.floor(percentYield*ct.state.target.number);
+    ct.getYield = function(player){
+      let percentYield = ct.getYieldPercent(player);
+      let target = state.player.fusion[0].target;
+      return Math.floor(percentYield*target.number);
     };
 
     ct.getFusionReaction = function(player) {
-      let reaction =  {
+      let reaction = {
         reactant: {},
         product: {}
       };
 
-      let beam = ct.state.beam.name;
-      let target = ct.state.target.name;
+      let beam = state.player.fusion[0].beam;
+      let target = state.player.fusion[0].target;
 
-      reaction.reactant[beam] = ct.state.beam.number;
-      reaction.reactant[target] = ct.state.target.number;
+      reaction.reactant[beam.name] = beam.number;
+      reaction.reactant[target.name] = target.number;
 
-      let coulombBarrier = ct.getCoulombBarrier(beam, target);
-      reaction.reactant.eV = coulombBarrier*ct.state.beam.number;
+      let coulombBarrier = ct.getCoulombBarrier(beam.name, target.name);
+      reaction.reactant.eV = coulombBarrier*beam.number;
 
-      let product = ct.getProductIsotope(beam, target);
-      let numberYield = ct.getYield(beam, target, player);
+      let product = ct.getProductIsotope(beam.name, target.name);
+      let numberYield = ct.getYield(player);
 
       reaction.product[product] = numberYield;
 
-      let energyExchange = ct.getProductEnergy(beam, target);
+      let energyExchange = ct.getProductEnergy(beam.name, target.name);
       if(energyExchange < 0){
         reaction.reactant.eV += energyExchange*numberYield;
       }else if(energyExchange > 0){
@@ -142,34 +149,76 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
       return reaction;
     };
 
+    function activateFusion(player){
+      let beam = player.fusion[0].beam;
+      let target = player.fusion[0].target;
+
+      if(player.resources[beam.name].number < beam.number ||
+        player.resources[target.name].number < target.number){
+        player.fusion[0].running = false;
+        return;
+      }
+      player.resources[beam.name].number -= beam.number;
+      player.resources[target.name].number -= target.number;
+
+      player.fusion[0].running = true;
+    }
+
+    ct.stopFusion = function(player, fusion) {
+      if(fusion.running){
+        let beam = state.player.fusion[0].beam;
+        let target = state.player.fusion[0].target;
+
+        player.resources[beam.name].number += fusion.beam.number
+        player.resources[target.name].number += fusion.target.number
+      }
+
+      fusion.eV = 0;
+      fusion.active = false;
+      fusion.running = false;
+      fusion.run = false;
+    }
+
+    function updateFusion(player, fusion) {
+        let bandwidth = ct.getBandwidth(player);
+        let spent = Math.min(player.resources.eV.number, bandwidth);
+        fusion.eV += spent;
+        player.resources.eV.number -= spent;
+    }
+
+    function endFusion(player, fusion, reaction) {
+      // energy is not lost! if there are leftovers, give them back to the player
+      let leftover = fusion.eV - reaction.reactant.eV;
+      reaction.product.eV = reaction.product.eV + leftover || leftover;
+      // Reaction checks that the player has the quantity necessary
+      // to react, but here eV is stored in the fusion object. By setting the cost to 0
+      // we make sure that it always work
+      reaction.reactant= {eV:0};
+      reactionService.react(1, reaction, player);
+
+      fusion.eV = 0;
+      player.fusion[0].running = false;
+    }
+
     function update(player){
-      let source1 = '2H';
-      let source2 = '2H';
-
-      let coulombBarrier = ct.getCoulombBarrier(source1, source2);
-
-      let quantity1 = ct.state.beam.number;
-      let quantity2 = ct.state.target.number;
-
-      let numberYield = ct.getYield(source1, source2, player);
-
-      let totalCoulomb = coulombBarrier*quantity1;
-
-      let product = ct.getProductIsotope(source1, source2);
-
-      // console.log(product);
-      // console.log("capacity "+capacity1);
-      // console.log("coulomb "+totalCoulomb);
-      // console.log("yield "+percentYield+" "+numberYield);
-      if(!product) return;
-
-      let energyExchange = ct.getProductEnergy(source1, source2);
-      // console.log(energyExchange);
-      if(energyExchange < 0){
-        totalCoulomb += energyExchange*numberYield;
-      }else{
-        // console.log("produced energy "+energyExchange*numberYield);
+      for(let fusion of player.fusion){
+        if(!fusion.active){
+          continue;
+        }
+        if(fusion.eV === 0 && fusion.run){
+          activateFusion(player);
+        }
+        if(!fusion.running){
+          continue;
+        }
+        updateFusion(player, fusion);
+        let reaction = ct.getFusionReaction(player);
+        if(fusion.eV >= reaction.reactant.eV){
+          endFusion(player, fusion, reaction)
+        }
       }
     }
+
+    state.registerUpdate('fusion', update);
   }
 ]);

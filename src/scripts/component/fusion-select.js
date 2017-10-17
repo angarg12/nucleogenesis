@@ -34,14 +34,16 @@ angular.module('game').controller('ct_fusion_select', ['state', 'data',
     };
 
     ct.setPercentage = function(percentage, player) {
-      state[ct.source].number = Math.floor(player.resources[state[ct.source].name].number*(percentage/100));
+      let fragment = state.player.fusion[0][ct.source];
+      fragment.number = Math.floor(player.resources[fragment.name].number*(percentage/100));
       ct.fixNumber(player);
     };
 
     ct.fixNumber = function(player) {
-      let resourceNumber = player.resources[state[ct.source].name].number;
-      let capacity = ct.getCapacity({resource: state[ct.source].name, player:player});
-      state[ct.source].number = Math.max(0, Math.min(resourceNumber, state[ct.source].number, capacity));
+      let fragment = state.player.fusion[0][ct.source];
+      let resourceNumber = player.resources[fragment.name].number;
+      let capacity = ct.getCapacity({resource: fragment.name, player:player});
+      fragment.number = Math.max(0, Math.min(resourceNumber, fragment.number, capacity));
     };
   }
 ]);

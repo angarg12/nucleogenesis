@@ -85,6 +85,20 @@ startPlayer.cooldowns = {
   0: 0
 }
 
+startPlayer.fusion = [{
+  active: false,
+  running: false,
+  beam: {
+    name: '1H',
+    number: 0
+  },
+  target: {
+    name: '1H',
+    number: 0
+  },
+  eV: 0
+}];
+
 startPlayer.mechanics = {};
 for(let mechanic in mechanics){
   startPlayer.mechanics[mechanic] = false;
