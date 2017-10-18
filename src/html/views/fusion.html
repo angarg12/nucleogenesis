@@ -55,6 +55,8 @@ Unload
    <input type="checkbox"
         ng-model="ct.state.player.fusion[0].run"
         ng-disabled="!ct.state.player.fusion[0].active">
+</label>
+<div ng-if="ct.getTime(ct.state.player) > 1">
 <p> Load: <pretty value="ct.state.player.fusion[0].eV"></pretty>/<pretty value="ct.getFusionReaction(ct.state.player).reactant.eV"></pretty> eV</p>
 <progress value="{{ct.state.player.fusion[0].eV/ct.getFusionReaction(ct.state.player).reactant.eV*100}}" max="100"></progress>
-</label>
+</div>
