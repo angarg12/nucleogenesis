@@ -29,8 +29,6 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
     };
 
     ct.getBandwidth = function(player){
-      // FIXME FIXME
-      return 1e7;
         let level = player.global_upgrades.fusion_bandwidth;
         let upgrade = data.global_upgrades.fusion_bandwidth;
         let basePower = upgrade.power;
@@ -38,7 +36,7 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
         return basePower * Math.pow(exp, level);
     }
 
-    function getRadius(resource) {
+    function getFermiRadius(resource) {
       let isotope = data.resources[resource];
       let A = isotope.energy/data.constants.U_TO_EV;
       return data.constants.FERMI_RADIUS * Math.pow(A, 0.3333);
@@ -51,7 +49,9 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
     }
 
     ct.getCapacity = function(resource, player) {
-      let r = getRadius(resource);
+      let isotope = data.resources[resource];
+      let element = Object.keys(isotope.elements)[0];
+      let r = data.elements[element].van_der_waals;
       let area = Math.PI*r*r;
       return ct.getReactorArea(player)/area;
     };
@@ -89,10 +89,10 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
 
     ct.getCoulombBarrier = function(beam, target) {
       let beamZ = getZ(beam);
-      let beamR = getRadius(beam);
+      let beamR = getFermiRadius(beam);
 
       let targetZ = getZ(target);
-      let targetR = getRadius(target);
+      let targetR = getFermiRadius(target);
 
       let coulombBarrier = data.constants.COULOMB_CONSTANT*beamZ*targetZ*
               Math.pow(data.constants.ELECTRON_CHARGE, 2)/(beamR+targetR);
@@ -102,8 +102,8 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
     ct.getYieldPercent = function(player) {
       let beam = state.player.fusion[0].beam;
       let target = state.player.fusion[0].target;
-      let beamR = getRadius(beam.name);
-      let targetR = getRadius(target.name);
+      let beamR = getFermiRadius(beam.name);
+      let targetR = getFermiRadius(target.name);
       let beamArea = Math.PI*beamR*beamR;
       let targetArea = Math.PI*targetR*targetR;
 
@@ -115,8 +115,11 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
 
     ct.getYield = function(player){
       let percentYield = ct.getYieldPercent(player);
-      let target = state.player.fusion[0].target;
-      return Math.floor(percentYield*target.number);
+      let target = state.player.fusion[0].target.number;
+      let beam = state.player.fusion[0].beam.number;
+      // the yield comes from wherever source is more abundant
+      let impacted = Math.max(target, beam);
+      return Math.floor(percentYield*impacted);
     };
 
     ct.getFusionReaction = function(player) {
