@@ -142,6 +142,14 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
 
       reaction.product[product] = numberYield;
 
+      // return the leftovers from the reaction
+      if(numberYield < beam.number){
+        reaction.product[beam.name] = beam.number - numberYield;
+      }
+      if(numberYield < target.number){
+        reaction.product[target.name] = target.number - numberYield;
+      }
+
       let energyExchange = ct.getProductEnergy(beam.name, target.name);
       if(energyExchange < 0){
         reaction.reactant.eV += energyExchange*numberYield;
