@@ -17,27 +17,33 @@ for(let key in upgrades){
   let descriptionTemplate = template(upgrade.description);
   let tierTemplate = template(upgrade.tier);
   for(let generator in upgrade.prices){
-    let generatorName = generators[generator].name;
-    let generatedUpgrade = clone(upgrade);
-    delete generatedUpgrade.prices;
-    delete generatedUpgrade.tier;
-    let price = upgrade.prices[generator];
-    generatedUpgrade.price = price;
-    generatedUpgrade.name = nameTemplate({'name': generatorName});
-    generatedUpgrade.description = descriptionTemplate({'name': generatorName});
-    generatedUpgrade.tiers = [tierTemplate({'id': generator})];
-    generatedUpgrade.tags.push(tierTemplate({'id': generator}));
-    for(let index in generatedUpgrade.function){
-      generatedUpgrade.function[index] = template(generatedUpgrade.function[index])({'id': generator});
+    let prices = upgrade.prices[generator];
+    if(prices.constructor !== Array){
+      prices = [prices];
     }
-    for(let index in generatedUpgrade.deps){
-      generatedUpgrade.deps[index] = template(generatedUpgrade.deps[index])({'id': generator});
+    for(let i in prices){
+      let price = prices[i];
+      let generatorName = generators[generator].name;
+      let generatedUpgrade = clone(upgrade);
+      delete generatedUpgrade.prices;
+      delete generatedUpgrade.tier;
+      generatedUpgrade.price = price;
+      generatedUpgrade.name = nameTemplate({'name': generatorName});
+      generatedUpgrade.description = descriptionTemplate({'name': generatorName});
+      generatedUpgrade.tiers = [tierTemplate({'id': generator})];
+      generatedUpgrade.tags.push(tierTemplate({'id': generator}));
+      for(let index in generatedUpgrade.function){
+        generatedUpgrade.function[index] = template(generatedUpgrade.function[index])({'id': generator});
+      }
+      for(let index in generatedUpgrade.deps){
+        generatedUpgrade.deps[index] = template(generatedUpgrade.deps[index])({'id': generator});
+      }
+      for(let index in generatedUpgrade.exotic_deps){
+        generatedUpgrade.exotic_deps[index] = template(generatedUpgrade.exotic_deps[index])({'id': generator});
+      }
+      let id = key+'-'+generator+'-'+i;
+      upgrades[id] = generatedUpgrade;
     }
-    for(let index in generatedUpgrade.exotic_deps){
-      generatedUpgrade.exotic_deps[index] = template(generatedUpgrade.exotic_deps[index])({'id': generator});
-    }
-    let id = key+'-'+generator;
-    upgrades[id] = generatedUpgrade;
   }
   delete upgrades[key];
 }
