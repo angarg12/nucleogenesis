@@ -62,6 +62,41 @@ describe('Elements component', function() {
       expect(spec.state.player.elements.O).toEqual(true);
     });
   });
+  describe('element select', function() {
+    it('should select an element for the index', function() {		
+      spec.data.element_slot = {
+        upgrades: {
+          '1-1': false
+        },
+        generators: {
+          '1': 0,
+          '2': 0
+        },
+        reactions: [],
+        redoxes: []
+      };
+	  spec.data.generators['1'] = {
+        price: 10,
+        price_exp: 1.12,
+        power: 1
+      };
+
+      spec.elementSelect.selectElement('H', 0);
+
+      expect(spec.state.player.element_slots[0]).toEqual({
+        element: 'H',
+		upgrades: {
+          '1-1': false
+        },
+        generators: {
+          '1': 1,
+          '2': 0
+        },
+        reactions: [],
+        redoxes: []
+      });
+    }); 
+  });
 /*
   describe('class functions', function() {
     it('should return the right class for unavailable elements', function() {
