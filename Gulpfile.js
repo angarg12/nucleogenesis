@@ -176,6 +176,10 @@ gulp.task('generate_exotic_upgrades', function() {
   return plugins.run('node build_scripts/generate_exotic_upgrades.js',{silent:false}).exec();
 });
 
+gulp.task('generate_exotic_ranges', function() {
+  return plugins.run('node build_scripts/generate_exotic_ranges.js',{silent:false}).exec();
+});
+
 gulp.task('generate_upgrade_functions', function() {
   return plugins.run('node build_scripts/generate_upgrade_functions.js',{silent:true}).exec();
 });
@@ -211,6 +215,7 @@ gulp.task('build', function(callback) {
     'generate_unlocks',
     'generate_upgrades',
     'generate_exotic_upgrades',
+    'generate_exotic_ranges',
     'generate_achievement_functions',
     'generate_upgrade_functions',
     'generate_element_slot',

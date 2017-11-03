@@ -10,11 +10,33 @@ describe('Exotic', function() {
 
   beforeEach(function () {
     spec.data.constants = {
-      'EXOTIC_POWER': 0.001,
-      'EXOTIC_STEP_QUOTIENT': 1e5,
-      'EXOTIC_SIGMOID_MAGIC': 5.747734128,
       'INFUSE_POWER': 0.01
     };
+    spec.data.exotic_ranges = [
+      {
+        "top": 1e6,
+        "range": 1000000,
+        "max_value": 0,
+        "midpoint": 500000
+      },
+      {
+        "top": 1e7,
+        "range": 9000000,
+        "max_value": 10,
+        "midpoint": 5500000
+      },
+      {
+        "top": 1e9,
+        "range": 990000000,
+        "max_value": 100,
+        "midpoint": 505000000
+      },
+      {
+        "top": 1000000000000,
+        "range": 999000000000,
+        "max_value": 1000,
+        "midpoint": 500500000000
+      }];
   });
   describe('prestige', function() {
     it('should produce prestige currency', function() {
@@ -25,14 +47,14 @@ describe('Exotic', function() {
       spec.data.resources = {
         '1H': {elements: {H: 1}, type: ['isotope']}
       };
-      spec.state.player.resources['1H'] = {number:1e8, unlocked: true};
+      spec.state.player.resources['1H'] = {number:5e8, unlocked: true};
       spec.state.player.element_slots = [{
         element: 'H'
       }];
 
       let production = spec.exotic.exoticProduction('H');
 
-      expect(production).toEqual({'xH': 108});
+      expect(production).toEqual({'xH': 58});
     });
 
     it('should not produce prestige currency for small quantities', function() {
@@ -53,6 +75,24 @@ describe('Exotic', function() {
       expect(production).toEqual({'xH': 0});
     });
 
+    it('should max out for extremely large quantities', function() {
+      spec.data.elements.H = {
+        exotic:'xH',
+        includes: ['1H']
+      };
+      spec.data.resources = {
+        '1H': {elements: {H: 1}, type: ['isotope']}
+      };
+      spec.state.player.resources['1H'] = {number:1e300, unlocked: true};
+      spec.state.player.element_slots = [{
+        element: 'H'
+      }];
+
+      let production = spec.exotic.exoticProduction('H');
+
+      expect(production).toEqual({'xH': 1110});
+    });
+
     it('should produce dual currency for compounds', function() {
       spec.data.elements.H = {
         exotic:'xH',
@@ -67,14 +107,14 @@ describe('Exotic', function() {
         'H2O': {elements: {H: 2, O: 1}, type: ['molecule']}
       };
       spec.state.player.resources['1H'] = {number:0, unlocked: true};
-      spec.state.player.resources.H2O = {number:1e8, unlocked: true};
+      spec.state.player.resources.H2O = {number:5e8, unlocked: true};
       spec.state.player.element_slots = [{
         element: 'H'
       }];
 
       let production = spec.exotic.exoticProduction('H');
 
-      expect(production).toEqual({'xH': 123, 'xO': 108});
+      expect(production).toEqual({'xH': 109, 'xO': 58});
     });
 
     it('should prestige', function() {
@@ -97,7 +137,7 @@ describe('Exotic', function() {
       spec.data.resources = {
         '1H': {elements: {H: 1}, type: ['isotope']}
       };
-      spec.state.player.resources['1H'] = {number:1e8, unlocked: true};
+      spec.state.player.resources['1H'] = {number:5e8, unlocked: true};
       spec.state.player.resources.xH = {number:0, unlocked: false};
       spec.state.player.elements.H = true;
       spec.state.player.exotic_upgrades = {
@@ -127,7 +167,7 @@ describe('Exotic', function() {
       expect(spec.state.player.element_slots[0]).toBeNull();
       expect(spec.state.player.exotic_upgrades.H.x3).toBeTruthy();
       expect(spec.state.player.resources['1H'].number).toEqual(0);
-      expect(spec.state.player.resources.xH.number).toEqual(108);
+      expect(spec.state.player.resources.xH.number).toEqual(58);
     });
   });
 
@@ -192,7 +232,7 @@ describe('Exotic', function() {
           p: {elements: {}, type: ['subatomic']},
           n: {elements: {}, type: ['subatomic']}
       };
-      spec.state.player.resources['1H'] = {number:1e8, unlocked: true};
+      spec.state.player.resources['1H'] = {number:5e8, unlocked: true};
       spec.state.player.resources.xH = {number:0, unlocked: false};
       spec.state.player.resources.p = {number:1000, unlocked: true};
       spec.state.player.resources.n = {number:1000, unlocked: true};
@@ -209,7 +249,7 @@ describe('Exotic', function() {
 
       spec.exotic.exoticPrestige(0);
 
-      expect(spec.state.player.resources.xH.number).toEqual(185);
+      expect(spec.state.player.resources.xH.number).toEqual(99);
     });
   });
 
