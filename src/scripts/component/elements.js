@@ -15,7 +15,6 @@ angular.module('game').component('elements', {
 
 function elements($timeout, state, data) {
   let ct = this;
-  ct.elementPrice = 1;
   ct.state = state;
   ct.data = data;
   ct.outcome = {};
@@ -27,7 +26,7 @@ function elements($timeout, state, data) {
       bonus += state.player.resources[isotope].number*data.constants.ELEMENT_CHANCE_BONUS;
     }
     let singleChance = data.elements[element].abundance*(1+bonus);
-    let chance = 1 - Math.pow(Math.max(0, 1-singleChance), ct.getbuyAmount(state.player));
+    let chance = 1 - Math.pow(Math.max(0, 1-singleChance), Math.min(state.player.resources.dark_matter.number, ct.getbuyAmount(state.player)));
 
     return Math.min(1, chance);
   };
@@ -36,22 +35,20 @@ function elements($timeout, state, data) {
     if (state.player.elements[element]) {
       return;
     }
-    if (state.player.resources.dark_matter.number >= ct.elementPrice) {
-      state.player.resources.dark_matter.number -= ct.elementPrice;
-
-      if(Math.random() < ct.getChance(element)){
-        state.player.elements[element] = true;
-        state.player.exotic_upgrades[element] = {};
-        for(let up in data.exotic_upgrades){
-          state.player.exotic_upgrades[element][up] = false;
-        }
-        state.player.elements_unlocked++;
-        ct.outcome[element] = 'Success';
-      }else{
-        ct.outcome[element] = 'Fail';
+    if(Math.random() < ct.getChance(element)){
+      state.player.elements[element] = true;
+      state.player.exotic_upgrades[element] = {};
+      for(let up in data.exotic_upgrades){
+        state.player.exotic_upgrades[element][up] = false;
       }
-      $timeout(function(){ct.clearMessage(element);}, 1000)
+      state.player.elements_unlocked++;
+      ct.outcome[element] = 'Success';
+    }else{
+      ct.outcome[element] = 'Fail';
     }
+    state.player.resources.dark_matter.number -= Math.min(state.player.resources.dark_matter.number, ct.getbuyAmount(state.player));
+
+    $timeout(function(){ct.clearMessage(element);}, 1000);
   };
 
   ct.clearMessage = function (element) {

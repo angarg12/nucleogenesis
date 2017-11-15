@@ -47,14 +47,12 @@ for (let entry in resources) {
 
 startPlayer.elements = {};
 for (let element in elements) {
-  if (!elements[element].abundance > 0) {
-    startPlayer.elements[element] = false;
-  }
+  startPlayer.elements[element] = false;
 }
 
 startPlayer.global_upgrades = {};
 for (let upgrade in globalUpgrades) {
-  startPlayer.global_upgrades[upgrade] = 0;
+  startPlayer.global_upgrades[upgrade] = 1;
 }
 
 startPlayer.exotic_upgrades = {H:{}};
@@ -83,7 +81,7 @@ startPlayer.element_slots = [element_slot];
 // cooldowns for exotic prestige. Maps to indexes in the element_slots
 startPlayer.cooldowns = {
   0: 0
-}
+};
 
 startPlayer.fusion = [{
   active: false,

@@ -52,6 +52,54 @@ describe('Elements component', function() {
       expect(spec.state.player.elements_unlocked).toEqual(2);
     });
 
+    it('should spend purchase amount', function() {
+      spec.data.elements.O = {abundance: 0.5};
+      spec.state.player = {elements:{},exotic_upgrades:{},resources:{},elements_unlocked:1};
+      spec.state.player.resources.dark_matter = {number:10};
+      spec.state.player.elements.O = false;
+
+      spyOn(Math, 'random').and.returnValue(0.2);
+      spyOn(spec.elements, 'getbuyAmount').and.returnValue(5);
+
+      spec.elements.buyElement('O');
+
+      expect(spec.state.player.resources.dark_matter.number).toEqual(5);
+      expect(spec.state.player.elements.O).toEqual(true);
+      expect(spec.state.player.elements_unlocked).toEqual(2);
+    });
+
+    it('should not spend more than purchase amount', function() {
+      spec.data.elements.O = {abundance: 0.5};
+      spec.state.player = {elements:{},exotic_upgrades:{},resources:{},elements_unlocked:1};
+      spec.state.player.resources.dark_matter = {number:10};
+      spec.state.player.elements.O = false;
+
+      spyOn(Math, 'random').and.returnValue(0.2);
+      spyOn(spec.elements, 'getbuyAmount').and.returnValue(25);
+
+      spec.elements.buyElement('O');
+
+      expect(spec.state.player.resources.dark_matter.number).toEqual(0);
+      expect(spec.state.player.elements.O).toEqual(true);
+      expect(spec.state.player.elements_unlocked).toEqual(2);
+    });
+
+    it('purchase amount should increase chance of success', function() {
+      spec.data.elements.O = {abundance: 0.1};
+      spec.state.player = {elements:{},exotic_upgrades:{},resources:{},elements_unlocked:1};
+      spec.state.player.resources.dark_matter = {number:10};
+      spec.state.player.elements.O = false;
+
+      spyOn(Math, 'random').and.returnValue(0.3);
+      spyOn(spec.elements, 'getbuyAmount').and.returnValue(5);
+
+      spec.elements.buyElement('O');
+
+      expect(spec.state.player.resources.dark_matter.number).toEqual(5);
+      expect(spec.state.player.elements.O).toEqual(true);
+      expect(spec.state.player.elements_unlocked).toEqual(2);
+    });
+
     it('should skip if the element is already purchased', function() {
       spec.state.player = {elements:{}};
       spec.data.elements.O = {number: 8};
@@ -63,7 +111,7 @@ describe('Elements component', function() {
     });
   });
   describe('element select', function() {
-    it('should select an element for the index', function() {		
+    it('should select an element for the index', function() {
       spec.data.element_slot = {
         upgrades: {
           '1-1': false
@@ -95,7 +143,7 @@ describe('Elements component', function() {
         reactions: [],
         redoxes: []
       });
-    }); 
+    });
   });
 /*
   describe('class functions', function() {
