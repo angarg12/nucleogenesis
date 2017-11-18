@@ -34,7 +34,7 @@
       5.9498
     ],
     "number": 1,
-    "abundance": 0.91075,
+    "abundance": 0.09,
     "van_der_waals": 1.2e-10
   },
   "He": {
@@ -60,7 +60,7 @@
       6.92802
     ],
     "number": 2,
-    "abundance": 0.087822,
+    "abundance": 0.017822,
     "van_der_waals": 1.4e-10
   },
   "Li": {
@@ -221,7 +221,7 @@
       10.1104
     ],
     "number": 6,
-    "abundance": 0.00032527,
+    "abundance": 0.18,
     "van_der_waals": 1.7e-10
   },
   "N": {
@@ -265,7 +265,7 @@
       9.5145
     ],
     "number": 7,
-    "abundance": 0.00010083,
+    "abundance": 0.027,
     "van_der_waals": 1.55e-10
   },
   "O": {
@@ -302,7 +302,7 @@
       8.8899
     ],
     "number": 8,
-    "abundance": 0.00078064,
+    "abundance": 0.65,
     "van_der_waals": 1.52e-10
   },
   "F": {
@@ -434,7 +434,7 @@
       7.7838
     ],
     "number": 11,
-    "abundance": 0.000001854,
+    "abundance": 0.001,
     "van_der_waals": 2.27e-10
   },
   "Mg": {
@@ -471,7 +471,7 @@
       1962.665
     ],
     "number": 12,
-    "abundance": 0.000035779,
+    "abundance": 0.0005,
     "van_der_waals": 1.73e-10
   },
   "Al": {
@@ -645,7 +645,7 @@
       8.2682
     ],
     "number": 15,
-    "abundance": 3.2527e-7,
+    "abundance": 0.012,
     "van_der_waals": 1.8e-10
   },
   "S": {
@@ -708,7 +708,7 @@
       6.4885
     ],
     "number": 16,
-    "abundance": 0.000016914,
+    "abundance": 0.002,
     "van_der_waals": 1.8e-10
   },
   "Cl": {
@@ -765,7 +765,7 @@
       7.0613
     ],
     "number": 17,
-    "abundance": 1.6914e-7,
+    "abundance": 0.002,
     "van_der_waals": 1.75e-10
   },
   "Ar": {
@@ -910,7 +910,7 @@
       6.8695
     ],
     "number": 19,
-    "abundance": 1.236e-7,
+    "abundance": 0.002,
     "van_der_waals": 2.75e-10
   },
   "Ca": {
@@ -1024,7 +1024,7 @@
       6.4504
     ],
     "number": 20,
-    "abundance": 0.0000019841,
+    "abundance": 0.015,
     "van_der_waals": 2.31e-10
   },
   "Sc": {
@@ -1530,7 +1530,7 @@
       10.3879
     ],
     "number": 26,
-    "abundance": 0.000029274,
+    "abundance": 0.000539274,
     "van_der_waals": 1.56e-10
   },
   "Co": {

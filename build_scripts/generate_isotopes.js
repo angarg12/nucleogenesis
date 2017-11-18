@@ -8,7 +8,9 @@ let resources = jsonfile.readFileSync('build/data/resources.json');
 let elements = jsonfile.readFileSync('build/data/elements.json');
 let radioisotopes = [];
 
+let abundance = 0;
 for (let element in elements) {
+  abundance += elements[element].abundance;
   elements[element].includes = elements[element].includes || [];
   let exotic = 'x' + element;
   elements[element].exotic = exotic;
@@ -49,6 +51,10 @@ for (let element in elements) {
     throw new Error('Ratios add up to '.concat(1 - difference, ' for ', element));
   }
   elements[element].main = mainIsotope[1];
+}
+let difference = 1 - abundance;
+if (Math.abs(difference) > 1e-7) {
+  throw new Error('Abundance adds up to '.concat(1 - difference));
 }
 
 for (let resource in resources) {
