@@ -5,11 +5,12 @@
 const jsonfile = require('jsonfile');
 const template = require('lodash.template');
 
-let upgrades = jsonfile.readFileSync('build/data/exotic_upgrades.json');
+let exoticUpgrades = jsonfile.readFileSync('build/data/exotic_upgrades.json');
+let darkUpgrades = jsonfile.readFileSync('build/data/dark_upgrades.json');
 let generators = jsonfile.readFileSync('build/data/generators.json');
 
-for(let key in upgrades){
-  let upgrade = upgrades[key];
+for(let key in exoticUpgrades){
+  let upgrade = exoticUpgrades[key];
     if(!upgrade.prices){
       continue;
     }
@@ -29,16 +30,30 @@ for(let key in upgrades){
       generatedUpgrade.exotic_deps[index] = template(generatedUpgrade.exotic_deps[index])({'id': i});
     }
     let id = key+'-'+i;
-    upgrades[id] = generatedUpgrade;
+    exoticUpgrades[id] = generatedUpgrade;
   }
-  delete upgrades[key];
+  delete exoticUpgrades[key];
 }
 
 function clone(a) {
    return JSON.parse(JSON.stringify(a));
 }
 
-jsonfile.writeFileSync('build/data/exotic_upgrades.json', upgrades, {
+for(let key in exoticUpgrades){
+  let upgrade = exoticUpgrades[key];
+  for(let up of upgrade.exotic_deps){
+    if(!exoticUpgrades[up]){
+      throw new Error('Exotic dependency doesn\'t exist: '+ up + " for "+ key);
+    }
+  }
+  for(let up of upgrade.dark_deps){
+    if(!darkUpgrades[up]){
+      throw new Error('Dark dependency doesn\'t exist: '+ up + " for "+ key);
+    }
+  }
+}
+
+jsonfile.writeFileSync('build/data/exotic_upgrades.json', exoticUpgrades, {
   spaces: 2
 });
 jsonfile.writeFileSync('build/data/generators.json', generators, {
