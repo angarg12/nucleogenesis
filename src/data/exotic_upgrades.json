@@ -1,6 +1,6 @@
 {
   "x-3": {
-    "price": 100,
+    "price": 50,
     "name": "Extra prod 1",
     "description": "Unlocks x3 multipliers",
     "exotic_deps": [],
@@ -8,12 +8,12 @@
   },
   "x": {
     "prices": {
-      "4": 200,
-      "5": 400,
-      "6": 800,
-      "7": 1600,
-      "8": 3200,
-      "9": 6400
+      "4": 5000,
+      "5": 50000,
+      "6": 5e5,
+      "7": 5e6,
+      "8": 1e7,
+      "9": 5e7
     },
     "name": "Extra prod <% print(parseInt(id)-2) %>",
     "description": "Unlocks x<% print(parseInt(id)) %> multipliers",
@@ -23,7 +23,7 @@
     "dark_deps": []
   },
   "boosts-1": {
-    "price": 20,
+    "price": 10,
     "name": "Boost 1",
     "description": "Unlocks boosts for every 10 generators",
     "exotic_deps": [],
@@ -31,9 +31,9 @@
   },
   "boosts": {
     "prices": {
-      "2": 100,
-      "3": 300,
-      "4": 1000
+      "2": 250,
+      "3": 1000,
+      "4": 10000
     },
     "name": "Boost <%= id %>",
     "description": "Unlocks boosts for every <% print([25,50,100][parseInt(id)-2]) %> generators",
@@ -44,16 +44,16 @@
   },
   "synergy": {
     "prices": {
-      "1": 500000,
-      "2": 100000,
-      "3": 500000,
-      "4": 100000,
-      "5": 50000,
-      "6": 10000,
-      "7": 5000,
-      "8": 1000,
-      "9": 500,
-      "10": 100
+      "1": 100,
+      "2": 500,
+      "3": 2500,
+      "4": 10000,
+      "5": 25000,
+      "6": 1e5,
+      "7": 5e5,
+      "8": 1e6,
+      "9": 1e7,
+      "10": 1e8
     },
     "name": "Synergy <%= id %>",
     "description": "Unlocks synergy ugrades for Tier <% print(['I','II','III','IV','V','VI','VII','VIII','IX','X'][parseInt(id)-1]) %>",
@@ -61,7 +61,7 @@
     "dark_deps": []
   },
   "isotopes-2": {
-    "price": 1000,
+    "price": 100,
     "name": "Isotopes x2",
     "description": "Isotopes produce x2 exotic matter",
     "exotic_deps": [],
@@ -75,7 +75,7 @@
     "tags": ["production", "exotic", "isotope"]
   },
   "readioactive-2": {
-    "price": 1000,
+    "price": 500,
     "name": "Radioactive bonus",
     "description": "Radioactive isotopes produce +10% exotic matter per order of magnitude of its half life",
     "exotic_deps": [],
@@ -92,7 +92,7 @@
     "tags": ["production", "exotic", "isotope"]
   },
   "ions-2": {
-    "price": 1000,
+    "price": 500,
     "name": "Ions x2",
     "description": "Ions produce x2 exotic matter",
     "exotic_deps": [],
@@ -106,7 +106,7 @@
     "tags": ["production", "exotic", "ion"]
   },
   "ions-charge": {
-    "price": 1000,
+    "price": 500,
     "name": "Ions charge bonus",
     "description": "Ions produce +10% exotic matter per charge",
     "exotic_deps": [],
@@ -121,7 +121,7 @@
     "tags": ["production", "exotic", "ion"]
   },
   "molecules-2": {
-    "price": 1000,
+    "price": 500,
     "name": "Molecules x2",
     "description": "Molecules produce x2 exotic matter",
     "exotic_deps": [],
@@ -135,7 +135,7 @@
     "tags": ["production", "exotic", "molecule"]
   },
   "molecules-size": {
-    "price": 1000,
+    "price": 500,
     "name": "Molecules size bonus",
     "description": "Molecules produce +5% exotic matter per atom",
     "exotic_deps": [],
