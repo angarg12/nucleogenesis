@@ -69,7 +69,16 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
         for (let key in data.elements[slot.element].isotopes) {
           let isotope = data.elements[slot.element].isotopes[key];
           // we calculate the production proportion
-          let production = Math.floor(isotope.ratio * totalProduction);
+          let production = isotope.ratio * totalProduction;
+          // if production is less than one, do a random draw
+          if(production < 1){
+            let draw = Math.random();
+            if(draw < production){
+              production = 1;
+            }
+          }
+
+          production = Math.floor(production);
 
           // assign the player the produced isotope
           player.resources[key].number += production;
@@ -82,6 +91,8 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
         }
         // if there is remaining production, we assign it to the main isotope
         let main = data.elements[slot.element].main;
+        // we don't want negative remaining
+        remaining = Math.max(0, remaining);
         player.resources[main].number += remaining;
         if (remaining > 0 && !player.resources[main].unlocked) {
           player.resources[main].unlocked = true;

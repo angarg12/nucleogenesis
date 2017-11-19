@@ -82,6 +82,7 @@ describe('MainLoop', function() {
     it('should generate isotopes', function() {
       spec.state.player.elements.O = true;
       spyOn(spec.generators,'elementProduction').and.returnValue(200);
+      spyOn(Math,'random').and.returnValue(1);
       spec.state.player.element_slots = [{
         element: 'O',
         reactions: [],
@@ -98,6 +99,7 @@ describe('MainLoop', function() {
     it('should generate isotopes 2', function() {
       spec.state.player.elements.O = true;
       spyOn(spec.generators,'elementProduction').and.returnValue(1200);
+      spyOn(Math,'random').and.returnValue(1);
       spec.state.player.element_slots = [{
         element: 'O',
         reactions: [],
@@ -114,6 +116,7 @@ describe('MainLoop', function() {
     it('should generate isotopes 3', function() {
       spec.state.player.elements.O = true;
       spyOn(spec.generators,'elementProduction').and.returnValue(32000);
+      spyOn(Math,'random').and.returnValue(1);
       spec.state.player.element_slots = [{
         element: 'O',
         reactions: [],
@@ -125,6 +128,40 @@ describe('MainLoop', function() {
       expect(spec.state.player.resources['16O'].number).toEqual(31924);
       expect(spec.state.player.resources['17O'].number).toEqual(12);
       expect(spec.state.player.resources['18O'].number).toEqual(64);
+    });
+
+    it('should generate isotopes with very low probability', function() {
+      spec.state.player.elements.O = true;
+      spyOn(spec.generators,'elementProduction').and.returnValue(100);
+      spyOn(Math,'random').and.returnValue(0);
+      spec.state.player.element_slots = [{
+        element: 'O',
+        reactions: [],
+        redoxes: []
+      }];
+
+      spec.controller.update();
+
+      expect(spec.state.player.resources['16O'].number).toEqual(99);
+      expect(spec.state.player.resources['17O'].number).toEqual(1);
+      expect(spec.state.player.resources['18O'].number).toEqual(1);
+    });
+
+    it('should generate isotopes with very low probability', function() {
+      spec.state.player.elements.O = true;
+      spyOn(spec.generators,'elementProduction').and.returnValue(100);
+      spyOn(Math,'random').and.returnValue(0.1);
+      spec.state.player.element_slots = [{
+        element: 'O',
+        reactions: [],
+        redoxes: []
+      }];
+
+      spec.controller.update();
+
+      expect(spec.state.player.resources['16O'].number).toEqual(99);
+      expect(spec.state.player.resources['17O'].number).toEqual(0);
+      expect(spec.state.player.resources['18O'].number).toEqual(1);
     });
 
     it('should process radioactivity', function() {
