@@ -40,7 +40,16 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
             if(!highestRatio || highestRatio.ratio < type.ratio){
               highestRatio = type;
             }
-            let production = Math.floor(totalProduction * type.ratio);
+            let production = totalProduction * type.ratio;
+            // if production is less than one, do a random draw
+            if(production < 1){
+              let draw = Math.random();
+              if(draw < production){
+                production = 1;
+              }
+            }
+            production = Math.floor(production);
+
             // FIXME: this is a hack to fix decay not working if the number of
             // neutrons is lower than the decay amount. Fixing starvation
             // should fix this one as well
