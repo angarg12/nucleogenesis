@@ -29,11 +29,6 @@ angular
       };
 
       sv.resetElement = function(player, element) {
-        let exotic = data.elements[element].exotic;
-        if (!player.resources[exotic].unlocked) {
-          return;
-        }
-
         let resources = player.resources;
         for (let resource of data.elements[element].includes) {
           resources[resource].number = 0;
@@ -51,7 +46,7 @@ angular
           sv[func](args);
         }
       };
-      
+
       sv.executeAll = function(upgradesData, playerUpgrades, tags, args){
         for(let key in upgradesData){
           if(!playerUpgrades[key]){
