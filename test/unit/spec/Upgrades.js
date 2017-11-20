@@ -23,7 +23,6 @@ describe('Upgrades', function() {
     };
   });
 
-
   describe('purchase functions', function() {
     it('should execute all upgrade functions', function () {
       for(let key of Object.keys(spec.originalData)){
@@ -37,6 +36,32 @@ describe('Upgrades', function() {
       }
 
       spec.state.update(player);
+
+      let args = {
+        production: 0,
+        resource: '3H'
+      };
+
+      spec.state.player.exotic_upgrades = {'H':{}};
+      for(let key in spec.data.exotic_upgrades){
+        spec.state.player.exotic_upgrades.H[key] = true;
+      }
+
+      spec.upgradeService.executeAll(spec.data.exotic_upgrades, spec.state.player.exotic_upgrades.H, ['production', 'exotic'], args);
+
+      args = {
+        production: 0,
+        resource: 'H-'
+      };
+
+      spec.upgradeService.executeAll(spec.data.exotic_upgrades, spec.state.player.exotic_upgrades.H, ['production', 'exotic'], args);
+
+      args = {
+        production: 0,
+        resource: 'H2'
+      };
+
+      spec.upgradeService.executeAll(spec.data.exotic_upgrades, spec.state.player.exotic_upgrades.H, ['production', 'exotic'], args);
     });
   });
 

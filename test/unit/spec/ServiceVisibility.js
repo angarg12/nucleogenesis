@@ -63,5 +63,17 @@ describe('Visible service', function() {
 
       expect(values).toEqual(['eV']);
     });
+
+    it('should show active elements', function() {
+      spec.state.player.element_slots = [
+        {element:'O'},
+        {element:'S'},
+        null
+      ];
+
+      let values = spec.sidebar.activeElements(spec.state.player);
+
+      expect(values).toEqual(['O','S','']);
+    });
   });
 });
