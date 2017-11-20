@@ -17,7 +17,7 @@ Nucleogenesis is a chemistry-based incremental/idle game.
 
 * [The Incremental Table of the Elements](https://angarg12.github.io/IncrementalTableElements/), v1, current release.
 * [Nucleogenesis](https://angarg12.github.io/nucleogenesis/), v2, currently in beta.
-* Join the conversation in our [Discord channel](https://discord.gg/wBFM7Cw).
+* Join the conversation in our [Discord channel](https://discord.gg/cKfmP2H).
 * Discuss the games in [/r/nucleogenesis/](https://www.reddit.com/r/nucleogenesis/).
 * Check out how to [contribute](CONTRIBUTING.md).
 * [Code of Conduct](CODE_OF_CONDUCT.md).
