@@ -21,7 +21,7 @@ describe('Dark', function() {
 
       let production = spec.dark.darkProduction();
 
-      expect(production).toEqual(36);
+      expect(production).toEqual(52);
     });
 
     it('should prestige', function() {
@@ -78,7 +78,7 @@ describe('Dark', function() {
       expect(spec.state.player.exotic_upgrades.H.x3).toBeFalsy();
       expect(spec.state.player.resources['1H'].number).toEqual(0);
       expect(spec.state.player.resources.xH.number).toEqual(0);
-      expect(spec.state.player.resources.dark_matter.number).toEqual(18);
+      expect(spec.state.player.resources.dark_matter.number).toEqual(26);
     });
 
     it('should reset elements that haven\'t made a exotic prestige', function() {

@@ -29,7 +29,7 @@ function dark(state, format, visibility, upgrade, data, util) {
       if (!state.player.resources[exotic].unlocked) {
         continue;
       }
-      production += Math.floor(Math.max(0, Math.log(state.player.resources[exotic].number)));
+      production += Math.floor(Math.max(0, Math.log2(state.player.resources[exotic].number)));
     }
 
     return production;
