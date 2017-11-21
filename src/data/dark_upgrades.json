@@ -1,6 +1,6 @@
 {
   "extra_element_slot_1": {
-    "price": 100,
+    "price": 25,
     "name": "Extra element slot I",
     "description": "Unlocks another slot to produce matter",
     "deps": [],
@@ -11,7 +11,7 @@
     "tags": ["once"]
   },
   "extra_element_slot_2": {
-    "price": 1000,
+    "price": 100,
     "name": "Extra element slot II",
     "description": "Unlocks another slot to produce matter",
     "deps": [],
@@ -22,7 +22,7 @@
     "tags": ["once"]
   },
   "extra_mechanic_slot_1": {
-    "price": 100,
+    "price": 0,
     "name": "Extra mechanic slot I",
     "description": "Unlocks another slot for mechanics",
     "deps": [],
@@ -33,7 +33,7 @@
     "tags": ["once"]
   },
   "extra_mechanic_slot_2": {
-    "price": 1000,
+    "price": 0,
     "name": "Extra mechanic slot II",
     "description": "Unlocks another slot for mechanics",
     "deps": [],
