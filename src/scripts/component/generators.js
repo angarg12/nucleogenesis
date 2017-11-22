@@ -90,11 +90,8 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
           production = Math.floor(production);
 
           // assign the player the produced isotope
-          player.resources[key].number += production;
-          if (production > 0 && !player.resources[key].unlocked) {
-            player.resources[key].unlocked = true;
-            state.addNew(key);
-          }
+          util.addResource(player.resources[key], key, production);
+
           // keep track of the remaining production
           remaining -= production;
         }
@@ -102,11 +99,7 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
         let main = data.elements[slot.element].main;
         // we don't want negative remaining
         remaining = Math.max(0, remaining);
-        player.resources[main].number += remaining;
-        if (remaining > 0 && !player.resources[main].unlocked) {
-          player.resources[main].unlocked = true;
-          state.addNew(main);
-        }
+        util.addResource(player.resources[main], main, remaining);
       }
     }
 

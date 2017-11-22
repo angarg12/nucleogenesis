@@ -96,8 +96,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
       }
 
       for (let key in production) {
-        resources[key].number += production[key];
-        resources[key].unlocked = true;
+        util.addResource(resources[key], key, production[key]);
       }
 
       for(let resource in ct.infuse){

@@ -9,8 +9,8 @@
 
 angular
   .module('game')
-  .service('reaction', ['state',
-    function(state) {
+  .service('reaction', ['state','util',
+    function(state, util) {
       // FIXME: move to util?
         function isReactionCostMet (number, reaction, playerData) {
           let keys = Object.keys(reaction.reactant);
@@ -40,12 +40,8 @@ angular
           let product = Object.keys(reaction.product);
           for (let i = 0; i < product.length; i++) {
             let produced = number * reaction.product[product[i]];
-            let current = playerData.resources[product[i]].number;
-            playerData.resources[product[i]].number = current + produced;
-            if (!playerData.resources[product[i]].unlocked) {
-              playerData.resources[product[i]].unlocked = true;
-              state.addNew(product[i]);
-            }
+
+            util.addResource(playerData.resources[product[i]], product[i], produced);
           }
         }
       };

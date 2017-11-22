@@ -63,6 +63,14 @@ angular
         return production;
       };
 
+      this.addResource = function(resource, key, quantity){
+        resource.number += quantity;
+        if (quantity > 0 && !resource.unlocked) {
+          resource.unlocked = true;
+          state.addNew(key);
+        }
+      }
+
       this.trustHTML = function(html) {
         return $sce.trustAsHtml(html);
       };

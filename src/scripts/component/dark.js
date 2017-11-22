@@ -39,8 +39,7 @@ function dark(state, format, visibility, upgrade, data, util) {
     let resources = state.player.resources;
     let production = ct.darkProduction();
 
-    resources.dark_matter.number += production;
-    resources.dark_matter.unlocked = true;
+    util.addResource(resources.dark_matter, 'dark_matter', production);
 
     for(let key in data.elements){
       let element = data.elements[key];
