@@ -13,7 +13,7 @@
     <div class="row">
       <div ng-repeat="up in ct.visibleUpgrades(slot)"
            ng-click="ct.buyUpgrade(up, slot)"
-           class="col-lg-12 btn btn-default"
+           class="col-xs-12 btn btn-default"
            ng-class="{disabled: ct.data.upgrades[up].price > ct.state.player.resources[ct.data.elements[slot.element].main].number &&
          !slot.upgrades[up],
          active: slot.upgrades[up]}">

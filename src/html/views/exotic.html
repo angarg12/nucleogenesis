@@ -59,7 +59,7 @@
     <div class="row">
       <div ng-repeat="up in ct.visibleExoticUpgrades(slot)"
            ng-click="ct.buyExoticUpgrade(up, slot)"
-           class="col-lg-12 btn btn-default"
+           class="col-xs-12 btn btn-default"
            ng-class="{disabled: ct.data.exotic_upgrades[up].price > ct.state.player.resources[ct.data.elements[slot.element].exotic].number &&
          !ct.state.player.exotic_upgrades[slot.element][up],
          active: ct.state.player.exotic_upgrades[slot.element][up]}">

@@ -4,7 +4,7 @@
   <pretty value="ct.getBandwidth(ct.state.player)"></pretty>
 </p>
 <div class="row">
-  <div class="col-lg-6">
+  <div class="col-xs-6">
     <h2>Beam</h2>
     <fusion-select source="beam"
                    get-capacity="ct.getCapacity(resource, player)"></fusion-select>
@@ -12,7 +12,7 @@
     <fusion-select source="target"
                    get-capacity="ct.getCapacity(resource, player)"></fusion-select>
   </div>
-  <div class="col-lg-6">
+  <div class="col-xs-6">
     <div ng-if="!ct.getProductIsotope(ct.state.player.fusion[0].beam.name, ct.state.player.fusion[0].target.name)">
       <h2>No product for these source isotopes</h2>
     </div>
