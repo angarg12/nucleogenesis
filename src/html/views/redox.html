@@ -14,13 +14,13 @@
       <tbody>
         <tr class="animif">
           <div class="row">
-            <th class="col-lg-10">
+            <th class="col-xs-10">
               Redox
             </th>
-            <th class="col-lg-1">
+            <th class="col-xs-1">
               Number
             </th>
-            <th class="col-lg-1">
+            <th class="col-xs-1">
               Active
             </th>
           </div>
@@ -28,7 +28,7 @@
         <tr class="animif"
             ng-repeat="redox in ct.visibleRedox(slot) track by $index">
           <div class="row">
-            <td class="col-lg-10">
+            <td class="col-xs-10">
               <button type="button"
                       class="btn btn-default"
                       ng-click="ct.removeRedox(slot, $index)">
@@ -56,10 +56,10 @@
                 </rzslider>
               </div>
             </td>
-            <td class="col-lg-1">
+            <td class="col-xs-1">
               <pretty value="ct.redoxPower(ct.state.player)"></pretty>
             </td>
-            <td class="col-lg-1">
+            <td class="col-xs-1">
               <input type="checkbox"
                      ng-model="redox.active">
             </td>

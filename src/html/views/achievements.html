@@ -2,7 +2,7 @@
 <h3> {{ct.numberUnlocked(ct.state.player)}}/{{ct.numberTotal()}} </h3>
 <div class="row">
   <div ng-repeat="name in ct.visibleAchievements(ct.state.currentElement)"
-       class="col-lg-4">
+       class="col-xs-4">
     <div class="panel panel-default"
          ng-class="{'panel-success': ct.maxed(name, ct.state.player),
                     'panel-warning': ct.inProgress(name, ct.state.player)}">
