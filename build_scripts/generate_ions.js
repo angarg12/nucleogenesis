@@ -3,7 +3,6 @@
 'use strict';
 
 let jsonfile = require('jsonfile');
-let path = require('path');
 
 let resources = jsonfile.readFileSync('build/data/resources.json');
 let elements = jsonfile.readFileSync('build/data/elements.json');

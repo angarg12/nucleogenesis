@@ -60,38 +60,4 @@ describe('Util service', function() {
       expect(value).toEqual('p');
     });
   });
-
-  describe('random draw', function() {
-    it('should return a normally distributed random number', function() {
-      spyOn(spec.util.gaussian,'nextGaussian').and.returnValues(0.5);
-
-      let value = spec.util.randomDraw(1000, Math.log(2)/50);
-
-      expect(value).toEqual(16);
-    });
-
-    it('should not return negative value', function() {
-      spyOn(spec.util.gaussian,'nextGaussian').and.returnValues(-1000);
-
-      let value = spec.util.randomDraw(1000, Math.log(2)/50);
-
-      expect(value).toEqual(0);
-    });
-
-    it('should not return overproduction', function() {
-      spyOn(spec.util.gaussian,'nextGaussian').and.returnValues(1000);
-
-      let value = spec.util.randomDraw(1000, Math.log(2)/50);
-
-      expect(value).toEqual(1000);
-    });
-
-    it('should use a gaussian distribution for very small probabilities', function() {
-      let gaussian = spyOn(spec.util.gaussian,'nextGaussian');
-
-      spec.util.randomDraw(1000, 1);
-
-      expect(gaussian).toHaveBeenCalled();
-    });
-  });
 });

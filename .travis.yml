@@ -4,7 +4,8 @@ node_js:
   - node
 env:
   - TEST_SUITE=unit-test
-  - TEST_SUITE=e2e-test
+  # Commenting out e2e tests: https://github.com/angular/webdriver-manager/issues/270
+  # - TEST_SUITE=e2e-test
 addons:
   firefox: latest
   apt:

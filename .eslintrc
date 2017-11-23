@@ -2,10 +2,6 @@
   "parserOptions": {
         "ecmaVersion": 6,
     },
-  "ecmaFeatures": {
-    "blockBindings": true,
-    "forOf": true,
-  },
 
   "env": {
     "browser": true,

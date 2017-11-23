@@ -1,3 +1,4 @@
+/* eslint-env node */
 /*jslint node: true */
 /*jslint esversion: 6 */
 'use strict';

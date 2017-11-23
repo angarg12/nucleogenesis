@@ -64,5 +64,5 @@ function upgrades(state, visibility, upgrade, data) {
   function isBasicUpgradeVisible(name, slot) {
     let isVisible = visibility.isUpgradeVisible(name, slot, data.upgrades[name]);
     return isVisible && (!state.hideBought || !slot.upgrades[name]);
-  };
+  }
 }

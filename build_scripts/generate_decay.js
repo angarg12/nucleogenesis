@@ -11,7 +11,7 @@ let isotopeMatrix = {};
 
 function getAtomBreakdown(isotope) {
   let element = isotope.replace(/^[0-9]*/, '');
-  let number = parseInt(isotope.replace(element, ''));
+  let number = parseInt(isotope.replace(element, ''), 10);
   let elementNumber = elements[element].number;
   let neutronNumber = number - elementNumber;
   return {

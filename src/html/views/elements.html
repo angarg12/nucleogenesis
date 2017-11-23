@@ -26,7 +26,7 @@
         Abundance: {{ct.data.elements[element].abundance*100}}%
       </p>
       <p>
-        Isotopes: {{ct.data.elements[element].isotopes | keylength}}
+        Isotopes: {{Object.keys(ct.data.elements[element].isotopes).length}}
       </p>
       <p>
         Redoxes: <span ng-if="ct.data.elements[element].ionization_energy.length > 0">

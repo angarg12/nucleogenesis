@@ -1,4 +1,3 @@
-/* globals Ziggurat */
 /* globals numberformat */
 /**
  util
@@ -15,8 +14,6 @@ angular
     'data',
     'state',
     function(prettyNumber, $sce, data, state) {
-      this.gaussian = new Ziggurat();
-
       /* Return the HTML representation of an element, or the element itself
       if it doesn't have one */
       this.getHTML = function(resource) {
@@ -44,23 +41,6 @@ angular
           return '0';
         }
         return numberformat.format(number, state.player.numberformat);
-      };
-
-      this.randomDraw = function(number, p) {
-        let production;
-        let mean = number * p;
-        // Gaussian distribution
-        let q = 1 - p;
-        let variance = number * p * q;
-        let std = Math.sqrt(variance);
-        production = Math.round(this.gaussian.nextGaussian() * std + mean);
-        if (production > number) {
-          production = number;
-        }
-        if (production < 0) {
-          production = 0;
-        }
-        return production;
       };
 
       this.addResource = function(resource, key, quantity){
