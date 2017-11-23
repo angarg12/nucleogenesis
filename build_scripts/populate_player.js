@@ -104,6 +104,11 @@ for(let mechanic in mechanics){
 
 startPlayer.mechanic_slots = 1;
 
+startPlayer.statistics = {};
+startPlayer.statistics.exotic_run = {};
+startPlayer.statistics.dark_run = {};
+startPlayer.statistics.all_time = {};
+
 startPlayer.elements.H = true;
 
 let mainHydrogen = elements.H.main;

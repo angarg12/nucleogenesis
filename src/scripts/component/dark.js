@@ -29,17 +29,16 @@ function dark(state, format, visibility, upgrade, data, util) {
       if (!state.player.resources[exotic].unlocked) {
         continue;
       }
-      production += Math.floor(Math.max(0, Math.log2(state.player.resources[exotic].number)));
+      production += Math.floor(Math.max(0, Math.log2(state.player.statistics.dark_run[exotic] || 0)));
     }
 
     return production;
   };
 
   ct.darkPrestige = function() {
-    let resources = state.player.resources;
     let production = ct.darkProduction();
 
-    util.addResource(resources.dark_matter, 'dark_matter', production);
+    util.addResource(state.player, 'dark_matter', production);
 
     for(let key in data.elements){
       let element = data.elements[key];
@@ -61,6 +60,8 @@ function dark(state, format, visibility, upgrade, data, util) {
     for(let i in state.player.element_slots){
       state.player.element_slots[i] = null;
     }
+    state.player.statistics.exotic_run = {};
+    state.player.statistics.dark_run = {};
   };
 
   ct.buyDarkUpgrade = function(name) {

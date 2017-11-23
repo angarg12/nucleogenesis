@@ -16,8 +16,10 @@ describe('Dark', function() {
       spec.data.elements.O = {
         exotic:'xO'
       };
-      spec.state.player.resources.xH = {number:1e8, unlocked: true};
-      spec.state.player.resources.xO = {number:1e8, unlocked: true};
+      spec.state.player.resources.xH = {unlocked: true};
+      spec.state.player.resources.xO = {unlocked: true};
+      spec.state.player.statistics.dark_run.xH = 1e8;
+      spec.state.player.statistics.dark_run.xO = 1e8;
 
       let production = spec.dark.darkProduction();
 
@@ -40,6 +42,7 @@ describe('Dark', function() {
       spec.state.player.resources['1H'] = {number:1e4, unlocked: true};
       spec.state.player.resources.xH = {number:1e8, unlocked: true};
       spec.state.player.resources.dark_matter = {number:0, unlocked: false};
+      spec.state.player.statistics.dark_run.xH = 1e8;
       spec.state.player.exotic_upgrades = {
         'H':{
           x3: true
@@ -79,6 +82,8 @@ describe('Dark', function() {
       expect(spec.state.player.resources['1H'].number).toEqual(0);
       expect(spec.state.player.resources.xH.number).toEqual(0);
       expect(spec.state.player.resources.dark_matter.number).toEqual(26);
+      expect(spec.state.player.statistics.exotic_run).toEqual({});
+      expect(spec.state.player.statistics.dark_run).toEqual({});
     });
 
     it('should reset elements that haven\'t made a exotic prestige', function() {

@@ -48,6 +48,7 @@ describe('Exotic', function() {
         '1H': {elements: {H: 1}, type: ['isotope']}
       };
       spec.state.player.resources['1H'] = {number:5e8, unlocked: true};
+      spec.state.player.statistics.exotic_run['1H'] = 5e8;
       spec.state.player.element_slots = [{
         element: 'H'
       }];
@@ -66,6 +67,7 @@ describe('Exotic', function() {
         '1H': {elements: {H: 1}, type: ['isotope']}
       };
       spec.state.player.resources['1H'] = {number:1e5, unlocked: true};
+      spec.state.player.statistics.exotic_run['1H'] = 1e5;
       spec.state.player.element_slots = [{
         element: 'H'
       }];
@@ -84,6 +86,7 @@ describe('Exotic', function() {
         '1H': {elements: {H: 1}, type: ['isotope']}
       };
       spec.state.player.resources['1H'] = {number:1e300, unlocked: true};
+      spec.state.player.statistics.exotic_run['1H'] = 1e300;
       spec.state.player.element_slots = [{
         element: 'H'
       }];
@@ -108,6 +111,8 @@ describe('Exotic', function() {
       };
       spec.state.player.resources['1H'] = {number:0, unlocked: true};
       spec.state.player.resources.H2O = {number:5e8, unlocked: true};
+      spec.state.player.statistics.exotic_run['1H'] = 0;
+      spec.state.player.statistics.exotic_run.H2O = 5e8;
       spec.state.player.element_slots = [{
         element: 'H'
       }];
@@ -139,6 +144,7 @@ describe('Exotic', function() {
       };
       spec.state.player.resources['1H'] = {number:5e8, unlocked: true};
       spec.state.player.resources.xH = {number:0, unlocked: false};
+      spec.state.player.statistics.exotic_run['1H'] = 5e8;
       spec.state.player.elements.H = true;
       spec.state.player.exotic_upgrades = {
         H: {
@@ -168,6 +174,7 @@ describe('Exotic', function() {
       expect(spec.state.player.exotic_upgrades.H.x3).toBeTruthy();
       expect(spec.state.player.resources['1H'].number).toEqual(0);
       expect(spec.state.player.resources.xH.number).toEqual(58);
+      expect(spec.state.player.statistics.exotic_run).toEqual({});
     });
   });
 
@@ -233,6 +240,7 @@ describe('Exotic', function() {
           n: {elements: {}, type: ['subatomic']}
       };
       spec.state.player.resources['1H'] = {number:5e8, unlocked: true};
+      spec.state.player.statistics.exotic_run['1H'] = 5e8;
       spec.state.player.resources.xH = {number:0, unlocked: false};
       spec.state.player.resources.p = {number:1000, unlocked: true};
       spec.state.player.resources.n = {number:1000, unlocked: true};

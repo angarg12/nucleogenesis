@@ -53,6 +53,7 @@ let commonSpec = function(spec) {
     spec.state.player.exotic_upgrades = {};
     spec.state.player.dark_upgrades = {};
     spec.state.player.global_upgrades = {};
+    spec.state.player.statistics = {exotic_run:{},dark_run:{},all_time:{}};
 
     spec.elements = _$componentController_('elements', null, null);
     spec.upgrades = _$componentController_('upgrades', null, null);

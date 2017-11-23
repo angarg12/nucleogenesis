@@ -41,7 +41,7 @@ angular
           for (let i = 0; i < product.length; i++) {
             let produced = number * reaction.product[product[i]];
 
-            util.addResource(playerData.resources[product[i]], product[i], produced);
+            util.addResource(playerData, product[i], produced);
           }
         }
       };

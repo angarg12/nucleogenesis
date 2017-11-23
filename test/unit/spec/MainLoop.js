@@ -94,6 +94,9 @@ describe('MainLoop', function() {
       expect(spec.state.player.resources['16O'].number).toEqual(200);
       expect(spec.state.player.resources['17O'].number).toEqual(0);
       expect(spec.state.player.resources['18O'].number).toEqual(0);
+      expect(spec.state.player.statistics.exotic_run['16O']).toEqual(200);
+      expect(spec.state.player.statistics.dark_run['16O']).toEqual(200);
+      expect(spec.state.player.statistics.all_time['16O']).toEqual(200);
     });
 
     it('should generate isotopes 2', function() {
@@ -111,6 +114,9 @@ describe('MainLoop', function() {
       expect(spec.state.player.resources['16O'].number).toEqual(1198);
       expect(spec.state.player.resources['17O'].number).toEqual(0);
       expect(spec.state.player.resources['18O'].number).toEqual(2);
+      expect(spec.state.player.statistics.exotic_run['16O']).toEqual(1198);
+      expect(spec.state.player.statistics.dark_run['16O']).toEqual(1198);
+      expect(spec.state.player.statistics.all_time['16O']).toEqual(1198);
     });
 
     it('should generate isotopes 3', function() {
@@ -128,6 +134,9 @@ describe('MainLoop', function() {
       expect(spec.state.player.resources['16O'].number).toEqual(31924);
       expect(spec.state.player.resources['17O'].number).toEqual(12);
       expect(spec.state.player.resources['18O'].number).toEqual(64);
+      expect(spec.state.player.statistics.exotic_run['16O']).toEqual(31924);
+      expect(spec.state.player.statistics.dark_run['16O']).toEqual(31924);
+      expect(spec.state.player.statistics.all_time['16O']).toEqual(31924);
     });
 
     it('should generate isotopes with very low probability', function() {

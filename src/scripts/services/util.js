@@ -43,10 +43,13 @@ angular
         return numberformat.format(number, state.player.numberformat);
       };
 
-      this.addResource = function(resource, key, quantity){
-        resource.number += quantity;
-        if (quantity > 0 && !resource.unlocked) {
-          resource.unlocked = true;
+      this.addResource = function(player, key, quantity){
+        player.resources[key].number += quantity;
+        player.statistics.exotic_run[key] = player.statistics.exotic_run[key]+quantity || quantity;
+        player.statistics.dark_run[key] = player.statistics.dark_run[key]+quantity || quantity;
+        player.statistics.all_time[key] = player.statistics.all_time[key]+quantity || quantity;
+        if (quantity > 0 && !player.resources[key].unlocked) {
+          player.resources[key].unlocked = true;
           state.addNew(key);
         }
       }
