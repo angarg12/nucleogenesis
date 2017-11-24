@@ -79,9 +79,7 @@ element_slot.element = 'H';
 startPlayer.element_slots = [element_slot];
 
 // cooldowns for exotic prestige. Maps to indexes in the element_slots
-startPlayer.cooldowns = {
-  0: 0
-};
+startPlayer.cooldowns = [0];
 
 startPlayer.fusion = [{
   active: false,

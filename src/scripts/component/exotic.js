@@ -26,9 +26,9 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     ct.infuse = {};
 
     function update(player){
-      for(let key in player.cooldowns){
-        if(player.cooldowns[key] > 0){
-          player.cooldowns[key]--;
+      for(let i in player.cooldowns){
+        if(player.cooldowns[i] > 0){
+          player.cooldowns[i]--;
         }
       }
     }

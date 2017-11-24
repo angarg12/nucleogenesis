@@ -172,7 +172,7 @@ describe('Exotic', function() {
         }],
         redoxes: []
       }];
-      spec.state.player.cooldowns = {0:0};
+      spec.state.player.cooldowns = [0];
 
       spec.exotic.exoticPrestige(0);
 
@@ -260,7 +260,7 @@ describe('Exotic', function() {
         reactions: [],
         redoxes: []
       }];
-      spec.state.player.cooldowns = {0:0};
+      spec.state.player.cooldowns = [0];
 
       spec.exotic.exoticPrestige(0);
 

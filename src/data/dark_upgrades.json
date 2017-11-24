@@ -6,6 +6,7 @@
     "deps": [],
     "function": ["(() => {",
       "args.player.element_slots.push(null);",
+      "args.player.cooldowns.push(0);",
       "})()"
     ],
     "tags": ["once"]
@@ -17,6 +18,7 @@
     "deps": [],
     "function": ["(() => {",
       "args.player.element_slots.push(null);",
+      "args.player.cooldowns.push(0);",
       "})()"
     ],
     "tags": ["once"]
