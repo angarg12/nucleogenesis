@@ -50,6 +50,11 @@ describe('Redox', function () {
         '-2': -5.9498
       }
     };
+    spec.data.resources = {
+      '1H': {elements:{H:1}},
+      'e-': {elements:{}},
+      'eV': {elements:{}}
+    };
   });
 
   describe('redox', function () {

@@ -54,7 +54,7 @@
     <p ng-repeat="key in ct.data.elements[slot.element].includes"
        ng-if="ct.state.player.resources[key].unlocked">
       <get-html value="key"></get-html>
-      <pretty value="ct.state.player.statistics.exotic_run[key] || 0"></pretty>
+      <pretty value="ct.state.player.statistics.exotic_run[slot.element][key] || 0"></pretty>
     </p>
     <div class="row">
       <div ng-repeat="up in ct.visibleExoticUpgrades(slot)"

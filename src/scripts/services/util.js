@@ -14,9 +14,10 @@ angular
     'data',
     'state',
     function(prettyNumber, $sce, data, state) {
+      let sv = this;
       /* Return the HTML representation of an element, or the element itself
       if it doesn't have one */
-      this.getHTML = function(resource) {
+      sv.getHTML = function(resource) {
         let html = data.html[resource];
         if (typeof html === 'undefined' && data.resources[resource]) {
           html = data.resources[resource].html;
@@ -27,7 +28,7 @@ angular
         return html;
       };
 
-      this.prettifyNumber = function(number) {
+      sv.prettifyNumber = function(number) {
         if (typeof number === 'undefined' || number === null) {
           return null;
         }
@@ -43,18 +44,43 @@ angular
         return numberformat.format(number, state.player.numberformat);
       };
 
-      this.addResource = function(player, key, quantity){
+      sv.addResource = function(player, scope, key, quantity){
         player.resources[key].number += quantity;
-        player.statistics.exotic_run[key] = player.statistics.exotic_run[key]+quantity || quantity;
-        player.statistics.dark_run[key] = player.statistics.dark_run[key]+quantity || quantity;
-        player.statistics.all_time[key] = player.statistics.all_time[key]+quantity || quantity;
+        sv.addStatistic(player, scope, key, quantity);
         if (quantity > 0 && !player.resources[key].unlocked) {
           player.resources[key].unlocked = true;
           state.addNew(key);
         }
+      };
+
+      /* Adds an statistic. Scope can be only all time, dark run,
+        only for specific elements, or for all elements at once
+      */
+      sv.addStatistic = function(player, scope, key, value){
+        setStatistic(player.statistics.all_time, key, value);
+        if(scope === 'all_time') return;
+        setStatistic(player.statistics.dark_run, key, value);
+        if(scope === 'dark') return;
+        if(scope === 'all_elements') {
+          scope = Object.keys(data.elements);
+        }
+        for(let element of scope){
+          player.statistics.exotic_run[element] = player.statistics.exotic_run[element] || {};
+          setStatistic(player.statistics.exotic_run[element], key, value);
+        }
+      };
+
+      function setStatistic(bucket, key, value){
+        // If it is numeric, add it up
+        if(!isNaN(parseFloat(value)) && isFinite(value)){
+          bucket[key] = bucket[key]+value || value;
+        // otherwise, replace
+        }else{
+          bucket[key] = value;
+        }
       }
 
-      this.trustHTML = function(html) {
+      sv.trustHTML = function(html) {
         return $sce.trustAsHtml(html);
       };
     }

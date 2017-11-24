@@ -10,10 +10,15 @@ describe('Reaction service', function() {
 
   describe('react', function() {
     it('should react the number specified', function() {
+      spec.data.resources = {
+        '1H': {elements:{H:1}},
+        OH: {elements:{H:1, O:1}}
+      };
       spec.state.player.resources = {};
       spec.state.player.resources['1H'] = {number:10};
       spec.state.player.resources.OH = {number:10};
       spec.state.player.resources.H2O = {number:0};
+      spec.state.player.statistics.exotic_run = {H:{},O:{}};
       let reaction = {
           'reactant': {
             '1H': 1,
@@ -33,6 +38,10 @@ describe('Reaction service', function() {
       expect(spec.state.player.resources['1H'].number).toEqual(5);
       expect(spec.state.player.resources.OH.number).toEqual(5);
       expect(spec.state.player.resources.H2O.number).toEqual(5);
+      expect(spec.state.player.statistics.exotic_run.H.H2O).toEqual(5);
+      expect(spec.state.player.statistics.exotic_run.O.H2O).toEqual(5);
+      expect(spec.state.player.statistics.dark_run.H2O).toEqual(5);
+      expect(spec.state.player.statistics.all_time.H2O).toEqual(5);
     });
 
     it('should return if the number specified is invalid', function() {

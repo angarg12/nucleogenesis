@@ -46,12 +46,12 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
         }
         for (let elem in data.resources[resource].elements) {
           let numberAtoms = data.resources[resource].elements[elem];
-          let prod = prestigeFormula((state.player.statistics.exotic_run[resource] || 0)*numberAtoms);
+          let prod = prestigeFormula((state.player.statistics.exotic_run[elem][resource] || 0)*numberAtoms);
 
           let args = {
             production: prod,
             resource: resource
-          }
+          };
 
           upgrade.executeAll(data.exotic_upgrades, state.player.exotic_upgrades[elem], ['production', 'exotic'], args);
 
@@ -95,7 +95,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
       }
 
       for (let key in production) {
-        util.addResource(state.player, key, production[key]);
+        util.addResource(state.player, 'dark', key, production[key]);
       }
 
       for(let resource in ct.infuse){
@@ -119,7 +119,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
       state.redoxesCache[slot.element] = slot.redoxes;
 
       state.player.element_slots[index] = null;
-      state.player.statistics.exotic_run = {};
+      state.player.statistics.exotic_run[slot.element] = {};
 
       if(cooldown === 0){
         state.player.cooldowns[index] = 60*60;

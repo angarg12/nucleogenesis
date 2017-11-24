@@ -38,7 +38,7 @@ function dark(state, format, visibility, upgrade, data, util) {
   ct.darkPrestige = function() {
     let production = ct.darkProduction();
 
-    util.addResource(state.player, 'dark_matter', production);
+    util.addResource(state.player, 'all_time', 'dark_matter', production);
 
     for(let key in data.elements){
       let element = data.elements[key];

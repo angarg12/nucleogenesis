@@ -90,7 +90,7 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
           production = Math.floor(production);
 
           // assign the player the produced isotope
-          util.addResource(player, key, production);
+          util.addResource(player, [slot.element], key, production);
 
           // keep track of the remaining production
           remaining -= production;
@@ -99,7 +99,7 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
         let main = data.elements[slot.element].main;
         // we don't want negative remaining
         remaining = Math.max(0, remaining);
-        util.addResource(player, main, remaining);
+        util.addResource(player, [slot.element], main, remaining);
       }
     }
 

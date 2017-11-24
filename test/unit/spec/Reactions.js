@@ -41,7 +41,10 @@ describe('Reactions', function() {
         'repeatable': true
       }
     };
-    spec.state.player
+    spec.data.resources = {
+      H2: {elements:{H:2}},
+      O2: {elements:{O:2}}
+    };
   });
 
   describe('update', function() {
@@ -176,8 +179,7 @@ describe('Reactions', function() {
       spec.data.reactions = {
         '1': {
           'reactant': {
-            'H': 1,
-            'H': 1
+            'H': 2
           },
           'product': {
             'H2': 1
