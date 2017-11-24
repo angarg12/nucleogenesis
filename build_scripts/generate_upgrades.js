@@ -58,17 +58,17 @@ for(let key in upgrades){
   let upgrade = upgrades[key];
   for(let up of upgrade.deps){
     if(!upgrades[up]){
-      throw new Error('Dependency doesn\'t exist: '+ up + " for "+ key);
+      throw new Error('Dependency doesn\'t exist: '+ up + ' for '+ key);
     }
   }
   for(let up of upgrade.exotic_deps){
     if(!exoticUpgrades[up]){
-      throw new Error('Exotic dependency doesn\'t exist: '+ up + " for "+ key);
+      throw new Error('Exotic dependency doesn\'t exist: '+ up + ' for '+ key);
     }
   }
   for(let up of upgrade.dark_deps){
     if(!darkUpgrades[up]){
-      throw new Error('Dark dependency doesn\'t exist: '+ up + " for "+ key);
+      throw new Error('Dark dependency doesn\'t exist: '+ up + ' for '+ key);
     }
   }
 }

@@ -174,7 +174,7 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
       let args = {
         production: production,
         slot: slot
-      }
+      };
 
       upgrade.executeAll(data.upgrades, slot.upgrades, [name, 'production'], args);
 

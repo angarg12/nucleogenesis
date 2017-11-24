@@ -1,4 +1,4 @@
-/* globals versionCompare, atob, btoa */
+/* globals versionCompare, alert */
 /**
  savegame
  Service that handles save/load related functions.

@@ -162,7 +162,7 @@ describe('Upgrades', function() {
         }
       };
 
-      spec.upgrades.visibleUpgrades = function(){return ['1-1','1-2','1-3']}
+      spec.upgrades.visibleUpgrades = function(){return ['1-1','1-2','1-3'];};
 
       spec.upgrades.buyAll(spec.state.player.element_slots[0]);
 

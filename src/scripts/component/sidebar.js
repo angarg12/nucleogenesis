@@ -30,7 +30,7 @@ function sidebar(state, visibility, data, format, util) {
     }
     result.push('');
     return result;
-  }
+  };
 
   ct.visibleResources = function(element) {
     return visibility.visible(data.resources, isResourceVisible, element);

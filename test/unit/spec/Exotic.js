@@ -14,30 +14,31 @@ describe('Exotic', function() {
     };
     spec.data.exotic_ranges = [
       {
-        "top": 1e6,
-        "range": 1000000,
-        "max_value": 0,
-        "midpoint": 500000
+        top: 1e6,
+        range: 1000000,
+        max_value: 0,
+        midpoint: 500000
       },
       {
-        "top": 1e7,
-        "range": 9000000,
-        "max_value": 10,
-        "midpoint": 5500000
+        top: 1e7,
+        range: 9000000,
+        max_value: 10,
+        midpoint: 5500000
       },
       {
-        "top": 1e9,
-        "range": 990000000,
-        "max_value": 100,
-        "midpoint": 505000000
+        top: 1e9,
+        range: 990000000,
+        max_value: 100,
+        midpoint: 505000000
       },
       {
-        "top": 1000000000000,
-        "range": 999000000000,
-        "max_value": 1000,
-        "midpoint": 500500000000
+        top: 1000000000000,
+        range: 999000000000,
+        max_value: 1000,
+        midpoint: 500500000000
       }];
   });
+  
   describe('prestige', function() {
     it('should produce prestige currency', function() {
       spec.data.elements.H = {

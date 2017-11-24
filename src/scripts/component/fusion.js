@@ -34,7 +34,7 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
         let basePower = upgrade.power;
         let exp = upgrade.power_exp;
         return basePower * Math.pow(exp, level);
-    }
+    };
 
     function getFermiRadius(resource) {
       let isotope = data.resources[resource];
@@ -60,7 +60,7 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
       let time = ct.getFusionReaction(player).reactant.eV/ct.getBandwidth(player);
       time = Math.floor(time);
       return Math.max(1, time);
-    }
+    };
 
     ct.getProductIsotope = function(beam, target) {
       let beamN = parseInt(beam, 10);
@@ -180,15 +180,15 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
         let beam = state.player.fusion[0].beam;
         let target = state.player.fusion[0].target;
 
-        player.resources[beam.name].number += fusion.beam.number
-        player.resources[target.name].number += fusion.target.number
+        player.resources[beam.name].number += fusion.beam.number;
+        player.resources[target.name].number += fusion.target.number;
       }
 
       fusion.eV = 0;
       fusion.active = false;
       fusion.running = false;
       fusion.run = false;
-    }
+    };
 
     function updateFusion(player, fusion) {
         let bandwidth = ct.getBandwidth(player);
@@ -225,7 +225,7 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
         updateFusion(player, fusion);
         let reaction = ct.getFusionReaction(player);
         if(fusion.eV >= reaction.reactant.eV){
-          endFusion(player, fusion, reaction)
+          endFusion(player, fusion, reaction);
         }
       }
     }

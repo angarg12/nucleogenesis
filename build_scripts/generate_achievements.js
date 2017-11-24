@@ -97,7 +97,6 @@ for(let element in elements){
         'return count;',
         '})()'
       ],
-      deps: [],
       deps: [element, 'reaction']
     };
   }

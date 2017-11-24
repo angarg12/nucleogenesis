@@ -1,3 +1,4 @@
+/* globals confirm, atob, btoa, alert */
 /**
  options
  Component that handles the options of the game.

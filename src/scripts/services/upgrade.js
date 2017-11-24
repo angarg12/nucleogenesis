@@ -55,6 +55,6 @@ angular
           let upgrade = upgradesData[key];
           sv.executeOnce(upgrade, tags, args);
         }
-      }
+      };
     }
   ]);
