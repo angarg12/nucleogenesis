@@ -25,14 +25,6 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     ct.format = format;
     ct.infuse = {};
 
-    function update(player){
-      for(let i in player.cooldowns){
-        if(player.cooldowns[i] > 0){
-          player.cooldowns[i]--;
-        }
-      }
-    }
-
     /* Exotic production is a function of the different resources of each
     element. Additionally, multi-element molecules count double, once for
     each participating element. */
@@ -88,11 +80,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
 
     ct.exoticPrestige = function(index) {
       let slot = state.player.element_slots[index];
-      let cooldown = state.player.cooldowns[index];
-      let production = 0;
-      if(cooldown === 0){
-        production = ct.exoticProduction(slot.element);
-      }
+      let production = ct.exoticProduction(slot.element);
 
       for (let key in production) {
         util.addResource(state.player, 'dark', key, production[key]);
@@ -120,10 +108,6 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
 
       state.player.element_slots[index] = null;
       state.player.statistics.exotic_run[slot.element] = {};
-
-      if(cooldown === 0){
-        state.player.cooldowns[index] = 60*60;
-      }
     };
 
     ct.buyExoticUpgrade = function(name, slot) {
@@ -197,7 +181,5 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
 
       return false;
     }
-
-    state.registerUpdate('exotic', update);
   }
 ]);

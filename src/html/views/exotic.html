@@ -9,7 +9,7 @@
     <get-html value="ct.data.elements[slot.element].exotic"></get-html>
     (+<pretty value="ct.state.player.resources[ct.data.elements[slot.element].exotic].number*ct.data.constants.EXOTIC_POWER*100"></pretty>%)
     </h3>
-    <div ng-if="ct.state.player.cooldowns[$index] === 0">
+    <div>
       <p>Sacrifice your progress to obtain exotic matter. Exotic matter boosts your production for the element by {{ct.data.constants.EXOTIC_POWER*100}}% and unlocks
         new upgrades.
       </p>
@@ -41,9 +41,6 @@
           <pretty value="value"></pretty>
           <get-html value="key"></get-html>
         </p>
-      </div>
-      <div ng-if="ct.state.player.cooldowns[$index] > 0">
-        <p>Cooldown {{ct.state.player.cooldowns[$index]}} s. During cooldown, no exotic matter will be produced.</p>
       </div>
       <button type="button"
               class="btn btn-default"

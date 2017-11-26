@@ -38,7 +38,7 @@ describe('Exotic', function() {
         midpoint: 500500000000
       }];
   });
-  
+
   describe('prestige', function() {
     it('should produce prestige currency', function() {
       spec.data.elements.H = {
@@ -173,7 +173,6 @@ describe('Exotic', function() {
         }],
         redoxes: []
       }];
-      spec.state.player.cooldowns = [0];
 
       spec.exotic.exoticPrestige(0);
 
@@ -261,7 +260,6 @@ describe('Exotic', function() {
         reactions: [],
         redoxes: []
       }];
-      spec.state.player.cooldowns = [0];
 
       spec.exotic.exoticPrestige(0);
 
