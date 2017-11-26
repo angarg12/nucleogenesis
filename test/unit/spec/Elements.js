@@ -133,16 +133,58 @@ describe('Elements component', function() {
 
       expect(spec.state.player.element_slots[0]).toEqual({
         element: 'H',
-		upgrades: {
+    		upgrades: {
+              '1-1': false
+            },
+            generators: {
+              '1': 1,
+              '2': 0
+            },
+            reactions: [],
+            redoxes: []
+      });
+    });
+
+    it('should restore caches', function() {
+      spec.data.element_slot = {
+        upgrades: {
           '1-1': false
         },
         generators: {
-          '1': 1,
+          '1': 0,
           '2': 0
         },
         reactions: [],
         redoxes: []
-      });
+      };
+  	  spec.data.generators['1'] = {
+          price: 10,
+          price_exp: 1.12,
+          power: 1
+        };
+      spec.state.reactionsCache.H = {a:1};
+      spec.state.redoxesCache.H = {b:1};
+
+      spec.elementSelect.selectElement('H', 0);
+
+      expect(spec.state.player.element_slots[0].reactions).toEqual({a:1});
+      expect(spec.state.player.element_slots[0].redoxes).toEqual({b:1});
+    });
+
+    it('should check if an element is selected', function() {
+      spec.state.player.element_slots = [{element:'H'}];
+
+      let result = spec.elementSelect.isElementSelected ('H', spec.state.player);
+
+      expect(result).toEqual(true);
+    });
+
+    it('should check if an element is not selected', function() {
+      spec.state.player.element_slots = [{element:'H'}];
+
+      let result = spec.elementSelect.isElementSelected ('O', spec.state.player);
+
+      expect(result).toEqual(false);
     });
   });
 /*
