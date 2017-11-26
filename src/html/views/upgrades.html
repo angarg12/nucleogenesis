@@ -3,6 +3,10 @@
 <label>Hide bought upgrades:
    <input type="checkbox" ng-model="ct.state.hideBought">
 </label>
+Sort by <select name="sort" ng-model="ct.state.sort">
+  <option value="0">Name</option>
+  <option value="1">Price</option>
+</select>
 <div ng-repeat="slot in ct.state.player.element_slots track by $index">
   <element-select index="$index"
                   ng-if="!slot"></element-select>

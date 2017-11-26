@@ -10,7 +10,7 @@ angular
   .module('game')
   .service('visibility', ['state',
     function(state) {
-      this.visible = function(items, func, currentElement) {
+      this.visible = function(items, func, currentElement, sortFunc) {
         let visibles = [];
         for (let i in items) {
           // if it is an array, we need to extract the item from the index
@@ -18,6 +18,9 @@ angular
           if (func(item, currentElement)) {
             visibles.push(item);
           }
+        }
+        if(sortFunc){
+          visibles.sort(sortFunc);
         }
         return visibles;
       };

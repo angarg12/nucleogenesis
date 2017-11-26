@@ -24,6 +24,10 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     ct.util = util;
     ct.format = format;
     ct.infuse = {};
+    let sortFunc = [
+      (a,b) => data.exotic_upgrades[a].name < data.exotic_upgrades[b].name ? -1 : 1,
+      (a,b) => data.exotic_upgrades[a].price - data.exotic_upgrades[b].price
+    ]
 
     /* Exotic production is a function of the different resources of each
     element. Additionally, multi-element molecules count double, once for
@@ -158,7 +162,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     };
 
     ct.visibleExoticUpgrades = function(slot) {
-      return visibility.visible(data.exotic_upgrades, isExoticUpgradeVisible, slot);
+      return visibility.visible(data.exotic_upgrades, isExoticUpgradeVisible, slot, sortFunc[state.sort]);
     };
 
     function isExoticUpgradeVisible(name, slot) {

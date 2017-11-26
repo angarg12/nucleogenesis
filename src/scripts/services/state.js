@@ -31,6 +31,7 @@ angular
     sv.hideBought = false;
     sv.reactionsCache = {};
     sv.redoxesCache = {};
+    sv.sort = 0;
 
     sv.deleteToast = function() {
       sv.toast.shift();

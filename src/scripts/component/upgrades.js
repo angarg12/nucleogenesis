@@ -16,6 +16,10 @@ function upgrades(state, visibility, upgrade, data) {
   let ct = this;
   ct.state = state;
   ct.data = data;
+  let sortFunc = [
+    (a,b) => data.upgrades[a].name < data.upgrades[b].name ? -1 : 1,
+    (a,b) => data.upgrades[a].price - data.upgrades[b].price
+  ]
 
   // tries to buy all the upgrades it can, starting from the cheapest
   ct.buyAll = function (slot) {
@@ -58,7 +62,7 @@ function upgrades(state, visibility, upgrade, data) {
   };
 
   ct.visibleUpgrades = function(slot) {
-    return visibility.visible(data.upgrades, isBasicUpgradeVisible, slot);
+    return visibility.visible(data.upgrades, isBasicUpgradeVisible, slot, sortFunc[state.sort]);
   };
 
   function isBasicUpgradeVisible(name, slot) {

@@ -262,6 +262,7 @@ describe('Upgrades', function() {
         }];
         spec.data.upgrades = {
           '1-1': {
+            name: '1',
             tiers: [
               '1'
             ],
@@ -270,6 +271,7 @@ describe('Upgrades', function() {
             dark_deps: []
           },
           '1-2': {
+            name: '2',
             tiers: [
               '1'
             ],
@@ -282,6 +284,7 @@ describe('Upgrades', function() {
             dark_deps: []
           },
           '1-3': {
+            name: '3',
             tiers: [
               '1'
             ],
@@ -294,6 +297,7 @@ describe('Upgrades', function() {
             dark_deps: []
           },
           '2-1': {
+            name: '2-1',
             tiers: [
               '2'
             ],
