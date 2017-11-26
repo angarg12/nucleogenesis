@@ -69,13 +69,13 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
       }
       if(i < data.exotic_ranges.length){
         let L = data.exotic_ranges[i].max_value;
-        let k = 12/data.exotic_ranges[i].range;
+        let k = 6/data.exotic_ranges[i].range;
         let x0 = data.exotic_ranges[i].midpoint;
         let sigmoid = Math.pow(Math.E, -k*(resource-x0));
 
         sum += L/(1+sigmoid);
       }
-      return Math.floor(sum);
+      return Math.round(sum);
     }
 
     ct.exoticPrestige = function(index) {

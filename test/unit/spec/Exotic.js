@@ -57,7 +57,7 @@ describe('Exotic', function() {
 
       let production = spec.exotic.exoticProduction('H');
 
-      expect(production).toEqual({'xH': 58});
+      expect(production).toEqual({'xH': 59});
     });
 
     it('should not produce prestige currency for small quantities', function() {
@@ -125,7 +125,7 @@ describe('Exotic', function() {
 
       let production = spec.exotic.exoticProduction('H');
 
-      expect(production).toEqual({'xH': 109, 'xO': 58});
+      expect(production).toEqual({'xH': 105, 'xO': 59});
     });
 
     it('should prestige', function() {
@@ -179,7 +179,7 @@ describe('Exotic', function() {
       expect(spec.state.player.element_slots[0]).toBeNull();
       expect(spec.state.player.exotic_upgrades.H.x3).toBeTruthy();
       expect(spec.state.player.resources['1H'].number).toEqual(0);
-      expect(spec.state.player.resources.xH.number).toEqual(58);
+      expect(spec.state.player.resources.xH.number).toEqual(59);
       expect(spec.state.player.statistics.exotic_run).toEqual({H:{}});
     });
   });
@@ -263,7 +263,7 @@ describe('Exotic', function() {
 
       spec.exotic.exoticPrestige(0);
 
-      expect(spec.state.player.resources.xH.number).toEqual(99);
+      expect(spec.state.player.resources.xH.number).toEqual(101);
     });
   });
 
