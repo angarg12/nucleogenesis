@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 
+<label>Hide bought upgrades:
+   <input type="checkbox" ng-model="ct.state.hideBought">
+</label>
 <div ng-repeat="slot in ct.state.player.element_slots track by $index">
   <element-select index="$index"
                   ng-if="!slot"></element-select>
   <div ng-if="slot">
     <h2>{{ct.data.elements[slot.element].name}}</h2>
-    <label>Hide bought upgrades:
-       <input type="checkbox" ng-model="ct.state.hideBought">
-    </label>
     <button class="btn btn-default"
             ng-click="ct.buyAll(slot)">Buy all</button>
     <div class="row">

@@ -162,7 +162,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     };
 
     function isExoticUpgradeVisible(name, slot) {
-      return visibility.isUpgradeVisible(name, slot, data.exotic_upgrades[name]);
+      return visibility.isUpgradeVisible(name, slot, data.exotic_upgrades[name]) && (!state.hideBought || !state.player.exotic_upgrades[slot.element][name]);
     }
 
     ct.visibleSubatomic = function() {
