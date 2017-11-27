@@ -2,20 +2,23 @@ language: node_js
 dist: trusty
 node_js:
   - node
-env:
-  - TEST_SUITE=unit-test
-  # Commenting out e2e tests: https://github.com/angular/webdriver-manager/issues/270
-  # - TEST_SUITE=e2e-test
-addons:
-  firefox: latest
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
-before_install:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-install:
-  - npm install
-script: "gulp $TEST_SUITE"
+jobs:
+  include:
+    - stage: test
+    env:
+      - TEST_SUITE=unit-test
+      # Commenting out e2e tests: https://github.com/angular/webdriver-manager/issues/270
+      # - TEST_SUITE=e2e-test
+    addons:
+      firefox: latest
+      apt:
+        sources:
+          - google-chrome
+        packages:
+          - google-chrome-stable
+    before_install:
+      - export DISPLAY=:99.0
+      - sh -e /etc/init.d/xvfb start
+    install:
+      - npm install
+    script: "gulp $TEST_SUITE"
