@@ -26,12 +26,9 @@ jobs:
       install:
         - npm install
       script: "gulp dist"
-      after_success:
-        - mkdir dev
-        - mv dist/* dev/
-        - mv dev/ dist/
       deploy:
         provider: pages
         skip_cleanup: true
         local_dir: dist
+        repo: angarg12/nucleogenesis-dev
         github_token: $GITHUB_TOKEN
