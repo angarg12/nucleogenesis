@@ -27,10 +27,12 @@ jobs:
         - npm install
       script: "gulp dist"
       after_success:
-        - mv dist/ ng-dev/
+        - mkdir ng-dev
+        - mv dist/* ng-dev/
+        - mv ng-dev/ dist/
       deploy:
         provider: pages
         skip_cleanup: true
-        local_dir: ng-dev
+        local_dir: dist
         repo: angarg12/angarg12.github.io
         github_token: $GITHUB_TOKEN
