@@ -23,7 +23,7 @@ describe('Dark', function() {
 
       let production = spec.dark.darkProduction();
 
-      expect(production).toEqual(52);
+      expect(production).toEqual(2000);
     });
 
     it('should prestige', function() {
@@ -81,7 +81,7 @@ describe('Dark', function() {
       expect(spec.state.player.exotic_upgrades.H.x3).toBeFalsy();
       expect(spec.state.player.resources['1H'].number).toEqual(0);
       expect(spec.state.player.resources.xH.number).toEqual(0);
-      expect(spec.state.player.resources.dark_matter.number).toEqual(26);
+      expect(spec.state.player.resources.dark_matter.number).toEqual(1000);
       expect(spec.state.player.statistics.exotic_run).toEqual({});
       expect(spec.state.player.statistics.dark_run).toEqual({});
     });
