@@ -1,0 +1,33 @@
+{
+  "coverage": "55.55%",
+  "expectCount": 18,
+  "actualCount": 10,
+  "files": {
+    "src/format.js": {
+      "expectCount": 12,
+      "actualCount": 10,
+      "undocumentLines": [
+        132,
+        158
+      ]
+    },
+    "src/parse.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        76,
+        78,
+        77,
+        80,
+        52
+      ]
+    },
+    "src/decimal.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        5
+      ]
+    }
+  }
+}

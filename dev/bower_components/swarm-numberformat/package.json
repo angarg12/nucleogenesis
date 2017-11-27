@@ -1,0 +1,55 @@
+{
+  "name": "swarm-numberformat",
+  "version": "0.3.5",
+  "description": "Format very large numbers in several human-readable ways. `format(1e6)` -> `\"1 million\"` or `\"1M\"`",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "static",
+    "es",
+    "lib",
+    "dist"
+  ],
+  "scripts": {
+    "start": "serve -s demo",
+    "//build": "# For backwards compatibility, compile the <script>-compatible files to /dist/ instead of /umd/. There doesn't seem to be a config option for that though, so just move by hand.",
+    "build": "rimraf umd dist && nwb build-web-module && mv umd dist",
+    "postbuild": "rimraf demo/dist && cp -rp dist demo",
+    "clean": "nwb clean-module",
+    "test": "jest",
+    "test:watch": "jest --watch --notify",
+    "//test": "nwb test",
+    "//test:coverage": "nwb test --coverage",
+    "//test:watch": "nwb test --server",
+    "build-docs": "esdoc && cp -rp demo docs && touch docs/.nojekyll",
+    "clean-docs": "rimraf docs",
+    "prebuild-docs": "npm run clean-docs",
+    "preversion": "npm test",
+    "version": "npm run build && npm run build-docs && git add -A dist docs"
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "stage-0"
+    ]
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "decimal.js": "^7.1.0"
+  },
+  "devDependencies": {
+    "babel-jest": "^20.0.3",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "decimal.js": "^7.1.0",
+    "esdoc": "^0.5.2",
+    "jest": "^20.0.3",
+    "nwb": "0.15.x",
+    "rimraf": "^2.6.1",
+    "serve": "^5.1.5"
+  },
+  "author": "",
+  "homepage": "",
+  "license": "MIT",
+  "repository": ""
+}
