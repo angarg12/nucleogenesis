@@ -1,9 +1,0 @@
-<!DOCTYPE html><div ng-repeat="slot in ct.state.player.element_slots track by $index"><element-select index="$index" ng-if="!slot"></element-select><div ng-if="slot"><h2>{{ct.data.elements[slot.element].name}}</h2><button type="button" class="btn btn-default" ng-click="ct.addRedox(ct.state.player, slot)">Add</button> Slots: {{ct.redoxSize(ct.state.player)}}/{{ct.redoxSlots(ct.state.player)}}<table class="table"><tbody><tr class="animif"><div class="row"><th class="col-xs-10">Redox</th><th class="col-xs-1">Number</th><th class="col-xs-1">Active</th></div></tr><tr class="animif" ng-repeat="redox in ct.visibleRedox(slot) track by $index"><div class="row"><td class="col-xs-10"><button type="button" class="btn btn-default" ng-click="ct.removeRedox(slot, $index)">Remove</button> <span ng-bind-html="ct.util.trustHTML(
-            ct.format.reactionFormat(ct.redoxPower(ct.state.player),
-                                      ct.redoxReaction(redox)))"></span><div><label>From:</label><rzslider rz-slider-model="redox.from" rz-slider-options="{
-						floor: -ct.data.elements[redox.element].electron_affinity.length,
-						ceil: ct.data.elements[redox.element].ionization_energy.length,
-						showTicksValues: true}"></rzslider></div><div><label>To:</label><rzslider rz-slider-model="redox.to" rz-slider-options="{
-						floor: -ct.data.elements[redox.element].electron_affinity.length,
-						ceil: ct.data.elements[redox.element].ionization_energy.length,
-						showTicksValues: true}"></rzslider></div></td><td class="col-xs-1"><pretty value="ct.redoxPower(ct.state.player)"></pretty></td><td class="col-xs-1"><input type="checkbox" ng-model="redox.active"></td></div></tr></tbody></table></div></div>
