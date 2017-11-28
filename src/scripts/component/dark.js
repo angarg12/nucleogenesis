@@ -30,7 +30,7 @@ function dark(state, format, visibility, upgrade, data, util) {
         continue;
       }
       let number = state.player.statistics.dark_run[exotic] || 0;
-      let darkProduction = Math.pow(Math.E,(-0.5+Math.sqrt(0.25+0.8686*Math.log(number/100)))/0.4343);
+      let darkProduction = Math.pow(Math.E,(-0.5+Math.sqrt(0.25+0.8686*Math.log(number/100)))/0.4343) || 0;
       production += Math.round(Math.max(0, darkProduction));
     }
 
