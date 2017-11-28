@@ -44,6 +44,7 @@ let commonSpec = function(spec) {
     spec.state = _$injector_.get('state');
     spec.upgradeService = _$injector_.get('upgrade');
 
+    spec.state.player.options = {};
     spec.state.player.elements = {};
     spec.state.player.unlocks = {};
     spec.state.player.element_slots = [];

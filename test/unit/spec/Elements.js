@@ -10,8 +10,9 @@ describe('Elements component', function() {
 
   describe('purchase functions', function() {
     it('should not purchase element if roll is failed', function() {
+      spec.state.player.options.elementBuyIndex = 0;
       spec.data.elements.O = {abundance: 0.5};
-      spec.state.player = {elements:{},resources:{},elements_unlocked:1};
+      spec.state.player.elements_unlocked = 1;
       spec.state.player.resources.dark_matter = {number:1};
       spec.state.player.elements.O = false;
 
@@ -25,8 +26,9 @@ describe('Elements component', function() {
     });
 
     it('should purchase element if roll is successful', function() {
+      spec.state.player.options.elementBuyIndex = 0;
       spec.data.elements.O = {abundance: 0.5};
-      spec.state.player = {elements:{},exotic_upgrades:{},resources:{},elements_unlocked:1};
+      spec.state.player.elements_unlocked = 1;
       spec.state.player.resources.dark_matter = {number:1};
       spec.state.player.elements.O = false;
 
@@ -40,8 +42,9 @@ describe('Elements component', function() {
     });
 
     it('should not purchase element if cost is not met', function() {
+      spec.state.player.options.elementBuyIndex = 0;
       spec.data.elements.O = {abundance: 1};
-      spec.state.player = {elements:{},resources:{},elements_unlocked:2};
+      spec.state.player.elements_unlocked = 2;
       spec.state.player.resources.dark_matter = {number:0};
       spec.state.player.elements.O = false;
 
@@ -54,7 +57,7 @@ describe('Elements component', function() {
 
     it('should spend purchase amount', function() {
       spec.data.elements.O = {abundance: 0.5};
-      spec.state.player = {elements:{},exotic_upgrades:{},resources:{},elements_unlocked:1};
+      spec.state.player.elements_unlocked = 1;
       spec.state.player.resources.dark_matter = {number:10};
       spec.state.player.elements.O = false;
 
@@ -70,7 +73,7 @@ describe('Elements component', function() {
 
     it('should not spend more than purchase amount', function() {
       spec.data.elements.O = {abundance: 0.5};
-      spec.state.player = {elements:{},exotic_upgrades:{},resources:{},elements_unlocked:1};
+      spec.state.player.elements_unlocked = 1;
       spec.state.player.resources.dark_matter = {number:10};
       spec.state.player.elements.O = false;
 
@@ -86,7 +89,7 @@ describe('Elements component', function() {
 
     it('purchase amount should increase chance of success', function() {
       spec.data.elements.O = {abundance: 0.1};
-      spec.state.player = {elements:{},exotic_upgrades:{},resources:{},elements_unlocked:1};
+      spec.state.player.elements_unlocked = 1;
       spec.state.player.resources.dark_matter = {number:10};
       spec.state.player.elements.O = false;
 
@@ -101,7 +104,6 @@ describe('Elements component', function() {
     });
 
     it('should skip if the element is already purchased', function() {
-      spec.state.player = {elements:{}};
       spec.data.elements.O = {number: 8};
       spec.state.player.elements.O = true;
 

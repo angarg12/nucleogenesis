@@ -24,14 +24,10 @@ angular
     sv.cancelOffline = false;
     sv.toast = [];
     sv.isToastVisible = false;
-    sv.buyIndex = 0;
-    sv.elementBuyIndex = 0;
     let newElements = [];
     let updateFunctions = {};
-    sv.hideBought = false;
     sv.reactionsCache = {};
     sv.redoxesCache = {};
-    sv.sort = 0;
 
     sv.deleteToast = function() {
       sv.toast.shift();

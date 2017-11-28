@@ -22,7 +22,7 @@ describe('Generators component', function() {
 
   describe('purchase', function() {
     it('should return the purchase amount', function() {
-      spec.state.buyIndex = 0;
+      spec.state.player.options.buyIndex = 0;
 
       let value = spec.generators.getbuyAmount();
 
@@ -30,11 +30,11 @@ describe('Generators component', function() {
     });
 
     it('should cycle through purchase amounts', function() {
-      spec.state.buyIndex = 0;
+      spec.state.player.options.buyIndex = 0;
 
       spec.generators.nextBuyAmount();
 
-      expect(spec.state.buyIndex).toEqual(1);
+      expect(spec.state.player.options.buyIndex).toEqual(1);
     });
 
     it('should return the price of a generator', function() {

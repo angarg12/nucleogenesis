@@ -36,7 +36,12 @@ startPlayer.version = npm.version;
      *    - full
      *    - short
      */
-startPlayer.numberformat = {format: 'standard', flavor: 'short'};
+startPlayer.options = {};
+startPlayer.options.numberformat = {format: 'standard', flavor: 'short'};
+startPlayer.options.buyIndex = 0;
+startPlayer.options.elementBuyIndex = 0;
+startPlayer.options.hideBought = false;
+startPlayer.options.sortIndex = 0;
 startPlayer.resources = {};
 for (let entry in resources) {
   startPlayer.resources[entry] = {

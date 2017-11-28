@@ -211,11 +211,11 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
     }
 
     ct.nextBuyAmount = function () {
-      state.buyIndex = (state.buyIndex + 1) % buyAmount.length;
+      state.player.options.buyIndex = (state.player.options.buyIndex + 1) % buyAmount.length;
     };
 
     ct.getbuyAmount = function () {
-      return buyAmount[state.buyIndex];
+      return buyAmount[state.player.options.buyIndex];
     };
 
     state.registerUpdate('generators', update);

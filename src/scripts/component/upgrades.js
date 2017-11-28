@@ -62,11 +62,11 @@ function upgrades(state, visibility, upgrade, data) {
   };
 
   ct.visibleUpgrades = function(slot) {
-    return visibility.visible(data.upgrades, isBasicUpgradeVisible, slot, sortFunc[state.sort]);
+    return visibility.visible(data.upgrades, isBasicUpgradeVisible, slot, sortFunc[state.player.options.sortIndex]);
   };
 
   function isBasicUpgradeVisible(name, slot) {
     let isVisible = visibility.isUpgradeVisible(name, slot, data.upgrades[name]);
-    return isVisible && (!state.hideBought || !slot.upgrades[name]);
+    return isVisible && (!state.player.options.hideBought || !slot.upgrades[name]);
   }
 }

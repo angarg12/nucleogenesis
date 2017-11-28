@@ -83,11 +83,11 @@ function elements($timeout, state, data) {
   };
 
   ct.nextBuyAmount = function () {
-    state.elementBuyIndex = (state.elementBuyIndex + 1) % buyAmount.length;
+    state.player.options.elementBuyIndex = (state.player.options.elementBuyIndex + 1) % buyAmount.length;
   };
 
   ct.getbuyAmount = function (player) {
-    let result = buyAmount[state.elementBuyIndex];
+    let result = buyAmount[state.player.options.elementBuyIndex];
     if(result === 'max'){
       result = player.resources.dark_matter.number;
     }
