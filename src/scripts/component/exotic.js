@@ -41,6 +41,9 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
           continue;
         }
         for (let elem in data.resources[resource].elements) {
+          if(!state.player.statistics.exotic_run[elem]){
+             continue;
+          }
           let numberAtoms = data.resources[resource].elements[elem];
           let prod = prestigeFormula((state.player.statistics.exotic_run[elem][resource] || 0)*numberAtoms);
 
@@ -162,11 +165,11 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     };
 
     ct.visibleExoticUpgrades = function(slot) {
-      return visibility.visible(data.exotic_upgrades, isExoticUpgradeVisible, slot, sortFunc[state.player.options.sortIndex]);
+      return visibility.visible(data.exotic_upgrades, isExoticUpgradeVisible, slot, sortFunc[state.sort]);
     };
 
     function isExoticUpgradeVisible(name, slot) {
-      return visibility.isUpgradeVisible(name, slot, data.exotic_upgrades[name]) && (!state.player.options.hideBought || !state.player.exotic_upgrades[slot.element][name]);
+      return visibility.isUpgradeVisible(name, slot, data.exotic_upgrades[name]) && (!state.hideBought || !state.player.exotic_upgrades[slot.element][name]);
     }
 
     ct.visibleSubatomic = function() {
