@@ -80,9 +80,30 @@ for (let element in elements) {
     charge++;
   }
 
-  if(typeof redox[element] === 'undefined'){
-    redox[element] = energies;
+  let cummulative = {};
+  for(let charge in energies){
+    cummulative[charge] =  cumulativeEnergy(energies, charge);
   }
+  if(typeof redox[element] === 'undefined'){
+    redox[element] = cummulative;
+  }
+}
+
+/* Calculates the cummulative energy of a redox level.
+The logic is the following: the redox array gives how much energy it costs
+to go from a level to the next, e.g. from +2 to +3. This function calculates
+how much it takes to go from level 0 to x by summing each successive level */
+function cumulativeEnergy(redox, level) {
+  let energy = 0;
+  let start = Math.min(0, level);
+  let end = Math.max(0, level);
+  for (let i = start; i <= end; i++) {
+    energy += redox[i];
+  }
+  if (level < 0) {
+    energy = -energy;
+  }
+  return energy;
 }
 
 // we delete 1H+ because it doesn't exist, it is a single proton

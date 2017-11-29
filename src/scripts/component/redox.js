@@ -83,27 +83,10 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
     /* Calculates how much energy it takes to go from a redox level to another
     for a given element */
     function redoxEnergy(from, to, element) {
-      let energyFrom = cumulativeEnergy(element, from);
-      let energyTo = cumulativeEnergy(element, to);
+      let energyFrom = data.redox[element][from];
+      let energyTo = data.redox[element][to];
       let energy = energyTo - energyFrom;
 
-      return energy;
-    }
-
-    /* Calculates the cummulative energy of a redox level.
-    The logic is the following: the redox array gives how much energy it costs
-    to go from a level to the next, e.g. from +2 to +3. This function calculates
-    how much it takes to go from level 0 to x by summing each successive level */
-    function cumulativeEnergy(element, level) {
-      let energy = 0;
-      let start = Math.min(0, level);
-      let end = Math.max(0, level);
-      for (let i = start; i <= end; i++) {
-        energy += data.redox[element][i];
-      }
-      if (level < 0) {
-        energy = -energy;
-      }
       return energy;
     }
 
@@ -143,7 +126,7 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       for(let slot of player.element_slots){
         if(!slot){
           continue;
-        } 
+        }
         size += slot.redoxes.length;
       }
       return size;
