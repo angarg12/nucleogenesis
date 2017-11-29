@@ -22,6 +22,11 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
     ct.reaction = reaction;
 
     function update(player) {
+      processRedox(player);
+      processElectronegativity(player);
+    }
+
+    function processRedox(player){
       for(let slot of player.element_slots){
         if(!slot){
           continue;
@@ -39,6 +44,78 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
           ct.reaction.react(number, react, player);
         }
       }
+    }
+
+    function processElectronegativity(player){
+      for(let key in data.elements){
+        let element = data.elements[key];
+        if(element.electronegativity === 0){
+          continue;
+        }
+        let ions = element.anions.concat(element.cations);
+		    ions.push(element.main);
+        for(let resource of ions){
+          if(player.resources[resource].number === 0){
+            continue;
+          }
+          let charge = data.resources[resource].charge || 0;
+          let probabilities = probabilityDistribution(key, charge);
+          for(let probKey in probabilities){
+            if(probKey === charge){
+              continue;
+            }
+            let production = Math.floor(probabilities[probKey]*player.resources[resource].number);
+            if(production === 0){
+              continue;
+            }
+            let react = ct.redoxReaction({
+              element: key,
+              from: charge,
+              to: parseInt(probKey, 10)
+            });
+            // electronegativity is 'for free'
+      			react.reactant.eV = 0;
+      			react.reactant['e-'] = 0;
+            ct.reaction.react(production, react, player);
+          }
+        }
+      }
+    }
+
+    function probabilityDistribution(element, charge){
+    	let prob = {};
+    	let start = -data.elements[element].electron_affinity.length;
+    	let end = charge;
+    	// lower than index, affected by negativity
+    	rangeProbability(element, prob, start, end, 1, data.elements[element].negative_factor);
+
+    	prob[charge] = 1;
+
+    	start = charge+1;
+    	end = data.elements[element].ionization_energy.length+1;
+    	// lower than index, affected by positivity
+    	rangeProbability(element, prob, start, end, -1, data.elements[element].positive_factor);
+
+    	let sum = 0;
+    	for(let i in prob){
+    		sum += prob[i];
+    	}
+    	for(let i in prob){
+    		prob[i] /= sum;
+    	}
+    	return prob;
+    }
+
+    function rangeProbability(element, prob, start, end, offset, factor){
+    	for(let i = start; i < end; i++){
+    		let difference = data.redox[element][i]-data.redox[element][i+offset];
+    		if(difference <= 0){
+    			difference = -difference;
+    		}else{
+    			difference = 1/difference;
+    		}
+    		prob[i] = data.constants.ELECTRONEGATIVITY_CHANCE*factor*difference;
+    	}
     }
 
     /* Calculates the redox power based on the redox upgrades */

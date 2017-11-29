@@ -2,6 +2,7 @@
   "e-": {
     "elements": {},
     "energy": 511000,
+    "charge": -1,
     "anti_particle": "e+",
     "html": "e<sup>-</sup>",
     "type": [
@@ -11,6 +12,7 @@
   "e+": {
     "elements": {},
     "energy": 511000,
+    "charge": 1,
     "anti_particle": "e-",
     "html": "e<sup>+</sup>",
     "type": [
@@ -45,6 +47,7 @@
   "p": {
     "elements": {},
     "energy": 938272081,
+    "charge": 1,
     "type": [
       "subatomic"
     ]

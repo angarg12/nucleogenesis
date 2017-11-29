@@ -138,7 +138,7 @@ if (index > -1) {
 }
 index = elements.H.cations.indexOf('H+');
 if (index > -1) {
-    elements.H.includes.splice(index, 1);
+    elements.H.cations.splice(index, 1);
 }
 elements.H.cations.push('p');
 
