@@ -326,3 +326,12 @@ body {
 #sidebar-wrapper .sidebar-icons {
   text-align: right;
 }
+
+.nav-tabs li {
+  cursor: pointer;
+  /* <3 ~B */
+}
+
+.serif {
+  font-family: "Times new roman", serif;
+}
