@@ -51,7 +51,8 @@ describe('Reactions', function() {
     it('should process reaction', function() {
       spec.data.elements = {
         'H': {
-          main: '1H'
+          main: '1H',
+          electronegativity: 0
         }
       };
       spec.state.player.global_upgrades.reaction_slots = 1;

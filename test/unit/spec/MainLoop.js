@@ -24,7 +24,8 @@ describe('MainLoop', function() {
           'ratio': 0.00201,
           'energy': 16766103545
         }
-      }
+      },
+      'electronegativity': 0
     };
     spec.state.player.resources = {
       '16O': {

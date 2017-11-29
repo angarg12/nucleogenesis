@@ -39,7 +39,8 @@ describe('Redox', function () {
     };
     spec.data.elements = {
       H: {
-        main: '1H'
+        main: '1H',
+        electronegativity: 0
       }
     };
     spec.data.redox = {

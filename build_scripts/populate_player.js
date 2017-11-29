@@ -102,7 +102,7 @@ for(let mechanic in mechanics){
   startPlayer.mechanics[mechanic] = false;
 }
 
-startPlayer.mechanic_slots = 1;
+startPlayer.mechanic_slots = 3;
 
 startPlayer.statistics = {};
 startPlayer.statistics.exotic_run = {};

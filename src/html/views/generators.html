@@ -14,6 +14,7 @@
         {{ct.data.elements[slot.element].isotopes[isotope].ratio*100 | number: 4}}%
       </li>
     </ul>
+    <h4 ng-if="ct.state.player.unlocks.ion">Electronegativity: {{ct.data.elements[slot.element].electronegativity}}</h4>
     <table class="table">
       <tr>
         <td class="col-xs-1">
