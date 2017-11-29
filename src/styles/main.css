@@ -310,7 +310,7 @@ body {
 #sidebar-wrapper .sidebar-nav {
   margin-left: -15px;
   padding-left: 15px;
-  width: auto;
+  width: 230px;
 }
 
 #sidebar-wrapper .sidebar-nav li {
