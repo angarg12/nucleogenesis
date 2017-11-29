@@ -29,6 +29,12 @@ function addResource(name, charge, element){
   if(elements[element].includes.indexOf(name) === -1){
     elements[element].includes.push(name);
   }
+  if(charge < 0 && elements[element].anions.indexOf(name) === -1){
+    elements[element].anions.push(name);
+  }
+  if(charge > 0 && elements[element].cations.indexOf(name) === -1){
+    elements[element].cations.push(name);
+  }
 }
 
 // Generates the name of a ion, e.g. O3+
@@ -59,9 +65,20 @@ function htmlPostfix(index) {
   return '<sup>' + postfix + getSign(index) + '</sup>';
 }
 
+let minElectronegativity = Infinity;
+let maxElectronegativity = -Infinity;
 let redox = {};
 for (let element in elements) {
   elements[element].includes = elements[element].includes || [];
+  elements[element].anions = elements[element].anions || [];
+  elements[element].cations = elements[element].cations || [];
+
+  if(elements[element].electronegativity > 0 && elements[element].electronegativity < minElectronegativity){
+    minElectronegativity = elements[element].electronegativity;
+  }
+  if(elements[element].electronegativity > maxElectronegativity){
+    maxElectronegativity = elements[element].electronegativity;
+  }
 
   let energies = {};
   let charge = -1;
@@ -106,12 +123,24 @@ function cumulativeEnergy(redox, level) {
   return energy;
 }
 
+for (let element in elements) {
+  let power = elements[element].electronegativity-minElectronegativity;
+  elements[element].negative_factor = Math.pow(10, power);
+  power = maxElectronegativity-elements[element].electronegativity;
+  elements[element].positive_factor = Math.pow(10, power);
+}
+
 // we delete 1H+ because it doesn't exist, it is a single proton
 delete resources['H+'];
 let index = elements.H.includes.indexOf('H+');
 if (index > -1) {
     elements.H.includes.splice(index, 1);
 }
+index = elements.H.cations.indexOf('H+');
+if (index > -1) {
+    elements.H.includes.splice(index, 1);
+}
+elements.H.cations.push('p');
 
 jsonfile.writeFileSync('build/data/resources.json', resources, {
   spaces: 2
