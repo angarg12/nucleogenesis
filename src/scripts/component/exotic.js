@@ -68,21 +68,9 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     };
 
     function prestigeFormula(resource){
-      let sum = 0;
-      let i = 0;
-      while(i < data.exotic_ranges.length && resource > data.exotic_ranges[i].top){
-        sum += data.exotic_ranges[i].max_value;
-        i++;
-      }
-      if(i < data.exotic_ranges.length){
-        let L = data.exotic_ranges[i].max_value;
-        let k = 6/data.exotic_ranges[i].range;
-        let x0 = data.exotic_ranges[i].midpoint;
-        let sigmoid = Math.pow(Math.E, -k*(resource-x0));
-
-        sum += L/(1+sigmoid);
-      }
-      return Math.round(sum);
+      resource = resource || 0;
+      let production = Math.pow(Math.E,(-0.5+Math.sqrt(0.25+0.8686*Math.log(resource/1e6)))/0.4343) || 0;
+      return Math.round(Math.max(0, production));
     }
 
     ct.exoticPrestige = function(index) {
