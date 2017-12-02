@@ -82,7 +82,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
       }
 
       for(let resource in ct.infuse){
-        state.player.resources[resource].number -= ct.infuse[resource];
+        state.player.resources[resource].number = Math.max(0, state.player.resources[resource].number-ct.infuse[resource]);
       }
 
       upgrade.resetElement(state.player, slot.element);
