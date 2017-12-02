@@ -75,7 +75,10 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
             });
             // electronegativity is 'for free'
       			react.reactant.eV = 0;
-      			react.reactant['e-'] = 0;
+            // FIXME: starvation should fix this
+            if(react.reactant['e-']){
+              production = Math.min(production, player.resources['e-'].number);
+            }
             ct.reaction.react(production, react, player);
           }
         }
