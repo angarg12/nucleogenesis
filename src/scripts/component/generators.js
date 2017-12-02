@@ -30,9 +30,8 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
           let number = player.resources[resource].number;
           let decay = data.resources[resource].decay;
           let halfLife = decay.half_life;
-          let exponent = 1/halfLife;
-          let factor = Math.pow(0.5, exponent);
-          let totalProduction = number - number * factor;
+          let decayRate = Math.log(2)/halfLife;
+          let totalProduction = number * decayRate;
           let remaining = Math.floor(totalProduction);
           // and decay products
           let highestRatio;

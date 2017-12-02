@@ -282,11 +282,49 @@ describe('MainLoop', function() {
 
       spec.controller.update();
 
-      expect(spec.state.player.resources['70Ga'].number).toEqual(71);
-      expect(spec.state.player.resources['70Ge'].number).toEqual(22);
-      expect(spec.state.player.resources['70Zn'].number).toEqual(7);
-      expect(spec.state.player.resources['e-'].number).toEqual(22);
-      expect(spec.state.player.resources.eV.number).toBeCloseTo(22700,4);
+      expect(spec.state.player.resources['70Ga'].number).toEqual(66);
+      expect(spec.state.player.resources['70Ge'].number).toEqual(26);
+      expect(spec.state.player.resources['70Zn'].number).toEqual(8);
+      expect(spec.state.player.resources['e-'].number).toEqual(26);
+      expect(spec.state.player.resources.eV.number).toBeCloseTo(26800,4);
+    });
+
+    it('should process very high half-lifes', function() {
+      spec.data.radioisotopes = ['3H'];
+      spec.data.resources['3H'] = {
+        decay: {
+          half_life: 1e30,
+          decay_types: {
+            'beta-': {
+              ratio: 1,
+              reaction: {
+                reactant: {
+                  '3H': 1
+                },
+                product: {
+                  '3He': 1
+                }
+              }
+            }
+          }
+        },
+        elements: {'H':1}
+      };
+      spec.state.player.resources['3H'] = {
+        unlocked: true,
+        number: 1e+60
+      };
+      spec.state.player.resources['3He'] = {
+        unlocked: true,
+        number: 0
+      };
+
+      spec.controller.update();
+
+      expect(spec.state.player.resources['3H'].number).toBeCloseTo(1e+60,4);
+      // we have to do this since toBeCloseTo fails
+      expect(spec.state.player.resources['3He'].number).toBeGreaterThan(6.9e+29);
+      expect(spec.state.player.resources['3He'].number).toBeLessThan(7e+29);
     });
   });
 });
