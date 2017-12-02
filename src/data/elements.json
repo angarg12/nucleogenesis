@@ -389,7 +389,8 @@
     "number": 10,
     "abundance": 0.00009758,
     "van_der_waals": 1.5399999999999999e-10,
-    "electronegativity": 0
+    "electronegativity": 0,
+    "electron_affinity": []
   },
   "Na": {
     "name": "Sodium",
@@ -484,7 +485,8 @@
     "number": 12,
     "abundance": 0.0005,
     "van_der_waals": 1.73e-10,
-    "electronegativity": 1.31
+    "electronegativity": 1.31,
+    "electron_affinity": []
   },
   "Al": {
     "name": "Aluminium",
@@ -1942,7 +1944,8 @@
     "number": 30,
     "abundance": 4.2285e-8,
     "van_der_waals": 1.3899999999999999e-10,
-    "electronegativity": 1.65
+    "electronegativity": 1.65,
+    "electron_affinity": []
   },
   "Ga": {
     "name": "Gallium",
@@ -2436,7 +2439,8 @@
     "number": 36,
     "abundance": 1.5613e-9,
     "van_der_waals": 2.02e-10,
-    "electronegativity": 3
+    "electronegativity": 3,
+    "electron_affinity": []
   },
   "Rb": {
     "name": "Rubidium",
@@ -3513,7 +3517,8 @@
     "number": 48,
     "abundance": 5.2043e-11,
     "van_der_waals": 1.58e-10,
-    "electronegativity": 1.69
+    "electronegativity": 1.69,
+    "electron_affinity": []
   },
   "In": {
     "name": "Indium",
@@ -6086,7 +6091,8 @@
     "number": 80,
     "abundance": 1.1059e-11,
     "van_der_waals": 1.55e-10,
-    "electronegativity": 2
+    "electronegativity": 2,
+    "electron_affinity": []
   },
   "Tl": {
     "name": "Thallium",
@@ -6433,7 +6439,8 @@
     "number": 86,
     "abundance": 0,
     "van_der_waals": 2.2e-10,
-    "electronegativity": 2.2
+    "electronegativity": 2.2,
+    "electron_affinity": []
   },
   "Fr": {
     "name": "Francium",
@@ -6487,7 +6494,8 @@
     "number": 87,
     "abundance": 0,
     "van_der_waals": 3.48e-10,
-    "electronegativity": 0.7
+    "electronegativity": 0.7,
+    "electron_affinity": []
   },
   "Ra": {
     "name": "Radium",
@@ -6565,7 +6573,8 @@
     "number": 88,
     "abundance": 0,
     "van_der_waals": 2.83e-10,
-    "electronegativity": 0.9
+    "electronegativity": 0.9,
+    "electron_affinity": []
   },
   "Ac": {
     "name": "Actinium",
@@ -6623,7 +6632,8 @@
     "number": 89,
     "abundance": 0,
     "van_der_waals": 1.95e-10,
-    "electronegativity": 1.1
+    "electronegativity": 1.1,
+    "electron_affinity": []
   },
   "Th": {
     "name": "Thorium",
@@ -6729,7 +6739,8 @@
     "number": 90,
     "abundance": 1.4637e-12,
     "van_der_waals": 1.8e-10,
-    "electronegativity": 1.3
+    "electronegativity": 1.3,
+    "electron_affinity": []
   },
   "Pa": {
     "name": "Protactinium",
@@ -6831,7 +6842,8 @@
     "number": 91,
     "abundance": 0,
     "van_der_waals": 1.8e-10,
-    "electronegativity": 1.5
+    "electronegativity": 1.5,
+    "electron_affinity": []
   },
   "U": {
     "name": "Uranium",
@@ -6922,7 +6934,8 @@
     "number": 92,
     "abundance": 5.8548e-13,
     "van_der_waals": 1.86e-10,
-    "electronegativity": 1.38
+    "electronegativity": 1.38,
+    "electron_affinity": []
   },
   "Np": {
     "name": "Neptunium",
@@ -6995,7 +7008,8 @@
     "number": 93,
     "abundance": 0,
     "van_der_waals": 1.75e-10,
-    "electronegativity": 1.36
+    "electronegativity": 1.36,
+    "electron_affinity": []
   },
   "Pu": {
     "name": "Plutonium",
@@ -7094,7 +7108,8 @@
     "number": 94,
     "abundance": 0,
     "van_der_waals": 1.75e-10,
-    "electronegativity": 1.28
+    "electronegativity": 1.28,
+    "electron_affinity": []
   },
   "Am": {
     "name": "Americium",
@@ -7148,7 +7163,8 @@
     "number": 95,
     "abundance": 0,
     "van_der_waals": 1.75e-10,
-    "electronegativity": 1.3
+    "electronegativity": 1.3,
+    "electron_affinity": []
   },
   "Cm": {
     "name": "Curium",
@@ -7279,7 +7295,8 @@
     "number": 96,
     "abundance": 0,
     "van_der_waals": 1.74e-10,
-    "electronegativity": 1.3
+    "electronegativity": 1.3,
+    "electron_affinity": []
   },
   "Bk": {
     "name": "Berkelium",
@@ -7362,7 +7379,8 @@
     "number": 97,
     "abundance": 0,
     "van_der_waals": 1.7e-10,
-    "electronegativity": 1.3
+    "electronegativity": 1.3,
+    "electron_affinity": []
   },
   "Cf": {
     "name": "Californium",
@@ -7483,7 +7501,8 @@
     "number": 98,
     "abundance": 0,
     "van_der_waals": 1.86e-10,
-    "electronegativity": 1.3
+    "electronegativity": 1.3,
+    "electron_affinity": []
   },
   "Es": {
     "name": "Einsteinium",
@@ -7559,7 +7578,8 @@
     "number": 99,
     "abundance": 0,
     "van_der_waals": 1.86e-10,
-    "electronegativity": 1.3
+    "electronegativity": 1.3,
+    "electron_affinity": []
   },
   "Fm": {
     "name": "Fermium",
@@ -7632,7 +7652,8 @@
     "number": 100,
     "abundance": 0,
     "van_der_waals": 1.9e-10,
-    "electronegativity": 1.3
+    "electronegativity": 1.3,
+    "electron_affinity": []
   },
   "Md": {
     "name": "Mendelevium",
@@ -7695,7 +7716,8 @@
     "number": 101,
     "abundance": 0,
     "van_der_waals": 1.9099999999999999e-10,
-    "electronegativity": 1.3
+    "electronegativity": 1.3,
+    "electron_affinity": []
   },
   "No": {
     "name": "Nobelium",
@@ -7793,7 +7815,8 @@
     "number": 102,
     "abundance": 0,
     "van_der_waals": 1.96e-10,
-    "electronegativity": 1.3
+    "electronegativity": 1.3,
+    "electron_affinity": []
   },
   "Lr": {
     "name": "Lawrencium",
@@ -7942,7 +7965,8 @@
     "number": 103,
     "abundance": 0,
     "van_der_waals": 1.94e-10,
-    "electronegativity": 0
+    "electronegativity": 0,
+    "electron_affinity": []
   },
   "Rf": {
     "name": "Rutherfordium",
@@ -8031,7 +8055,8 @@
     "number": 104,
     "abundance": 0,
     "van_der_waals": 1.96e-10,
-    "electronegativity": 0
+    "electronegativity": 0,
+    "electron_affinity": []
   },
   "Db": {
     "name": "Dubnium",
@@ -8142,7 +8167,9 @@
     "number": 105,
     "abundance": 0,
     "van_der_waals": 1.89e-10,
-    "electronegativity": 0
+    "electronegativity": 0,
+    "ionization_energy": [],
+    "electron_affinity": []
   },
   "Sg": {
     "name": "Seaborgium",
@@ -8212,7 +8239,9 @@
     "number": 106,
     "abundance": 0,
     "van_der_waals": 1.81e-10,
-    "electronegativity": 0
+    "electronegativity": 0,
+    "ionization_energy": [],
+    "electron_affinity": []
   },
   "Bh": {
     "name": "Bohrium",
@@ -8311,7 +8340,9 @@
     "number": 107,
     "abundance": 0,
     "van_der_waals": 1.78e-10,
-    "electronegativity": 0
+    "electronegativity": 0,
+    "ionization_energy": [],
+    "electron_affinity": []
   },
   "Hs": {
     "name": "Hassium",
@@ -8375,7 +8406,9 @@
     "number": 108,
     "abundance": 0,
     "van_der_waals": 1.77e-10,
-    "electronegativity": 0
+    "electronegativity": 0,
+    "ionization_energy": [],
+    "electron_affinity": []
   },
   "Mt": {
     "name": "Meitnerium",
@@ -8448,7 +8481,9 @@
     "number": 109,
     "abundance": 0,
     "van_der_waals": 1.6899999999999999e-10,
-    "electronegativity": 0
+    "electronegativity": 0,
+    "ionization_energy": [],
+    "electron_affinity": []
   },
   "Ds": {
     "name": "Darmstadtium",
@@ -8486,7 +8521,9 @@
     "number": 110,
     "abundance": 0,
     "van_der_waals": 1.68e-10,
-    "electronegativity": 0
+    "electronegativity": 0,
+    "ionization_energy": [],
+    "electron_affinity": []
   },
   "Rg": {
     "name": "Roentgenium",
@@ -8575,7 +8612,9 @@
     "number": 111,
     "abundance": 0,
     "van_der_waals": 1.77e-10,
-    "electronegativity": 0
+    "electronegativity": 0,
+    "ionization_energy": [],
+    "electron_affinity": []
   },
   "Cn": {
     "name": "Copernicium",
@@ -8626,7 +8665,9 @@
     "number": 112,
     "abundance": 0,
     "van_der_waals": 1.95e-10,
-    "electronegativity": 0
+    "electronegativity": 0,
+    "ionization_energy": [],
+    "electron_affinity": []
   },
   "Nh": {
     "name": "Nihonium",
@@ -8747,7 +8788,9 @@
     "number": 113,
     "abundance": 0,
     "van_der_waals": 2.58e-10,
-    "electronegativity": 0
+    "electronegativity": 0,
+    "ionization_energy": [],
+    "electron_affinity": []
   },
   "Fl": {
     "name": "Flerovium",
@@ -8850,7 +8893,9 @@
     "number": 114,
     "abundance": 0,
     "van_der_waals": 2.65e-10,
-    "electronegativity": 0
+    "electronegativity": 0,
+    "ionization_energy": [],
+    "electron_affinity": []
   },
   "Mc": {
     "name": "Moscovium",
@@ -8923,7 +8968,9 @@
     "number": 115,
     "abundance": 0,
     "van_der_waals": 2.37e-10,
-    "electronegativity": 0
+    "electronegativity": 0,
+    "ionization_energy": [],
+    "electron_affinity": []
   },
   "Lv": {
     "name": "Livermorium",
@@ -9003,7 +9050,9 @@
     "number": 116,
     "abundance": 0,
     "van_der_waals": 2.49e-10,
-    "electronegativity": 0
+    "electronegativity": 0,
+    "ionization_energy": [],
+    "electron_affinity": []
   },
   "Ts": {
     "name": "Tennessine",
@@ -9044,7 +9093,9 @@
     "number": 117,
     "abundance": 0,
     "van_der_waals": 2.35e-10,
-    "electronegativity": 0
+    "electronegativity": 0,
+    "ionization_energy": [],
+    "electron_affinity": []
   },
   "Og": {
     "name": "Oganesson",
@@ -9069,6 +9120,8 @@
     "number": 118,
     "abundance": 0,
     "van_der_waals": 2.35e-10,
-    "electronegativity": 0
+    "electronegativity": 0,
+    "ionization_energy": [],
+    "electron_affinity": []
   }
 }
