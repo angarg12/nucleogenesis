@@ -49,7 +49,7 @@ function sidebar(state, visibility, data, format, util) {
     }
 
     for (let element in elements) {
-      if (currentElement === element) {
+      if (currentElement === element && state.player.statistics.exotic_run[element][name]) {
         return true;
       }
     }
