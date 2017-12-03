@@ -56,7 +56,8 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
     </form>
     <p>You have produced</p>
     <p ng-repeat="key in ct.data.elements[slot.element].includes"
-       ng-if="ct.state.player.resources[key].unlocked">
+       ng-if="ct.state.player.resources[key].unlocked &&
+              ct.state.player.statistics.exotic_run[slot.element][key] !== undefined">
       <get-html value="key"></get-html>
       <pretty value="ct.state.player.statistics.exotic_run[slot.element][key] || 0"></pretty>
     </p>
