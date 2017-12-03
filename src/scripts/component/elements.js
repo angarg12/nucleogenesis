@@ -22,8 +22,8 @@ function elements($timeout, state, data) {
 
   ct.getChance = function(element) {
     let bonus = 0;
-    for(let isotope in data.elements[element].isotopes){
-      bonus += state.player.resources[isotope].number*data.constants.ELEMENT_CHANCE_BONUS;
+    for(let resource of data.elements[element].includes){
+      bonus += state.player.resources[resource].number*data.constants.ELEMENT_CHANCE_BONUS;
     }
     let singleChance = data.elements[element].abundance*(1+bonus);
     let chance = 1 - Math.pow(Math.max(0, 1-singleChance), Math.min(state.player.resources.dark_matter.number, ct.getbuyAmount(state.player)));
