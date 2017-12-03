@@ -17,7 +17,8 @@
         ng-click="ct.darkPrestige()">Prestige</button>
 <p>You produced</p>
 <p ng-repeat="element in ct.data.elements"
-   ng-if="ct.state.player.resources[element.exotic].unlocked">
+   ng-if="ct.state.player.resources[element.exotic].unlocked &&
+          ct.state.player.statistics.dark_run[element.exotic] !== undefined">
   <get-html value="element.exotic"></get-html>
   <pretty value="ct.state.player.statistics.dark_run[element.exotic] || 0"></pretty>
 </p>
