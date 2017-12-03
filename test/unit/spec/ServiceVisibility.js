@@ -33,6 +33,11 @@ describe('Visible service', function() {
         eV: {unlocked:true},
         '16O': {unlocked:true}
       };
+      spec.state.player.statistics = {
+        exotic_run: {H:
+          {'1H':0}
+        }
+      };
       spec.data.resources = {
         '1H': {elements: {H:1}},
         '2H': {elements: {H:1}},
