@@ -33,11 +33,11 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     element. Additionally, multi-element molecules count double, once for
     each participating element. */
     ct.exoticProduction = function(element) {
-      let production = {};
-      let exoticResource = data.elements[element].exotic;
-      production[exoticResource] = 0;
+      let breakdown = {};
       for (let resource of data.elements[element].includes) {
-        if (!state.player.resources[resource].unlocked) {
+        let production = {};
+        if (!state.player.resources[resource].unlocked ||
+            typeof state.player.statistics.exotic_run[element][resource] === 'undefined') {
           continue;
         }
         for (let elem in data.resources[resource].elements) {
@@ -58,14 +58,26 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
           let newExotic = data.elements[elem].exotic;
           production[newExotic] = (production[newExotic] || 0) + args.production;
         }
-      }
-      for (let key in production) {
-        // we adjust the infusion
-        production[key] = Math.floor(production[key]*ct.totalInfuseBoost());
+        for (let key in production) {
+          // we adjust the infusion
+          production[key] = Math.floor(production[key]*ct.totalInfuseBoost());
+        }
+        breakdown[resource] = production;
       }
 
-      return production;
+      return breakdown;
     };
+
+    ct.productionSum = function(element){
+      let production = ct.exoticProduction(element);
+      let sum = {};
+      for(let resource in production){
+        for(let elem in production[resource]){
+          sum[elem] = sum[elem]+production[resource][elem] || production[resource][elem];
+        }
+      }
+      return sum;
+    }
 
     function prestigeFormula(resource){
       resource = resource || 0;
@@ -75,7 +87,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
 
     ct.exoticPrestige = function(index) {
       let slot = state.player.element_slots[index];
-      let production = ct.exoticProduction(slot.element);
+      let production = ct.productionSum(slot.element);
 
       for (let key in production) {
         util.addResource(state.player, 'dark', key, production[key]);

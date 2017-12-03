@@ -30,7 +30,7 @@ describe('Exotic', function() {
         element: 'H'
       }];
 
-      let production = spec.exotic.exoticProduction('H');
+      let production = spec.exotic.productionSum('H');
 
       expect(production).toEqual({'xH': 75});
     });
@@ -50,7 +50,7 @@ describe('Exotic', function() {
         element: 'H'
       }];
 
-      let production = spec.exotic.exoticProduction('H');
+      let production = spec.exotic.productionSum('H');
 
       expect(production).toEqual({'xH': 0});
     });
@@ -78,7 +78,7 @@ describe('Exotic', function() {
         element: 'H'
       }];
 
-      let production = spec.exotic.exoticProduction('H');
+      let production = spec.exotic.productionSum('H');
 
       expect(production).toEqual({'xH': 100, 'xO': 75});
     });

@@ -44,7 +44,7 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
         Total boost:
         <pretty value="ct.totalInfuseBoost()*100"></pretty>%
         <p>Prestige now to obtain</p>
-        <p ng-repeat="(key,value) in ct.exoticProduction(slot.element)">
+        <p ng-repeat="(key,value) in ct.productionSum(slot.element)">
           <pretty value="value"></pretty>
           <get-html value="key"></get-html>
         </p>
@@ -55,11 +55,12 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
               ng-click="ct.exoticPrestige($index)">Prestige</button>
     </form>
     <p>You have produced</p>
-    <p ng-repeat="key in ct.data.elements[slot.element].includes"
+    <p ng-repeat="(key,value) in ct.exoticProduction(slot.element)"
        ng-if="ct.state.player.resources[key].unlocked &&
               ct.state.player.statistics.exotic_run[slot.element][key] !== undefined">
       <get-html value="key"></get-html>
       <pretty value="ct.state.player.statistics.exotic_run[slot.element][key] || 0"></pretty>
+      ( <span ng-repeat="(exotic,number) in value">+<pretty value="number"></pretty> {{exotic}} </span>)
     </p>
     <div class="row">
       <div ng-repeat="up in ct.visibleExoticUpgrades(slot)"
