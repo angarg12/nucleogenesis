@@ -59,7 +59,7 @@
     "mechanic": "fusion",
     "power": 1,
     "power_mult": 1,
-    "price_exp": 10,
+    "price_exp": 5,
     "repeatable": true
   },
   "fusion_bandwidth": {
