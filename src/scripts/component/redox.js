@@ -32,7 +32,7 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
           continue;
         }
         for (let redox of slot.redoxes) {
-          if (!redox.resource || !redox.active) {
+          if (!redox.resource || !redox.active || redox.from === redox.to) {
             continue;
           }
 

@@ -317,6 +317,32 @@ describe('Redox', function () {
       expect(spec.state.player.resources['e-'].number).toEqual(0);
       expect(spec.state.player.resources.p.number).toEqual(0);
     });
+
+    it('should not react if from and to are the same', function () {
+      spec.state.player.element_slots = [{
+        element: 'H',
+        reactions: [],
+        redoxes: [{
+          resource: '1H',
+          active: true,
+          element: 'H',
+          from: 0,
+          to: 0
+        }]
+      }];
+      spec.state.player.resources = {
+        '1H': {number: 100},
+        'e-': {number: 0},
+        p: {number: 0},
+        eV: {number: 200}
+      };
+      
+      spyOn(spec.redox, 'redoxPower');
+
+      spec.state.update(spec.state.player);
+
+      expect(spec.redox.redoxPower).not.toHaveBeenCalled();
+    });
   });
 
   describe('visibility functions', function() {
