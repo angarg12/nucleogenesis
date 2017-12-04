@@ -41,7 +41,7 @@ angular
         if (number === 0) {
           return '0';
         }
-        return numberformat.format(number, state.player.numberformat);
+        return numberformat.format(number, state.player.options.numberformat);
       };
 
       sv.addResource = function(player, scope, key, quantity){
