@@ -60,7 +60,8 @@
     "power": 1,
     "power_mult": 1,
     "price_exp": 5,
-    "repeatable": true
+    "repeatable": true,
+    "adjustable": true
   },
   "fusion_bandwidth": {
     "price": {

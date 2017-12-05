@@ -32,7 +32,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
 
     ct.update = function(player) {
       refresh(player);
-    }
+    };
 
     /* Refreshes the values in the cache */
     function refresh(player){

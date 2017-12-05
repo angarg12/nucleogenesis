@@ -39,6 +39,7 @@ startPlayer.version = npm.version;
 startPlayer.options = {};
 startPlayer.options.numberformat = {format: 'standard', flavor: 'short'};
 startPlayer.options.buyIndex = 0;
+startPlayer.options.adjustIndex = 0;
 startPlayer.options.elementBuyIndex = 0;
 startPlayer.options.hideBought = false;
 startPlayer.options.sortIndex = 0;
@@ -56,8 +57,12 @@ for (let element in elements) {
 }
 
 startPlayer.global_upgrades = {};
+startPlayer.global_upgrades_current = {};
 for (let upgrade in globalUpgrades) {
   startPlayer.global_upgrades[upgrade] = 1;
+  if(globalUpgrades[upgrade].adjustable){
+    startPlayer.global_upgrades_current[upgrade] = 1;
+  }
 }
 
 startPlayer.exotic_upgrades = {H:{}};

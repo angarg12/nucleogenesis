@@ -19,9 +19,10 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
     ct.data = data;
     ct.util = util;
     ct.format = format;
+    let adjustAmount = [1, 10, 25, 100];
 
     ct.getReactorArea = function(player) {
-      let level = player.global_upgrades.fusion_area;
+      let level = player.global_upgrades_current.fusion_area;
       let upgrade = data.global_upgrades.fusion_area;
       let basePower = upgrade.power;
       let multiplier = upgrade.power_mult;
@@ -229,6 +230,20 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
         }
       }
     }
+
+    ct.adjustLevel = function(player, upgrade, amount){
+      player.global_upgrades_current[upgrade] += amount;
+      // We cap it between 1 and the current max level
+      player.global_upgrades_current[upgrade] = Math.max(1, Math.min(player.global_upgrades_current[upgrade], player.global_upgrades[upgrade]));
+    };
+
+    ct.nextAdjustAmount = function () {
+      state.player.options.adjustIndex = (state.player.options.adjustIndex + 1) % adjustAmount.length;
+    };
+
+    ct.getAdjustAmount = function () {
+      return adjustAmount[state.player.options.adjustIndex];
+    };
 
     state.registerUpdate('fusion', update);
   }

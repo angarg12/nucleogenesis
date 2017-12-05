@@ -1,5 +1,23 @@
 <!DOCTYPE html>
-<p> Area: {{ct.getReactorArea(ct.state.player)}} m<sup>2</sup></p>
+<p> Area: {{ct.getReactorArea(ct.state.player)}} m<sup>2</sup> level {{ct.player.global_upgrades_current.fusion_area}}</p>
+Adjust amount:
+<button type="button"
+        class="btn btn-default"
+        ng-click="ct.nextAdjustAmount()">
+  {{ct.getAdjustAmount(ct.state.player)}}
+</button>
+<br>
+Adjust level:
+<button type="button"
+        class="btn btn-default"
+        ng-click="ct.adjustLevel(ct.state.player, 'fusion_area', ct.getAdjustAmount(ct.state.player))">
++{{ct.getAdjustAmount(ct.state.player)}}
+</button>
+<button type="button"
+        class="btn btn-default"
+        ng-click="ct.adjustLevel(ct.state.player, 'fusion_area', -ct.getAdjustAmount(ct.state.player))">
+-{{ct.getAdjustAmount(ct.state.player)}}
+</button>
 <p> eV bandwidth:
   <pretty value="ct.getBandwidth(ct.state.player)"></pretty>
 </p>
