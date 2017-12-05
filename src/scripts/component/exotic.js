@@ -52,6 +52,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
       let breakdown = {};
       for (let resource of data.elements[element].includes) {
         if (!state.player.resources[resource].unlocked ||
+            !state.player.statistics.exotic_run[element] ||
             typeof state.player.statistics.exotic_run[element][resource] === 'undefined') {
           continue;
         }
