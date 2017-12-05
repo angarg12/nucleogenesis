@@ -20,5 +20,16 @@
       "})()"
     ],
     "tags": ["once"]
+  },
+  "extra_element_slot_3": {
+    "price": 1000,
+    "name": "Extra element slot III",
+    "description": "Unlocks another slot to produce matter",
+    "deps": [],
+    "function": ["(() => {",
+      "args.player.element_slots.push(null);",
+      "})()"
+    ],
+    "tags": ["once"]
   }
 }
