@@ -16,8 +16,8 @@ angular.module('game').component('fusionSelect', {
   }
 });
 
-angular.module('game').controller('ct_fusion_select', ['state', 'data',
-  function (state, data) {
+angular.module('game').controller('ct_fusion_select', ['state', 'data','$scope',
+  function (state, data, $scope) {
     let ct = this;
     ct.state = state;
     ct.data = data;
@@ -45,5 +45,10 @@ angular.module('game').controller('ct_fusion_select', ['state', 'data',
       let capacity = ct.getCapacity({resource: fragment.name, player:player});
       fragment.number = Math.max(0, Math.min(resourceNumber, fragment.number, capacity));
     };
+
+    // we watch for changes in the area to adjust the numbers if it goes down
+    $scope.$watch('ct.state.player.global_upgrades_current.fusion_area', function(){
+      ct.fixNumber(state.player);
+    });
   }
 ]);
