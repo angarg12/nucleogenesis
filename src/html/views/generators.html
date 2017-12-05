@@ -36,8 +36,8 @@
           Buy
           <button type="button"
                   class="btn btn-default"
-                  ng-click="ct.nextBuyAmount()">
-        <get-html value="ct.getbuyAmount().toString()"></get-html>
+                  ng-click="ct.util.nextAmount(ct.state.player, 'buyIndex', ct.buyAmount)">
+        <get-html value="ct.buyAmount[ct.state.player.options.buyIndex].toString()"></get-html>
       </button>
         </td>
       </tr>
@@ -56,7 +56,7 @@
           <pretty value="ct.tierProduction(ct.state.player, gen, slot)"></pretty>
         </td>
         <td class="animif col-xs-3">
-          <pretty value="ct.generatorTotalPrice(ct.state.player, gen, slot, ct.getbuyAmount())"></pretty>
+          <pretty value="ct.generatorTotalPrice(ct.state.player, gen, slot, ct.buyAmount[ct.state.player.options.buyIndex])"></pretty>
           &nbsp;
           <get-html value="ct.data.elements[slot.element].main"></get-html>
         </td>
@@ -64,17 +64,17 @@
           <div class="pull-left">
             <!-- FIXME splitting the buttons in two seems like the easiest solution
          but I'm open to suggestions -->
-            <button ng-if="ct.getbuyAmount() !== 'max'"
+            <button ng-if="ct.buyAmount[ct.state.player.options.buyIndex] !== 'max'"
                     type="button"
                     class="btn btn-default"
-                    ng-click="ct.buyGenerators(ct.state.player, gen, slot, ct.getbuyAmount())"
-                    ng-class="{disabled: !ct.canBuy(ct.state.player, slot, ct.generatorTotalPrice(ct.state.player, gen, slot, ct.getbuyAmount()))}">
-          <get-html value="ct.getbuyAmount().toString()"></get-html>
+                    ng-click="ct.buyGenerators(ct.state.player, gen, slot, ct.buyAmount[ct.state.player.options.buyIndex])"
+                    ng-class="{disabled: !ct.canBuy(ct.state.player, slot, ct.generatorTotalPrice(ct.state.player, gen, slot, ct.buyAmount[ct.state.player.options.buyIndex]))}">
+          <get-html value="ct.buyAmount[ct.state.player.options.buyIndex].toString()"></get-html>
         </button>
-            <button ng-if="ct.getbuyAmount() === 'max'"
+            <button ng-if="ct.buyAmount[ct.state.player.options.buyIndex] === 'max'"
                     type="button"
                     class="btn btn-default"
-                    ng-click="ct.buyGenerators(ct.state.player, gen, slot, ct.getbuyAmount())">
+                    ng-click="ct.buyGenerators(ct.state.player, gen, slot, ct.buyAmount[ct.state.player.options.buyIndex])">
           <get-html value="ct.maxCanBuy(ct.state.player, gen, slot).toString()"></get-html>
         </button>
           </div>

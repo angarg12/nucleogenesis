@@ -9,16 +9,17 @@
 
 angular.module('game').component('elements', {
   templateUrl: 'views/elements.html',
-  controller: ['$timeout', 'state', 'data', elements],
+  controller: ['$timeout', 'state', 'data', 'util', elements],
   controllerAs: 'ct'
 });
 
-function elements($timeout, state, data) {
+function elements($timeout, state, data, util) {
   let ct = this;
   ct.state = state;
   ct.data = data;
+  ct.util = util;
   ct.outcome = {};
-  let buyAmount = [1, 10, 25, 100, 1000];
+  ct.buyAmount = [1, 10, 25, 100, 1000];
 
   ct.getChance = function(element) {
     let bonus = 0;
@@ -26,7 +27,7 @@ function elements($timeout, state, data) {
       bonus += state.player.resources[resource].number*data.constants.ELEMENT_CHANCE_BONUS;
     }
     let singleChance = data.elements[element].abundance*(1+bonus);
-    let chance = 1 - Math.pow(Math.max(0, 1-singleChance), Math.min(state.player.resources.dark_matter.number, ct.getbuyAmount(state.player)));
+    let chance = 1 - Math.pow(Math.max(0, 1-singleChance), Math.min(state.player.resources.dark_matter.number, ct.buyAmount[state.player.options.elementBuyIndex]));
 
     return Math.min(1, chance);
   };
@@ -46,7 +47,7 @@ function elements($timeout, state, data) {
     }else{
       ct.outcome[element] = 'Fail';
     }
-    state.player.resources.dark_matter.number -= Math.min(state.player.resources.dark_matter.number, ct.getbuyAmount(state.player));
+    state.player.resources.dark_matter.number -= Math.min(state.player.resources.dark_matter.number, ct.buyAmount[state.player.options.elementBuyIndex]);
 
     $timeout(function(){ct.clearMessage(element);}, 1000);
   };
@@ -80,14 +81,5 @@ function elements($timeout, state, data) {
   colour of an element card */
   ct.elementSecondaryClass = function (element) {
     return ct.elementClass(element) + '_dark';
-  };
-
-  ct.nextBuyAmount = function () {
-    state.player.options.elementBuyIndex = (state.player.options.elementBuyIndex + 1) % buyAmount.length;
-  };
-
-  ct.getbuyAmount = function (player) {
-    let result = buyAmount[state.player.options.elementBuyIndex];
-    return result;
   };
 }

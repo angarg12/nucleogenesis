@@ -83,5 +83,9 @@ angular
       sv.trustHTML = function(html) {
         return $sce.trustAsHtml(html);
       };
+
+      sv.nextAmount = function (player, index, array) {
+        player.options[index] = (player.options[index] + 1) % array.length;
+      };
     }
   ]);

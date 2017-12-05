@@ -5,8 +5,8 @@ on purchase.</p>
   Buy amount:
           <button type="button"
                   class="btn btn-default"
-                  ng-click="ct.nextBuyAmount()">
-            {{ct.getbuyAmount(ct.state.player)}}
+                  ng-click="ct.util.nextAmount(ct.state.player, 'elementBuyIndex', ct.buyAmount)">
+            {{ct.buyAmount[ct.state.player.options.elementBuyIndex]}}
           </button>
           <get-html value="'dark_matter'"></get-html>
 <div class="row">

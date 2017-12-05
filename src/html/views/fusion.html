@@ -3,20 +3,20 @@
 Adjust amount:
 <button type="button"
         class="btn btn-default"
-        ng-click="ct.nextAdjustAmount()">
-  {{ct.getAdjustAmount(ct.state.player)}}
+        ng-click="ct.util.nextAmount(ct.state.player, 'adjustIndex', ct.adjustAmount)">
+  {{ct.adjustAmount[ct.state.player.options.adjustIndex]}}
 </button>
 <br>
 Adjust level:
 <button type="button"
         class="btn btn-default"
-        ng-click="ct.adjustLevel(ct.state.player, 'fusion_area', ct.getAdjustAmount(ct.state.player))">
-+{{ct.getAdjustAmount(ct.state.player)}}
+        ng-click="ct.adjustLevel(ct.state.player, 'fusion_area', ct.adjustAmount[ct.state.player.options.adjustIndex])">
++{{ct.adjustAmount[ct.state.player.options.adjustIndex]}}
 </button>
 <button type="button"
         class="btn btn-default"
-        ng-click="ct.adjustLevel(ct.state.player, 'fusion_area', -ct.getAdjustAmount(ct.state.player))">
--{{ct.getAdjustAmount(ct.state.player)}}
+        ng-click="ct.adjustLevel(ct.state.player, 'fusion_area', -ct.adjustAmount[ct.state.player.options.adjustIndex])">
+-{{ct.adjustAmount[ct.state.player.options.adjustIndex]}}
 </button>
 <p> eV bandwidth:
   <pretty value="ct.getBandwidth(ct.state.player)"></pretty>

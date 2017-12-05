@@ -21,22 +21,6 @@ describe('Generators component', function() {
   });
 
   describe('purchase', function() {
-    it('should return the purchase amount', function() {
-      spec.state.player.options.buyIndex = 0;
-
-      let value = spec.generators.getbuyAmount();
-
-      expect(value).toEqual(1);
-    });
-
-    it('should cycle through purchase amounts', function() {
-      spec.state.player.options.buyIndex = 0;
-
-      spec.generators.nextBuyAmount();
-
-      expect(spec.state.player.options.buyIndex).toEqual(1);
-    });
-
     it('should return the price of a generator', function() {
       spec.state.player.element_slots[0].generators = {'1': 5};
 

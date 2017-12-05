@@ -17,7 +17,8 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
     let ct = this;
     ct.state = state;
     ct.data = data;
-    let buyAmount = [1, 10, 25, 100, 'max'];
+    ct.util = util;
+    ct.buyAmount = [1, 10, 25, 100, 'max'];
 
     /* Proceses the decay of radiactive isotopes. It uses a random draw based on the
     half life to decide how many atoms decay, and then spreads them over different
@@ -208,14 +209,6 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
 
       return true;
     }
-
-    ct.nextBuyAmount = function () {
-      state.player.options.buyIndex = (state.player.options.buyIndex + 1) % buyAmount.length;
-    };
-
-    ct.getbuyAmount = function () {
-      return buyAmount[state.player.options.buyIndex];
-    };
 
     state.registerUpdate('generators', update);
   }
