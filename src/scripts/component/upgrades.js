@@ -19,7 +19,7 @@ function upgrades(state, visibility, upgrade, data) {
   let sortFunc = [
     (a,b) => data.upgrades[a].name < data.upgrades[b].name ? -1 : 1,
     (a,b) => data.upgrades[a].price - data.upgrades[b].price
-  ]
+  ];
 
   // tries to buy all the upgrades it can, starting from the cheapest
   ct.buyAll = function (slot) {
