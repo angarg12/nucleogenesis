@@ -34,7 +34,7 @@
       5.9498
     ],
     "number": 1,
-    "abundance": 0.09,
+    "abundance": 0.08999397833,
     "van_der_waals": 1.2e-10,
     "electronegativity": 2.2
   },
@@ -6307,7 +6307,7 @@
       -1.8998
     ],
     "number": 84,
-    "abundance": 0,
+    "abundance": 1e-15,
     "van_der_waals": 1.97e-10,
     "electronegativity": 2
   },
@@ -6370,7 +6370,7 @@
       -2.7994
     ],
     "number": 85,
-    "abundance": 0,
+    "abundance": 1.0593e-24,
     "van_der_waals": 2.02e-10,
     "electronegativity": 2.2
   },
@@ -6437,7 +6437,7 @@
       10.7485
     ],
     "number": 86,
-    "abundance": 0,
+    "abundance": 1e-21,
     "van_der_waals": 2.2e-10,
     "electronegativity": 2.2,
     "electron_affinity": []
@@ -6492,7 +6492,7 @@
       4.0727
     ],
     "number": 87,
-    "abundance": 0,
+    "abundance": 5e-22,
     "van_der_waals": 3.48e-10,
     "electronegativity": 0.7,
     "electron_affinity": []
@@ -6571,7 +6571,7 @@
       10.14716
     ],
     "number": 88,
-    "abundance": 0,
+    "abundance": 1e-12,
     "van_der_waals": 2.83e-10,
     "electronegativity": 0.9,
     "electron_affinity": []
@@ -6630,7 +6630,7 @@
       12.1
     ],
     "number": 89,
-    "abundance": 0,
+    "abundance": 5e-14,
     "van_der_waals": 1.95e-10,
     "electronegativity": 1.1,
     "electron_affinity": []
@@ -6840,7 +6840,7 @@
       5.89
     ],
     "number": 91,
-    "abundance": 0,
+    "abundance": 6e-6,
     "van_der_waals": 1.8e-10,
     "electronegativity": 1.5,
     "electron_affinity": []
@@ -7006,7 +7006,7 @@
       6.2657
     ],
     "number": 93,
-    "abundance": 0,
+    "abundance": 5e-14,
     "van_der_waals": 1.75e-10,
     "electronegativity": 1.36,
     "electron_affinity": []
@@ -7106,7 +7106,7 @@
       6.0262
     ],
     "number": 94,
-    "abundance": 0,
+    "abundance": 5.8548e-17,
     "van_der_waals": 1.75e-10,
     "electronegativity": 1.28,
     "electron_affinity": []
