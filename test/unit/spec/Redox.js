@@ -56,6 +56,7 @@ describe('Redox', function () {
       'e-': {elements:{}},
       'eV': {elements:{}}
     };
+    spec.state.registerUpdate('redox', spec.redox.update);
   });
 
   describe('redox', function () {
@@ -336,7 +337,7 @@ describe('Redox', function () {
         p: {number: 0},
         eV: {number: 200}
       };
-      
+
       spyOn(spec.redox, 'redoxPower');
 
       spec.state.update(spec.state.player);

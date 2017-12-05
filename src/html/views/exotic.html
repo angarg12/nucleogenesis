@@ -55,9 +55,7 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
               ng-click="ct.exoticPrestige($index)">Prestige</button>
     </form>
     <p>You have produced</p>
-    <p ng-repeat="(key,value) in ct.exoticProduction(slot.element)"
-       ng-if="ct.state.player.resources[key].unlocked &&
-              ct.state.player.statistics.exotic_run[slot.element][key] !== undefined">
+    <p ng-repeat="(key,value) in ct.cache.breakdown[slot.element]">
       <get-html value="key"></get-html>
       <pretty value="ct.state.player.statistics.exotic_run[slot.element][key] || 0"></pretty>
       ( <span ng-repeat="(exotic,number) in value">+<pretty value="number"></pretty> {{exotic}} </span>)

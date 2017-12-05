@@ -21,10 +21,10 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
     ct.format = format;
     ct.reaction = reaction;
 
-    function update(player) {
+    ct.update = function(player) {
       processRedox(player);
       processElectronegativity(player);
-    }
+    };
 
     function processRedox(player){
       for(let slot of player.element_slots){
@@ -238,6 +238,6 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       return slot.redoxes;
     };
 
-    state.registerUpdate('redox', update);
+    state.registerUpdate('redox', ct.update);
   }
 ]);

@@ -27,7 +27,23 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     let sortFunc = [
       (a,b) => data.exotic_upgrades[a].name < data.exotic_upgrades[b].name ? -1 : 1,
       (a,b) => data.exotic_upgrades[a].price - data.exotic_upgrades[b].price
-    ]
+    ];
+    ct.cache = {breakdown:{}};
+
+    ct.update = function(player) {
+      refresh(player);
+    }
+
+    /* Refreshes the values in the cache */
+    function refresh(player){
+        ct.cache.breakdown = {};
+        for(let slot of player.element_slots || []){
+          if(!slot){
+            continue;
+          }
+          ct.cache.breakdown[slot.element] = ct.exoticProduction(slot.element);
+        }
+    }
 
     /* Exotic production is a function of the different resources of each
     element. Additionally, multi-element molecules count double, once for
@@ -35,11 +51,11 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     ct.exoticProduction = function(element) {
       let breakdown = {};
       for (let resource of data.elements[element].includes) {
-        let production = {};
         if (!state.player.resources[resource].unlocked ||
             typeof state.player.statistics.exotic_run[element][resource] === 'undefined') {
           continue;
         }
+        let production = {};
         for (let elem in data.resources[resource].elements) {
           if(!state.player.statistics.exotic_run[elem]){
              continue;
@@ -69,15 +85,16 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     };
 
     ct.productionSum = function(element){
-      let production = ct.exoticProduction(element);
+      let production = ct.cache.breakdown[element] || {};
       let sum = {};
+	    sum[data.elements[element].exotic] = 0;
       for(let resource in production){
         for(let elem in production[resource]){
           sum[elem] = sum[elem]+production[resource][elem] || production[resource][elem];
         }
       }
       return sum;
-    }
+    };
 
     function prestigeFormula(resource){
       resource = resource || 0;
@@ -188,5 +205,8 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
 
       return false;
     }
+
+    state.registerUpdate('exotic', ct.update);
+	  refresh(state.player);
   }
 ]);

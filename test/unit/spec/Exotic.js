@@ -12,6 +12,7 @@ describe('Exotic', function() {
     spec.data.constants = {
       'INFUSE_POWER': 0.01
     };
+    spec.state.registerUpdate('exotic', spec.exotic.upgrade);
   });
 
   describe('prestige', function() {
@@ -30,6 +31,7 @@ describe('Exotic', function() {
         element: 'H'
       }];
 
+      spec.exotic.update(spec.state.player);
       let production = spec.exotic.productionSum('H');
 
       expect(production).toEqual({'xH': 75});
@@ -50,6 +52,7 @@ describe('Exotic', function() {
         element: 'H'
       }];
 
+      spec.exotic.update(spec.state.player);
       let production = spec.exotic.productionSum('H');
 
       expect(production).toEqual({'xH': 0});
@@ -78,6 +81,7 @@ describe('Exotic', function() {
         element: 'H'
       }];
 
+      spec.exotic.update(spec.state.player);
       let production = spec.exotic.productionSum('H');
 
       expect(production).toEqual({'xH': 100, 'xO': 75});
@@ -129,6 +133,7 @@ describe('Exotic', function() {
         redoxes: []
       }];
 
+      spec.exotic.update(spec.state.player);
       spec.exotic.exoticPrestige(0);
 
       expect(spec.state.player.element_slots[0]).toBeNull();
@@ -216,6 +221,7 @@ describe('Exotic', function() {
         redoxes: []
       }];
 
+      spec.exotic.update(spec.state.player);
       spec.exotic.exoticPrestige(0);
 
       expect(spec.state.player.resources.xH.number).toEqual(128);

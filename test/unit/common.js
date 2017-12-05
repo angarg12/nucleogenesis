@@ -78,5 +78,8 @@ let commonSpec = function(spec) {
     _$componentController_('pretty', null, null);
 
     spec.controller = _$controller_('main-loop', {$scope:_$rootScope_.$new(), visibility:spec.visibility, state:spec.state});
+
+    spec.state.registerUpdate('redox', function(){});
+    spec.state.registerUpdate('exotic', function(){});
   }));
 };
