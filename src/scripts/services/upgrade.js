@@ -59,16 +59,7 @@ angular
 
       sv.sortFunctions = function(data){
         return [
-          function(a,b){
-            if(data[a].name === data[b].name){
-              return data[a].price - data[b].price;
-            }
-            if(data[a].name < data[b].name){
-              return -1;
-            }else{
-              return 1;
-            }
-          },
+          (a,b) => data[a].name === data[b].name ? data[a].price - data[b].price : data[a].name < data[b].name ? -1 : 1,
           (a,b) => data[a].price - data[b].price
         ];
       };
