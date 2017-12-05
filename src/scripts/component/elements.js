@@ -18,7 +18,7 @@ function elements($timeout, state, data) {
   ct.state = state;
   ct.data = data;
   ct.outcome = {};
-  let buyAmount = [1, 10, 25, 100, 'max'];
+  let buyAmount = [1, 10, 25, 100, 1000];
 
   ct.getChance = function(element) {
     let bonus = 0;
@@ -88,9 +88,6 @@ function elements($timeout, state, data) {
 
   ct.getbuyAmount = function (player) {
     let result = buyAmount[state.player.options.elementBuyIndex];
-    if(result === 'max'){
-      result = player.resources.dark_matter.number;
-    }
     return result;
   };
 }
