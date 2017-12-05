@@ -17,7 +17,16 @@ function upgrades(state, visibility, upgrade, data) {
   ct.state = state;
   ct.data = data;
   let sortFunc = [
-    (a,b) => data.upgrades[a].name < data.upgrades[b].name ? -1 : 1,
+    function(a,b){
+      if(data.upgrades[a].name === data.upgrades[b].name){
+        return data.upgrades[a].price - data.upgrades[b].price;
+      }
+      if(data.upgrades[a].name < data.upgrades[b].name){
+        return -1;
+      }else{
+        return 1;
+      }
+    },
     (a,b) => data.upgrades[a].price - data.upgrades[b].price
   ];
 

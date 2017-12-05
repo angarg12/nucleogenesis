@@ -25,7 +25,16 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     ct.format = format;
     ct.infuse = {};
     let sortFunc = [
-      (a,b) => data.exotic_upgrades[a].name < data.exotic_upgrades[b].name ? -1 : 1,
+      function(a,b){
+        if(data.exotic_upgrades[a].name === data.exotic_upgrades[b].name){
+          return data.exotic_upgrades[a].price - data.exotic_upgrades[b].price;
+        }
+        if(data.exotic_upgrades[a].name < data.exotic_upgrades[b].name){
+          return -1;
+        }else{
+          return 1;
+        }
+      },
       (a,b) => data.exotic_upgrades[a].price - data.exotic_upgrades[b].price
     ];
     ct.cache = {breakdown:{}};
