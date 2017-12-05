@@ -47,7 +47,7 @@ angular.module('game').controller('ct_fusion_select', ['state', 'data','$scope',
     };
 
     // we watch for changes in the area to adjust the numbers if it goes down
-    $scope.$watch('ct.state.player.global_upgrades_current.fusion_area', function(){
+    ct.listener = $scope.$watch('ct.state.player.global_upgrades_current.fusion_area', function(){
       ct.fixNumber(state.player);
     });
   }

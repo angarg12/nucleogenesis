@@ -72,7 +72,8 @@ let commonSpec = function(spec) {
     spec.mechanics = _$componentController_('mechanics', null, null);
     spec.dashboardList = _$componentController_('dashboardList', null, null);
     spec.fusionSelect = _$componentController_('fusionSelect', null, null);
-
+    spec.fusionSelect.listener();
+    
     // asinine sanity check for components
     _$componentController_('getHtml', null, null);
     _$componentController_('pretty', null, null);
