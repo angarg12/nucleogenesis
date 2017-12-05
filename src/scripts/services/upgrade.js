@@ -56,5 +56,21 @@ angular
           sv.executeOnce(upgrade, tags, args);
         }
       };
+
+      sv.sortFunctions = function(data){
+        return [
+          function(a,b){
+            if(data[a].name === data[b].name){
+              return data[a].price - data[b].price;
+            }
+            if(data[a].name < data[b].name){
+              return -1;
+            }else{
+              return 1;
+            }
+          },
+          (a,b) => data[a].price - data[b].price
+        ];
+      };
     }
   ]);

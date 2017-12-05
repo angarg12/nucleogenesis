@@ -24,19 +24,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     ct.util = util;
     ct.format = format;
     ct.infuse = {};
-    let sortFunc = [
-      function(a,b){
-        if(data.exotic_upgrades[a].name === data.exotic_upgrades[b].name){
-          return data.exotic_upgrades[a].price - data.exotic_upgrades[b].price;
-        }
-        if(data.exotic_upgrades[a].name < data.exotic_upgrades[b].name){
-          return -1;
-        }else{
-          return 1;
-        }
-      },
-      (a,b) => data.exotic_upgrades[a].price - data.exotic_upgrades[b].price
-    ];
+    let sortFunc = upgrade.sortFunctions(data.exotic_upgrades);
     ct.cache = {breakdown:{}};
 
     ct.update = function(player) {
