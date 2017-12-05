@@ -1,5 +1,5 @@
 /* eslint no-var: 0 */
-/* globals describe,commonSpec,it,expect,beforeEach */
+/* globals describe,commonSpec,it,expect,beforeEach,spyOn */
 /* jshint varstmt: false */
 'use strict';
 
@@ -371,6 +371,144 @@ describe('Redox', function () {
       let values = spec.redox.visibleRedox(spec.state.player.element_slots[0]);
 
       expect(values).toEqual(redoxes);
+    });
+  });
+
+  describe('electronegativity', function() {
+    it('should process electronegativity', function() {
+      spec.data.elements = {
+        O: {
+          main: '16O',
+          electronegativity: 3.44,
+          ionization_energy: [
+            13.61806,
+            35.1173,
+            54.9355,
+            77.41353,
+            113.899
+          ],
+          electron_affinity: [
+            -1.4614,
+            8.8899
+          ],
+          anions: [
+            'O-',
+            'O2-'
+          ],
+          cations: [
+            'O+',
+            'O2+',
+            'O3+',
+            'O4+',
+            'O5+'
+          ],
+          negative_factor: 549.5408738576248,
+          positive_factor: 3.4673685045253166,
+        }
+      };
+      spec.state.player.resources = {
+        '16O': {number: 1e25},
+        'O-': {number: 0},
+        'O2-': {number: 0},
+        'O+': {number: 0},
+        'O2+': {number: 0},
+        'O3+': {number: 0},
+        'O4+': {number: 0},
+        'O5+': {number: 0},
+        'e-': {number: 1e6},
+        eV: {number: 0}
+      };
+      spec.data.resources = {
+        '16O': {elements:{O:1},charge:0},
+        'O-': {elements:{O:1},charge:-1},
+        'O2-': {elements:{O:1},charge:-2},
+        'O+': {elements:{O:1},charge:1},
+        'O2+': {elements:{O:1},charge:2},
+        'O3+': {elements:{O:1},charge:3},
+        'O4+': {elements:{O:1},charge:4},
+        'O5+': {elements:{O:1},charge:5},
+        'e-': {elements:{}},
+        eV: {elements:{}}
+      };
+      spec.data.redox = {
+        'O': {
+          '0': 0,
+          '1': 13.61806,
+          '2': 48.73536,
+          '3': 103.67086,
+          '4': 181.08439,
+          '5': 294.98339,
+          '-1': -1.4614,
+          '-2': 7.4285
+        }
+      };
+      spec.data.constants.ELECTRONEGATIVITY_CHANCE = 0.00001;
+
+      spec.redox.update(spec.state.player);
+
+      expect(spec.state.player.resources['16O'].number.toPrecision(5)).toEqual('9.9999e+24');
+      expect(spec.state.player.resources['O-'].number.toPrecision(5)).toEqual('2.5136e+19');
+      expect(spec.state.player.resources['O2-'].number.toPrecision(5)).toEqual('6.1324e+16');
+      expect(spec.state.player.resources['O+'].number.toPrecision(5)).toEqual('2.5259e+19');
+      expect(spec.state.player.resources['O2+'].number.toPrecision(5)).toEqual('9.7950e+13');
+      expect(spec.state.player.resources['O3+'].number.toPrecision(5)).toEqual('6.2614e+8');
+      expect(spec.state.player.resources['O4+'].number).toEqual(4443);
+      expect(spec.state.player.resources['O5+'].number).toEqual(0);
+      expect(spec.state.player.resources['e-'].number).toEqual(0);
+      expect(spec.state.player.resources.eV.number.toPrecision(5)).toEqual('3.6734e+19');
+    });
+
+    it('should make an exception for e- and p', function() {
+      spec.data.elements = {
+        H: {
+          main: '1H',
+          electronegativity: 2.2,
+          ionization_energy: [
+            13.5984
+          ],
+          electron_affinity: [
+            -0.7545
+          ],
+          anions: [
+            'H-'
+          ],
+          cations: [
+            'p'
+          ],
+          negative_factor: 100,
+          positive_factor: 1e5,
+        }
+      };
+      spec.state.player.resources = {
+        '1H': {number: 0},
+        'p': {number: 1e25},
+        'H-': {number: 0},
+        'e-': {number: 1e25},
+        eV: {number: 0}
+      };
+      spec.data.resources = {
+        '1H': {elements:{O:1},charge:0},
+        'H-': {elements:{O:1},charge:-1},
+        'p': {elements:{O:1},charge:1},
+        'e-': {elements:{}},
+        eV: {elements:{}}
+      };
+      spec.data.redox = {
+        'H': {
+          '0': 0,
+          '1': 13.5984,
+          '-1': -0.7545,
+        }
+      };
+      spec.data.constants.ELECTRONEGATIVITY_CHANCE = 0.00001;
+
+      spec.redox.update(spec.state.player);
+
+      expect(spec.state.player.resources['1H'].number.toPrecision(5)).toEqual('2.5249e+22');
+      expect(spec.state.player.resources['H-'].number.toPrecision(5)).toEqual('1.7760e+19');
+      expect(spec.state.player.resources.p.number.toPrecision(5)).toEqual('9.9747e+24');
+      expect(spec.state.player.resources['e-'].number.toPrecision(5)).toEqual('9.9747e+24');
+      expect(spec.state.player.resources.eV.number.toPrecision(5)).toEqual('3.6884e+23');
     });
   });
 });
