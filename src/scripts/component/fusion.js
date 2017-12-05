@@ -25,8 +25,8 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
       let level = player.global_upgrades_current.fusion_area;
       let upgrade = data.global_upgrades.fusion_area;
       let basePower = upgrade.power;
-      let multiplier = upgrade.power_mult;
-      return basePower * Math.floor(multiplier * level);
+      let exp = upgrade.power_exp;
+      return basePower * Math.pow(exp, level);
     };
 
     ct.getBandwidth = function(player){

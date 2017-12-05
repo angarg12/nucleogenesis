@@ -58,8 +58,8 @@
     "description": "Area of the fusion reactor",
     "mechanic": "fusion",
     "power": 1,
-    "power_mult": 1,
-    "price_exp": 5,
+    "power_exp": 1.25,
+    "price_exp": 10,
     "repeatable": true,
     "adjustable": true
   },
