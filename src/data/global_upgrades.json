@@ -8,7 +8,9 @@
     "tiers": [],
     "deps": [],
     "exotic_deps": [],
-    "mechanic": "redoxes",
+    "tags": [
+      "redoxes"
+    ],
     "power": 1,
     "power_mult": 1,
     "price_exp": 2,
@@ -20,7 +22,9 @@
     },
     "name": "Redox bandwidth",
     "description": "Bandwidth available for redoxes",
-    "mechanic": "redoxes",
+    "tags": [
+      "redoxes"
+    ],
     "power": 100,
     "power_poly": 2,
     "price_exp": 1.15,
@@ -32,7 +36,9 @@
     },
     "name": "Reaction slots",
     "description": "Number of slots available for reactions",
-    "mechanic": "reactions",
+    "tags": [
+      "reactions"
+    ],
     "power": 1,
     "power_mult": 1,
     "price_exp": 2,
@@ -44,7 +50,9 @@
     },
     "name": "Reaction bandwidth",
     "description": "Bandwidth available for reactions",
-    "mechanic": "reactions",
+    "tags": [
+      "reactions"
+    ],
     "power": 100,
     "power_poly": 2,
     "price_exp": 1.15,
@@ -56,7 +64,9 @@
     },
     "name": "Fusion area",
     "description": "Area of the fusion reactor",
-    "mechanic": "fusion",
+    "tags": [
+      "fusion"
+    ],
     "power": 1,
     "power_exp": 1.25,
     "price_exp": 10,
@@ -69,7 +79,9 @@
     },
     "name": "Fusion bandwidth",
     "description": "Bandwidth available for fusion",
-    "mechanic": "fusion",
+    "tags": [
+      "fusion"
+    ],
     "power": 100,
     "power_exp": 2,
     "price_exp": 2,

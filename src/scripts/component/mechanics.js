@@ -72,7 +72,7 @@ function mechanics (state, visibility, data) {
   };
 
   function isMechanicUpgradeVisible(name) {
-    let mechanic = data.global_upgrades[name].mechanic;
-    return state.player.mechanics[mechanic];
+    let tag = data.global_upgrades[name].tags[0];
+    return state.player.mechanics[tag];
   }
 }
