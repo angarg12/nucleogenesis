@@ -21,17 +21,30 @@ function dark(state, format, visibility, upgrade, data, util) {
   ct.data = data;
   ct.util = util;
   ct.format = format;
+  ct.cache = {breakdown:{}};
+
+  ct.update = function(player) {
+    refresh(player);
+  };
+
+  /* Refreshes the values in the cache */
+  function refresh(player){
+      ct.cache.breakdown = {};
+      for (let element in data.elements) {
+        let exotic = data.elements[element].exotic;
+        if (!player.resources[exotic].unlocked || !player.statistics.dark_run[exotic]) {
+          continue;
+        }
+        let number = player.statistics.dark_run[exotic];
+        let darkProduction = Math.pow(Math.E,(-0.5+Math.sqrt(0.25+0.8686*Math.log(number/100)))/1.4427) || 0;
+        ct.cache.breakdown[exotic] = Math.round(Math.max(0, darkProduction));
+      }
+  }
 
   ct.darkProduction = function() {
     let production = 0;
-    for (let element in data.elements) {
-      let exotic = data.elements[element].exotic;
-      if (!state.player.resources[exotic].unlocked) {
-        continue;
-      }
-      let number = state.player.statistics.dark_run[exotic] || 0;
-      let darkProduction = Math.pow(Math.E,(-0.5+Math.sqrt(0.25+0.8686*Math.log(number/100)))/1.4427) || 0;
-      production += Math.round(Math.max(0, darkProduction));
+    for (let resource in ct.cache.breakdown) {
+      production += ct.cache.breakdown[resource];
     }
 
     return production;
@@ -86,4 +99,7 @@ function dark(state, format, visibility, upgrade, data, util) {
   function isDarkUpgradeVisible(name, index) {
     return visibility.isUpgradeVisible(name, index, data.dark_upgrades[name]);
   }
+
+  state.registerUpdate('dark', ct.update);
+  refresh(state.player);
 }

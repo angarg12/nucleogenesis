@@ -16,11 +16,10 @@
         class="btn btn-default"
         ng-click="ct.darkPrestige()">Prestige</button>
 <p>You produced</p>
-<p ng-repeat="element in ct.data.elements"
-   ng-if="ct.state.player.resources[element.exotic].unlocked &&
-          ct.state.player.statistics.dark_run[element.exotic] !== undefined">
-  <get-html value="element.exotic"></get-html>
-  <pretty value="ct.state.player.statistics.dark_run[element.exotic] || 0"></pretty>
+<p ng-repeat="(key,value) in ct.cache.breakdown">
+  <get-html value="key"></get-html>
+  <pretty value="ct.state.player.statistics.dark_run[key] || 0"></pretty>
+  (+<pretty value="value"></pretty><get-html value="'dark_matter'"></get-html>)
 </p>
 <div class="row">
   <div ng-repeat="up in ct.visibleDarkUpgrades(ct.state.currentElement)"

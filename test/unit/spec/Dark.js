@@ -1,5 +1,5 @@
 /* eslint no-var: 0 */
-/* globals describe,commonSpec,it,expect */
+/* globals describe,commonSpec,it,expect,beforeEach */
 /* jshint varstmt: false */
 'use strict';
 
@@ -21,6 +21,7 @@ describe('Dark', function() {
       spec.state.player.statistics.dark_run.xH = 1e8;
       spec.state.player.statistics.dark_run.xO = 1e8;
 
+      spec.dark.update(spec.state.player);
       let production = spec.dark.darkProduction();
 
       expect(production).toEqual(16);
@@ -75,6 +76,7 @@ describe('Dark', function() {
         }
       ]
 
+      spec.dark.update(spec.state.player);
       spec.dark.darkPrestige();
 
       expect(spec.state.player.element_slots[0]).toBeNull();

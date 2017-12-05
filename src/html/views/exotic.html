@@ -54,11 +54,11 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
               ng-class="{disabled: !ct.isValidInfusion()}"
               ng-click="ct.exoticPrestige($index)">Prestige</button>
     </form>
-    <p>You have produced</p>
+    <p>You produced</p>
     <p ng-repeat="(key,value) in ct.cache.breakdown[slot.element]">
       <get-html value="key"></get-html>
       <pretty value="ct.state.player.statistics.exotic_run[slot.element][key] || 0"></pretty>
-      ( <span ng-repeat="(exotic,number) in value">+<pretty value="number"></pretty> {{exotic}} </span>)
+      (<span ng-repeat="(exotic,number) in value">+<pretty value="number"></pretty> {{exotic}} </span>)
     </p>
     <div class="row">
       <div ng-repeat="up in ct.visibleExoticUpgrades(slot)"

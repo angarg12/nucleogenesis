@@ -73,7 +73,7 @@ let commonSpec = function(spec) {
     spec.dashboardList = _$componentController_('dashboardList', null, null);
     spec.fusionSelect = _$componentController_('fusionSelect', null, null);
     spec.fusionSelect.listener();
-    
+
     // asinine sanity check for components
     _$componentController_('getHtml', null, null);
     _$componentController_('pretty', null, null);
@@ -82,5 +82,6 @@ let commonSpec = function(spec) {
 
     spec.state.registerUpdate('redox', function(){});
     spec.state.registerUpdate('exotic', function(){});
+    spec.state.registerUpdate('dark', function(){});
   }));
 };
