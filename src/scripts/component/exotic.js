@@ -105,7 +105,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
       let production = ct.productionSum(slot.element);
 
       for (let key in production) {
-        util.addResource(state.player, 'dark', key, production[key]);
+        util.addResource(state.player, 'dark', key, production[key], state);
       }
 
       for(let resource in ct.infuse){

@@ -11,7 +11,8 @@
 angular
   .module('game')
   .service('state', ['data',
-  function(data) {
+  'util',
+  function(data, util) {
     let sv = this;
     sv.hoverElement = '';
     sv.export = '';
@@ -28,32 +29,24 @@ angular
     sv.reactionsCache = {};
     sv.redoxesCache = {};
 
-    sv.deleteToast = function(currentTs, eventTs) {
-      if(currentTs-eventTs >= 350){
-        sv.toast.shift();
-        if (sv.toast.length > 0) {
-          sv.isToastVisible = true;
-          window.requestAnimationFrame((ts) => sv.removeToast(ts, performance.now()));
-        }
-      }else{
-        window.requestAnimationFrame((ts) => sv.deleteToast(ts, eventTs));
+    sv.deleteToast = function() {
+      sv.toast.shift();
+      if (sv.toast.length > 0) {
+        sv.isToastVisible = true;
+        util.delayedExec(performance.now(),performance.now(), 2500, () => sv.removeToast());
       }
     };
 
-    sv.removeToast = function(currentTs, eventTs) {
-      if(currentTs-eventTs >= 2500){
-        sv.isToastVisible = false;
-        window.requestAnimationFrame((ts) => sv.deleteToast(ts, performance.now()));
-      }else{
-        window.requestAnimationFrame((ts) => sv.removeToast(ts, eventTs));
-      }
+    sv.removeToast = function() {
+      sv.isToastVisible = false;
+      util.delayedExec(performance.now(),performance.now(), 350, () => sv.deleteToast());
     };
 
     sv.addToast = function (t) {
       sv.toast.push(t);
       if (sv.toast.length === 1) {
         sv.isToastVisible = true;
-        window.requestAnimationFrame((ts) => sv.removeToast(ts, performance.now()));
+        util.delayedExec(performance.now(),performance.now(), 2500, () => sv.removeToast());
       }
     };
 

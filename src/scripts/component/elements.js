@@ -49,7 +49,7 @@ function elements($timeout, state, data, util) {
     }
     state.player.resources.dark_matter.number -= Math.min(state.player.resources.dark_matter.number, ct.buyAmount[state.player.options.elementBuyIndex]);
 
-    $timeout(function(){ct.clearMessage(element);}, 1000);
+    util.delayedExec(performance.now(),performance.now(), 1000, () => ct.clearMessage(element));
   };
 
   ct.clearMessage = function (element) {

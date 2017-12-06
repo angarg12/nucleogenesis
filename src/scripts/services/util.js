@@ -11,8 +11,7 @@ angular
   .module('game')
   .service('util', ['$sce',
     'data',
-    'state',
-    function($sce, data, state) {
+    function($sce, data) {
       let sv = this;
       /* Return the HTML representation of an element, or the element itself
       if it doesn't have one */
@@ -27,23 +26,15 @@ angular
         return html;
       };
 
-      sv.prettifyNumber = function(number) {
-        if (typeof number === 'undefined' || number === null) {
-          return null;
-        }
-        if (number === '') {
-          return '';
-        }
-        if (number === Infinity) {
-          return '&infin;';
-        }
-        if (number === 0) {
-          return '0';
-        }
-        return numberformat.format(number, state.player.options.numberformat);
+      sv.prettifyNumber = function(number, player) {
+        if (typeof number === 'undefined' || number === null) return null;
+        if (number === '') return '';
+        if (number === Infinity) return '&infin;';
+        if (number === 0) return '0';
+        return numberformat.format(number, player.options.numberformat);
       };
 
-      sv.addResource = function(player, scope, key, quantity){
+      sv.addResource = function(player, scope, key, quantity, state){
         player.resources[key].number += quantity;
         sv.addStatistic(player, scope, key, quantity);
         if (quantity > 0 && !player.resources[key].unlocked) {
@@ -57,9 +48,13 @@ angular
       */
       sv.addStatistic = function(player, scope, key, value){
         setStatistic(player.statistics.all_time, key, value);
-        if(scope === 'all_time') return;
+        if(scope === 'all_time'){
+          return;
+        }
         setStatistic(player.statistics.dark_run, key, value);
-        if(scope === 'dark') return;
+        if(scope === 'dark'){
+          return;
+        }
         if(scope === 'all_elements') {
           scope = Object.keys(data.elements);
         }
@@ -86,5 +81,13 @@ angular
       sv.nextAmount = function (player, index, array) {
         player.options[index] = (player.options[index] + 1) % array.length;
       };
+
+      sv.delayedExec = function(currentTs, eventTs, delay, callback) {
+        if(currentTs-eventTs >= delay){
+          callback();
+        }else{
+          window.requestAnimationFrame((ts) => sv.delayedExec(ts, eventTs, delay, callback));
+        }
+      }
     }
   ]);

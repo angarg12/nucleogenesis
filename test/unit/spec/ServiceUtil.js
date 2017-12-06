@@ -10,12 +10,12 @@ describe('Util service', function() {
 
   describe('prettifyNumber', function() {
     it('should return infinity as a symbol', function() {
-      let value = spec.util.prettifyNumber(Infinity);
+      let value = spec.util.prettifyNumber(Infinity, spec.state.player);
       expect(value).toEqual('&infin;');
     });
 
     it('should return empty string as a empty', function() {
-      let value = spec.util.prettifyNumber('');
+      let value = spec.util.prettifyNumber('', spec.state.player);
       expect(value).toEqual('');
     });
 
@@ -25,7 +25,7 @@ describe('Util service', function() {
     });
 
     it('should leave small numbers unchanged', function() {
-      let value = spec.util.prettifyNumber(1);
+      let value = spec.util.prettifyNumber(1, spec.state.player);
       expect(value).toEqual('1');
     });
   });

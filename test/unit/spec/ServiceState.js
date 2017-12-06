@@ -24,6 +24,7 @@ describe('State', function () {
       spec.state.toast = ['test'];
       spec.state.isToastVisible = true;
 
+      spyOn(performance, 'now').and.returnValues(0, 5000);
       spec.state.removeToast();
 
       expect(spec.state.isToastVisible).toEqual(false);
@@ -33,6 +34,7 @@ describe('State', function () {
       spec.state.toast = ['test'];
       spec.state.isToastVisible = false;
 
+      spyOn(performance, 'now').and.returnValues(0, 5000);
       spec.state.removeToast();
 
       expect(spec.state.isToastVisible).toEqual(false);
@@ -42,6 +44,7 @@ describe('State', function () {
       spec.state.toast = [];
       spec.state.isToastVisible = true;
 
+      spyOn(performance, 'now').and.returnValues(0, 5000);
       spec.state.removeToast();
 
       expect(spec.state.isToastVisible).toEqual(false);
@@ -50,6 +53,7 @@ describe('State', function () {
     it('should delete toasts', function () {
       spec.state.toast = ['test'];
 
+      spyOn(performance, 'now').and.returnValues(0, 5000);
       spec.state.deleteToast();
 
       expect(spec.state.toast).toEqual([]);
@@ -57,7 +61,8 @@ describe('State', function () {
 
     it('should shift toasts', function () {
       spec.state.toast = ['test', 'test2'];
-
+      
+      spyOn(performance, 'now').and.returnValues(0, 5000);
       spec.state.deleteToast();
 
       expect(spec.state.toast).toEqual(['test2']);

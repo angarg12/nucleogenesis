@@ -25,7 +25,7 @@
     "use-isnan": 1,
     "valid-typeof": 1,
 
-    "curly": 1,
+    "curly": 0,
     "default-case": 1,
     "dot-notation": 1,
     "eqeqeq": 1,
