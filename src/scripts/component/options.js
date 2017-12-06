@@ -9,11 +9,11 @@
 
 angular.module('game').component('options', {
   templateUrl: 'views/options.html',
-  controller: ['$timeout', '$state', 'state', 'savegame', options],
+  controller: ['$state', 'state', 'savegame', options],
   controllerAs: 'ct'
 });
 
-function options($timeout, $state, state, savegame) {
+function options($state, state, savegame) {
   let ct = this;
   ct.state = state;
 
