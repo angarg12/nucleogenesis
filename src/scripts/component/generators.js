@@ -36,7 +36,8 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
           let remaining = Math.floor(totalProduction);
           // and decay products
           let highestRatio;
-          for (let type of Object.values(decay.decay_types)) {
+          for (let key in decay.decay_types) {
+            let type = decay.decay_types[key];
             if(!highestRatio || highestRatio.ratio < type.ratio){
               highestRatio = type;
             }

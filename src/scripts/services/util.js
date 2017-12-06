@@ -9,11 +9,10 @@
 
 angular
   .module('game')
-  .service('util', ['prettyNumberFilter',
-    '$sce',
+  .service('util', ['$sce',
     'data',
     'state',
-    function(prettyNumber, $sce, data, state) {
+    function($sce, data, state) {
       let sv = this;
       /* Return the HTML representation of an element, or the element itself
       if it doesn't have one */
