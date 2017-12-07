@@ -8,8 +8,11 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
   $scope.debugSlider = {
     value: 50,
     options: {
+      showTicks: 5,
+      showTicksValues: 10,
       floor: 0,
       ceil: 100,
+      step: 5,
       showSelectionBar: true
     }
   };
@@ -82,6 +85,17 @@ app.controller('MainCtrl', function($scope, $rootScope, $timeout, $uibModal) {
       ceil: 100,
       minRange: 10,
       pushRange: true
+    }
+  };
+
+  $scope.outerBarsRangeSlider = {
+    minValue: 30,
+    maxValue: 70,
+    options: {
+      floor: 0,
+      ceil: 100,
+      step: 1,
+      showOuterSelectionBars: true
     }
   };
 

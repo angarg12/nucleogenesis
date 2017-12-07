@@ -3,16 +3,19 @@
  * NOTICE: This monolithic bundle also bundles the @uirouter/core code.
  *         This causes it to be incompatible with plugins that depend on @uirouter/core.
  *         We recommend switching to the ui-router-core.js and ui-router-angularjs.js bundles instead.
- *         For more information, see http://ui-router.github.io/blog/angular-ui-router-umd-bundles
- * @version v1.0.3
+ *         For more information, see https://ui-router.github.io/blog/uirouter-for-angularjs-umd-bundles
+ * @version v1.0.10
  * @link https://ui-router.github.io
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('angular')) :
-    typeof define === 'function' && define.amd ? define(['exports', 'angular'], factory) :
-    (factory((global['@uirouter/angularjs'] = global['@uirouter/angularjs'] || {}),global.angular));
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('angular')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'angular'], factory) :
+	(factory((global['@uirouter/angularjs'] = {}),global.angular));
 }(this, (function (exports,ng_from_import) { 'use strict';
+
+var ng_from_global = angular;
+var ng = (ng_from_import && ng_from_import.module) ? ng_from_import : ng_from_global;
 
 /**
  * Higher order functions
@@ -302,7 +305,7 @@ function pattern(struct) {
  * | `'A.**.X'`  | `'A.X'` , `'A.B.X'` , `'A.B.C.X'`             | `'A'` , `'A.B.C'`                 |
  *
  */
-var Glob = (function () {
+var Glob = /** @class */ (function () {
     function Glob(text) {
         this.text = text;
         this.glob = text.split('.');
@@ -340,7 +343,7 @@ var Glob = (function () {
  * This class prototypally inherits from the corresponding [[StateDeclaration]].
  * Each of its own properties (i.e., `hasOwnProperty`) are built using builders from the [[StateBuilder]].
  */
-var StateObject = (function () {
+var StateObject = /** @class */ (function () {
     /** @deprecated use State.create() */
     function StateObject(config) {
         return StateObject.create(config || {});
@@ -426,16 +429,16 @@ var StateObject = (function () {
     StateObject.prototype.toString = function () {
         return this.fqn();
     };
+    /** Predicate which returns true if the object is an class with @State() decorator */
+    StateObject.isStateClass = function (stateDecl) {
+        return isFunction(stateDecl) && stateDecl['__uiRouterState'] === true;
+    };
+    /** Predicate which returns true if the object is an internal [[StateObject]] object */
+    StateObject.isState = function (obj) {
+        return isObject(obj['__stateObjectCache']);
+    };
     return StateObject;
 }());
-/** Predicate which returns true if the object is an class with @State() decorator */
-StateObject.isStateClass = function (stateDecl) {
-    return isFunction(stateDecl) && stateDecl['__uiRouterState'] === true;
-};
-/** Predicate which returns true if the object is an internal [[StateObject]] object */
-StateObject.isState = function (obj) {
-    return isObject(obj['__stateObjectCache']);
-};
 
 /** Predicates
  *
@@ -496,11 +499,11 @@ var services = {
  * @module common
  */
 /** for typedoc */
-var w = typeof window === 'undefined' ? {} : window;
-var angular$1 = w.angular || {};
+var root = (typeof self === 'object' && self.self === self && self) ||
+    (typeof global === 'object' && global.global === global && global) || undefined;
+var angular$1 = root.angular || {};
 var fromJson = angular$1.fromJson || JSON.parse.bind(JSON);
 var toJson = angular$1.toJson || JSON.stringify.bind(JSON);
-var copy = angular$1.copy || _copy;
 var forEach = angular$1.forEach || _forEach;
 var extend = Object.assign || _extend;
 var equals = angular$1.equals || _equals;
@@ -948,11 +951,8 @@ function tail(arr) {
 }
 /**
  * shallow copy from src to dest
- *
- * note: This is a shallow copy, while angular.copy is a deep copy.
- * ui-router uses `copy` only to make copies of state parameters.
  */
-function _copy(src, dest) {
+function copy(src, dest) {
     if (dest)
         Object.keys(dest).forEach(function (key) { return delete dest[key]; });
     if (!dest)
@@ -1016,64 +1016,6 @@ function _arraysEq(a1, a2) {
         return false;
     return arrayTuples(a1, a2).reduce(function (b, t) { return b && _equals(t[0], t[1]); }, true);
 }
-/**
- * Create a sort function
- *
- * Creates a sort function which sorts by a numeric property.
- *
- * The `propFn` should return the property as a number which can be sorted.
- *
- * #### Example:
- * This example returns the `priority` prop.
- * ```js
- * var sortfn = sortBy(obj => obj.priority)
- * // equivalent to:
- * var longhandSortFn = (a, b) => a.priority - b.priority;
- * ```
- *
- * #### Example:
- * This example uses [[prop]]
- * ```js
- * var sortfn = sortBy(prop('priority'))
- * ```
- *
- * The `checkFn` can be used to exclude objects from sorting.
- *
- * #### Example:
- * This example only sorts objects with type === 'FOO'
- * ```js
- * var sortfn = sortBy(prop('priority'), propEq('type', 'FOO'))
- * ```
- *
- * @param propFn a function that returns the property (as a number)
- * @param checkFn a predicate
- *
- * @return a sort function like: `(a, b) => (checkFn(a) && checkFn(b)) ? propFn(a) - propFn(b) : 0`
- */
-var sortBy = function (propFn, checkFn) {
-    if (checkFn === void 0) { checkFn = val(true); }
-    return function (a, b) {
-        return (checkFn(a) && checkFn(b)) ? propFn(a) - propFn(b) : 0;
-    };
-};
-/**
- * Composes a list of sort functions
- *
- * Creates a sort function composed of multiple sort functions.
- * Each sort function is invoked in series.
- * The first sort function to return non-zero "wins".
- *
- * @param sortFns list of sort functions
- */
-var composeSort = function () {
-    var sortFns = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        sortFns[_i] = arguments[_i];
-    }
-    return function composedSort(a, b) {
-        return sortFns.reduce(function (prev, fn) { return prev || fn(a, b); }, 0);
-    };
-};
 // issue #2676
 var silenceUncaughtInPromise = function (promise) {
     return promise.catch(function (e) { return 0; }) && promise;
@@ -1085,7 +1027,7 @@ var silentRejection = function (error) {
 /**
  * @module common
  */ /** for typedoc */
-var Queue = (function () {
+var Queue = /** @class */ (function () {
     function Queue(_items, _limit) {
         if (_items === void 0) { _items = []; }
         if (_limit === void 0) { _limit = null; }
@@ -1129,6 +1071,7 @@ var Queue = (function () {
  * @coreapi
  * @module transition
  */ /** for typedoc */
+"use strict";
 
 (function (RejectType) {
     RejectType[RejectType["SUPERSEDED"] = 2] = "SUPERSEDED";
@@ -1138,7 +1081,7 @@ var Queue = (function () {
     RejectType[RejectType["ERROR"] = 6] = "ERROR";
 })(exports.RejectType || (exports.RejectType = {}));
 /** @hidden */ var id = 0;
-var Rejection = (function () {
+var Rejection = /** @class */ (function () {
     function Rejection(type, message, detail) {
         this.$id = id++;
         this.type = type;
@@ -1244,22 +1187,26 @@ var Rejection = (function () {
  * @module trace
  */ /** for typedoc */
 /** @hidden */
-function uiViewString(viewData) {
-    if (!viewData)
+function uiViewString(uiview) {
+    if (!uiview)
         return 'ui-view (defunct)';
-    return "[ui-view#" + viewData.id + " tag " +
-        ("in template from '" + (viewData.creationContext && viewData.creationContext.name || '(root)') + "' state]: ") +
-        ("fqn: '" + viewData.fqn + "', ") +
-        ("name: '" + viewData.name + "@" + viewData.creationContext + "')");
+    var state = uiview.creationContext ? uiview.creationContext.name || '(root)' : '(none)';
+    return "[ui-view#" + uiview.id + " " + uiview.$type + ":" + uiview.fqn + " (" + uiview.name + "@" + state + ")]";
 }
 /** @hidden */
 var viewConfigString = function (viewConfig) {
-    return "[ViewConfig#" + viewConfig.$id + " from '" + (viewConfig.viewDecl.$context.name || '(root)') + "' state]: target ui-view: '" + viewConfig.viewDecl.$uiViewName + "@" + viewConfig.viewDecl.$uiViewContextAnchor + "'";
+    var view = viewConfig.viewDecl;
+    var state = view.$context.name || '(root)';
+    return "[View#" + viewConfig.$id + " from '" + state + "' state]: target ui-view: '" + view.$uiViewName + "@" + view.$uiViewContextAnchor + "'";
 };
 /** @hidden */
 function normalizedCat(input) {
     return isNumber(input) ? exports.Category[input] : exports.Category[exports.Category[input]];
 }
+/** @hidden */
+var consoleLog = Function.prototype.bind.call(console.log, console);
+/** @hidden */
+var consoletable = isFunction(console.table) ? console.table.bind(console) : consoleLog.bind(console);
 /**
  * Trace categories Enum
  *
@@ -1287,7 +1234,7 @@ function normalizedCat(input) {
 /**
  * Prints UI-Router Transition trace information to the console.
  */
-var Trace = (function () {
+var Trace = /** @class */ (function () {
     /** @hidden */
     function Trace() {
         /** @hidden */
@@ -1305,16 +1252,6 @@ var Trace = (function () {
         }
         categories.map(normalizedCat).forEach(function (category) { return _this._enabled[category] = enabled; });
     };
-    /**
-     * Enables a trace [[Category]]
-     *
-     * ```js
-     * trace.enable("TRANSITION");
-     * ```
-     *
-     * @param categories categories to enable. If `categories` is omitted, all categories are enabled.
-     *        Also takes strings (category name) or ordinal (category position)
-     */
     Trace.prototype.enable = function () {
         var categories = [];
         for (var _i = 0; _i < arguments.length; _i++) {
@@ -1322,16 +1259,6 @@ var Trace = (function () {
         }
         this._set(true, categories);
     };
-    /**
-     * Disables a trace [[Category]]
-     *
-     * ```js
-     * trace.disable("VIEWCONFIG");
-     * ```
-     *
-     * @param categories categories to disable. If `categories` is omitted, all categories are disabled.
-     *        Also takes strings (category name) or ordinal (category position)
-     */
     Trace.prototype.disable = function () {
         var categories = [];
         for (var _i = 0; _i < arguments.length; _i++) {
@@ -1420,6 +1347,18 @@ var Trace = (function () {
         this.traceUIViewEvent("Fill", viewData, " with: " + maxLength(200, html));
     };
     /** @internalapi called by ui-router code */
+    Trace.prototype.traceViewSync = function (pairs) {
+        if (!this.enabled(exports.Category.VIEWCONFIG))
+            return;
+        var mapping = pairs.map(function (_a) {
+            var uiViewData = _a[0], config = _a[1];
+            var uiView = uiViewData.$type + ":" + uiViewData.fqn;
+            var view = config && config.viewDecl.$context.name + ": " + config.viewDecl.$name + " (" + config.viewDecl.$type + ")";
+            return { 'ui-view fqn': uiView, 'state: view name': view };
+        }).sort(function (a, b) { return a['ui-view fqn'].localeCompare(b['ui-view fqn']); });
+        consoletable(mapping);
+    };
+    /** @internalapi called by ui-router code */
     Trace.prototype.traceViewServiceEvent = function (event, viewConfig) {
         if (!this.enabled(exports.Category.VIEWCONFIG))
             return;
@@ -1490,27 +1429,28 @@ var trace = new Trace();
  * A `TargetState` may be valid (the state being targeted exists in the registry)
  * or invalid (the state being targeted is not registered).
  */
-var TargetState = (function () {
+var TargetState = /** @class */ (function () {
     /**
      * The TargetState constructor
      *
      * Note: Do not construct a `TargetState` manually.
      * To create a `TargetState`, use the [[StateService.target]] factory method.
      *
+     * @param _stateRegistry The StateRegistry to use to look up the _definition
      * @param _identifier An identifier for a state.
      *    Either a fully-qualified state name, or the object used to define the state.
-     * @param _definition The internal state representation, if exists.
      * @param _params Parameters for the target state
      * @param _options Transition options.
      *
      * @internalapi
      */
-    function TargetState(_identifier, _definition, _params, _options) {
-        if (_options === void 0) { _options = {}; }
+    function TargetState(_stateRegistry, _identifier, _params, _options) {
+        this._stateRegistry = _stateRegistry;
         this._identifier = _identifier;
-        this._definition = _definition;
-        this._options = _options;
-        this._params = _params || {};
+        this._identifier = _identifier;
+        this._params = extend({}, _params || {});
+        this._options = extend({}, _options || {});
+        this._definition = _stateRegistry.matcher.find(_identifier, this._options.relative);
     }
     /** The name of the state this object targets */
     TargetState.prototype.name = function () {
@@ -1557,14 +1497,47 @@ var TargetState = (function () {
             return "State '" + this.name() + "' has an invalid definition";
     };
     TargetState.prototype.toString = function () {
-        return "'" + this.name() + "'" + toJson(this.params());
+        return "'" + this.name() + "'" + stringify(this.params());
+    };
+    /**
+     * Returns a copy of this TargetState which targets a different state.
+     * The new TargetState has the same parameter values and transition options.
+     *
+     * @param state The new state that should be targeted
+     */
+    TargetState.prototype.withState = function (state) {
+        return new TargetState(this._stateRegistry, state, this._params, this._options);
+    };
+    /**
+     * Returns a copy of this TargetState, using the specified parameter values.
+     *
+     * @param params the new parameter values to use
+     * @param replace When false (default) the new parameter values will be merged with the current values.
+     *                When true the parameter values will be used instead of the current values.
+     */
+    TargetState.prototype.withParams = function (params, replace) {
+        if (replace === void 0) { replace = false; }
+        var newParams = replace ? params : extend({}, this._params, params);
+        return new TargetState(this._stateRegistry, this._identifier, newParams, this._options);
+    };
+    /**
+     * Returns a copy of this TargetState, using the specified Transition Options.
+     *
+     * @param options the new options to use
+     * @param replace When false (default) the new options will be merged with the current options.
+     *                When true the options will be used instead of the current options.
+     */
+    TargetState.prototype.withOptions = function (options, replace) {
+        if (replace === void 0) { replace = false; }
+        var newOpts = replace ? options : extend({}, this._options, options);
+        return new TargetState(this._stateRegistry, this._identifier, this._params, newOpts);
+    };
+    /** Returns true if the object has a state property that might be a state or state name */
+    TargetState.isDef = function (obj) {
+        return obj && obj.state && (isString(obj.state) || isString(obj.state.name));
     };
     return TargetState;
 }());
-/** Returns true if the object has a state property that might be a state or state name */
-TargetState.isDef = function (obj) {
-    return obj && obj.state && (isString(obj.state) || isString(obj.state.name));
-};
 
 /**
  * @coreapi
@@ -1578,7 +1551,7 @@ var defaultOptions = {
     bind: null,
 };
 /** @hidden */
-var TransitionHook = (function () {
+var TransitionHook = /** @class */ (function () {
     function TransitionHook(transition, stateContext, registeredHook, options) {
         var _this = this;
         this.transition = transition;
@@ -1629,6 +1602,11 @@ var TransitionHook = (function () {
         catch (err) {
             // If callback throws (synchronously)
             return handleError(Rejection.normalize(err));
+        }
+        finally {
+            if (hook.invokeLimit && ++hook.invokeCount >= hook.invokeLimit) {
+                hook.deregister();
+            }
         }
     };
     /**
@@ -1741,38 +1719,38 @@ var TransitionHook = (function () {
     TransitionHook.runAllHooks = function (hooks) {
         hooks.forEach(function (hook) { return hook.invokeHook(); });
     };
+    /**
+     * These GetResultHandler(s) are used by [[invokeHook]] below
+     * Each HookType chooses a GetResultHandler (See: [[TransitionService._defineCoreEvents]])
+     */
+    TransitionHook.HANDLE_RESULT = function (hook) { return function (result) {
+        return hook.handleHookResult(result);
+    }; };
+    /**
+     * If the result is a promise rejection, log it.
+     * Otherwise, ignore the result.
+     */
+    TransitionHook.LOG_REJECTED_RESULT = function (hook) { return function (result) {
+        isPromise(result) && result.catch(function (err) {
+            return hook.logError(Rejection.normalize(err));
+        });
+        return undefined;
+    }; };
+    /**
+     * These GetErrorHandler(s) are used by [[invokeHook]] below
+     * Each HookType chooses a GetErrorHandler (See: [[TransitionService._defineCoreEvents]])
+     */
+    TransitionHook.LOG_ERROR = function (hook) { return function (error) {
+        return hook.logError(error);
+    }; };
+    TransitionHook.REJECT_ERROR = function (hook) { return function (error) {
+        return silentRejection(error);
+    }; };
+    TransitionHook.THROW_ERROR = function (hook) { return function (error) {
+        throw error;
+    }; };
     return TransitionHook;
 }());
-/**
- * These GetResultHandler(s) are used by [[invokeHook]] below
- * Each HookType chooses a GetResultHandler (See: [[TransitionService._defineCoreEvents]])
- */
-TransitionHook.HANDLE_RESULT = function (hook) { return function (result) {
-    return hook.handleHookResult(result);
-}; };
-/**
- * If the result is a promise rejection, log it.
- * Otherwise, ignore the result.
- */
-TransitionHook.LOG_REJECTED_RESULT = function (hook) { return function (result) {
-    isPromise(result) && result.catch(function (err) {
-        return hook.logError(Rejection.normalize(err));
-    });
-    return undefined;
-}; };
-/**
- * These GetErrorHandler(s) are used by [[invokeHook]] below
- * Each HookType chooses a GetErrorHandler (See: [[TransitionService._defineCoreEvents]])
- */
-TransitionHook.LOG_ERROR = function (hook) { return function (error) {
-    return hook.logError(error);
-}; };
-TransitionHook.REJECT_ERROR = function (hook) { return function (error) {
-    return silentRejection(error);
-}; };
-TransitionHook.THROW_ERROR = function (hook) { return function (error) {
-    throw error;
-}; };
 
 /**
  * @coreapi
@@ -1810,16 +1788,19 @@ function matchState(state, criterion) {
  * @internalapi
  * The registration data for a registered transition hook
  */
-var RegisteredHook = (function () {
-    function RegisteredHook(tranSvc, eventType, callback, matchCriteria, options) {
+var RegisteredHook = /** @class */ (function () {
+    function RegisteredHook(tranSvc, eventType, callback, matchCriteria, removeHookFromRegistry, options) {
         if (options === void 0) { options = {}; }
         this.tranSvc = tranSvc;
         this.eventType = eventType;
         this.callback = callback;
         this.matchCriteria = matchCriteria;
+        this.removeHookFromRegistry = removeHookFromRegistry;
+        this.invokeCount = 0;
+        this._deregistered = false;
         this.priority = options.priority || 0;
         this.bind = options.bind || null;
-        this._deregistered = false;
+        this.invokeLimit = options.invokeLimit;
     }
     /**
      * Gets the matching [[PathNode]]s
@@ -1900,6 +1881,10 @@ var RegisteredHook = (function () {
         var allMatched = values(matches).every(identity);
         return allMatched ? matches : null;
     };
+    RegisteredHook.prototype.deregister = function () {
+        this.removeHookFromRegistry(this);
+        this._deregistered = true;
+    };
     return RegisteredHook;
 }());
 /** @hidden Return a registration function of the requested type. */
@@ -1907,16 +1892,14 @@ function makeEvent(registry, transitionService, eventType) {
     // Create the object which holds the registered transition hooks.
     var _registeredHooks = registry._registeredHooks = (registry._registeredHooks || {});
     var hooks = _registeredHooks[eventType.name] = [];
+    var removeHookFn = removeFrom(hooks);
     // Create hook registration function on the IHookRegistry for the event
     registry[eventType.name] = hookRegistrationFn;
     function hookRegistrationFn(matchObject, callback, options) {
         if (options === void 0) { options = {}; }
-        var registeredHook = new RegisteredHook(transitionService, eventType, callback, matchObject, options);
+        var registeredHook = new RegisteredHook(transitionService, eventType, callback, matchObject, removeHookFn, options);
         hooks.push(registeredHook);
-        return function deregisterEventHook() {
-            registeredHook._deregistered = true;
-            removeFrom(hooks)(registeredHook);
-        };
+        return registeredHook.deregister.bind(registeredHook);
     }
     return hookRegistrationFn;
 }
@@ -1939,7 +1922,7 @@ function makeEvent(registry, transitionService, eventType) {
  * in the Transition class, so we must also provide the Transition's _treeChanges)
  *
  */
-var HookBuilder = (function () {
+var HookBuilder = /** @class */ (function () {
     function HookBuilder(transition) {
         this.transition = transition;
     }
@@ -2062,7 +2045,7 @@ function tupleSort(reverseDepthSort) {
  * ```
  * @internalapi
  */
-var ParamType = (function () {
+var ParamType = /** @class */ (function () {
     /**
      * @param def  A configuration object which contains the custom type definition.  The object's
      *        properties will override the default methods and/or pattern in `ParamType`'s public interface.
@@ -2239,7 +2222,7 @@ function getReplace(config, arrayMode, isOptional, squash) {
     return filter(defaultPolicy, function (item) { return configuredKeys.indexOf(item.from) === -1; }).concat(replace);
 }
 /** @internalapi */
-var Param = (function () {
+var Param = /** @class */ (function () {
     function Param(id, type, config, location, urlMatcherFactory) {
         config = unwrapShorthand(config);
         type = getType(config, type, location, id, urlMatcherFactory.paramTypes);
@@ -2370,7 +2353,7 @@ var Param = (function () {
  * Each PathNode corresponds to a state being entered, exited, or retained.
  * The stateful information includes parameter values and resolve data.
  */
-var PathNode = (function () {
+var PathNode = /** @class */ (function () {
     function PathNode(stateOrNode) {
         if (stateOrNode instanceof PathNode) {
             var node = stateOrNode;
@@ -2435,13 +2418,13 @@ var PathNode = (function () {
 /**
  * This class contains functions which convert TargetStates, Nodes and paths from one type to another.
  */
-var PathUtils = (function () {
+var PathUtils = /** @class */ (function () {
     function PathUtils() {
     }
     /** Given a PathNode[], create an TargetState */
-    PathUtils.makeTargetState = function (path) {
+    PathUtils.makeTargetState = function (registry, path) {
         var state = tail(path).state;
-        return new TargetState(state, state, path.map(prop("paramValues")).reduce(mergeR, {}));
+        return new TargetState(registry, state, path.map(prop("paramValues")).reduce(mergeR, {}), {});
     };
     PathUtils.buildPath = function (targetState) {
         var toParams = targetState.params();
@@ -2586,16 +2569,16 @@ var PathUtils = (function () {
         var elementIdx = path.indexOf(node);
         return elementIdx === -1 ? undefined : path.slice(0, elementIdx + 1);
     };
+    PathUtils.nonDynamicParams = function (node) {
+        return node.state.parameters({ inherit: false })
+            .filter(function (param) { return !param.dynamic; });
+    };
+    /** Gets the raw parameter values from a path */
+    PathUtils.paramValues = function (path) {
+        return path.reduce(function (acc, node) { return extend(acc, node.paramValues); }, {});
+    };
     return PathUtils;
 }());
-PathUtils.nonDynamicParams = function (node) {
-    return node.state.parameters({ inherit: false })
-        .filter(function (param) { return !param.dynamic; });
-};
-/** Gets the raw parameter values from a path */
-PathUtils.paramValues = function (path) {
-    return path.reduce(function (acc, node) { return extend(acc, node.paramValues); }, {});
-};
 
 /**
  * @coreapi
@@ -2618,7 +2601,7 @@ var defaultResolvePolicy = {
  * Resolvable.get() and Resolvable.resolve() both execute within a context path, which is passed as the first
  * parameter to those fns.
  */
-var Resolvable = (function () {
+var Resolvable = /** @class */ (function () {
     function Resolvable(arg1, resolveFn, deps, policy, data) {
         this.resolved = false;
         this.promise = undefined;
@@ -2626,7 +2609,7 @@ var Resolvable = (function () {
             extend(this, arg1);
         }
         else if (isFunction(resolveFn)) {
-            if (arg1 == null || arg1 == undefined)
+            if (isNullOrUndefined(arg1))
                 throw new Error("new Resolvable(): token argument is required");
             if (!isFunction(resolveFn))
                 throw new Error("new Resolvable(): resolveFn argument must be a function");
@@ -2716,11 +2699,11 @@ var Resolvable = (function () {
     Resolvable.prototype.clone = function () {
         return new Resolvable(this);
     };
+    Resolvable.fromData = function (token, data) {
+        return new Resolvable(token, function () { return data; }, null, null, data);
+    };
     return Resolvable;
 }());
-Resolvable.fromData = function (token, data) {
-    return new Resolvable(token, function () { return data; }, null, null, data);
-};
 
 /** @internalapi */
 var resolvePolicies = {
@@ -2737,9 +2720,9 @@ var resolvePolicies = {
 
 /** @module resolve */
 /** for typedoc */
-var when = resolvePolicies.when;
-var ALL_WHENS = [when.EAGER, when.LAZY];
-var EAGER_WHENS = [when.EAGER];
+var whens = resolvePolicies.when;
+var ALL_WHENS = [whens.EAGER, whens.LAZY];
+var EAGER_WHENS = [whens.EAGER];
 var NATIVE_INJECTOR_TOKEN = "Native Injector";
 /**
  * Encapsulates Dependency Injection for a path of nodes
@@ -2751,7 +2734,7 @@ var NATIVE_INJECTOR_TOKEN = "Native Injector";
  *
  * The ResolveContext closes over the [[PathNode]]s, and provides DI for the last node in the path.
  */
-var ResolveContext = (function () {
+var ResolveContext = /** @class */ (function () {
     function ResolveContext(_path) {
         this._path = _path;
     }
@@ -2878,14 +2861,14 @@ var ResolveContext = (function () {
         // subpath stopping at resolvable's node, or the whole path (if the resolvable isn't in the path)
         var subPath = PathUtils.subPath(this._path, function (x) { return x === node; }) || this._path;
         var availableResolvables = subPath
-            .reduce(function (acc, node) { return acc.concat(node.resolvables); }, []) //all of subpath's resolvables
+            .reduce(function (acc, _node) { return acc.concat(_node.resolvables); }, []) //all of subpath's resolvables
             .filter(function (res) { return res !== resolvable; }); // filter out the `resolvable` argument
         var getDependency = function (token) {
             var matching = availableResolvables.filter(function (r) { return r.token === token; });
             if (matching.length)
                 return tail(matching);
             var fromInjector = _this.injector().getNative(token);
-            if (!fromInjector) {
+            if (isUndefined(fromInjector)) {
                 throw new Error("Could not find Dependency Injection token: " + stringify(token));
             }
             return new Resolvable(token, function () { return fromInjector; }, [], fromInjector);
@@ -2894,7 +2877,7 @@ var ResolveContext = (function () {
     };
     return ResolveContext;
 }());
-var UIInjectorImpl = (function () {
+var UIInjectorImpl = /** @class */ (function () {
     function UIInjectorImpl(context) {
         this.context = context;
         this.native = this.get(NATIVE_INJECTOR_TOKEN) || services.$injector;
@@ -2910,7 +2893,7 @@ var UIInjectorImpl = (function () {
             }
             return resolvable.data;
         }
-        return this.native && this.native.get(token);
+        return this.getNative(token);
     };
     UIInjectorImpl.prototype.getAsync = function (token) {
         var resolvable = this.context.getResolvable(token);
@@ -2939,7 +2922,7 @@ var stateSelf = prop("self");
  * This object contains all contextual information about the to/from states, parameters, resolves.
  * It has information about all states being entered and exited as a result of the transition.
  */
-var Transition = (function () {
+var Transition = /** @class */ (function () {
     /**
      * Creates a new Transition object.
      *
@@ -3335,7 +3318,7 @@ var Transition = (function () {
             redirectOpts.location = 'replace';
         }
         var newOptions = extend({}, this.options(), targetState.options(), redirectOpts);
-        targetState = new TargetState(targetState.identifier(), targetState.$state(), targetState.params(), newOptions);
+        targetState = targetState.withOptions(newOptions, true);
         var newTransition = this.router.transitionService.create(this._treeChanges.from, targetState);
         var originalEnteringNodes = this._treeChanges.entering;
         var redirectEnteringNodes = newTransition._treeChanges.entering;
@@ -3509,8 +3492,11 @@ var Transition = (function () {
         var state = this.$to();
         if (state.self.abstract)
             return "Cannot transition to abstract state '" + state.name + "'";
-        if (!Param.validates(state.parameters(), this.params()))
-            return "Param values not valid for state '" + state.name + "'";
+        var paramDefs = state.parameters(), values$$1 = this.params();
+        var invalidParams = paramDefs.filter(function (param) { return !param.validates(values$$1[param.id]); });
+        if (invalidParams.length) {
+            return "Param values not valid for state '" + state.name + "'. Invalid params: [ " + invalidParams.map(function (param) { return param.id; }).join(', ') + " ]";
+        }
         if (this.success === false)
             return this._error;
     };
@@ -3526,13 +3512,13 @@ var Transition = (function () {
             return (params["#"] !== null && params["#"] !== undefined) ? params : omit(params, ["#"]);
         };
         // (X) means the to state is invalid.
-        var id = this.$id, from = isObject(fromStateOrName) ? fromStateOrName.name : fromStateOrName, fromParams = toJson(avoidEmptyHash(this._treeChanges.from.map(prop('paramValues')).reduce(mergeR, {}))), toValid = this.valid() ? "" : "(X) ", to = isObject(toStateOrName) ? toStateOrName.name : toStateOrName, toParams = toJson(avoidEmptyHash(this.params()));
+        var id = this.$id, from = isObject(fromStateOrName) ? fromStateOrName.name : fromStateOrName, fromParams = stringify(avoidEmptyHash(this._treeChanges.from.map(prop('paramValues')).reduce(mergeR, {}))), toValid = this.valid() ? "" : "(X) ", to = isObject(toStateOrName) ? toStateOrName.name : toStateOrName, toParams = stringify(avoidEmptyHash(this.params()));
         return "Transition#" + id + "( '" + from + "'" + fromParams + " -> " + toValid + "'" + to + "'" + toParams + " )";
     };
+    /** @hidden */
+    Transition.diToken = Transition;
     return Transition;
 }());
-/** @hidden */
-Transition.diToken = Transition;
 
 /**
  * Functions that manipulate strings
@@ -3625,6 +3611,12 @@ var beforeAfterSubstr = function (char) { return function (str) {
         return [str, ""];
     return [str.substr(0, idx), str.substr(idx + 1)];
 }; };
+var hostRegex = new RegExp('^(?:[a-z]+:)?//[^/]+/');
+var stripFile = function (str) { return str.replace(/\/[^/]*$/, ''); };
+var splitHash = beforeAfterSubstr("#");
+var splitQuery = beforeAfterSubstr("?");
+var splitEqual = beforeAfterSubstr("=");
+var trimHashVal = function (str) { return str ? str.replace(/^#/, "") : ""; };
 /**
  * Splits on a delimiter, but returns the delimiters in the array
  *
@@ -3684,7 +3676,7 @@ function joinNeighborsR(acc, x) {
  * - [[json]]
  * - [[any]]
  */
-var ParamTypes = (function () {
+var ParamTypes = /** @class */ (function () {
     /** @internalapi */
     function ParamTypes() {
         /** @hidden */
@@ -3768,14 +3760,14 @@ function initDefaultTypes() {
             encode: function (val$$1) { return val$$1 && 1 || 0; },
             decode: function (val$$1) { return parseInt(val$$1, 10) !== 0; },
             is: is(Boolean),
-            pattern: /0|1/
+            pattern: /0|1/,
         }),
         date: makeDefaultType({
             encode: function (val$$1) {
                 return !this.is(val$$1) ? undefined : [
                     val$$1.getFullYear(),
                     ('0' + (val$$1.getMonth() + 1)).slice(-2),
-                    ('0' + val$$1.getDate()).slice(-2)
+                    ('0' + val$$1.getDate()).slice(-2),
                 ].join("-");
             },
             decode: function (val$$1) {
@@ -3790,14 +3782,14 @@ function initDefaultTypes() {
                     .reduce(function (acc, fn) { return acc && l[fn]() === r[fn](); }, true);
             },
             pattern: /[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[1-2][0-9]|3[0-1])/,
-            capture: /([0-9]{4})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/
+            capture: /([0-9]{4})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/,
         }),
         json: makeDefaultType({
             encode: toJson,
             decode: fromJson,
             is: is(Object),
             equals: equals,
-            pattern: /[^/]*/
+            pattern: /[^/]*/,
         }),
         // does not encode/decode
         any: makeDefaultType({
@@ -3816,7 +3808,7 @@ initDefaultTypes();
  */
 /** */
 /** @internalapi */
-var StateParams = (function () {
+var StateParams = /** @class */ (function () {
     function StateParams(params) {
         if (params === void 0) { params = {}; }
         extend(this, params);
@@ -3858,8 +3850,8 @@ var StateParams = (function () {
 var parseUrl = function (url) {
     if (!isString(url))
         return false;
-    var root = url.charAt(0) === '^';
-    return { val: root ? url.substring(1) : url, root: root };
+    var root$$1 = url.charAt(0) === '^';
+    return { val: root$$1 ? url.substring(1) : url, root: root$$1 };
 };
 function nameBuilder(state) {
     return state.name;
@@ -3874,7 +3866,7 @@ function dataBuilder(state) {
     }
     return state.data;
 }
-var getUrlBuilder = function ($urlMatcherFactoryProvider, root) {
+var getUrlBuilder = function ($urlMatcherFactoryProvider, root$$1) {
     return function urlBuilder(state) {
         var stateDec = state;
         // For future states, i.e., states whose name ends with `.**`,
@@ -3895,7 +3887,7 @@ var getUrlBuilder = function ($urlMatcherFactoryProvider, root) {
             return null;
         if (!$urlMatcherFactoryProvider.isMatcher(url))
             throw new Error("Invalid url '" + url + "' in state '" + state + "'");
-        return (parsed && parsed.root) ? url : ((parent && parent.navigable) || root()).url.append(url);
+        return (parsed && parsed.root) ? url : ((parent && parent.navigable) || root$$1()).url.append(url);
     };
 };
 var getNavigableBuilder = function (isRoot) {
@@ -3912,7 +3904,7 @@ var getParamsBuilder = function (paramFactory) {
     };
 };
 function pathBuilder(state) {
-    return state.parent ? state.parent.path.concat(state) : [state];
+    return state.parent ? state.parent.path.concat(state) : /*root*/ [state];
 }
 function includesBuilder(state) {
     var includes = state.parent ? extend({}, state.parent.includes) : {};
@@ -4019,16 +4011,16 @@ function resolvablesBuilder(state) {
  * Custom properties or API may be added to the internal [[StateObject]] object by registering a decorator function
  * using the [[builder]] method.
  */
-var StateBuilder = (function () {
+var StateBuilder = /** @class */ (function () {
     function StateBuilder(matcher, urlMatcherFactory) {
         this.matcher = matcher;
         var self = this;
-        var root = function () { return matcher.find(""); };
+        var root$$1 = function () { return matcher.find(""); };
         var isRoot = function (state) { return state.name === ""; };
         function parentBuilder(state) {
             if (isRoot(state))
                 return null;
-            return matcher.find(self.parentName(state)) || root();
+            return matcher.find(self.parentName(state)) || root$$1();
         }
         this.builders = {
             name: [nameBuilder],
@@ -4036,7 +4028,7 @@ var StateBuilder = (function () {
             parent: [parentBuilder],
             data: [dataBuilder],
             // Build a URLMatcher if necessary, either via a relative or absolute URL
-            url: [getUrlBuilder(urlMatcherFactory, root)],
+            url: [getUrlBuilder(urlMatcherFactory, root$$1)],
             // Keep track of the closest ancestor state that has a URL (i.e. is navigable)
             navigable: [getNavigableBuilder(isRoot)],
             params: [getParamsBuilder(urlMatcherFactory.paramFactory)],
@@ -4094,15 +4086,20 @@ var StateBuilder = (function () {
         return state;
     };
     StateBuilder.prototype.parentName = function (state) {
+        // name = 'foo.bar.baz.**'
         var name = state.name || "";
+        // segments = ['foo', 'bar', 'baz', '.**']
         var segments = name.split('.');
-        if (segments.length > 1) {
+        // segments = ['foo', 'bar', 'baz']
+        var lastSegment = segments.pop();
+        // segments = ['foo', 'bar'] (ignore .** segment for future states)
+        if (lastSegment === '**')
+            segments.pop();
+        if (segments.length) {
             if (state.parent) {
                 throw new Error("States that specify the 'parent:' property should not have a '.' in their name (" + name + ")");
             }
-            var lastSegment = segments.pop();
-            if (lastSegment === '**')
-                segments.pop();
+            // 'foo.bar'
             return segments.join(".");
         }
         if (!state.parent)
@@ -4120,7 +4117,7 @@ var StateBuilder = (function () {
 }());
 
 /** @module state */ /** for typedoc */
-var StateMatcher = (function () {
+var StateMatcher = /** @class */ (function () {
     function StateMatcher(_states) {
         this._states = _states;
     }
@@ -4179,7 +4176,7 @@ var StateMatcher = (function () {
 
 /** @module state */ /** for typedoc */
 /** @internalapi */
-var StateQueueManager = (function () {
+var StateQueueManager = /** @class */ (function () {
     function StateQueueManager($registry, $urlRouter, states, builder, listeners) {
         this.$registry = $registry;
         this.$urlRouter = $urlRouter;
@@ -4266,7 +4263,7 @@ var StateQueueManager = (function () {
  * @coreapi
  * @module state
  */ /** for typedoc */
-var StateRegistry = (function () {
+var StateRegistry = /** @class */ (function () {
     /** @internalapi */
     function StateRegistry(_router) {
         this._router = _router;
@@ -4491,7 +4488,7 @@ var splitOnSlash = splitOnDelim('/');
  *   in the built-in  `date` ParamType matches `2014-11-12`) and provides a Date object in $stateParams.start
  *
  */
-var UrlMatcher = (function () {
+var UrlMatcher = /** @class */ (function () {
     /**
      * @param pattern The pattern to compile into a matcher.
      * @param paramTypes The [[ParamTypes]] registry
@@ -4544,7 +4541,7 @@ var UrlMatcher = (function () {
         var matchDetails = function (m, isSearch) {
             // IE[78] returns '' for unmatched groups instead of null
             var id = m[2] || m[3];
-            var regexp = isSearch ? m[4] : m[4] || (m[1] === '*' ? '.*' : null);
+            var regexp = isSearch ? m[4] : m[4] || (m[1] === '*' ? '[\\s\\S]*' : null);
             var makeRegexpType = function (regexp) { return inherit(paramTypes.type(isSearch ? "query" : "path"), {
                 pattern: new RegExp(regexp, _this.config.caseInsensitive ? 'i' : undefined)
             }); };
@@ -4892,7 +4889,19 @@ var UrlMatcher = (function () {
                         return 3;
                 });
         };
-        var cmp, i, pairs$$1 = arrayTuples(weights(a), weights(b));
+        /**
+         * Pads shorter array in-place (mutates)
+         */
+        var padArrays = function (l, r, padVal) {
+            var len = Math.max(l.length, r.length);
+            while (l.length < len)
+                l.push(padVal);
+            while (r.length < len)
+                r.push(padVal);
+        };
+        var weightsA = weights(a), weightsB = weights(b);
+        padArrays(weightsA, weightsB, 0);
+        var cmp, i, pairs$$1 = arrayTuples(weightsA, weightsB);
         for (i = 0; i < pairs$$1.length; i++) {
             cmp = pairs$$1[i][0] - pairs$$1[i][1];
             if (cmp !== 0)
@@ -4900,10 +4909,10 @@ var UrlMatcher = (function () {
         }
         return 0;
     };
+    /** @hidden */
+    UrlMatcher.nameValidator = /^\w+([-.]+\w+)*(?:\[\])?$/;
     return UrlMatcher;
 }());
-/** @hidden */
-UrlMatcher.nameValidator = /^\w+([-.]+\w+)*(?:\[\])?$/;
 
 /**
  * @internalapi
@@ -4913,9 +4922,9 @@ UrlMatcher.nameValidator = /^\w+([-.]+\w+)*(?:\[\])?$/;
  * Factory for [[UrlMatcher]] instances.
  *
  * The factory is available to ng1 services as
- * `$urlMatcherFactor` or ng1 providers as `$urlMatcherFactoryProvider`.
+ * `$urlMatcherFactory` or ng1 providers as `$urlMatcherFactoryProvider`.
  */
-var UrlMatcherFactory = (function () {
+var UrlMatcherFactory = /** @class */ (function () {
     function UrlMatcherFactory() {
         var _this = this;
         /** @hidden */ this.paramTypes = new ParamTypes();
@@ -5039,7 +5048,7 @@ var UrlMatcherFactory = (function () {
  * - [[StateObject]]
  * @internalapi
  */
-var UrlRuleFactory = (function () {
+var UrlRuleFactory = /** @class */ (function () {
     function UrlRuleFactory(router) {
         this.router = router;
     }
@@ -5203,18 +5212,18 @@ var UrlRuleFactory = (function () {
         var details = { regexp: regexp, type: "REGEXP" };
         return extend(new BaseUrlRule(match, _handler), details);
     };
+    UrlRuleFactory.isUrlRule = function (obj) {
+        return obj && ['type', 'match', 'handler'].every(function (key) { return isDefined(obj[key]); });
+    };
     return UrlRuleFactory;
 }());
-UrlRuleFactory.isUrlRule = function (obj) {
-    return obj && ['type', 'match', 'handler'].every(function (key) { return isDefined(obj[key]); });
-};
 /**
  * A base rule which calls `match`
  *
  * The value from the `match` function is passed through to the `handler`.
  * @internalapi
  */
-var BaseUrlRule = (function () {
+var BaseUrlRule = /** @class */ (function () {
     function BaseUrlRule(match, handler) {
         var _this = this;
         this.match = match;
@@ -5235,13 +5244,31 @@ function appendBasePath(url, isHtml5, absolute, baseHref) {
     if (baseHref === '/')
         return url;
     if (isHtml5)
-        return baseHref.slice(0, -1) + url;
+        return stripFile(baseHref) + url;
     if (absolute)
         return baseHref.slice(1) + url;
     return url;
 }
 /** @hidden */
-var getMatcher = prop("urlMatcher");
+var prioritySort = function (a, b) {
+    return (b.priority || 0) - (a.priority || 0);
+};
+/** @hidden */
+var typeSort = function (a, b) {
+    var weights = { "STATE": 4, "URLMATCHER": 4, "REGEXP": 3, "RAW": 2, "OTHER": 1 };
+    return (weights[a.type] || 0) - (weights[b.type] || 0);
+};
+/** @hidden */
+var urlMatcherSort = function (a, b) {
+    return !a.urlMatcher || !b.urlMatcher ? 0 : UrlMatcher.compare(a.urlMatcher, b.urlMatcher);
+};
+/** @hidden */
+var idSort = function (a, b) {
+    // Identically sorted STATE and URLMATCHER best rule will be chosen by `matchPriority` after each rule matches the URL
+    var useMatchPriority = { STATE: true, URLMATCHER: true };
+    var equal = useMatchPriority[a.type] && useMatchPriority[b.type];
+    return equal ? 0 : (a.$id || 0) - (b.$id || 0);
+};
 /**
  * Default rule priority sorting function.
  *
@@ -5250,12 +5277,25 @@ var getMatcher = prop("urlMatcher");
  * - Explicit priority (set rule priority using [[UrlRulesApi.when]])
  * - Rule type (STATE: 4, URLMATCHER: 4, REGEXP: 3, RAW: 2, OTHER: 1)
  * - `UrlMatcher` specificity ([[UrlMatcher.compare]]): works for STATE and URLMATCHER types to pick the most specific rule.
- * - Registration order (for rule types other than STATE and URLMATCHER)
+ * - Rule registration order (for rule types other than STATE and URLMATCHER)
+ *   - Equally sorted State and UrlMatcher rules will each match the URL.
+ *     Then, the *best* match is chosen based on how many parameter values were matched.
  *
  * @coreapi
  */
 var defaultRuleSortFn;
-defaultRuleSortFn = composeSort(sortBy(pipe(prop("priority"), function (x) { return -x; })), sortBy(pipe(prop("type"), function (type) { return ({ "STATE": 4, "URLMATCHER": 4, "REGEXP": 3, "RAW": 2, "OTHER": 1 })[type]; })), function (a, b) { return (getMatcher(a) && getMatcher(b)) ? UrlMatcher.compare(getMatcher(a), getMatcher(b)) : 0; }, sortBy(prop("$id"), inArray(["REGEXP", "RAW", "OTHER"])));
+defaultRuleSortFn = function (a, b) {
+    var cmp = prioritySort(a, b);
+    if (cmp !== 0)
+        return cmp;
+    cmp = typeSort(a, b);
+    if (cmp !== 0)
+        return cmp;
+    cmp = urlMatcherSort(a, b);
+    if (cmp !== 0)
+        return cmp;
+    return idSort(a, b);
+};
 /**
  * Updates URL and responds to URL changes
  *
@@ -5267,7 +5307,7 @@ defaultRuleSortFn = composeSort(sortBy(pipe(prop("priority"), function (x) { ret
  * This class updates the URL when the state changes.
  * It also responds to changes in the URL.
  */
-var UrlRouter = (function () {
+var UrlRouter = /** @class */ (function () {
     /** @hidden */
     function UrlRouter(router) {
         /** @hidden */ this._sortFn = defaultRuleSortFn;
@@ -5287,11 +5327,21 @@ var UrlRouter = (function () {
     };
     /** @inheritdoc */
     UrlRouter.prototype.sort = function (compareFn) {
-        this._rules.sort(this._sortFn = compareFn || this._sortFn);
+        this._rules = this.stableSort(this._rules, this._sortFn = compareFn || this._sortFn);
         this._sorted = true;
     };
     UrlRouter.prototype.ensureSorted = function () {
         this._sorted || this.sort();
+    };
+    UrlRouter.prototype.stableSort = function (arr, compareFn) {
+        var arrOfWrapper = arr.map(function (elem, idx) { return ({ elem: elem, idx: idx }); });
+        arrOfWrapper.sort(function (wrapperA, wrapperB) {
+            var cmpDiff = compareFn(wrapperA.elem, wrapperB.elem);
+            return cmpDiff === 0
+                ? wrapperA.idx - wrapperB.idx
+                : cmpDiff;
+        });
+        return arrOfWrapper.map(function (wrapper) { return wrapper.elem; });
     };
     /**
      * Given a URL, check all rules and return the best [[MatchResult]]
@@ -5509,7 +5559,7 @@ function getHandlerFn(handler) {
  * are configured with the matching [[ViewConfig]](s)
  *
  */
-var ViewService = (function () {
+var ViewService = /** @class */ (function () {
     function ViewService() {
         var _this = this;
         this._uiViews = [];
@@ -5591,7 +5641,9 @@ var ViewService = (function () {
                 uiView.configUpdated(viewConfig);
         };
         // Sort views by FQN and state depth. Process uiviews nearest the root first.
-        this._uiViews.sort(depthCompare(uiViewDepth, 1)).map(matchingConfigPair).forEach(configureUIView);
+        var pairs$$1 = this._uiViews.sort(depthCompare(uiViewDepth, 1)).map(matchingConfigPair);
+        trace.traceViewSync(pairs$$1);
+        pairs$$1.forEach(configureUIView);
     };
     
     /**
@@ -5612,8 +5664,8 @@ var ViewService = (function () {
     ViewService.prototype.registerUIView = function (uiView) {
         trace.traceViewServiceUIViewEvent("-> Registering", uiView);
         var uiViews = this._uiViews;
-        var fqnMatches = function (uiv) { return uiv.fqn === uiView.fqn; };
-        if (uiViews.filter(fqnMatches).length)
+        var fqnAndTypeMatches = function (uiv) { return uiv.fqn === uiView.fqn && uiv.$type === uiView.$type; };
+        if (uiViews.filter(fqnAndTypeMatches).length)
             trace.traceViewServiceUIViewEvent("!!!! duplicate uiView named:", uiView);
         uiViews.push(uiView);
         this.sync();
@@ -5686,84 +5738,84 @@ var ViewService = (function () {
         }
         return { uiViewName: uiViewName, uiViewContextAnchor: uiViewContextAnchor };
     };
+    /**
+     * Given a ui-view and a ViewConfig, determines if they "match".
+     *
+     * A ui-view has a fully qualified name (fqn) and a context object.  The fqn is built from its overall location in
+     * the DOM, describing its nesting relationship to any parent ui-view tags it is nested inside of.
+     *
+     * A ViewConfig has a target ui-view name and a context anchor.  The ui-view name can be a simple name, or
+     * can be a segmented ui-view path, describing a portion of a ui-view fqn.
+     *
+     * In order for a ui-view to match ViewConfig, ui-view's $type must match the ViewConfig's $type
+     *
+     * If the ViewConfig's target ui-view name is a simple name (no dots), then a ui-view matches if:
+     * - the ui-view's name matches the ViewConfig's target name
+     * - the ui-view's context matches the ViewConfig's anchor
+     *
+     * If the ViewConfig's target ui-view name is a segmented name (with dots), then a ui-view matches if:
+     * - There exists a parent ui-view where:
+     *    - the parent ui-view's name matches the first segment (index 0) of the ViewConfig's target name
+     *    - the parent ui-view's context matches the ViewConfig's anchor
+     * - And the remaining segments (index 1..n) of the ViewConfig's target name match the tail of the ui-view's fqn
+     *
+     * Example:
+     *
+     * DOM:
+     * <ui-view>                        <!-- created in the root context (name: "") -->
+     *   <ui-view name="foo">                <!-- created in the context named: "A"      -->
+     *     <ui-view>                    <!-- created in the context named: "A.B"    -->
+     *       <ui-view name="bar">            <!-- created in the context named: "A.B.C"  -->
+     *       </ui-view>
+     *     </ui-view>
+     *   </ui-view>
+     * </ui-view>
+     *
+     * uiViews: [
+     *  { fqn: "$default",                  creationContext: { name: "" } },
+     *  { fqn: "$default.foo",              creationContext: { name: "A" } },
+     *  { fqn: "$default.foo.$default",     creationContext: { name: "A.B" } }
+     *  { fqn: "$default.foo.$default.bar", creationContext: { name: "A.B.C" } }
+     * ]
+     *
+     * These four view configs all match the ui-view with the fqn: "$default.foo.$default.bar":
+     *
+     * - ViewConfig1: { uiViewName: "bar",                       uiViewContextAnchor: "A.B.C" }
+     * - ViewConfig2: { uiViewName: "$default.bar",              uiViewContextAnchor: "A.B" }
+     * - ViewConfig3: { uiViewName: "foo.$default.bar",          uiViewContextAnchor: "A" }
+     * - ViewConfig4: { uiViewName: "$default.foo.$default.bar", uiViewContextAnchor: "" }
+     *
+     * Using ViewConfig3 as an example, it matches the ui-view with fqn "$default.foo.$default.bar" because:
+     * - The ViewConfig's segmented target name is: [ "foo", "$default", "bar" ]
+     * - There exists a parent ui-view (which has fqn: "$default.foo") where:
+     *    - the parent ui-view's name "foo" matches the first segment "foo" of the ViewConfig's target name
+     *    - the parent ui-view's context "A" matches the ViewConfig's anchor context "A"
+     * - And the remaining segments [ "$default", "bar" ].join("."_ of the ViewConfig's target name match
+     *   the tail of the ui-view's fqn "default.bar"
+     *
+     * @internalapi
+     */
+    ViewService.matches = function (uiViewsByFqn, uiView) { return function (viewConfig) {
+        // Don't supply an ng1 ui-view with an ng2 ViewConfig, etc
+        if (uiView.$type !== viewConfig.viewDecl.$type)
+            return false;
+        // Split names apart from both viewConfig and uiView into segments
+        var vc = viewConfig.viewDecl;
+        var vcSegments = vc.$uiViewName.split(".");
+        var uivSegments = uiView.fqn.split(".");
+        // Check if the tails of the segment arrays match. ex, these arrays' tails match:
+        // vc: ["foo", "bar"], uiv fqn: ["$default", "foo", "bar"]
+        if (!equals(vcSegments, uivSegments.slice(0 - vcSegments.length)))
+            return false;
+        // Now check if the fqn ending at the first segment of the viewConfig matches the context:
+        // ["$default", "foo"].join(".") == "$default.foo", does the ui-view $default.foo context match?
+        var negOffset = (1 - vcSegments.length) || undefined;
+        var fqnToFirstSegment = uivSegments.slice(0, negOffset).join(".");
+        var uiViewContext = uiViewsByFqn[fqnToFirstSegment].creationContext;
+        return vc.$uiViewContextAnchor === (uiViewContext && uiViewContext.name);
+    }; };
     return ViewService;
 }());
-/**
- * Given a ui-view and a ViewConfig, determines if they "match".
- *
- * A ui-view has a fully qualified name (fqn) and a context object.  The fqn is built from its overall location in
- * the DOM, describing its nesting relationship to any parent ui-view tags it is nested inside of.
- *
- * A ViewConfig has a target ui-view name and a context anchor.  The ui-view name can be a simple name, or
- * can be a segmented ui-view path, describing a portion of a ui-view fqn.
- *
- * In order for a ui-view to match ViewConfig, ui-view's $type must match the ViewConfig's $type
- *
- * If the ViewConfig's target ui-view name is a simple name (no dots), then a ui-view matches if:
- * - the ui-view's name matches the ViewConfig's target name
- * - the ui-view's context matches the ViewConfig's anchor
- *
- * If the ViewConfig's target ui-view name is a segmented name (with dots), then a ui-view matches if:
- * - There exists a parent ui-view where:
- *    - the parent ui-view's name matches the first segment (index 0) of the ViewConfig's target name
- *    - the parent ui-view's context matches the ViewConfig's anchor
- * - And the remaining segments (index 1..n) of the ViewConfig's target name match the tail of the ui-view's fqn
- *
- * Example:
- *
- * DOM:
- * <ui-view>                        <!-- created in the root context (name: "") -->
- *   <ui-view name="foo">                <!-- created in the context named: "A"      -->
- *     <ui-view>                    <!-- created in the context named: "A.B"    -->
- *       <ui-view name="bar">            <!-- created in the context named: "A.B.C"  -->
- *       </ui-view>
- *     </ui-view>
- *   </ui-view>
- * </ui-view>
- *
- * uiViews: [
- *  { fqn: "$default",                  creationContext: { name: "" } },
- *  { fqn: "$default.foo",              creationContext: { name: "A" } },
- *  { fqn: "$default.foo.$default",     creationContext: { name: "A.B" } }
- *  { fqn: "$default.foo.$default.bar", creationContext: { name: "A.B.C" } }
- * ]
- *
- * These four view configs all match the ui-view with the fqn: "$default.foo.$default.bar":
- *
- * - ViewConfig1: { uiViewName: "bar",                       uiViewContextAnchor: "A.B.C" }
- * - ViewConfig2: { uiViewName: "$default.bar",              uiViewContextAnchor: "A.B" }
- * - ViewConfig3: { uiViewName: "foo.$default.bar",          uiViewContextAnchor: "A" }
- * - ViewConfig4: { uiViewName: "$default.foo.$default.bar", uiViewContextAnchor: "" }
- *
- * Using ViewConfig3 as an example, it matches the ui-view with fqn "$default.foo.$default.bar" because:
- * - The ViewConfig's segmented target name is: [ "foo", "$default", "bar" ]
- * - There exists a parent ui-view (which has fqn: "$default.foo") where:
- *    - the parent ui-view's name "foo" matches the first segment "foo" of the ViewConfig's target name
- *    - the parent ui-view's context "A" matches the ViewConfig's anchor context "A"
- * - And the remaining segments [ "$default", "bar" ].join("."_ of the ViewConfig's target name match
- *   the tail of the ui-view's fqn "default.bar"
- *
- * @internalapi
- */
-ViewService.matches = function (uiViewsByFqn, uiView) { return function (viewConfig) {
-    // Don't supply an ng1 ui-view with an ng2 ViewConfig, etc
-    if (uiView.$type !== viewConfig.viewDecl.$type)
-        return false;
-    // Split names apart from both viewConfig and uiView into segments
-    var vc = viewConfig.viewDecl;
-    var vcSegments = vc.$uiViewName.split(".");
-    var uivSegments = uiView.fqn.split(".");
-    // Check if the tails of the segment arrays match. ex, these arrays' tails match:
-    // vc: ["foo", "bar"], uiv fqn: ["$default", "foo", "bar"]
-    if (!equals(vcSegments, uivSegments.slice(0 - vcSegments.length)))
-        return false;
-    // Now check if the fqn ending at the first segment of the viewConfig matches the context:
-    // ["$default", "foo"].join(".") == "$default.foo", does the ui-view $default.foo context match?
-    var negOffset = (1 - vcSegments.length) || undefined;
-    var fqnToFirstSegment = uivSegments.slice(0, negOffset).join(".");
-    var uiViewContext = uiViewsByFqn[fqnToFirstSegment].creationContext;
-    return vc.$uiViewContextAnchor === (uiViewContext && uiViewContext.name);
-}; };
 
 /**
  * @coreapi
@@ -5775,7 +5827,7 @@ ViewService.matches = function (uiViewsByFqn, uiView) { return function (viewCon
  * This is where we hold the global mutable state such as current state, current
  * params, current transition, etc.
  */
-var UIRouterGlobals = (function () {
+var UIRouterGlobals = /** @class */ (function () {
     function UIRouterGlobals() {
         /**
          * Current parameter values
@@ -5814,7 +5866,7 @@ var makeStub = function (keys) {
 /**
  * API for URL management
  */
-var UrlService = (function () {
+var UrlService = /** @class */ (function () {
     /** @hidden */
     function UrlService(router, lateBind) {
         if (lateBind === void 0) { lateBind = true; }
@@ -5866,12 +5918,12 @@ var UrlService = (function () {
     UrlService.prototype.deferIntercept = function (defer) { return; };
     /** @inheritdoc */
     UrlService.prototype.match = function (urlParts) { return; };
+    /** @hidden */
+    UrlService.locationServiceStub = makeStub(locationServicesFns);
+    /** @hidden */
+    UrlService.locationConfigStub = makeStub(locationConfigFns);
     return UrlService;
 }());
-/** @hidden */
-UrlService.locationServiceStub = makeStub(locationServicesFns);
-/** @hidden */
-UrlService.locationConfigStub = makeStub(locationConfigFns);
 
 /**
  * @coreapi
@@ -5894,7 +5946,7 @@ var _routerInstance = 0;
  * If you are bootstrapping UIRouter manually, tell it to monitor the URL by calling
  * [[UrlService.listen]] then [[UrlService.sync]].
  */
-var UIRouter = (function () {
+var UIRouter = /** @class */ (function () {
     /**
      * Creates a new `UIRouter` object
      *
@@ -6379,7 +6431,7 @@ function lazyLoadState(transition, state) {
  *
  * @interalapi
  */
-var TransitionEventType = (function () {
+var TransitionEventType = /** @class */ (function () {
     function TransitionEventType(name, hookPhase, hookOrder, criteriaMatchPath, reverseSort, getResultHandler, getErrorHandler, synchronous) {
         if (reverseSort === void 0) { reverseSort = false; }
         if (getResultHandler === void 0) { getResultHandler = TransitionHook.HANDLE_RESULT; }
@@ -6472,7 +6524,7 @@ var defaultTransOpts = {
  *
  * At bootstrap, [[UIRouter]] creates a single instance (singleton) of this class.
  */
-var TransitionService = (function () {
+var TransitionService = /** @class */ (function () {
     /** @hidden */
     function TransitionService(_router) {
         /** @hidden */
@@ -6670,7 +6722,7 @@ var TransitionService = (function () {
  * This class provides services related to ui-router states.
  * An instance of this class is located on the global [[UIRouter]] object.
  */
-var StateService = (function () {
+var StateService = /** @class */ (function () {
     /** @internalapi */
     function StateService(router) {
         this.router = router;
@@ -6753,7 +6805,7 @@ var StateService = (function () {
      */
     StateService.prototype._handleInvalidTargetState = function (fromPath, toState) {
         var _this = this;
-        var fromState = PathUtils.makeTargetState(fromPath);
+        var fromState = PathUtils.makeTargetState(this.router.stateRegistry, fromPath);
         var globals = this.router.globals;
         var latestThing = function () { return globals.transitionHistory.peekTail(); };
         var latest = latestThing();
@@ -6927,8 +6979,7 @@ var StateService = (function () {
         options.reloadState = options.reload === true ? reg.root() : reg.matcher.find(options.reload, options.relative);
         if (options.reload && !options.reloadState)
             throw new Error("No such reload state '" + (isString(options.reload) ? options.reload : options.reload.name) + "'");
-        var stateDefinition = reg.matcher.find(identifier, options.relative);
-        return new TargetState(identifier, stateDefinition, params, options);
+        return new TargetState(this.router.stateRegistry, identifier, params, options);
     };
     
     StateService.prototype.getCurrentPath = function () {
@@ -7208,7 +7259,7 @@ var StateService = (function () {
         if (!state || !state.lazyLoad)
             throw new Error("Can not lazy load " + stateOrName);
         var currentPath = this.getCurrentPath();
-        var target = PathUtils.makeTargetState(currentPath);
+        var target = PathUtils.makeTargetState(this.router.stateRegistry, currentPath);
         transition = transition || this.router.transitionService.create(currentPath, target);
         return lazyLoadState(transition, state);
     };
@@ -7252,9 +7303,9 @@ var StateService = (function () {
  */
 var $q = {
     /** Normalizes a value as a promise */
-    when: function (val$$1) { return new Promise(function (resolve, reject) { return resolve(val$$1); }); },
+    when: function (val) { return new Promise(function (resolve, reject) { return resolve(val); }); },
     /** Normalizes a value as a promise rejection */
-    reject: function (val$$1) { return new Promise(function (resolve, reject) { reject(val$$1); }); },
+    reject: function (val) { return new Promise(function (resolve, reject) { reject(val); }); },
     /** @returns a deferred object, which has `resolve` and `reject` functions */
     defer: function () {
         var deferred = {};
@@ -7273,10 +7324,10 @@ var $q = {
             // Convert promises map to promises array.
             // When each promise resolves, map it to a tuple { key: key, val: val }
             var chain = Object.keys(promises)
-                .map(function (key) { return promises[key].then(function (val$$1) { return ({ key: key, val: val$$1 }); }); });
+                .map(function (key) { return promises[key].then(function (val) { return ({ key: key, val: val }); }); });
             // Then wait for all promises to resolve, and convert them back to an object
-            return $q.all(chain).then(function (values$$1) {
-                return values$$1.reduce(function (acc, tuple) { acc[tuple.key] = tuple.val; return acc; }, {});
+            return $q.all(chain).then(function (values) {
+                return values.reduce(function (acc, tuple) { acc[tuple.key] = tuple.val; return acc; }, {});
             });
         }
     }
@@ -7351,10 +7402,10 @@ var $injector = {
      * @param locals An object with additional DI tokens and values, such as `{ someToken: { foo: 1 } }`
      */
     invoke: function (fn, context, locals) {
-        var all$$1 = extend({}, globals, locals || {});
+        var all = extend({}, globals, locals || {});
         var params = $injector.annotate(fn);
-        var ensureExist = assertPredicate(function (key) { return all$$1.hasOwnProperty(key); }, function (key) { return "DI can't find injectable: '" + key + "'"; });
-        var args = params.filter(ensureExist).map(function (x) { return all$$1[x]; });
+        var ensureExist = assertPredicate(function (key) { return all.hasOwnProperty(key); }, function (key) { return "DI can't find injectable: '" + key + "'"; });
+        var args = params.filter(ensureExist).map(function (x) { return all[x]; });
         if (isFunction(fn))
             return fn.apply(context, args);
         else
@@ -7384,28 +7435,16 @@ var $injector = {
  * @module vanilla
  */
 /** */
-var beforeAfterSubstr$1 = function (char) { return function (str) {
-    if (!str)
-        return ["", ""];
-    var idx = str.indexOf(char);
-    if (idx === -1)
-        return [str, ""];
-    return [str.substr(0, idx), str.substr(idx + 1)];
-}; };
-var splitHash = beforeAfterSubstr$1("#");
-var splitQuery = beforeAfterSubstr$1("?");
-var splitEqual = beforeAfterSubstr$1("=");
-var trimHashVal = function (str) { return str ? str.replace(/^#/, "") : ""; };
 var keyValsToObjectR = function (accum, _a) {
-    var key = _a[0], val$$1 = _a[1];
+    var key = _a[0], val = _a[1];
     if (!accum.hasOwnProperty(key)) {
-        accum[key] = val$$1;
+        accum[key] = val;
     }
     else if (isArray(accum[key])) {
-        accum[key].push(val$$1);
+        accum[key].push(val);
     }
     else {
-        accum[key] = [accum[key], val$$1];
+        accum[key] = [accum[key], val];
     }
     return accum;
 };
@@ -7425,7 +7464,7 @@ var buildUrl = function (loc) {
     var search = Object.keys(searchObject).map(function (key) {
         var param = searchObject[key];
         var vals = isArray(param) ? param : [param];
-        return vals.map(function (val$$1) { return key + "=" + val$$1; });
+        return vals.map(function (val) { return key + "=" + val; });
     }).reduce(unnestR, []).join("&");
     return path + (search ? "?" + search : "") + (hash ? "#" + hash : "");
 };
@@ -7446,7 +7485,7 @@ function locationPluginFactory(name, isHtml5, serviceClass, configurationClass) 
  * @module vanilla
  */ /** */
 /** A base `LocationServices` */
-var BaseLocationServices = (function () {
+var BaseLocationServices = /** @class */ (function () {
     function BaseLocationServices(router, fireAfterUpdate) {
         var _this = this;
         this.fireAfterUpdate = fireAfterUpdate;
@@ -7455,16 +7494,15 @@ var BaseLocationServices = (function () {
         this.hash = function () { return parseUrl$1(_this._get()).hash; };
         this.path = function () { return parseUrl$1(_this._get()).path; };
         this.search = function () { return getParams(parseUrl$1(_this._get()).search); };
-        this._location = window && window.location;
-        this._history = window && window.history;
+        this._location = root.location;
+        this._history = root.history;
     }
     BaseLocationServices.prototype.url = function (url, replace) {
         if (replace === void 0) { replace = true; }
         if (isDefined(url) && url !== this._get()) {
             this._set(null, null, url, replace);
             if (this.fireAfterUpdate) {
-                var evt_1 = extend(new Event("locationchange"), { url: url });
-                this._listeners.forEach(function (cb) { return cb(evt_1); });
+                this._listeners.forEach(function (cb) { return cb({ url: url }); });
             }
         }
         return buildUrl(this);
@@ -7496,11 +7534,11 @@ var __extends = (undefined && undefined.__extends) || (function () {
  */
 /** */
 /** A `LocationServices` that uses the browser hash "#" to get/set the current location */
-var HashLocationService = (function (_super) {
+var HashLocationService = /** @class */ (function (_super) {
     __extends(HashLocationService, _super);
     function HashLocationService(router) {
         var _this = _super.call(this, router, false) || this;
-        window.addEventListener('hashchange', _this._listener, false);
+        root.addEventListener('hashchange', _this._listener, false);
         return _this;
     }
     HashLocationService.prototype._get = function () {
@@ -7511,7 +7549,7 @@ var HashLocationService = (function (_super) {
     };
     HashLocationService.prototype.dispose = function (router) {
         _super.prototype.dispose.call(this, router);
-        window.removeEventListener('hashchange', this._listener);
+        root.removeEventListener('hashchange', this._listener);
     };
     return HashLocationService;
 }(BaseLocationServices));
@@ -7532,7 +7570,7 @@ var __extends$1 = (undefined && undefined.__extends) || (function () {
  */
 /** */
 /** A `LocationServices` that gets/sets the current location from an in-memory object */
-var MemoryLocationService = (function (_super) {
+var MemoryLocationService = /** @class */ (function (_super) {
     __extends$1(MemoryLocationService, _super);
     function MemoryLocationService(router) {
         return _super.call(this, router, true) || this;
@@ -7561,40 +7599,57 @@ var __extends$2 = (undefined && undefined.__extends) || (function () {
  *
  * Uses `history.pushState` and `history.replaceState`
  */
-var PushStateLocationService = (function (_super) {
+var PushStateLocationService = /** @class */ (function (_super) {
     __extends$2(PushStateLocationService, _super);
     function PushStateLocationService(router) {
         var _this = _super.call(this, router, true) || this;
         _this._config = router.urlService.config;
-        window.addEventListener("popstate", _this._listener, false);
+        root.addEventListener('popstate', _this._listener, false);
         return _this;
     }
     
+    /**
+     * Gets the base prefix without:
+     * - trailing slash
+     * - trailing filename
+     * - protocol and hostname
+     *
+     * If <base href='/base/index.html'>, this returns '/base'.
+     * If <base href='http://localhost:8080/base/index.html'>, this returns '/base'.
+     *
+     * See: https://html.spec.whatwg.org/dev/semantics.html#the-base-element
+     */
+    PushStateLocationService.prototype._getBasePrefix = function () {
+        return stripFile(this._config.baseHref());
+    };
     PushStateLocationService.prototype._get = function () {
         var _a = this._location, pathname = _a.pathname, hash = _a.hash, search = _a.search;
         search = splitQuery(search)[1]; // strip ? if found
         hash = splitHash(hash)[1]; // strip # if found
-        return pathname + (search ? "?" + search : "") + (hash ? "$" + search : "");
+        var basePrefix = this._getBasePrefix();
+        var exactMatch = pathname === this._config.baseHref();
+        var startsWith = pathname.startsWith(basePrefix);
+        pathname = exactMatch ? '/' : startsWith ? pathname.substring(basePrefix.length) : pathname;
+        return pathname + (search ? '?' + search : '') + (hash ? '#' + hash : '');
     };
     PushStateLocationService.prototype._set = function (state, title, url, replace) {
-        var _a = this, _config = _a._config, _history = _a._history;
-        var fullUrl = _config.baseHref() + url;
+        var fullUrl = this._getBasePrefix() + url;
         if (replace) {
-            _history.replaceState(state, title, fullUrl);
+            this._history.replaceState(state, title, fullUrl);
         }
         else {
-            _history.pushState(state, title, fullUrl);
+            this._history.pushState(state, title, fullUrl);
         }
     };
     PushStateLocationService.prototype.dispose = function (router) {
         _super.prototype.dispose.call(this, router);
-        window.removeEventListener("popstate", this._listener);
+        root.removeEventListener('popstate', this._listener);
     };
     return PushStateLocationService;
 }(BaseLocationServices));
 
 /** A `LocationConfig` mock that gets/sets all config from an in-memory object */
-var MemoryLocationConfig = (function () {
+var MemoryLocationConfig = /** @class */ (function () {
     function MemoryLocationConfig() {
         var _this = this;
         this._baseHref = '';
@@ -7619,7 +7674,7 @@ var MemoryLocationConfig = (function () {
  */
 /** */
 /** A `LocationConfig` that delegates to the browser's `location` object */
-var BrowserLocationConfig = (function () {
+var BrowserLocationConfig = /** @class */ (function () {
     function BrowserLocationConfig(router, _isHtml5) {
         if (_isHtml5 === void 0) { _isHtml5 = false; }
         this._isHtml5 = _isHtml5;
@@ -7636,7 +7691,7 @@ var BrowserLocationConfig = (function () {
         return location.protocol.replace(/:/g, '');
     };
     BrowserLocationConfig.prototype.host = function () {
-        return location.host;
+        return location.hostname;
     };
     BrowserLocationConfig.prototype.html5Mode = function () {
         return this._isHtml5;
@@ -7646,11 +7701,12 @@ var BrowserLocationConfig = (function () {
     };
     
     BrowserLocationConfig.prototype.baseHref = function (href) {
-        return isDefined(href) ? this._baseHref = href : this._baseHref || this.applyDocumentBaseHref();
+        return isDefined(href) ? this._baseHref = href :
+            isDefined(this._baseHref) ? this._baseHref : this.applyDocumentBaseHref();
     };
     BrowserLocationConfig.prototype.applyDocumentBaseHref = function () {
-        var baseTags = document.getElementsByTagName("base");
-        return this._baseHref = baseTags.length ? baseTags[0].href.substr(location.origin.length) : "";
+        var baseTag = document.getElementsByTagName("base")[0];
+        return this._baseHref = baseTag ? baseTag.href.substr(location.origin.length) : "";
     };
     BrowserLocationConfig.prototype.dispose = function () { };
     return BrowserLocationConfig;
@@ -7690,7 +7746,7 @@ var memoryLocationPlugin = locationPluginFactory("vanilla.memoryLocation", false
  * @module core
  */ /** for typedoc */
 /** @internalapi */
-var UIRouterPluginBase = (function () {
+var UIRouterPluginBase = /** @class */ (function () {
     function UIRouterPluginBase() {
     }
     UIRouterPluginBase.prototype.dispose = function (router) { };
@@ -7705,9 +7761,9 @@ var UIRouterPluginBase = (function () {
 
 
 var index$1 = Object.freeze({
+	root: root,
 	fromJson: fromJson,
 	toJson: toJson,
-	copy: copy,
 	forEach: forEach,
 	extend: extend,
 	equals: equals,
@@ -7748,9 +7804,8 @@ var index$1 = Object.freeze({
 	arrayTuples: arrayTuples,
 	applyPairs: applyPairs,
 	tail: tail,
+	copy: copy,
 	_extend: _extend,
-	sortBy: sortBy,
-	composeSort: composeSort,
 	silenceUncaughtInPromise: silenceUncaughtInPromise,
 	silentRejection: silentRejection,
 	notImplemented: notImplemented,
@@ -7794,6 +7849,12 @@ var index$1 = Object.freeze({
 	fnToString: fnToString,
 	stringify: stringify,
 	beforeAfterSubstr: beforeAfterSubstr,
+	hostRegex: hostRegex,
+	stripFile: stripFile,
+	splitHash: splitHash,
+	splitQuery: splitQuery,
+	splitEqual: splitEqual,
+	trimHashVal: trimHashVal,
 	splitOnDelim: splitOnDelim,
 	joinNeighborsR: joinNeighborsR,
 	get Category () { return exports.Category; },
@@ -7849,10 +7910,6 @@ var index$1 = Object.freeze({
 	PushStateLocationService: PushStateLocationService,
 	MemoryLocationConfig: MemoryLocationConfig,
 	BrowserLocationConfig: BrowserLocationConfig,
-	splitHash: splitHash,
-	splitQuery: splitQuery,
-	splitEqual: splitEqual,
-	trimHashVal: trimHashVal,
 	keyValsToObjectR: keyValsToObjectR,
 	getParams: getParams,
 	parseUrl: parseUrl$1,
@@ -7864,9 +7921,6 @@ var index$1 = Object.freeze({
 	memoryLocationPlugin: memoryLocationPlugin,
 	UIRouterPluginBase: UIRouterPluginBase
 });
-
-var ng_from_global = angular;
-var ng = (ng_from_import && ng_from_import.module) ? ng_from_import : ng_from_global;
 
 function getNg1ViewConfigFactory() {
     var templateFactory = null;
@@ -7926,7 +7980,7 @@ function ng1ViewsBuilder(state) {
     return views;
 }
 var id$1 = 0;
-var Ng1ViewConfig = (function () {
+var Ng1ViewConfig = /** @class */ (function () {
     function Ng1ViewConfig(path, viewDecl, factory) {
         var _this = this;
         this.path = path;
@@ -7940,14 +7994,14 @@ var Ng1ViewConfig = (function () {
     }
     Ng1ViewConfig.prototype.load = function () {
         var _this = this;
-        var $q$$1 = services.$q;
+        var $q = services.$q;
         var context = new ResolveContext(this.path);
         var params = this.path.reduce(function (acc, node) { return extend(acc, node.paramValues); }, {});
         var promises = {
-            template: $q$$1.when(this.factory.fromConfig(this.viewDecl, params, context)),
-            controller: $q$$1.when(this.getController(context))
+            template: $q.when(this.factory.fromConfig(this.viewDecl, params, context)),
+            controller: $q.when(this.getController(context))
         };
-        return $q$$1.all(promises).then(function (results) {
+        return $q.all(promises).then(function (results) {
             trace.traceViewServiceEvent("Loaded", _this);
             _this.controller = results.controller;
             extend(_this, results.template); // Either { template: "tpl" } or { component: "cmpName" }
@@ -7976,12 +8030,12 @@ var Ng1ViewConfig = (function () {
 /**
  * Service which manages loading of templates from a ViewConfig.
  */
-var TemplateFactory = (function () {
+var TemplateFactory = /** @class */ (function () {
     function TemplateFactory() {
         var _this = this;
         /** @hidden */ this._useHttp = ng.version.minor < 3;
-        /** @hidden */ this.$get = ['$http', '$templateCache', '$injector', function ($http, $templateCache, $injector$$1) {
-                _this.$templateRequest = $injector$$1.has && $injector$$1.has('$templateRequest') && $injector$$1.get('$templateRequest');
+        /** @hidden */ this.$get = ['$http', '$templateCache', '$injector', function ($http, $templateCache, $injector) {
+                _this.$templateRequest = $injector.has && $injector.has('$templateRequest') && $injector.get('$templateRequest');
                 _this.$http = $http;
                 _this.$templateCache = $templateCache;
                 return _this;
@@ -8177,7 +8231,7 @@ var scopeBindings = function (bindingsObj) { return Object.keys(bindingsObj || {
  *
  * The `$stateProvider` provides interfaces to declare these states for your app.
  */
-var StateProvider = (function () {
+var StateProvider = /** @class */ (function () {
     function StateProvider(stateRegistry, stateService) {
         this.stateRegistry = stateRegistry;
         this.stateService = stateService;
@@ -8320,7 +8374,7 @@ var getStateHookBuilder = function (hookName) {
 /**
  * Implements UI-Router LocationServices and LocationConfig using Angular 1's $location service
  */
-var Ng1LocationServices = (function () {
+var Ng1LocationServices = /** @class */ (function () {
     function Ng1LocationServices($locationProvider) {
         // .onChange() registry
         this._urlListeners = [];
@@ -8378,11 +8432,11 @@ var Ng1LocationServices = (function () {
      */
     Ng1LocationServices.monkeyPatchPathParameterType = function (router) {
         var pathType = router.urlMatcherFactory.type('path');
-        pathType.encode = function (val$$1) {
-            return val$$1 != null ? val$$1.toString().replace(/(~|\/)/g, function (m) { return ({ '~': '~~', '/': '~2F' }[m]); }) : val$$1;
+        pathType.encode = function (val) {
+            return val != null ? val.toString().replace(/(~|\/)/g, function (m) { return ({ '~': '~~', '/': '~2F' }[m]); }) : val;
         };
-        pathType.decode = function (val$$1) {
-            return val$$1 != null ? val$$1.toString().replace(/(~~|~2F)/g, function (m) { return ({ '~~': '~', '~2F': '/' }[m]); }) : val$$1;
+        pathType.decode = function (val) {
+            return val != null ? val.toString().replace(/(~~|~2F)/g, function (m) { return ({ '~~': '~', '~2F': '/' }[m]); }) : val;
         };
     };
     return Ng1LocationServices;
@@ -8403,7 +8457,7 @@ var Ng1LocationServices = (function () {
  *
  * @deprecated
  */
-var UrlRouterProvider = (function () {
+var UrlRouterProvider = /** @class */ (function () {
     /** @hidden */
     function UrlRouterProvider(router) {
         this._router = router;
@@ -8642,16 +8696,16 @@ var getProviderFor = function (serviceName) { return ['$uiRouterProvider', funct
     }]; };
 // This effectively calls $get() on `$uiRouterProvider` to trigger init (when ng enters runtime)
 runBlock.$inject = ['$injector', '$q', '$uiRouter'];
-function runBlock($injector$$1, $q$$1, $uiRouter) {
-    services.$injector = $injector$$1;
-    services.$q = $q$$1;
+function runBlock($injector, $q, $uiRouter) {
+    services.$injector = $injector;
+    services.$q = $q;
     // The $injector is now available.
     // Find any resolvables that had dependency annotation deferred
     $uiRouter.stateRegistry.get()
         .map(function (x) { return x.$$state().resolvables; })
         .reduce(unnestR, [])
         .filter(function (x) { return x.deps === "deferred"; })
-        .forEach(function (resolvable) { return resolvable.deps = $injector$$1.annotate(resolvable.resolveFn); });
+        .forEach(function (resolvable) { return resolvable.deps = $injector.annotate(resolvable.resolveFn, $injector.strictDi); });
 }
 // $urlRouter service and $urlRouterProvider
 var getUrlRouterProvider = function (uiRouter) {
@@ -9061,8 +9115,8 @@ uiSref = ['$uiRouter', '$timeout',
                         attrs.$set(type.attr, def.href);
                 }
                 if (ref.paramExpr) {
-                    scope.$watch(ref.paramExpr, function (val$$1) {
-                        rawDef.uiStateParams = extend({}, val$$1);
+                    scope.$watch(ref.paramExpr, function (val) {
+                        rawDef.uiStateParams = extend({}, val);
                         update();
                     }, true);
                     rawDef.uiStateParams = extend({}, scope.$eval(ref.paramExpr));
@@ -9327,7 +9381,7 @@ uiSrefActive = ['$state', '$stateParams', '$interpolate', '$uiRouter',
                         return deregister;
                     };
                     function updateAfterTransition(trans) {
-                        trans.promise.then(update);
+                        trans.promise.then(update, noop$1);
                     }
                     $scope.$on('$stateChangeSuccess', update);
                     $scope.$on('$destroy', $uiRouter.transitionService.onStart({}, updateAfterTransition));
@@ -9547,7 +9601,7 @@ ng.module('ui.router.state')
  */
 var uiView;
 uiView = ['$view', '$animate', '$uiViewScroll', '$interpolate', '$q',
-    function $ViewDirective($view, $animate, $uiViewScroll, $interpolate, $q$$1) {
+    function $ViewDirective($view, $animate, $uiViewScroll, $interpolate, $q) {
         function getRenderer(attrs, scope) {
             return {
                 enter: function (element, target, cb) {
@@ -9640,7 +9694,7 @@ uiView = ['$view', '$animate', '$uiViewScroll', '$interpolate', '$q',
                     }
                     function updateView(config) {
                         var newScope = scope.$new();
-                        var animEnter = $q$$1.defer(), animLeave = $q$$1.defer();
+                        var animEnter = $q.defer(), animLeave = $q.defer();
                         var $uiViewData = {
                             $cfg: config,
                             $uiView: activeUIView,
@@ -9698,7 +9752,7 @@ uiView = ['$view', '$animate', '$uiViewScroll', '$interpolate', '$q',
     }];
 $ViewDirectiveFill.$inject = ['$compile', '$controller', '$transitions', '$view', '$q', '$timeout'];
 /** @hidden */
-function $ViewDirectiveFill($compile, $controller, $transitions, $view, $q$$1, $timeout) {
+function $ViewDirectiveFill($compile, $controller, $transitions, $view, $q, $timeout) {
     var getControllerAs = parse('viewDecl.controllerAs');
     var getResolveAs = parse('viewDecl.resolveAs');
     return {
@@ -9736,7 +9790,7 @@ function $ViewDirectiveFill($compile, $controller, $transitions, $view, $q$$1, $
                     // scope.$on('$destroy', () => $view.componentUnloaded(controllerInstance, { $scope: scope, $element: $element }));
                     $element.data('$ngControllerController', controllerInstance);
                     $element.children().data('$ngControllerController', controllerInstance);
-                    registerControllerCallbacks($q$$1, $transitions, controllerInstance, scope, cfg);
+                    registerControllerCallbacks($q, $transitions, controllerInstance, scope, cfg);
                 }
                 // Wait for the component to appear in the DOM
                 if (isString(cfg.viewDecl.component)) {
@@ -9751,7 +9805,7 @@ function $ViewDirectiveFill($compile, $controller, $transitions, $view, $q$$1, $
                     var deregisterWatch_1 = scope.$watch(getComponentController, function (ctrlInstance) {
                         if (!ctrlInstance)
                             return;
-                        registerControllerCallbacks($q$$1, $transitions, ctrlInstance, scope, cfg);
+                        registerControllerCallbacks($q, $transitions, ctrlInstance, scope, cfg);
                         deregisterWatch_1();
                     });
                 }
@@ -9765,7 +9819,7 @@ var hasComponentImpl = typeof ng.module('ui.router')['component'] === 'function'
 /** @hidden incrementing id */
 var _uiCanExitId = 0;
 /** @hidden TODO: move these callbacks to $view and/or `/hooks/components.ts` or something */
-function registerControllerCallbacks($q$$1, $transitions, controllerInstance, $scope, cfg) {
+function registerControllerCallbacks($q, $transitions, controllerInstance, $scope, cfg) {
     // Call $onInit() ASAP
     if (isFunction(controllerInstance.$onInit) && !(cfg.viewDecl.component && hasComponentImpl)) {
         controllerInstance.$onInit();
@@ -9795,7 +9849,7 @@ function registerControllerCallbacks($q$$1, $transitions, controllerInstance, $s
             if (changedToParams.length) {
                 var changedKeys_1 = changedToParams.map(function (x) { return x.id; });
                 // Filter the params to only changed/new to params.  `$transition$.params()` may be used to get all params.
-                var newValues = filter(toParams, function (val$$1, key) { return changedKeys_1.indexOf(key) !== -1; });
+                var newValues = filter(toParams, function (val, key) { return changedKeys_1.indexOf(key) !== -1; });
                 controllerInstance.uiOnParamsChanged(newValues, $transition$);
             }
         };
@@ -9813,8 +9867,8 @@ function registerControllerCallbacks($q$$1, $transitions, controllerInstance, $s
         var wrappedHook = function (trans) {
             var promise, ids = trans[cacheProp_1] = trans[cacheProp_1] || {};
             if (!prevTruthyAnswer_1(trans)) {
-                promise = $q$$1.when(controllerInstance.uiCanExit(trans));
-                promise.then(function (val$$1) { return ids[id_1] = (val$$1 !== false); });
+                promise = $q.when(controllerInstance.uiCanExit(trans));
+                promise.then(function (val) { return ids[id_1] = (val !== false); });
             }
             return promise;
         };
@@ -9851,11 +9905,18 @@ ng.module('ui.router.state').provider('$uiViewScroll', $ViewScrollProvider);
  */ /** */
 var index = "ui.router";
 
-exports.core = index$1;
 exports['default'] = index;
+exports.core = index$1;
+exports.watchDigests = watchDigests;
+exports.getLocals = getLocals;
+exports.getNg1ViewConfigFactory = getNg1ViewConfigFactory;
+exports.ng1ViewsBuilder = ng1ViewsBuilder;
+exports.Ng1ViewConfig = Ng1ViewConfig;
+exports.StateProvider = StateProvider;
+exports.UrlRouterProvider = UrlRouterProvider;
+exports.root = root;
 exports.fromJson = fromJson;
 exports.toJson = toJson;
-exports.copy = copy;
 exports.forEach = forEach;
 exports.extend = extend;
 exports.equals = equals;
@@ -9896,9 +9957,8 @@ exports.pairs = pairs;
 exports.arrayTuples = arrayTuples;
 exports.applyPairs = applyPairs;
 exports.tail = tail;
+exports.copy = copy;
 exports._extend = _extend;
-exports.sortBy = sortBy;
-exports.composeSort = composeSort;
 exports.silenceUncaughtInPromise = silenceUncaughtInPromise;
 exports.silentRejection = silentRejection;
 exports.notImplemented = notImplemented;
@@ -9942,6 +10002,12 @@ exports.functionToString = functionToString;
 exports.fnToString = fnToString;
 exports.stringify = stringify;
 exports.beforeAfterSubstr = beforeAfterSubstr;
+exports.hostRegex = hostRegex;
+exports.stripFile = stripFile;
+exports.splitHash = splitHash;
+exports.splitQuery = splitQuery;
+exports.splitEqual = splitEqual;
+exports.trimHashVal = trimHashVal;
 exports.splitOnDelim = splitOnDelim;
 exports.joinNeighborsR = joinNeighborsR;
 exports.Trace = Trace;
@@ -9992,10 +10058,6 @@ exports.MemoryLocationService = MemoryLocationService;
 exports.PushStateLocationService = PushStateLocationService;
 exports.MemoryLocationConfig = MemoryLocationConfig;
 exports.BrowserLocationConfig = BrowserLocationConfig;
-exports.splitHash = splitHash;
-exports.splitQuery = splitQuery;
-exports.splitEqual = splitEqual;
-exports.trimHashVal = trimHashVal;
 exports.keyValsToObjectR = keyValsToObjectR;
 exports.getParams = getParams;
 exports.parseUrl = parseUrl$1;
@@ -10006,13 +10068,6 @@ exports.hashLocationPlugin = hashLocationPlugin;
 exports.pushStateLocationPlugin = pushStateLocationPlugin;
 exports.memoryLocationPlugin = memoryLocationPlugin;
 exports.UIRouterPluginBase = UIRouterPluginBase;
-exports.watchDigests = watchDigests;
-exports.getLocals = getLocals;
-exports.getNg1ViewConfigFactory = getNg1ViewConfigFactory;
-exports.ng1ViewsBuilder = ng1ViewsBuilder;
-exports.Ng1ViewConfig = Ng1ViewConfig;
-exports.StateProvider = StateProvider;
-exports.UrlRouterProvider = UrlRouterProvider;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 

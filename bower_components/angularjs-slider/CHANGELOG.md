@@ -1,3 +1,15 @@
+# 6.4.0 (2017-08-12)
+## Feature
+- Add the `showOuterSelectionBars` option (#553).
+
+# 6.3.0 (2017-08-07)
+## Feature
+- Handle different values for `showTicks` and `showTicksValues` (#550).
+
+# 6.2.3 (2017-07-08)
+## Tooling
+- Add Typescript definition file.
+
 # 6.2.2 (2017-05-16)
 ## Fixes
 - Fix (again) onEnd event de-registration.
