@@ -1,8 +1,8 @@
 {
   "name": "nucleogenesis",
-  "version": "2.7.1",
-  "description": "Chemistry based incremental idle game",
-  "keyword": "incremental idle chemistry game",
+  "version": "2.8.0",
+  "description": "Chemistry and particle physics based incremental idle game",
+  "keyword": "incremental idle chemistry game physics particles elements",
   "homepage": "",
   "bugs": {
     "url": "https://github.com/angarg12/nucleogenesis/issues",
