@@ -50,8 +50,9 @@ function sidebar(state, visibility, data, format, util) {
 
     for (let element in elements) {
       if (currentElement === element &&
-        state.player.statistics.exotic_run[element] &&
-        typeof state.player.statistics.exotic_run[element][name] !== 'undefined') {
+        (state.player.statistics.exotic_run[element] &&
+          typeof state.player.statistics.exotic_run[element][name] !== 'undefined' ||
+        data.elements[element].exotic === name)) {
         return true;
       }
     }

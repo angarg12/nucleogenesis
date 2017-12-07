@@ -1,6 +1,11 @@
 {
-  "hydrogen_million": {
-    "condition": "player.resources['1H'].number >= 1e6"
+  "exotic_gate": {
+    "condition": ["(() => {",
+      "return state.player.statistics.exotic_run.H &&",
+      "       state.player.statistics.exotic_run.H['1H'] &&",
+      "       state.player.statistics.exotic_run.H['1H'] >= 1e8",
+      "})()"
+    ]
   },
   "isotope": {
     "condition": ["(() => {",
@@ -36,19 +41,14 @@
       "})()"
     ]
   },
-  "exotic_matter": {
+  "dark_gate": {
     "condition": ["(() => {",
-      "for(let key in data.elements){",
-      " let exotic = data.elements[key].exotic;",
-      "  if (player.resources[exotic].unlocked) {",
-      "    return true;",
-      "  }",
-      "}",
-      "return false;",
+      "return state.player.statistics.dark_run.xH &&",
+      "       state.player.statistics.dark_run.xH >= 1e3",
       "})()"
     ]
   },
-  "dark": {
+  "table_gate": {
     "condition": "player.resources['dark_matter'].unlocked"
   },
   "radioactive": {
