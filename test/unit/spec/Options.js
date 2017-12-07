@@ -148,50 +148,5 @@ describe('Options', function () {
 
       expect(window.atob).toHaveBeenCalled();
     });
-
-    describe('onload', function() {
-      beforeEach(function() {
-  			spyOn(spec.state, 'init');
-      });
-
-      it('should load the game', function() {
-        spec.state.player.element_slots = [{
-          element: 'H',
-          upgrades: {
-            '1-1': false
-          },
-          generators: {
-            '1': 0
-          },
-          reactions: [],
-          redoxes: []
-        }];
-
-        // flush onload
-        spec.$timeout.flush();
-
-        expect(localStorage.getItem).toHaveBeenCalled();
-      });
-
-      it('should not init if the player exists', function() {
-        spec.state.player.element_slots = [{
-          element: 'H',
-          upgrades: {
-            '1-1': false
-          },
-          generators: {
-            '1': 0
-          },
-          reactions: [],
-          redoxes: []
-        }];
-        getItem.and.returnValue('{}');
-
-        // flush onload
-        spec.$timeout.flush();
-
-  			expect(spec.state.init).not.toHaveBeenCalled();
-      });
-    });
   });
 });
