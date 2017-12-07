@@ -117,12 +117,6 @@ describe('Redox', function () {
       expect(ion).toEqual('H2+');
     });
 
-    it('should generate the ion name for protons', function () {
-      let ion = spec.redox.generateName('H', 1);
-
-      expect(ion).toEqual('p');
-    });
-
     it('should create a reaction from a redox', function () {
       let redox = {
         resource: '1H',
@@ -170,7 +164,7 @@ describe('Redox', function () {
 
       expect(reaction).toEqual({
         'reactant': {'1H': 1, 'eV': 13.5984},
-        'product': {'p': 1, 'e-': 1}
+        'product': {'H+': 1, 'e-': 1}
       });
     });
 
@@ -186,8 +180,8 @@ describe('Redox', function () {
       let reaction = spec.redox.redoxReaction(redox);
 
       expect(reaction).toEqual({
-        'reactant': {'p': 1},
-        'product': {'p': 1}
+        'reactant': {'H+': 1},
+        'product': {'H+': 1}
       });
     });
 
@@ -214,12 +208,12 @@ describe('Redox', function () {
       spec.state.player.resources = {
         '1H': {number: 100},
         'e-': {number: 0},
-        p: {number: 0},
+        'H+': {number: 0},
         eV: {number: 200}
       };
       spec.state.player.resources['1H'].number = 100;
       spec.state.player.resources['e-'].number = 0;
-      spec.state.player.resources.p.number = 0;
+      spec.state.player.resources['H+'].number = 0;
       spec.state.player.resources.eV.number = 200;
       // mock redoxPower
       spec.redox.redoxPower = function() {return 10;};
@@ -229,7 +223,7 @@ describe('Redox', function () {
       expect(spec.state.player.resources['1H'].number).toEqual(90);
       expect(spec.state.player.resources.eV.number).toBeCloseTo(64.016);
       expect(spec.state.player.resources['e-'].number).toEqual(10);
-      expect(spec.state.player.resources.p.number).toEqual(10);
+      expect(spec.state.player.resources['H+'].number).toEqual(10);
     });
 
     it('should not process inactive redoxes', function () {
@@ -247,7 +241,7 @@ describe('Redox', function () {
       spec.state.player.resources = {
         '1H': {number: 100},
         'e-': {number: 0},
-        p: {number: 0},
+        'H+': {number: 0},
         eV: {number: 200}
       };
       // mock redoxPower
@@ -258,7 +252,7 @@ describe('Redox', function () {
       expect(spec.state.player.resources['1H'].number).toEqual(100);
       expect(spec.state.player.resources.eV.number).toEqual(200);
       expect(spec.state.player.resources['e-'].number).toEqual(0);
-      expect(spec.state.player.resources.p.number).toEqual(0);
+      expect(spec.state.player.resources['H+'].number).toEqual(0);
     });
 
     it('should cap at the resource number', function () {
@@ -276,7 +270,7 @@ describe('Redox', function () {
       spec.state.player.resources = {
         '1H': {number: 100},
         'e-': {number: 0},
-        p: {number: 0},
+        'H+': {number: 0},
         eV: {number: 2000}
       };
       // mock redoxPower
@@ -287,7 +281,7 @@ describe('Redox', function () {
       expect(spec.state.player.resources['1H'].number).toEqual(0);
       expect(spec.state.player.resources.eV.number).toBeCloseTo(640.16);
       expect(spec.state.player.resources['e-'].number).toEqual(100);
-      expect(spec.state.player.resources.p.number).toEqual(100);
+      expect(spec.state.player.resources['H+'].number).toEqual(100);
     });
 
     it('should not react of not enough collaterals are available', function () {
@@ -456,59 +450,6 @@ describe('Redox', function () {
       expect(spec.state.player.resources['O5+'].number).toEqual(0);
       expect(spec.state.player.resources['e-'].number).toEqual(0);
       expect(spec.state.player.resources.eV.number.toPrecision(5)).toEqual('3.6734e+19');
-    });
-
-    it('should make an exception for e- and p', function() {
-      spec.data.elements = {
-        H: {
-          main: '1H',
-          electronegativity: 2.2,
-          ionization_energy: [
-            13.5984
-          ],
-          electron_affinity: [
-            -0.7545
-          ],
-          anions: [
-            'H-'
-          ],
-          cations: [
-            'p'
-          ],
-          negative_factor: 100,
-          positive_factor: 1e5,
-        }
-      };
-      spec.state.player.resources = {
-        '1H': {number: 0},
-        'p': {number: 1e25},
-        'H-': {number: 0},
-        'e-': {number: 1e25},
-        eV: {number: 0}
-      };
-      spec.data.resources = {
-        '1H': {elements:{O:1},charge:0},
-        'H-': {elements:{O:1},charge:-1},
-        'p': {elements:{O:1},charge:1},
-        'e-': {elements:{}},
-        eV: {elements:{}}
-      };
-      spec.data.redox = {
-        'H': {
-          '0': 0,
-          '1': 13.5984,
-          '-1': -0.7545,
-        }
-      };
-      spec.data.constants.ELECTRONEGATIVITY_CHANCE = 0.00001;
-
-      spec.redox.update(spec.state.player);
-
-      expect(spec.state.player.resources['1H'].number.toPrecision(5)).toEqual('2.5249e+22');
-      expect(spec.state.player.resources['H-'].number.toPrecision(5)).toEqual('1.7760e+19');
-      expect(spec.state.player.resources.p.number.toPrecision(5)).toEqual('9.9747e+24');
-      expect(spec.state.player.resources['e-'].number.toPrecision(5)).toEqual('9.9747e+24');
-      expect(spec.state.player.resources.eV.number.toPrecision(5)).toEqual('3.6884e+23');
     });
   });
 });

@@ -130,18 +130,6 @@ for (let element in elements) {
   elements[element].positive_factor = Math.pow(10, power);
 }
 
-// we delete 1H+ because it doesn't exist, it is a single proton
-delete resources['H+'];
-let index = elements.H.includes.indexOf('H+');
-if (index > -1) {
-    elements.H.includes.splice(index, 1);
-}
-index = elements.H.cations.indexOf('H+');
-if (index > -1) {
-    elements.H.cations.splice(index, 1);
-}
-elements.H.cations.push('p');
-
 jsonfile.writeFileSync('build/data/resources.json', resources, {
   spaces: 2
 });

@@ -93,10 +93,6 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
     	rangeProbability(element, prob, start, end, 1, data.elements[element].negative_factor);
 
     	prob[charge] = 1;
-      // Huh, special case... we don't want e- and p gone too fast :(
-      if(element === 'H' && charge === 1){
-        prob[charge] = 5e5;
-      }
 
     	start = charge+1;
     	end = data.elements[element].ionization_energy.length+1;
@@ -185,10 +181,6 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       }
       postfix += getSign(i);
       let name = element + postfix;
-      // special case!! H+ is just a proton
-      if (name === 'H+') {
-        name = 'p';
-      }
       return name;
     };
 
