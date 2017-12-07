@@ -1,4 +1,18 @@
 {
+  "offline_time": {
+    "price": {
+      "eV": 10000
+    },
+    "name": "Offline time",
+    "description": "Add 1 hour to offline gains",
+    "tiers": [],
+    "deps": [],
+    "exotic_deps": [],
+    "tags": [],
+    "power": 3600,
+    "price_exp": 2,
+    "repeatable": true
+  },
   "redox_slots": {
     "price": {
       "eV": 10000

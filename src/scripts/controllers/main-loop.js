@@ -7,7 +7,8 @@ angular
     '$timeout',
     'savegame',
     'state',
-    function($scope, $interval, $timeout, savegame, state) {
+    'data',
+    function($scope, $interval, $timeout, savegame, state, data) {
       $scope.state = state;
 
       let self = this;
@@ -54,7 +55,7 @@ angular
         savegame.load();
         let elapsed = Math.floor(Date.now()/1000)-state.player.last_login;
         // lets limit the offline elapsed time
-        elapsed = Math.min(3600, elapsed);
+        elapsed = Math.min(self.offlinePower(state.player), elapsed);
         state.offlineCyclesTotal = elapsed;
         state.offlineCyclesCurrent = 0;
         if(elapsed > 32){
@@ -62,6 +63,14 @@ angular
           state.processingOffline = true;
         }
         $timeout(self.processOffline);
+      };
+
+      /* Calculates the redox power based on the redox upgrades */
+      self.offlinePower = function(player) {
+        let level = player.global_upgrades.offline_time;
+        let upgrade = data.global_upgrades.offline_time;
+        let basePower = upgrade.power;
+        return basePower * level;
       };
 
       $timeout(self.startup);
