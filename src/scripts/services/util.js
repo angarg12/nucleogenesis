@@ -1,4 +1,4 @@
-/* globals numberformat */
+/* globals numberformat,window */
 /**
  util
  Utility service with misc. functions.
@@ -88,6 +88,12 @@ angular
         }else{
           window.requestAnimationFrame((ts) => sv.delayedExec(ts, eventTs, delay, callback));
         }
-      }
+      };
+
+      sv.prestigeProduction = function(number, start, power){
+        number = number || 0;
+        let production = Math.pow(Math.E,(-0.5+Math.sqrt(0.25+0.8686*Math.log(number/start)))/(2/Math.log(power*power))) || 0;
+        return Math.round(Math.max(0, production));
+      };
     }
   ]);

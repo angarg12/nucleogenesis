@@ -8,6 +8,14 @@ describe('Dark', function() {
 
   commonSpec(spec);
 
+  beforeEach(function () {
+    spec.data.constants = {
+      'DARK_START': 100,
+      'DARK_STEP': 2,
+    };
+    spec.state.registerUpdate('exotic', spec.exotic.upgrade);
+  });
+
   describe('prestige', function() {
     it('should produce prestige currency', function() {
       spec.data.elements.H = {
@@ -38,7 +46,7 @@ describe('Dark', function() {
       };
       spec.data.exotic_upgrades = {
         x3: {}
-      }
+      };
       spec.state.player.elements.H = true;
       spec.state.player.resources['1H'] = {number:1e4, unlocked: true};
       spec.state.player.resources.xH = {number:1e8, unlocked: true};
@@ -48,7 +56,7 @@ describe('Dark', function() {
         'H':{
           x3: true
         }
-      }
+      };
       spec.data.element_slot = {
         upgrades: {
           '1-1': false
@@ -74,7 +82,7 @@ describe('Dark', function() {
             reaction: ['H.OH-H2O']
           }]
         }
-      ]
+      ];
 
       spec.dark.update(spec.state.player);
       spec.dark.darkPrestige();
@@ -99,7 +107,7 @@ describe('Dark', function() {
       };
       spec.data.exotic_upgrades = {
         x3: {}
-      }
+      };
       spec.state.player.elements.H = true;
       spec.state.player.resources['1H'] = {number:1e4, unlocked: true};
       spec.state.player.resources.xH = {number:0, unlocked: false};
@@ -108,7 +116,7 @@ describe('Dark', function() {
         'H':{
           x3: true
         }
-      }
+      };
       spec.data.element_slot = {
         upgrades: {
           '1-1': false
@@ -134,7 +142,7 @@ describe('Dark', function() {
             reaction: ['H.OH-H2O']
           }]
         }
-      ]
+      ];
 
       spec.dark.darkPrestige();
 

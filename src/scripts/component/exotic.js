@@ -59,7 +59,8 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
              continue;
           }
           let numberAtoms = data.resources[resource].elements[elem];
-          let prod = prestigeFormula((state.player.statistics.exotic_run[elem][resource] || 0)*numberAtoms);
+          let number = (state.player.statistics.exotic_run[elem][resource] || 0)*numberAtoms;
+          let prod = util.prestigeProduction(number, data.constants.EXOTIC_START, data.constants.EXOTIC_STEP);
 
           let args = {
             production: prod,
@@ -93,12 +94,6 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
       }
       return sum;
     };
-
-    function prestigeFormula(resource){
-      resource = resource || 0;
-      let production = Math.pow(Math.E,(-0.5+Math.sqrt(0.25+0.8686*Math.log(resource/1e6)))/0.4343) || 0;
-      return Math.round(Math.max(0, production));
-    }
 
     ct.exoticPrestige = function(index) {
       let slot = state.player.element_slots[index];

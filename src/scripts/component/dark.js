@@ -36,7 +36,7 @@ function dark(state, format, visibility, upgrade, data, util) {
           continue;
         }
         let number = player.statistics.dark_run[exotic];
-        let darkProduction = Math.pow(Math.E,(-0.5+Math.sqrt(0.25+0.8686*Math.log(number/100)))/1.4427) || 0;
+        let darkProduction = util.prestigeProduction(number, data.constants.DARK_START, data.constants.DARK_STEP);
         ct.cache.breakdown[exotic] = Math.round(Math.max(0, darkProduction));
       }
   }

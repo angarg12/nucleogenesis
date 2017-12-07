@@ -10,7 +10,9 @@ describe('Exotic', function() {
 
   beforeEach(function () {
     spec.data.constants = {
-      'INFUSE_POWER': 0.01
+      'INFUSE_POWER': 0.01,
+      'EXOTIC_START': 1e6,
+      'EXOTIC_STEP': 10
     };
     spec.state.registerUpdate('exotic', spec.exotic.upgrade);
   });
