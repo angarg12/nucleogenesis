@@ -12,7 +12,7 @@ for(let element in elements){
   unlocks[element] = {
     'condition': ['(() => {',
       'for(let resource of data.elements.'+element+'.includes){',
-      '  if(state.player.resources[resource].unlocked){',
+      '  if(player.resources[resource].unlocked){',
       '    return true;',
       '  }',
       '}',
