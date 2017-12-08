@@ -24,8 +24,8 @@ jobs:
       script: "gulp $TEST_SUITE"
       before_deploy:
         - export NOW=`date '+%d.%m.%Y %H:%M:%S'`
-        - sed -i -e 's/Nucleogenesis v{{ct.data.version}}/NG '"$NOW"'/g' dist/views/sidebar.html
-        - sed -i -e 's/<b>Warning:<\/b>.*/<b>Warning:<\/b> This is a dev version with unreleased changes. Expect bugs, broken features and unbalance. Use at your own risk./g' index.html
+        - sed -i -e 's/Nucleogenesis v{{ct.data.version}}/NG '"$NOW"'/g' build/views/sidebar.html
+        - sed -i -e 's/<b>Warning:<\/b>.*/<b>Warning:<\/b> This is a dev version with unreleased changes. Expect bugs, broken features and unbalance. Use at your own risk./g' build/index.html
       deploy:
         provider: pages
         skip_cleanup: true
