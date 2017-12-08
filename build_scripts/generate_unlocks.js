@@ -10,7 +10,15 @@ let elements = jsonfile.readFileSync('build/data/elements.json');
 for(let element in elements){
   // Generate element unlocks
   unlocks[element] = {
-    condition: 'player.elements.'+element
+    'condition': ['(() => {',
+      'for(let resource of data.elements.'+element+'.includes){',
+      '  if(state.player.resources[resource].unlocked){',
+      '    return true;',
+      '  }',
+      '}',
+      'return false;',
+      '})()'
+    ]
   };
 }
 
