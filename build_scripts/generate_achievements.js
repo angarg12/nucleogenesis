@@ -12,7 +12,7 @@ let radioisotopes = jsonfile.readFileSync('build/data/radioisotopes.json');
 for(let element in elements){
   let main = elements[element].main;
   let name = elements[element].name;
-  let goals = [1e6, 1e9, 1e12, 1e15];
+  let goals = [1e6, 1e9, 1e12, 1e15, 1e18, 1e21, 1e24];
   let key = 'progress_'+element;
 
   // Generate production achievements
@@ -20,7 +20,20 @@ for(let element in elements){
     name: name,
     description: 'Gather '+name,
     goals: goals,
-    progress: 'player.resources["'+main+'"].number',
+    progress: 'player.statistics.all_time["'+main+'"] || 0',
+    deps: [element]
+  };
+
+  key = 'exotic_progress_'+element;
+  let exotic = elements[element].exotic;
+  goals = [100, 1e5, 1e7, 1e9];
+
+  // Generate exotic production achievements
+  achievements[key] = {
+    name: 'Exotic '+name,
+    description: 'Gather exotic '+name,
+    goals: goals,
+    progress: 'player.statistics.all_time["'+exotic+'"] || 0',
     deps: [element]
   };
 
