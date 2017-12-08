@@ -19,6 +19,7 @@ function (state, data, visibility, util, format, reactionService) {
   ct.data = data;
   ct.util = util;
   ct.format = format;
+  ct.adjustAmount = [1, 10, 25, 100];
 
   function update(player) {
     for(let slot of player.element_slots){
@@ -45,7 +46,7 @@ function (state, data, visibility, util, format, reactionService) {
 
   /* Calculates the reaction power based on the reaction upgrades */
   ct.reactionPower = function(player) {
-    let level = player.global_upgrades.reaction_bandwidth;
+    let level = player.global_upgrades_current.reaction_bandwidth;
     let upgrade = data.global_upgrades.reaction_bandwidth;
     let basePower = upgrade.power;
     let polynomial = upgrade.power_poly;
@@ -66,7 +67,7 @@ function (state, data, visibility, util, format, reactionService) {
     for(let slot of player.element_slots){
       if(!slot){
         continue;
-      } 
+      }
       size += slot.reactions.length;
     }
     return size;
@@ -124,6 +125,12 @@ function (state, data, visibility, util, format, reactionService) {
     }
     return false;
   }
+
+  ct.adjustLevel = function(player, upgrade, amount){
+    player.global_upgrades_current[upgrade] += amount;
+    // We cap it between 1 and the current max level
+    player.global_upgrades_current[upgrade] = Math.max(1, Math.min(player.global_upgrades_current[upgrade], player.global_upgrades[upgrade]));
+  };
 
   state.registerUpdate('reactions', update);
 }]);

@@ -20,6 +20,7 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
     ct.util = util;
     ct.format = format;
     ct.reaction = reaction;
+    ct.adjustAmount = [1, 10, 25, 100];
 
     ct.update = function(player) {
       processRedox(player);
@@ -123,7 +124,7 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
 
     /* Calculates the redox power based on the redox upgrades */
     ct.redoxPower = function(player) {
-      let level = player.global_upgrades.redox_bandwidth;
+      let level = player.global_upgrades_current.redox_bandwidth;
       let upgrade = data.global_upgrades.redox_bandwidth;
       let basePower = upgrade.power;
       let polynomial = upgrade.power_poly;
@@ -228,6 +229,12 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
 
     ct.visibleRedox = function(slot) {
       return slot.redoxes;
+    };
+
+    ct.adjustLevel = function(player, upgrade, amount){
+      player.global_upgrades_current[upgrade] += amount;
+      // We cap it between 1 and the current max level
+      player.global_upgrades_current[upgrade] = Math.max(1, Math.min(player.global_upgrades_current[upgrade], player.global_upgrades[upgrade]));
     };
 
     state.registerUpdate('redox', ct.update);

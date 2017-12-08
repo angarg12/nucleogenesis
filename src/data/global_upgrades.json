@@ -42,7 +42,8 @@
     "power": 100,
     "power_poly": 2,
     "price_exp": 1.15,
-    "repeatable": true
+    "repeatable": true,
+    "adjustable": true
   },
   "reaction_slots": {
     "price": {
@@ -70,7 +71,8 @@
     "power": 100,
     "power_poly": 2,
     "price_exp": 1.15,
-    "repeatable": true
+    "repeatable": true,
+    "adjustable": true
   },
   "fusion_area": {
     "price": {

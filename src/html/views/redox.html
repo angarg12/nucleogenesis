@@ -1,4 +1,23 @@
 <!DOCTYPE html>
+<p> Bandwidth: <pretty value="ct.redoxPower(ct.state.player)"></pretty> level {{ct.state.player.global_upgrades_current.redox_bandwidth}}</p>
+Adjust amount:
+<button type="button"
+        class="btn btn-default"
+        ng-click="ct.util.nextAmount(ct.state.player, 'adjustIndex', ct.adjustAmount)">
+  {{ct.adjustAmount[ct.state.player.options.adjustIndex]}}
+</button>
+<br>
+Adjust level:
+<button type="button"
+        class="btn btn-default"
+        ng-click="ct.adjustLevel(ct.state.player, 'redox_bandwidth', ct.adjustAmount[ct.state.player.options.adjustIndex])">
++{{ct.adjustAmount[ct.state.player.options.adjustIndex]}}
+</button>
+<button type="button"
+        class="btn btn-default"
+        ng-click="ct.adjustLevel(ct.state.player, 'redox_bandwidth', -ct.adjustAmount[ct.state.player.options.adjustIndex])">
+-{{ct.adjustAmount[ct.state.player.options.adjustIndex]}}
+</button>
 <div ng-repeat="slot in ct.state.player.element_slots track by $index">
   <element-select index="$index"
                   ng-if="!slot"></element-select>
@@ -16,9 +35,6 @@
           <div class="row">
             <th class="col-xs-10">
               Redox
-            </th>
-            <th class="col-xs-1">
-              Number
             </th>
             <th class="col-xs-1">
               Active
@@ -55,9 +71,6 @@
 						showTicksValues: true}">
                 </rzslider>
               </div>
-            </td>
-            <td class="col-xs-1">
-              <pretty value="ct.redoxPower(ct.state.player)"></pretty>
             </td>
             <td class="col-xs-1">
               <input type="checkbox"
