@@ -187,6 +187,7 @@ describe('Redox', function () {
 
     it('should calculate redox power', function () {
       spec.state.player.global_upgrades.redox_bandwidth = 2;
+      spec.state.player.global_upgrades_current.redox_bandwidth = 2;
 
       let power = spec.redox.redoxPower(spec.state.player);
 

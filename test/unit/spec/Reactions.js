@@ -57,6 +57,7 @@ describe('Reactions', function() {
       };
       spec.state.player.global_upgrades.reaction_slots = 1;
       spec.state.player.global_upgrades.reaction_bandwidth = 1;
+      spec.state.player.global_upgrades_current.reaction_bandwidth = 1;
       spec.state.player.resources = {
         '1H': {
           number: 0,
@@ -142,6 +143,7 @@ describe('Reactions', function() {
 
     it('should calculate reaction power', function () {
       spec.state.player.global_upgrades.reaction_bandwidth = 2;
+      spec.state.player.global_upgrades_current.reaction_bandwidth = 2;
 
       let power = spec.reactions.reactionPower(spec.state.player);
 
