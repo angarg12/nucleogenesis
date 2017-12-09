@@ -55,9 +55,9 @@ Adjust level:
   					Remove
   				</button>
               <span ng-bind-html="ct.util.trustHTML(
-            ct.format.reactionFormat(util.calculateValue(data.global_upgrades.redox_bandwidth.power.base,
-                  data.global_upgrades.redox_bandwidth.power,
-                  player.global_upgrades_current.redox_bandwidth),
+            ct.format.reactionFormat(ct.util.calculateValue(ct.data.global_upgrades.redox_bandwidth.power.base,
+                  ct.data.global_upgrades.redox_bandwidth.power,
+                  ct.state.player.global_upgrades_current.redox_bandwidth),
                                       ct.redoxReaction(redox)))"></span>
               <div>
                 <label>From:</label>
