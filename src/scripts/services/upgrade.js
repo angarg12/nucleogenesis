@@ -59,7 +59,11 @@ angular
 
       sv.sortFunctions = function(data){
         return [
-          (a,b) => data[a].name === data[b].name ? data[a].price - data[b].price : data[a].name < data[b].name ? -1 : 1,
+          function(a,b) {
+            let compare = data[a].name.localeCompare(data[b].name, undefined, {numeric: true, sensitivity: 'base'});
+            if(compare === 0) return data[a].price - data[b].price;
+            return compare;
+          },
           (a,b) => data[a].price - data[b].price
         ];
       };
