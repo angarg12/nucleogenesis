@@ -24,7 +24,7 @@ on purchase.</p>
         {{value.name}}
       </div>
       <p>
-        Abundance: {{ct.data.elements[element].abundance*100}}%
+        Abundance: <pretty value="ct.data.elements[element].abundance*100"></pretty>%
       </p>
       <p>
         Isotopes: {{Object.keys(ct.data.elements[element].isotopes).length}}
@@ -44,7 +44,7 @@ on purchase.</p>
         </p>
         {{ct.outcome[element]}}
         <p>
-          Success: {{ct.getChance(element)*100}}%
+          Success: <pretty value="ct.getChance(element)*100"></pretty>%
         </p>
       </div>
     </div>
