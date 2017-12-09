@@ -18,8 +18,10 @@ describe('Redox', function () {
         deps: [],
         exotic_deps: [],
         dark_deps: [],
-        power: 1,
-        power_mult: 1,
+        power: {
+          base: 1,
+          linear: 1
+        },
         price_exp: 2,
         repeatable: true
       },
@@ -31,8 +33,10 @@ describe('Redox', function () {
         deps: [],
         exotic_deps: [],
         dark_deps: [],
-        power: 100,
-        power_exp: 2,
+        power: {
+          base: 100,
+          exp: 2
+        },
         price_exp: 1.15,
         repeatable: true
       }
@@ -189,7 +193,9 @@ describe('Redox', function () {
       spec.state.player.global_upgrades.redox_bandwidth = 2;
       spec.state.player.global_upgrades_current.redox_bandwidth = 2;
 
-      let power = spec.redox.redoxPower(spec.state.player);
+      let power = spec.util.calculateValue(spec.data.global_upgrades.redox_bandwidth.power.base,
+            spec.data.global_upgrades.redox_bandwidth.power,
+            spec.state.player.global_upgrades_current.redox_bandwidth);;
 
       expect(power).toEqual(400);
     });
@@ -217,7 +223,7 @@ describe('Redox', function () {
       spec.state.player.resources['H+'].number = 0;
       spec.state.player.resources.eV.number = 200;
       // mock redoxPower
-      spec.redox.redoxPower = function() {return 10;};
+      spec.util.calculateValue = function() {return 10;};
 
       spec.state.update(spec.state.player);
 
@@ -246,7 +252,7 @@ describe('Redox', function () {
         eV: {number: 200}
       };
       // mock redoxPower
-      spec.redox.redoxPower = function() {return 10;};
+      spec.util.calculateValue = function() {return 10;};
 
       spec.state.update(spec.state.player);
 
@@ -275,7 +281,7 @@ describe('Redox', function () {
         eV: {number: 2000}
       };
       // mock redoxPower
-      spec.redox.redoxPower = function() {return 2000;};
+      spec.util.calculateValue = function() {return 2000;};
 
       spec.state.update(spec.state.player);
 
@@ -304,7 +310,7 @@ describe('Redox', function () {
         eV: {number: 200}
       };
       // mock redoxPower
-      spec.redox.redoxPower = function() {return 2000;};
+      spec.util.calculateValue = function() {return 2000;};
 
       spec.state.update(spec.state.player);
 
@@ -333,11 +339,11 @@ describe('Redox', function () {
         eV: {number: 200}
       };
 
-      spyOn(spec.redox, 'redoxPower');
+      spyOn(spec.util, 'calculateValue');
 
       spec.state.update(spec.state.player);
 
-      expect(spec.redox.redoxPower).not.toHaveBeenCalled();
+      expect(spec.util.calculateValue).not.toHaveBeenCalled();
     });
   });
 

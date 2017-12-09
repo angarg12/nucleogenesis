@@ -38,7 +38,9 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
           }
 
           let reactant = ct.generateName(redox.element, redox.from);
-          let power = ct.redoxPower(player);
+          let power = util.calculateValue(data.global_upgrades.redox_bandwidth.power.base,
+                data.global_upgrades.redox_bandwidth.power,
+                player.global_upgrades_current.redox_bandwidth);
           let number = Math.min(power, player.resources[reactant].number);
           let react = ct.redoxReaction(redox);
 
@@ -122,15 +124,6 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
     	}
     }
 
-    /* Calculates the redox power based on the redox upgrades */
-    ct.redoxPower = function(player) {
-      let level = player.global_upgrades_current.redox_bandwidth;
-      let upgrade = data.global_upgrades.redox_bandwidth;
-      let basePower = upgrade.power;
-      let exp = upgrade.power_exp;
-      return basePower * Math.floor(Math.pow(exp, level));
-    };
-
     /* Writes a redox in the form of a reaction so that we can use the reaction
     service to process it */
     ct.redoxReaction = function (redox) {
@@ -189,15 +182,6 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       return number > 0 ? '+' : '-';
     }
 
-    /* Calculates the number of redox slots based on the redox upgrades */
-    ct.redoxSlots = function (player) {
-      let level = player.global_upgrades.redox_slots;
-      let upgrade = data.global_upgrades.redox_slots;
-      let basePower = upgrade.power;
-      let multiplier = upgrade.power_mult;
-      return basePower * Math.floor(multiplier * level);
-    };
-
     ct.redoxSize = function (player) {
       let size = 0;
       for(let slot of player.element_slots){
@@ -211,7 +195,9 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
 
     /* Adds a new redox to the player list */
     ct.addRedox = function (player, slot) {
-      if(ct.redoxSize(player) >= ct.redoxSlots(player)){
+      if(ct.redoxSize(player) >= util.calculateValue(data.global_upgrades.redox_slots.power.base,
+            data.global_upgrades.redox_slots.power,
+            player.global_upgrades.redox_slots)){
         return;
       }
       slot.redoxes.push({

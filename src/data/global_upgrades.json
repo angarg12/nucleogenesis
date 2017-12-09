@@ -9,7 +9,10 @@
     "deps": [],
     "exotic_deps": [],
     "tags": [],
-    "power": 3600,
+    "power": {
+      "base": 3600,
+      "linear": 1
+    },
     "price_exp": 2,
     "repeatable": true
   },
@@ -25,8 +28,10 @@
     "tags": [
       "redoxes"
     ],
-    "power": 1,
-    "power_mult": 1,
+    "power": {
+      "base": 1,
+      "linear": 1
+    },
     "price_exp": 2,
     "repeatable": true
   },
@@ -39,8 +44,10 @@
     "tags": [
       "redoxes"
     ],
-    "power": 100,
-    "power_exp": 2,
+    "power": {
+      "base": 100,
+      "exp": 2
+    },
     "price_exp": 2,
     "repeatable": true,
     "adjustable": true
@@ -54,8 +61,10 @@
     "tags": [
       "reactions"
     ],
-    "power": 1,
-    "power_mult": 1,
+    "power": {
+      "base": 1,
+      "linear": 1
+    },
     "price_exp": 2,
     "repeatable": true
   },
@@ -68,8 +77,10 @@
     "tags": [
       "reactions"
     ],
-    "power": 100,
-    "power_poly": 2,
+    "power": {
+      "base": 100,
+      "poly": 2
+    },
     "price_exp": 1.15,
     "repeatable": true,
     "adjustable": true
@@ -83,8 +94,10 @@
     "tags": [
       "fusion"
     ],
-    "power": 1,
-    "power_exp": 1.25,
+    "power": {
+      "base": 1,
+      "exp": 1.25
+    },
     "price_exp": 10,
     "repeatable": true,
     "adjustable": true
@@ -98,8 +111,10 @@
     "tags": [
       "fusion"
     ],
-    "power": 100,
-    "power_exp": 2,
+    "power": {
+      "base": 100,
+      "exp": 2
+    },
     "price_exp": 2,
     "repeatable": true
   }

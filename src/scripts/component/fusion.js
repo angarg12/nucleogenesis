@@ -21,22 +21,6 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
     ct.format = format;
     ct.adjustAmount = [1, 10, 25, 100];
 
-    ct.getReactorArea = function(player) {
-      let level = player.global_upgrades_current.fusion_area;
-      let upgrade = data.global_upgrades.fusion_area;
-      let basePower = upgrade.power;
-      let exp = upgrade.power_exp;
-      return basePower * Math.pow(exp, level);
-    };
-
-    ct.getBandwidth = function(player){
-        let level = player.global_upgrades.fusion_bandwidth;
-        let upgrade = data.global_upgrades.fusion_bandwidth;
-        let basePower = upgrade.power;
-        let exp = upgrade.power_exp;
-        return basePower * Math.pow(exp, level);
-    };
-
     function getFermiRadius(resource) {
       let isotope = data.resources[resource];
       let A = isotope.energy/data.constants.U_TO_EV;
@@ -54,11 +38,15 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
       let element = Object.keys(isotope.elements)[0];
       let r = data.elements[element].van_der_waals;
       let area = Math.PI*r*r;
-      return ct.getReactorArea(player)/area;
+      return util.calculateValue(data.global_upgrades.fusion_area.power.base,
+            data.global_upgrades.fusion_area.power,
+            player.global_upgrades_current.fusion_area)/area;
     };
 
     ct.getTime = function(player) {
-      let time = ct.getFusionReaction(player).reactant.eV/ct.getBandwidth(player);
+      let time = ct.getFusionReaction(player).reactant.eV/util.calculateValue(data.global_upgrades.fusion_bandwidth.power.base,
+            data.global_upgrades.fusion_bandwidth.power,
+            player.global_upgrades.fusion_bandwidth);
       time = Math.floor(time);
       return Math.max(1, time);
     };
@@ -108,8 +96,11 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
       let beamArea = Math.PI*beamR*beamR;
       let targetArea = Math.PI*targetR*targetR;
 
-      let beamPercentArea = beamArea*beam.number/ct.getReactorArea(player);
-      let targetPercentArea = targetArea*target.number/ct.getReactorArea(player);
+      let reactorArea = util.calculateValue(data.global_upgrades.fusion_area.power.base,
+            data.global_upgrades.fusion_area.power,
+            player.global_upgrades_current.fusion_area);
+      let beamPercentArea = beamArea*beam.number/reactorArea;
+      let targetPercentArea = targetArea*target.number/reactorArea;
 
       return beamPercentArea*targetPercentArea;
     };
@@ -192,7 +183,9 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
     };
 
     function updateFusion(player, fusion) {
-        let bandwidth = ct.getBandwidth(player);
+        let bandwidth = util.calculateValue(data.global_upgrades.fusion_bandwidth.power.base,
+            data.global_upgrades.fusion_bandwidth.power,
+            player.global_upgrades.fusion_bandwidth);
         let spent = Math.min(player.resources.eV.number, bandwidth);
         fusion.eV += spent;
         player.resources.eV.number -= spent;
@@ -236,7 +229,7 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
       // We cap it between 1 and the current max level
       player.global_upgrades_current[upgrade] = Math.max(1, Math.min(player.global_upgrades_current[upgrade], player.global_upgrades[upgrade]));
     };
-    
+
     state.registerUpdate('fusion', update);
   }
 ]);

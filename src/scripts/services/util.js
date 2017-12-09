@@ -95,5 +95,13 @@ angular
         let production = Math.pow(Math.E,(-0.5+Math.sqrt(0.25+0.8686*Math.log(number/start)))/(2/Math.log(power*power))) || 0;
         return Math.round(Math.max(0, production));
       };
+
+      sv.calculateValue = function(number, value, level){
+        let result = number;
+        if(value.linear) result *= level*value.linear;
+        if(value.poly) result *= Math.floor(Math.pow(level, value.poly));
+        if(value.exp) result *= Math.floor(Math.pow(value.exp, level));
+        return result;
+      }
     }
   ]);

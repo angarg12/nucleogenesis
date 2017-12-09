@@ -10,35 +10,39 @@ describe('Reactions', function() {
 
   beforeEach(function () {
     spec.data.global_upgrades = {
-      'reaction_slots': {
-        'price': {
-          'eV': 10000
+      reaction_slots: {
+        price: {
+          eV: 10000
         },
-        'name': 'Reaction slots',
-        'description': 'Number of slots available for reactions',
-        'tiers': [],
-        'deps': [],
-        'exotic_deps': [],
-        'dark_deps': [],
-        'power': 1,
-        'power_mult': 1,
-        'price_exp': 2,
-        'repeatable': true
+        name: 'Reaction slots',
+        description: 'Number of slots available for reactions',
+        tiers: [],
+        deps: [],
+        exotic_deps: [],
+        dark_deps: [],
+        power: {
+          base: 1,
+          linear: 1
+        },
+        price_exp: 2,
+        repeatable: true
       },
-      'reaction_bandwidth': {
-        'price': {
-          'eV': 100
+      reaction_bandwidth: {
+        price: {
+          eV: 100
         },
-        'name': 'Reaction bandwidth',
-        'description': 'bandwidth available for reactions',
-        'tiers': [],
-        'deps': [],
-        'exotic_deps': [],
-        'dark_deps': [],
-        'power': 100,
-        'power_poly': 2,
-        'price_exp': 1.15,
-        'repeatable': true
+        name: 'Reaction bandwidth',
+        description: 'bandwidth available for reactions',
+        tiers: [],
+        deps: [],
+        exotic_deps: [],
+        dark_deps: [],
+        power: {
+          base: 100,
+          poly: 2
+        },
+        price_exp: 1.15,
+        repeatable: true
       }
     };
     spec.data.resources = {
@@ -145,7 +149,9 @@ describe('Reactions', function() {
       spec.state.player.global_upgrades.reaction_bandwidth = 2;
       spec.state.player.global_upgrades_current.reaction_bandwidth = 2;
 
-      let power = spec.reactions.reactionPower(spec.state.player);
+      let power = spec.util.calculateValue(spec.data.global_upgrades.reaction_bandwidth.power.base,
+                  spec.data.global_upgrades.reaction_bandwidth.power,
+                  spec.state.player.global_upgrades_current.reaction_bandwidth);
 
       expect(power).toEqual(400);
     });

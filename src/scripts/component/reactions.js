@@ -36,31 +36,15 @@ function (state, data, visibility, util, format, reactionService) {
   }
 
   function numberToReact(player, reaction) {
-    let power = ct.reactionPower(player);
+    let power = util.calculateValue(data.global_upgrades.reaction_bandwidth.power.base,
+            data.global_upgrades.reaction_bandwidth.power,
+            player.global_upgrades_current.reaction_bandwidth);
     let number = power;
     for(let resource in reaction.reactants){
       number = Math.min(number, player.resources[resource].number);
     }
     return number;
   }
-
-  /* Calculates the reaction power based on the reaction upgrades */
-  ct.reactionPower = function(player) {
-    let level = player.global_upgrades_current.reaction_bandwidth;
-    let upgrade = data.global_upgrades.reaction_bandwidth;
-    let basePower = upgrade.power;
-    let polynomial = upgrade.power_poly;
-    return basePower * Math.floor(Math.pow(level, polynomial));
-  };
-
-  /* Calculates the number of reaction slots based on the reaction upgrades */
-  ct.reactionSlots = function (player) {
-    let level = player.global_upgrades.reaction_slots;
-    let upgrade = data.global_upgrades.reaction_slots;
-    let basePower = upgrade.power;
-    let multiplier = upgrade.power_mult;
-    return basePower * Math.floor(multiplier * level);
-  };
 
   ct.reactionSize = function (player) {
     let size = 0;
@@ -75,7 +59,9 @@ function (state, data, visibility, util, format, reactionService) {
 
   /* Adds a new reaction to the player list */
   ct.addReaction = function (player, slot, key) {
-    if(ct.reactionSize(player) >= ct.reactionSlots(player)){
+    if(ct.reactionSize(player) >= util.calculateValue(data.global_upgrades.reaction_slots.power.base,
+            data.global_upgrades.reaction_slots.power,
+            player.global_upgrades.reaction_slots)){
       return;
     }
     let reaction = data.reactions[key];
