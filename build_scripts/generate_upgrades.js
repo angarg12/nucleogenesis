@@ -45,6 +45,7 @@ for(let key in upgrades){
       }
       let id = key+'-'+generator+'-'+i;
       upgrades[id] = generatedUpgrade;
+      if(i > 0) upgrades[id].deps.push(key+'-'+generator+'-'+(i-1));
     }
   }
   delete upgrades[key];
