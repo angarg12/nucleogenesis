@@ -127,8 +127,8 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       let level = player.global_upgrades_current.redox_bandwidth;
       let upgrade = data.global_upgrades.redox_bandwidth;
       let basePower = upgrade.power;
-      let polynomial = upgrade.power_poly;
-      return basePower * Math.floor(Math.pow(level, polynomial));
+      let exp = upgrade.power_exp;
+      return basePower * Math.floor(Math.pow(exp, level));
     };
 
     /* Writes a redox in the form of a reaction so that we can use the reaction

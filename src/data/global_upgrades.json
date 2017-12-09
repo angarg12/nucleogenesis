@@ -32,7 +32,7 @@
   },
   "redox_bandwidth": {
     "price": {
-      "eV": 100
+      "eV": 1e8
     },
     "name": "Redox bandwidth",
     "description": "Bandwidth available for redoxes",
@@ -40,8 +40,8 @@
       "redoxes"
     ],
     "power": 100,
-    "power_poly": 2,
-    "price_exp": 1.15,
+    "power_exp": 2,
+    "price_exp": 2,
     "repeatable": true,
     "adjustable": true
   },

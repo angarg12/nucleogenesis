@@ -32,7 +32,7 @@ describe('Redox', function () {
         exotic_deps: [],
         dark_deps: [],
         power: 100,
-        power_poly: 2,
+        power_exp: 2,
         price_exp: 1.15,
         repeatable: true
       }
