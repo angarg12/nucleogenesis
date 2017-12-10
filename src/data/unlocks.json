@@ -1,9 +1,9 @@
 {
   "exotic_gate": {
     "condition": ["(() => {",
-      "return state.player.statistics.exotic_run.H &&",
-      "       state.player.statistics.exotic_run.H['1H'] &&",
-      "       state.player.statistics.exotic_run.H['1H'] >= 1e8",
+      "return player.statistics.exotic_run.H &&",
+      "       player.statistics.exotic_run.H['1H'] &&",
+      "       player.statistics.exotic_run.H['1H'] >= 1e8",
       "})()"
     ]
   },
@@ -43,15 +43,18 @@
   },
   "dark_gate": {
     "condition": ["(() => {",
-      "return state.player.statistics.dark_run.xH &&",
-      "       state.player.statistics.dark_run.xH >= 1e3",
+      "return player.statistics.dark_run.xH &&",
+      "       player.statistics.dark_run.xH >= 1e3",
       "})()"
     ]
   },
+  "reaction_gate": {
+    "condition": "return player.elements_unlocked >= 2"
+  },
   "fusion_gate": {
     "condition": ["(() => {",
-      "return state.player.statistics.all_time.eV &&",
-      "       state.player.statistics.all_time.eV >= 1e30",
+      "return player.statistics.all_time.eV &&",
+      "       player.statistics.all_time.eV >= 1e30",
       "})()"
     ]
   },
