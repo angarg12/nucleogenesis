@@ -49,7 +49,7 @@
     ]
   },
   "reaction_gate": {
-    "condition": "return player.elements_unlocked >= 2"
+    "condition": "player.elements_unlocked >= 2"
   },
   "fusion_gate": {
     "condition": ["(() => {",

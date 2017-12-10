@@ -57,6 +57,42 @@ angular
         }
       };
 
+      sv.filterByTag = function(tag) {
+        return (name) => data.global_upgrades[name].tags.indexOf(tag) !== -1;
+      };
+
+      sv.priceMultiplier = function (name, player) {
+        let level = player.global_upgrades[name];
+        return Math.ceil(Math.pow(data.global_upgrades[name].price_exp, level));
+      };
+
+      /* Global upgrades are non-resource specific, repeatable upgrades */
+      sv.buyGlobalUpgrade = function (name, player) {
+        if (!sv.canBuyGlobalUpgrade(name, player)) {
+          return;
+        }
+
+        let up = data.global_upgrades[name];
+        for (let currency in up.price) {
+          let value = up.price[currency] * sv.priceMultiplier(name, player);
+          player.resources[currency].number -= value;
+        }
+
+        player.global_upgrades[name]++;
+      };
+
+      sv.canBuyGlobalUpgrade = function (name, player) {
+        let up = data.global_upgrades[name];
+        for (let currency in up.price) {
+          let value = up.price[currency] * sv.priceMultiplier(name, player);
+          if (player.resources[currency].number < value) {
+            return false;
+          }
+        }
+
+        return true;
+      };
+
       sv.sortFunctions = function(data){
         return [
           function(a,b) {
