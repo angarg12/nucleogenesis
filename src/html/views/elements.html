@@ -27,7 +27,7 @@ on purchase.</p>
         Abundance: <pretty value="ct.data.elements[element].abundance*100"></pretty>%
       </p>
       <p>
-        Isotopes: {{Object.keys(ct.data.elements[element].isotopes).length}}
+        Isotopes: {{ct.keys(ct.data.elements[element].isotopes).length}}
       </p>
       <p>
         Redoxes: <span ng-if="ct.data.elements[element].ionization_energy.length > 0">

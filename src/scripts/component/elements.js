@@ -19,6 +19,7 @@ function elements($timeout, state, data, util) {
   ct.data = data;
   ct.util = util;
   ct.outcome = {};
+  ct.keys = Object.keys;
   ct.buyAmount = [1, 10, 25, 100, 1000];
 
   ct.getChance = function(element) {
