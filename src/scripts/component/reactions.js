@@ -12,13 +12,14 @@ angular.module('game').component('reactions', {
   controllerAs: 'ct'
 });
 
-angular.module('game').controller('ct_reactions', ['state', 'data', 'visibility', 'util', 'format', 'reaction',
-function (state, data, visibility, util, format, reactionService) {
+angular.module('game').controller('ct_reactions', ['state', 'data', 'visibility', 'util', 'format', 'reaction', 'upgrade',
+function (state, data, visibility, util, format, reactionService, upgradeService) {
   let ct = this;
   ct.state = state;
   ct.data = data;
   ct.util = util;
   ct.format = format;
+  ct.upgradeService = upgradeService;
   ct.adjustAmount = [1, 10, 25, 100];
 
   function update(player) {
@@ -116,6 +117,10 @@ function (state, data, visibility, util, format, reactionService) {
     player.global_upgrades_current[upgrade] += amount;
     // We cap it between 1 and the current max level
     player.global_upgrades_current[upgrade] = Math.max(1, Math.min(player.global_upgrades_current[upgrade], player.global_upgrades[upgrade]));
+  };
+
+  ct.visibleUpgrades = function() {
+    return visibility.visible(data.global_upgrades, upgradeService.filterByTag('reactions'));
   };
 
   state.registerUpdate('reactions', update);

@@ -8,7 +8,7 @@
     "tiers": [],
     "deps": [],
     "exotic_deps": [],
-    "tags": [],
+    "tags": ["global"],
     "power": {
       "base": 3600,
       "linear": 1

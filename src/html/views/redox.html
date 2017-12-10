@@ -30,13 +30,13 @@ Adjust level:
       <span class="pull-left">
     Level: {{ct.state.player.global_upgrades[key]}} {{ct.data.global_upgrades[key].name}}: {{ct.data.global_upgrades[key].description}}
   </span>
-      <span class="pull-right"
-            ng-repeat="(resource, price) in ct.data.global_upgrades[key].price">
-      <pretty value="price*ct.upgradeService.priceMultiplier(key, ct.state.player)"></pretty> &nbsp;
-      <get-html value="resource"></get-html>
-    </span>
-    </div>
+  <span class="pull-right"
+          ng-repeat="(resource, price) in ct.data.global_upgrades[key].price">
+    <pretty value="price*ct.upgradeService.priceMultiplier(key, ct.state.player)"></pretty> &nbsp;
+    <get-html value="resource"></get-html>
+  </span>
   </div>
+</div>
 <div ng-repeat="slot in ct.state.player.element_slots track by $index">
   <element-select index="$index"
                   ng-if="!slot"></element-select>
