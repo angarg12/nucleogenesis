@@ -77,7 +77,7 @@ describe('Upgrades', function() {
         }
       }];
 
-      spec.upgrades.buyUpgrade('1-1',spec.state.player.element_slots[0]);
+      spec.upgrades.buyUpgrade('1-1',spec.state.player.element_slots[0], spec.state.player);
 
       expect(spec.state.player.resources['1H'].number).toEqual(10);
       expect(spec.state.player.element_slots[0].upgrades['1-1']).toEqual(true);
@@ -94,7 +94,7 @@ describe('Upgrades', function() {
         }
       }];
 
-      spec.upgrades.buyUpgrade('1-1',spec.state.player.element_slots[0]);
+      spec.upgrades.buyUpgrade('1-1',spec.state.player.element_slots[0], spec.state.player);
 
       expect(spec.state.player.resources['1H'].number).toEqual(10);
       expect(spec.state.player.element_slots[0].upgrades['1-1']).toEqual(false);
@@ -111,7 +111,7 @@ describe('Upgrades', function() {
         }
       }];
 
-      spec.upgrades.buyUpgrade('1-1',spec.state.player.element_slots[0]);
+      spec.upgrades.buyUpgrade('1-1',spec.state.player.element_slots[0], spec.state.player);
 
       expect(spec.state.player.resources['1H'].number).toEqual(10);
       expect(spec.state.player.element_slots[0].upgrades['1-1']).toEqual(true);
@@ -164,7 +164,7 @@ describe('Upgrades', function() {
 
       spec.upgrades.visibleUpgrades = function(){return ['1-1','1-2','1-3'];};
 
-      spec.upgrades.buyAll(spec.state.player.element_slots[0]);
+      spec.upgrades.buyAll(spec.state.player.element_slots[0], spec.state.player);
 
       expect(spec.state.player.resources['1H'].number).toEqual(400);
       expect(spec.state.player.element_slots[0].upgrades['1-1']).toEqual(true);
@@ -236,7 +236,7 @@ describe('Upgrades', function() {
           }
         };
 
-        let values = spec.upgrades.visibleUpgrades(spec.state.player.element_slots[0], spec.data.upgrades);
+        let values = spec.upgrades.visibleUpgrades(spec.state.player.element_slots[0], spec.state.player);
 
         expect(values).toEqual(['1-1']);
       });
@@ -307,7 +307,7 @@ describe('Upgrades', function() {
           }
         };
 
-        let values = spec.upgrades.visibleUpgrades(spec.state.player.element_slots[0], spec.data.upgrades);
+        let values = spec.upgrades.visibleUpgrades(spec.state.player.element_slots[0], spec.state.player);
 
         expect(values).toEqual(['1-1','1-2']);
       });

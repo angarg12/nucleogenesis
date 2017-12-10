@@ -19,12 +19,12 @@ function dashboardList(data, state, util, visibility) {
   ct.util = util;
   ct.searchText = '';
 
-  ct.resourcesForElement = function(element) {
-    return visibility.visible(data.resources, filter, element);
+  ct.resourcesForElement = function(element, player) {
+    return visibility.visible(data.resources, filter, element, null, player);
   };
 
-  function filter(name, currentElement) {
-    if(!state.player.resources[name].unlocked){
+  function filter(name, currentElement, player) {
+    if(!player.resources[name].unlocked){
       return false;
     }
     if(ct.searchText && name.toLowerCase().indexOf(ct.searchText.toLowerCase()) === -1){

@@ -19,7 +19,7 @@ function upgrades(state, visibility, upgrade, data) {
   let sortFunc = upgrade.sortFunctions(data.upgrades);
 
   // tries to buy all the upgrades it can, starting from the cheapest
-  ct.buyAll = function (slot) {
+  ct.buyAll = function (slot, player) {
     let currency = data.elements[slot.element].main;
     let cheapest;
     let cheapestPrice;
@@ -37,7 +37,7 @@ function upgrades(state, visibility, upgrade, data) {
         }
       }
       if(cheapest){
-        upgrade.buyUpgrade(state.player,
+        upgrade.buyUpgrade(player,
           slot.upgrades,
           data.upgrades[cheapest],
           cheapest,
@@ -47,10 +47,10 @@ function upgrades(state, visibility, upgrade, data) {
     }while(cheapest);
   };
 
-  ct.buyUpgrade = function (name, slot) {
+  ct.buyUpgrade = function (name, slot, player) {
     let price = data.upgrades[name].price;
     let currency = data.elements[slot.element].main;
-    upgrade.buyUpgrade(state.player,
+    upgrade.buyUpgrade(player,
       slot.upgrades,
       data.upgrades[name],
       name,
@@ -58,12 +58,12 @@ function upgrades(state, visibility, upgrade, data) {
       currency);
   };
 
-  ct.visibleUpgrades = function(slot) {
-    return visibility.visible(data.upgrades, isBasicUpgradeVisible, slot, sortFunc[state.player.options.sortIndex]);
+  ct.visibleUpgrades = function(slot, player) {
+    return visibility.visible(data.upgrades, isBasicUpgradeVisible, slot, sortFunc[player.options.sortIndex], player);
   };
 
-  function isBasicUpgradeVisible(name, slot) {
-    let isVisible = visibility.isUpgradeVisible(name, slot, data.upgrades[name]);
-    return isVisible && (!state.player.options.hideBought || !slot.upgrades[name]);
+  function isBasicUpgradeVisible(name, slot, player) {
+    let isVisible = visibility.isUpgradeVisible(name, slot, data.upgrades[name], player);
+    return isVisible && (!player.options.hideBought || !slot.upgrades[name]);
   }
 }

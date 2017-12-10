@@ -324,7 +324,7 @@ describe('Exotic', function() {
         upgrades: {}
       }];
 
-      let values = spec.exotic.visibleExoticUpgrades(spec.state.player.element_slots[0]);
+      let values = spec.exotic.visibleExoticUpgrades(spec.state.player.element_slots[0], spec.state.player);
 
       expect(values).toEqual(['x3']);
     });

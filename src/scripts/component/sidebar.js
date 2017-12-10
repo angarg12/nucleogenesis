@@ -32,12 +32,12 @@ function sidebar(state, visibility, data, format, util) {
     return result;
   };
 
-  ct.visibleResources = function(element) {
-    return visibility.visible(data.resources, isResourceVisible, element);
+  ct.visibleResources = function(element, player) {
+    return visibility.visible(data.resources, isResourceVisible, element, null, player);
   };
 
-  function isResourceVisible(name, currentElement) {
-    if (!state.player.resources[name].unlocked) {
+  function isResourceVisible(name, currentElement, player) {
+    if (!player.resources[name].unlocked) {
       return false;
     }
 
@@ -50,8 +50,8 @@ function sidebar(state, visibility, data, format, util) {
 
     for (let element in elements) {
       if (currentElement === element &&
-        (state.player.statistics.exotic_run[element] &&
-          typeof state.player.statistics.exotic_run[element][name] !== 'undefined' ||
+        (player.statistics.exotic_run[element] &&
+          typeof player.statistics.exotic_run[element][name] !== 'undefined' ||
         data.elements[element].exotic === name)) {
         return true;
       }

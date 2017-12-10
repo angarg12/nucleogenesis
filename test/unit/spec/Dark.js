@@ -216,7 +216,7 @@ describe('Dark', function() {
           element: 'H'
         }];
 
-        let values = spec.dark.visibleDarkUpgrades('H');
+        let values = spec.dark.visibleDarkUpgrades(spec.state.player);
 
         expect(values).toEqual(['test']);
       });

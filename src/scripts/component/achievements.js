@@ -64,7 +64,7 @@ angular.module('game').controller('ct_achievements', ['$window', 'state', 'data'
     /* Checks if the player has unlocked any new achievement. */
     function update(player) {
       // If we check only achievements that are visible we save A LOT of work
-      let visible = ct.visibleAchievements();
+      let visible = ct.visibleAchievements(player);
       let shortList = {};
       for(let key of visible){
         shortList[key] = data.achievements[key];
@@ -111,14 +111,14 @@ angular.module('game').controller('ct_achievements', ['$window', 'state', 'data'
       return Math.min(100, progress);
     };
 
-    ct.visibleAchievements = function () {
-      return visibility.visible(data.achievements, isAchievementVisible);
+    ct.visibleAchievements = function (player) {
+      return visibility.visible(data.achievements, isAchievementVisible, null, null, player);
     };
 
-    function isAchievementVisible(name) {
+    function isAchievementVisible(name, _, player) {
       let achievement = data.achievements[name];
       for (let dep of achievement.deps) {
-        if (state.player.unlocks[dep] === 0) {
+        if (player.unlocks[dep] === 0) {
           return false;
         }
       }

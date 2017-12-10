@@ -91,13 +91,13 @@ function dark(state, format, visibility, upgrade, data, util) {
       currency);
   };
 
-  ct.visibleDarkUpgrades = function() {
-    return visibility.visible(data.dark_upgrades, isDarkUpgradeVisible, 0);
+  ct.visibleDarkUpgrades = function(player) {
+    return visibility.visible(data.dark_upgrades, isDarkUpgradeVisible, 0, null, player);
   };
 
   // here we receive not the name of the element, but the index in the element_slots
-  function isDarkUpgradeVisible(name, index) {
-    return visibility.isUpgradeVisible(name, index, data.dark_upgrades[name]);
+  function isDarkUpgradeVisible(name, index, player) {
+    return visibility.isUpgradeVisible(name, index, data.dark_upgrades[name], player);
   }
 
   state.registerUpdate('dark', ct.update);

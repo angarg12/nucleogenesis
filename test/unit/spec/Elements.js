@@ -134,7 +134,7 @@ describe('Elements component', function() {
         power: 1
       };
 
-      spec.elementSelect.selectElement('H', 0);
+      spec.elementSelect.selectElement('H', 0, spec.state.player);
 
       expect(spec.state.player.element_slots[0]).toEqual({
         element: 'H',
@@ -170,7 +170,7 @@ describe('Elements component', function() {
       spec.state.reactionsCache.H = {a:1};
       spec.state.redoxesCache.H = {b:1};
 
-      spec.elementSelect.selectElement('H', 0);
+      spec.elementSelect.selectElement('H', 0, spec.state.player);
 
       expect(spec.state.player.element_slots[0].reactions).toEqual({a:1});
       expect(spec.state.player.element_slots[0].redoxes).toEqual({b:1});

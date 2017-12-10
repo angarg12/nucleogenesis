@@ -42,7 +42,7 @@ Adjust level:
                   ng-if="!slot"></element-select>
   <div ng-if="slot">
     <h2>{{ct.data.elements[slot.element].name}}</h2>
-    <div ng-if="ct.availableReactions(slot).length > 0">
+    <div ng-if="ct.availableReactions(slot, ct.state.player).length > 0">
       <button type="button"
               class="btn btn-default"
               ng-click="ct.addReaction(ct.state.player, slot, ct.reactionSelect[$index])">
@@ -50,9 +50,9 @@ Adjust level:
       <br>
     </button>
       <select name="reactionSelect"
-              ng-init="ct.reactionSelect[$index] = ct.availableReactions(slot)[0]"
+              ng-init="ct.reactionSelect[$index] = ct.availableReactions(slot, ct.state.player)[0]"
               ng-model="ct.reactionSelect[$index]">
-      <option ng-repeat="reaction in ct.availableReactions(slot)"
+      <option ng-repeat="reaction in ct.availableReactions(slot, ct.state.player)"
               value="{{reaction}}">{{reaction}}</option>
     </select> Slots: {{ct.reactionSize(ct.state.player)}}/{{ct.util.calculateValue(ct.data.global_upgrades.reaction_slots.power.base,
             ct.data.global_upgrades.reaction_slots.power,
@@ -82,7 +82,8 @@ Adjust level:
                               ct.format.reactionFormat(ct.util.calculateValue(ct.data.global_upgrades.reaction_bandwidth.power.base,
                                           ct.data.global_upgrades.reaction_bandwidth.power,
                                           ct.state.player.global_upgrades_current.reaction_bandwidth),
-                                                        reaction.reaction))"></span>
+                                                        reaction.reaction,
+                                                        ct.state.player))"></span>
               </td>
               <td class="col-xs-1">
                 <input type="checkbox"

@@ -13,10 +13,10 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
   <div ng-if="slot">
     <h2>{{ct.data.elements[slot.element].name}}</h2>
     <button class="btn btn-default"
-            ng-click="ct.buyAll(slot)">Buy all</button>
+            ng-click="ct.buyAll(slot, ct.state.player)">Buy all</button>
     <div class="row">
-      <div ng-repeat="up in ct.visibleUpgrades(slot)"
-           ng-click="ct.buyUpgrade(up, slot)"
+      <div ng-repeat="up in ct.visibleUpgrades(slot, ct.state.player)"
+           ng-click="ct.buyUpgrade(up, slot, ct.state.player)"
            class="col-xs-12 btn btn-default"
            ng-class="{disabled: ct.data.upgrades[up].price > ct.state.player.resources[ct.data.elements[slot.element].main].number &&
          !slot.upgrades[up],

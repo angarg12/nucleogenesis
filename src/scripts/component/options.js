@@ -29,7 +29,7 @@ function options($state, state, savegame) {
     }
   };
 
-  ct.importExportSave = function () {
+  ct.importExportSave = function (player) {
     if (state.export) {
       try {
         state.player = JSON.parse(atob(state.export));
@@ -38,7 +38,7 @@ function options($state, state, savegame) {
         alert('Invalid save file.');
       }
     } else {
-      let exportText = btoa(JSON.stringify(state.player));
+      let exportText = btoa(JSON.stringify(player));
 
       state.export = exportText;
     }

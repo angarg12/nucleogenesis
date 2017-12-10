@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 Select an element for slot {{ct.index+1}}
 <div class="row">
-  <div class="col-xs-3" ng-repeat="key in ct.visibleElements()">
+  <div class="col-xs-3" ng-repeat="key in ct.visibleElements(ct.state.player)">
     <button type="button"
             class="btn btn-default btn-block"
             ng-if="!ct.isElementSelected(key, ct.state.player)"
-            ng-click="ct.selectElement(key, ct.index)">
+            ng-click="ct.selectElement(key, ct.index, ct.state.player)">
       {{ct.data.elements[key].name}}
     </button>
   </div>

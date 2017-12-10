@@ -179,7 +179,7 @@ describe('Reactions', function() {
         reactions: reactions
       }];
 
-      let visible = spec.reactions.visibleReactions(spec.state.player.element_slots[0]);
+      let visible = spec.reactions.visibleReactions(spec.state.player.element_slots[0], spec.state.player);
 
       expect(visible).toEqual(reactions);
     });
@@ -234,7 +234,7 @@ describe('Reactions', function() {
         element: 'H'
       }];
 
-      let available = spec.reactions.availableReactions(spec.state.player.element_slots[0]);
+      let available = spec.reactions.availableReactions(spec.state.player.element_slots[0], spec.state.player);
 
       expect(available).toEqual(['1']);
     });

@@ -21,7 +21,7 @@ function elementSelect (state, visibility, data) {
   ct.state = state;
   ct.data = data;
 
-  ct.selectElement = function(element, index) {
+  ct.selectElement = function(element, index, player) {
     let slot = {};
     for(let key in data.element_slot){
       slot[key] = angular.copy(data.element_slot[key]);
@@ -29,7 +29,7 @@ function elementSelect (state, visibility, data) {
     let first = Object.keys(data.generators)[0];
     slot.generators[first] = 1;
     slot.element = element;
-    state.player.element_slots[index] = slot;
+    player.element_slots[index] = slot;
 
     let cachedReactions = state.reactionsCache[slot.element];
     if(cachedReactions){
@@ -50,11 +50,11 @@ function elementSelect (state, visibility, data) {
     return false;
   };
 
-  ct.visibleElements = function() {
-    return visibility.visible(data.elements, isElementVisible);
+  ct.visibleElements = function(player) {
+    return visibility.visible(data.elements, isElementVisible, null, null, player);
   };
 
-  function isElementVisible(element) {
-    return state.player.elements[element];
+  function isElementVisible(element, _, player) {
+    return player.elements[element];
   }
 }

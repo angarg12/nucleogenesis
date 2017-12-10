@@ -5,7 +5,7 @@
     Nucleogenesis v{{ct.data.version}}
   </li>
 <div ng-repeat="element in ct.activeElements(ct.state.player)">
-  <li ng-repeat="key in ct.visibleResources(element)"
+  <li ng-repeat="key in ct.visibleResources(element, ct.state.player)"
       ng-mouseover="ct.state.removeNew(key)"
       class="row">
     <get-html value="key"
@@ -38,7 +38,7 @@
 		    </span>
         <get-html value="type"
                   class="col-xs-2"></get-html>
-        <span ng-bind-html="ct.util.trustHTML(ct.format.reactionFormat(1, decay.reaction))"
+        <span ng-bind-html="ct.util.trustHTML(ct.format.reactionFormat(1, decay.reaction, ct.state.player))"
               class="col-xs-8"></span>
       </li>
     </ul>

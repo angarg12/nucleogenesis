@@ -29,13 +29,13 @@ describe('Dashboard', function() {
 
   describe('visibility functions', function() {
     it('should show visible resources for element', function() {
-      let values = spec.dashboardList.resourcesForElement('H');
+      let values = spec.dashboardList.resourcesForElement('H', spec.state.player);
 
       expect(values).toEqual(['1H','H2','H2O']);
     });
 
     it('should show misc resources', function() {
-      let values = spec.dashboardList.resourcesForElement('');
+      let values = spec.dashboardList.resourcesForElement('', spec.state.player);
 
       expect(values).toEqual(['eV']);
     });
@@ -43,7 +43,7 @@ describe('Dashboard', function() {
     it('should filter visible resources', function() {
       spec.dashboardList.searchText = 'H2';
 
-      let values = spec.dashboardList.resourcesForElement('H');
+      let values = spec.dashboardList.resourcesForElement('H', spec.state.player);
 
       expect(values).toEqual(['H2','H2O']);
     });

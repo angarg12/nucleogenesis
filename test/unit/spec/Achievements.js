@@ -173,7 +173,7 @@ describe('Achievements component', function () {
       spec.state.player.unlocks.H = 0;
       spec.state.player.unlocks.isotope = 0;
 
-      let visible = spec.achievements.visibleAchievements('H');
+      let visible = spec.achievements.visibleAchievements(spec.state.player);
 
       expect(visible).toEqual([]);
     });
@@ -182,7 +182,7 @@ describe('Achievements component', function () {
       spec.state.player.unlocks.H = 1;
       spec.state.player.unlocks.isotope = 0;
 
-      let visible = spec.achievements.visibleAchievements('H');
+      let visible = spec.achievements.visibleAchievements(spec.state.player);
 
       expect(visible).toEqual(['hydrogen']);
     });

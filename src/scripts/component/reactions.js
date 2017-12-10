@@ -84,15 +84,15 @@ function (state, data, visibility, util, format, reactionService, upgradeService
     return slot.reactions;
   };
 
-  ct.availableReactions = function(slot) {
-    return visibility.visible(data.reactions, isReactionAvailable, slot.element);
+  ct.availableReactions = function(slot, player) {
+    return visibility.visible(data.reactions, isReactionAvailable, slot.element, null, player);
   };
 
-  function isReactionAvailable(entry, currentElement) {
+  function isReactionAvailable(entry, currentElement, player) {
     let available = true;
     let reaction = data.reactions[entry];
     for(let resource in reaction.reactant){
-      available = available && state.player.resources[resource].unlocked;
+      available = available && player.resources[resource].unlocked;
     }
     // Workaround to reuse the visibility function. It expects an object with the
     // reaction inside

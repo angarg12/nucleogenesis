@@ -34,13 +34,13 @@ angular.module('game').controller('ct_fusion_select', ['state', 'data','$scope',
     };
 
     ct.setPercentage = function(percentage, player) {
-      let fragment = state.player.fusion[0][ct.source];
+      let fragment = player.fusion[0][ct.source];
       fragment.number = Math.floor(player.resources[fragment.name].number*(percentage/100));
       ct.fixNumber(player);
     };
 
     ct.fixNumber = function(player) {
-      let fragment = state.player.fusion[0][ct.source];
+      let fragment = player.fusion[0][ct.source];
       let resourceNumber = player.resources[fragment.name].number;
       let capacity = ct.getCapacity({resource: fragment.name, player:player});
       fragment.number = Math.max(0, Math.min(resourceNumber, fragment.number, capacity));

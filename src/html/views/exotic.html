@@ -61,7 +61,7 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
       (<span ng-repeat="(exotic,number) in value">+<pretty value="number"></pretty> {{exotic}} </span>)
     </p>
     <div class="row">
-      <div ng-repeat="up in ct.visibleExoticUpgrades(slot)"
+      <div ng-repeat="up in ct.visibleExoticUpgrades(slot, ct.state.player)"
            ng-click="ct.buyExoticUpgrade(up, slot)"
            class="col-xs-12 btn btn-default"
            ng-class="{disabled: ct.data.exotic_upgrades[up].price > ct.state.player.resources[ct.data.elements[slot.element].exotic].number &&

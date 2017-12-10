@@ -75,7 +75,8 @@ Adjust level:
 <h2>Reaction</h2>
 <span ng-bind-html="ct.util.trustHTML(
               ct.format.reactionFormat(1,
-                                        ct.getFusionReaction(ct.state.player)))"></span>
+                                        ct.getFusionReaction(ct.state.player),
+                                        ct.state.player))"></span>
 <br>
 <button type="button"
         class="btn btn-default"
