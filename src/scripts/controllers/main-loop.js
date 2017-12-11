@@ -13,16 +13,9 @@ angular
       $scope.state = state;
 
       let self = this;
-      let playerCopy = null;
 
       self.update = function() {
-        // do the update in a copy
-        playerCopy = angular.copy(state.player);
-
-        state.update(playerCopy);
-
-        // and update all at once
-        state.player = playerCopy;
+        state.update(state.player);
       };
 
       self.updateLoop = function() {
@@ -67,7 +60,7 @@ angular
         }
         $timeout(self.processOffline);
       };
-      
+
       $timeout(self.startup);
     }
   ]);
