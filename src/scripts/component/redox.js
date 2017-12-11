@@ -77,6 +77,7 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
               from: charge,
               to: parseInt(probKey, 10)
             });
+			      if(react.from === react.to) continue;
             // electronegativity is 'for free'
       			react.reactant.eV = 0;
             // FIXME: starvation should fix this
