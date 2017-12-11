@@ -96,7 +96,7 @@
     ],
     "power": {
       "base": 1,
-      "exp": 1.25
+      "exp": 2
     },
     "price_exp": 10,
     "repeatable": true,
