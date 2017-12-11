@@ -106,6 +106,25 @@ describe('Elements component', function() {
       expect(spec.state.player.elements_unlocked).toEqual(2);
     });
 
+    it('resources of the target element should increase chance of success', function() {
+      spec.data.constants.ELEMENT_CHANCE_BONUS = 0.01;
+      spec.data.elements.O = {abundance: 0.1, includes: ['16O']};
+      spec.elements.buyAmount = [1];
+      spec.state.player.options.elementBuyIndex = 0;
+      spec.state.player.elements_unlocked = 1;
+      spec.state.player.statistics.all_time['16O'] = 300;
+      spec.state.player.resources.dark_matter = {number:1};
+      spec.state.player.elements.O = false;
+
+      spyOn(Math, 'random').and.returnValue(0.3);
+
+      spec.elements.buyElement('O');
+
+      expect(spec.state.player.resources.dark_matter.number).toEqual(0);
+      expect(spec.state.player.elements.O).toEqual(true);
+      expect(spec.state.player.elements_unlocked).toEqual(2);
+    });
+
     it('should skip if the element is already purchased', function() {
       spec.data.elements.O = {number: 8};
       spec.state.player.elements.O = true;
