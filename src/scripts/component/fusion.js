@@ -199,7 +199,17 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
       // Reaction checks that the player has the quantity necessary
       // to react, but here eV is stored in the fusion object. By setting the cost to 0
       // we make sure that it always work
-      reaction.reactant= {eV:0};
+      reaction.reactant = {eV:0};
+      // To avoid double counting of resources in stats, we need to manually add resources
+      // to the player
+      let beam = fusion.beam.name;
+      let target = fusion.target.name;
+
+      player.resources[beam].number += reaction.product[beam];
+      player.resources[target].number += reaction.product[target];
+      reaction.product[beam] = 0;
+      reaction.product[target] = 0;
+
       reactionService.react(1, reaction, player);
 
       fusion.eV = 0;

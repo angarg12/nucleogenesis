@@ -31,22 +31,19 @@ angular
           return;
         }
         if (isReactionCostMet(number, reaction, playerData)) {
-          let reactant = Object.keys(reaction.reactant);
           let elements = [];
-          for (let i = 0; i < reactant.length; i++) {
-            let required = number * reaction.reactant[reactant[i]];
-            playerData.resources[reactant[i]].number -= required;
-            playerData.resources[reactant[i]].number = playerData.resources[reactant[i]].number;
+          for (let resource in reaction.reactant) {
+            let required = number * reaction.reactant[resource];
+            playerData.resources[resource].number -= required;
+            playerData.resources[resource].number = playerData.resources[resource].number;
             // We track which elements produced the products, for the statistics
-            for(let elem of Object.keys(data.resources[reactant[i]].elements)){
+            for(let elem of Object.keys(data.resources[resource].elements)){
               if(elements.indexOf(elem) === -1) elements.push(elem);
             }
           }
-          let product = Object.keys(reaction.product);
-          for (let i = 0; i < product.length; i++) {
-            let produced = number * reaction.product[product[i]];
-
-            util.addResource(playerData, elements, product[i], produced, state);
+          for (let resource in reaction.product) {
+            let produced = number * reaction.product[resource];
+            util.addResource(playerData, elements, resource, produced, state);
           }
         }
       };

@@ -27,7 +27,7 @@ function elements($timeout, state, data, util) {
     for(let resource of data.elements[element].includes){
       bonus += (state.player.statistics.all_time[resource] || 0)*data.constants.ELEMENT_CHANCE_BONUS;
     }
-    console.log(bonus, state.player.statistics.all_time['16O'], data.constants.ELEMENT_CHANCE_BONUS, element)
+    
     let singleChance = data.elements[element].abundance*(1+bonus);
     let chance = 1 - Math.pow(Math.max(0, 1-singleChance), Math.min(state.player.resources.dark_matter.number, ct.buyAmount[state.player.options.elementBuyIndex]));
 
