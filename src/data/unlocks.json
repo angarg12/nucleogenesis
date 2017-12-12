@@ -54,7 +54,7 @@
   "fusion_gate": {
     "condition": ["(() => {",
       "return player.statistics.all_time.eV &&",
-      "       player.statistics.all_time.eV >= 1e30",
+      "       player.statistics.all_time.eV >= 1e25",
       "})()"
     ]
   },

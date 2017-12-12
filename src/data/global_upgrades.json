@@ -87,7 +87,7 @@
   },
   "fusion_area": {
     "price": {
-      "eV": 1e30
+      "eV": 1e25
     },
     "name": "Fusion area",
     "description": "Area of the fusion reactor",
