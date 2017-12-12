@@ -80,6 +80,12 @@ function (state, data, visibility, util, format, reactionService, upgradeService
     }
   };
 
+  ct.checkAll = function(slot){
+    for(let reaction of slot.reactions){
+      reaction.active = slot.active;
+    }
+  }
+
   ct.visibleReactions = function(slot) {
     return slot.reactions;
   };

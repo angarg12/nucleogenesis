@@ -212,6 +212,12 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       slot.redoxes.splice(index, 1);
     };
 
+    ct.checkAll = function(slot){
+      for(let redox of slot.redoxes){
+        redox.active = slot.active;
+      }
+    }
+
     ct.visibleRedox = function(slot) {
       return slot.redoxes;
     };

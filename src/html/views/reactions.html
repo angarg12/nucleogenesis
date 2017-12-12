@@ -66,6 +66,9 @@ Adjust level:
               </th>
               <th class="col-xs-1">
                 Active
+                <input type="checkbox"
+                       ng-model="slot.active"
+                       ng-click="ct.checkAll(slot)">
               </th>
             </div>
           </tr>
