@@ -12,11 +12,12 @@ angular.module('game').component('upgrades', {
   controllerAs: 'ct'
 });
 
-function upgrades(state, visibility, upgrade, data) {
+function upgrades(state, visibility, upgradeService, data) {
   let ct = this;
   ct.state = state;
   ct.data = data;
-  let sortFunc = upgrade.sortFunctions(data.upgrades);
+  ct.upgradeService = upgradeService;
+  let sortFunc = upgradeService.sortFunctions(data.upgrades);
 
   // tries to buy all the upgrades it can, starting from the cheapest
   ct.buyAll = function (slot, player) {
@@ -37,7 +38,7 @@ function upgrades(state, visibility, upgrade, data) {
         }
       }
       if(cheapest){
-        upgrade.buyUpgrade(player,
+        upgradeService.buyUpgrade(player,
           slot.upgrades,
           data.upgrades[cheapest],
           cheapest,
@@ -50,7 +51,7 @@ function upgrades(state, visibility, upgrade, data) {
   ct.buyUpgrade = function (name, slot, player) {
     let price = data.upgrades[name].price;
     let currency = data.elements[slot.element].main;
-    upgrade.buyUpgrade(player,
+    upgradeService.buyUpgrade(player,
       slot.upgrades,
       data.upgrades[name],
       name,
@@ -66,4 +67,8 @@ function upgrades(state, visibility, upgrade, data) {
     let isVisible = visibility.isUpgradeVisible(name, slot, data.upgrades[name], player);
     return isVisible && (!player.options.hideBought || !slot.upgrades[name]);
   }
+
+  ct.visibleGlobalUpgrades = function() {
+    return visibility.visible(data.global_upgrades, upgradeService.filterByTag('global'));
+  };
 }
