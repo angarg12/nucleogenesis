@@ -48,6 +48,20 @@ angular
         // we merge the properties of the player with the start player to
         // avoid undefined errors with new properties
         state.player = angular.merge({}, data.start_player, state.player);
+
+        for(let resource in state.player.resources){
+          if(!data.resources[resource]) delete state.player.resources[resource];
+        }
+        for(let slot of state.player.element_slots){
+          if(!slot){
+            continue;
+          }
+          for(let i in slot.redoxes){
+            if(slot.redoxes[i].from === -2 || slot.redoxes[i].to === -2){
+              slot.redoxes.splice(i, 1);
+            }
+          }
+        }
       };
     }
   ]);

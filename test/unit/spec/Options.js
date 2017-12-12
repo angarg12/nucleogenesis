@@ -83,6 +83,7 @@ describe('Options', function () {
 
     it('should reset player without confirmation', function () {
       spyOn(spec.state, 'init');
+      spec.data.start_player = spec.originalData.start_player;
 
       spec.options.reset(false);
 
@@ -93,6 +94,7 @@ describe('Options', function () {
     it('should reset player with confirmation', function () {
       spyOn(window, 'confirm').and.returnValue(true);
       spyOn(spec.state, 'init');
+      spec.data.start_player = spec.originalData.start_player;
 
       spec.options.reset(true);
 
