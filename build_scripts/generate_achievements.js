@@ -81,7 +81,7 @@ for(let element in elements){
         'return count;',
         '})()'
       ],
-      deps: [element, 'redox']
+      deps: [element, 'ion']
     };
   }
 
@@ -110,7 +110,7 @@ for(let element in elements){
         'return count;',
         '})()'
       ],
-      deps: [element, 'reaction']
+      deps: [element, 'molecule']
     };
   }
 }
@@ -137,7 +137,7 @@ achievements.total_elements = {
     'return count;',
     '})()'
   ],
-  deps: ['dark']
+  deps: ['dark_gate']
 };
 
 // Total isotopes

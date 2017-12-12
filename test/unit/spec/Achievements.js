@@ -57,8 +57,24 @@ describe('Achievements component', function () {
       for(let key of Object.keys(spec.originalData)){
         spec.data[key] = angular.copy(spec.originalData[key]);
       }
+      for(let unlock in spec.data.unlocks){
+        spec.data.start_player.unlocks[unlock] = 1;
+      }
       for(let resource in spec.data.resources){
         spec.data.start_player.resources[resource].unlocked = true;
+        spec.data.start_player.resources[resource].number = 1e300;
+      }
+
+      spec.state.update(spec.data.start_player);
+    });
+
+    it('should execute all achievement functions 3', function () {
+      for(let key of Object.keys(spec.originalData)){
+        spec.data[key] = angular.copy(spec.originalData[key]);
+      }
+      for(let resource in spec.data.resources){
+        spec.data.start_player.resources[resource].unlocked = true;
+        spec.data.start_player.resources[resource].number = 1e300;
       }
 
       spec.state.update(spec.data.start_player);
