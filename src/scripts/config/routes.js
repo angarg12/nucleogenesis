@@ -35,6 +35,9 @@ angular
         .state('dashboard', {
           component: 'dashboard'
         })
+        .state('statistics', {
+          component: 'statistics'
+        })
         .state('options', {
           component: 'options'
         });
