@@ -24,7 +24,7 @@ We divide issues in rough sizes according to their size and complexity. We use s
     
 **If you haven't done this before:**
     
-    sudo apt-get install npm
+    sudo apt-get install npm nodejs-legacy
     sudo npm install -g bower
 
 Then
