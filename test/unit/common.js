@@ -70,7 +70,6 @@ let commonSpec = function(spec) {
     spec.achievements = _$componentController_('achievements', null, null);
     spec.elementSelect = _$componentController_('elementSelect', null, null);
     spec.sidebar = _$componentController_('sidebar', null, null);
-    spec.mechanics = _$componentController_('mechanics', null, null);
     spec.dashboardList = _$componentController_('dashboardList', null, null);
     spec.fusionSelect = _$componentController_('fusionSelect', null, null);
     spec.fusionSelect.listener();

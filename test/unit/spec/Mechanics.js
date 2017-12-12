@@ -27,7 +27,7 @@ describe('Mechanics', function() {
       spec.state.player.global_upgrades.redox_bandwidth = 0;
       spec.state.player.resources.eV = {number:0};
 
-      let canBuy = spec.mechanics.canBuyGlobalUpgrade('redox_bandwidth');
+      let canBuy = spec.upgradeService.canBuyGlobalUpgrade('redox_bandwidth', spec.state.player);
 
       expect(canBuy).toBeFalsy();
     });
@@ -36,7 +36,7 @@ describe('Mechanics', function() {
       spec.state.player.global_upgrades.redox_bandwidth = 0;
       spec.state.player.resources.eV = {number:1e300};
 
-      let canBuy = spec.mechanics.canBuyGlobalUpgrade('redox_bandwidth');
+      let canBuy = spec.upgradeService.canBuyGlobalUpgrade('redox_bandwidth', spec.state.player);
 
       expect(canBuy).toBeTruthy();
     });
@@ -45,7 +45,7 @@ describe('Mechanics', function() {
       spec.state.player.global_upgrades.redox_bandwidth = 2;
       spec.state.player.resources.eV = {number:1e300};
 
-      spec.mechanics.buyGlobalUpgrade('redox_bandwidth');
+      spec.upgradeService.buyGlobalUpgrade('redox_bandwidth', spec.state.player);
 
       expect(spec.state.player.global_upgrades.redox_bandwidth).toEqual(3);
     });
@@ -54,7 +54,7 @@ describe('Mechanics', function() {
       spec.state.player.global_upgrades.redox_bandwidth = 2;
       spec.state.player.resources.eV = {number:0};
 
-      spec.mechanics.buyGlobalUpgrade('redox_bandwidth');
+      spec.upgradeService.buyGlobalUpgrade('redox_bandwidth', spec.state.player);
 
       expect(spec.state.player.global_upgrades.redox_bandwidth).toEqual(2);
     });
