@@ -21,6 +21,13 @@ We divide issues in rough sizes according to their size and complexity. We use s
 # Developers
 
 ## Quickstart
+    
+**If you haven't done this before:**
+    
+    sudo apt-get install npm
+    sudo npm install -g bower
+
+Then
 
     git clone https://github.com/angarg12/nucleogenesis.git
     cd nucleogenesis
