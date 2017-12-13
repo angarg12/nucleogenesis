@@ -1,6 +1,6 @@
 {
   "EXOTIC_POWER": 0.01,
-  "EXOTIC_START": 1e7,
+  "EXOTIC_START": 1e6,
   "EXOTIC_STEP": 10,
   "DARK_POWER": 0.1,
   "DARK_START": 10,
