@@ -21,12 +21,22 @@ We divide issues in rough sizes according to their size and complexity. We use s
 # Developers
 
 ## Quickstart
+    
+**If you haven't done this before:**
 
-    git clone https://github.com/angarg12/nucleogenesis.git
-    cd nucleogenesis
-    npm install
-    gulp build
+```bash
+sudo apt-get install npm nodejs-legacy # This turns out to be right but it feels *so wrong*
+sudo npm install -g bower
+```
 
+**To clone & build**
+
+```bash
+git clone https://github.com/angarg12/nucleogenesis.git
+cd nucleogenesis
+npm install
+gulp build
+```
 The `build/` folder will include a working copy of the game.
 
 ## Stack
