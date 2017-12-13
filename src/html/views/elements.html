@@ -13,14 +13,14 @@ on purchase.</p>
   <div ng-repeat="(element, value) in ct.data.elements"
        class="col-xs-4">
     <div class="thumbnail">
-      <div ng-class="ct.elementClass(element)">
+      <div ng-class="ct.elementClass(element, ct.state.player)">
         <span class="label label-default element_label"
               ng-if="ct.data.elements[element].abundance === 0">Synthetic</span>
         <div class="element_number">{{ct.data.elements[element].number}}</div>
         <h2 class="element_symbol">{{element}}</h2>
       </div>
       <div class="symbol_name"
-           ng-class="ct.elementSecondaryClass(element)">
+           ng-class="ct.elementSecondaryClass(element, ct.state.player)">
         {{value.name}}
       </div>
       <p>
@@ -38,13 +38,13 @@ on purchase.</p>
       <div class="hidden_block"
            ng-hide="ct.data.elements[element].abundance === 0 ||
                     ct.state.player.elements[element]">
-        <p ng-click="ct.buyElement(element)"
+        <p ng-click="ct.buyElement(element, ct.state.player)"
            class="btn btn-default">
           Buy
         </p>
         {{ct.outcome[element]}}
         <p>
-          Success: <pretty value="ct.getChance(element)*100"></pretty>%
+          Success: <pretty value="ct.getChance(element, ct.state.player)*100"></pretty>%
         </p>
       </div>
     </div>

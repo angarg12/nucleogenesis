@@ -50,40 +50,40 @@ function dark(state, format, visibility, upgrade, data, util) {
     return production;
   };
 
-  ct.darkPrestige = function() {
+  ct.darkPrestige = function(player) {
     let production = ct.darkProduction();
 
-    util.addResource(state.player, 'all_time', 'dark_matter', production, state);
+    util.addResource(player, 'all_time', 'dark_matter', production, state);
 
     for(let key in data.elements){
       let element = data.elements[key];
-      state.player.resources[element.exotic].number = 0;
-      if(!state.player.exotic_upgrades[key]){
+      player.resources[element.exotic].number = 0;
+      if(!player.exotic_upgrades[key]){
         continue;
       }
       for(let up in data.exotic_upgrades){
-        state.player.exotic_upgrades[key][up] = false;
+        player.exotic_upgrades[key][up] = false;
       }
     }
-    for(let slot of state.player.element_slots){
+    for(let slot of player.element_slots){
       if(!slot){
         continue;
       }
-      upgrade.resetElement(state.player, slot.element);
+      upgrade.resetElement(player, slot.element);
     }
 
-    for(let i in state.player.element_slots){
-      state.player.element_slots[i] = null;
+    for(let i in player.element_slots){
+      player.element_slots[i] = null;
     }
-    state.player.statistics.exotic_run = {};
-    state.player.statistics.dark_run = {};
+    player.statistics.exotic_run = {};
+    player.statistics.dark_run = {};
   };
 
-  ct.buyDarkUpgrade = function(name) {
-    let upgrades = state.player.dark_upgrades;
+  ct.buyDarkUpgrade = function(name, player) {
+    let upgrades = player.dark_upgrades;
     let price = data.dark_upgrades[name].price;
     let currency = 'dark_matter';
-    upgrade.buyUpgrade(state.player,
+    upgrade.buyUpgrade(player,
       upgrades,
       data.dark_upgrades[name],
       name,

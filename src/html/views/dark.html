@@ -14,7 +14,7 @@
 </p>
 <button type="button"
         class="btn btn-default"
-        ng-click="ct.darkPrestige()">Prestige</button>
+        ng-click="ct.darkPrestige(ct.state.player)">Prestige</button>
 <p>You produced</p>
 <p ng-repeat="(key,value) in ct.cache.breakdown">
   <get-html value="key"></get-html>
@@ -23,7 +23,7 @@
 </p>
 <div class="row">
   <div ng-repeat="up in ct.visibleDarkUpgrades(ct.state.player)"
-       ng-click="ct.buyDarkUpgrade(up)"
+       ng-click="ct.buyDarkUpgrade(up, ct.state.player)"
        class="col-xs-12 btn btn-default"
        ng-class="{disabled: ct.data.dark_upgrades[up].price > ct.state.player.resources.dark_matter.number &&
          !ct.state.player.dark_upgrades[up],

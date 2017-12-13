@@ -22,34 +22,35 @@ function elements($timeout, state, data, util) {
   ct.keys = Object.keys;
   ct.buyAmount = [1, 10, 25, 100, 1000];
 
-  ct.getChance = function(element) {
+  ct.getChance = function(element, player) {
     let bonus = 0;
     for(let resource of data.elements[element].includes){
-      bonus += (state.player.statistics.all_time[resource] || 0)*data.constants.ELEMENT_CHANCE_BONUS;
+      bonus += (player.statistics.all_time[resource] || 0)*data.constants.ELEMENT_CHANCE_BONUS;
     }
-    
+
     let singleChance = data.elements[element].abundance*(1+bonus);
-    let chance = 1 - Math.pow(Math.max(0, 1-singleChance), Math.min(state.player.resources.dark_matter.number, ct.buyAmount[state.player.options.elementBuyIndex]));
+    let chance = 1 - Math.pow(Math.max(0, 1-singleChance),
+                              Math.min(player.resources.dark_matter.number, ct.buyAmount[player.options.elementBuyIndex]));
 
     return Math.min(1, chance);
   };
 
-  ct.buyElement = function (element) {
-    if (state.player.elements[element]) {
+  ct.buyElement = function (element, player) {
+    if (player.elements[element]) {
       return;
     }
-    if(Math.random() < ct.getChance(element)){
-      state.player.elements[element] = true;
-      state.player.exotic_upgrades[element] = {};
+    if(Math.random() < ct.getChance(element, player)){
+      player.elements[element] = true;
+      player.exotic_upgrades[element] = {};
       for(let up in data.exotic_upgrades){
-        state.player.exotic_upgrades[element][up] = false;
+        player.exotic_upgrades[element][up] = false;
       }
-      state.player.elements_unlocked++;
+      player.elements_unlocked++;
       ct.outcome[element] = 'Success';
     }else{
       ct.outcome[element] = 'Fail';
     }
-    state.player.resources.dark_matter.number -= Math.min(state.player.resources.dark_matter.number, ct.buyAmount[state.player.options.elementBuyIndex]);
+    player.resources.dark_matter.number -= Math.min(player.resources.dark_matter.number, ct.buyAmount[player.options.elementBuyIndex]);
 
     util.delayedExec(performance.now(),performance.now(), 1000, () => ct.clearMessage(element));
   };
@@ -60,19 +61,19 @@ function elements($timeout, state, data, util) {
 
   /* This function returns the class that determines on which
   colour an element card */
-  ct.elementClass = function (element) {
-    if (state.player.elements[element]) {
+  ct.elementClass = function (element, player) {
+    if (player.elements[element]) {
       return 'element_purchased';
     }
-    if (isElementAvailable(element)) {
+    if (isElementAvailable(element, player)) {
       return 'element_available';
     }
     return 'element_unavailable';
   };
 
-  function isElementAvailable(element) {
+  function isElementAvailable(element, player) {
     for(let resource of data.elements[element].includes){
-      if(state.player.resources[resource].unlocked){
+      if(player.resources[resource].unlocked){
         return true;
       }
     }
@@ -81,7 +82,7 @@ function elements($timeout, state, data, util) {
 
   /* This function returns the class that determines the secondary
   colour of an element card */
-  ct.elementSecondaryClass = function (element) {
-    return ct.elementClass(element) + '_dark';
+  ct.elementSecondaryClass = function (element, player) {
+    return ct.elementClass(element, player) + '_dark';
   };
 }

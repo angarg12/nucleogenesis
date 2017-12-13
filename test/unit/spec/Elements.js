@@ -18,7 +18,7 @@ describe('Elements component', function() {
 
       spyOn(Math, 'random').and.returnValue(0.7);
 
-      spec.elements.buyElement('O');
+      spec.elements.buyElement('O', spec.state.player);
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(0);
       expect(spec.state.player.elements.O).toEqual(false);
@@ -34,7 +34,7 @@ describe('Elements component', function() {
 
       spyOn(Math, 'random').and.returnValue(0.2);
 
-      spec.elements.buyElement('O');
+      spec.elements.buyElement('O', spec.state.player);
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(0);
       expect(spec.state.player.elements.O).toEqual(true);
@@ -48,7 +48,7 @@ describe('Elements component', function() {
       spec.state.player.resources.dark_matter = {number:0};
       spec.state.player.elements.O = false;
 
-      spec.elements.buyElement('O');
+      spec.elements.buyElement('O', spec.state.player);
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(0);
       expect(spec.state.player.elements.O).toEqual(false);
@@ -65,7 +65,7 @@ describe('Elements component', function() {
 
       spyOn(Math, 'random').and.returnValue(0.2);
 
-      spec.elements.buyElement('O');
+      spec.elements.buyElement('O', spec.state.player);
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(5);
       expect(spec.state.player.elements.O).toEqual(true);
@@ -82,7 +82,7 @@ describe('Elements component', function() {
 
       spyOn(Math, 'random').and.returnValue(0.2);
 
-      spec.elements.buyElement('O');
+      spec.elements.buyElement('O', spec.state.player);
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(0);
       expect(spec.state.player.elements.O).toEqual(true);
@@ -99,7 +99,7 @@ describe('Elements component', function() {
 
       spyOn(Math, 'random').and.returnValue(0.3);
 
-      spec.elements.buyElement('O');
+      spec.elements.buyElement('O', spec.state.player);
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(5);
       expect(spec.state.player.elements.O).toEqual(true);
@@ -118,7 +118,7 @@ describe('Elements component', function() {
 
       spyOn(Math, 'random').and.returnValue(0.3);
 
-      spec.elements.buyElement('O');
+      spec.elements.buyElement('O', spec.state.player);
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(0);
       expect(spec.state.player.elements.O).toEqual(true);
@@ -129,7 +129,7 @@ describe('Elements component', function() {
       spec.data.elements.O = {number: 8};
       spec.state.player.elements.O = true;
 
-      spec.elements.buyElement('O');
+      spec.elements.buyElement('O', spec.state.player);
 
       expect(spec.state.player.elements.O).toEqual(true);
     });
@@ -217,7 +217,7 @@ describe('Elements component', function() {
       spec.data.elements.H = {};
       spec.state.player.elements = {};
 
-      let clazz = spec.elements.elementClass('H');
+      let clazz = spec.elements.elementClass('H', spec.state.player);
 
       expect(clazz).toEqual('element_unavailable');
     });
@@ -227,7 +227,7 @@ describe('Elements component', function() {
       spec.state.player.elements = {};
       spec.state.player.elements.H = true;
 
-      let clazz = spec.elements.elementClass('H');
+      let clazz = spec.elements.elementClass('H', spec.state.player);
 
       expect(clazz).toEqual('element_purchased');
     });
@@ -239,7 +239,7 @@ describe('Elements component', function() {
       spec.state.player.resources = {};
       spec.state.player.resources.dark_matter = {number: 1};
 
-      let clazz = spec.elements.elementClass('H');
+      let clazz = spec.elements.elementClass('H', spec.state.player);
 
       expect(clazz).toEqual('element_cost_met');
     });
@@ -251,7 +251,7 @@ describe('Elements component', function() {
       spec.state.player.resources = {};
       spec.state.player.resources.dark_matter = {number: 0};
 
-      let clazz = spec.elements.elementClass('H');
+      let clazz = spec.elements.elementClass('H', spec.state.player);
 
       expect(clazz).toEqual('element_cost_not_met');
     });
@@ -260,7 +260,7 @@ describe('Elements component', function() {
       spec.data.elements.H = {};
       spyOn(spec.elements, 'elementClass').and.returnValue('available');
 
-      let clazz = spec.elements.elementSecondaryClass('H');
+      let clazz = spec.elements.elementSecondaryClass('H', spec.state.player);
 
       expect(clazz).toEqual('available_dark');
     });

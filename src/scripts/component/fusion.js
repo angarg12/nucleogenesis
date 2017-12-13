@@ -90,8 +90,8 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
     };
 
     ct.getYieldPercent = function(player) {
-      let beam = state.player.fusion[0].beam;
-      let target = state.player.fusion[0].target;
+      let beam = player.fusion[0].beam;
+      let target = player.fusion[0].target;
       let beamR = getFermiRadius(beam.name);
       let targetR = getFermiRadius(target.name);
       let beamArea = Math.PI*beamR*beamR;
@@ -108,8 +108,8 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
 
     ct.getYield = function(player){
       let percentYield = ct.getYieldPercent(player);
-      let target = state.player.fusion[0].target.number;
-      let beam = state.player.fusion[0].beam.number;
+      let target = player.fusion[0].target.number;
+      let beam = player.fusion[0].beam.number;
       // the yield comes from wherever source is more abundant
       let impacted = Math.max(target, beam);
       return Math.floor(percentYield*impacted);
@@ -121,8 +121,8 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
         product: {}
       };
 
-      let beam = state.player.fusion[0].beam;
-      let target = state.player.fusion[0].target;
+      let beam = player.fusion[0].beam;
+      let target = player.fusion[0].target;
 
       reaction.reactant[beam.name] = beam.number;
       reaction.reactant[target.name] = target.number;
@@ -170,8 +170,8 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
 
     ct.stopFusion = function(player, fusion) {
       if(fusion.running){
-        let beam = state.player.fusion[0].beam;
-        let target = state.player.fusion[0].target;
+        let beam = player.fusion[0].beam;
+        let target = player.fusion[0].target;
 
         player.resources[beam.name].number += fusion.beam.number;
         player.resources[target.name].number += fusion.target.number;

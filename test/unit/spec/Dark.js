@@ -85,7 +85,7 @@ describe('Dark', function() {
       ];
 
       spec.dark.update(spec.state.player);
-      spec.dark.darkPrestige();
+      spec.dark.darkPrestige(spec.state.player);
 
       expect(spec.state.player.element_slots[0]).toBeNull();
       expect(spec.state.player.exotic_upgrades.H.x3).toBeFalsy();
@@ -144,7 +144,7 @@ describe('Dark', function() {
         }
       ];
 
-      spec.dark.darkPrestige();
+      spec.dark.darkPrestige(spec.state.player);
 
       expect(spec.state.player.element_slots[0]).toBeNull();
       expect(spec.state.player.exotic_upgrades.H.x3).toBeFalsy();
@@ -165,7 +165,7 @@ describe('Dark', function() {
       spec.state.player.resources.dark_matter = {number:110};
       spec.state.player.dark_upgrades.test = false;
 
-      spec.dark.buyDarkUpgrade('test');
+      spec.dark.buyDarkUpgrade('test', spec.state.player);
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(10);
       expect(spec.state.player.dark_upgrades.test).toEqual(true);
@@ -181,7 +181,7 @@ describe('Dark', function() {
       spec.state.player.resources.dark_matter = {number:10};
       spec.state.player.dark_upgrades.test = false;
 
-      spec.dark.buyDarkUpgrade('test');
+      spec.dark.buyDarkUpgrade('test', spec.state.player);
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(10);
       expect(spec.state.player.dark_upgrades.test).toEqual(false);
@@ -197,7 +197,7 @@ describe('Dark', function() {
       spec.state.player.resources.dark_matter = {number:110};
       spec.state.player.dark_upgrades.test = true;
 
-      spec.dark.buyDarkUpgrade('test');
+      spec.dark.buyDarkUpgrade('test', spec.state.player);
 
       expect(spec.state.player.resources.dark_matter.number).toEqual(110);
       expect(spec.state.player.dark_upgrades.test).toEqual(true);

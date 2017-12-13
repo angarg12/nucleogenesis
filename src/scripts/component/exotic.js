@@ -38,28 +38,28 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
           if(!slot){
             continue;
           }
-          ct.cache.breakdown[slot.element] = ct.exoticProduction(slot.element);
+          ct.cache.breakdown[slot.element] = ct.exoticProduction(slot.element, player);
         }
     }
 
     /* Exotic production is a function of the different resources of each
     element. Additionally, multi-element molecules count double, once for
     each participating element. */
-    ct.exoticProduction = function(element) {
+    ct.exoticProduction = function(element, player) {
       let breakdown = {};
       for (let resource of data.elements[element].includes) {
-        if (!state.player.resources[resource].unlocked ||
-            !state.player.statistics.exotic_run[element] ||
-            typeof state.player.statistics.exotic_run[element][resource] === 'undefined') {
+        if (!player.resources[resource].unlocked ||
+            !player.statistics.exotic_run[element] ||
+            typeof player.statistics.exotic_run[element][resource] === 'undefined') {
           continue;
         }
         let production = {};
         for (let elem in data.resources[resource].elements) {
-          if(!state.player.statistics.exotic_run[elem]){
+          if(!player.statistics.exotic_run[elem]){
              continue;
           }
           let numberAtoms = data.resources[resource].elements[elem];
-          let number = (state.player.statistics.exotic_run[elem][resource] || 0)*numberAtoms;
+          let number = (player.statistics.exotic_run[elem][resource] || 0)*numberAtoms;
           let prod = util.prestigeProduction(number, data.constants.EXOTIC_START, data.constants.EXOTIC_STEP);
 
           let args = {
@@ -67,7 +67,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
             resource: resource
           };
 
-          upgrade.executeAll(data.exotic_upgrades, state.player.exotic_upgrades[elem], ['production', 'exotic'], args);
+          upgrade.executeAll(data.exotic_upgrades, player.exotic_upgrades[elem], ['production', 'exotic'], args);
 
           // extract back the value from applying the upgrades
           let newExotic = data.elements[elem].exotic;
@@ -75,7 +75,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
         }
         for (let key in production) {
           // we adjust the infusion
-          production[key] = Math.floor(production[key]*ct.totalInfuseBoost());
+          production[key] = Math.floor(production[key]*ct.totalInfuseBoost(player));
         }
         breakdown[resource] = production;
       }
@@ -95,19 +95,19 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
       return sum;
     };
 
-    ct.exoticPrestige = function(index) {
-      let slot = state.player.element_slots[index];
+    ct.exoticPrestige = function(index, player) {
+      let slot = player.element_slots[index];
       let production = ct.productionSum(slot.element);
 
       for (let key in production) {
-        util.addResource(state.player, 'dark', key, production[key], state);
+        util.addResource(player, 'dark', key, production[key], state);
       }
 
       for(let resource in ct.infuse){
-        state.player.resources[resource].number = Math.max(0, state.player.resources[resource].number-ct.infuse[resource]);
+        player.resources[resource].number = Math.max(0, player.resources[resource].number-ct.infuse[resource]);
       }
 
-      upgrade.resetElement(state.player, slot.element);
+      upgrade.resetElement(player, slot.element);
 
       // we deactivate reactions and redoxes
       for (let reaction of slot.reactions) {
@@ -123,27 +123,27 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
       state.reactionsCache[slot.element] = slot.reactions;
       state.redoxesCache[slot.element] = slot.redoxes;
 
-      state.player.element_slots[index] = null;
-      state.player.statistics.exotic_run[slot.element] = {};
+      player.element_slots[index] = null;
+      player.statistics.exotic_run[slot.element] = {};
     };
 
-    ct.buyExoticUpgrade = function(name, slot) {
+    ct.buyExoticUpgrade = function(name, slot, player) {
       let price = data.exotic_upgrades[name].price;
       let currency = data.elements[slot.element].exotic;
-      upgrade.buyUpgrade(state.player,
-        state.player.exotic_upgrades[slot.element],
+      upgrade.buyUpgrade(player,
+        player.exotic_upgrades[slot.element],
         data.exotic_upgrades[name],
         name,
         price,
         currency);
     };
 
-    ct.setPercentage = function(resource, percentage) {
-      ct.infuse[resource] = Math.floor(state.player.resources[resource].number*(percentage/100));
+    ct.setPercentage = function(resource, percentage, player) {
+      ct.infuse[resource] = Math.floor(player.resources[resource].number*(percentage/100));
     };
 
-    ct.fixNumber = function(resource) {
-      ct.infuse[resource] = Math.max(0, Math.min(state.player.resources[resource].number, ct.infuse[resource]));
+    ct.fixNumber = function(resource, player) {
+      ct.infuse[resource] = Math.max(0, Math.min(player.resources[resource].number, ct.infuse[resource]));
     };
 
     /* This function checks that values inserted in the text boxes are
@@ -156,8 +156,8 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
       return valid;
     };
 
-    ct.infuseBoost = function(resource) {
-        let number = Math.min(ct.infuse[resource], state.player.resources[resource].number);
+    ct.infuseBoost = function(resource, player) {
+        let number = Math.min(ct.infuse[resource], player.resources[resource].number);
         if(number === 0){
           return 1;
         }
@@ -166,10 +166,10 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     };
 
     /* The infusion boosts are multiplicative with respect to each other */
-    ct.totalInfuseBoost = function() {
+    ct.totalInfuseBoost = function(player) {
       let total = 1;
       for(let resource in ct.infuse){
-        total *= ct.infuseBoost(resource);
+        total *= ct.infuseBoost(resource, player);
       }
       return total;
     };
@@ -183,12 +183,12 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
           (!player.options.hideBought || !player.exotic_upgrades[slot.element][name]);
     }
 
-    ct.visibleSubatomic = function() {
-      return visibility.visible(data.resources, isSubatomicVisible, '');
+    ct.visibleSubatomic = function(player) {
+      return visibility.visible(data.resources, isSubatomicVisible, '', null, player);
     };
 
-    function isSubatomicVisible(name) {
-      if (!state.player.resources[name].unlocked) {
+    function isSubatomicVisible(name, _, player) {
+      if (!player.resources[name].unlocked) {
         return false;
       }
 

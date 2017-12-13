@@ -21,28 +21,28 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
         new upgrades.
       </p>
       <p>You can spend subatomic particles to boost your exotic matter production.</p>
-      <form name="infuse" ng-if="ct.visibleSubatomic().length > 0">
-        <div ng-repeat="resource in ct.visibleSubatomic()">
+      <form name="infuse" ng-if="ct.visibleSubatomic(ct.state.player).length > 0">
+        <div ng-repeat="resource in ct.visibleSubatomic(ct.state.player)">
           {{resource}}: <input type="number"
                  ng-init="ct.infuse[resource] = 0"
                  min="0"
                  step="any"
                  ng-model="ct.infuse[resource]"
-                 ng-change="ct.fixNumber(resource)"
+                 ng-change="ct.fixNumber(resource, ct.state.player)"
                  pattern="^[^.]*$" />
           <button type="button"
                   class="btn btn-default"
-                  ng-click="ct.setPercentage(resource, 10)"> 10% </button>
+                  ng-click="ct.setPercentage(resource, 10, ct.state.player)"> 10% </button>
           <button type="button"
                   class="btn btn-default"
-                  ng-click="ct.setPercentage(resource, 50)"> 50% </button>
+                  ng-click="ct.setPercentage(resource, 50, ct.state.player)"> 50% </button>
           <button type="button"
                   class="btn btn-default"
-                  ng-click="ct.setPercentage(resource, 100)"> 100% </button> Boost:
-          <pretty value="ct.infuseBoost(resource)*100"></pretty>%
+                  ng-click="ct.setPercentage(resource, 100, ct.state.player)"> 100% </button> Boost:
+          <pretty value="ct.infuseBoost(resource, ct.state.player)*100"></pretty>%
         </div>
         Total boost:
-        <pretty value="ct.totalInfuseBoost()*100"></pretty>%
+        <pretty value="ct.totalInfuseBoost(ct.state.player)*100"></pretty>%
     </form>
     <p>Prestige now to obtain</p>
     <p ng-repeat="(key,value) in ct.productionSum(slot.element)">
@@ -52,7 +52,7 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
     <button type="button"
             class="btn btn-default"
             ng-class="{disabled: !ct.isValidInfusion()}"
-            ng-click="ct.exoticPrestige($index)">Prestige</button>
+            ng-click="ct.exoticPrestige($index, ct.state.player)">Prestige</button>
     <p>You produced</p>
     <p ng-repeat="(key,value) in ct.cache.breakdown[slot.element]">
       <get-html value="key"></get-html>
@@ -61,7 +61,7 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
     </p>
     <div class="row">
       <div ng-repeat="up in ct.visibleExoticUpgrades(slot, ct.state.player)"
-           ng-click="ct.buyExoticUpgrade(up, slot)"
+           ng-click="ct.buyExoticUpgrade(up, slot, ct.state.player)"
            class="col-xs-12 btn btn-default"
            ng-class="{disabled: ct.data.exotic_upgrades[up].price > ct.state.player.resources[ct.data.elements[slot.element].exotic].number &&
          !ct.state.player.exotic_upgrades[slot.element][up],
