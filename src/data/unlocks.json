@@ -3,7 +3,7 @@
     "condition": ["(() => {",
       "return player.statistics.exotic_run.H &&",
       "       player.statistics.exotic_run.H['1H'] &&",
-      "       player.statistics.exotic_run.H['1H'] >= 1e8",
+      "       player.statistics.exotic_run.H['1H'] >= 1e7",
       "})()"
     ]
   },
