@@ -32,6 +32,10 @@ angular.module('game').controller('ct_achievements', ['$window', 'state', 'data'
         data.achievements[key].goals[0] !== 1;
     };
 
+    ct.maxLevel = function (key) {
+      return data.achievements[key].goals.length;
+    };
+
     ct.maxed = function (key, player) {
       return player.achievements[key] >= data.achievements[key].goals.length;
     };
@@ -103,12 +107,23 @@ angular.module('game').controller('ct_achievements', ['$window', 'state', 'data'
     }
 
     ct.getProgress = function (key, source, player) {
-      let level = player[source][key];
-      let achievement = data[source][key];
-      let amount = ct[achievement.progress](player);
-      let progress = amount / achievement.goals[level] * 100;
+      let amount = ct.getAmount(key, source, player);
+      let goal = ct.getGoal(key, source, player);
+      let progress = amount / goal * 100;
 
       return Math.min(100, progress);
+    };
+
+    ct.getAmount = function (key, source, player) {
+      let level = player[source][key];
+      let achievement = data[source][key];
+      return ct[achievement.progress](player);
+    };
+
+    ct.getGoal = function (key, source, player) {
+      let level = player[source][key];
+      let achievement = data[source][key];
+      return achievement.goals[level];
     };
 
     ct.visibleAchievements = function (player) {
@@ -121,6 +136,9 @@ angular.module('game').controller('ct_achievements', ['$window', 'state', 'data'
         if (player.unlocks[dep] === 0) {
           return false;
         }
+      }
+      if(ct.maxed(name, player) && player.options.hideAchievements){
+        return false;
       }
 
       return true;

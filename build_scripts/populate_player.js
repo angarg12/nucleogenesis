@@ -42,6 +42,7 @@ startPlayer.options.adjustIndex = 0;
 startPlayer.options.elementBuyIndex = 0;
 startPlayer.options.hideBought = false;
 startPlayer.options.sortIndex = 0;
+startPlayer.options.hideAchievements = false;
 startPlayer.resources = {};
 for (let entry in resources) {
   startPlayer.resources[entry] = {
@@ -100,8 +101,6 @@ startPlayer.fusion = [{
   },
   eV: 0
 }];
-
-startPlayer.mechanic_slots = 3;
 
 startPlayer.statistics = {};
 startPlayer.statistics.exotic_run = {};
