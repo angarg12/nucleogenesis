@@ -21,7 +21,7 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
         new upgrades.
       </p>
       <p>You can spend subatomic particles to boost your exotic matter production.</p>
-      <form name="infuse">
+      <form name="infuse" ng-if="ct.visibleSubatomic().length > 0">
         <div ng-repeat="resource in ct.visibleSubatomic()">
           {{resource}}: <input type="number"
                  ng-init="ct.infuse[resource] = 0"
@@ -43,17 +43,16 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
         </div>
         Total boost:
         <pretty value="ct.totalInfuseBoost()*100"></pretty>%
-        <p>Prestige now to obtain</p>
-        <p ng-repeat="(key,value) in ct.productionSum(slot.element)">
-          <pretty value="value"></pretty>
-          <get-html value="key"></get-html>
-        </p>
-      </div>
-      <button type="button"
-              class="btn btn-default"
-              ng-class="{disabled: !ct.isValidInfusion()}"
-              ng-click="ct.exoticPrestige($index)">Prestige</button>
     </form>
+    <p>Prestige now to obtain</p>
+    <p ng-repeat="(key,value) in ct.productionSum(slot.element)">
+      <pretty value="value"></pretty>
+      <get-html value="key"></get-html>
+    </p>
+    <button type="button"
+            class="btn btn-default"
+            ng-class="{disabled: !ct.isValidInfusion()}"
+            ng-click="ct.exoticPrestige($index)">Prestige</button>
     <p>You produced</p>
     <p ng-repeat="(key,value) in ct.cache.breakdown[slot.element]">
       <get-html value="key"></get-html>
