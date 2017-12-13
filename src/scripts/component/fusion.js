@@ -210,7 +210,7 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
       reaction.product[beam] = 0;
       reaction.product[target] = 0;
 
-      reactionService.react(1, reaction, player);
+      state.reactions.push({number: 1, reaction:reaction});
 
       fusion.eV = 0;
       player.fusion[0].running = false;

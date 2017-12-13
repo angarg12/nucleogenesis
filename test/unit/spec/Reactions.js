@@ -91,6 +91,7 @@ describe('Reactions', function() {
       }];
 
       spec.state.update(spec.state.player);
+      spec.reaction.processReactions(spec.state.reactions, spec.state.player);
 
       expect(spec.state.player.resources.H2.number).toEqual(100);
       expect(spec.state.player.resources.O2.number).toEqual(50);

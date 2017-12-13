@@ -31,7 +31,7 @@ function (state, data, visibility, util, format, reactionService, upgradeService
         if (!reaction.active) {
           continue;
         }
-        reactionService.react(numberToReact(player, reaction.reaction), reaction.reaction, player);
+        state.reactions.push({number: numberToReact(player, reaction.reaction), reaction: reaction.reaction});
       }
     }
   }

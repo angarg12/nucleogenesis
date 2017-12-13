@@ -57,10 +57,10 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
             if (type.reaction.reactant && type.reaction.reactant.n) {
               production = Math.min(production, player.resources.n.number);
             }
-            reaction.react(production, type.reaction, player);
+            state.reactions.push({number: production, reaction:type.reaction});
             remaining -= production;
           }
-          reaction.react(remaining, highestRatio.reaction, player);
+          state.reactions.push({number: remaining, reaction: highestRatio.reaction});
         }
       }
     }

@@ -28,6 +28,7 @@ angular
     let updateFunctions = {};
     sv.reactionsCache = {};
     sv.redoxesCache = {};
+    sv.reactions = [];
 
     sv.deleteToast = function() {
       sv.toast.shift();

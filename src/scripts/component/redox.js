@@ -45,7 +45,7 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
           let number = Math.min(power, player.resources[reactant].number);
           let react = ct.redoxReaction(redox);
 
-          ct.reaction.react(number, react, player);
+          state.reactions.push({number: number, reaction: react});
         }
       }
     }
@@ -64,6 +64,7 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
           }
           let charge = data.resources[resource].charge || 0;
           let probabilities = probabilityDistribution(key, charge);
+          
           for(let probKey in probabilities){
             if(charge === parseInt(probKey, 10)) continue;
             let production = Math.floor(probabilities[probKey]*player.resources[resource].number);
@@ -81,7 +82,7 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
             if(react.reactant['e-']){
               production = Math.min(production, player.resources['e-'].number);
             }
-            ct.reaction.react(production, react, player);
+            state.reactions.push({number: production, reaction: react});
           }
         }
       }

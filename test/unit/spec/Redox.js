@@ -226,6 +226,7 @@ describe('Redox', function () {
       spec.util.calculateValue = function() {return 10;};
 
       spec.state.update(spec.state.player);
+      spec.reaction.processReactions(spec.state.reactions, spec.state.player);
 
       expect(spec.state.player.resources['1H'].number).toEqual(90);
       expect(spec.state.player.resources.eV.number).toBeCloseTo(64.016);
@@ -255,6 +256,7 @@ describe('Redox', function () {
       spec.util.calculateValue = function() {return 10;};
 
       spec.state.update(spec.state.player);
+      spec.reaction.processReactions(spec.state.reactions, spec.state.player);
 
       expect(spec.state.player.resources['1H'].number).toEqual(100);
       expect(spec.state.player.resources.eV.number).toEqual(200);
@@ -284,6 +286,7 @@ describe('Redox', function () {
       spec.util.calculateValue = function() {return 2000;};
 
       spec.state.update(spec.state.player);
+      spec.reaction.processReactions(spec.state.reactions, spec.state.player);
 
       expect(spec.state.player.resources['1H'].number).toEqual(0);
       expect(spec.state.player.resources.eV.number).toBeCloseTo(640.16);
@@ -313,6 +316,7 @@ describe('Redox', function () {
       spec.util.calculateValue = function() {return 2000;};
 
       spec.state.update(spec.state.player);
+      spec.reaction.processReactions(spec.state.reactions, spec.state.player);
 
       expect(spec.state.player.resources['1H'].number).toEqual(100);
       expect(spec.state.player.resources.eV.number).toEqual(200);
@@ -342,6 +346,7 @@ describe('Redox', function () {
       spyOn(spec.util, 'calculateValue');
 
       spec.state.update(spec.state.player);
+      spec.reaction.processReactions(spec.state.reactions, spec.state.player);
 
       expect(spec.util.calculateValue).not.toHaveBeenCalled();
     });
@@ -404,7 +409,7 @@ describe('Redox', function () {
             'O5+'
           ],
           negative_factor: 549.5408738576248,
-          positive_factor: 3.4673685045253166,
+          positive_factor: 3.4673685045253166
         }
       };
       spec.state.player.resources = {
@@ -446,17 +451,18 @@ describe('Redox', function () {
       spec.data.constants.ELECTRONEGATIVITY_CHANCE = 0.00001;
 
       spec.redox.update(spec.state.player);
+      spec.reaction.processReactions(spec.state.reactions, spec.state.player);
 
-      expect(spec.state.player.resources['16O'].number.toPrecision(5)).toEqual('9.9999e+24');
-      expect(spec.state.player.resources['O-'].number.toPrecision(5)).toEqual('2.5136e+19');
-      expect(spec.state.player.resources['O2-'].number.toPrecision(5)).toEqual('6.1324e+16');
+      expect(spec.state.player.resources['16O'].number.toPrecision(5)).toEqual('1.0000e+25');
+      expect(spec.state.player.resources['O-'].number.toPrecision(5)).toEqual('3.3333e+5');
+      expect(spec.state.player.resources['O2-'].number.toPrecision(5)).toEqual('6.6667e+5');
       expect(spec.state.player.resources['O+'].number.toPrecision(5)).toEqual('2.5259e+19');
       expect(spec.state.player.resources['O2+'].number.toPrecision(5)).toEqual('9.7950e+13');
       expect(spec.state.player.resources['O3+'].number.toPrecision(5)).toEqual('6.2614e+8');
       expect(spec.state.player.resources['O4+'].number).toEqual(4443);
       expect(spec.state.player.resources['O5+'].number).toEqual(0);
-      expect(spec.state.player.resources['e-'].number).toEqual(0);
-      expect(spec.state.player.resources.eV.number.toPrecision(5)).toEqual('3.6734e+19');
+      expect(spec.state.player.resources['e-'].number.toPrecision(5)).toEqual('2.5259e+19');
+      expect(spec.state.player.resources.eV.number.toPrecision(5)).toEqual('4.8713e+5');
     });
   });
 });

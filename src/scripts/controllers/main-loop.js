@@ -9,13 +9,16 @@ angular
     'state',
     'data',
     'util',
-    function($scope, $interval, $timeout, savegame, state, data, util) {
+    'reaction',
+    function($scope, $interval, $timeout, savegame, state, data, util, reaction) {
       $scope.state = state;
 
       let self = this;
 
       self.update = function() {
+        state.reactions = [];
         state.update(state.player);
+        reaction.processReactions(state.reactions, state.player);
       };
 
       self.updateLoop = function() {

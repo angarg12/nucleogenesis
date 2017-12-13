@@ -13,10 +13,9 @@ angular
     function(state, util, data) {
       // FIXME: move to util?
         function isReactionCostMet (number, reaction, playerData) {
-          let keys = Object.keys(reaction.reactant);
-          for (let i = 0; i < keys.length; i++) {
-            let available = playerData.resources[keys[i]].number;
-            let required = number * reaction.reactant[keys[i]];
+          for (let key in reaction.reactant) {
+            let available = playerData.resources[key].number;
+            let required = number * reaction.reactant[key];
             if (required > available) {
               return false;
             }
@@ -47,5 +46,28 @@ angular
           }
         }
       };
+
+      this.processReactions = function(reactions, player){
+        let declared = {};
+        for(let reaction of reactions){
+          let reactant = reaction.reaction.reactant;
+          for (let resource in reactant) {
+            declared[resource] = declared[resource]+reactant[resource]*reaction.number || reactant[resource]*reaction.number;
+          }
+        }
+        for(let reaction of reactions){
+          let reactant = reaction.reaction.reactant;
+          for (let resource in reactant) {
+            if(!declared[resource] || !reactant[resource]) continue;
+            let available = Math.min(declared[resource], player.resources[resource].number);
+            let ratio = reactant[resource]*reaction.number/declared[resource];
+            reaction.number = Math.min(reaction.number, Math.floor(available*ratio));
+          }
+        }
+
+        for(let reaction of reactions){
+          this.react(reaction.number, reaction.reaction, player);
+        }
+      }
     }
   ]);
