@@ -23,12 +23,12 @@ function elements($timeout, state, data, util) {
   ct.buyAmount = [1, 10, 25, 100, 1000];
 
   ct.getChance = function(element, player) {
-    let bonus = 0;
+    let bonus = 1;
     for(let resource of data.elements[element].includes){
-      bonus += (player.statistics.all_time[resource] || 0)*data.constants.ELEMENT_CHANCE_BONUS;
+      bonus *= (player.statistics.all_time[resource] || 1)*data.constants.ELEMENT_CHANCE_BONUS;
     }
 
-    let singleChance = data.elements[element].abundance*(1+bonus);
+    let singleChance = data.elements[element].abundance*bonus;
     let chance = 1 - Math.pow(Math.max(0, 1-singleChance),
                               Math.min(player.resources.dark_matter.number, ct.buyAmount[player.options.elementBuyIndex]));
 
