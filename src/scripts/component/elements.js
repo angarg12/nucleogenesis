@@ -25,7 +25,8 @@ function elements($timeout, state, data, util) {
   ct.getChance = function(element, player) {
     let bonus = 1;
     for(let resource of data.elements[element].includes){
-      bonus *= (player.statistics.all_time[resource] || 1)*data.constants.ELEMENT_CHANCE_BONUS;
+      let allTime = player.statistics.all_time[resource];
+      if(allTime) bonus *= allTime*data.constants.ELEMENT_CHANCE_BONUS+1;
     }
 
     let singleChance = data.elements[element].abundance*bonus;
