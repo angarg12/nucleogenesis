@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<p> Area: <pretty value="ct.util.calculateValue(ct.data.global_upgrades.fusion_area.power.base,
+<p> Area:
+  <pretty value="ct.util.calculateValue(ct.data.global_upgrades.fusion_area.power.base,
             ct.data.global_upgrades.fusion_area.power,
             ct.state.player.global_upgrades_current.fusion_area)"></pretty> m<sup>2</sup> level {{ct.state.player.global_upgrades_current.fusion_area}}</p>
 Adjust amount:
@@ -8,16 +9,17 @@ Adjust amount:
         ng-click="ct.util.nextAmount(ct.state.player, 'adjustIndex', ct.adjustAmount)">
   {{ct.adjustAmount[ct.state.player.options.adjustIndex]}}
 </button>
-<br>
-Adjust level:
+<br> Adjust level:
 <button type="button"
         class="btn btn-default"
-        ng-click="ct.adjustLevel(ct.state.player, 'fusion_area', ct.adjustAmount[ct.state.player.options.adjustIndex])">
+        ng-click="ct.adjustLevel(ct.state.player, 'fusion_area', ct.adjustAmount[ct.state.player.options.adjustIndex])"
+        ng-disabled="ct.state.player.global_upgrades_current.fusion_area === ct.state.player.global_upgrades.fusion_area">
 +{{ct.adjustAmount[ct.state.player.options.adjustIndex]}}
 </button>
 <button type="button"
         class="btn btn-default"
-        ng-click="ct.adjustLevel(ct.state.player, 'fusion_area', -ct.adjustAmount[ct.state.player.options.adjustIndex])">
+        ng-click="ct.adjustLevel(ct.state.player, 'fusion_area', -ct.adjustAmount[ct.state.player.options.adjustIndex])"
+        ng-disabled="ct.state.player.global_upgrades_current.fusion_area === 1">
 -{{ct.adjustAmount[ct.state.player.options.adjustIndex]}}
 </button>
 <p> eV bandwidth:
@@ -35,70 +37,75 @@ Adjust level:
       <span class="pull-left">
     Level: {{ct.state.player.global_upgrades[key]}} {{ct.data.global_upgrades[key].name}}: {{ct.data.global_upgrades[key].description}}
   </span>
-  <span class="pull-right"
-          ng-repeat="(resource, price) in ct.data.global_upgrades[key].price">
+      <span class="pull-right"
+            ng-repeat="(resource, price) in ct.data.global_upgrades[key].price">
     <pretty value="price*ct.upgradeService.priceMultiplier(key, ct.state.player)"></pretty> &nbsp;
     <get-html value="resource"></get-html>
   </span>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-6">
-    <h2>Beam</h2>
-    <fusion-select source="beam"
-                   get-capacity="ct.getCapacity(resource, player)"></fusion-select>
-    <h2>Target</h2>
-    <fusion-select source="target"
-                   get-capacity="ct.getCapacity(resource, player)"></fusion-select>
-  </div>
-  <div class="col-xs-6">
-    <div ng-if="!ct.getProductIsotope(ct.state.player.fusion[0].beam.name, ct.state.player.fusion[0].target.name)">
-      <h2>No product for these source isotopes</h2>
-    </div>
-    <div ng-if="ct.getProductIsotope(ct.state.player.fusion[0].beam.name, ct.state.player.fusion[0].target.name)">
-      <h2>Product</h2>
-      <p>Isotope: {{ct.getProductIsotope(ct.state.player.fusion[0].beam.name, ct.state.player.fusion[0].target.name)}}</p>
-      <p>Energy:
-        <pretty value="ct.getProductEnergy(ct.state.player.fusion[0].beam.name, ct.state.player.fusion[0].target.name)"></pretty> eV</p>
-      <p>Coulomb barrier:
-        <pretty value="ct.getCoulombBarrier(ct.state.player.fusion[0].beam.name, ct.state.player.fusion[0].target.name)"></pretty> eV</p>
-      <p>Yield %: <pretty value="ct.getYieldPercent(ct.state.player)*100"></pretty></p>
-      <p>Yield total:
-        <pretty value="ct.getYield(ct.state.player)"></pretty>
-      </p>
-      <p>Total time:
-        <pretty value="ct.getTime(ct.state.player)"></pretty>s</p>
     </div>
   </div>
-</div>
-<div ng-if="ct.getProductIsotope(ct.state.player.fusion[0].beam.name, ct.state.player.fusion[0].target.name)">
-<h2>Reaction</h2>
-<span ng-bind-html="ct.util.trustHTML(
+  <div class="row">
+    <div class="col-xs-6">
+      <h2>Beam</h2>
+      <fusion-select source="beam"
+                     get-capacity="ct.getCapacity(resource, player)"></fusion-select>
+      <h2>Target</h2>
+      <fusion-select source="target"
+                     get-capacity="ct.getCapacity(resource, player)"></fusion-select>
+    </div>
+    <div class="col-xs-6">
+      <div ng-if="!ct.getProductIsotope(ct.state.player.fusion[0].beam.name, ct.state.player.fusion[0].target.name)">
+        <h2>No product for these source isotopes</h2>
+      </div>
+      <div ng-if="ct.getProductIsotope(ct.state.player.fusion[0].beam.name, ct.state.player.fusion[0].target.name)">
+        <h2>Product</h2>
+        <p>Isotope: {{ct.getProductIsotope(ct.state.player.fusion[0].beam.name, ct.state.player.fusion[0].target.name)}}</p>
+        <p>Energy:
+          <pretty value="ct.getProductEnergy(ct.state.player.fusion[0].beam.name, ct.state.player.fusion[0].target.name)"></pretty> eV</p>
+        <p>Coulomb barrier:
+          <pretty value="ct.getCoulombBarrier(ct.state.player.fusion[0].beam.name, ct.state.player.fusion[0].target.name)"></pretty> eV</p>
+        <p>Yield %:
+          <pretty value="ct.getYieldPercent(ct.state.player)*100"></pretty>
+        </p>
+        <p>Yield total:
+          <pretty value="ct.getYield(ct.state.player)"></pretty>
+        </p>
+        <p>Total time:
+          <pretty value="ct.getTime(ct.state.player)"></pretty>s</p>
+      </div>
+    </div>
+  </div>
+  <div ng-if="ct.getProductIsotope(ct.state.player.fusion[0].beam.name, ct.state.player.fusion[0].target.name)">
+    <h2>Reaction</h2>
+    <span ng-bind-html="ct.util.trustHTML(
               ct.format.reactionFormat(1,
                                         ct.getFusionReaction(ct.state.player),
                                         ct.state.player))"></span>
-<br>
-<button type="button"
-        class="btn btn-default"
-        ng-if="!ct.state.player.fusion[0].active"
-        ng-disabled="ct.getYield(ct.state.player) === 0"
-        ng-click="ct.state.player.fusion[0].active = true">
+    <br>
+    <button type="button"
+            class="btn btn-default"
+            ng-if="!ct.state.player.fusion[0].active"
+            ng-disabled="ct.getYield(ct.state.player) === 0"
+            ng-click="ct.state.player.fusion[0].active = true">
 Load
 </button>
-<button type="button"
-        class="btn btn-default"
-        ng-if="ct.state.player.fusion[0].active"
-        ng-click="ct.stopFusion(ct.state.player, ct.state.player.fusion[0])">
+    <button type="button"
+            class="btn btn-default"
+            ng-if="ct.state.player.fusion[0].active"
+            ng-click="ct.stopFusion(ct.state.player, ct.state.player.fusion[0])">
 Unload
 </button>
-<br>
-<label>Run
+    <br>
+    <label>Run
    <input type="checkbox"
         ng-model="ct.state.player.fusion[0].run"
         ng-disabled="!ct.state.player.fusion[0].active">
 </label>
-<div ng-if="ct.getTime(ct.state.player) > 1">
-<p> Load: <pretty value="ct.state.player.fusion[0].eV"></pretty>/<pretty value="ct.getFusionReaction(ct.state.player).reactant.eV"></pretty> eV</p>
-<progress value="{{ct.state.player.fusion[0].eV/ct.getFusionReaction(ct.state.player).reactant.eV*100}}" max="100"></progress>
-</div>
-</div>
+    <div ng-if="ct.getTime(ct.state.player) > 1">
+      <p> Load:
+        <pretty value="ct.state.player.fusion[0].eV"></pretty>/
+        <pretty value="ct.getFusionReaction(ct.state.player).reactant.eV"></pretty> eV</p>
+      <progress value="{{ct.state.player.fusion[0].eV/ct.getFusionReaction(ct.state.player).reactant.eV*100}}"
+                max="100"></progress>
+    </div>
+  </div>
