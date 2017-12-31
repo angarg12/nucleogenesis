@@ -8,11 +8,12 @@
 
 angular.module('game').component('upgrades', {
   templateUrl: 'views/upgrades.html',
-  controller: ['state', 'visibility', 'upgrade', 'data', upgrades],
+  controller: 'ct_upgrades',
   controllerAs: 'ct'
 });
 
-function upgrades(state, visibility, upgradeService, data) {
+angular.module('game').controller('ct_upgrades', ['state', 'visibility', 'upgrade', 'data',
+function(state, visibility, upgradeService, data) {
   let ct = this;
   ct.state = state;
   ct.data = data;
@@ -72,3 +73,4 @@ function upgrades(state, visibility, upgradeService, data) {
     return visibility.visible(data.global_upgrades, upgradeService.filterByTag('global'));
   };
 }
+]);
