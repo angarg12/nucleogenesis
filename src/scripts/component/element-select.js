@@ -8,15 +8,15 @@
 
 angular.module('game').component('elementSelect', {
   templateUrl: 'views/element-select.html',
-  controller: ['state', 'visibility', 'data', elementSelect
-  ],
+  controller: 'ct_element_select',
   controllerAs: 'ct',
   bindings: {
     index: '<'
   }
 });
 
-function elementSelect (state, visibility, data) {
+angular.module('game').controller('ct_element_select', ['state', 'visibility', 'data',
+function (state, visibility, data) {
   let ct = this;
   ct.state = state;
   ct.data = data;
@@ -58,3 +58,4 @@ function elementSelect (state, visibility, data) {
     return player.elements[element];
   }
 }
+]);
