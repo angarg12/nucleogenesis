@@ -36,7 +36,7 @@ startPlayer.version = npm.version;
      *    - short
      */
 startPlayer.options = {};
-startPlayer.options.numberformat = {format: 'standard', flavor: 'short', maxSmall: '1', sigfigs: 4};
+startPlayer.options.numberformat = {format: 'scientific', flavor: 'short', maxSmall: '1', sigfigs: 4};
 startPlayer.options.buyIndex = 0;
 startPlayer.options.adjustIndex = 0;
 startPlayer.options.elementBuyIndex = 0;
