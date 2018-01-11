@@ -9,7 +9,7 @@
     <button type="button"
             class="btn btn-default btn-block"
             id="exportSave"
-            ng-click="ct.importExportSave(ct.state.player)">Import/Export Save</button>
+            ng-click="ct.importSave(ct.state.player)">Import Save</button>
   </div>
   <div class="col-xs-12 form-group">
     <input class="form-control"
@@ -17,6 +17,11 @@
            type="text"
            ng-model="ct.state.export" />
   </div>
+    <div class="col-xs-12">
+      <button type="button"
+              class="btn btn-default btn-block"
+              ng-click="ct.exportSave(ct.state.player)">Export Save</button>
+    </div>
   <div class="col-xs-12">
     <label for="numberFormat">Number Format:</label>
     <select name="numberFormat" id="numberFormat" ng-model="ct.state.player.options.numberformat.format">

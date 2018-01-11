@@ -115,7 +115,7 @@ describe('Options', function () {
     it('should export save', function () {
       spyOn(window, 'btoa').and.returnValue('');
 
-      spec.options.importExportSave(spec.state.player);
+      spec.options.exportSave(spec.state.player);
 
       expect(window.btoa).toHaveBeenCalled();
     });
@@ -126,7 +126,7 @@ describe('Options', function () {
       spyOn(window, 'atob');
       spec.state.export = 'test';
 
-      spec.options.importExportSave(spec.state.player);
+      spec.options.importSave(spec.state.player);
 
       expect(JSON.parse).toHaveBeenCalled();
       expect(spec.savegame.versionControl).toHaveBeenCalled();
@@ -137,7 +137,7 @@ describe('Options', function () {
       spyOn(window, 'atob').and.returnValue('{}');
       spec.state.export = '';
 
-      spec.options.importExportSave(spec.state.player);
+      spec.options.importSave(spec.state.player);
 
       expect(window.atob).not.toHaveBeenCalled();
     });
@@ -146,7 +146,7 @@ describe('Options', function () {
       spyOn(window, 'atob');
       spec.state.export = 'test';
 
-      spec.options.importExportSave(spec.state.player);
+      spec.options.importSave(spec.state.player);
 
       expect(window.atob).toHaveBeenCalled();
     });
