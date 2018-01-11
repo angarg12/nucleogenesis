@@ -130,6 +130,8 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
       if (number === 'max') {
         number = ct.maxCanBuy(player, name, slot);
       }
+      number = Math.max(number, 1);
+
       let level = slot.generators[name];
       let totalPrice = 0;
       for (let i = 0; i < number; i++) {
