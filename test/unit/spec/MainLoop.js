@@ -62,24 +62,6 @@ describe('MainLoop', function() {
       expect(spec.state.player).toEqual(copy);
     });
 
-    it('should process offline gains', function() {
-      spec.state.player.elements.O = true;
-      spyOn(spec.generators,'elementProduction').and.returnValue(1);
-      spec.state.player.element_slots = [{
-        element: 'O',
-        reactions: [],
-        redoxes: []
-      }];
-
-      spec.state.offlineCyclesTotal = 100;
-      spec.state.offlineCyclesCurrent = 32;
-
-      spec.controller.processOffline();
-
-      expect(spec.state.player.resources['16O'].number).toEqual(32);
-      expect(spec.state.offlineCyclesCurrent).toEqual(64);
-    });
-
     it('should generate isotopes', function() {
       spec.state.player.elements.O = true;
       spyOn(spec.generators,'elementProduction').and.returnValue(200);
