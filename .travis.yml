@@ -17,6 +17,7 @@ jobs:
           packages:
             - google-chrome-stable
       before_install:
+        - chmod 4755 /opt/google/chrome/chrome-sandbox
         - export DISPLAY=:99.0
         - sh -e /etc/init.d/xvfb start
       install:
