@@ -27,10 +27,18 @@ angular
       };
 
       sv.prettifyNumber = function(number, player) {
-        if (typeof number === 'undefined' || number === null) return null;
-        if (number === '') return '';
-        if (number === Infinity) return '&infin;';
-        if (number === 0) return '0';
+        if (typeof number === 'undefined' || number === null){
+           return null;
+        }
+        if (number === ''){
+           return '';
+         }
+        if (number === Infinity){
+           return '&infin;';
+         }
+        if (number === 0){
+           return '0';
+         }
         return numberformat.format(number, player.options.numberformat);
       };
 
@@ -98,9 +106,15 @@ angular
 
       sv.calculateValue = function(number, value, level){
         let result = number;
-        if(value.linear) result *= level*value.linear;
-        if(value.poly) result *= Math.floor(Math.pow(level, value.poly));
-        if(value.exp) result *= Math.floor(Math.pow(value.exp, level));
+        if(value.linear){
+           result *= level*value.linear;
+         }
+        if(value.poly){
+           result *= Math.floor(Math.pow(level, value.poly));
+         }
+        if(value.exp){
+           result *= Math.floor(Math.pow(value.exp, level));
+         }
         return result;
       }
     }

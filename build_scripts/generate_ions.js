@@ -65,8 +65,8 @@ function htmlPostfix(index) {
   return '<sup>' + postfix + getSign(index) + '</sup>';
 }
 
-let minElectronegativity = Infinity;
-let maxElectronegativity = -Infinity;
+let minElectronegativity = Number.MAX_VALUE;
+let maxElectronegativity = -Number.MAX_VALUE;
 let redox = {};
 for (let element in elements) {
   elements[element].includes = elements[element].includes || [];

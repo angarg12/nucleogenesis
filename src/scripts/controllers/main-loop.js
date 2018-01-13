@@ -29,7 +29,9 @@ angular
         if(state.fasterTicks){
           speed = 1;
           state.player.offline--;
-          if(state.player.offline <= 0) state.fasterTicks = 0;
+          if(state.player.offline <= 0){
+            state.fasterTicks = 0;
+          }
         }
         $timeout(self.updateLoop, speed);
       };

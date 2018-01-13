@@ -1,3 +1,4 @@
+/* globals performance */
 /**
  state
  This service handles all the mutable data of the game, most importantly the player data.

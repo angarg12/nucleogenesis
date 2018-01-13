@@ -64,9 +64,11 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
           }
           let charge = data.resources[resource].charge || 0;
           let probabilities = probabilityDistribution(key, charge);
-          
+
           for(let probKey in probabilities){
-            if(charge === parseInt(probKey, 10)) continue;
+            if(charge === parseInt(probKey, 10)){
+               continue;
+             }
             let production = Math.floor(probabilities[probKey]*player.resources[resource].number);
             if(production === 0){
               continue;

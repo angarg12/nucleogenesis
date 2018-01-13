@@ -50,7 +50,9 @@ angular
         state.player = angular.merge({}, data.start_player, state.player);
 
         for(let resource in state.player.resources){
-          if(!data.resources[resource]) delete state.player.resources[resource];
+          if(!data.resources[resource]){
+            delete state.player.resources[resource];
+          }
         }
         for(let slot of state.player.element_slots){
           if(!slot){

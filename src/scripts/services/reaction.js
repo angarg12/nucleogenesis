@@ -37,7 +37,9 @@ angular
             playerData.resources[resource].number = playerData.resources[resource].number;
             // We track which elements produced the products, for the statistics
             for(let elem of Object.keys(data.resources[resource].elements)){
-              if(elements.indexOf(elem) === -1) elements.push(elem);
+              if(elements.indexOf(elem) === -1){
+                elements.push(elem);
+              }
             }
           }
           for (let resource in reaction.product) {
@@ -58,7 +60,9 @@ angular
         for(let reaction of reactions){
           let reactant = reaction.reaction.reactant;
           for (let resource in reactant) {
-            if(!declared[resource] || !reactant[resource]) continue;
+            if(!declared[resource] || !reactant[resource]){
+              continue;
+            }
             let available = Math.min(declared[resource], player.resources[resource].number);
             let ratio = reactant[resource]*reaction.number/declared[resource];
             reaction.number = Math.min(reaction.number, Math.floor(available*ratio));

@@ -27,7 +27,7 @@ function(state, visibility, upgradeService, data) {
     let cheapestPrice;
     do{
       cheapest = null;
-      cheapestPrice = Infinity;
+      cheapestPrice = Number.MAX_VALUE;
       for(let up of ct.visibleUpgrades(slot, player)){
         let price = data.upgrades[up].price;
         if(!slot.upgrades[up] &&
