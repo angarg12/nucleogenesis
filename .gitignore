@@ -11,3 +11,4 @@ dist/
 .settings
 .project
 .tern-project
+**/bot.js

@@ -1,30 +1,72 @@
 <!DOCTYPE html>
 <p>Buy new elements to unlock generators and upgrades. Success rate is proportional to each element abundance. Accumulate resources or spend more
-  <get-html value="'dark_matter'"></get-html> to increase the chance of success. All used <get-html value="'dark_matter'"></get-html> will be consumed
-on purchase.</p>
-  Buy amount:
-          <button type="button"
-                  class="btn btn-default"
-                  ng-click="ct.util.nextAmount(ct.state.player, 'elementBuyIndex', ct.buyAmount)">
+  <get-html value="'dark_matter'"></get-html> to increase the chance of success. All used
+  <get-html value="'dark_matter'"></get-html> will be consumed on purchase.</p>
+Buy amount:
+<button type="button" class="btn btn-default" ng-click="ct.util.nextAmount(ct.state.player, 'elementBuyIndex', ct.buyAmount)">
             {{ct.buyAmount[ct.state.player.options.elementBuyIndex]}}
           </button>
-          <get-html value="'dark_matter'"></get-html>
+<get-html value="'dark_matter'"></get-html>
+<p>
+  Legend
+  <table class="table" class="col-xs-4">
+    <tr>
+      <th>
+        Color
+      </th>
+      <th>
+        State
+      </th>
+      <th>
+        Hide
+      </th>
+    </tr>
+    <tr>
+      <td class="element_purchased">
+      </td>
+      <td>
+        Purchased
+      </td>
+      <td>
+        <input type="checkbox" ng-model="ct.state.player.options.hideElementsPurchased">
+      </td>
+    </tr>
+    <tr>
+      <td class="element_available">
+      </td>
+      <td>
+        Available
+      </td>
+      <td>
+        <input type="checkbox" ng-model="ct.state.player.options.hideElementsAvailable">
+      </td>
+    </tr>
+    <tr>
+      <td class="element_unavailable">
+      </td>
+      <td>
+        Unavailable
+      </td>
+      <td>
+        <input type="checkbox" ng-model="ct.state.player.options.hideElementsUnavailable">
+      </td>
+    </tr>
+  </table>
+</p>
 <div class="row">
-  <div ng-repeat="(element, value) in ct.data.elements"
-       class="col-xs-4">
+  <div ng-repeat="element in ct.visibleTableElements(ct.state.player)" class="col-xs-4">
     <div class="thumbnail">
       <div ng-class="ct.elementClass(element, ct.state.player)">
-        <span class="label label-default element_label"
-              ng-if="ct.data.elements[element].abundance === 0">Synthetic</span>
+        <span class="label label-default element_label" ng-if="ct.data.elements[element].abundance === 0">Synthetic</span>
         <div class="element_number">{{ct.data.elements[element].number}}</div>
         <h2 class="element_symbol">{{element}}</h2>
       </div>
-      <div class="symbol_name"
-           ng-class="ct.elementSecondaryClass(element, ct.state.player)">
-        {{value.name}}
+      <div class="symbol_name" ng-class="ct.elementSecondaryClass(element, ct.state.player)">
+        {{ct.data.elements[element].name}}
       </div>
       <p>
-        Abundance: <pretty value="ct.data.elements[element].abundance*100"></pretty>%
+        Abundance:
+        <pretty value="ct.data.elements[element].abundance*100"></pretty>%
       </p>
       <p>
         Isotopes: {{ct.keys(ct.data.elements[element].isotopes).length}}
@@ -32,19 +74,17 @@ on purchase.</p>
       <p>
         Redoxes: <span ng-if="ct.data.elements[element].ionization_energy.length > 0">
                  +{{ct.data.elements[element].ionization_energy.length}},
-               </span>
-               {{-ct.data.elements[element].electron_affinity.length}}
+               </span> {{-ct.data.elements[element].electron_affinity.length}}
       </p>
-      <div class="hidden_block"
-           ng-hide="ct.data.elements[element].abundance === 0 ||
+      <div class="hidden_block" ng-hide="ct.data.elements[element].abundance === 0 ||
                     ct.state.player.elements[element]">
-        <p ng-click="ct.buyElement(element, ct.state.player)"
-           class="btn btn-default">
+        <p ng-click="ct.buyElement(element, ct.state.player)" class="btn btn-default">
           Buy
         </p>
         {{ct.outcome[element]}}
         <p>
-          Success: <pretty value="ct.getChance(element, ct.state.player)*100"></pretty>%
+          Success:
+          <pretty value="ct.getChance(element, ct.state.player)*100"></pretty>%
         </p>
       </div>
     </div>
