@@ -25,10 +25,15 @@ angular.module('game').controller('ct_fusion_select', ['state', 'data','$scope',
     ct.availableIsotopes = function(player){
       let result = [];
       for(let resource in data.resources){
-        if(data.resources[resource].type.indexOf('isotope') !== -1 &&
-           player.resources[resource].unlocked){
-             result.push(resource);
-           }
+        let value = data.resources[resource];
+        for(let element in player.statistics.exotic_run){
+          let currentRun = player.statistics.exotic_run[element];
+          if(value.type.indexOf('isotope') !== -1 &&
+             currentRun[resource]){
+               result.push(resource);
+               break;
+             }
+         }
       }
       return result;
     };
