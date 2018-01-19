@@ -973,19 +973,6 @@
         "energy": 42805571223,
         "binding_energy": 398772174
       },
-      "47Ca": {
-        "ratio": 0,
-        "decay": {
-          "half_life": 388800,
-          "decay_types": {
-            "beta-": {
-              "ratio": 1
-            }
-          }
-        },
-        "energy": 43737859792,
-        "binding_energy": 406048554
-      },
       "48Ca": {
         "ratio": 0.00187,
         "decay": {
@@ -1865,32 +1852,6 @@
         "ratio": 0.006,
         "energy": 65134988419,
         "binding_energy": 611086699
-      },
-      "71Zn": {
-        "ratio": 0,
-        "decay": {
-          "half_life": 144,
-          "decay_types": {
-            "beta-": {
-              "ratio": 1
-            }
-          }
-        },
-        "energy": 66068719785,
-        "binding_energy": 616922088
-      },
-      "72Zn": {
-        "ratio": 0,
-        "decay": {
-          "half_life": 167400,
-          "decay_types": {
-            "beta-": {
-              "ratio": 1
-            }
-          }
-        },
-        "energy": 66999408917,
-        "binding_energy": 625810122
       }
     },
     "ionization_energy": [
@@ -5032,32 +4993,6 @@
         "ratio": 0.1491,
         "energy": 158293799941,
         "binding_energy": 1379033932
-      },
-      "171Er": {
-        "ratio": 0,
-        "decay": {
-          "half_life": 27057.6,
-          "decay_types": {
-            "beta-": {
-              "ratio": 1
-            }
-          }
-        },
-        "energy": 159227683299,
-        "binding_energy": 1384715552
-      },
-      "172Er": {
-        "ratio": 0,
-        "decay": {
-          "half_life": 177480,
-          "decay_types": {
-            "beta-": {
-              "ratio": 1
-            }
-          }
-        },
-        "energy": 160160412359,
-        "binding_energy": 1391551549
       }
     },
     "ionization_energy": [
@@ -5214,36 +5149,10 @@
         "energy": 162022939408,
         "binding_energy": 1406590969
       },
-      "175Yb": {
-        "ratio": 0,
-        "decay": {
-          "half_life": 361584,
-          "decay_types": {
-            "beta-": {
-              "ratio": 1
-            }
-          }
-        },
-        "energy": 162956681985,
-        "binding_energy": 1412413330
-      },
       "176Yb": {
         "ratio": 0.12887,
         "energy": 163889382101,
         "binding_energy": 1419277763
-      },
-      "177Yb": {
-        "ratio": 0,
-        "decay": {
-          "half_life": 6879.6,
-          "decay_types": {
-            "beta-": {
-              "ratio": 1
-            }
-          }
-        },
-        "energy": 164823380632,
-        "binding_energy": 1424844169
       }
     },
     "ionization_energy": [
@@ -5376,19 +5285,6 @@
         "ratio": 0.3508,
         "energy": 167619062293,
         "binding_energy": 1446290446
-      },
-      "182Hf": {
-        "ratio": 0,
-        "decay": {
-          "half_life": 280706000000000,
-          "decay_types": {
-            "beta-": {
-              "ratio": 1
-            }
-          }
-        },
-        "energy": 169485779357,
-        "binding_energy": 1458703257
       }
     },
     "ionization_energy": [
@@ -5666,49 +5562,10 @@
         "energy": 176945080510,
         "binding_energy": 1512801908
       },
-      "191Os": {
-        "ratio": 0,
-        "decay": {
-          "half_life": 1330560,
-          "decay_types": {
-            "beta-": {
-              "ratio": 1
-            }
-          }
-        },
-        "energy": 177878886716,
-        "binding_energy": 1518560649
-      },
       "192Os": {
         "ratio": 0.4078,
         "energy": 178810893558,
         "binding_energy": 1526119057
-      },
-      "193Os": {
-        "ratio": 0,
-        "decay": {
-          "half_life": 2601504,
-          "decay_types": {
-            "beta-": {
-              "ratio": 1
-            }
-          }
-        },
-        "energy": 179744875074,
-        "binding_energy": 1531702479
-      },
-      "194Os": {
-        "ratio": 0,
-        "decay": {
-          "half_life": 189240000,
-          "decay_types": {
-            "beta-": {
-              "ratio": 1
-            }
-          }
-        },
-        "energy": 180677328611,
-        "binding_energy": 1538814949
       }
     },
     "ionization_energy": [
@@ -6033,19 +5890,6 @@
         "ratio": 0.2974,
         "energy": 188134364350,
         "binding_energy": 1595164422
-      },
-      "203Hg": {
-        "ratio": 0,
-        "decay": {
-          "half_life": 4027276.8,
-          "decay_types": {
-            "beta-": {
-              "ratio": 1
-            }
-          }
-        },
-        "energy": 189067934704,
-        "binding_energy": 1601159038
       },
       "204Hg": {
         "ratio": 0.0682,
@@ -6388,19 +6232,6 @@
         },
         "energy": 206807956045,
         "binding_energy": 1708177231
-      },
-      "224Rn": {
-        "ratio": 0,
-        "decay": {
-          "half_life": 6480,
-          "decay_types": {
-            "beta-": {
-              "ratio": 1
-            }
-          }
-        },
-        "energy": 208677009405,
-        "binding_energy": 1718248810
       }
     },
     "ionization_energy": [
@@ -6430,19 +6261,6 @@
         },
         "energy": 205873367099,
         "binding_energy": 1702418985
-      },
-      "222Fr": {
-        "ratio": 0,
-        "decay": {
-          "half_life": 852,
-          "decay_types": {
-            "beta-": {
-              "ratio": 1
-            }
-          }
-        },
-        "energy": 206807931819,
-        "binding_energy": 1707419146
       },
       "223Fr": {
         "ratio": 0.820896,

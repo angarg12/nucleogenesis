@@ -185,6 +185,10 @@ gulp.task('generate_element_slot', function() {
   return plugins.run('node build_scripts/generate_element_slot.js',{silent:true}).exec();
 });
 
+gulp.task('check_isotopes', function() {
+  return plugins.run('node build_scripts/check_isotopes.js',{silent:false}).exec();
+});
+
 gulp.task('sort_resources', function() {
   return plugins.run('node build_scripts/sort_resources.js',{silent:true}).exec();
 });
@@ -216,6 +220,7 @@ gulp.task('build', function(callback) {
     'generate_upgrade_functions',
     'generate_element_slot',
     'sort_resources',
+    'check_isotopes',
     'populate_player',
     'populate_data',
     'concat',
