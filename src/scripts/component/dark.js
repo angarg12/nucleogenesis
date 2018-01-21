@@ -35,7 +35,7 @@ angular.module('game').controller('ct_dark', ['state', 'format', 'visibility', '
       ct.cache.breakdown = {};
       for (let element in data.elements) {
         let exotic = data.elements[element].exotic;
-        if (!player.resources[exotic].unlocked || !player.statistics.dark_run[exotic]) {
+        if (player.resources[exotic] === null || !player.statistics.dark_run[exotic]) {
           continue;
         }
         let number = player.statistics.dark_run[exotic];
@@ -60,7 +60,7 @@ angular.module('game').controller('ct_dark', ['state', 'format', 'visibility', '
 
       for (let key in data.elements) {
         let element = data.elements[key];
-        player.resources[element.exotic].number = 0;
+        player.resources[element.exotic] = 0;
         if (!player.exotic_upgrades[key]) {
           continue;
         }

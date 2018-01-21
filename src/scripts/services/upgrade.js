@@ -20,8 +20,8 @@ angular
         if (upgrades[name]) {
           return;
         }
-        if (player.resources[currency].number >= price) {
-          player.resources[currency].number -= price;
+        if (player.resources[currency] >= price) {
+          player.resources[currency] -= price;
           upgrades[name] = true;
           let args = {player: player};
           sv.executeOnce(upgradeData, ['once'], args);
@@ -31,7 +31,7 @@ angular
       sv.resetElement = function(player, element) {
         let resources = player.resources;
         for (let resource of data.elements[element].includes) {
-          resources[resource].number = 0;
+          resources[resource] = 0;
         }
       };
 
@@ -75,7 +75,7 @@ angular
         let up = data.global_upgrades[name];
         for (let currency in up.price) {
           let value = up.price[currency] * sv.priceMultiplier(name, player);
-          player.resources[currency].number -= value;
+          player.resources[currency] -= value;
         }
 
         player.global_upgrades[name]++;
@@ -85,7 +85,7 @@ angular
         let up = data.global_upgrades[name];
         for (let currency in up.price) {
           let value = up.price[currency] * sv.priceMultiplier(name, player);
-          if (player.resources[currency].number < value) {
+          if (player.resources[currency] < value) {
             return false;
           }
         }

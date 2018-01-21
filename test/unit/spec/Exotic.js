@@ -26,7 +26,7 @@ describe('Exotic', function() {
       spec.data.resources = {
         '1H': {elements: {H: 1}, type: ['isotope']}
       };
-      spec.state.player.resources['1H'] = {number:5e8, unlocked: true};
+      spec.state.player.resources['1H'] = 5e8;
       spec.state.player.statistics.exotic_run = {H:{}};
       spec.state.player.statistics.exotic_run.H['1H'] = 5e8;
       spec.state.player.element_slots = [{
@@ -47,7 +47,7 @@ describe('Exotic', function() {
       spec.data.resources = {
         '1H': {elements: {H: 1}, type: ['isotope']}
       };
-      spec.state.player.resources['1H'] = {number:1e5, unlocked: true};
+      spec.state.player.resources['1H'] = 1e5;
       spec.state.player.statistics.exotic_run = {H:{}};
       spec.state.player.statistics.exotic_run.H['1H'] = 1e5;
       spec.state.player.element_slots = [{
@@ -73,8 +73,8 @@ describe('Exotic', function() {
         '1H': {elements: {H: 1}, type: ['isotope']},
         'H2O': {elements: {H: 2, O: 1}, type: ['molecule']}
       };
-      spec.state.player.resources['1H'] = {number:0, unlocked: true};
-      spec.state.player.resources.H2O = {number:5e8, unlocked: true};
+      spec.state.player.resources['1H'] = 0;
+      spec.state.player.resources.H2O = 5e8;
       spec.state.player.statistics.exotic_run = {H:{},O:{}};
       spec.state.player.statistics.exotic_run.H['1H'] = 0;
       spec.state.player.statistics.exotic_run.H.H2O = 5e8;
@@ -109,8 +109,8 @@ describe('Exotic', function() {
       spec.data.resources = {
         '1H': {elements: {H: 1}, type: ['isotope']}
       };
-      spec.state.player.resources['1H'] = {number:5e8, unlocked: true};
-      spec.state.player.resources.xH = {number:0, unlocked: false};
+      spec.state.player.resources['1H'] = 5e8;
+      spec.state.player.resources.xH = null;
       spec.state.player.statistics.exotic_run = {H:{}};
       spec.state.player.statistics.exotic_run.H['1H'] = 5e8;
       spec.state.player.elements.H = true;
@@ -140,8 +140,8 @@ describe('Exotic', function() {
 
       expect(spec.state.player.element_slots[0]).toBeNull();
       expect(spec.state.player.exotic_upgrades.H.x3).toBeTruthy();
-      expect(spec.state.player.resources['1H'].number).toEqual(0);
-      expect(spec.state.player.resources.xH.number).toEqual(75);
+      expect(spec.state.player.resources['1H']).toEqual(0);
+      expect(spec.state.player.resources.xH).toEqual(75);
       expect(spec.state.player.statistics.exotic_run).toEqual({H:{}});
     });
   });
@@ -151,7 +151,7 @@ describe('Exotic', function() {
       spec.data.resources = {
         p: {elements: {}, type: ['subatomic']}
       };
-      spec.state.player.resources.p = {number:1001, unlocked: true};
+      spec.state.player.resources.p = 1001;
 
       spec.exotic.setPercentage('p', 25, spec.state.player);
 
@@ -162,7 +162,7 @@ describe('Exotic', function() {
       spec.data.resources = {
         p: {elements: {}, type: ['subatomic']}
       };
-      spec.state.player.resources.p = {number:0, unlocked: true};
+      spec.state.player.resources.p = 0;
       spec.exotic.infuse.p = 0;
 
       let value = spec.exotic.infuseBoost('p', spec.state.player);
@@ -174,7 +174,7 @@ describe('Exotic', function() {
       spec.data.resources = {
         p: {elements: {}, type: ['subatomic']}
       };
-      spec.state.player.resources.p = {number:1000, unlocked: true};
+      spec.state.player.resources.p = 1000;
       spec.exotic.infuse.p = 1000;
 
       let value = spec.exotic.infuseBoost('p', spec.state.player);
@@ -187,8 +187,8 @@ describe('Exotic', function() {
         p: {elements: {}, type: ['subatomic']},
         n: {elements: {}, type: ['subatomic']}
       };
-      spec.state.player.resources.p = {number:1000, unlocked: true};
-      spec.state.player.resources.n = {number:1000, unlocked: true};
+      spec.state.player.resources.p = 1000;
+      spec.state.player.resources.n = 1000;
       spec.exotic.infuse.p = 1000;
       spec.exotic.infuse.n = 1000;
 
@@ -207,12 +207,12 @@ describe('Exotic', function() {
           p: {elements: {}, type: ['subatomic']},
           n: {elements: {}, type: ['subatomic']}
       };
-      spec.state.player.resources['1H'] = {number:5e8, unlocked: true};
+      spec.state.player.resources['1H'] = 5e8;
       spec.state.player.statistics.exotic_run = {H:{}};
       spec.state.player.statistics.exotic_run.H['1H'] = 5e8;
-      spec.state.player.resources.xH = {number:0, unlocked: false};
-      spec.state.player.resources.p = {number:1000, unlocked: true};
-      spec.state.player.resources.n = {number:1000, unlocked: true};
+      spec.state.player.resources.xH = null;
+      spec.state.player.resources.p = 1000;
+      spec.state.player.resources.n = 1000;
       spec.exotic.infuse.p = 1000;
       spec.exotic.infuse.n = 1000;
       spec.state.player.element_slots = [{
@@ -226,7 +226,7 @@ describe('Exotic', function() {
       spec.exotic.update(spec.state.player);
       spec.exotic.exoticPrestige(0, spec.state.player);
 
-      expect(spec.state.player.resources.xH.number).toEqual(128);
+      expect(spec.state.player.resources.xH).toEqual(128);
     });
   });
 
@@ -240,7 +240,7 @@ describe('Exotic', function() {
           dark_deps: []
         }
       };
-      spec.state.player.resources.xH = {number:110};
+      spec.state.player.resources.xH = 110;
       spec.state.player.exotic_upgrades = {
         H: {
           x3: false
@@ -252,7 +252,7 @@ describe('Exotic', function() {
 
       spec.exotic.buyExoticUpgrade('x3', spec.state.player.element_slots[0], spec.state.player);
 
-      expect(spec.state.player.resources.xH.number).toEqual(10);
+      expect(spec.state.player.resources.xH).toEqual(10);
       expect(spec.state.player.exotic_upgrades.H.x3).toEqual(true);
     });
 
@@ -265,7 +265,7 @@ describe('Exotic', function() {
           dark_deps: []
         }
       };
-      spec.state.player.resources.xH = {number:10};
+      spec.state.player.resources.xH = 10;
       spec.state.player.exotic_upgrades = {
         H: {
           x3: false
@@ -277,7 +277,7 @@ describe('Exotic', function() {
 
       spec.exotic.buyExoticUpgrade('x3',spec.state.player.element_slots[0], spec.state.player);
 
-      expect(spec.state.player.resources.xH.number).toEqual(10);
+      expect(spec.state.player.resources.xH).toEqual(10);
       expect(spec.state.player.exotic_upgrades.H.x3).toEqual(false);
     });
 
@@ -290,7 +290,7 @@ describe('Exotic', function() {
           dark_deps: []
         }
       };
-      spec.state.player.resources.xH = {number:110};
+      spec.state.player.resources.xH = 110;
       spec.state.player.exotic_upgrades = {
         H: {
           x3: true
@@ -302,7 +302,7 @@ describe('Exotic', function() {
 
       spec.exotic.buyExoticUpgrade('x3',spec.state.player.element_slots[0], spec.state.player);
 
-      expect(spec.state.player.resources.xH.number).toEqual(110);
+      expect(spec.state.player.resources.xH).toEqual(110);
       expect(spec.state.player.exotic_upgrades.H.x3).toEqual(true);
     });
   });
@@ -334,8 +334,8 @@ describe('Exotic', function() {
         p: {elements: {}, type: ['subatomic']},
         n: {elements: {}, type: ['subatomic']}
       };
-      spec.state.player.resources.p = {number:0, unlocked: true};
-      spec.state.player.resources.n = {number:0, unlocked: false};
+      spec.state.player.resources.p = 0;
+      spec.state.player.resources.n = null;
 
       let values = spec.exotic.visibleSubatomic(spec.state.player);
 

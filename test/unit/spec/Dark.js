@@ -24,8 +24,8 @@ describe('Dark', function() {
       spec.data.elements.O = {
         exotic:'xO'
       };
-      spec.state.player.resources.xH = {unlocked: true};
-      spec.state.player.resources.xO = {unlocked: true};
+      spec.state.player.resources.xH = 0;
+      spec.state.player.resources.xO = 0;
       spec.state.player.statistics.dark_run.xH = 1e8;
       spec.state.player.statistics.dark_run.xO = 1e8;
 
@@ -48,9 +48,9 @@ describe('Dark', function() {
         x3: {}
       };
       spec.state.player.elements.H = true;
-      spec.state.player.resources['1H'] = {number:1e4, unlocked: true};
-      spec.state.player.resources.xH = {number:1e8, unlocked: true};
-      spec.state.player.resources.dark_matter = {number:0, unlocked: false};
+      spec.state.player.resources['1H'] = 1e4;
+      spec.state.player.resources.xH = 1e8;
+      spec.state.player.resources.dark_matter = null;
       spec.state.player.statistics.dark_run.xH = 1e8;
       spec.state.player.exotic_upgrades = {
         'H':{
@@ -89,9 +89,9 @@ describe('Dark', function() {
 
       expect(spec.state.player.element_slots[0]).toBeNull();
       expect(spec.state.player.exotic_upgrades.H.x3).toBeFalsy();
-      expect(spec.state.player.resources['1H'].number).toEqual(0);
-      expect(spec.state.player.resources.xH.number).toEqual(0);
-      expect(spec.state.player.resources.dark_matter.number).toEqual(8);
+      expect(spec.state.player.resources['1H']).toEqual(0);
+      expect(spec.state.player.resources.xH).toEqual(0);
+      expect(spec.state.player.resources.dark_matter).toEqual(8);
       expect(spec.state.player.statistics.exotic_run).toEqual({});
       expect(spec.state.player.statistics.dark_run).toEqual({});
     });
@@ -109,9 +109,9 @@ describe('Dark', function() {
         x3: {}
       };
       spec.state.player.elements.H = true;
-      spec.state.player.resources['1H'] = {number:1e4, unlocked: true};
-      spec.state.player.resources.xH = {number:0, unlocked: false};
-      spec.state.player.resources.dark_matter = {number:0, unlocked: false};
+      spec.state.player.resources['1H'] = 1e4;
+      spec.state.player.resources.xH = null;
+      spec.state.player.resources.dark_matter = null;
       spec.state.player.exotic_upgrades = {
         'H':{
           x3: true
@@ -148,9 +148,9 @@ describe('Dark', function() {
 
       expect(spec.state.player.element_slots[0]).toBeNull();
       expect(spec.state.player.exotic_upgrades.H.x3).toBeFalsy();
-      expect(spec.state.player.resources['1H'].number).toEqual(0);
-      expect(spec.state.player.resources.xH.number).toEqual(0);
-      expect(spec.state.player.resources.dark_matter.number).toEqual(0);
+      expect(spec.state.player.resources['1H']).toEqual(0);
+      expect(spec.state.player.resources.xH).toEqual(0);
+      expect(spec.state.player.resources.dark_matter).toEqual(0);
     });
   });
 
@@ -162,12 +162,12 @@ describe('Dark', function() {
           deps: []
         }
       };
-      spec.state.player.resources.dark_matter = {number:110};
+      spec.state.player.resources.dark_matter = 110;
       spec.state.player.dark_upgrades.test = false;
 
       spec.dark.buyDarkUpgrade('test', spec.state.player);
 
-      expect(spec.state.player.resources.dark_matter.number).toEqual(10);
+      expect(spec.state.player.resources.dark_matter).toEqual(10);
       expect(spec.state.player.dark_upgrades.test).toEqual(true);
     });
 
@@ -178,12 +178,12 @@ describe('Dark', function() {
           deps: []
         }
       };
-      spec.state.player.resources.dark_matter = {number:10};
+      spec.state.player.resources.dark_matter = 10;
       spec.state.player.dark_upgrades.test = false;
 
       spec.dark.buyDarkUpgrade('test', spec.state.player);
 
-      expect(spec.state.player.resources.dark_matter.number).toEqual(10);
+      expect(spec.state.player.resources.dark_matter).toEqual(10);
       expect(spec.state.player.dark_upgrades.test).toEqual(false);
     });
 
@@ -194,12 +194,12 @@ describe('Dark', function() {
           deps: []
         }
       };
-      spec.state.player.resources.dark_matter = {number:110};
+      spec.state.player.resources.dark_matter = 110;
       spec.state.player.dark_upgrades.test = true;
 
       spec.dark.buyDarkUpgrade('test', spec.state.player);
 
-      expect(spec.state.player.resources.dark_matter.number).toEqual(110);
+      expect(spec.state.player.resources.dark_matter).toEqual(110);
       expect(spec.state.player.dark_upgrades.test).toEqual(true);
     });
   });

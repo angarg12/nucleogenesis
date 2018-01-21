@@ -25,7 +25,7 @@ describe('Mechanics', function() {
   describe('global purchase functions', function() {
     it('should return false if an upgrade can\'t be bought', function() {
       spec.state.player.global_upgrades.redox_bandwidth = 0;
-      spec.state.player.resources.eV = {number:0};
+      spec.state.player.resources.eV = 0;
 
       let canBuy = spec.upgradeService.canBuyGlobalUpgrade('redox_bandwidth', spec.state.player);
 
@@ -34,7 +34,7 @@ describe('Mechanics', function() {
 
     it('should return true if an upgrade can be bought', function() {
       spec.state.player.global_upgrades.redox_bandwidth = 0;
-      spec.state.player.resources.eV = {number:1e300};
+      spec.state.player.resources.eV = 1e300;
 
       let canBuy = spec.upgradeService.canBuyGlobalUpgrade('redox_bandwidth', spec.state.player);
 
@@ -43,7 +43,7 @@ describe('Mechanics', function() {
 
     it('should buy an upgrade', function() {
       spec.state.player.global_upgrades.redox_bandwidth = 2;
-      spec.state.player.resources.eV = {number:1e300};
+      spec.state.player.resources.eV = 1e300;
 
       spec.upgradeService.buyGlobalUpgrade('redox_bandwidth', spec.state.player);
 
@@ -52,7 +52,7 @@ describe('Mechanics', function() {
 
     it('should not buy an upgrade that it can\'t afford', function() {
       spec.state.player.global_upgrades.redox_bandwidth = 2;
-      spec.state.player.resources.eV = {number:0};
+      spec.state.player.resources.eV = 0;
 
       spec.upgradeService.buyGlobalUpgrade('redox_bandwidth', spec.state.player);
 

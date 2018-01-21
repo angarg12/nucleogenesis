@@ -17,9 +17,9 @@ describe('Visible service', function() {
       spec.data.elements.C.includes = ['8C'];
       spec.state.player.elements.O = false;
       spec.data.elements.O.includes = ['16O'];
-      spec.state.player.resources['1H'] = {unlocked:true};
-      spec.state.player.resources['8C'] = {unlocked:false};
-      spec.state.player.resources['16O'] = {unlocked:false};
+      spec.state.player.resources['1H'] = 0;
+      spec.state.player.resources['8C'] = null;
+      spec.state.player.resources['16O'] = null;
 
       let values = spec.elementSelect.visibleElements(spec.state.player);
 
@@ -28,10 +28,10 @@ describe('Visible service', function() {
 
     it('should show visible resources', function() {
       spec.state.player.resources = {
-        '1H': {unlocked:true},
-        '2H': {unlocked:false},
-        eV: {unlocked:true},
-        '16O': {unlocked:true}
+        '1H': 0,
+        '2H': null,
+        eV: 0,
+        '16O': 0
       };
       spec.state.player.statistics = {
         exotic_run: {H:
@@ -52,10 +52,10 @@ describe('Visible service', function() {
 
     it('should show misc resources', function() {
       spec.state.player.resources = {
-        '1H': {unlocked:true},
-        '2H': {unlocked:false},
-        eV: {unlocked:true},
-        '16O': {unlocked:true}
+        '1H': 0,
+        '2H': null,
+        eV: 0,
+        '16O': 0
       };
       spec.data.resources = {
         '1H': {elements: {H:1}},

@@ -10,12 +10,12 @@ describe('Dashboard', function() {
 
   beforeEach(function () {
     spec.state.player.resources = {
-      '1H': {unlocked:true},
-      '2H': {unlocked:false},
-      'H2': {unlocked:true},
-      'H2O': {unlocked:true},
-      eV: {unlocked:true},
-      '16O': {unlocked:true}
+      '1H': 0,
+      '2H': null,
+      'H2': 0,
+      'H2O': 0,
+      eV: 0,
+      '16O': 0
     };
     spec.data.resources = {
       '1H': {elements: {H:1}},

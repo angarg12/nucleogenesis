@@ -68,7 +68,7 @@ describe('Generators component', function() {
 
     it('should purchase as many generators as requested', function() {
       spec.state.player.element_slots[0].generators = {'1': 5};
-      spec.state.player.resources['1H'] = {number:65};
+      spec.state.player.resources['1H'] = 65;
       spec.data.elements = {
         H: {
           main: '1H'
@@ -77,13 +77,13 @@ describe('Generators component', function() {
 
       spec.generators.buyGenerators(spec.state.player, '1',spec.state.player.element_slots[0],3);
 
-      expect(spec.state.player.resources['1H'].number).toEqual(4);
+      expect(spec.state.player.resources['1H']).toEqual(4);
       expect(spec.state.player.element_slots[0].generators['1']).toEqual(8);
     });
 
     it('should purchase as many generators as possible', function() {
       spec.state.player.element_slots[0].generators = {'1': 5};
-      spec.state.player.resources['1H'] = {number:45};
+      spec.state.player.resources['1H'] = 45;
       spec.data.elements = {
         H: {
           main: '1H'
@@ -92,13 +92,13 @@ describe('Generators component', function() {
 
       spec.generators.buyGenerators(spec.state.player, '1',spec.state.player.element_slots[0],'max');
 
-      expect(spec.state.player.resources['1H'].number).toEqual(7);
+      expect(spec.state.player.resources['1H']).toEqual(7);
       expect(spec.state.player.element_slots[0].generators['1']).toEqual(7);
     });
 
     it('should not purchase generator if cost is not met', function() {
       spec.state.player.element_slots[0].generators = {'1': 5};
-      spec.state.player.resources['1H'] = {number:10};
+      spec.state.player.resources['1H'] = 10;
       spec.data.elements = {
         H: {
           main: '1H'
@@ -107,7 +107,7 @@ describe('Generators component', function() {
 
       spec.generators.buyGenerators(spec.state.player, '1',spec.state.player.element_slots[0],10);
 
-      expect(spec.state.player.resources['1H'].number).toEqual(10);
+      expect(spec.state.player.resources['1H']).toEqual(10);
       expect(spec.state.player.element_slots[0].generators['1']).toEqual(5);
     });
   });
@@ -140,8 +140,8 @@ describe('Generators component', function() {
       spec.upgradeService.two = function(args) {args.production*=2;};
       spec.upgradeService.three = function(args) {args.production*=3;};
       spec.upgradeService.four = function(args) {args.production*=4;};
-      spec.state.player.resources.xH = {number: 0};
-      spec.state.player.resources.dark_matter = {number: 0};
+      spec.state.player.resources.xH = 0;
+      spec.state.player.resources.dark_matter = 0;
       spec.state.player.element_slots[0].generators = {'1': 1};
       spec.state.player.element_slots[0].upgrades = {
         '1-1': true,
@@ -181,8 +181,8 @@ describe('Generators component', function() {
       spec.upgradeService.two = function(args) {args.production*=2;};
       spec.upgradeService.three = function(args) {args.production*=3;};
       spec.upgradeService.four = function(args) {args.production*=4;};
-      spec.state.player.resources.xH = {number: 3250};
-      spec.state.player.resources.dark_matter = {number: 0};
+      spec.state.player.resources.xH = 3250;
+      spec.state.player.resources.dark_matter = 0;
       spec.state.player.element_slots[0].upgrades = {
         '1-1': true,
         '1-2': true,
@@ -222,8 +222,8 @@ describe('Generators component', function() {
       spec.upgradeService.two = function(args) {args.production*=2;};
       spec.upgradeService.three = function(args) {args.production*=3;};
       spec.upgradeService.four = function(args) {args.production*=4;};
-      spec.state.player.resources.xH = {number: 0};
-      spec.state.player.resources.dark_matter = {number: 3250};
+      spec.state.player.resources.xH = 0;
+      spec.state.player.resources.dark_matter = 3250;
       spec.state.player.element_slots[0].upgrades = {
         '1-1': true,
         '1-2': true,
@@ -262,8 +262,8 @@ describe('Generators component', function() {
       spec.upgradeService.two = function(args) {args.production*=2;};
       spec.upgradeService.three = function(args) {args.production*=3;};
       spec.upgradeService.four = function(args) {args.production*=4;};
-      spec.state.player.resources.xH = {number: 3250};
-      spec.state.player.resources.dark_matter = {number: 3250};
+      spec.state.player.resources.xH = 3250;
+      spec.state.player.resources.dark_matter = 3250;
       spec.state.player.element_slots[0].upgrades = {
         '1-1': true,
         '1-2': true,
@@ -302,8 +302,8 @@ describe('Generators component', function() {
       spec.upgradeService.two = function(args) {args.production*=2;};
       spec.upgradeService.three = function(args) {args.production*=3;};
       spec.upgradeService.four = function(args) {args.production*=4;};
-      spec.state.player.resources.xH = {number: 0};
-      spec.state.player.resources.dark_matter = {number: 0};
+      spec.state.player.resources.xH = 0;
+      spec.state.player.resources.dark_matter = 0;
       spec.state.player.element_slots[0] = {
         element: 'H',
         upgrades:{
@@ -345,8 +345,8 @@ describe('Generators component', function() {
         exotic: 'xH'
       };
 
-      spec.state.player.resources.xH = {number: 0};
-      spec.state.player.resources.dark_matter = {number: 0};
+      spec.state.player.resources.xH = 0;
+      spec.state.player.resources.dark_matter = 0;
       spec.state.player.element_slots[0] = {
         element: 'H',
         generators: {

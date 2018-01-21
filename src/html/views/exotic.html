@@ -12,9 +12,9 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
   <div ng-if="slot">
     <h2>{{ct.data.elements[slot.element].name}}</h2>
     <h3>
-    <pretty value="ct.state.player.resources[ct.data.elements[slot.element].exotic].number"></pretty>
+    <pretty value="ct.state.player.resources[ct.data.elements[slot.element].exotic]"></pretty>
     <get-html value="ct.data.elements[slot.element].exotic"></get-html>
-    (+<pretty value="ct.state.player.resources[ct.data.elements[slot.element].exotic].number*ct.data.constants.EXOTIC_POWER*100"></pretty>%)
+    (+<pretty value="ct.state.player.resources[ct.data.elements[slot.element].exotic]*ct.data.constants.EXOTIC_POWER*100"></pretty>%)
     </h3>
     <div>
       <p>Sacrifice your progress to obtain exotic matter. Exotic matter boosts your production for the element by {{ct.data.constants.EXOTIC_POWER*100}}% and unlocks
@@ -63,7 +63,7 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
       <div ng-repeat="up in ct.visibleExoticUpgrades(slot, ct.state.player)"
            ng-click="ct.buyExoticUpgrade(up, slot, ct.state.player)"
            class="col-xs-12 btn btn-default"
-           ng-class="{disabled: ct.data.exotic_upgrades[up].price > ct.state.player.resources[ct.data.elements[slot.element].exotic].number &&
+           ng-class="{disabled: ct.data.exotic_upgrades[up].price > ct.state.player.resources[ct.data.elements[slot.element].exotic] &&
          !ct.state.player.exotic_upgrades[slot.element][up],
          active: ct.state.player.exotic_upgrades[slot.element][up]}">
         <span class="pull-left">

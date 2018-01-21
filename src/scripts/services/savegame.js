@@ -53,6 +53,11 @@ angular
           if(!data.resources[resource]){
             delete state.player.resources[resource];
           }
+          if(state.player.resources[resource] !== null && state.player.resources[resource].unlocked){
+            state.player.resources[resource] = state.player.resources[resource].number;
+          }else{
+            state.player.resources[resource] = null;
+          }
         }
         for(let slot of state.player.element_slots){
           if(!slot){

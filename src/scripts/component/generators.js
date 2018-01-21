@@ -27,8 +27,8 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
       // for each radiactive isotope
       for (let i = 0; i < data.radioisotopes.length; i++) {
         let resource = data.radioisotopes[i];
-        if (player.resources[resource].unlocked) {
-          let number = player.resources[resource].number;
+        if (player.resources[resource] !== null) {
+          let number = player.resources[resource];
           let decay = data.resources[resource].decay;
           let halfLife = decay.half_life;
           let decayRate = Math.log(2)/halfLife;
@@ -55,7 +55,7 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
             // neutrons is lower than the decay amount. Fixing starvation
             // should fix this one as well
             if (type.reaction.reactant && type.reaction.reactant.n) {
-              production = Math.min(production, player.resources.n.number);
+              production = Math.min(production, player.resources.n);
             }
             state.reactions.push({number: production, reaction:type.reaction});
             remaining -= production;
@@ -119,7 +119,7 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
       let currency = data.elements[slot.element].main;
       let price = generatorPrice(name, level);
       // we need a loop since we use the ceil operator
-      while (player.resources[currency].number >= price) {
+      while (player.resources[currency] >= price) {
         i++;
         price += generatorPrice(name, level + i);
       }
@@ -148,14 +148,14 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
       let price = this.generatorTotalPrice(player, name, slot, number);
       let currency = data.elements[slot.element].main;
       if (ct.canBuy(player, slot, price)) {
-        player.resources[currency].number -= price;
+        player.resources[currency] -= price;
         slot.generators[name] += number;
       }
     };
 
     ct.canBuy = function (player, slot, price) {
       let currency = data.elements[slot.element].main;
-      if (price > player.resources[currency].number) {
+      if (price > player.resources[currency]) {
         return false;
       }
       return true;
@@ -185,8 +185,8 @@ angular.module('game').controller('ct_generators', ['state', 'visibility', 'data
       let newProduction = args.production;
 
       let exotic = data.elements[slot.element].exotic;
-      newProduction *= (1 + player.resources[exotic].number * data.constants.EXOTIC_POWER) *
-        (1 + player.resources.dark_matter.number * data.constants.DARK_POWER);
+      newProduction *= (1 + player.resources[exotic] * data.constants.EXOTIC_POWER) *
+        (1 + player.resources.dark_matter * data.constants.DARK_POWER);
       return Math.floor(newProduction);
     }
 

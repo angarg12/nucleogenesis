@@ -157,13 +157,13 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
       let beam = player.fusion[0].beam;
       let target = player.fusion[0].target;
 
-      if(player.resources[beam.name].number < beam.number ||
-        player.resources[target.name].number < target.number){
+      if(player.resources[beam.name] < beam.number ||
+        player.resources[target.name] < target.number){
         player.fusion[0].running = false;
         return;
       }
-      player.resources[beam.name].number -= beam.number;
-      player.resources[target.name].number -= target.number;
+      player.resources[beam.name] -= beam.number;
+      player.resources[target.name] -= target.number;
 
       player.fusion[0].running = true;
     }
@@ -173,8 +173,8 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
         let beam = player.fusion[0].beam;
         let target = player.fusion[0].target;
 
-        player.resources[beam.name].number += fusion.beam.number;
-        player.resources[target.name].number += fusion.target.number;
+        player.resources[beam.name] += fusion.beam.number;
+        player.resources[target.name] += fusion.target.number;
       }
 
       fusion.eV = 0;
@@ -187,9 +187,9 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
         let bandwidth = util.calculateValue(data.global_upgrades.fusion_bandwidth.power.base,
             data.global_upgrades.fusion_bandwidth.power,
             player.global_upgrades.fusion_bandwidth);
-        let spent = Math.min(player.resources.eV.number, bandwidth);
+        let spent = Math.min(player.resources.eV, bandwidth);
         fusion.eV += spent;
-        player.resources.eV.number -= spent;
+        player.resources.eV -= spent;
     }
 
     function endFusion(player, fusion, reaction) {
@@ -205,8 +205,8 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
       let beam = fusion.beam.name;
       let target = fusion.target.name;
 
-      player.resources[beam].number += reaction.product[beam];
-      player.resources[target].number += reaction.product[target];
+      player.resources[beam] += reaction.product[beam];
+      player.resources[target] += reaction.product[target];
       reaction.product[beam] = 0;
       reaction.product[target] = 0;
 

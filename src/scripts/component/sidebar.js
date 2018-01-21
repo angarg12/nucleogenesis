@@ -37,7 +37,7 @@ function sidebar(state, visibility, data, format, util) {
   };
 
   function isResourceVisible(name, currentElement, player) {
-    if (!player.resources[name].unlocked) {
+    if (player.resources[name] === null) {
       return false;
     }
 

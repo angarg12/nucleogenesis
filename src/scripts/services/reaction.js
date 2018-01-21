@@ -14,7 +14,7 @@ angular
       // FIXME: move to util?
         function isReactionCostMet (number, reaction, playerData) {
           for (let key in reaction.reactant) {
-            let available = playerData.resources[key].number;
+            let available = playerData.resources[key];
             let required = number * reaction.reactant[key];
             if (required > available) {
               return false;
@@ -33,8 +33,8 @@ angular
           let elements = [];
           for (let resource in reaction.reactant) {
             let required = number * reaction.reactant[resource];
-            playerData.resources[resource].number -= required;
-            playerData.resources[resource].number = playerData.resources[resource].number;
+            playerData.resources[resource] -= required;
+            playerData.resources[resource] = playerData.resources[resource];
             // We track which elements produced the products, for the statistics
             for(let elem of Object.keys(data.resources[resource].elements)){
               if(elements.indexOf(elem) === -1){
@@ -63,7 +63,7 @@ angular
             if(!declared[resource] || !reactant[resource]){
               continue;
             }
-            let available = Math.min(declared[resource], player.resources[resource].number);
+            let available = Math.min(declared[resource], player.resources[resource]);
             let ratio = reactant[resource]*reaction.number/declared[resource];
             reaction.number = Math.min(reaction.number, Math.floor(available*ratio));
           }

@@ -24,7 +24,7 @@ function dashboardList(data, state, util, visibility) {
   };
 
   function filter(name, currentElement, player) {
-    if(!player.resources[name].unlocked){
+    if(player.resources[name] === null){
       return false;
     }
     if(ct.searchText && name.toLowerCase().indexOf(ct.searchText.toLowerCase()) === -1){

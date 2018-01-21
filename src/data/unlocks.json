@@ -12,7 +12,7 @@
       "for(let key in player.resources){",
       "  if (data.resources[key].type.indexOf('isotope') !== -1 &&",
       "      key !== '1H' &&",
-      "      player.resources[key].unlocked) {",
+      "      player.resources[key] !== null) {",
       "    return true;",
       "  }",
       "}",
@@ -23,7 +23,7 @@
     "condition": ["(() => {",
       "for(let key in player.resources){",
       "  if (data.resources[key].type.indexOf('molecule') !== -1 &&",
-      "      player.resources[key].unlocked) {",
+      "      player.resources[key] !== null) {",
       "    return true;",
       "  }",
       "}",
@@ -34,7 +34,7 @@
     "condition": ["(() => {",
       "for(let key in player.resources){",
       "  if (data.resources[key].type.indexOf('ion') !== -1 &&",
-      "      player.resources[key].unlocked) {",
+      "      player.resources[key] !== null) {",
       "    return true;",
       "  }",
       "}",
@@ -59,12 +59,12 @@
     ]
   },
   "table_gate": {
-    "condition": "player.resources['dark_matter'].unlocked"
+    "condition": "player.resources['dark_matter'] !== null"
   },
   "radioactive": {
     "condition": ["(() => {",
       "for(let key of data.radioisotopes){",
-      "  if (player.resources[key].unlocked) {",
+      "  if (player.resources[key] !== null) {",
       "    return true;",
       "  }",
       "}",
@@ -78,7 +78,7 @@
       "  if (data.resources[key].type.indexOf('isotope') === -1 &&",
       "      data.resources[key].type.indexOf('ion') === -1 &&",
       "      data.resources[key].type.indexOf('molecule') === -1 &&",
-      "      player.resources[key].unlocked) {",
+      "      player.resources[key] !== null) {",
       "    return true;",
       "  }",
       "}",

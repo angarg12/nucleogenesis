@@ -46,10 +46,7 @@ startPlayer.options.hideAchievements = false;
 startPlayer.offline = 0;
 startPlayer.resources = {};
 for (let entry in resources) {
-  startPlayer.resources[entry] = {
-    number: 0,
-    unlocked: false
-  };
+  startPlayer.resources[entry] = null;
 }
 
 startPlayer.elements = {};
@@ -111,10 +108,8 @@ startPlayer.statistics.all_time = {};
 startPlayer.elements.H = true;
 
 let mainHydrogen = elements.H.main;
-startPlayer.resources[mainHydrogen].unlocked = true;
-
 let first = Object.keys(generators)[0];
-startPlayer.resources[mainHydrogen].number = generators[first].price;
+startPlayer.resources[mainHydrogen] = generators[first].price;
 
 jsonfile.writeFileSync('build/data/start_player.json', startPlayer, {
   spaces: 2

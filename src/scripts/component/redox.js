@@ -42,7 +42,7 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
           let power = util.calculateValue(data.global_upgrades.redox_bandwidth.power.base,
                 data.global_upgrades.redox_bandwidth.power,
                 player.global_upgrades_current.redox_bandwidth);
-          let number = Math.min(power, player.resources[reactant].number);
+          let number = Math.min(power, player.resources[reactant]);
           let react = ct.redoxReaction(redox);
 
           state.reactions.push({number: number, reaction: react});
@@ -59,7 +59,7 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
         let ions = element.anions.concat(element.cations);
 		    ions.push(element.main);
         for(let resource of ions){
-          if(player.resources[resource].number === 0){
+          if(player.resources[resource] === 0){
             continue;
           }
           let charge = data.resources[resource].charge || 0;
@@ -69,7 +69,7 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
             if(charge === parseInt(probKey, 10)){
                continue;
              }
-            let production = Math.floor(probabilities[probKey]*player.resources[resource].number);
+            let production = Math.floor(probabilities[probKey]*player.resources[resource]);
             if(production === 0){
               continue;
             }
@@ -82,7 +82,7 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       			react.reactant.eV = 0;
             // FIXME: starvation should fix this
             if(react.reactant['e-']){
-              production = Math.min(production, player.resources['e-'].number);
+              production = Math.min(production, player.resources['e-']);
             }
             state.reactions.push({number: production, reaction: react});
           }

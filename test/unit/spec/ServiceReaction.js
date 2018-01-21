@@ -15,9 +15,9 @@ describe('Reaction service', function() {
         OH: {elements:{H:1, O:1}}
       };
       spec.state.player.resources = {};
-      spec.state.player.resources['1H'] = {number:10};
-      spec.state.player.resources.OH = {number:10};
-      spec.state.player.resources.H2O = {number:0};
+      spec.state.player.resources['1H'] = 10;
+      spec.state.player.resources.OH = 10;
+      spec.state.player.resources.H2O = 0;
       spec.state.player.statistics.exotic_run = {H:{},O:{}};
       let reaction = {
           'reactant': {
@@ -35,9 +35,9 @@ describe('Reaction service', function() {
 
       spec.reaction.react(5, reaction, spec.state.player);
 
-      expect(spec.state.player.resources['1H'].number).toEqual(5);
-      expect(spec.state.player.resources.OH.number).toEqual(5);
-      expect(spec.state.player.resources.H2O.number).toEqual(5);
+      expect(spec.state.player.resources['1H']).toEqual(5);
+      expect(spec.state.player.resources.OH).toEqual(5);
+      expect(spec.state.player.resources.H2O).toEqual(5);
       expect(spec.state.player.statistics.exotic_run.H.H2O).toEqual(5);
       expect(spec.state.player.statistics.exotic_run.O.H2O).toEqual(5);
       expect(spec.state.player.statistics.dark_run.H2O).toEqual(5);
@@ -47,10 +47,10 @@ describe('Reaction service', function() {
     it('should return if the number specified is invalid', function() {
       let player = {};
       player.resources = {};
-      player.resources['1H'] = {number:50};
-      player.resources.eV = {number:200};
-      player.resources.p = {number:1};
-      player.resources['e-'] = {number:0};
+      player.resources['1H'] = 50;
+      player.resources.eV = 200;
+      player.resources.p = 1;
+      player.resources['e-'] = 0;
       let reaction = {
           'reactant': {
             '1H': 1,
@@ -67,19 +67,19 @@ describe('Reaction service', function() {
 
       spec.reaction.react(0.5,reaction, player);
 
-      expect(player.resources['1H'].number).toEqual(50);
-      expect(player.resources.eV.number).toBeCloseTo(200,4);
-      expect(player.resources.p.number).toEqual(1);
-      expect(player.resources['e-'].number).toEqual(0);
+      expect(player.resources['1H']).toEqual(50);
+      expect(player.resources.eV).toBeCloseTo(200,4);
+      expect(player.resources.p).toEqual(1);
+      expect(player.resources['e-']).toEqual(0);
     });
 
     it('should return if the number specified is negative', function() {
       let player = {};
       player.resources = {};
-      player.resources['1H'] = {number:50};
-      player.resources.eV = {number:200};
-      player.resources.p = {number:1};
-      player.resources['e-'] = {number:0};
+      player.resources['1H'] = 50;
+      player.resources.eV = 200;
+      player.resources.p = 1;
+      player.resources['e-'] = 0;
       let reaction = {
           'reactant': {
             '1H': 1,
@@ -96,18 +96,18 @@ describe('Reaction service', function() {
 
       spec.reaction.react(-10,reaction, player);
 
-      expect(player.resources['1H'].number).toEqual(50);
-      expect(player.resources.eV.number).toBeCloseTo(200,4);
-      expect(player.resources.p.number).toEqual(1);
-      expect(player.resources['e-'].number).toEqual(0);
+      expect(player.resources['1H']).toEqual(50);
+      expect(player.resources.eV).toBeCloseTo(200,4);
+      expect(player.resources.p).toEqual(1);
+      expect(player.resources['e-']).toEqual(0);
     });
 
     it('should return if the cost is not met', function() {
       let player = {};
       player.resources = {};
-      player.resources['1H'] = {number:2};
-      player.resources.OH = {number:2};
-      player.resources.H2O = {number:0};
+      player.resources['1H'] = 2;
+      player.resources.OH = 2;
+      player.resources.H2O = 0;
       let reaction = {
           'reactant': {
             '1H': 1,
@@ -124,9 +124,9 @@ describe('Reaction service', function() {
 
       spec.reaction.react(5,reaction, player);
 
-      expect(player.resources['1H'].number).toEqual(2);
-      expect(player.resources.OH.number).toEqual(2);
-      expect(player.resources.H2O.number).toEqual(0);
+      expect(player.resources['1H']).toEqual(2);
+      expect(player.resources.OH).toEqual(2);
+      expect(player.resources.H2O).toEqual(0);
     });
   });
 });

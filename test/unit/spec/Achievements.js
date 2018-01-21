@@ -11,11 +11,9 @@ describe('Achievements component', function () {
   beforeEach(function () {
     window.ga = function () {};
     spec.state.player.resources['1H'] = {};
-    spec.state.player.resources['1H'].number = 0;
-    spec.state.player.resources['1H'].unlocked = true;
+    spec.state.player.resources['1H'] = 0;
     spec.state.player.resources['2H'] = {};
-    spec.state.player.resources['2H'].number = 0;
-    spec.state.player.resources['1H'].unlocked = false;
+    spec.state.player.resources['2H'] = 0;
     spec.state.player.achievements.hydrogen = 0;
     spec.state.player.achievements.isotope = 0;
 
@@ -29,7 +27,7 @@ describe('Achievements component', function () {
         'H'
       ]
     };
-    spec.achievements.hydrogen = function(p){return p.resources['1H'].number;};
+    spec.achievements.hydrogen = function(p){return p.resources['1H'];};
     spec.data.achievements.isotope = {
       'name': 'xxx',
       'description': 'xxx',
@@ -41,7 +39,7 @@ describe('Achievements component', function () {
         'isotope'
       ]
     };
-    spec.achievements.isotope = function(p){return p.resources['2H'].unlocked ? 1 : 0;};
+    spec.achievements.isotope = function(p){return p.resources['2H'] !== null ? 1 : 0;};
   });
 
   describe('achievement functions', function () {
@@ -61,8 +59,7 @@ describe('Achievements component', function () {
         spec.data.start_player.unlocks[unlock] = 1;
       }
       for(let resource in spec.data.resources){
-        spec.data.start_player.resources[resource].unlocked = true;
-        spec.data.start_player.resources[resource].number = 1e300;
+        spec.data.start_player.resources[resource] = 1e300;
       }
 
       spec.state.update(spec.data.start_player);
@@ -73,8 +70,7 @@ describe('Achievements component', function () {
         spec.data[key] = angular.copy(spec.originalData[key]);
       }
       for(let resource in spec.data.resources){
-        spec.data.start_player.resources[resource].unlocked = true;
-        spec.data.start_player.resources[resource].number = 1e300;
+        spec.data.start_player.resources[resource] = 1e300;
       }
 
       spec.state.update(spec.data.start_player);
@@ -89,9 +85,7 @@ describe('Achievements component', function () {
     });
 
     it('should award achievements if conditions are met', function () {
-      spec.state.player.resources['1H'] = {
-        number: 1000000000
-      };
+      spec.state.player.resources['1H'] = 1000000000;
 
       spec.state.update(spec.state.player);
 

@@ -42,7 +42,7 @@ function (state, data, visibility, util, format, reactionService, upgradeService
             player.global_upgrades_current.reaction_bandwidth);
     let number = power;
     for(let resource in reaction.reactants){
-      number = Math.min(number, player.resources[resource].number);
+      number = Math.min(number, player.resources[resource]);
     }
     return number;
   }
@@ -98,7 +98,7 @@ function (state, data, visibility, util, format, reactionService, upgradeService
     let available = true;
     let reaction = data.reactions[entry];
     for(let resource in reaction.reactant){
-      available = available && player.resources[resource].unlocked;
+      available = available && player.resources[resource] !== null;
     }
     // Workaround to reuse the visibility function. It expects an object with the
     // reaction inside

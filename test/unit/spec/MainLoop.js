@@ -28,18 +28,9 @@ describe('MainLoop', function() {
       'electronegativity': 0
     };
     spec.state.player.resources = {
-      '16O': {
-        unlocked: false,
-        number: 0
-      },
-      '17O': {
-        unlocked: false,
-        number: 0
-      },
-      '18O': {
-        unlocked: false,
-        number: 0
-      }
+      '16O': null,
+      '17O': null,
+      '18O': null
     };
   });
 
@@ -74,9 +65,9 @@ describe('MainLoop', function() {
 
       spec.controller.update();
 
-      expect(spec.state.player.resources['16O'].number).toEqual(200);
-      expect(spec.state.player.resources['17O'].number).toEqual(0);
-      expect(spec.state.player.resources['18O'].number).toEqual(0);
+      expect(spec.state.player.resources['16O']).toEqual(200);
+      expect(spec.state.player.resources['17O']).toEqual(0);
+      expect(spec.state.player.resources['18O']).toEqual(0);
       expect(spec.state.player.statistics.exotic_run.O['16O']).toEqual(200);
       expect(spec.state.player.statistics.dark_run['16O']).toEqual(200);
       expect(spec.state.player.statistics.all_time['16O']).toEqual(200);
@@ -94,9 +85,9 @@ describe('MainLoop', function() {
 
       spec.controller.update();
 
-      expect(spec.state.player.resources['16O'].number).toEqual(1198);
-      expect(spec.state.player.resources['17O'].number).toEqual(0);
-      expect(spec.state.player.resources['18O'].number).toEqual(2);
+      expect(spec.state.player.resources['16O']).toEqual(1198);
+      expect(spec.state.player.resources['17O']).toEqual(0);
+      expect(spec.state.player.resources['18O']).toEqual(2);
       expect(spec.state.player.statistics.exotic_run.O['16O']).toEqual(1198);
       expect(spec.state.player.statistics.dark_run['16O']).toEqual(1198);
       expect(spec.state.player.statistics.all_time['16O']).toEqual(1198);
@@ -114,9 +105,9 @@ describe('MainLoop', function() {
 
       spec.controller.update();
 
-      expect(spec.state.player.resources['16O'].number).toEqual(31924);
-      expect(spec.state.player.resources['17O'].number).toEqual(12);
-      expect(spec.state.player.resources['18O'].number).toEqual(64);
+      expect(spec.state.player.resources['16O']).toEqual(31924);
+      expect(spec.state.player.resources['17O']).toEqual(12);
+      expect(spec.state.player.resources['18O']).toEqual(64);
       expect(spec.state.player.statistics.exotic_run.O['16O']).toEqual(31924);
       expect(spec.state.player.statistics.dark_run['16O']).toEqual(31924);
       expect(spec.state.player.statistics.all_time['16O']).toEqual(31924);
@@ -134,9 +125,9 @@ describe('MainLoop', function() {
 
       spec.controller.update();
 
-      expect(spec.state.player.resources['16O'].number).toEqual(99);
-      expect(spec.state.player.resources['17O'].number).toEqual(1);
-      expect(spec.state.player.resources['18O'].number).toEqual(1);
+      expect(spec.state.player.resources['16O']).toEqual(99);
+      expect(spec.state.player.resources['17O']).toEqual(1);
+      expect(spec.state.player.resources['18O']).toEqual(1);
     });
 
     it('should generate isotopes with very low probability', function() {
@@ -151,9 +142,9 @@ describe('MainLoop', function() {
 
       spec.controller.update();
 
-      expect(spec.state.player.resources['16O'].number).toEqual(99);
-      expect(spec.state.player.resources['17O'].number).toEqual(0);
-      expect(spec.state.player.resources['18O'].number).toEqual(1);
+      expect(spec.state.player.resources['16O']).toEqual(99);
+      expect(spec.state.player.resources['17O']).toEqual(0);
+      expect(spec.state.player.resources['18O']).toEqual(1);
     });
 
     it('should process radioactivity', function() {
@@ -179,29 +170,17 @@ describe('MainLoop', function() {
         },
         elements: {'H':1}
       };
-      spec.state.player.resources['3H'] = {
-        unlocked: true,
-        number: 1e+10
-      };
-      spec.state.player.resources['3He'] = {
-        unlocked: true,
-        number: 0
-      };
-      spec.state.player.resources['e-'] = {
-        unlocked: true,
-        number: 0
-      };
-      spec.state.player.resources.eV = {
-        unlocked: true,
-        number: 0
-      };
+      spec.state.player.resources['3H'] = 1e+10;
+      spec.state.player.resources['3He'] = 0;
+      spec.state.player.resources['e-'] = 0;
+      spec.state.player.resources.eV = 0;
 
       spec.controller.update();
 
-      expect(spec.state.player.resources['3H'].number).toEqual(9999999983);
-      expect(spec.state.player.resources['3He'].number).toEqual(17);
-      expect(spec.state.player.resources['e-'].number).toEqual(17);
-      expect(spec.state.player.resources.eV.number).toBeCloseTo(316047,4);
+      expect(spec.state.player.resources['3H']).toEqual(9999999983);
+      expect(spec.state.player.resources['3He']).toEqual(17);
+      expect(spec.state.player.resources['e-']).toEqual(17);
+      expect(spec.state.player.resources.eV).toBeCloseTo(316047,4);
     });
 
     it('should process multi decay', function() {
@@ -240,35 +219,20 @@ describe('MainLoop', function() {
         elements: {Ga:1}
       };
       spec.state.player.resources = {
-        '70Ga': {
-          unlocked: true,
-          number: 100
-        },
-        '70Ge': {
-          unlocked: false,
-          number: 0
-        },
-        '70Zn': {
-          unlocked: false,
-          number: 0
-        },
-        'e-': {
-          unlocked: false,
-          number: 0
-        },
-        eV: {
-          unlocked: false,
-          number: 0
-        }
+        '70Ga': 100,
+        '70Ge': null,
+        '70Zn': null,
+        'e-': null,
+        eV: null
       };
 
       spec.controller.update();
 
-      expect(spec.state.player.resources['70Ga'].number).toEqual(66);
-      expect(spec.state.player.resources['70Ge'].number).toEqual(26);
-      expect(spec.state.player.resources['70Zn'].number).toEqual(8);
-      expect(spec.state.player.resources['e-'].number).toEqual(26);
-      expect(spec.state.player.resources.eV.number).toBeCloseTo(26800,4);
+      expect(spec.state.player.resources['70Ga']).toEqual(66);
+      expect(spec.state.player.resources['70Ge']).toEqual(26);
+      expect(spec.state.player.resources['70Zn']).toEqual(8);
+      expect(spec.state.player.resources['e-']).toEqual(26);
+      expect(spec.state.player.resources.eV).toBeCloseTo(26800,4);
     });
 
     it('should process very high half-lifes', function() {
@@ -292,21 +256,15 @@ describe('MainLoop', function() {
         },
         elements: {'H':1}
       };
-      spec.state.player.resources['3H'] = {
-        unlocked: true,
-        number: 1e+60
-      };
-      spec.state.player.resources['3He'] = {
-        unlocked: true,
-        number: 0
-      };
+      spec.state.player.resources['3H'] = 1e+60;
+      spec.state.player.resources['3He'] = 0;
 
       spec.controller.update();
 
-      expect(spec.state.player.resources['3H'].number).toBeCloseTo(1e+60,4);
+      expect(spec.state.player.resources['3H']).toBeCloseTo(1e+60,4);
       // we have to do this since toBeCloseTo fails
-      expect(spec.state.player.resources['3He'].number).toBeGreaterThan(6.9e+29);
-      expect(spec.state.player.resources['3He'].number).toBeLessThan(7e+29);
+      expect(spec.state.player.resources['3He']).toBeGreaterThan(6.9e+29);
+      expect(spec.state.player.resources['3He']).toBeLessThan(7e+29);
     });
   });
 });

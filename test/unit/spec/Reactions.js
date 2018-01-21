@@ -63,19 +63,10 @@ describe('Reactions', function() {
       spec.state.player.global_upgrades.reaction_bandwidth = 1;
       spec.state.player.global_upgrades_current.reaction_bandwidth = 1;
       spec.state.player.resources = {
-        '1H': {
-          number: 0,
-          unlocked: true
-        },
-        'H2': {
-          number: 300
-        },
-        'O2': {
-          number: 150
-        },
-        'H2O': {
-          number: 0
-        }
+        '1H': 0,
+        'H2': 300,
+        'O2': 150,
+        'H2O': 0
       };
       spec.state.player.element_slots = [{
         element: 'H',
@@ -93,9 +84,9 @@ describe('Reactions', function() {
       spec.state.update(spec.state.player);
       spec.reaction.processReactions(spec.state.reactions, spec.state.player);
 
-      expect(spec.state.player.resources.H2.number).toEqual(100);
-      expect(spec.state.player.resources.O2.number).toEqual(50);
-      expect(spec.state.player.resources.H2O.number).toEqual(200);
+      expect(spec.state.player.resources.H2).toEqual(100);
+      expect(spec.state.player.resources.O2).toEqual(50);
+      expect(spec.state.player.resources.H2O).toEqual(200);
     });
 
     it('should add reaction', function () {
@@ -226,10 +217,10 @@ describe('Reactions', function() {
         }
       };
       spec.state.player.resources = {
-        H: {unlocked: true},
-        He: {unlocked: false},
-        C: {unlocked: true},
-        O: {unlocked: true}
+        H: 0,
+        He: null,
+        C: 0,
+        O: 0
       };
       spec.state.player.element_slots = [{
         element: 'H'

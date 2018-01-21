@@ -43,11 +43,12 @@ angular
       };
 
       sv.addResource = function(player, scope, key, quantity, state){
-        player.resources[key].number += quantity;
         sv.addStatistic(player, scope, key, quantity);
-        if (quantity > 0 && !player.resources[key].unlocked) {
-          player.resources[key].unlocked = true;
+        if (player.resources[key] === null) {
+          player.resources[key] = quantity;
           state.addNew(key);
+        }else{
+            player.resources[key] += quantity;
         }
       };
 

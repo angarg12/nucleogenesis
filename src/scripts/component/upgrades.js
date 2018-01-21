@@ -31,7 +31,7 @@ function(state, visibility, upgradeService, data) {
       for(let up of ct.visibleUpgrades(slot, player)){
         let price = data.upgrades[up].price;
         if(!slot.upgrades[up] &&
-          price <= player.resources[currency].number){
+          price <= player.resources[currency]){
           if(price < cheapestPrice){
             cheapest = up;
             cheapestPrice = price;

@@ -213,25 +213,25 @@ describe('Redox', function () {
         }]
       }];
       spec.state.player.resources = {
-        '1H': {number: 100},
-        'e-': {number: 0},
-        'H+': {number: 0},
-        eV: {number: 200}
+        '1H': 100,
+        'e-': 0,
+        'H+': 0,
+        eV: 200
       };
-      spec.state.player.resources['1H'].number = 100;
-      spec.state.player.resources['e-'].number = 0;
-      spec.state.player.resources['H+'].number = 0;
-      spec.state.player.resources.eV.number = 200;
+      spec.state.player.resources['1H'] = 100;
+      spec.state.player.resources['e-'] = 0;
+      spec.state.player.resources['H+'] = 0;
+      spec.state.player.resources.eV = 200;
       // mock redoxPower
       spec.util.calculateValue = function() {return 10;};
 
       spec.state.update(spec.state.player);
       spec.reaction.processReactions(spec.state.reactions, spec.state.player);
 
-      expect(spec.state.player.resources['1H'].number).toEqual(90);
-      expect(spec.state.player.resources.eV.number).toBeCloseTo(64.016);
-      expect(spec.state.player.resources['e-'].number).toEqual(10);
-      expect(spec.state.player.resources['H+'].number).toEqual(10);
+      expect(spec.state.player.resources['1H']).toEqual(90);
+      expect(spec.state.player.resources.eV).toBeCloseTo(64.016);
+      expect(spec.state.player.resources['e-']).toEqual(10);
+      expect(spec.state.player.resources['H+']).toEqual(10);
     });
 
     it('should not process inactive redoxes', function () {
@@ -247,10 +247,10 @@ describe('Redox', function () {
         }]
       }];
       spec.state.player.resources = {
-        '1H': {number: 100},
-        'e-': {number: 0},
-        'H+': {number: 0},
-        eV: {number: 200}
+        '1H': 100,
+        'e-': 0,
+        'H+': 0,
+        eV: 200
       };
       // mock redoxPower
       spec.util.calculateValue = function() {return 10;};
@@ -258,10 +258,10 @@ describe('Redox', function () {
       spec.state.update(spec.state.player);
       spec.reaction.processReactions(spec.state.reactions, spec.state.player);
 
-      expect(spec.state.player.resources['1H'].number).toEqual(100);
-      expect(spec.state.player.resources.eV.number).toEqual(200);
-      expect(spec.state.player.resources['e-'].number).toEqual(0);
-      expect(spec.state.player.resources['H+'].number).toEqual(0);
+      expect(spec.state.player.resources['1H']).toEqual(100);
+      expect(spec.state.player.resources.eV).toEqual(200);
+      expect(spec.state.player.resources['e-']).toEqual(0);
+      expect(spec.state.player.resources['H+']).toEqual(0);
     });
 
     it('should cap at the resource number', function () {
@@ -277,10 +277,10 @@ describe('Redox', function () {
         }]
       }];
       spec.state.player.resources = {
-        '1H': {number: 100},
-        'e-': {number: 0},
-        'H+': {number: 0},
-        eV: {number: 2000}
+        '1H': 100,
+        'e-': 0,
+        'H+': 0,
+        eV: 2000
       };
       // mock redoxPower
       spec.util.calculateValue = function() {return 2000;};
@@ -288,10 +288,10 @@ describe('Redox', function () {
       spec.state.update(spec.state.player);
       spec.reaction.processReactions(spec.state.reactions, spec.state.player);
 
-      expect(spec.state.player.resources['1H'].number).toEqual(0);
-      expect(spec.state.player.resources.eV.number).toBeCloseTo(640.16);
-      expect(spec.state.player.resources['e-'].number).toEqual(100);
-      expect(spec.state.player.resources['H+'].number).toEqual(100);
+      expect(spec.state.player.resources['1H']).toEqual(0);
+      expect(spec.state.player.resources.eV).toBeCloseTo(640.16);
+      expect(spec.state.player.resources['e-']).toEqual(100);
+      expect(spec.state.player.resources['H+']).toEqual(100);
     });
 
     it('should not react of not enough collaterals are available', function () {
@@ -307,10 +307,10 @@ describe('Redox', function () {
         }]
       }];
       spec.state.player.resources = {
-        '1H': {number: 100},
-        'e-': {number: 0},
-        p: {number: 0},
-        eV: {number: 200}
+        '1H': 100,
+        'e-': 0,
+        p: 0,
+        eV: 200
       };
       // mock redoxPower
       spec.util.calculateValue = function() {return 2000;};
@@ -318,10 +318,10 @@ describe('Redox', function () {
       spec.state.update(spec.state.player);
       spec.reaction.processReactions(spec.state.reactions, spec.state.player);
 
-      expect(spec.state.player.resources['1H'].number).toEqual(100);
-      expect(spec.state.player.resources.eV.number).toEqual(200);
-      expect(spec.state.player.resources['e-'].number).toEqual(0);
-      expect(spec.state.player.resources.p.number).toEqual(0);
+      expect(spec.state.player.resources['1H']).toEqual(100);
+      expect(spec.state.player.resources.eV).toEqual(200);
+      expect(spec.state.player.resources['e-']).toEqual(0);
+      expect(spec.state.player.resources.p).toEqual(0);
     });
 
     it('should not react if from and to are the same', function () {
@@ -337,10 +337,10 @@ describe('Redox', function () {
         }]
       }];
       spec.state.player.resources = {
-        '1H': {number: 100},
-        'e-': {number: 0},
-        p: {number: 0},
-        eV: {number: 200}
+        '1H': 100,
+        'e-': 0,
+        p: 0,
+        eV: 200
       };
 
       spyOn(spec.util, 'calculateValue');
@@ -413,16 +413,16 @@ describe('Redox', function () {
         }
       };
       spec.state.player.resources = {
-        '16O': {number: 1e25},
-        'O-': {number: 0},
-        'O2-': {number: 0},
-        'O+': {number: 0},
-        'O2+': {number: 0},
-        'O3+': {number: 0},
-        'O4+': {number: 0},
-        'O5+': {number: 0},
-        'e-': {number: 1e6},
-        eV: {number: 0}
+        '16O': 1e25,
+        'O-': 0,
+        'O2-': 0,
+        'O+': 0,
+        'O2+': 0,
+        'O3+': 0,
+        'O4+': 0,
+        'O5+': 0,
+        'e-': 1e6,
+        eV: 0
       };
       spec.data.resources = {
         '16O': {elements:{O:1},charge:0},
@@ -453,16 +453,16 @@ describe('Redox', function () {
       spec.redox.update(spec.state.player);
       spec.reaction.processReactions(spec.state.reactions, spec.state.player);
 
-      expect(spec.state.player.resources['16O'].number.toPrecision(5)).toEqual('1.0000e+25');
-      expect(spec.state.player.resources['O-'].number.toPrecision(5)).toEqual('3.3333e+5');
-      expect(spec.state.player.resources['O2-'].number.toPrecision(5)).toEqual('6.6667e+5');
-      expect(spec.state.player.resources['O+'].number.toPrecision(5)).toEqual('2.5259e+19');
-      expect(spec.state.player.resources['O2+'].number.toPrecision(5)).toEqual('9.7950e+13');
-      expect(spec.state.player.resources['O3+'].number.toPrecision(5)).toEqual('6.2614e+8');
-      expect(spec.state.player.resources['O4+'].number).toEqual(4443);
-      expect(spec.state.player.resources['O5+'].number).toEqual(0);
-      expect(spec.state.player.resources['e-'].number.toPrecision(5)).toEqual('2.5259e+19');
-      expect(spec.state.player.resources.eV.number.toPrecision(5)).toEqual('4.8713e+5');
+      expect(spec.state.player.resources['16O'].toPrecision(5)).toEqual('1.0000e+25');
+      expect(spec.state.player.resources['O-'].toPrecision(5)).toEqual('3.3333e+5');
+      expect(spec.state.player.resources['O2-'].toPrecision(5)).toEqual('6.6667e+5');
+      expect(spec.state.player.resources['O+'].toPrecision(5)).toEqual('2.5259e+19');
+      expect(spec.state.player.resources['O2+'].toPrecision(5)).toEqual('9.7950e+13');
+      expect(spec.state.player.resources['O3+'].toPrecision(5)).toEqual('6.2614e+8');
+      expect(spec.state.player.resources['O4+']).toEqual(4443);
+      expect(spec.state.player.resources['O5+']).toEqual(0);
+      expect(spec.state.player.resources['e-'].toPrecision(5)).toEqual('2.5259e+19');
+      expect(spec.state.player.resources.eV.toPrecision(5)).toEqual('4.8713e+5');
     });
   });
 });

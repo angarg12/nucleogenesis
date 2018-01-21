@@ -48,7 +48,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     ct.exoticProduction = function(element, player) {
       let breakdown = {};
       for (let resource of data.elements[element].includes) {
-        if (!player.resources[resource].unlocked ||
+        if (player.resources[resource] === null ||
             !player.statistics.exotic_run[element] ||
             typeof player.statistics.exotic_run[element][resource] === 'undefined') {
           continue;
@@ -104,7 +104,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
       }
 
       for(let resource in ct.infuse){
-        player.resources[resource].number = Math.max(0, player.resources[resource].number-ct.infuse[resource]);
+        player.resources[resource] = Math.max(0, player.resources[resource]-ct.infuse[resource]);
       }
 
       upgrade.resetElement(player, slot.element);
@@ -139,11 +139,11 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     };
 
     ct.setPercentage = function(resource, percentage, player) {
-      ct.infuse[resource] = Math.floor(player.resources[resource].number*(percentage/100));
+      ct.infuse[resource] = Math.floor(player.resources[resource]*(percentage/100));
     };
 
     ct.fixNumber = function(resource, player) {
-      ct.infuse[resource] = Math.max(0, Math.min(player.resources[resource].number, ct.infuse[resource]));
+      ct.infuse[resource] = Math.max(0, Math.min(player.resources[resource], ct.infuse[resource]));
     };
 
     /* This function checks that values inserted in the text boxes are
@@ -157,7 +157,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     };
 
     ct.infuseBoost = function(resource, player) {
-        let number = Math.min(ct.infuse[resource], player.resources[resource].number);
+        let number = Math.min(ct.infuse[resource], player.resources[resource]);
         if(number === 0){
           return 1;
         }
@@ -188,7 +188,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     };
 
     function isSubatomicVisible(name, _, player) {
-      if (!player.resources[name].unlocked) {
+      if (player.resources[name] === null) {
         return false;
       }
 

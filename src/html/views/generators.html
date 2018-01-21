@@ -9,7 +9,7 @@
     </h3>
     <ul ng-if="ct.state.player.unlocks.isotope">
       <li ng-repeat="(isotope,_) in ct.data.elements[slot.element].isotopes"
-          ng-if="ct.state.player.resources[isotope].unlocked">
+          ng-if="ct.state.player.resources[isotope] !== null">
         <get-html value="isotope"></get-html>:
         {{ct.data.elements[slot.element].isotopes[isotope].ratio*100 | number: 4}}%
       </li>

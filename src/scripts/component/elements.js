@@ -33,7 +33,7 @@ function elements($timeout, state, data, util, visibility) {
 
     let singleChance = data.elements[element].abundance * bonus;
     let chance = 1 - Math.pow(Math.max(0, 1 - singleChance),
-      Math.min(player.resources.dark_matter.number, ct.buyAmount[player.options.elementBuyIndex]));
+      Math.min(player.resources.dark_matter, ct.buyAmount[player.options.elementBuyIndex]));
 
     return Math.min(1, chance);
   };
@@ -53,7 +53,7 @@ function elements($timeout, state, data, util, visibility) {
     } else {
       ct.outcome[element] = 'Fail';
     }
-    player.resources.dark_matter.number -= Math.min(player.resources.dark_matter.number, ct.buyAmount[player.options.elementBuyIndex]);
+    player.resources.dark_matter -= Math.min(player.resources.dark_matter, ct.buyAmount[player.options.elementBuyIndex]);
 
     util.delayedExec(performance.now(), performance.now(), 1000, () => ct.clearMessage(element));
   };
@@ -76,7 +76,7 @@ function elements($timeout, state, data, util, visibility) {
 
   function isElementAvailable(element, player) {
     for (let resource of data.elements[element].includes) {
-      if (player.resources[resource].unlocked) {
+      if (player.resources[resource] !== null) {
         return true;
       }
     }

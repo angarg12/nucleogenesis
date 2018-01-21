@@ -35,7 +35,7 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
       <div ng-repeat="up in ct.visibleUpgrades(slot, ct.state.player)"
            ng-click="ct.buyUpgrade(up, slot, ct.state.player)"
            class="col-xs-12 btn btn-default"
-           ng-class="{disabled: ct.data.upgrades[up].price > ct.state.player.resources[ct.data.elements[slot.element].main].number &&
+           ng-class="{disabled: ct.data.upgrades[up].price > ct.state.player.resources[ct.data.elements[slot.element].main] &&
          !slot.upgrades[up],
          active: slot.upgrades[up]}">
         <span class="pull-left">

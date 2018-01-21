@@ -68,7 +68,7 @@ describe('Upgrades', function() {
   describe('purchase functions', function() {
     it('should purchase an upgrade if cost is met', function() {
       spec.data.elements.H = {main:'1H'};
-      spec.state.player.resources['1H'] = {number:110};
+      spec.state.player.resources['1H'] = 110;
       spec.state.player.elements.H = true;
       spec.state.player.element_slots = [{
         element: 'H',
@@ -79,13 +79,13 @@ describe('Upgrades', function() {
 
       spec.upgrades.buyUpgrade('1-1',spec.state.player.element_slots[0], spec.state.player);
 
-      expect(spec.state.player.resources['1H'].number).toEqual(10);
+      expect(spec.state.player.resources['1H']).toEqual(10);
       expect(spec.state.player.element_slots[0].upgrades['1-1']).toEqual(true);
     });
 
     it('should not purchase an upgrade if cost is not met', function() {
       spec.data.elements.H = {main:'1H'};
-      spec.state.player.resources['1H'] = {number:10};
+      spec.state.player.resources['1H'] = 10;
       spec.state.player.elements.H = true;
       spec.state.player.element_slots = [{
         element: 'H',
@@ -96,13 +96,13 @@ describe('Upgrades', function() {
 
       spec.upgrades.buyUpgrade('1-1',spec.state.player.element_slots[0], spec.state.player);
 
-      expect(spec.state.player.resources['1H'].number).toEqual(10);
+      expect(spec.state.player.resources['1H']).toEqual(10);
       expect(spec.state.player.element_slots[0].upgrades['1-1']).toEqual(false);
     });
 
     it('should skip if the upgrade is already bought', function() {
       spec.data.elements.H = {main:'1H'};
-      spec.state.player.resources['1H'] = {number:10};
+      spec.state.player.resources['1H'] = 10;
       spec.state.player.elements.H = true;
       spec.state.player.element_slots = [{
         element: 'H',
@@ -113,13 +113,13 @@ describe('Upgrades', function() {
 
       spec.upgrades.buyUpgrade('1-1',spec.state.player.element_slots[0], spec.state.player);
 
-      expect(spec.state.player.resources['1H'].number).toEqual(10);
+      expect(spec.state.player.resources['1H']).toEqual(10);
       expect(spec.state.player.element_slots[0].upgrades['1-1']).toEqual(true);
     });
 
     it('should buy all upgrades it can afford', function() {
       spec.data.elements.H = {main:'1H'};
-      spec.state.player.resources['1H'] = {number:1500};
+      spec.state.player.resources['1H'] = 1500;
       spec.state.player.elements.H = true;
       spec.state.player.element_slots = [{
         element: 'H',
@@ -166,7 +166,7 @@ describe('Upgrades', function() {
 
       spec.upgrades.buyAll(spec.state.player.element_slots[0], spec.state.player);
 
-      expect(spec.state.player.resources['1H'].number).toEqual(400);
+      expect(spec.state.player.resources['1H']).toEqual(400);
       expect(spec.state.player.element_slots[0].upgrades['1-1']).toEqual(true);
       expect(spec.state.player.element_slots[0].upgrades['1-2']).toEqual(true);
       expect(spec.state.player.element_slots[0].upgrades['1-3']).toEqual(false);
