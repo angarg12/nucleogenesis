@@ -101,7 +101,7 @@ startPlayer.fusion = [{
 }];
 
 startPlayer.statistics = {};
-startPlayer.statistics.exotic_run = {};
+startPlayer.statistics.exotic_run = {H:{}};
 startPlayer.statistics.dark_run = {};
 startPlayer.statistics.all_time = {};
 
@@ -110,6 +110,7 @@ startPlayer.elements.H = true;
 let mainHydrogen = elements.H.main;
 let first = Object.keys(generators)[0];
 startPlayer.resources[mainHydrogen] = generators[first].price;
+startPlayer.statistics.exotic_run.H['1H'] = 0;
 
 jsonfile.writeFileSync('build/data/start_player.json', startPlayer, {
   spaces: 2

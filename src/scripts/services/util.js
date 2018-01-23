@@ -43,12 +43,15 @@ angular
       };
 
       sv.addResource = function(player, scope, key, quantity, state){
+        if(quantity === 0){
+          return;
+        }
         sv.addStatistic(player, scope, key, quantity);
         if (player.resources[key] === null) {
           player.resources[key] = quantity;
           state.addNew(key);
         }else{
-            player.resources[key] += quantity;
+          player.resources[key] += quantity;
         }
       };
 
