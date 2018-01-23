@@ -66,8 +66,8 @@ describe('MainLoop', function() {
       spec.controller.update();
 
       expect(spec.state.player.resources['16O']).toEqual(200);
-      expect(spec.state.player.resources['17O']).toEqual(0);
-      expect(spec.state.player.resources['18O']).toEqual(0);
+      expect(spec.state.player.resources['17O']).toEqual(null);
+      expect(spec.state.player.resources['18O']).toEqual(null);
       expect(spec.state.player.statistics.exotic_run.O['16O']).toEqual(200);
       expect(spec.state.player.statistics.dark_run['16O']).toEqual(200);
       expect(spec.state.player.statistics.all_time['16O']).toEqual(200);
@@ -86,7 +86,7 @@ describe('MainLoop', function() {
       spec.controller.update();
 
       expect(spec.state.player.resources['16O']).toEqual(1198);
-      expect(spec.state.player.resources['17O']).toEqual(0);
+      expect(spec.state.player.resources['17O']).toEqual(null);
       expect(spec.state.player.resources['18O']).toEqual(2);
       expect(spec.state.player.statistics.exotic_run.O['16O']).toEqual(1198);
       expect(spec.state.player.statistics.dark_run['16O']).toEqual(1198);
@@ -143,7 +143,7 @@ describe('MainLoop', function() {
       spec.controller.update();
 
       expect(spec.state.player.resources['16O']).toEqual(99);
-      expect(spec.state.player.resources['17O']).toEqual(0);
+      expect(spec.state.player.resources['17O']).toEqual(null);
       expect(spec.state.player.resources['18O']).toEqual(1);
     });
 
