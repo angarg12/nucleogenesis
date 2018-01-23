@@ -12,20 +12,20 @@ angular
   .service('savegame', ['$state',
     'state',
     'data',
-    function ($state, state, data) {
-      this.initSave = function () {
+    function($state, state, data) {
+      this.initSave = function() {
         state.player = {};
         this.versionControl();
         state.init();
         $state.go('generators');
       };
 
-      this.save = function () {
-        state.player.last_login = Math.floor(Date.now()/1000);
+      this.save = function() {
+        state.player.last_login = Math.floor(Date.now() / 1000);
         localStorage.setItem('player', JSON.stringify(state.player));
       };
 
-      this.load = function () {
+      this.load = function() {
         try {
           let storedPlayer = localStorage.getItem('player');
           if (!storedPlayer) {
@@ -40,7 +40,7 @@ angular
         }
       };
 
-      this.versionControl = function () {
+      this.versionControl = function() {
         // delete saves older than this version
         if (state.player.version && versionCompare(state.player.version, '2.6.0') < 0) {
           state.player = {};
@@ -49,23 +49,25 @@ angular
         // avoid undefined errors with new properties
         state.player = angular.merge({}, data.start_player, state.player);
 
-        for(let resource in state.player.resources){
-          if(!data.resources[resource]){
+        for (let resource in state.player.resources) {
+          if (!data.resources[resource]) {
             delete state.player.resources[resource];
             continue;
           }
-          if(state.player.resources[resource] && state.player.resources[resource].unlocked){
-            state.player.resources[resource] = state.player.resources[resource].number;
-          }else{
-            state.player.resources[resource] = null;
+          if (state.player.resources[resource] && state.player.resources[resource].number) {
+            if (state.player.resources[resource].unlocked) {
+              state.player.resources[resource] = state.player.resources[resource].number;
+            } else {
+              state.player.resources[resource] = null;
+            }
           }
         }
-        for(let slot of state.player.element_slots){
-          if(!slot){
+        for (let slot of state.player.element_slots) {
+          if (!slot) {
             continue;
           }
-          for(let i in slot.redoxes){
-            if(slot.redoxes[i].from === -2 || slot.redoxes[i].to === -2){
+          for (let i in slot.redoxes) {
+            if (slot.redoxes[i].from === -2 || slot.redoxes[i].to === -2) {
               slot.redoxes.splice(i, 1);
             }
           }
