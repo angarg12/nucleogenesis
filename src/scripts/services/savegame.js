@@ -52,6 +52,7 @@ angular
         for(let resource in state.player.resources){
           if(!data.resources[resource]){
             delete state.player.resources[resource];
+            continue;
           }
           if(state.player.resources[resource] && state.player.resources[resource].unlocked){
             state.player.resources[resource] = state.player.resources[resource].number;
