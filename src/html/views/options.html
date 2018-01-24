@@ -3,13 +3,13 @@
   <div class="col-xs-12">
     <button type="button"
             class="btn btn-default btn-block"
-            ng-click="ct.reset(true)">Erase save</button>
+            ng-click="ct.reset(true)">{{ 'OPTIONS.ERASE' | translate }}</button>
   </div>
   <div class="col-xs-12">
     <button type="button"
             class="btn btn-default btn-block"
             id="exportSave"
-            ng-click="ct.importSave(ct.state.player)">Import Save</button>
+            ng-click="ct.importSave(ct.state.player)">{{ 'OPTIONS.IMPORT' | translate }}</button>
   </div>
   <div class="col-xs-12 form-group">
     <input class="form-control"
@@ -20,23 +20,23 @@
     <div class="col-xs-12">
       <button type="button"
               class="btn btn-default btn-block"
-              ng-click="ct.exportSave(ct.state.player)">Export Save</button>
+              ng-click="ct.exportSave(ct.state.player)">{{ 'OPTIONS.EXPORT' | translate }}</button>
     </div>
   <div class="col-xs-12">
-    <label for="numberFormat">Number Format:</label>
+    <label for="numberFormat">{{ 'OPTIONS.FORMAT' | translate }}:</label>
     <select name="numberFormat" id="numberFormat" ng-model="ct.state.player.options.numberformat.format">
-      <option value="standard">Standard</option>
-      <option value="scientific">Scientific</option>
-      <option value="hybrid">Hybrid</option>
-      <option value="engineering">Engineering</option>
+      <option value="standard">{{ 'OPTIONS.STD' | translate }}</option>
+      <option value="scientific">{{ 'OPTIONS.SCI' | translate }}</option>
+      <option value="hybrid">{{ 'OPTIONS.HY' | translate }}</option>
+      <option value="engineering">{{ 'OPTIONS.ENG' | translate }}</option>
     </select>
   </div>
   <div class="col-xs-12">
     <a target="_blank"
-       href="https://github.com/angarg12/nucleogenesis">Github</a>
+       href="https://github.com/angarg12/nucleogenesis">{{ 'OPTIONS.GITHUB' | translate }}</a>
   </div>
   <div class="col-xs-12">
     <a target="_blank"
-       href="https://github.com/angarg12/nucleogenesis/wiki">Changelog</a>
+       href="https://github.com/angarg12/nucleogenesis/wiki">{{ 'OPTIONS.CHANGE' | translate }}</a>
   </div>
 </div>

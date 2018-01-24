@@ -4,9 +4,8 @@
     <get-html value="'dark_matter'"></get-html>
     (+<pretty value="ct.state.player.resources.dark_matter*ct.data.constants.DARK_POWER*100"></pretty>%)
     </h3>
-<p>Sacrifice your progress to obtain dark matter. Dark matter boosts your global production {{ct.data.constants.DARK_POWER*100}}%
-  and unlocks new upgrades.</p>
-<p>Prestige now to obtain</p>
+<p>{{ 'DARK.DESCRIPTION' | translate }}</p>
+<p>{{ 'DARK.PRESTIGE_NOW' | translate }}</p>
 
 <p>
   <pretty value="ct.darkProduction()"></pretty>
@@ -14,8 +13,8 @@
 </p>
 <button type="button"
         class="btn btn-default"
-        ng-click="ct.darkPrestige(ct.state.player)">Prestige</button>
-<p>You produced</p>
+        ng-click="ct.darkPrestige(ct.state.player)">{{ 'DARK.PRESTIGE' | translate }}</button>
+<p>{{ 'DARK.PRODUCTION' | translate }}</p>
 <p ng-repeat="(key,value) in ct.cache.breakdown">
   <get-html value="key"></get-html>
   <pretty value="ct.state.player.statistics.dark_run[key] || 0"></pretty>

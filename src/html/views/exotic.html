@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<label>Hide bought upgrades:
+<label>{{ 'EXOTIC.HIDE' | translate }}:
    <input type="checkbox" ng-model="ct.state.player.options.hideBought">
 </label>
-Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
-  <option value="0">Name</option>
-  <option value="1">Price</option>
+{{ 'EXOTIC.SORT' | translate }} <select name="sort" ng-model="ct.state.player.options.sortIndex">
+  <option value="0">{{ 'EXOTIC.SORT_NAME' | translate }}</option>
+  <option value="1">{{ 'EXOTIC.SORT_PRICE' | translate }}</option>
 </select>
 <div ng-repeat="slot in ct.state.player.element_slots track by $index">
   <element-select index="$index"
@@ -17,10 +17,9 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
     (+<pretty value="ct.state.player.resources[ct.data.elements[slot.element].exotic]*ct.data.constants.EXOTIC_POWER*100"></pretty>%)
     </h3>
     <div>
-      <p>Sacrifice your progress to obtain exotic matter. Exotic matter boosts your production for the element by {{ct.data.constants.EXOTIC_POWER*100}}% and unlocks
-        new upgrades.
+      <p>{{ 'EXOTIC.SACRIFICE' | translate }}
       </p>
-      <p>You can spend subatomic particles to boost your exotic matter production.</p>
+      <p>{{ 'EXOTIC.BOOST' | translate }}</p>
       <form name="infuse" ng-if="ct.visibleSubatomic(ct.state.player).length > 0">
         <div ng-repeat="resource in ct.visibleSubatomic(ct.state.player)">
           {{resource}}: <input type="number"
@@ -41,10 +40,10 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
                   ng-click="ct.setPercentage(resource, 100, ct.state.player)"> 100% </button> Boost:
           <pretty value="ct.infuseBoost(resource, ct.state.player)*100"></pretty>%
         </div>
-        Total boost:
+        {{ 'EXOTIC.BOOST_TOTAL' | translate }}:
         <pretty value="ct.totalInfuseBoost(ct.state.player)*100"></pretty>%
     </form>
-    <p>Prestige now to obtain</p>
+    <p>{{ 'EXOTIC.PRESTIGE_NOW' | translate }}</p>
     <p ng-repeat="(key,value) in ct.productionSum(slot.element)">
       <pretty value="value"></pretty>
       <get-html value="key"></get-html>
@@ -52,8 +51,8 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
     <button type="button"
             class="btn btn-default"
             ng-class="{disabled: !ct.isValidInfusion()}"
-            ng-click="ct.exoticPrestige($index, ct.state.player)">Prestige</button>
-    <p>You produced</p>
+            ng-click="ct.exoticPrestige($index, ct.state.player)">{{ 'EXOTIC.PRESTIGE' | translate }}</button>
+    <p>{{ 'EXOTIC.PRODUCED' | translate }}</p>
     <p ng-repeat="(key,value) in ct.cache.breakdown[slot.element]">
       <get-html value="key"></get-html>
       <pretty value="ct.state.player.statistics.exotic_run[slot.element][key] || 0"></pretty>

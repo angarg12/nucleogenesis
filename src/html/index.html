@@ -14,6 +14,7 @@
   <script src="bower_components/version-compare/version-compare.js"></script>
   <script src="bower_components/angularjs-slider/dist/rzslider.min.js"></script>
   <script src="bower_components/swarm-numberformat/dist/swarm-numberformat.js"></script>
+  <script src="bower_components/angular-translate/angular-translate.js"></script>
   <script src="scripts/app.min.js"></script>
   <link rel="stylesheet" href="bower_components/mdi/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" id="theme_css">
@@ -22,10 +23,17 @@
   <link rel="stylesheet" href="styles/main.css">
   <title>Nucleogenesis</title>
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
     ga('create', 'UA-58136427-7', 'auto');
     ga('send', 'pageview');
   </script>
@@ -50,67 +58,64 @@
           <ul class="nav nav-tabs">
             <li ui-sref="generators" ui-sref-active="active">
               <a>
-              Matter
+              {{ 'INDEX.MATTER' | translate }}
             </a>
             </li>
             <li ui-sref="upgrades" ui-sref-active="active">
               <a>
-              Upgrades
+              {{ 'UPGRADE' | translate }}
             </a>
             </li>
             <li ng-if="state.player.unlocks.exotic_gate" ui-sref="exotic" ui-sref-active="active">
               <a>
-              Exotic matter
+              {{ 'INDEX.EXOTIC' | translate }}
             </a>
             </li>
             <li ng-if="state.player.unlocks.dark_gate" ui-sref="dark" ui-sref-active="active">
               <a>
-              Dark matter
+              {{ 'INDEX.DARK' | translate }}
             </a>
             </li>
             <li ng-if="state.player.unlocks.ion" ui-sref="redox" ui-sref-active="active">
               <a>
-              Redox
+              {{ 'INDEX.REDOX' | translate }}
             </a>
             </li>
             <li ng-if="state.player.unlocks.reaction_gate" ui-sref="reactions" ui-sref-active="active">
               <a>
-              Reactions
+              {{ 'INDEX.REACTIONS' | translate }}
             </a>
             </li>
             <li ng-if="state.player.unlocks.fusion_gate" ui-sref="fusion" ui-sref-active="active">
               <a>
-              Fusion
+              {{ 'INDEX.FUSION' | translate }}
             </a>
             </li>
             <li ng-if="state.player.unlocks.table_gate" ui-sref="elements" ui-sref-active="active">
-              <a>Periodic Table</a>
+              <a>{{ 'INDEX.TABLE' | translate }}</a>
             </li>
             <li ui-sref="achievements" ui-sref-active="active">
-              <a>Achievements</a>
+              <a>{{ 'INDEX.ACHIEVEMENTS' | translate }}</a>
             </li>
             <li ui-sref="dashboard" ui-sref-active="active">
-              <a>Dashboard</a>
+              <a>{{ 'INDEX.DASHBOARD' | translate }}</a>
             </li>
             <li ui-sref="statistics" ui-sref-active="active">
-              <a>Statistics</a>
+              <a>{{ 'INDEX.STATS' | translate }}</a>
             </li>
             <li ui-sref="options" ui-sref-active="active">
-              <a>Options</a>
+              <a>{{ 'INDEX.OPTIONS' | translate }}</a>
             </li>
           </ul>
           <div class="row">
             <div class="col-xs-12">
-              <div class="alert alert-danger" role="alert">
-                <b>Warning:</b> This is an early beta version under heavy development. Expect unbalanced gameplay, bugs, save wipes and broken features.
-              </div>
+              <div class="alert alert-danger" role="alert"  translate="INDEX.DEV_WARNING"></div>
             </div>
             <div class="col-xs-12" ng-if="state.player.offline > 0">
-              <p>Faster ticks: spend your offline gains to accelerate game speed.</p>
-              Activate <input type="checkbox" ng-model="state.fasterTicks">
-              <p>{{state.player.offline}}/{{util.calculateValue(data.global_upgrades.offline_time.power.base,
-                  data.global_upgrades.offline_time.power,
-                  state.player.global_upgrades.offline_time)}}</p>
+              <p>{{ 'INDEX.FASTER_TICKS' | translate }}</p>
+              {{ 'INDEX.ACTIVATE' | translate }} <input type="checkbox" ng-model="state.fasterTicks">
+              <p>{{state.player.offline}}/{{util.calculateValue(data.global_upgrades.offline_time.power.base, data.global_upgrades.offline_time.power, state.player.global_upgrades.offline_time)}}
+              </p>
               <progress value="{{state.player.offline/util.calculateValue(data.global_upgrades.offline_time.power.base,
                   data.global_upgrades.offline_time.power,
                   state.player.global_upgrades.offline_time)*100}}" max="100">{{state.player.offline/state.offlineCyclesTotal*100}} %</progress>
@@ -125,7 +130,7 @@
         <button type="button" class="close" ng-click="state.removeToast()">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h3>Achievement</h3>
+        <h3>{{ 'INDEX.ACHIEVEMENT' | translate }}</h3>
         <h2>{{state.toast[0]}}</h2>
       </div>
     </div>

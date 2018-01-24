@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-
-<label>Hide bought upgrades:
+<label>{{ 'UPGRADES.HIDE' | translate }}:
    <input type="checkbox" ng-model="ct.state.player.options.hideBought">
 </label>
-Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
-  <option value="0">Name</option>
-  <option value="1">Price</option>
+{{ 'UPGRADES.SORT' | translate }} <select name="sort" ng-model="ct.state.player.options.sortIndex">
+  <option value="0">{{ 'UPGRADES.NAME' | translate }}</option>
+  <option value="1">{{ 'UPGRADES.PRICE' | translate }}</option>
 </select>
 <div>
-  <h2>Global</h2>
+  <h2>{{ 'UPGRADES.GLOBAL' | translate }}</h2>
   <div class="row">
     <div ng-repeat="key in ct.visibleGlobalUpgrades()"
          ng-click="ct.upgradeService.buyGlobalUpgrade(key, ct.state.player)"
          class="col-xs-12 btn btn-default"
          ng-class="{disabled: !ct.upgradeService.canBuyGlobalUpgrade(key, ct.state.player)}">
       <span class="pull-left">
-    Level: {{ct.state.player.global_upgrades[key]}} {{ct.data.global_upgrades[key].name}}: {{ct.data.global_upgrades[key].description}}
+    {{ 'UPGRADES.LEVEL' | translate }}: {{ct.state.player.global_upgrades[key]}} {{ct.data.global_upgrades[key].name}}: {{ct.data.global_upgrades[key].description}}
   </span>
   <span class="pull-right"
           ng-repeat="(resource, price) in ct.data.global_upgrades[key].price">
@@ -30,7 +29,7 @@ Sort by <select name="sort" ng-model="ct.state.player.options.sortIndex">
   <div ng-if="slot">
     <h2>{{ct.data.elements[slot.element].name}}</h2>
     <button class="btn btn-default"
-            ng-click="ct.buyAll(slot, ct.state.player)">Buy all</button>
+            ng-click="ct.buyAll(slot, ct.state.player)">{{ 'UPGRADES.BUY_ALL' | translate }}</button>
     <div class="row">
       <div ng-repeat="up in ct.visibleUpgrades(slot, ct.state.player)"
            ng-click="ct.buyUpgrade(up, slot, ct.state.player)"

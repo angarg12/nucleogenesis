@@ -6,7 +6,7 @@
   <option ng-repeat="isotope in ct.availableIsotopes(ct.state.player)"
             value="{{isotope}}">{{isotope}}</option>
 </select>
-Capacity: <pretty value="ct.getCapacity({resource: ct.state.player.fusion[0][ct.source].name, player:ct.state.player})"></pretty>
+{{ 'FUSION.CAPACITY' | translate }}: <pretty value="ct.getCapacity({resource: ct.state.player.fusion[0][ct.source].name, player:ct.state.player})"></pretty>
 <form name="beam">
   <div>
     {{ct.state.player.fusion[0][ct.source].name}}:

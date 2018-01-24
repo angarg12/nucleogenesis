@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <h3> {{ct.numberUnlocked(ct.state.player)}}/{{ct.numberTotal()}} </h3>
-<label>Hide completed achivements:
+<label>{{ 'ACHIEVEMENTS.HIDE_COMPLETE' | translate }}
    <input type="checkbox" ng-model="ct.state.player.options.hideAchievements">
 </label>
 <div class="row">

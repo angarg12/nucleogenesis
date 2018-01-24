@@ -16,7 +16,7 @@
   </p>
 </div>
 <div ng-if="ct.resourcesForElement('', ct.state.player).length > 0">
-  <p><b>Misc.</b></p>
+  <p><b>{{ 'DASHBOARD.MISC' | translate }}</b></p>
   <p ng-repeat="key in ct.resourcesForElement('', ct.state.player)"
       class="row">
     <get-html value="key"

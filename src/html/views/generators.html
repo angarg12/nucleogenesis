@@ -14,26 +14,26 @@
         {{ct.data.elements[slot.element].isotopes[isotope].ratio*100 | number: 4}}%
       </li>
     </ul>
-    <h4 ng-if="ct.state.player.unlocks.ion">Electronegativity: {{ct.data.elements[slot.element].electronegativity}}</h4>
+    <h4 ng-if="ct.state.player.unlocks.ion">{{ 'GENERATORS.ELECTRONEG' | translate }}: {{ct.data.elements[slot.element].electronegativity}}</h4>
     <table class="table">
       <tr>
         <td class="col-xs-1">
-          Generator
+          {{ 'GENERATORS.GENERATOR' | translate }}
         </td>
         <td class="col-xs-2">
           {{slot.element}}/s
         </td>
         <td class="col-xs-1">
-          Number
+          {{ 'GENERATORS.NUMBER' | translate }}
         </td>
         <td class="col-xs-3">
-          Total {{slot.element}}/s
+          {{ 'GENERATORS.TOTAL' | translate }} {{slot.element}}/s
         </td>
         <td class="col-xs-3">
-          Price
+          {{ 'GENERATORS.PRICE' | translate }}
         </td>
         <td class="col-xs-3">
-          Buy
+          {{ 'GENERATORS.BUY' | translate }}
           <button type="button"
                   class="btn btn-default"
                   ng-click="ct.util.nextAmount(ct.state.player, 'buyIndex', ct.buyAmount)">

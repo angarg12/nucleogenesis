@@ -2,7 +2,7 @@
 
 <ul class="sidebar-nav">
   <li class="sidebar-brand">
-    Nucleogenesis v{{ct.data.version}}
+    {{ 'GAME_NAME' | translate }} v{{ct.data.version}}
   </li>
 <div ng-repeat="element in ct.activeElements(ct.state.player)">
   <li ng-repeat="key in ct.visibleResources(element, ct.state.player)"
