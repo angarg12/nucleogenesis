@@ -54,7 +54,7 @@ angular
             delete state.player.resources[resource];
             continue;
           }
-          if (state.player.resources[resource] && state.player.resources[resource].number) {
+          if (state.player.resources[resource] && typeof state.player.resources[resource].number !== 'undefined') {
             if (state.player.resources[resource].unlocked) {
               state.player.resources[resource] = state.player.resources[resource].number;
             } else {
