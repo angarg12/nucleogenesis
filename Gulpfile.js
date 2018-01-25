@@ -105,6 +105,11 @@ gulp.task('copy-data', function() {
     .pipe(gulp.dest('build/data'));
 });
 
+gulp.task('copy-lang', function() {
+  return gulp.src('src/lang/**')
+    .pipe(gulp.dest('build/lang'));
+});
+
 gulp.task('copy-html', function() {
   return gulp.src('src/html/**')
     .pipe(gulp.dest('build/'));
@@ -120,7 +125,7 @@ gulp.task('copy-lib', function() {
     .pipe(gulp.dest('build/bower_components'));
 });
 
-gulp.task('copy-build', ['copy-js', 'copy-data', 'copy-html',
+gulp.task('copy-build', ['copy-js', 'copy-data', 'copy-lang', 'copy-html',
                         'copy-css', 'copy-lib']);
 
 // build
@@ -193,6 +198,10 @@ gulp.task('sort_resources', function() {
   return plugins.run('node build_scripts/sort_resources.js',{silent:true}).exec();
 });
 
+gulp.task('process_lang', function() {
+  return plugins.run('node build_scripts/process_lang.js',{silent:true}).exec();
+});
+
 gulp.task('concat', function() {
   return gulp.src(['build/scripts/modules/module.js',
     'build/scripts/**/*!(module.js)'])
@@ -219,6 +228,7 @@ gulp.task('build', function(callback) {
     'generate_achievement_functions',
     'generate_upgrade_functions',
     'generate_element_slot',
+    'process_lang',
     'sort_resources',
     'check_isotopes',
     'populate_player',
