@@ -31,7 +31,9 @@ angular
       sv.resetElement = function(player, element) {
         let resources = player.resources;
         for (let resource of data.elements[element].includes) {
-          resources[resource] = 0;
+          if(resources[resource] !== null){
+            resources[resource] = 0;
+          }
         }
       };
 

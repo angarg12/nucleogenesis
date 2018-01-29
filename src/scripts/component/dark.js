@@ -60,7 +60,9 @@ angular.module('game').controller('ct_dark', ['state', 'format', 'visibility', '
 
       for (let key in data.elements) {
         let element = data.elements[key];
-        player.resources[element.exotic] = 0;
+        if(player.resources[element.exotic] !== null){
+          player.resources[element.exotic] = 0;
+        }
         if (!player.exotic_upgrades[key]) {
           continue;
         }

@@ -149,7 +149,7 @@ describe('Dark', function() {
       expect(spec.state.player.element_slots[0]).toBeNull();
       expect(spec.state.player.exotic_upgrades.H.x3).toBeFalsy();
       expect(spec.state.player.resources['1H']).toEqual(0);
-      expect(spec.state.player.resources.xH).toEqual(0);
+      expect(spec.state.player.resources.xH).toEqual(null);
       expect(spec.state.player.resources.dark_matter).toEqual(null);
     });
   });
