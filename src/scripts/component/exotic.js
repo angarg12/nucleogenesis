@@ -177,7 +177,9 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
       return false;
     }
 
-    state.registerUpdate('exotic', ct.update);
-	  refresh(state.player);
+    if(!state.noload){
+      state.registerUpdate('exotic', ct.update);
+  	  refresh(state.player);
+    }
   }
 ]);

@@ -22,7 +22,7 @@
       <p>{{ 'EXOTIC.BOOST' | translate }}</p>
       <div ng-if="ct.visibleSubatomic(ct.state.player).length > 0">
         <div ng-repeat="resource in ct.visibleSubatomic(ct.state.player)">
-          {{resource}}: 
+          {{resource}}:
           <pretty value="ct.infuseBoost(resource, ct.state.player)*100"></pretty>%
         </div>
         {{ 'EXOTIC.BOOST_TOTAL' | translate }}:
@@ -35,7 +35,6 @@
     </p>
     <button type="button"
             class="btn btn-default"
-            ng-class="{disabled: !ct.isValidInfusion()}"
             ng-click="ct.exoticPrestige($index, ct.state.player)">{{ 'EXOTIC.PRESTIGE' | translate }}</button>
     <p>{{ 'EXOTIC.PRODUCED' | translate }}</p>
     <p ng-repeat="(key,value) in ct.cache.breakdown[slot.element]">

@@ -79,5 +79,26 @@
       "})()"
     ],
     "tags": ["cycle"]
+  },
+  "automation_3": {
+    "price": 2500,
+    "name": "Automation III",
+    "description": "Automatically generate exotic matter",
+    "deps": [],
+    "function": ["(() => {",
+      "state.noload = true;",
+      "let exotic = $controller('ct_exotic');",
+      "state.noload = false;",
+      "exotic.update(args.player);",
+      "for(let slot of args.player.element_slots){",
+      "  if(!slot) continue;",
+      "  let production = exotic.productionSum(slot.element);",
+      "  for (let key in production) {",
+      "    util.addResource(args.player, 'dark', key, production[key], state);",
+      "  }",
+      "}",
+      "})()"
+    ],
+    "tags": ["cycle"]
   }
 }

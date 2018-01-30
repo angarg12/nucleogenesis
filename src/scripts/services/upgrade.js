@@ -10,8 +10,8 @@
 
 angular
   .module('game')
-  .service('upgrade', ['data', '$controller', 'state',
-    function(data, $controller, state) {
+  .service('upgrade', ['data', 'util', '$controller', 'state',
+    function(data, util, $controller, state) {
       let sv = this;
 
       <%= upgradeFunctions %>
