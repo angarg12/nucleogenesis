@@ -23,7 +23,6 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     ct.data = data;
     ct.util = util;
     ct.format = format;
-    ct.infuse = {};
     let sortFunc = upgrade.sortFunctions(data.exotic_upgrades);
     ct.cache = {breakdown:{}};
 
@@ -103,10 +102,6 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
         util.addResource(player, 'dark', key, production[key], state);
       }
 
-      for(let resource in ct.infuse){
-        player.resources[resource] = Math.max(0, player.resources[resource]-ct.infuse[resource]);
-      }
-
       upgrade.resetElement(player, slot.element);
 
       // we deactivate reactions and redoxes
@@ -138,26 +133,8 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
         currency);
     };
 
-    ct.setPercentage = function(resource, percentage, player) {
-      ct.infuse[resource] = Math.floor(player.resources[resource]*(percentage/100));
-    };
-
-    ct.fixNumber = function(resource, player) {
-      ct.infuse[resource] = Math.max(0, Math.min(player.resources[resource], ct.infuse[resource]));
-    };
-
-    /* This function checks that values inserted in the text boxes are
-    valid numbers */
-    ct.isValidInfusion = function() {
-      let valid = true;
-      for(let resource in ct.infuse){
-        valid = valid && Number.isFinite(ct.infuse[resource]);
-      }
-      return valid;
-    };
-
     ct.infuseBoost = function(resource, player) {
-        let number = Math.min(ct.infuse[resource], player.resources[resource]);
+        let number = player.resources[resource];
         if(number === 0){
           return 1;
         }
@@ -168,7 +145,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     /* The infusion boosts are multiplicative with respect to each other */
     ct.totalInfuseBoost = function(player) {
       let total = 1;
-      for(let resource in ct.infuse){
+      for(let resource of ct.visibleSubatomic(player)){
         total *= ct.infuseBoost(resource, player);
       }
       return total;

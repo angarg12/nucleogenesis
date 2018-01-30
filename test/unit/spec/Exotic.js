@@ -147,23 +147,11 @@ describe('Exotic', function() {
   });
 
   describe('infusion', function() {
-    it('should set infusion percentage', function() {
-      spec.data.resources = {
-        p: {elements: {}, type: ['subatomic']}
-      };
-      spec.state.player.resources.p = 1001;
-
-      spec.exotic.setPercentage('p', 25, spec.state.player);
-
-      expect(spec.exotic.infuse.p).toEqual(250);
-    });
-
     it('should calculate the infusion power', function() {
       spec.data.resources = {
         p: {elements: {}, type: ['subatomic']}
       };
       spec.state.player.resources.p = 0;
-      spec.exotic.infuse.p = 0;
 
       let value = spec.exotic.infuseBoost('p', spec.state.player);
 
@@ -175,7 +163,6 @@ describe('Exotic', function() {
         p: {elements: {}, type: ['subatomic']}
       };
       spec.state.player.resources.p = 1000;
-      spec.exotic.infuse.p = 1000;
 
       let value = spec.exotic.infuseBoost('p', spec.state.player);
 
@@ -189,8 +176,6 @@ describe('Exotic', function() {
       };
       spec.state.player.resources.p = 1000;
       spec.state.player.resources.n = 1000;
-      spec.exotic.infuse.p = 1000;
-      spec.exotic.infuse.n = 1000;
 
       let value = spec.exotic.totalInfuseBoost(spec.state.player);
 
@@ -213,8 +198,6 @@ describe('Exotic', function() {
       spec.state.player.resources.xH = null;
       spec.state.player.resources.p = 1000;
       spec.state.player.resources.n = 1000;
-      spec.exotic.infuse.p = 1000;
-      spec.exotic.infuse.n = 1000;
       spec.state.player.element_slots = [{
         element: 'H',
         upgrades: {},

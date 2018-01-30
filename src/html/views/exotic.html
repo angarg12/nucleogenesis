@@ -20,29 +20,14 @@
       <p>{{ 'EXOTIC.SACRIFICE' | translate:ct }}
       </p>
       <p>{{ 'EXOTIC.BOOST' | translate }}</p>
-      <form name="infuse" ng-if="ct.visibleSubatomic(ct.state.player).length > 0">
+      <div ng-if="ct.visibleSubatomic(ct.state.player).length > 0">
         <div ng-repeat="resource in ct.visibleSubatomic(ct.state.player)">
-          {{resource}}: <input type="number"
-                 ng-init="ct.infuse[resource] = 0"
-                 min="0"
-                 step="any"
-                 ng-model="ct.infuse[resource]"
-                 ng-change="ct.fixNumber(resource, ct.state.player)"
-                 pattern="^[^.]*$" />
-          <button type="button"
-                  class="btn btn-default"
-                  ng-click="ct.setPercentage(resource, 10, ct.state.player)"> 10% </button>
-          <button type="button"
-                  class="btn btn-default"
-                  ng-click="ct.setPercentage(resource, 50, ct.state.player)"> 50% </button>
-          <button type="button"
-                  class="btn btn-default"
-                  ng-click="ct.setPercentage(resource, 100, ct.state.player)"> 100% </button> Boost:
+          {{resource}}: 
           <pretty value="ct.infuseBoost(resource, ct.state.player)*100"></pretty>%
         </div>
         {{ 'EXOTIC.BOOST_TOTAL' | translate }}:
         <pretty value="ct.totalInfuseBoost(ct.state.player)*100"></pretty>%
-    </form>
+    </div>
     <p>{{ 'EXOTIC.PRESTIGE_NOW' | translate }}</p>
     <p ng-repeat="(key,value) in ct.productionSum(slot.element)">
       <pretty value="value"></pretty>
