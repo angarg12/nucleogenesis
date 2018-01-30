@@ -45,5 +45,39 @@
       "})()"
     ],
     "tags": ["cycle"]
+  },
+  "automation_2": {
+    "price": 500,
+    "name": "Automation II",
+    "description": "Automatically buy generators",
+    "deps": [],
+    "function": ["(() => {",
+      "let generators = $controller('ct_generators');",
+      "for(let slot of args.player.element_slots){",
+      "  if(!slot) continue;",
+      "  let tierToBuy = '1';",
+      "  let bestRatio = 0;",
+      "",
+      "  for (let gen in data.generators) {",
+      "    let level = slot.generators[gen];",
+      "    let price = data.generators[gen].price * Math.pow(data.generators[gen].price_exp, level);",
+      "    let power = generators.generatorProduction(args.player, gen, slot);",
+      "    if (power / price > bestRatio) {",
+      "      tierToBuy = gen;",
+      "      bestRatio = power / price;",
+      "    }",
+      "    // we want to stop at the first generator we haven't bought yet",
+      "    if (level === 0) {",
+      "      break;",
+      "    }",
+      "  }",
+      "",
+      "  if (tierToBuy) {",
+      "    generators.buyGenerators(args.player, tierToBuy, slot, generators.buyAmount[args.player.options.buyIndex]);",
+      "  }",
+      "}",
+      "})()"
+    ],
+    "tags": ["cycle"]
   }
 }
