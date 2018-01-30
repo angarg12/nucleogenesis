@@ -34,7 +34,7 @@
     "HIDE_COMPLETE": "Hide completed achivements:"
   },
   "DARK": {
-    "DESCRIPTION": "Sacrifice your progress to obtain dark matter. Dark matter boosts your global production {{ct.data.constants.DARK_POWER*100}}% and unlocks new upgrades.",
+    "DESCRIPTION": "Sacrifice your progress to obtain dark matter. Dark matter boosts your global production {{data.constants.DARK_POWER*100}}% and unlocks new upgrades.",
     "PRESTIGE_NOW": "Prestige now to obtain",
     "PRESTIGE": "Prestige",
     "PRODUCTION": "You produced"
@@ -67,7 +67,7 @@
     "SORT": "Sort by",
     "SORT_NAME": "Name",
     "SORT_PRICE": "Price",
-    "SACRIFICE": "Sacrifice your progress to obtain exotic matter. Exotic matter boosts your production for the element by {{ct.data.constants.EXOTIC_POWER*100}}% and unlocks new upgrades.",
+    "SACRIFICE": "Sacrifice your progress to obtain exotic matter. Exotic matter boosts your production for the element by {{data.constants.EXOTIC_POWER*100}}% and unlocks new upgrades.",
     "BOOST": "You can spend subatomic particles to boost your exotic matter production.",
     "BOOST_TOTAL": "Total boost",
     "PRESTIGE_NOW": "Prestige now to obtain",
