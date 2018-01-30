@@ -31,5 +31,19 @@
       "})()"
     ],
     "tags": ["once"]
+  },
+  "automation_1": {
+    "price": 50,
+    "name": "Automation I",
+    "description": "Automatically buy upgrades",
+    "deps": [],
+    "function": ["(() => {",
+      "let upgrades = $controller('ct_upgrades');",
+      "for(let slot of args.player.element_slots){",
+      "  if(slot) upgrades.buyAll(slot, args.player);",
+      "}",
+      "})()"
+    ],
+    "tags": ["cycle"]
   }
 }

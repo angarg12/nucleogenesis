@@ -10,11 +10,15 @@
 
 angular
   .module('game')
-  .service('upgrade', ['data',
-    function(data) {
+  .service('upgrade', ['data', '$controller', 'state',
+    function(data, $controller, state) {
       let sv = this;
 
       <%= upgradeFunctions %>
+
+      function update(player){
+        sv.executeAll(data.dark_upgrades, player.dark_upgrades, ['cycle'], {player:player});
+      }
 
       sv.buyUpgrade = function (player, upgrades, upgradeData, name, price, currency) {
         if (upgrades[name]) {
@@ -105,5 +109,7 @@ angular
           (a,b) => data[a].price - data[b].price
         ];
       };
+
+      state.registerUpdate('upgrade_service', update);
     }
   ]);
