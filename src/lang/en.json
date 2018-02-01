@@ -93,7 +93,8 @@
     "REACTION": "Reaction",
     "LOAD": "Load",
     "UNLOAD": "Unload",
-    "RUN": "Run"
+    "RUN": "Run",
+    "SET": "Set"
   },
   "GENERATORS": {
     "ELECTRONEG": "Electronegativity",

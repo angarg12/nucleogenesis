@@ -9,14 +9,9 @@
 {{ 'FUSION.CAPACITY' | translate }}: <pretty value="ct.getCapacity({resource: ct.state.player.fusion[0][ct.source].name, player:ct.state.player})"></pretty>
 <form name="beam">
   <div>
-    {{ct.state.player.fusion[0][ct.source].name}}:
-    <input type="number"
-           min="0"
-           step="any"
-           ng-model="ct.state.player.fusion[0][ct.source].number"
-           ng-change="ct.fixNumber(ct.state.player)"
-           ng-disabled="ct.state.player.fusion[0].active"
-           pattern="^[^.]*$" />
+	<br>
+    {{ct.state.player.fusion[0][ct.source].name}}: <pretty value="ct.state.player.fusion[0][ct.source].number"></pretty>
+	<br> {{ 'FUSION.SET' | translate }}
     <button type="button"
             class="btn btn-default"
             ng-disabled="ct.state.player.fusion[0].active"
