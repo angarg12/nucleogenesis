@@ -6,4 +6,6 @@ angular
     <%= language %>
 
   $translateProvider.preferredLanguage('en');
+
+  $translateProvider.useSanitizeValueStrategy('sanitize');
 }]);

@@ -46,7 +46,7 @@
     "SELECT": "Select an element for slot"
   },
   "ELEMENTS": {
-    "DESCRIPTION": "Buy new elements to unlock generators and upgrades. Success rate is proportional to each element abundance. Accumulate resources or spend more <get-html value=\"dark_matter\"></get-html> to increase the chance of success. All used <get-html value=\"dark_matter\"></get-html> will be consumed on purchase.",
+    "DESCRIPTION": "Buy new elements to unlock generators and upgrades. Success rate is proportional to each element abundance. Accumulate resources or spend more {{ct.util.getHTML('dark_matter')}} to increase the chance of success. All used {{ct.util.getHTML('dark_matter')}} will be consumed on purchase.",
     "BUY_AMOUNT": "Buy amount",
     "LEGEND": "Legend",
     "COLOR": "Color",

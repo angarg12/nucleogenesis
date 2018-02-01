@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<p>{{ 'ELEMENTS.DESCRIPTION' | translate }}</p>
+<p translate="ELEMENTS.DESCRIPTION" translate-values="{ct:ct}"></p>
 {{ 'ELEMENTS.BUY_AMOUNT' | translate }}:
 <button type="button" class="btn btn-default" ng-click="ct.util.nextAmount(ct.state.player, 'elementBuyIndex', ct.buyAmount)">
             {{ct.buyAmount[ct.state.player.options.elementBuyIndex]}}
