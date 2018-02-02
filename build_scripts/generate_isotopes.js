@@ -25,8 +25,33 @@ for (let element in elements) {
   let mainIsotope = [0, ''];
   for (let isotope in isotopes) {
     resources[isotope] = {};
-    resources[isotope].energy = isotopes[isotope].energy;
-    resources[isotope].binding_energy = isotopes[isotope].binding_energy;
+
+    // https://en.wikipedia.org/wiki/Nuclear_binding_energy#Semiempirical_formula_for_nuclear_binding_energy
+    let p = 938272081;
+    let n = 939565413;
+    let e = 511000;
+
+    let Z = elements[element].number;
+    let A = parseInt(isotope, 10);
+    let N = A - Z;
+    let calculatedEnergy = p*Z+n*N+e*Z;
+    let calculatedBinding = 14-(13/Math.pow(A,1/3))-(0.585*Z*Z/Math.pow(A,4/3))-(19.3*Math.pow(N-Z,2)/Math.pow(A,2));
+    if(Z%2 === 0 && N%2 === 0){
+      calculatedBinding += 33/Math.pow(A,7/4)
+    }
+    if(Z%2 === 1 && N%2 === 1){
+      calculatedBinding -= 33/Math.pow(A,7/4)
+    }
+    calculatedBinding *= A*1e6;
+    calculatedBinding = Math.round(calculatedBinding);
+    // the experimental formula fails for some small isotopes
+    // so we just introduce the values by hand
+    if(isotopes[isotope].binding_energy){
+      calculatedBinding = isotopes[isotope].binding_energy;
+    }
+
+    resources[isotope].energy = calculatedEnergy-calculatedBinding;
+    resources[isotope].binding_energy = calculatedBinding;
     resources[isotope].elements = {};
     resources[isotope].elements[element] = 1;
     resources[isotope].html = isotopePrefix(isotope) + element;

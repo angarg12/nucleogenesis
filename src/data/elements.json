@@ -3,14 +3,12 @@
     "name": "Hydrogen",
     "isotopes": {
       "1H": {
-        "ratio": 0.999884,
-        "energy": 938782582,
         "binding_energy": 0
+        "ratio": 0.999884
       },
       "2H": {
-        "ratio": 0.000115,
-        "energy": 1876122946,
         "binding_energy": 2224570
+        "ratio": 0.000115
       },
       "3H": {
         "ratio": 0.000001,
@@ -21,9 +19,8 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 2809430644,
         "binding_energy": 8481808
+        }
       }
     },
     "ionization_energy": [
@@ -41,14 +38,12 @@
     "name": "Helium",
     "isotopes": {
       "4He": {
-        "ratio": 0.999998,
-        "energy": 3728399374,
         "binding_energy": 28295668
+        "ratio": 0.999998
       },
       "3He": {
-        "ratio": 0.000002,
-        "energy": 2809412053,
         "binding_energy": 7718045
+        "ratio": 0.000002
       }
     },
     "ionization_energy": [
@@ -67,14 +62,12 @@
     "name": "Lithium",
     "isotopes": {
       "6Li": {
-        "ratio": 0.95,
-        "energy": 5603048475,
         "binding_energy": 31993997
+        "ratio": 0.95
       },
       "7Li": {
-        "ratio": 0.05,
-        "energy": 6535363438,
         "binding_energy": 39245093
+        "ratio": 0.05
       }
     },
     "ionization_energy": [
@@ -94,9 +87,8 @@
     "name": "Beryllium",
     "isotopes": {
       "9Be": {
-        "ratio": 0.999998,
-        "energy": 8394790176,
         "binding_energy": 58164038
+        "ratio": 0.999998
       },
       "7Be": {
         "ratio": 0.000001,
@@ -107,9 +99,8 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 6536225331,
         "binding_energy": 37600846
+        }
       },
       "10Be": {
         "ratio": 0.000001,
@@ -120,9 +111,8 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 9327542813,
         "binding_energy": 64976326
+        }
       }
     },
     "ionization_energy": [
@@ -143,14 +133,10 @@
     "name": "Boron",
     "isotopes": {
       "10B": {
-        "ratio": 0.2,
-        "energy": 9326986874,
-        "binding_energy": 64750770
+        "ratio": 0.2
       },
       "11B": {
-        "ratio": 0.8,
-        "energy": 10255097689,
-        "binding_energy": 76204900
+        "ratio": 0.8
       }
     },
     "ionization_energy": [
@@ -172,9 +158,7 @@
     "name": "Carbon",
     "isotopes": {
       "12C": {
-        "ratio": 0.988999,
-        "energy": 11177923378,
-        "binding_energy": 92161752
+        "ratio": 0.988999
       },
       "11C": {
         "ratio": 0,
@@ -185,14 +169,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 10257080101,
-        "binding_energy": 73440134
+        }
       },
       "13C": {
-        "ratio": 0.011,
-        "energy": 12112542003,
-        "binding_energy": 97108066
+        "ratio": 0.011
       },
       "14C": {
         "ratio": 0.000001,
@@ -203,9 +183,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 13043930500,
-        "binding_energy": 105284505
+        }
       }
     },
     "ionization_energy": [
@@ -236,19 +214,13 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 12114762471,
-        "binding_energy": 94105240
+        }
       },
       "14N": {
-        "ratio": 0.96,
-        "energy": 13043774024,
-        "binding_energy": 104658627
+        "ratio": 0.96
       },
       "15N": {
-        "ratio": 0.04,
-        "energy": 13972505661,
-        "binding_energy": 115491928
+        "ratio": 0.04
       }
     },
     "ionization_energy": [
@@ -272,19 +244,13 @@
     "name": "Oxygen",
     "isotopes": {
       "16O": {
-        "ratio": 0.9976,
-        "energy": 14899160838,
-        "binding_energy": 127619337
+        "ratio": 0.9976
       },
       "17O": {
-        "ratio": 0.00039,
-        "energy": 15834582639,
-        "binding_energy": 131762422
+        "ratio": 0.00039
       },
       "18O": {
-        "ratio": 0.00201,
-        "energy": 16766103545,
-        "binding_energy": 139807797
+        "ratio": 0.00201
       }
     },
     "ionization_energy": [
@@ -310,9 +276,7 @@
     "name": "Fluorine",
     "isotopes": {
       "19F": {
-        "ratio": 0.999999,
-        "energy": 17696891295,
-        "binding_energy": 147801395
+        "ratio": 0.999999
       },
       "18F": {
         "ratio": 0.000001,
@@ -323,9 +287,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 16767758767,
-        "binding_energy": 137369515
+        }
       }
     },
     "ionization_energy": [
@@ -351,19 +313,13 @@
     "name": "Neon",
     "isotopes": {
       "20Ne": {
-        "ratio": 0.9048,
-        "energy": 18622830368,
-        "binding_energy": 160644850
+        "ratio": 0.9048
       },
       "21Ne": {
-        "ratio": 0.0027,
-        "energy": 19555634137,
-        "binding_energy": 167406019
+        "ratio": 0.0027
       },
       "22Ne": {
-        "ratio": 0.0925,
-        "energy": 20484834814,
-        "binding_energy": 177770280
+        "ratio": 0.0925
       }
     },
     "ionization_energy": [
@@ -396,14 +352,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 20487677092,
-        "binding_energy": 174144730
+        }
       },
       "23Na": {
-        "ratio": 0.999998,
-        "energy": 21414823292,
-        "binding_energy": 186564387
+        "ratio": 0.999998
       },
       "24Na": {
         "ratio": 0.000001,
@@ -414,9 +366,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 22347428645,
-        "binding_energy": 193523816
+        }
       }
     },
     "ionization_energy": [
@@ -444,19 +394,13 @@
     "name": "Magnesium",
     "isotopes": {
       "24Mg": {
-        "ratio": 0.79,
-        "energy": 22341913194,
-        "binding_energy": 198257073
+        "ratio": 0.79
       },
       "25Mg": {
-        "ratio": 0.1,
-        "energy": 23274147550,
-        "binding_energy": 205587598
+        "ratio": 0.1
       },
       "26Mg": {
-        "ratio": 0.11,
-        "energy": 24202619410,
-        "binding_energy": 216680696
+        "ratio": 0.11
       }
     },
     "ionization_energy": [
@@ -491,14 +435,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 24206623681,
-        "binding_energy": 211893908
+        }
       },
       "27Al": {
-        "ratio": 0.999999,
-        "energy": 25133130950,
-        "binding_energy": 224951866
+        "ratio": 0.999999
       }
     },
     "ionization_energy": [
@@ -528,19 +468,13 @@
     "name": "Silicon",
     "isotopes": {
       "28Si": {
-        "ratio": 0.921998,
-        "energy": 26060328428,
-        "binding_energy": 236536882
+        "ratio": 0.921998
       },
       "29Si": {
-        "ratio": 0.047,
-        "energy": 26991419793,
-        "binding_energy": 245010489
+        "ratio": 0.047
       },
       "30Si": {
-        "ratio": 0.031,
-        "energy": 27920375527,
-        "binding_energy": 255619695
+        "ratio": 0.031
       },
       "31Si": {
         "ratio": 0.000001,
@@ -551,9 +485,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 28853353063,
-        "binding_energy": 262207093
+        }
       },
       "32Si": {
         "ratio": 0.000001,
@@ -564,9 +496,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 29783714778,
-        "binding_energy": 271407066
+        }
       }
     },
     "ionization_energy": [
@@ -597,9 +527,7 @@
     "name": "Phosphorus",
     "isotopes": {
       "31P": {
-        "ratio": 0.999998,
-        "energy": 28851861185,
-        "binding_energy": 262916244
+        "ratio": 0.999998
       },
       "32P": {
         "ratio": 0.000001,
@@ -610,9 +538,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 29783490467,
-        "binding_energy": 270851900
+        }
       },
       "33P": {
         "ratio": 0.000001,
@@ -623,9 +549,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 30712951814,
-        "binding_energy": 280955695
+        }
       }
     },
     "ionization_energy": [
@@ -657,19 +581,13 @@
     "name": "Sulfur",
     "isotopes": {
       "32S": {
-        "ratio": 0.949899,
-        "energy": 29781779989,
-        "binding_energy": 271780205
+        "ratio": 0.949899
       },
       "33S": {
-        "ratio": 0.0075,
-        "energy": 30712703306,
-        "binding_energy": 280421849
+        "ratio": 0.0075
       },
       "34S": {
-        "ratio": 0.0425,
-        "energy": 31640851129,
-        "binding_energy": 291839011
+        "ratio": 0.0425
       },
       "35S": {
         "ratio": 0.000001,
@@ -680,14 +598,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 32573430175,
-        "binding_energy": 298824858
+        }
       },
       "36S": {
-        "ratio": 0.0001,
-        "energy": 33503106072,
-        "binding_energy": 308714088
+        "ratio": 0.0001
       }
     },
     "ionization_energy": [
@@ -721,9 +635,7 @@
     "name": "Chlorine",
     "isotopes": {
       "35Cl": {
-        "ratio": 0.759999,
-        "energy": 32573262992,
-        "binding_energy": 298209827
+        "ratio": 0.759999
       },
       "36Cl": {
         "ratio": 0.000001,
@@ -737,14 +649,10 @@
               "ratio": 0.02
             }
           }
-        },
-        "energy": 33504248289,
-        "binding_energy": 306789627
+        }
       },
       "37Cl": {
-        "ratio": 0.24,
-        "energy": 34433502230,
-        "binding_energy": 317100454
+        "ratio": 0.24
       }
     },
     "ionization_energy": [
@@ -778,9 +686,7 @@
     "name": "Argon",
     "isotopes": {
       "36Ar": {
-        "ratio": 0.00336,
-        "energy": 33503538607,
-        "binding_energy": 306716796
+        "ratio": 0.00336
       },
       "37Ar": {
         "ratio": 0,
@@ -791,14 +697,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 34434316103,
-        "binding_energy": 315504227
+        }
       },
       "38Ar": {
-        "ratio": 0.00063,
-        "energy": 35362042827,
-        "binding_energy": 327342722
+        "ratio": 0.00063
       },
       "39Ar": {
         "ratio": 0.000001,
@@ -809,14 +711,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 36295008981,
-        "binding_energy": 333941415
+        }
       },
       "40Ar": {
-        "ratio": 0.996009,
-        "energy": 37224704712,
-        "binding_energy": 343810442
+        "ratio": 0.996009
       },
       "41Ar": {
         "ratio": 0,
@@ -827,9 +725,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 38158170754,
-        "binding_energy": 349909376
+        }
       }
     },
     "ionization_energy": [
@@ -864,9 +760,7 @@
     "name": "Potassium",
     "isotopes": {
       "39K": {
-        "ratio": 0.93258,
-        "energy": 36294443982,
-        "binding_energy": 333724061
+        "ratio": 0.93258
       },
       "40K": {
         "ratio": 0.00012,
@@ -880,14 +774,10 @@
               "ratio": 0.108
             }
           }
-        },
-        "energy": 37226209403,
-        "binding_energy": 341523686
+        }
       },
       "41K": {
-        "ratio": 0.0673,
-        "energy": 38155679149,
-        "binding_energy": 351619060
+        "ratio": 0.0673
       }
     },
     "ionization_energy": [
@@ -923,9 +813,7 @@
     "name": "Calcium",
     "isotopes": {
       "40Ca": {
-        "ratio": 0.969409,
-        "energy": 37224898333,
-        "binding_energy": 342052226
+        "ratio": 0.969409
       },
       "41Ca": {
         "ratio": 0.000001,
@@ -936,24 +824,16 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 38156100464,
-        "binding_energy": 350415050
+        }
       },
       "42Ca": {
-        "ratio": 0.00647,
-        "energy": 39084184767,
-        "binding_energy": 361895729
+        "ratio": 0.00647
       },
       "43Ca": {
-        "ratio": 0.00135,
-        "energy": 40015816815,
-        "binding_energy": 369828624
+        "ratio": 0.00135
       },
       "44Ca": {
-        "ratio": 0.02086,
-        "energy": 40944250591,
-        "binding_energy": 380959790
+        "ratio": 0.02086
       },
       "45Ca": {
         "ratio": 0,
@@ -964,14 +844,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 41876400734,
-        "binding_energy": 388374607
+        }
       },
       "46Ca": {
-        "ratio": 0.00004,
-        "energy": 42805571223,
-        "binding_energy": 398772174
+        "ratio": 0.00004
       },
       "48Ca": {
         "ratio": 0.00187,
@@ -985,9 +861,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 44667479401,
-        "binding_energy": 416001183
+        }
       }
     },
     "ionization_energy": [
@@ -1032,14 +906,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 40947902976,
-        "binding_energy": 376524756
+        }
       },
       "45Sc": {
-        "ratio": 1,
-        "energy": 41876144892,
-        "binding_energy": 387851278
+        "ratio": 1
       },
       "46Sc": {
         "ratio": 0,
@@ -1050,9 +920,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 42806949184,
-        "binding_energy": 396611923
+        }
       },
       "47Sc": {
         "ratio": 0,
@@ -1063,9 +931,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 43735867795,
-        "binding_energy": 407258377
+        }
       },
       "48Sc": {
         "ratio": 0,
@@ -1076,9 +942,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 44667197430,
-        "binding_energy": 415497490
+        }
       }
     },
     "ionization_energy": [
@@ -1124,34 +988,22 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 40948170610,
-        "binding_energy": 375474994
+        }
       },
       "46Ti": {
-        "ratio": 0.0825,
-        "energy": 42804582879,
-        "binding_energy": 398196066
+        "ratio": 0.0825
       },
       "47Ti": {
-        "ratio": 0.0744,
-        "energy": 43735267522,
-        "binding_energy": 407076793
+        "ratio": 0.0744
       },
       "48Ti": {
-        "ratio": 0.7372,
-        "energy": 44663205805,
-        "binding_energy": 418703450
+        "ratio": 0.7372
       },
       "49Ti": {
-        "ratio": 0.0541,
-        "energy": 45594628348,
-        "binding_energy": 426845848
+        "ratio": 0.0541
       },
       "50Ti": {
-        "ratio": 0.0518,
-        "energy": 46523254092,
-        "binding_energy": 437785043
+        "ratio": 0.0518
       }
     },
     "ionization_energy": [
@@ -1198,9 +1050,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 44667218145,
-        "binding_energy": 413906130
+        }
       },
       "49V": {
         "ratio": 0,
@@ -1211,9 +1061,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 45595230204,
-        "binding_energy": 425461638
+        }
       },
       "50V": {
         "ratio": 0.0025,
@@ -1227,14 +1075,10 @@
               "ratio": 0.17
             }
           }
-        },
-        "energy": 46525459208,
-        "binding_energy": 434795864
+        }
       },
       "51V": {
-        "ratio": 0.9975,
-        "energy": 47453972995,
-        "binding_energy": 445847016
+        "ratio": 0.9975
       }
     },
     "ionization_energy": [
@@ -1274,9 +1118,7 @@
     "name": "Chromium",
     "isotopes": {
       "50Cr": {
-        "ratio": 0.04345,
-        "energy": 46524421263,
-        "binding_energy": 435051363
+        "ratio": 0.04345
       },
       "51Cr": {
         "ratio": 0,
@@ -1287,24 +1129,16 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 47454725571,
-        "binding_energy": 444312031
+        }
       },
       "52Cr": {
-        "ratio": 0.83789,
-        "energy": 48382251062,
-        "binding_energy": 456350389
+        "ratio": 0.83789
       },
       "53Cr": {
-        "ratio": 0.09501,
-        "energy": 49313876868,
-        "binding_energy": 464289517
+        "ratio": 0.09501
       },
       "54Cr": {
-        "ratio": 0.02365,
-        "energy": 50243722679,
-        "binding_energy": 474008643
+        "ratio": 0.02365
       }
     },
     "ionization_energy": [
@@ -1353,9 +1187,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 48386962549,
-        "binding_energy": 450856800
+        }
       },
       "53Mn": {
         "ratio": 0.000001,
@@ -1366,9 +1198,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 49314473705,
-        "binding_energy": 462910314
+        }
       },
       "54Mn": {
         "ratio": 0,
@@ -1382,14 +1212,10 @@
               "ratio": 0.000002
             }
           }
-        },
-        "energy": 50245099855,
-        "binding_energy": 471849116
+        }
       },
       "55Mn": {
-        "ratio": 0.999999,
-        "energy": 51174438261,
-        "binding_energy": 482075640
+        "ratio": 0.999999
       }
     },
     "ionization_energy": [
@@ -1431,9 +1257,7 @@
     "name": "Iron",
     "isotopes": {
       "54Fe": {
-        "ratio": 0.0585,
-        "energy": 50244402769,
-        "binding_energy": 471764105
+        "ratio": 0.0585
       },
       "55Fe": {
         "ratio": 0,
@@ -1444,24 +1268,16 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 51174669472,
-        "binding_energy": 481062198
+        }
       },
       "56Fe": {
-        "ratio": 0.9175,
-        "energy": 52103037104,
-        "binding_energy": 492259306
+        "ratio": 0.9175
       },
       "57Fe": {
-        "ratio": 0.0212,
-        "energy": 53034955940,
-        "binding_energy": 499905387
+        "ratio": 0.0212
       },
       "58Fe": {
-        "ratio": 0.0028,
-        "energy": 53964476269,
-        "binding_energy": 509949997
+        "ratio": 0.0028
       },
       "59Fe": {
         "ratio": 0,
@@ -1472,9 +1288,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 54897460186,
-        "binding_energy": 516531017
+        }
       },
       "60Fe": {
         "ratio": 0,
@@ -1485,9 +1299,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 55828205084,
-        "binding_energy": 525350551
+        }
       }
     },
     "ionization_energy": [
@@ -1538,9 +1350,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 52107603103,
-        "binding_energy": 486910328
+        }
       },
       "57Co": {
         "ratio": 0,
@@ -1551,9 +1361,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 53035791867,
-        "binding_energy": 498286801
+        }
       },
       "58Co": {
         "ratio": 0,
@@ -1564,14 +1372,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 53966783817,
-        "binding_energy": 506859734
+        }
       },
       "59Co": {
-        "ratio": 1,
-        "energy": 54895894889,
-        "binding_energy": 517313618
+        "ratio": 1
       },
       "60Co": {
         "ratio": 0,
@@ -1582,9 +1386,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 55827967903,
-        "binding_energy": 524805542
+        }
       }
     },
     "ionization_energy": [
@@ -1628,9 +1430,7 @@
     "name": "Nickel",
     "isotopes": {
       "58Ni": {
-        "ratio": 0.680759,
-        "energy": 53966401991,
-        "binding_energy": 506458975
+        "ratio": 0.680759
       },
       "59Ni": {
         "ratio": 0.000001,
@@ -1641,24 +1441,16 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 54896967650,
-        "binding_energy": 515458263
+        }
       },
       "60Ni": {
-        "ratio": 0.26223,
-        "energy": 55825144838,
-        "binding_energy": 526846001
+        "ratio": 0.26223
       },
       "61Ni": {
-        "ratio": 0.0114,
-        "energy": 56756889640,
-        "binding_energy": 534666113
+        "ratio": 0.0114
       },
       "62Ni": {
-        "ratio": 0.03635,
-        "energy": 57685858052,
-        "binding_energy": 545261977
+        "ratio": 0.03635
       },
       "63Ni": {
         "ratio": 0,
@@ -1669,14 +1461,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 58618585206,
-        "binding_energy": 552099758
+        }
       },
       "64Ni": {
-        "ratio": 0.00926,
-        "energy": 59548492100,
-        "binding_energy": 561757238
+        "ratio": 0.00926
       }
     },
     "ionization_energy": [
@@ -1721,9 +1509,7 @@
     "name": "Copper",
     "isotopes": {
       "63Cu": {
-        "ratio": 0.6915,
-        "energy": 58618518231,
-        "binding_energy": 551384381
+        "ratio": 0.6915
       },
       "64Cu": {
         "ratio": 0,
@@ -1737,14 +1523,10 @@
               "ratio": 0.39
             }
           }
-        },
-        "energy": 59550167135,
-        "binding_energy": 559300500
+        }
       },
       "65Cu": {
-        "ratio": 0.3085,
-        "energy": 60479821331,
-        "binding_energy": 569211186
+        "ratio": 0.3085
       },
       "66Cu": {
         "ratio": 0,
@@ -1755,9 +1537,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 61412320333,
-        "binding_energy": 576277122
+        }
       }
     },
     "ionization_energy": [
@@ -1803,9 +1583,7 @@
     "name": "Zinc",
     "isotopes": {
       "64Zn": {
-        "ratio": 0.492,
-        "energy": 59549587782,
-        "binding_energy": 559097841
+        "ratio": 0.492
       },
       "65Zn": {
         "ratio": 0,
@@ -1816,24 +1594,16 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 60481173393,
-        "binding_energy": 567077173
+        }
       },
       "66Zn": {
-        "ratio": 0.277,
-        "energy": 61409679181,
-        "binding_energy": 578135760
+        "ratio": 0.277
       },
       "67Zn": {
-        "ratio": 0.04,
-        "energy": 62342191781,
-        "binding_energy": 585188088
+        "ratio": 0.04
       },
       "68Zn": {
-        "ratio": 0.185,
-        "energy": 63271558618,
-        "binding_energy": 595386190
+        "ratio": 0.185
       },
       "69Zn": {
         "ratio": 0,
@@ -1844,14 +1614,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 64204641480,
-        "binding_energy": 601868266
+        }
       },
       "70Zn": {
-        "ratio": 0.006,
-        "energy": 65134988419,
-        "binding_energy": 611086699
+        "ratio": 0.006
       }
     },
     "ionization_energy": [
@@ -1895,9 +1661,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 61414854179,
-        "binding_energy": 572178406
+        }
       },
       "67Ga": {
         "ratio": 0,
@@ -1908,9 +1672,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 62343192539,
-        "binding_energy": 583404563
+        }
       },
       "68Ga": {
         "ratio": 0,
@@ -1921,14 +1683,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 63274479717,
-        "binding_energy": 591682736
+        }
       },
       "69Ga": {
-        "ratio": 0.6011,
-        "energy": 64203731695,
-        "binding_energy": 601996112
+        "ratio": 0.6011
       },
       "70Ga": {
         "ratio": 0,
@@ -1942,14 +1700,10 @@
               "ratio": 0.004
             }
           }
-        },
-        "energy": 65135642978,
-        "binding_energy": 609649767
+        }
       },
       "71Ga": {
-        "ratio": 0.3989,
-        "energy": 66065906441,
-        "binding_energy": 618950056
+        "ratio": 0.3989
       },
       "72Ga": {
         "ratio": 0,
@@ -1960,9 +1714,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 66998950917,
-        "binding_energy": 625470538
+        }
       },
       "73Ga": {
         "ratio": 0,
@@ -1973,9 +1725,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 67929334577,
-        "binding_energy": 634652940
+        }
       }
     },
     "ionization_energy": [
@@ -2004,14 +1754,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 63274586053,
-        "binding_energy": 590793425
+        }
       },
       "70Ge": {
-        "ratio": 0.2052,
-        "energy": 65133989958,
-        "binding_energy": 610519117
+        "ratio": 0.2052
       },
       "71Ge": {
         "ratio": 0,
@@ -2022,24 +1768,16 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 66066138946,
-        "binding_energy": 617935062
+        }
       },
       "72Ge": {
-        "ratio": 0.2745,
-        "energy": 66994954388,
-        "binding_energy": 628685829
+        "ratio": 0.2745
       },
       "73Ge": {
-        "ratio": 0.0776,
-        "energy": 67927736379,
-        "binding_energy": 635468774
+        "ratio": 0.0776
       },
       "74Ge": {
-        "ratio": 0.3652,
-        "energy": 68857105091,
-        "binding_energy": 645665016
+        "ratio": 0.3652
       },
       "76Ge": {
         "ratio": 0.0775,
@@ -2050,9 +1788,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 70720301711,
-        "binding_energy": 661598109
+        }
       }
     },
     "ionization_energy": [
@@ -2082,9 +1818,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 67928077212,
-        "binding_energy": 634341646
+        }
       },
       "74As": {
         "ratio": 0,
@@ -2098,14 +1832,10 @@
               "ratio": 0.34
             }
           }
-        },
-        "energy": 68859667560,
-        "binding_energy": 642320275
+        }
       },
       "75As": {
-        "ratio": 1,
-        "energy": 69788988733,
-        "binding_energy": 652565733
+        "ratio": 1
       }
     },
     "ionization_energy": [
@@ -2136,14 +1866,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 66999645890,
-        "binding_energy": 622403400
+        }
       },
       "74Se": {
-        "ratio": 0.0086,
-        "energy": 68858314793,
-        "binding_energy": 642891068
+        "ratio": 0.0086
       },
       "75Se": {
         "ratio": 0,
@@ -2154,24 +1880,16 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 69789852125,
-        "binding_energy": 650918670
+        }
       },
       "76Se": {
-        "ratio": 0.0923,
-        "energy": 70718262709,
-        "binding_energy": 662072462
+        "ratio": 0.0923
       },
       "77Se": {
-        "ratio": 0.076,
-        "energy": 71650408780,
-        "binding_energy": 669491320
+        "ratio": 0.076
       },
       "78Se": {
-        "ratio": 0.2369,
-        "energy": 72579475903,
-        "binding_energy": 679989067
+        "ratio": 0.2369
       },
       "79Se": {
         "ratio": 0.000001,
@@ -2182,14 +1900,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 73512078002,
-        "binding_energy": 686951906
+        }
       },
       "80Se": {
-        "ratio": 0.497999,
-        "energy": 74441729284,
-        "binding_energy": 696865281
+        "ratio": 0.497999
       },
       "82Se": {
         "ratio": 0.0882,
@@ -2200,9 +1914,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 76304882441,
-        "binding_energy": 712842369
+        }
       }
     },
     "ionization_energy": [
@@ -2226,14 +1938,10 @@
     "name": "Bromine",
     "isotopes": {
       "79Br": {
-        "ratio": 0.51,
-        "energy": 73511927090,
-        "binding_energy": 686320182
+        "ratio": 0.51
       },
       "81Br": {
-        "ratio": 0.49,
-        "energy": 75373007996,
-        "binding_energy": 704370424
+        "ratio": 0.49
       }
     },
     "ionization_energy": [
@@ -2266,9 +1974,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 72582322261,
-        "binding_energy": 675578027
+        }
       },
       "79Kr": {
         "ratio": 0,
@@ -2279,14 +1985,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 73513552867,
-        "binding_energy": 683912050
+        }
       },
       "80Kr": {
-        "ratio": 0.0229,
-        "energy": 74441596727,
-        "binding_energy": 695434409
+        "ratio": 0.0229
       },
       "81Kr": {
         "ratio": 0.000001,
@@ -2297,24 +1999,16 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 75373288796,
-        "binding_energy": 703307233
+        }
       },
       "82Kr": {
-        "ratio": 0.1159,
-        "energy": 76301886943,
-        "binding_energy": 714274060
+        "ratio": 0.1159
       },
       "83Kr": {
-        "ratio": 0.115,
-        "energy": 77233988356,
-        "binding_energy": 721745096
+        "ratio": 0.115
       },
       "84Kr": {
-        "ratio": 0.569799,
-        "energy": 78163032690,
-        "binding_energy": 732265723
+        "ratio": 0.569799
       },
       "85Kr": {
         "ratio": 0,
@@ -2325,14 +2019,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 79095477029,
-        "binding_energy": 739378041
+        }
       },
       "86Kr": {
-        "ratio": 0.1728,
-        "energy": 80025185341,
-        "binding_energy": 749234698
+        "ratio": 0.1728
       }
     },
     "ionization_energy": [
@@ -2385,9 +2075,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 77234895260,
-        "binding_energy": 720043340
+        }
       },
       "84Rb": {
         "ratio": 0,
@@ -2401,14 +2089,10 @@
               "ratio": 0.04
             }
           }
-        },
-        "energy": 78165713654,
-        "binding_energy": 728802994
+        }
       },
       "85Rb": {
-        "ratio": 0.7217,
-        "energy": 79094789965,
-        "binding_energy": 739282687
+        "ratio": 0.7217
       },
       "86Rb": {
         "ratio": 0,
@@ -2422,9 +2106,7 @@
               "ratio": 0.00005
             }
           }
-        },
-        "energy": 80025703894,
-        "binding_energy": 747933690
+        }
       },
       "87Rb": {
         "ratio": 0.2783,
@@ -2435,9 +2117,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 80955346731,
-        "binding_energy": 757855793
+        }
       }
     },
     "ionization_energy": [
@@ -2472,9 +2152,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 76306468065,
-        "binding_energy": 708129080
+        }
       },
       "83Sr": {
         "ratio": 0,
@@ -2485,14 +2163,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 77237174625,
-        "binding_energy": 716987962
+        }
       },
       "84Sr": {
-        "ratio": 0.0056,
-        "energy": 78164819843,
-        "binding_energy": 728911235
+        "ratio": 0.0056
       },
       "85Sr": {
         "ratio": 0,
@@ -2503,24 +2177,16 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 79095854723,
-        "binding_energy": 737436279
+        }
       },
       "86Sr": {
-        "ratio": 0.0986,
-        "energy": 80023927336,
-        "binding_energy": 748927525
+        "ratio": 0.0986
       },
       "87Sr": {
-        "ratio": 0.07,
-        "energy": 80955064114,
-        "binding_energy": 757355682
+        "ratio": 0.07
       },
       "88Sr": {
-        "ratio": 0.825799,
-        "energy": 81883516402,
-        "binding_energy": 768468323
+        "ratio": 0.825799
       },
       "89Sr": {
         "ratio": 0,
@@ -2531,9 +2197,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 82816722615,
-        "binding_energy": 774827045
+        }
       },
       "90Sr": {
         "ratio": 0.000001,
@@ -2544,9 +2208,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 83748483767,
-        "binding_energy": 782638535
+        }
       }
     },
     "ionization_energy": [
@@ -2582,9 +2244,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 80956925803,
-        "binding_energy": 754711638
+        }
       },
       "88Y": {
         "ratio": 0,
@@ -2595,14 +2255,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 81887139001,
-        "binding_energy": 764063369
+        }
       },
       "89Y": {
-        "ratio": 1,
-        "energy": 82815230009,
-        "binding_energy": 775545092
+        "ratio": 1
       },
       "90Y": {
         "ratio": 0,
@@ -2613,9 +2269,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 83747937910,
-        "binding_energy": 782402124
+        }
       },
       "91Y": {
         "ratio": 0,
@@ -2626,9 +2280,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 84679573955,
-        "binding_energy": 790330464
+        }
       }
     },
     "ionization_energy": [
@@ -2665,9 +2317,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 81887815040,
-        "binding_energy": 762610593
+        }
       },
       "89Zr": {
         "ratio": 0,
@@ -2678,24 +2328,16 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 82818062872,
-        "binding_energy": 771929977
+        }
       },
       "90Zr": {
-        "ratio": 0.514499,
-        "energy": 83745658107,
-        "binding_energy": 783898468
+        "ratio": 0.514499
       },
       "91Zr": {
-        "ratio": 0.1122,
-        "energy": 84678028585,
-        "binding_energy": 791092391
+        "ratio": 0.1122
       },
       "92Zr": {
-        "ratio": 0.1715,
-        "energy": 85608958720,
-        "binding_energy": 799727186
+        "ratio": 0.1715
       },
       "93Zr": {
         "ratio": 0.000001,
@@ -2706,14 +2348,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 86541789177,
-        "binding_energy": 806461562
+        }
       },
       "94Zr": {
-        "ratio": 0.1738,
-        "energy": 87473132994,
-        "binding_energy": 814681103
+        "ratio": 0.1738
       },
       "96Zr": {
         "ratio": 0.028,
@@ -2724,9 +2362,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 89337944269,
-        "binding_energy": 828997458
+        }
       }
     },
     "ionization_energy": [
@@ -2757,9 +2393,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 83751769105,
-        "binding_energy": 777004778
+        }
       },
       "91Nb": {
         "ratio": 0,
@@ -2773,9 +2407,7 @@
               "ratio": 0.00013
             }
           }
-        },
-        "energy": 84679286545,
-        "binding_energy": 789052454
+        }
       },
       "92Nb": {
         "ratio": 0.000001,
@@ -2786,14 +2418,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 85610964264,
-        "binding_energy": 796938947
+        }
       },
       "93Nb": {
-        "ratio": 0.999998,
-        "energy": 86541697939,
-        "binding_energy": 805769509
+        "ratio": 0.999998
       },
       "94Nb": {
         "ratio": 0.000001,
@@ -2804,9 +2432,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 87474035328,
-        "binding_energy": 812997055
+        }
       },
       "95Nb": {
         "ratio": 0,
@@ -2817,9 +2443,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 88405111545,
-        "binding_energy": 821484228
+        }
       },
       "96Nb": {
         "ratio": 0,
@@ -2830,9 +2454,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 89337783364,
-        "binding_energy": 828377321
+        }
       }
     },
     "ionization_energy": [
@@ -2856,9 +2478,7 @@
     "name": "Molybdenum",
     "isotopes": {
       "92Mo": {
-        "ratio": 0.1465,
-        "energy": 85610607598,
-        "binding_energy": 796510675
+        "ratio": 0.1465
       },
       "93Mo": {
         "ratio": 0,
@@ -2869,34 +2489,22 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 86542102721,
-        "binding_energy": 804580491
+        }
       },
       "94Mo": {
-        "ratio": 0.0919,
-        "energy": 87471990123,
-        "binding_energy": 814258337
+        "ratio": 0.0919
       },
       "95Mo": {
-        "ratio": 0.1587,
-        "energy": 88404185954,
-        "binding_energy": 821627441
+        "ratio": 0.1587
       },
       "96Mo": {
-        "ratio": 0.1667,
-        "energy": 89334596566,
-        "binding_energy": 830781767
+        "ratio": 0.1667
       },
       "97Mo": {
-        "ratio": 0.0958,
-        "energy": 90267340234,
-        "binding_energy": 837603022
+        "ratio": 0.0958
       },
       "98Mo": {
-        "ratio": 0.243,
-        "energy": 91198262568,
-        "binding_energy": 846245628
+        "ratio": 0.243
       },
       "99Mo": {
         "ratio": 0,
@@ -2907,9 +2515,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 92131902065,
-        "binding_energy": 852171079
+        }
       },
       "100Mo": {
         "ratio": 0.0974,
@@ -2920,9 +2526,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 93063177213,
-        "binding_energy": 860462912
+        }
       }
     },
     "ionization_energy": [
@@ -2977,9 +2581,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 89337569806,
-        "binding_energy": 827026171
+        }
       },
       "97Tc": {
         "ratio": 0,
@@ -2990,9 +2592,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 90267660568,
-        "binding_energy": 836495960
+        }
       },
       "98Tc": {
         "ratio": 0,
@@ -3003,9 +2603,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 91199946519,
-        "binding_energy": 843779557
+        }
       },
       "99Tc": {
         "ratio": 1,
@@ -3016,9 +2614,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 92130544764,
-        "binding_energy": 852746531
+        }
       }
     },
     "ionization_energy": [
@@ -3038,9 +2634,7 @@
     "name": "Ruthenium",
     "isotopes": {
       "96Ru": {
-        "ratio": 0.0554,
-        "energy": 89337314998,
-        "binding_energy": 826502555
+        "ratio": 0.0554
       },
       "97Ru": {
         "ratio": 0,
@@ -3051,34 +2645,22 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 90268768433,
-        "binding_energy": 834614058
+        }
       },
       "98Ru": {
-        "ratio": 0.0187,
-        "energy": 91198149822,
-        "binding_energy": 844790843
+        "ratio": 0.0187
       },
       "99Ru": {
-        "ratio": 0.1276,
-        "energy": 92130250929,
-        "binding_energy": 852259239
+        "ratio": 0.1276
       },
       "100Ru": {
-        "ratio": 0.126,
-        "energy": 93060142537,
-        "binding_energy": 861932570
+        "ratio": 0.126
       },
       "101Ru": {
-        "ratio": 0.1706,
-        "energy": 93992905416,
-        "binding_energy": 868734624
+        "ratio": 0.1706
       },
       "102Ru": {
-        "ratio": 0.3155,
-        "energy": 94923250708,
-        "binding_energy": 877954270
+        "ratio": 0.3155
       },
       "103Ru": {
         "ratio": 0,
@@ -3089,14 +2671,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 95856583590,
-        "binding_energy": 884186330
+        }
       },
       "104Ru": {
-        "ratio": 0.1862,
-        "energy": 96787247108,
-        "binding_energy": 893087750
+        "ratio": 0.1862
       },
       "106Ru": {
         "ratio": 0,
@@ -3107,9 +2685,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 98652001131,
-        "binding_energy": 907459046
+        }
       }
     },
     "ionization_energy": [
@@ -3137,9 +2713,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 92132293510,
-        "binding_energy": 849433041
+        }
       },
       "101Rh": {
         "ratio": 0,
@@ -3150,9 +2724,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 93993447115,
-        "binding_energy": 867408519
+        }
       },
       "102Rh": {
         "ratio": 0,
@@ -3166,14 +2738,10 @@
               "ratio": 0.22
             }
           }
-        },
-        "energy": 94925573745,
-        "binding_energy": 874849444
+        }
       },
       "103Rh": {
-        "ratio": 1,
-        "energy": 95855820180,
-        "binding_energy": 884168391
+        "ratio": 1
       },
       "105Rh": {
         "ratio": 0,
@@ -3184,9 +2752,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 97718983954,
-        "binding_energy": 900133535
+        }
       }
     },
     "ionization_energy": [
@@ -3214,14 +2780,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 93064135301,
-        "binding_energy": 856371241
+        }
       },
       "102Pd": {
-        "ratio": 0.0102,
-        "energy": 94924423675,
-        "binding_energy": 875217658
+        "ratio": 0.0102
       },
       "103Pd": {
         "ratio": 0,
@@ -3232,24 +2794,16 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 95856363254,
-        "binding_energy": 882843017
+        }
       },
       "104Pd": {
-        "ratio": 0.1114,
-        "energy": 96785945935,
-        "binding_energy": 892824284
+        "ratio": 0.1114
       },
       "105Pd": {
-        "ratio": 0.2233,
-        "energy": 97718416767,
-        "binding_energy": 899918390
+        "ratio": 0.2233
       },
       "106Pd": {
-        "ratio": 0.273299,
-        "energy": 98648420733,
-        "binding_energy": 909479358
+        "ratio": 0.273299
       },
       "107Pd": {
         "ratio": 0.000001,
@@ -3260,19 +2814,13 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 99581449231,
-        "binding_energy": 916015794
+        }
       },
       "108Pd": {
-        "ratio": 0.2646,
-        "energy": 100511786136,
-        "binding_energy": 925238961
+        "ratio": 0.2646
       },
       "110Pd": {
-        "ratio": 0.1172,
-        "energy": 102375948494,
-        "binding_energy": 940188773
+        "ratio": 0.1172
       }
     },
     "ionization_energy": [
@@ -3300,19 +2848,13 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 97719761603,
-        "binding_energy": 897789105
+        }
       },
       "107Ag": {
-        "ratio": 0.51839,
-        "energy": 99581415082,
-        "binding_energy": 915267518
+        "ratio": 0.51839
       },
       "109Ag": {
-        "ratio": 0.48161,
-        "energy": 101444081386,
-        "binding_energy": 931723452
+        "ratio": 0.48161
       },
       "111Ag": {
         "ratio": 0,
@@ -3323,9 +2865,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 103307570565,
-        "binding_energy": 947362494
+        }
       }
     },
     "ionization_energy": [
@@ -3345,9 +2885,7 @@
     "name": "Cadmium",
     "isotopes": {
       "106Cd": {
-        "ratio": 0.0125,
-        "energy": 98651190711,
-        "binding_energy": 905139261
+        "ratio": 0.0125
       },
       "107Cd": {
         "ratio": 0,
@@ -3358,14 +2896,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 99582831984,
-        "binding_energy": 913068817
+        }
       },
       "108Cd": {
-        "ratio": 0.0089,
-        "energy": 100512058115,
-        "binding_energy": 923402443
+        "ratio": 0.0089
       },
       "109Cd": {
         "ratio": 0,
@@ -3376,24 +2910,16 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 101444295630,
-        "binding_energy": 930725578
+        }
       },
       "110Cd": {
-        "ratio": 0.1247,
-        "energy": 102373944680,
-        "binding_energy": 940641303
+        "ratio": 0.1247
       },
       "111Cd": {
-        "ratio": 0.128,
-        "energy": 103306533766,
-        "binding_energy": 947616940
+        "ratio": 0.128
       },
       "112Cd": {
-        "ratio": 0.2411,
-        "energy": 104236704382,
-        "binding_energy": 957010989
+        "ratio": 0.2411
       },
       "113Cd": {
         "ratio": 0.1223,
@@ -3404,14 +2930,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 105169729235,
-        "binding_energy": 963549758
+        }
       },
       "114Cd": {
-        "ratio": 0.2874,
-        "energy": 106100251189,
-        "binding_energy": 972592672
+        "ratio": 0.2874
       },
       "115Cd": {
         "ratio": 0,
@@ -3422,9 +2944,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 107033675258,
-        "binding_energy": 978733542
+        }
       },
       "116Cd": {
         "ratio": 0.0751,
@@ -3435,9 +2955,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 107964539965,
-        "binding_energy": 987433032
+        }
       }
     },
     "ionization_energy": [
@@ -3455,9 +2973,7 @@
     "name": "Indium",
     "isotopes": {
       "113In": {
-        "ratio": 0.0428,
-        "energy": 105169408894,
-        "binding_energy": 963089974
+        "ratio": 0.0428
       },
       "115In": {
         "ratio": 0.9572,
@@ -3468,9 +2984,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 107032229128,
-        "binding_energy": 979403142
+        }
       }
     },
     "ionization_energy": [
@@ -3491,54 +3005,34 @@
     "name": "Tin",
     "isotopes": {
       "112Sn": {
-        "ratio": 0.0097,
-        "energy": 104238623629,
-        "binding_energy": 953526466
+        "ratio": 0.0097
       },
       "114Sn": {
-        "ratio": 0.0066,
-        "energy": 106099711229,
-        "binding_energy": 971570458
+        "ratio": 0.0066
       },
       "115Sn": {
-        "ratio": 0.0034,
-        "energy": 107031729766,
-        "binding_energy": 979118278
+        "ratio": 0.0034
       },
       "116Sn": {
-        "ratio": 0.1454,
-        "energy": 107961731252,
-        "binding_energy": 988681763
+        "ratio": 0.1454
       },
       "117Sn": {
-        "ratio": 0.0768,
-        "energy": 108894353023,
-        "binding_energy": 995624873
+        "ratio": 0.0768
       },
       "118Sn": {
-        "ratio": 0.2422,
-        "energy": 109824590529,
-        "binding_energy": 1004951300
+        "ratio": 0.2422
       },
       "119Sn": {
-        "ratio": 0.0859,
-        "energy": 110757671841,
-        "binding_energy": 1011434800
+        "ratio": 0.0859
       },
       "120Sn": {
-        "ratio": 0.325799,
-        "energy": 111688128746,
-        "binding_energy": 1020539651
+        "ratio": 0.325799
       },
       "122Sn": {
-        "ratio": 0.0463,
-        "energy": 113552275098,
-        "binding_energy": 1035525251
+        "ratio": 0.0463
       },
       "124Sn": {
-        "ratio": 0.0579,
-        "energy": 115416971526,
-        "binding_energy": 1049960589
+        "ratio": 0.0579
       },
       "126Sn": {
         "ratio": 0.000001,
@@ -3549,9 +3043,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 117282175090,
-        "binding_energy": 1063884284
+        }
       }
     },
     "ionization_energy": [
@@ -3573,14 +3065,10 @@
     "name": "Antimony",
     "isotopes": {
       "121Sb": {
-        "ratio": 0.5721,
-        "energy": 112621132321,
-        "binding_energy": 1026328604
+        "ratio": 0.5721
       },
       "123Sb": {
-        "ratio": 0.4279,
-        "energy": 114484490550,
-        "binding_energy": 1042097500
+        "ratio": 0.4279
       },
       "125Sb": {
         "ratio": 0,
@@ -3591,9 +3079,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 116348446391,
-        "binding_energy": 1057271576
+        }
       }
     },
     "ionization_energy": [
@@ -3616,9 +3102,7 @@
     "name": "Tellurium",
     "isotopes": {
       "120Te": {
-        "ratio": 0.0009,
-        "energy": 111689829230,
-        "binding_energy": 1017244538
+        "ratio": 0.0009
       },
       "121Te": {
         "ratio": 0,
@@ -3629,34 +3113,22 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 112622176281,
-        "binding_energy": 1024491944
+        }
       },
       "122Te": {
-        "ratio": 0.0255,
-        "energy": 113551907020,
-        "binding_energy": 1034333437
+        "ratio": 0.0255
       },
       "123Te": {
-        "ratio": 0.0089,
-        "energy": 114484542768,
-        "binding_energy": 1041262457
+        "ratio": 0.0089
       },
       "124Te": {
-        "ratio": 0.0474,
-        "energy": 115414683731,
-        "binding_energy": 1050686946
+        "ratio": 0.0474
       },
       "125Te": {
-        "ratio": 0.0707,
-        "energy": 116347679691,
-        "binding_energy": 1057255922
+        "ratio": 0.0707
       },
       "126Te": {
-        "ratio": 0.1884,
-        "energy": 117278130932,
-        "binding_energy": 1066369620
+        "ratio": 0.1884
       },
       "127Te": {
         "ratio": 0,
@@ -3667,9 +3139,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 118211408022,
-        "binding_energy": 1072657271
+        }
       },
       "128Te": {
         "ratio": 0.3174,
@@ -3680,9 +3150,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 119142190646,
-        "binding_energy": 1081440681
+        }
       },
       "129Te": {
         "ratio": 0,
@@ -3693,9 +3161,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 120075673169,
-        "binding_energy": 1087523096
+        }
       },
       "130Te": {
         "ratio": 0.3408,
@@ -3706,9 +3172,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 121006818555,
-        "binding_energy": 1095942529
+        }
       }
     },
     "ionization_energy": [
@@ -3740,9 +3204,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 114485771349,
-        "binding_energy": 1039251678
+        }
       },
       "124I": {
         "ratio": 0,
@@ -3753,9 +3215,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 115417843316,
-        "binding_energy": 1046745005
+        }
       },
       "125I": {
         "ratio": 0,
@@ -3766,14 +3226,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 116347865462,
-        "binding_energy": 1056287798
+        }
       },
       "127I": {
-        "ratio": 0.999999,
-        "energy": 118210705997,
-        "binding_energy": 1072577154
+        "ratio": 0.999999
       },
       "129I": {
         "ratio": 0.000001,
@@ -3784,9 +3240,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 120074172984,
-        "binding_energy": 1088243047
+        }
       },
       "131I": {
         "ratio": 0,
@@ -3797,9 +3251,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 121938219217,
-        "binding_energy": 1103321335
+        }
       },
       "135I": {
         "ratio": 0,
@@ -3810,9 +3262,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 125667848402,
-        "binding_energy": 1131952802
+        }
       }
     },
     "ionization_energy": [
@@ -3832,9 +3282,7 @@
     "name": "Xenon",
     "isotopes": {
       "124Xe": {
-        "ratio": 0.00095,
-        "energy": 115417548173,
-        "binding_energy": 1046257988
+        "ratio": 0.00095
       },
       "125Xe": {
         "ratio": 0,
@@ -3845,14 +3293,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 116349509827,
-        "binding_energy": 1053861271
+        }
       },
       "126Xe": {
-        "ratio": 0.00089,
-        "energy": 117279026971,
-        "binding_energy": 1063885148
+        "ratio": 0.00089
       },
       "127Xe": {
         "ratio": 0,
@@ -3863,34 +3307,22 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 118211368328,
-        "binding_energy": 1071132451
+        }
       },
       "128Xe": {
-        "ratio": 0.0191,
-        "energy": 119141322698,
-        "binding_energy": 1080742506
+        "ratio": 0.0191
       },
       "129Xe": {
-        "ratio": 0.26401,
-        "energy": 120073978966,
-        "binding_energy": 1087649607
+        "ratio": 0.26401
       },
       "130Xe": {
-        "ratio": 0.04071,
-        "energy": 121004288254,
-        "binding_energy": 1096905336
+        "ratio": 0.04071
       },
       "131Xe": {
-        "ratio": 0.21232,
-        "energy": 121937248370,
-        "binding_energy": 1103509828
+        "ratio": 0.21232
       },
       "132Xe": {
-        "ratio": 0.26909,
-        "energy": 122867876716,
-        "binding_energy": 1112446482
+        "ratio": 0.26909
       },
       "133Xe": {
         "ratio": 0,
@@ -3901,14 +3333,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 123801007212,
-        "binding_energy": 1118882414
+        }
       },
       "134Xe": {
-        "ratio": 0.10436,
-        "energy": 124732019936,
-        "binding_energy": 1127434469
+        "ratio": 0.10436
       },
       "135Xe": {
         "ratio": 0,
@@ -3919,9 +3347,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 125665221007,
-        "binding_energy": 1133798255
+        }
       },
       "136Xe": {
         "ratio": 0.08857,
@@ -3932,9 +3358,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 126596706517,
-        "binding_energy": 1141881964
+        }
       }
     },
     "ionization_energy": [
@@ -3954,9 +3378,7 @@
     "name": "Caesium",
     "isotopes": {
       "133Cs": {
-        "ratio": 0.999999,
-        "energy": 123800579852,
-        "binding_energy": 1118527420
+        "ratio": 0.999999
       },
       "134Cs": {
         "ratio": 0,
@@ -3967,9 +3389,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 124733253243,
-        "binding_energy": 1125418966
+        }
       },
       "135Cs": {
         "ratio": 0.000001,
@@ -3980,9 +3400,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 125664056187,
-        "binding_energy": 1134180950
+        }
       },
       "137Cs": {
         "ratio": 0,
@@ -3993,9 +3411,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 127528079670,
-        "binding_energy": 1149287605
+        }
       }
     },
     "ionization_energy": [
@@ -4023,14 +3439,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 121006908363,
-        "binding_energy": 1092721900
+        }
       },
       "132Ba": {
-        "ratio": 0.001,
-        "energy": 122868722355,
-        "binding_energy": 1110037802
+        "ratio": 0.001
       },
       "133Ba": {
         "ratio": 0,
@@ -4041,34 +3453,22 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 123801097351,
-        "binding_energy": 1117227723
+        }
       },
       "134Ba": {
-        "ratio": 0.0242,
-        "energy": 124731194557,
-        "binding_energy": 1126695513
+        "ratio": 0.0242
       },
       "135Ba": {
-        "ratio": 0.0659,
-        "energy": 125663787528,
-        "binding_energy": 1133667494
+        "ratio": 0.0659
       },
       "136Ba": {
-        "ratio": 0.0785,
-        "energy": 126594244720,
-        "binding_energy": 1142775242
+        "ratio": 0.0785
       },
       "137Ba": {
-        "ratio": 0.1123,
-        "energy": 127526904042,
-        "binding_energy": 1149680880
+        "ratio": 0.1123
       },
       "138Ba": {
-        "ratio": 0.717,
-        "energy": 128457857254,
-        "binding_energy": 1158292606
+        "ratio": 0.717
       }
     },
     "ionization_energy": [
@@ -4096,9 +3496,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 127527524616,
-        "binding_energy": 1148317977
+        }
       },
       "138La": {
         "ratio": 0.00089,
@@ -4112,14 +3510,10 @@
               "ratio": 0.35
             }
           }
-        },
-        "energy": 128459594204,
-        "binding_energy": 1155770291
+        }
       },
       "139La": {
-        "ratio": 0.99911,
-        "energy": 129390381129,
-        "binding_energy": 1164548304
+        "ratio": 0.99911
       }
     },
     "ionization_energy": [
@@ -4149,19 +3543,13 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 124735308441,
-        "binding_energy": 1121013639
+        }
       },
       "136Ce": {
-        "ratio": 0.00186,
-        "energy": 126596663322,
-        "binding_energy": 1138831984
+        "ratio": 0.00186
       },
       "138Ce": {
-        "ratio": 0.00251,
-        "energy": 128458550363,
-        "binding_energy": 1156034778
+        "ratio": 0.00251
       },
       "139Ce": {
         "ratio": 0,
@@ -4172,14 +3560,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 129390660003,
-        "binding_energy": 1163487569
+        }
       },
       "140Ce": {
-        "ratio": 0.88449,
-        "energy": 130321022836,
-        "binding_energy": 1172687866
+        "ratio": 0.88449
       },
       "141Ce": {
         "ratio": 0,
@@ -4190,14 +3574,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 131255159623,
-        "binding_energy": 1178116013
+        }
       },
       "142Ce": {
-        "ratio": 0.11114,
-        "energy": 132187554864,
-        "binding_energy": 1185284065
+        "ratio": 0.11114
       },
       "143Ce": {
         "ratio": 0,
@@ -4208,9 +3588,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 133121974957,
-        "binding_energy": 1190428872
+        }
       },
       "144Ce": {
         "ratio": 0,
@@ -4221,9 +3599,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 134054643582,
-        "binding_energy": 1197325749
+        }
       }
     },
     "ionization_energy": [
@@ -4246,9 +3622,7 @@
     "name": "Praseodymium",
     "isotopes": {
       "141Pr": {
-        "ratio": 1,
-        "energy": 131254578836,
-        "binding_energy": 1177914079
+        "ratio": 1
       },
       "142Pr": {
         "ratio": 0,
@@ -4262,9 +3636,7 @@
               "ratio": 0.00016
             }
           }
-        },
-        "energy": 132188300618,
-        "binding_energy": 1183757231
+        }
       },
       "143Pr": {
         "ratio": 0,
@@ -4275,9 +3647,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 133120513458,
-        "binding_energy": 1191108334
+        }
       }
     },
     "ionization_energy": [
@@ -4299,14 +3669,10 @@
     "name": "Neodymium",
     "isotopes": {
       "142Nd": {
-        "ratio": 0.271,
-        "energy": 132186138147,
-        "binding_energy": 1185136512
+        "ratio": 0.271
       },
       "143Nd": {
-        "ratio": 0.122,
-        "energy": 133119579509,
-        "binding_energy": 1191260088
+        "ratio": 0.122
       },
       "144Nd": {
         "ratio": 0.238,
@@ -4317,24 +3683,16 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 134051327407,
-        "binding_energy": 1199077127
+        }
       },
       "145Nd": {
-        "ratio": 0.083,
-        "energy": 134985137052,
-        "binding_energy": 1204832432
+        "ratio": 0.083
       },
       "146Nd": {
-        "ratio": 0.172,
-        "energy": 135917136750,
-        "binding_energy": 1212397669
+        "ratio": 0.172
       },
       "148Nd": {
-        "ratio": 0.058,
-        "energy": 137783641625,
-        "binding_energy": 1225022373
+        "ratio": 0.058
       },
       "150Nd": {
         "ratio": 0.056,
@@ -4345,9 +3703,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 139650352593,
-        "binding_energy": 1237436290
+        }
       }
     },
     "ionization_energy": [
@@ -4376,9 +3732,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 134985300424,
-        "binding_energy": 1203885563
+        }
       },
       "146Pm": {
         "ratio": 0,
@@ -4392,9 +3746,7 @@
               "ratio": 0.34
             }
           }
-        },
-        "energy": 135918607919,
-        "binding_energy": 1210143770
+        }
       },
       "147Pm": {
         "ratio": 1,
@@ -4405,9 +3757,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 136850513478,
-        "binding_energy": 1217802821
+        }
       }
     },
     "ionization_energy": [
@@ -4428,9 +3778,7 @@
     "name": "Samarium",
     "isotopes": {
       "144Sm": {
-        "ratio": 0.0308,
-        "energy": 134053108612,
-        "binding_energy": 1195730013
+        "ratio": 0.0308
       },
       "145Sm": {
         "ratio": 0,
@@ -4441,9 +3789,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 134985916448,
-        "binding_energy": 1202487116
+        }
       },
       "146Sm": {
         "ratio": 0,
@@ -4454,9 +3800,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 135917065920,
-        "binding_energy": 1210903416
+        }
       },
       "147Sm": {
         "ratio": 0.15,
@@ -4467,9 +3811,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 136850289340,
-        "binding_energy": 1217244541
+        }
       },
       "148Sm": {
         "ratio": 0.1125,
@@ -4480,19 +3822,13 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 137781712861,
-        "binding_energy": 1225385921
+        }
       },
       "149Sm": {
-        "ratio": 0.1382,
-        "energy": 138715406720,
-        "binding_energy": 1231256276
+        "ratio": 0.1382
       },
       "150Sm": {
-        "ratio": 0.0737,
-        "energy": 139646984919,
-        "binding_energy": 1239242966
+        "ratio": 0.0737
       },
       "151Sm": {
         "ratio": 0,
@@ -4503,14 +3839,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 140580953391,
-        "binding_energy": 1244839424
+        }
       },
       "152Sm": {
-        "ratio": 0.2674,
-        "energy": 141512260722,
-        "binding_energy": 1253097116
+        "ratio": 0.2674
       },
       "153Sm": {
         "ratio": 0,
@@ -4521,14 +3853,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 142445957255,
-        "binding_energy": 1258965522
+        }
       },
       "154Sm": {
-        "ratio": 0.2274,
-        "energy": 143377555120,
-        "binding_energy": 1266932321
+        "ratio": 0.2274
       }
     },
     "ionization_energy": [
@@ -4557,9 +3885,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 139649244983,
-        "binding_energy": 1236201971
+        }
       },
       "151Eu": {
         "ratio": 0.478,
@@ -4570,9 +3896,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 140580876777,
-        "binding_energy": 1244133446
+        }
       },
       "152Eu": {
         "ratio": 0,
@@ -4586,14 +3910,10 @@
               "ratio": 0.28
             }
           }
-        },
-        "energy": 141514134989,
-        "binding_energy": 1250440165
+        }
       },
       "153Eu": {
-        "ratio": 0.522,
-        "energy": 142445149634,
-        "binding_energy": 1258990444
+        "ratio": 0.522
       },
       "154Eu": {
         "ratio": 0,
@@ -4607,9 +3927,7 @@
               "ratio": 0
             }
           }
-        },
-        "energy": 143378272336,
-        "binding_energy": 1265432623
+        }
       },
       "155Eu": {
         "ratio": 0,
@@ -4620,9 +3938,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 144309685864,
-        "binding_energy": 1273583919
+        }
       }
     },
     "ionization_energy": [
@@ -4651,9 +3967,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 137784779198,
-        "binding_energy": 1220754469
+        }
       },
       "150Gd": {
         "ratio": 0,
@@ -4664,9 +3978,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 139648273488,
-        "binding_energy": 1236391396
+        }
       },
       "152Gd": {
         "ratio": 0.002,
@@ -4677,39 +3989,25 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 141512315280,
-        "binding_energy": 1251476730
+        }
       },
       "154Gd": {
-        "ratio": 0.0218,
-        "energy": 143376303495,
-        "binding_energy": 1266618424
+        "ratio": 0.0218
       },
       "155Gd": {
-        "ratio": 0.148,
-        "energy": 144309433208,
-        "binding_energy": 1273053659
+        "ratio": 0.148
       },
       "156Gd": {
-        "ratio": 0.2047,
-        "energy": 145240461747,
-        "binding_energy": 1281590014
+        "ratio": 0.2047
       },
       "157Gd": {
-        "ratio": 0.1565,
-        "energy": 146173666881,
-        "binding_energy": 1287949877
+        "ratio": 0.1565
       },
       "158Gd": {
-        "ratio": 0.2484,
-        "energy": 147105294423,
-        "binding_energy": 1295887270
+        "ratio": 0.2484
       },
       "160Gd": {
-        "ratio": 0.2186,
-        "energy": 148971029777,
-        "binding_energy": 1309281950
+        "ratio": 0.2186
       }
     },
     "ionization_energy": [
@@ -4738,9 +4036,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 146173726933,
-        "binding_energy": 1287107479
+        }
       },
       "158Tb": {
         "ratio": 0,
@@ -4754,14 +4050,10 @@
               "ratio": 0.17
             }
           }
-        },
-        "energy": 147106513958,
-        "binding_energy": 1293885964
+        }
       },
       "159Tb": {
-        "ratio": 1,
-        "energy": 148037945740,
-        "binding_energy": 1302018987
+        "ratio": 1
       }
     },
     "ionization_energy": [
@@ -4790,44 +4082,28 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 143379618549,
-        "binding_energy": 1261742052
+        }
       },
       "156Dy": {
-        "ratio": 0.00056,
-        "energy": 145242474115,
-        "binding_energy": 1278019359
+        "ratio": 0.00056
       },
       "158Dy": {
-        "ratio": 0.00095,
-        "energy": 147105579064,
-        "binding_energy": 1294039829
+        "ratio": 0.00095
       },
       "160Dy": {
-        "ratio": 0.02329,
-        "energy": 148969300339,
-        "binding_energy": 1309447739
+        "ratio": 0.02329
       },
       "161Dy": {
-        "ratio": 0.18889,
-        "energy": 149902410884,
-        "binding_energy": 1315902132
+        "ratio": 0.18889
       },
       "162Dy": {
-        "ratio": 0.25475,
-        "energy": 150833778825,
-        "binding_energy": 1324099132
+        "ratio": 0.25475
       },
       "163Dy": {
-        "ratio": 0.24896,
-        "energy": 151767072748,
-        "binding_energy": 1330370146
+        "ratio": 0.24896
       },
       "164Dy": {
-        "ratio": 0.2826,
-        "energy": 152698979566,
-        "binding_energy": 1338028268
+        "ratio": 0.2826
       }
     },
     "ionization_energy": [
@@ -4856,9 +4132,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 151767075304,
-        "binding_energy": 1329585237
+        }
       },
       "164Ho": {
         "ratio": 0,
@@ -4872,14 +4146,10 @@
               "ratio": 0.4
             }
           }
-        },
-        "energy": 152699965791,
-        "binding_energy": 1336260021
+        }
       },
       "165Ho": {
-        "ratio": 1,
-        "energy": 153631541901,
-        "binding_energy": 1344248849
+        "ratio": 1
       },
       "166Ho": {
         "ratio": 0,
@@ -4890,9 +4160,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 154564863192,
-        "binding_energy": 1350492495
+        }
       },
       "167Ho": {
         "ratio": 0,
@@ -4903,9 +4171,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 155497147153,
-        "binding_energy": 1357774262
+        }
       }
     },
     "ionization_energy": [
@@ -4934,19 +4200,13 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 148972919913,
-        "binding_energy": 1304275836
+        }
       },
       "162Er": {
-        "ratio": 0.00139,
-        "energy": 150835623012,
-        "binding_energy": 1320687465
+        "ratio": 0.00139
       },
       "164Er": {
-        "ratio": 0.01601,
-        "energy": 152699003299,
-        "binding_energy": 1336438486
+        "ratio": 0.01601
       },
       "165Er": {
         "ratio": 0,
@@ -4957,24 +4217,16 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 153631918162,
-        "binding_energy": 1343088624
+        }
       },
       "166Er": {
-        "ratio": 0.33503,
-        "energy": 154563008495,
-        "binding_energy": 1351565115
+        "ratio": 0.33503
       },
       "167Er": {
-        "ratio": 0.22869,
-        "energy": 155496136972,
-        "binding_energy": 1358001585
+        "ratio": 0.22869
       },
       "168Er": {
-        "ratio": 0.26978,
-        "energy": 156427930588,
-        "binding_energy": 1365772901
+        "ratio": 0.26978
       },
       "169Er": {
         "ratio": 0,
@@ -4985,14 +4237,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 157361492249,
-        "binding_energy": 1371776157
+        }
       },
       "170Er": {
-        "ratio": 0.1491,
-        "energy": 158293799941,
-        "binding_energy": 1379033932
+        "ratio": 0.1491
       }
     },
     "ionization_energy": [
@@ -5021,9 +4269,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 155496885393,
-        "binding_energy": 1356472569
+        }
       },
       "168Tm": {
         "ratio": 0,
@@ -5037,14 +4283,10 @@
               "ratio": 0
             }
           }
-        },
-        "energy": 156429609654,
-        "binding_energy": 1363313186
+        }
       },
       "169Tm": {
-        "ratio": 1,
-        "energy": 157361140970,
-        "binding_energy": 1371346802
+        "ratio": 1
       },
       "170Tm": {
         "ratio": 0,
@@ -5058,9 +4300,7 @@
               "ratio": 0.13
             }
           }
-        },
-        "energy": 158294113934,
-        "binding_energy": 1377938779
+        }
       },
       "171Tm": {
         "ratio": 0,
@@ -5071,9 +4311,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 159226192567,
-        "binding_energy": 1385425275
+        }
       }
     },
     "ionization_energy": [
@@ -5102,14 +4340,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 154566351607,
-        "binding_energy": 1346670113
+        }
       },
       "168Yb": {
-        "ratio": 0.00126,
-        "energy": 156429352673,
-        "binding_energy": 1362798923
+        "ratio": 0.00126
       },
       "169Yb": {
         "ratio": 0,
@@ -5120,39 +4354,25 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 157362050622,
-        "binding_energy": 1369665908
+        }
       },
       "170Yb": {
-        "ratio": 0.03023,
-        "energy": 158293145590,
-        "binding_energy": 1378124859
+        "ratio": 0.03023
       },
       "171Yb": {
-        "ratio": 0.14216,
-        "energy": 159226096026,
-        "binding_energy": 1384739482
+        "ratio": 0.14216
       },
       "172Yb": {
-        "ratio": 0.21754,
-        "energy": 160157641497,
-        "binding_energy": 1392758955
+        "ratio": 0.21754
       },
       "173Yb": {
-        "ratio": 0.16098,
-        "energy": 161090839110,
-        "binding_energy": 1399126328
+        "ratio": 0.16098
       },
       "174Yb": {
-        "ratio": 0.31896,
-        "energy": 162022939408,
-        "binding_energy": 1406590969
+        "ratio": 0.31896
       },
       "176Yb": {
-        "ratio": 0.12887,
-        "energy": 163889382101,
-        "binding_energy": 1419277763
+        "ratio": 0.12887
       }
     },
     "ionization_energy": [
@@ -5181,9 +4401,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 161091509613,
-        "binding_energy": 1397674330
+        }
       },
       "174Lu": {
         "ratio": 0,
@@ -5194,14 +4412,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 162024313725,
-        "binding_energy": 1404435204
+        }
       },
       "175Lu": {
-        "ratio": 0.97401,
-        "energy": 162956211924,
-        "binding_energy": 1412101944
+        "ratio": 0.97401
       },
       "176Lu": {
         "ratio": 0.02599,
@@ -5212,9 +4426,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 163889488875,
-        "binding_energy": 1418389933
+        }
       }
     },
     "ionization_energy": [
@@ -5244,9 +4456,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 160160498231,
-        "binding_energy": 1388340293
+        }
       },
       "174Hf": {
         "ratio": 0.0016,
@@ -5257,34 +4467,22 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 162024042380,
-        "binding_energy": 1403927373
+        }
       },
       "176Hf": {
-        "ratio": 0.0526,
-        "energy": 163888298725,
-        "binding_energy": 1418801802
+        "ratio": 0.0526
       },
       "177Hf": {
-        "ratio": 0.186,
-        "energy": 164821480225,
-        "binding_energy": 1425177724
+        "ratio": 0.186
       },
       "178Hf": {
-        "ratio": 0.2728,
-        "energy": 165753419201,
-        "binding_energy": 1432803684
+        "ratio": 0.2728
       },
       "179Hf": {
-        "ratio": 0.1362,
-        "energy": 166686885141,
-        "binding_energy": 1438902681
+        "ratio": 0.1362
       },
       "180Hf": {
-        "ratio": 0.3508,
-        "energy": 167619062293,
-        "binding_energy": 1446290446
+        "ratio": 0.3508
       }
     },
     "ionization_energy": [
@@ -5313,9 +4511,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 164822646224,
-        "binding_energy": 1423229370
+        }
       },
       "178Ta": {
         "ratio": 0,
@@ -5326,9 +4522,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 165755356200,
-        "binding_energy": 1430184652
+        }
       },
       "179Ta": {
         "ratio": 0,
@@ -5339,19 +4533,13 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 166686990763,
-        "binding_energy": 1438014749
+        }
       },
       "180Ta": {
-        "ratio": 0.00012,
-        "energy": 167619914496,
-        "binding_energy": 1444662491
+        "ratio": 0.00012
       },
       "181Ta": {
-        "ratio": 0.99988,
-        "energy": 168551902671,
-        "binding_energy": 1452239250
+        "ratio": 0.99988
       },
       "182Ta": {
         "ratio": 0,
@@ -5362,9 +4550,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 169485404666,
-        "binding_energy": 1458302193
+        }
       },
       "183Ta": {
         "ratio": 0,
@@ -5375,9 +4561,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 170418035418,
-        "binding_energy": 1465236379
+        }
       }
     },
     "ionization_energy": [
@@ -5406,9 +4590,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 167619206215,
-        "binding_energy": 1444582509
+        }
       },
       "181W": {
         "ratio": 0,
@@ -5419,24 +4601,16 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 168552090353,
-        "binding_energy": 1451268721
+        }
       },
       "182W": {
-        "ratio": 0.265,
-        "energy": 169483590403,
-        "binding_energy": 1459334304
+        "ratio": 0.265
       },
       "183W": {
-        "ratio": 0.1431,
-        "energy": 170416964512,
-        "binding_energy": 1465525125
+        "ratio": 0.1431
       },
       "184W": {
-        "ratio": 0.3064,
-        "energy": 171349117845,
-        "binding_energy": 1472936793
+        "ratio": 0.3064
       },
       "185W": {
         "ratio": 0,
@@ -5447,14 +4621,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 172282929087,
-        "binding_energy": 1478690505
+        }
       },
       "186W": {
-        "ratio": 0.2843,
-        "energy": 173215302836,
-        "binding_energy": 1485882687
+        "ratio": 0.2843
       }
     },
     "ionization_energy": [
@@ -5473,9 +4643,7 @@
     "name": "Rhenium",
     "isotopes": {
       "185Re": {
-        "ratio": 0.374,
-        "energy": 172282496611,
-        "binding_energy": 1478340819
+        "ratio": 0.374
       },
       "187Re": {
         "ratio": 0.626,
@@ -5489,9 +4657,7 @@
               "ratio": 0
             }
           }
-        },
-        "energy": 174148090278,
-        "binding_energy": 1491879394
+        }
       }
     },
     "ionization_energy": [
@@ -5512,9 +4678,7 @@
     "name": "Osmium",
     "isotopes": {
       "184Os": {
-        "ratio": 0.0002,
-        "energy": 171350569003,
-        "binding_energy": 1469921171
+        "ratio": 0.0002
       },
       "185Os": {
         "ratio": 0,
@@ -5525,9 +4689,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 172283509408,
-        "binding_energy": 1476545694
+        }
       },
       "186Os": {
         "ratio": 0.0159,
@@ -5538,34 +4700,22 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 173214812899,
-        "binding_energy": 1484809553
+        }
       },
       "187Os": {
-        "ratio": 0.0196,
-        "energy": 174148087809,
-        "binding_energy": 1491099507
+        "ratio": 0.0196
       },
       "188Os": {
-        "ratio": 0.1324,
-        "energy": 175079663181,
-        "binding_energy": 1499089090
+        "ratio": 0.1324
       },
       "189Os": {
-        "ratio": 0.1615,
-        "energy": 176013307840,
-        "binding_energy": 1505009605
+        "ratio": 0.1615
       },
       "190Os": {
-        "ratio": 0.2626,
-        "energy": 176945080510,
-        "binding_energy": 1512801908
+        "ratio": 0.2626
       },
       "192Os": {
-        "ratio": 0.4078,
-        "energy": 178810893558,
-        "binding_energy": 1526119057
+        "ratio": 0.4078
       }
     },
     "ionization_energy": [
@@ -5592,9 +4742,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 175082471535,
-        "binding_energy": 1495518848
+        }
       },
       "189Ir": {
         "ratio": 0,
@@ -5605,9 +4753,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 176013840156,
-        "binding_energy": 1503695492
+        }
       },
       "190Ir": {
         "ratio": 0,
@@ -5618,14 +4764,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 176947035640,
-        "binding_energy": 1510065733
+        }
       },
       "191Ir": {
-        "ratio": 0.373,
-        "energy": 177878574040,
-        "binding_energy": 1518092272
+        "ratio": 0.373
       },
       "192Ir": {
         "ratio": 0,
@@ -5639,14 +4781,10 @@
               "ratio": 0.049
             }
           }
-        },
-        "energy": 178811940856,
-        "binding_energy": 1524290403
+        }
       },
       "193Ir": {
-        "ratio": 0.627,
-        "energy": 179743733870,
-        "binding_energy": 1532062400
+        "ratio": 0.627
       },
       "194Ir": {
         "ratio": 0,
@@ -5657,9 +4795,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 180677232011,
-        "binding_energy": 1538129195
+        }
       }
     },
     "ionization_energy": [
@@ -5686,14 +4822,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 176946463412,
-        "binding_energy": 1509852995
+        }
       },
       "192Pt": {
-        "ratio": 0.00782,
-        "energy": 178810481199,
-        "binding_energy": 1524962578
+        "ratio": 0.00782
       },
       "193Pt": {
         "ratio": 0,
@@ -5704,29 +4836,19 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 179743790664,
-        "binding_energy": 1531223417
+        }
       },
       "194Pt": {
-        "ratio": 0.32864,
-        "energy": 180674998173,
-        "binding_energy": 1539575614
+        "ratio": 0.32864
       },
       "195Pt": {
-        "ratio": 0.33775,
-        "energy": 181608458060,
-        "binding_energy": 1545680675
+        "ratio": 0.33775
       },
       "196Pt": {
-        "ratio": 0.25211,
-        "energy": 182540101074,
-        "binding_energy": 1553602613
+        "ratio": 0.25211
       },
       "198Pt": {
-        "ratio": 0.07356,
-        "energy": 184405828077,
-        "binding_energy": 1567004031
+        "ratio": 0.07356
       }
     },
     "ionization_energy": [
@@ -5754,9 +4876,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 181608684884,
-        "binding_energy": 1544671497
+        }
       },
       "196Au": {
         "ratio": 0,
@@ -5770,14 +4890,10 @@
               "ratio": 0.08
             }
           }
-        },
-        "energy": 182541608503,
-        "binding_energy": 1551313272
+        }
       },
       "197Au": {
-        "ratio": 1,
-        "energy": 183473101045,
-        "binding_energy": 1559385640
+        "ratio": 1
       },
       "198Au": {
         "ratio": 0,
@@ -5788,9 +4904,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 184406153646,
-        "binding_energy": 1565897983
+        }
       },
       "199Au": {
         "ratio": 0,
@@ -5801,9 +4915,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 185338134330,
-        "binding_energy": 1573482263
+        }
       }
     },
     "ionization_energy": [
@@ -5831,9 +4943,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 180677568309,
-        "binding_energy": 1535432286
+        }
       },
       "195Hg": {
         "ratio": 0,
@@ -5844,14 +4954,10 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 181610254891,
-        "binding_energy": 1542319282
+        }
       },
       "196Hg": {
-        "ratio": 0.0015,
-        "energy": 182540921839,
-        "binding_energy": 1551217753
+        "ratio": 0.0015
       },
       "197Hg": {
         "ratio": 0,
@@ -5862,39 +4968,25 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 183473701156,
-        "binding_energy": 1558003347
+        }
       },
       "198Hg": {
-        "ratio": 0.1004,
-        "energy": 184404781304,
-        "binding_energy": 1566488481
+        "ratio": 0.1004
       },
       "199Hg": {
-        "ratio": 0.1694,
-        "energy": 185337682312,
-        "binding_energy": 1573151347
+        "ratio": 0.1694
       },
       "200Hg": {
-        "ratio": 0.2314,
-        "energy": 186269218843,
-        "binding_energy": 1581179871
+        "ratio": 0.2314
       },
       "201Hg": {
-        "ratio": 0.1317,
-        "energy": 187202553335,
-        "binding_energy": 1587410330
+        "ratio": 0.1317
       },
       "202Hg": {
-        "ratio": 0.2974,
-        "energy": 188134364350,
-        "binding_energy": 1595164422
+        "ratio": 0.2974
       },
       "204Hg": {
-        "ratio": 0.0682,
-        "energy": 190000007195,
-        "binding_energy": 1608651769
+        "ratio": 0.0682
       }
     },
     "ionization_energy": [
@@ -5912,9 +5004,7 @@
     "name": "Thallium",
     "isotopes": {
       "203Tl": {
-        "ratio": 0.295,
-        "energy": 189067442630,
-        "binding_energy": 1600868741
+        "ratio": 0.295
       },
       "204Tl": {
         "ratio": 0,
@@ -5928,14 +5018,10 @@
               "ratio": 0.03
             }
           }
-        },
-        "energy": 190000351465,
-        "binding_energy": 1607524838
+        }
       },
       "205Tl": {
-        "ratio": 0.705,
-        "energy": 190932370460,
-        "binding_energy": 1615070890
+        "ratio": 0.705
       }
     },
     "ionization_energy": [
@@ -5955,24 +5041,16 @@
     "name": "Lead",
     "isotopes": {
       "204Pb": {
-        "ratio": 0.014,
-        "energy": 189999587702,
-        "binding_energy": 1607506234
+        "ratio": 0.014
       },
       "206Pb": {
-        "ratio": 0.241,
-        "energy": 191863899226,
-        "binding_energy": 1622324572
+        "ratio": 0.241
       },
       "207Pb": {
-        "ratio": 0.221,
-        "energy": 192796726376,
-        "binding_energy": 1629062356
+        "ratio": 0.221
       },
       "208Pb": {
-        "ratio": 0.524,
-        "energy": 193728923440,
-        "binding_energy": 1636430230
+        "ratio": 0.524
       }
     },
     "ionization_energy": [
@@ -6002,9 +5080,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 192799123847,
-        "binding_energy": 1625882592
+        }
       },
       "208Bi": {
         "ratio": 0,
@@ -6015,9 +5091,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 193731801871,
-        "binding_energy": 1632769513
+        }
       },
       "209Bi": {
         "ratio": 0.999999,
@@ -6028,9 +5102,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 194663907047,
-        "binding_energy": 1640229275
+        }
       },
       "210Bi": {
         "ratio": 0.000001,
@@ -6044,9 +5116,7 @@
               "ratio": 0.000001
             }
           }
-        },
-        "energy": 195598867343,
-        "binding_energy": 1644833915
+        }
       }
     },
     "ionization_energy": [
@@ -6080,9 +5150,7 @@
               "ratio": 0.000022
             }
           }
-        },
-        "energy": 193733202378,
-        "binding_energy": 1630586600
+        }
       },
       "209Po": {
         "ratio": 0,
@@ -6096,9 +5164,7 @@
               "ratio": 0.004
             }
           }
-        },
-        "energy": 194665799564,
-        "binding_energy": 1637554341
+        }
       },
       "210Po": {
         "ratio": 1,
@@ -6109,9 +5175,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 195597706052,
-        "binding_energy": 1645212789
+        }
       }
     },
     "ionization_energy": [
@@ -6140,9 +5204,7 @@
               "ratio": 0.05
             }
           }
-        },
-        "energy": 194669285872,
-        "binding_energy": 1633288778
+        }
       },
       "210At": {
         "ratio": 0.390927,
@@ -6156,9 +5218,7 @@
               "ratio": 0.0017
             }
           }
-        },
-        "energy": 195601687290,
-        "binding_energy": 1640449395
+        }
       },
       "211At": {
         "ratio": 0.347973,
@@ -6172,9 +5232,7 @@
               "ratio": 0.42
             }
           }
-        },
-        "energy": 196533505587,
-        "binding_energy": 1648195892
+        }
       }
     },
     "ionization_energy": [
@@ -6200,9 +5258,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 195604061207,
-        "binding_energy": 1637299921
+        }
       },
       "211Rn": {
         "ratio": 0,
@@ -6216,9 +5272,7 @@
               "ratio": 0.28
             }
           }
-        },
-        "energy": 196536397178,
-        "binding_energy": 1644521718
+        }
       },
       "222Rn": {
         "ratio": 1,
@@ -6229,9 +5283,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 206807956045,
-        "binding_energy": 1708177231
+        }
       }
     },
     "ionization_energy": [
@@ -6258,9 +5310,7 @@
               "ratio": 0.00004
             }
           }
-        },
-        "energy": 205873367099,
-        "binding_energy": 1702418985
+        }
       },
       "223Fr": {
         "ratio": 0.820896,
@@ -6271,9 +5321,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 207741459934,
-        "binding_energy": 1713456253
+        }
       }
     },
     "ionization_energy": [
@@ -6297,9 +5345,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 207740310763,
-        "binding_energy": 1713823069
+        }
       },
       "224Ra": {
         "ratio": 0.000008,
@@ -6310,9 +5356,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 208673396906,
-        "binding_energy": 1720301872
+        }
       },
       "225Ra": {
         "ratio": 0.000025,
@@ -6323,9 +5367,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 209608057360,
-        "binding_energy": 1725206220
+        }
       },
       "226Ra": {
         "ratio": 0.996368,
@@ -6336,9 +5378,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 210541226041,
-        "binding_energy": 1731602275
+        }
       },
       "228Ra": {
         "ratio": 0.00358,
@@ -6349,9 +5389,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 212409485962,
-        "binding_energy": 1742472295
+        }
       }
     },
     "ionization_energy": [
@@ -6376,9 +5414,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 209607701549,
-        "binding_energy": 1724779575
+        }
       },
       "226Ac": {
         "ratio": 0,
@@ -6392,9 +5428,7 @@
               "ratio": 0.17
             }
           }
-        },
-        "energy": 210541867157,
-        "binding_energy": 1730179005
+        }
       },
       "227Ac": {
         "ratio": 0.998743,
@@ -6408,9 +5442,7 @@
               "ratio": 0.017
             }
           }
-        },
-        "energy": 211474901497,
-        "binding_energy": 1736709730
+        }
       }
     },
     "ionization_energy": [
@@ -6435,9 +5467,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 211474856733,
-        "binding_energy": 1735972140
+        }
       },
       "228Th": {
         "ratio": 0.000001,
@@ -6448,9 +5478,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 212407316359,
-        "binding_energy": 1743077461
+        }
       },
       "229Th": {
         "ratio": 0.000001,
@@ -6461,9 +5489,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 213341624299,
-        "binding_energy": 1748334329
+        }
       },
       "230Th": {
         "ratio": 0.0002,
@@ -6474,9 +5500,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 214274395376,
-        "binding_energy": 1755128186
+        }
       },
       "231Th": {
         "ratio": 0.000001,
@@ -6487,9 +5511,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 215208842291,
-        "binding_energy": 1760246209
+        }
       },
       "232Th": {
         "ratio": 0.999795,
@@ -6500,9 +5522,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 216141966935,
-        "binding_energy": 1766686364
+        }
       },
       "234Th": {
         "ratio": 0.000001,
@@ -6513,9 +5533,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 218010120140,
-        "binding_energy": 1777663273
+        }
       }
     },
     "ionization_energy": [
@@ -6545,9 +5563,7 @@
               "ratio": 0.004
             }
           }
-        },
-        "energy": 213341935756,
-        "binding_energy": 1747240370
+        }
       },
       "230Pa": {
         "ratio": 0,
@@ -6564,9 +5580,7 @@
               "ratio": 0.00003
             }
           }
-        },
-        "energy": 214275705905,
-        "binding_energy": 1753035298
+        }
       },
       "231Pa": {
         "ratio": 0.999998,
@@ -6577,9 +5591,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 215208450735,
-        "binding_energy": 1759855442
+        }
       },
       "232Pa": {
         "ratio": 0,
@@ -6593,9 +5605,7 @@
               "ratio": 0
             }
           }
-        },
-        "energy": 216142466464,
-        "binding_energy": 1765404750
+        }
       },
       "233Pa": {
         "ratio": 0.000001,
@@ -6606,9 +5616,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 217075502339,
-        "binding_energy": 1771933999
+        }
       },
       "234Pa": {
         "ratio": 0.000001,
@@ -6619,9 +5627,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 218009847052,
-        "binding_energy": 1777155007
+        }
       }
     },
     "ionization_energy": [
@@ -6645,9 +5651,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 216141129361,
-        "binding_energy": 1765959499
+        }
       },
       "233U": {
         "ratio": 0.000001,
@@ -6658,9 +5662,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 217074932200,
-        "binding_energy": 1771721437
+        }
       },
       "234U": {
         "ratio": 0.000058,
@@ -6671,9 +5673,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 218007652481,
-        "binding_energy": 1778566186
+        }
       },
       "235U": {
         "ratio": 0.0072,
@@ -6684,9 +5684,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 218941919925,
-        "binding_energy": 1783863683
+        }
       },
       "236U": {
         "ratio": 0.000001,
@@ -6697,9 +5695,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 219874939409,
-        "binding_energy": 1790409145
+        }
       },
       "238U": {
         "ratio": 0.99274,
@@ -6710,9 +5706,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 221742789259,
-        "binding_energy": 1801689194
+        }
       }
     },
     "ionization_energy": [
@@ -6740,9 +5734,7 @@
               "ratio": 0.00002
             }
           }
-        },
-        "energy": 218942044139,
-        "binding_energy": 1782957109
+        }
       },
       "236Np": {
         "ratio": 0,
@@ -6759,9 +5751,7 @@
               "ratio": 0.001
             }
           }
-        },
-        "energy": 219875872387,
-        "binding_energy": 1788693868
+        }
       },
       "237Np": {
         "ratio": 0.999999,
@@ -6772,9 +5762,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 220808859972,
-        "binding_energy": 1795271163
+        }
       },
       "239Np": {
         "ratio": 0.000001,
@@ -6785,9 +5773,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 222676286310,
-        "binding_energy": 1806974689
+        }
       }
     },
     "ionization_energy": [
@@ -6811,9 +5797,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 221741645056,
-        "binding_energy": 1801268652
+        }
       },
       "239Pu": {
         "ratio": 0.0003,
@@ -6824,9 +5808,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 222675563803,
-        "binding_energy": 1806914848
+        }
       },
       "240Pu": {
         "ratio": 0.00008,
@@ -6837,9 +5819,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 223608594535,
-        "binding_energy": 1813449058
+        }
       },
       "241Pu": {
         "ratio": 0,
@@ -6853,9 +5833,7 @@
               "ratio": 0.000024
             }
           }
-        },
-        "energy": 224542917944,
-        "binding_energy": 1818690586
+        }
       },
       "242Pu": {
         "ratio": 0,
@@ -6869,9 +5847,7 @@
               "ratio": 0.000005
             }
           }
-        },
-        "energy": 225476173158,
-        "binding_energy": 1825000315
+        }
       },
       "244Pu": {
         "ratio": 0.999619,
@@ -6885,9 +5861,7 @@
               "ratio": 0.0012
             }
           }
-        },
-        "energy": 227344247550,
-        "binding_energy": 1836054721
+        }
       }
     },
     "ionization_energy": [
@@ -6911,9 +5885,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 224542897161,
-        "binding_energy": 1817929015
+        }
       },
       "242Am": {
         "ratio": 0,
@@ -6927,9 +5899,7 @@
               "ratio": 0.18
             }
           }
-        },
-        "energy": 225476924452,
-        "binding_energy": 1823466660
+        }
       },
       "243Am": {
         "ratio": 0.944605,
@@ -6940,9 +5910,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 226410124490,
-        "binding_energy": 1829831544
+        }
       }
     },
     "ionization_energy": [
@@ -6966,9 +5934,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 225476259985,
-        "binding_energy": 1823348764
+        }
       },
       "243Cm": {
         "ratio": 0.000002,
@@ -6982,9 +5948,7 @@
               "ratio": 0.002
             }
           }
-        },
-        "energy": 226410131973,
-        "binding_energy": 1829041717
+        }
       },
       "244Cm": {
         "ratio": 0.000001,
@@ -6998,9 +5962,7 @@
               "ratio": 0.000001
             }
           }
-        },
-        "energy": 227342895646,
-        "binding_energy": 1835842987
+        }
       },
       "245Cm": {
         "ratio": 0.000533,
@@ -7011,9 +5973,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 228276940316,
-        "binding_energy": 1841363254
+        }
       },
       "246Cm": {
         "ratio": 0.000296,
@@ -7027,9 +5987,7 @@
               "ratio": 0.000271
             }
           }
-        },
-        "energy": 229210047662,
-        "binding_energy": 1847820869
+        }
       },
       "247Cm": {
         "ratio": 0.977304,
@@ -7040,9 +5998,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 230144456738,
-        "binding_energy": 1852976346
+        }
       },
       "248Cm": {
         "ratio": 0.0213,
@@ -7053,9 +6009,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 231077808653,
-        "binding_energy": 1859188657
+        }
       },
       "250Cm": {
         "ratio": 0.000564,
@@ -7072,9 +6026,7 @@
               "ratio": 0.08
             }
           }
-        },
-        "energy": 232946392717,
-        "binding_energy": 1869734467
+        }
       }
     },
     "ionization_energy": [
@@ -7101,9 +6053,7 @@
               "ratio": 0.001
             }
           }
-        },
-        "energy": 228277751057,
-        "binding_energy": 1839770158
+        }
       },
       "246Bk": {
         "ratio": 0.000003,
@@ -7114,9 +6064,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 229211397662,
-        "binding_energy": 1845688515
+        }
       },
       "247Bk": {
         "ratio": 0.820978,
@@ -7127,9 +6075,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 230144413461,
-        "binding_energy": 1852237613
+        }
       },
       "248Bk": {
         "ratio": 0.178473,
@@ -7140,9 +6086,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 231078495622,
-        "binding_energy": 1857718766
+        }
       },
       "249Bk": {
         "ratio": 0.000538,
@@ -7156,9 +6100,7 @@
               "ratio": 0.000014
             }
           }
-        },
-        "energy": 232011759687,
-        "binding_energy": 1864020518
+        }
       }
     },
     "ionization_energy": [
@@ -7185,9 +6127,7 @@
               "ratio": 0.00002
             }
           }
-        },
-        "energy": 231077656217,
-        "binding_energy": 1857777455
+        }
       },
       "249Cf": {
         "ratio": 0.277283,
@@ -7198,9 +6138,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 232011635687,
-        "binding_energy": 1863362773
+        }
       },
       "250Cf": {
         "ratio": 0.010333,
@@ -7214,9 +6152,7 @@
               "ratio": 0.0007
             }
           }
-        },
-        "energy": 232944575472,
-        "binding_energy": 1869988100
+        }
       },
       "251Cf": {
         "ratio": 0.709403,
@@ -7230,9 +6166,7 @@
               "ratio": 0.0001
             }
           }
-        },
-        "energy": 233879031909,
-        "binding_energy": 1875095054
+        }
       },
       "252Cf": {
         "ratio": 0.002089,
@@ -7246,9 +6180,7 @@
               "ratio": 0.031
             }
           }
-        },
-        "energy": 234812424894,
-        "binding_energy": 1881267457
+        }
       },
       "253Cf": {
         "ratio": 0.000039,
@@ -7262,9 +6194,7 @@
               "ratio": 0.003
             }
           }
-        },
-        "energy": 235747185535,
-        "binding_energy": 1886071751
+        }
       },
       "254Cf": {
         "ratio": 0.000131,
@@ -7278,9 +6208,7 @@
               "ratio": 0.003
             }
           }
-        },
-        "energy": 236680718901,
-        "binding_energy": 1892103323
+        }
       }
     },
     "ionization_energy": [
@@ -7307,9 +6235,7 @@
               "ratio": 0.22
             }
           }
-        },
-        "energy": 234813684893,
-        "binding_energy": 1879225103
+        }
       },
       "253Es": {
         "ratio": 0.025345,
@@ -7320,9 +6246,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 235746898218,
-        "binding_energy": 1885577027
+        }
       },
       "254Es": {
         "ratio": 0.341352,
@@ -7336,9 +6260,7 @@
               "ratio": 0.000001
             }
           }
-        },
-        "energy": 236681370120,
-        "binding_energy": 1890670845
+        }
       },
       "255Es": {
         "ratio": 0.049278,
@@ -7355,9 +6277,7 @@
               "ratio": 0.00004
             }
           }
-        },
-        "energy": 237614960621,
-        "binding_energy": 1896643736
+        }
       }
     },
     "ionization_energy": [
@@ -7384,9 +6304,7 @@
               "ratio": 0.00002
             }
           }
-        },
-        "energy": 234813208288,
-        "binding_energy": 1878920424
+        }
       },
       "253Fm": {
         "ratio": 0.028465,
@@ -7400,9 +6318,7 @@
               "ratio": 0.12
             }
           }
-        },
-        "energy": 235747234058,
-        "binding_energy": 1884460401
+        }
       },
       "255Fm": {
         "ratio": 0.007934,
@@ -7413,9 +6329,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 237614671001,
-        "binding_energy": 1896151002
+        }
       },
       "257Fm": {
         "ratio": 0.953563,
@@ -7429,9 +6343,7 @@
               "ratio": 0.002
             }
           }
-        },
-        "energy": 239482448457,
-        "binding_energy": 1907503870
+        }
       }
     },
     "ionization_energy": [
@@ -7461,9 +6373,7 @@
               "ratio": 0.08
             }
           }
-        },
-        "energy": 239482855188,
-        "binding_energy": 1906315096
+        }
       },
       "258Md": {
         "ratio": 0.616545,
@@ -7480,9 +6390,7 @@
               "ratio": 0.00001
             }
           }
-        },
-        "energy": 240417040773,
-        "binding_energy": 1911695231
+        }
       },
       "260Md": {
         "ratio": 0.380702,
@@ -7493,9 +6401,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 242284891034,
-        "binding_energy": 1922974226
+        }
       }
     },
     "ionization_energy": [
@@ -7522,9 +6428,7 @@
               "ratio": 0.2
             }
           }
-        },
-        "energy": 235752350532,
-        "binding_energy": 1877884692
+        }
       },
       "254No": {
         "ratio": 0.013288,
@@ -7541,9 +6445,7 @@
               "ratio": 0.001
             }
           }
-        },
-        "energy": 236684102406,
-        "binding_energy": 1885591281
+        }
       },
       "255No": {
         "ratio": 0.048463,
@@ -7557,9 +6459,7 @@
               "ratio": 0.39
             }
           }
-        },
-        "energy": 237617725302,
-        "binding_energy": 1891580022
+        }
       },
       "257No": {
         "ratio": 0.006514,
@@ -7573,9 +6473,7 @@
               "ratio": 0.15
             }
           }
-        },
-        "energy": 239484099497,
-        "binding_energy": 1904279470
+        }
       },
       "259No": {
         "ratio": 0.906722,
@@ -7592,9 +6490,7 @@
               "ratio": 0.1
             }
           }
-        },
-        "energy": 241350955975,
-        "binding_energy": 1916561549
+        }
       }
     },
     "ionization_energy": [
@@ -7621,9 +6517,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 247888433393,
-        "binding_energy": 1954767456
+        }
       },
       "262Lr": {
         "ratio": 0.25005,
@@ -7640,9 +6534,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 244153450459,
-        "binding_energy": 1932001164
+        }
       },
       "261Lr": {
         "ratio": 0.050936,
@@ -7656,9 +6548,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 243219394305,
-        "binding_energy": 1926470841
+        }
       },
       "260Lr": {
         "ratio": 0.003126,
@@ -7672,9 +6562,7 @@
               "ratio": 0.2
             }
           }
-        },
-        "energy": 242286616160,
-        "binding_energy": 1919684518
+        }
       },
       "259Lr": {
         "ratio": 0.00012,
@@ -7691,9 +6579,7 @@
               "ratio": 0
             }
           }
-        },
-        "energy": 241352697868,
-        "binding_energy": 1914037195
+        }
       },
       "256Lr": {
         "ratio": 0.000521,
@@ -7710,9 +6596,7 @@
               "ratio": 0
             }
           }
-        },
-        "energy": 238554237682,
-        "binding_energy": 1893929627
+        }
       },
       "255Lr": {
         "ratio": 0.000415,
@@ -7729,9 +6613,7 @@
               "ratio": 0.01
             }
           }
-        },
-        "energy": 237620929518,
-        "binding_energy": 1887657602
+        }
       },
       "254Lr": {
         "ratio": 0.000251,
@@ -7742,9 +6624,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 236689224454,
-        "binding_energy": 1879660580
+        }
       }
     },
     "ionization_energy": [
@@ -7771,9 +6651,7 @@
               "ratio": 0.4
             }
           }
-        },
-        "energy": 243221148825,
-        "binding_energy": 1923928716
+        }
       },
       "263Rf": {
         "ratio": 0.156986,
@@ -7787,9 +6665,7 @@
               "ratio": 0.3
             }
           }
-        },
-        "energy": 245087657514,
-        "binding_energy": 1936605133
+        }
       },
       "265Rf": {
         "ratio": 0.010466,
@@ -7800,9 +6676,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 246954516963,
-        "binding_energy": 1948844779
+        }
       },
       "266Rf": {
         "ratio": 0.004012,
@@ -7816,9 +6690,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 247887176808,
-        "binding_energy": 1955530102
+        }
       },
       "267Rf": {
         "ratio": 0.816327,
@@ -7832,9 +6704,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 248821998649,
-        "binding_energy": 1960233425
+        }
       }
     },
     "ionization_energy": [
@@ -7864,9 +6734,7 @@
               "ratio": 0.03
             }
           }
-        },
-        "energy": 244157595605,
-        "binding_energy": 1926282456
+        }
       },
       "263Db": {
         "ratio": 0.000232,
@@ -7883,9 +6751,7 @@
               "ratio": 0.07
             }
           }
-        },
-        "energy": 245089931290,
-        "binding_energy": 1933498779
+        }
       },
       "266Db": {
         "ratio": 0.011323,
@@ -7899,9 +6765,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 247890039288,
-        "binding_energy": 1952086748
+        }
       },
       "267Db": {
         "ratio": 0.03088,
@@ -7915,9 +6779,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 248822788556,
-        "binding_energy": 1958821071
+        }
       },
       "268Db": {
         "ratio": 0.926395,
@@ -7931,9 +6793,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 249757139993,
-        "binding_energy": 1963905394
+        }
       },
       "270Db": {
         "ratio": 0.03088,
@@ -7947,9 +6807,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 251625033400,
-        "binding_energy": 1974753040
+        }
       }
     },
     "number": 105,
@@ -7974,9 +6832,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 252559097937,
-        "binding_energy": 1979641009
+        }
       },
       "269Sg": {
         "ratio": 0.458132,
@@ -7990,9 +6846,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 250691716852,
-        "binding_energy": 1968441363
+        }
       },
       "267Sg": {
         "ratio": 0.213795,
@@ -8003,9 +6857,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 248824696255,
-        "binding_energy": 1956275717
+        }
       },
       "265Sg": {
         "ratio": 0.022652,
@@ -8019,9 +6871,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 246958625495,
-        "binding_energy": 1943174071
+        }
       }
     },
     "number": 106,
@@ -8043,9 +6893,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 259089843838,
-        "binding_energy": 2019565916
+        }
       },
       "274Bh": {
         "ratio": 0.0489,
@@ -8059,9 +6907,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 255361932416,
-        "binding_energy": 1994116624
+        }
       },
       "272Bh": {
         "ratio": 0.012225,
@@ -8075,9 +6921,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 253494839163,
-        "binding_energy": 1982895978
+        }
       },
       "271Bh": {
         "ratio": 0.001222,
@@ -8091,9 +6935,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 252560687997,
-        "binding_energy": 1977626655
+        }
       },
       "270Bh": {
         "ratio": 0.07335,
@@ -8107,9 +6949,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 251627738457,
-        "binding_energy": 1971318332
+        }
       },
       "267Bh": {
         "ratio": 0.020782,
@@ -8120,9 +6960,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 248827700322,
-        "binding_energy": 1952564363
+        }
       }
     },
     "number": 107,
@@ -8144,9 +6982,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 258163307245,
-        "binding_energy": 2009769239
+        }
       },
       "271Hs": {
         "ratio": 0.074488,
@@ -8160,9 +6996,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 252562996238,
-        "binding_energy": 1975061301
+        }
       },
       "270Hs": {
         "ratio": 0.18622,
@@ -8173,9 +7007,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 251628701622,
-        "binding_energy": 1969672978
+        }
       },
       "269Hs": {
         "ratio": 0.180633,
@@ -8186,9 +7018,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 250696654700,
-        "binding_energy": 1962101655
+        }
       }
     },
     "number": 108,
@@ -8213,9 +7043,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 262817755260,
-        "binding_energy": 2040346500
+        }
       },
       "278Mt": {
         "ratio": 0.055556,
@@ -8229,9 +7057,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 259099431315,
-        "binding_energy": 2012952208
+        }
       },
       "276Mt": {
         "ratio": 0.008333,
@@ -8245,9 +7071,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 257233038544,
-        "binding_energy": 2001199562
+        }
       },
       "274Mt": {
         "ratio": 0.005556,
@@ -8261,9 +7085,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 255366638322,
-        "binding_energy": 1989107916
+        }
       }
     },
     "number": 109,
@@ -8285,9 +7107,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 261900664556,
-        "binding_energy": 2028741823
+        }
       },
       "279Ds": {
         "ratio": 0.014085,
@@ -8301,9 +7121,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 260034696547,
-        "binding_energy": 2016710177
+        }
       }
     },
     "number": 110,
@@ -8328,9 +7146,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 266545666682,
-        "binding_energy": 2060557084
+        }
       },
       "282Rg": {
         "ratio": 0.153629,
@@ -8344,9 +7160,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 262837211524,
-        "binding_energy": 2031737792
+        }
       },
       "281Rg": {
         "ratio": 0.021764,
@@ -8360,9 +7174,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 261903748732,
-        "binding_energy": 2026237469
+        }
       },
       "280Rg": {
         "ratio": 0.005121,
@@ -8376,9 +7188,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 260971417704,
-        "binding_energy": 2019304146
+        }
       },
       "279Rg": {
         "ratio": 0.000128,
@@ -8392,9 +7202,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 260038056445,
-        "binding_energy": 2013483823
+        }
       }
     },
     "number": 111,
@@ -8416,9 +7224,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 266545666682,
-        "binding_energy": 2059364729
+        }
       },
       "285Cn": {
         "ratio": 0.706714,
@@ -8429,9 +7235,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 265637857925,
-        "binding_energy": 2047720407
+        }
       },
       "283Cn": {
         "ratio": 0.094229,
@@ -8445,9 +7249,7 @@
               "ratio": 0.1
             }
           }
-        },
-        "energy": 263772716150,
-        "binding_energy": 2035160761
+        }
       }
     },
     "number": 112,
@@ -8472,9 +7274,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 270273578105,
-        "binding_energy": 2080257668
+        }
       },
       "286Nh": {
         "ratio": 0.527308,
@@ -8488,9 +7288,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 266575290743,
-        "binding_energy": 2050267375
+        }
       },
       "285Nh": {
         "ratio": 0.263654,
@@ -8504,9 +7302,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 265642167946,
-        "binding_energy": 2044506053
+        }
       },
       "284Nh": {
         "ratio": 0.065913,
@@ -8520,9 +7316,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 264710066997,
-        "binding_energy": 2037366730
+        }
       },
       "283Nh": {
         "ratio": 0.006591,
@@ -8536,9 +7330,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 263777055979,
-        "binding_energy": 2031303407
+        }
       },
       "282Nh": {
         "ratio": 0.004614,
@@ -8552,9 +7344,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 262817755260,
-        "binding_energy": 2024069084
+        }
       },
       "278Nh": {
         "ratio": 0.000092,
@@ -8568,9 +7358,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 259089843838,
-        "binding_energy": 1996528792
+        }
       }
     },
     "number": 113,
@@ -8592,9 +7380,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 270273578105,
-        "binding_energy": 2078825314
+        }
       },
       "289Fl": {
         "ratio": 0.084814,
@@ -8605,9 +7391,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 269376103881,
-        "binding_energy": 2066049990
+        }
       },
       "288Fl": {
         "ratio": 0.028569,
@@ -8618,9 +7402,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 268443129191,
-        "binding_energy": 2060630667
+        }
       },
       "287Fl": {
         "ratio": 0.024105,
@@ -8631,9 +7413,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 267511551742,
-        "binding_energy": 2053294344
+        }
       },
       "286Fl": {
         "ratio": 0.007589,
@@ -8647,9 +7427,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 266578433602,
-        "binding_energy": 2047597022
+        }
       },
       "285Fl": {
         "ratio": 0.006696,
@@ -8660,9 +7438,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 265646793743,
-        "binding_energy": 2040076699
+        }
       },
       "284Fl": {
         "ratio": 0.000089,
@@ -8673,9 +7449,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 264681710971,
-        "binding_energy": 2037977376
+        }
       }
     },
     "number": 114,
@@ -8700,9 +7474,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 270313989405,
-        "binding_energy": 2068162960
+        }
       },
       "289Mc": {
         "ratio": 0.223881,
@@ -8716,9 +7488,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 269381167480,
-        "binding_energy": 2062278637
+        }
       },
       "288Mc": {
         "ratio": 0.149254,
@@ -8732,9 +7502,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 268449466142,
-        "binding_energy": 2055034314
+        }
       },
       "287Mc": {
         "ratio": 0.029851,
@@ -8748,9 +7516,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 267516755997,
-        "binding_energy": 2048859990
+        }
       }
     },
     "number": 115,
@@ -8772,9 +7538,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 274001489527,
-        "binding_energy": 2096215898
+        }
       },
       "293Lv": {
         "ratio": 0.394737,
@@ -8785,9 +7549,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 273069027430,
-        "binding_energy": 2083665575
+        }
       },
       "292Lv": {
         "ratio": 0.078947,
@@ -8798,9 +7560,7 @@
               "ratio": 1
             }
           }
-        },
-        "energy": 272182234916,
-        "binding_energy": 2078152251
+        }
       },
       "291Lv": {
         "ratio": 0.118421,
@@ -8814,9 +7574,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 271250950887,
-        "binding_energy": 2070699929
+        }
       },
       "290Lv": {
         "ratio": 0.052632,
@@ -8830,9 +7588,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 270318133620,
-        "binding_energy": 2064900606
+        }
       }
     },
     "number": 116,
@@ -8857,9 +7613,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 274001489527,
-        "binding_energy": 2085389544
+        }
       },
       "293Ts": {
         "ratio": 0.285714,
@@ -8873,9 +7627,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 273069027430,
-        "binding_energy": 2079392221
+        }
       }
     },
     "number": 117,
@@ -8900,9 +7652,7 @@
               "ratio": 0.5
             }
           }
-        },
-        "energy": 274001489527,
-        "binding_energy": 2081385190
+        }
       }
     },
     "number": 118,
