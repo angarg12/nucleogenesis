@@ -3,11 +3,11 @@
     "name": "Hydrogen",
     "isotopes": {
       "1H": {
-        "binding_energy": 0
+        "binding_energy": 0,
         "ratio": 0.999884
       },
       "2H": {
-        "binding_energy": 2224570
+        "binding_energy": 2224570,
         "ratio": 0.000115
       },
       "3H": {
@@ -18,7 +18,7 @@
             "beta-": {
               "ratio": 1
             }
-          }
+          },
         "binding_energy": 8481808
         }
       }
@@ -38,11 +38,11 @@
     "name": "Helium",
     "isotopes": {
       "4He": {
-        "binding_energy": 28295668
+        "binding_energy": 28295668,
         "ratio": 0.999998
       },
       "3He": {
-        "binding_energy": 7718045
+        "binding_energy": 7718045,
         "ratio": 0.000002
       }
     },
@@ -62,11 +62,11 @@
     "name": "Lithium",
     "isotopes": {
       "6Li": {
-        "binding_energy": 31993997
+        "binding_energy": 31993997,
         "ratio": 0.95
       },
       "7Li": {
-        "binding_energy": 39245093
+        "binding_energy": 39245093,
         "ratio": 0.05
       }
     },
@@ -87,7 +87,7 @@
     "name": "Beryllium",
     "isotopes": {
       "9Be": {
-        "binding_energy": 58164038
+        "binding_energy": 58164038,
         "ratio": 0.999998
       },
       "7Be": {
@@ -98,7 +98,7 @@
             "electron_capture": {
               "ratio": 1
             }
-          }
+          },
         "binding_energy": 37600846
         }
       },
@@ -110,7 +110,7 @@
             "beta-": {
               "ratio": 1
             }
-          }
+          },
         "binding_energy": 64976326
         }
       }
