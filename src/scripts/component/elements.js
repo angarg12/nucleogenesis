@@ -21,6 +21,10 @@ function elements($timeout, state, data, util, visibility) {
   ct.outcome = {};
   ct.keys = Object.keys;
   ct.buyAmount = [1, 10, 25, 100, 1000];
+  let sortFunc = [
+    (a,b) => data.elements[a].number - data.elements[b].number,
+    (a,b) => ct.getChance(b, state.player) - ct.getChance(a, state.player)
+  ]
 
   ct.getChance = function(element, player) {
     let bonus = 1;
@@ -90,7 +94,7 @@ function elements($timeout, state, data, util, visibility) {
   };
 
   ct.visibleTableElements = function(player) {
-    return visibility.visible(data.elements, isTableElementVisible, null, null, player);
+    return visibility.visible(data.elements, isTableElementVisible, null, sortFunc[player.options.elementSortIndex], player);
   };
 
   function isTableElementVisible(element, _, player) {

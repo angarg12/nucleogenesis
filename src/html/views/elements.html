@@ -5,6 +5,11 @@
             {{ct.buyAmount[ct.state.player.options.elementBuyIndex]}}
           </button>
 <get-html value="'dark_matter'"></get-html>
+<br>
+{{ 'ELEMENTS.SORT' | translate }} <select name="sort" ng-model="ct.state.player.options.elementSortIndex">
+  <option value="0">{{ 'ELEMENTS.NUMBER' | translate }}</option>
+  <option value="1">{{ 'ELEMENTS.CHANCE' | translate }}</option>
+</select>
 <p>
   {{ 'ELEMENTS.LEGEND' | translate }}
   <table class="table" class="col-xs-4">

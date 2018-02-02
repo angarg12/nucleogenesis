@@ -60,7 +60,10 @@
     "ISOTOPES": "Isotopes",
     "REDOXES": "Redoxes",
     "BUY": "Buy",
-    "SUCCESS": "Success"
+    "SUCCESS": "Success",
+    "SORT": "Sort by",
+    "NUMBER": "Number",
+    "CHANCE": "Chance"
   },
   "EXOTIC": {
     "HIDE": "Hide bought upgrades",
