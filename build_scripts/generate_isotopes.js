@@ -46,7 +46,7 @@ for (let element in elements) {
     calculatedBinding = Math.round(calculatedBinding);
     // the experimental formula fails for some small isotopes
     // so we just introduce the values by hand
-    if(isotopes[isotope].binding_energy){
+    if(typeof isotopes[isotope].binding_energy !== 'undefined'){
       calculatedBinding = isotopes[isotope].binding_energy;
     }
 
