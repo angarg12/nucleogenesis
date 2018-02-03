@@ -99,6 +99,34 @@ angular
         return true;
       };
 
+      // tries to buy all the upgrades it can, starting from the cheapest
+      sv.buyAll = function (slot, player, whichUpgrades, visibleUpgrades, currency) {
+        let cheapest;
+        let cheapestPrice;
+        do{
+          cheapest = null;
+          cheapestPrice = Number.MAX_VALUE;
+          for(let up of visibleUpgrades){
+            let price = data.upgrades[up].price;
+            if(!slot[whichUpgrades][up] &&
+              price <= player.resources[currency]){
+              if(price < cheapestPrice){
+                cheapest = up;
+                cheapestPrice = price;
+              }
+            }
+          }
+          if(cheapest){
+            sv.buyUpgrade(player,
+              slot[whichUpgrades],
+              data[whichUpgrades][cheapest],
+              cheapest,
+              cheapestPrice,
+              currency);
+          }
+        }while(cheapest);
+      };
+
       sv.sortFunctions = function(data){
         return [
           function(a,b) {

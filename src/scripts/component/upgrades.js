@@ -20,35 +20,6 @@ function(state, visibility, upgradeService, data) {
   ct.upgradeService = upgradeService;
   let sortFunc = upgradeService.sortFunctions(data.upgrades);
 
-  // tries to buy all the upgrades it can, starting from the cheapest
-  ct.buyAll = function (slot, player) {
-    let currency = data.elements[slot.element].main;
-    let cheapest;
-    let cheapestPrice;
-    do{
-      cheapest = null;
-      cheapestPrice = Number.MAX_VALUE;
-      for(let up of ct.visibleUpgrades(slot, player)){
-        let price = data.upgrades[up].price;
-        if(!slot.upgrades[up] &&
-          price <= player.resources[currency]){
-          if(price < cheapestPrice){
-            cheapest = up;
-            cheapestPrice = price;
-          }
-        }
-      }
-      if(cheapest){
-        upgradeService.buyUpgrade(player,
-          slot.upgrades,
-          data.upgrades[cheapest],
-          cheapest,
-          cheapestPrice,
-          currency);
-      }
-    }while(cheapest);
-  };
-
   ct.buyUpgrade = function (name, slot, player) {
     let price = data.upgrades[name].price;
     let currency = data.elements[slot.element].main;

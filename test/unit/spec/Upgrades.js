@@ -164,7 +164,7 @@ describe('Upgrades', function() {
 
       spec.upgrades.visibleUpgrades = function(){return ['1-1','1-2','1-3'];};
 
-      spec.upgrades.buyAll(spec.state.player.element_slots[0], spec.state.player);
+      spec.upgradeService.buyAll(spec.state.player.element_slots[0], spec.state.player, 'upgrades', Object.keys(spec.data.upgrades), '1H');
 
       expect(spec.state.player.resources['1H']).toEqual(400);
       expect(spec.state.player.element_slots[0].upgrades['1-1']).toEqual(true);

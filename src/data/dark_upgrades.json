@@ -40,7 +40,7 @@
     "function": ["(() => {",
       "let upgrades = $controller('ct_upgrades');",
       "for(let slot of args.player.element_slots){",
-      "  if(slot) upgrades.buyAll(slot, args.player);",
+      "  if(slot) sv.buyAll(slot, args.player, 'upgrades', Object.keys(data.upgrades), data.elements[slot.element].main);",
       "}",
       "})()"
     ],
