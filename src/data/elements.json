@@ -113,18 +113,6 @@
           },
         "binding_energy": 64976326
         }
-      },
-      "11Be": {
-        "ratio": 0,
-        "decay": {
-          "half_life": 14,
-          "decay_types": {
-            "beta-": {
-              "ratio": 1
-            }
-          }
-        },
-      "binding_energy": 5952822
       }
     },
     "ionization_energy": [
