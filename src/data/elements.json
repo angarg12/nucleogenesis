@@ -1034,17 +1034,6 @@
             }
           }
         }
-      },
-      "45Ar": {
-        "ratio": 0,
-        "decay": {
-          "half_life": 21,
-          "decay_types": {
-            "beta-": {
-              "ratio": 1
-            }
-          }
-        }
       }
     },
     "ionization_energy": [
