@@ -833,17 +833,6 @@
             }
           }
         }
-      },
-      "39S": {
-        "ratio": 0,
-        "decay": {
-          "half_life": 12,
-          "decay_types": {
-            "beta-": {
-              "ratio": 1
-            }
-          }
-        }
       }
     },
     "ionization_energy": [
