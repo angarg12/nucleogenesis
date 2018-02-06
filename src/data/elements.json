@@ -120,7 +120,7 @@
           "half_life": 14,
           "decay_types": {
             "beta-": {
-              "ratio": 0.97
+              "ratio": 1
             }
           }
         },
