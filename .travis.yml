@@ -25,7 +25,7 @@ jobs:
       script: "gulp $TEST_SUITE"
       before_deploy:
         - export NOW=`date '+%d.%m.%Y %H:%M:%S'`
-        - sed -i -e 's/{{ 'GAME_NAME' | translate }} v{{ct.data.version}}/NG '"$NOW"'/g' build/views/sidebar.html
+        - sed -i -e 's/{{ \x27GAME_NAME\x27 | translate }} v{{ct.data.version}}/NG '"$NOW"'/g' build/views/sidebar.html
         - sed -i -e 's/<b>Warning:<\/b>.*/<b>Warning:<\/b> This is a dev version with unreleased changes. Expect bugs, broken features and unbalance. Use at your own risk./g' build/index.html
       deploy:
         provider: pages
