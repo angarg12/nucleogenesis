@@ -10,8 +10,8 @@
 
 angular
   .module('game')
-  .service('upgrade', ['data', 'util', '$controller', 'state',
-    function(data, util, $controller, state) {
+  .service('upgrade', ['data', 'util', '$controller', 'state', 'visibility',
+    function(data, util, $controller, state, visibility) {
       let sv = this;
 
       <%= upgradeFunctions %>
@@ -100,15 +100,16 @@ angular
       };
 
       // tries to buy all the upgrades it can, starting from the cheapest
-      sv.buyAll = function (slot, player, whichUpgrades, visibleUpgrades, currency) {
+      sv.buyAll = function (player, playerUpgrades, visibleUpgrades, dataUpgrades, currency) {
         let cheapest;
         let cheapestPrice;
+          console.log(visibleUpgrades, cheapest, currency)
         do{
           cheapest = null;
           cheapestPrice = Number.MAX_VALUE;
           for(let up of visibleUpgrades){
-            let price = data.upgrades[up].price;
-            if(!slot[whichUpgrades][up] &&
+            let price = dataUpgrades[up].price;
+            if(!playerUpgrades[up] &&
               price <= player.resources[currency]){
               if(price < cheapestPrice){
                 cheapest = up;
@@ -118,8 +119,8 @@ angular
           }
           if(cheapest){
             sv.buyUpgrade(player,
-              slot[whichUpgrades],
-              data[whichUpgrades][cheapest],
+              playerUpgrades,
+              dataUpgrades[cheapest],
               cheapest,
               cheapestPrice,
               currency);

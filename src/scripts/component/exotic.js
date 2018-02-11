@@ -17,13 +17,14 @@ angular.module('game').component('exotic', {
 });
 
 angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility', 'upgrade', 'data', 'util',
-  function (state, format, visibility, upgrade, data, util) {
+  function (state, format, visibility, upgradeService, data, util) {
     let ct = this;
     ct.state = state;
     ct.data = data;
     ct.util = util;
     ct.format = format;
-    let sortFunc = upgrade.sortFunctions(data.exotic_upgrades);
+    ct.upgradeService = upgradeService;
+    let sortFunc = upgradeService.sortFunctions(data.exotic_upgrades);
     ct.cache = {breakdown:{}};
 
     ct.update = function(player) {
@@ -66,7 +67,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
             resource: resource
           };
 
-          upgrade.executeAll(data.exotic_upgrades, player.exotic_upgrades[elem], ['production', 'exotic'], args);
+          upgradeService.executeAll(data.exotic_upgrades, player.exotic_upgrades[elem], ['production', 'exotic'], args);
 
           // extract back the value from applying the upgrades
           let newExotic = data.elements[elem].exotic;
@@ -102,7 +103,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
         util.addResource(player, 'dark', key, production[key], state);
       }
 
-      upgrade.resetElement(player, slot.element);
+      upgradeService.resetElement(player, slot.element);
 
       // we deactivate reactions and redoxes
       for (let reaction of slot.reactions) {
@@ -125,7 +126,7 @@ angular.module('game').controller('ct_exotic', ['state', 'format', 'visibility',
     ct.buyExoticUpgrade = function(name, slot, player) {
       let price = data.exotic_upgrades[name].price;
       let currency = data.elements[slot.element].exotic;
-      upgrade.buyUpgrade(player,
+      upgradeService.buyUpgrade(player,
         player.exotic_upgrades[slot.element],
         data.exotic_upgrades[name],
         name,

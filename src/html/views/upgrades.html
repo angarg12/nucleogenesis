@@ -29,7 +29,7 @@
   <div ng-if="slot">
     <h2>{{ct.data.elements[slot.element].name}}</h2>
     <button class="btn btn-default"
-            ng-click="ct.upgradeService.buyAll(slot, ct.state.player, 'upgrades', ct.visibleUpgrades(slot, ct.state.player), ct.data.elements[slot.element].main)">{{ 'UPGRADES.BUY_ALL' | translate }}</button>
+            ng-click="ct.upgradeService.buyAll(ct.state.player, slot.upgrades, ct.visibleUpgrades(slot, ct.state.player), ct.data.upgrades, ct.data.elements[slot.element].main)">{{ 'UPGRADES.BUY_ALL' | translate }}</button>
     <div class="row">
       <div ng-repeat="up in ct.visibleUpgrades(slot, ct.state.player)"
            ng-click="ct.buyUpgrade(up, slot, ct.state.player)"

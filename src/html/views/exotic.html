@@ -42,6 +42,8 @@
       <pretty value="ct.state.player.statistics.exotic_run[slot.element][key] || 0"></pretty>
       (<span ng-repeat="(exotic,number) in value">+<pretty value="number"></pretty> {{exotic}} </span>)
     </p>
+    <button class="btn btn-default"
+            ng-click="ct.upgradeService.buyAll(ct.state.player, ct.state.player.exotic_upgrades[slot.element], ct.visibleExoticUpgrades(slot, ct.state.player), ct.data.exotic_upgrades, ct.data.elements[slot.element].exotic)">{{ 'UPGRADES.BUY_ALL' | translate }}</button>
     <div class="row">
       <div ng-repeat="up in ct.visibleExoticUpgrades(slot, ct.state.player)"
            ng-click="ct.buyExoticUpgrade(up, slot, ct.state.player)"
