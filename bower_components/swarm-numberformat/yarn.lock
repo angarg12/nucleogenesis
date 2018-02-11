@@ -1324,6 +1324,10 @@ braces@^1.8.2:
     preserve "^0.2.0"
     repeat-element "^1.1.2"
 
+break_infinity.js@Patashu/break_infinity.js#1804e9a:
+  version "1.0.0"
+  resolved "https://codeload.github.com/Patashu/break_infinity.js/tar.gz/1804e9af6215890d56984579c2c183676370b5eb"
+
 brorand@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
@@ -2140,6 +2144,10 @@ debug@^2.6.3:
 decamelize@^1.0.0, decamelize@^1.1.1, decamelize@^1.1.2:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
+
+decimal.js-light@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/decimal.js-light/-/decimal.js-light-2.3.1.tgz#2a31d60385c5c365b49ddedb223e41240c72955a"
 
 decimal.js@^7.1.0:
   version "7.2.1"
