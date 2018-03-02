@@ -1067,6 +1067,83 @@
   "K": {
     "name": "Potassium",
     "isotopes": {
+      "38K": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 458,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "42K": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 44356,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "43K": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 80300,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "44K": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1328,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "45K": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1069,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "46K": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 105,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "47K": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 18,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
       "39K": {
         "ratio": 0.93258
       },
@@ -1120,6 +1197,39 @@
   "Ca": {
     "name": "Calcium",
     "isotopes": {
+      "47Ca": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 391900,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "49Ca": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 523,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "50Ca": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 14,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
       "40Ca": {
         "ratio": 0.969409
       },
@@ -1205,6 +1315,50 @@
   "Sc": {
     "name": "Scandium",
     "isotopes": {
+      "43Sc": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 14010,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "49Sc": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 3430,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "50Sc": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 103,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "51Sc": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 12,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
       "44Sc": {
         "ratio": 0,
         "decay": {
@@ -1287,6 +1441,50 @@
   "Ti": {
     "name": "Titanium",
     "isotopes": {
+      "45Ti": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 11090,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "51Ti": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 346,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "52Ti": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 102,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "53Ti": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 33,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
       "44Ti": {
         "ratio": 0,
         "decay": {
@@ -1387,6 +1585,50 @@
       },
       "51V": {
         "ratio": 0.9975
+      },
+      "47V": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1960,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "52V": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 225,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "53V": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 96,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "54V": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 50,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
       }
     },
     "ionization_energy": [
@@ -1447,6 +1689,61 @@
       },
       "54Cr": {
         "ratio": 0.02365
+      },
+      "48Cr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 77620,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "49Cr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 2540,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "55Cr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 210,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "56Cr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 356,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "57Cr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 21,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
       }
     },
     "ionization_energy": [
@@ -1524,6 +1821,50 @@
       },
       "55Mn": {
         "ratio": 0.999999
+      },
+      "51Mn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 2770,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "56Mn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 9284,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "57Mn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 85,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "60Mn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 51,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
       }
     },
     "ionization_energy": [
@@ -1602,6 +1943,50 @@
         "ratio": 0,
         "decay": {
           "half_life": 81993600000000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "52Fe": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 29790,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "53Fe": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 511,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "61Fe": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 359,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "62Fe": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 68,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -1695,6 +2080,50 @@
             }
           }
         }
+      },
+      "55Co": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 63110,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "61Co": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 5940,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "62Co": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 90,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "63Co": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 27,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
       }
     },
     "ionization_energy": [
@@ -1773,6 +2202,83 @@
       },
       "64Ni": {
         "ratio": 0.00926
+      },
+      "56Ni": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 379094,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "57Ni": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 128000,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "65Ni": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 9259,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "66Ni": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 197000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "67Ni": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 21,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "68Ni": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 29,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "69Ni": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 11,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
       }
     },
     "ionization_energy": [
@@ -1840,6 +2346,105 @@
         "ratio": 0,
         "decay": {
           "half_life": 222588,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "59Cu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 82,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "60Cu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1420,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "61Cu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 12000,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "62Cu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 580,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "67Cu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 222600,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "68Cu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 31,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "69Cu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 11,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "70Cu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 45,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "71Cu": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 20,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -1926,6 +2531,94 @@
       },
       "70Zn": {
         "ratio": 0.006
+      },
+      "60Zn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 143,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "61Zn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 89,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "62Zn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 33070,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "63Zn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 2308,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "71Zn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 147,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "72Zn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 167000,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "73Zn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 24,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "74Zn": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 96,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
       }
     },
     "ionization_energy": [
@@ -2034,6 +2727,83 @@
             }
           }
         }
+      },
+      "63Ga": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 32,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "64Ga": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 158,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "65Ga": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 912,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "74Ga": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 487,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "75Ga": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 126,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "76Ga": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 33,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "77Ga": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 13,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
       }
     },
     "ionization_energy": [
@@ -2059,6 +2829,17 @@
           "half_life": 23397120,
           "decay_types": {
             "electron_capture": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "69Ge": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 140600,
+          "decay_types": {
+            "beta+": {
               "ratio": 1
             }
           }
@@ -2093,6 +2874,108 @@
           "half_life": 5.6134e+28,
           "decay_types": {
             "2beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "64Ge": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 64,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "65Ge": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 31,
+          "decay_types": {
+            "beta+": {
+              "ratio": 0.99989
+            },
+            "beta+p": {
+              "ratio": 0.00011
+            }
+          }
+        }
+      },
+      "66Ge": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 8140,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "67Ge": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1134,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "75Ge": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 4967,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "77Ge": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 40700,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "78Ge": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 5300,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "79Ge": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 19,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "80Ge": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 30,
+          "decay_types": {
+            "beta-": {
               "ratio": 1
             }
           }
@@ -2144,6 +3027,163 @@
       },
       "75As": {
         "ratio": 1
+      },
+      "67As": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 43,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "68As": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 152,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "69As": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 912,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "70As": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 3160,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "71As": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 235000,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "72As": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 94000,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "76As": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 94539,
+          "decay_types": {
+            "beta-": {
+              "ratio": 0.9998
+            },
+            "electron_capture": {
+              "ratio": 0.0002
+            }
+          }
+        }
+      },
+      "77As": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 139800,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "78As": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 5440,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "79As": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 541,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "80As": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 15,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "81As": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 33,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "82As": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 19,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "83As": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 13,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
       }
     },
     "ionization_energy": [
@@ -2223,6 +3263,119 @@
             }
           }
         }
+      },
+      "68Se": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 36,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "69Se": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 27,
+          "decay_types": {
+            "beta+": {
+              "ratio": 0.99955
+            },
+            "beta+p": {
+              "ratio": 0.00045
+            }
+          }
+        }
+      },
+      "70Se": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 2470,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "71Se": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 284,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "73Se": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 25700,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "81Se": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1107,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "83Se": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1340,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "84Se": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 186,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "85Se": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 32,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "86Se": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 15,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
       }
     },
     "ionization_energy": [
@@ -2250,6 +3403,194 @@
       },
       "81Br": {
         "ratio": 0.49
+      },
+      "71Br": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 21,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "72Br": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 79,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "73Br": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 204,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "74Br": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1524,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "75Br": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 5800,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "76Br": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 58300,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "77Br": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 205330,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "78Br": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 388,
+          "decay_types": {
+            "beta-": {
+              "ratio": 0.0001
+            },
+            "beta+": {
+              "ratio": 0.9999
+            }
+          }
+        }
+      },
+      "80Br": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1061,
+          "decay_types": {
+            "beta-": {
+              "ratio": 0.917
+            },
+            "beta+": {
+              "ratio": 0.083
+            }
+          }
+        }
+      },
+      "82Br": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 127020,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "83Br": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 8600,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "84Br": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1908,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "85Br": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 174,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "86Br": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 55,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "87Br": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 56,
+          "decay_types": {
+            "beta-": {
+              "ratio": 0.974
+            },
+            "beta-n": {
+              "ratio": 0.026
+            }
+          }
+        }
+      },
+      "88Br": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 16,
+          "decay_types": {
+            "beta-": {
+              "ratio": 0.9342
+            },
+            "beta-n": {
+              "ratio": 0.0658
+            }
+          }
+        }
       }
     },
     "ionization_energy": [
@@ -2331,6 +3672,119 @@
       },
       "86Kr": {
         "ratio": 0.1728
+      },
+      "72Kr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 17,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "73Kr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 27,
+          "decay_types": {
+            "beta+": {
+              "ratio": 0.9975
+            },
+            "beta+p": {
+              "ratio": 0.0025
+            }
+          }
+        }
+      },
+      "74Kr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 690,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "75Kr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 257,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "76Kr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 53300,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "77Kr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 4460,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "87Kr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 4580,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "88Kr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 10200,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "89Kr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 189,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "90Kr": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 32,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
       }
     },
     "ionization_energy": [
