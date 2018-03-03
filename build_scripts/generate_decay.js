@@ -61,6 +61,10 @@ function generateReaction(isotope, type) {
     return calculateReaction(isotope, 1, null, -1, 0);
   case 'alpha':
     return calculateReaction(isotope, 1, 'He2+', -2, -4);
+  case 'beta+p':
+    return calculateReaction(isotope, 1, 'e-', -2, -1);
+  case 'beta-n':
+    return calculateReaction(isotope, 1, 'e+', 1, -1);
   case 'SF':
     return calculateSF(isotope);
   default:
@@ -106,6 +110,9 @@ function calculateReaction(isotope, number, particle, protonDifference, isotopeD
     }
     if (!candidate) {
       throw new Error('No candidate found for ' + isotope + ' replacing the missing isotope ' + product);
+    }
+    if(distance !== 0){
+      console.log('Isotope ',isotope,'decays to',candidate,'instead of',product,'with distance',distance);
     }
     product = candidate;
   }
