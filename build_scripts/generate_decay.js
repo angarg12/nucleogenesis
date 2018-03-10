@@ -111,9 +111,6 @@ function calculateReaction(isotope, number, particle, protonDifference, isotopeD
     if (!candidate) {
       throw new Error('No candidate found for ' + isotope + ' replacing the missing isotope ' + product);
     }
-    if(distance !== 0){
-      console.log('Isotope ',isotope,'decays to',candidate,'instead of',product,'with distance',distance);
-    }
     product = candidate;
   }
   let energy = resources[isotope].energy - resources[product].energy;
