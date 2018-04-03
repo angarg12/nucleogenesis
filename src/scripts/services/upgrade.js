@@ -103,7 +103,7 @@ angular
       sv.buyAll = function (player, playerUpgrades, visibleUpgrades, dataUpgrades, currency) {
         let cheapest;
         let cheapestPrice;
-          console.log(visibleUpgrades, cheapest, currency)
+        
         do{
           cheapest = null;
           cheapestPrice = Number.MAX_VALUE;
