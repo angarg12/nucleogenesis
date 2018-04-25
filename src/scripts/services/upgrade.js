@@ -54,6 +54,8 @@ angular
       };
 
       sv.executeAll = function(upgradesData, playerUpgrades, tags, args){
+		if(!playerUpgrades) return;
+		
         for(let key in upgradesData){
           if(!playerUpgrades[key]){
             continue;
