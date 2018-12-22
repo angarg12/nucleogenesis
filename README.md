@@ -2,7 +2,7 @@
 [![Test Coverage](https://codeclimate.com/github/angarg12/nucleogenesis/badges/coverage.svg)](https://codeclimate.com/github/angarg12/nucleogenesis/coverage)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/angarg12/nucleogenesis/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/angarg12/nucleogenesis/?branch=master)
 [![Code Climate](https://api.codeclimate.com/v1/badges/661039d3a6a51ab80cdc/maintainability)](https://codeclimate.com/github/angarg12/nucleogenesis/maintainability)
-[![Dependency Status](https://gemnasium.com/badges/github.com/angarg12/nucleogenesis.svg)](https://gemnasium.com/github.com/angarg12/nucleogenesis)
+[![Dependency Status](https://img.shields.io/librariesio/github/angarg12/nucleogenesis.svg)](https://libraries.io/github/angarg12/nucleogenesis)
 [![devDependencies Status](https://david-dm.org/angarg12/nucleogenesis/dev-status.svg)](https://david-dm.org/angarg12/nucleogenesis?type=dev)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fangarg12%2Fnucleogenesis.svg?type=shield)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fangarg12%2Fnucleogenesis?ref=badge_shield)
 
