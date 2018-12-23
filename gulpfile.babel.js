@@ -1,14 +1,12 @@
 /* eslint-env node */
-/*jslint node: true */
-/*jslint esversion: 6 */
-'use strict';
-
-// Include gulp
-let gulp = require('gulp');
-let del = require('del');
-let runSequence = require('run-sequence');
-let uglifyes = require('uglify-es');
-let composer = require('gulp-uglify/composer');
+/* jslint node: true */
+/* jslint esversion: 6 */
+import gulp from 'gulp';
+import del from 'del';
+import runSequence from 'run-sequence';
+import uglifyes from 'uglify-es';
+import composer from 'gulp-uglify/composer';
+import bowerCli from 'bower';
 
 // Include plugins
 let plugins = require('gulp-load-plugins')();
@@ -17,241 +15,243 @@ let Server = require('karma').Server;
 let ugly = composer(uglifyes, console);
 
 // unit test
-gulp.task('karma', function (done) {
+const karma = (done) => {
   new Server({
     configFile: __dirname + '/test/unit/karma.conf.js',
     singleRun: true
   }, done).start();
-});
+};
 
-gulp.task('codecov', function() {
+const codecov = () => {
   return gulp
     .src(['test/unit/coverage/**/lcov.info'], { read: false })
     .pipe(plugins.codeclimateReporter({ token: '8e959350aa2fde657bbdd472964d5b2bdbb7d2ba10b8f6137865f2c241ecc86e' }))
   ;
-});
+};
 
 // e2e test
-gulp.task('connect', function() {
+const connect = () => {
   return plugins.connect.server({
     root: 'build/',
     port: 9000
   });
-});
+};
 
-gulp.task('webdriver_update', plugins.protractor.webdriver_update_specific({
+const webdriver_update = () => {
+  plugins.protractor.webdriver_update_specific({
 	browsers: ['ignore_ssl']
-}));
+})};
 
-gulp.task('protractor', ['connect', 'webdriver_update'], function() {
+const protractor_server = () => {
   return gulp.src(['test/integration/spec/**.js'], { read: false })
     .pipe(plugins.protractor.protractor({
         configFile: 'test/integration/protractor.conf.js'
     }))
     .on('error', function(e) { throw e; });
-  });
+  };
 
-gulp.task('disconnect', function() {
+const disconnect = () => {
   return plugins.connect.serverClose();
-});
+};
+
+const protractor = gulp.series(connect, webdriver_update, protractor_server);
 
 // clean
-gulp.task('clean',function(){
+const clean = () => {
   return del(['dist','build']);
-});
+};
 
 // dist
-
-gulp.task('htmlmin', function() {
+const htmlmin = () => {
   return gulp.src('build/**/*.html')
     .pipe(plugins.htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('dist/'));
-});
+};
 
-gulp.task('uglify', function() {
+const uglify = () => {
   return gulp.src('build/scripts/app.min.js')
     .pipe(ugly())
     .pipe(gulp.dest('dist/scripts'));
-});
+};
 
-gulp.task('cleanCss', function() {
+const clean_css = () => {
   return gulp.src('build/**/*.css')
     .pipe(plugins.cleanCss())
     .pipe(gulp.dest('dist/'));
-});
+};
 
-gulp.task('minify', ['uglify', 'htmlmin', 'cleanCss']);
+const minify = gulp.series(uglify, htmlmin, clean_css);
 
 // FIXME can we do this with a parametric task?
-gulp.task('copy-lib-dist', function() {
+const copy_lib_dist = () => {
   return gulp.src('bower_components/**')
     .pipe(gulp.dest('dist/bower_components'));
-});
+};
 
 // dependencies
-
-gulp.task('bower', function() {
-  return plugins.bower();
-});
+const bower = () => {
+  //return plugins.bower();
+  return new Promise((resolve) => {
+    bowerCli.commands.install(undefined, undefined, {}).on('end', resolve);
+  });
+};
 
 // copy
-gulp.task('copy-js', function() {
+const copy_js = () => {
   return gulp.src('src/scripts/**')
     .pipe(gulp.dest('build/scripts'));
-});
+};
 
-gulp.task('copy-data', function() {
+const copy_data = () => {
   return gulp.src('src/data/**')
     .pipe(gulp.dest('build/data'));
-});
+};
 
-gulp.task('copy-lang', function() {
+const copy_lang = () => {
   return gulp.src('src/lang/**')
     .pipe(gulp.dest('build/lang'));
-});
+};
 
-gulp.task('copy-html', function() {
+const copy_html = () => {
   return gulp.src('src/html/**')
     .pipe(gulp.dest('build/'));
-});
+};
 
-gulp.task('copy-css', function() {
+const copy_css = () => {
   return gulp.src('src/styles/**')
     .pipe(gulp.dest('build/styles'));
-});
+};
 
-gulp.task('copy-lib', function() {
+const copy_lib = () => {
   return gulp.src('bower_components/**')
     .pipe(gulp.dest('build/bower_components'));
-});
+};
 
-gulp.task('copy-build', ['copy-js', 'copy-data', 'copy-lang', 'copy-html',
-                        'copy-css', 'copy-lib']);
+const copy_build = gulp.series(
+  copy_js,
+  copy_data,
+  copy_lang,
+  copy_html,
+  copy_css,
+  copy_lib
+);
 
 // build
-
-gulp.task('populate_player', function() {
+const populate_player = () => {
   return plugins.run('node build_scripts/populate_player.js',{silent:true}).exec();
-});
+};
 
-gulp.task('populate_data', function() {
+const populate_data = () => {
   return plugins.run('node build_scripts/populate_data.js',{silent:true}).exec();
-});
+};
 
-gulp.task('generate_isotopes', function() {
+const generate_isotopes = () => {
   return plugins.run('node build_scripts/generate_isotopes.js',{silent:true}).exec();
-});
+};
 
-gulp.task('generate_resource_matrix', function() {
+const generate_resource_matrix = () => {
   return plugins.run('node build_scripts/generate_resource_matrix.js',{silent:true}).exec();
-});
+};
 
-gulp.task('generate_decay', function() {
+const generate_decay = () => {
   return plugins.run('node build_scripts/generate_decay.js',{silent:true}).exec();
-});
+};
 
-gulp.task('generate_ions', function() {
+const generate_ions = () => {
   return plugins.run('node build_scripts/generate_ions.js',{silent:true}).exec();
-});
+};
 
-gulp.task('generate_reactions', function() {
+const generate_reactions = () => {
   return plugins.run('node build_scripts/generate_reactions.js',{silent:true}).exec();
-});
+};
 
-gulp.task('generate_antimatter', function() {
+const generate_antimatter = () => {
   return plugins.run('node build_scripts/generate_antimatter.js',{silent:true}).exec();
-});
+};
 
-gulp.task('generate_achievements', function() {
+const generate_achievements = () => {
   return plugins.run('node build_scripts/generate_achievements.js',{silent:true}).exec();
-});
+};
 
-gulp.task('generate_unlocks', function() {
+const generate_unlocks = () => {
   return plugins.run('node build_scripts/generate_unlocks.js',{silent:true}).exec();
-});
+};
 
-gulp.task('generate_achievement_functions', function() {
+const generate_achievement_functions = () => {
   return plugins.run('node build_scripts/generate_achievement_functions.js',{silent:false}).exec();
-});
+};
 
-gulp.task('generate_upgrades', function() {
+const generate_upgrades = () => {
   return plugins.run('node build_scripts/generate_upgrades.js',{silent:false}).exec();
-});
+};
 
-gulp.task('generate_exotic_upgrades', function() {
+const generate_exotic_upgrades = () => {
   return plugins.run('node build_scripts/generate_exotic_upgrades.js',{silent:false}).exec();
-});
+};
 
-gulp.task('generate_upgrade_functions', function() {
+const generate_upgrade_functions = () => {
   return plugins.run('node build_scripts/generate_upgrade_functions.js',{silent:true}).exec();
-});
+};
 
-gulp.task('generate_element_slot', function() {
+const generate_element_slot = () => {
   return plugins.run('node build_scripts/generate_element_slot.js',{silent:true}).exec();
-});
+};
 
-gulp.task('check_isotopes', function() {
+const check_isotopes = () => {
   return plugins.run('node build_scripts/check_isotopes.js',{silent:false}).exec();
-});
+};
 
-gulp.task('sort_resources', function() {
+const sort_resources = () => {
   return plugins.run('node build_scripts/sort_resources.js',{silent:true}).exec();
-});
+};
 
-gulp.task('process_lang', function() {
+const process_lang = () => {
   return plugins.run('node build_scripts/process_lang.js',{silent:true}).exec();
-});
+};
 
-gulp.task('concat', function() {
+const concat = () => {
   return gulp.src(['build/scripts/modules/module.js',
     'build/scripts/**/*!(module.js)'])
     .pipe(plugins.concat('app.min.js'))
     .pipe(gulp.dest('build/scripts'));
-});
+};
 
 // public tasks
-gulp.task('build', function(callback) {
-  runSequence(
-    'clean',
-    'bower',
-    'copy-build',
-    'generate_isotopes',
-    'generate_resource_matrix',
-    'generate_ions',
-    'generate_decay',
-    'generate_reactions',
-    'generate_antimatter',
-    'generate_achievements',
-    'generate_unlocks',
-    'generate_exotic_upgrades',
-    'generate_upgrades',
-    'generate_achievement_functions',
-    'generate_upgrade_functions',
-    'generate_element_slot',
-    'process_lang',
-    'sort_resources',
-    'check_isotopes',
-    'populate_player',
-    'populate_data',
-    'concat',
-    callback);
-});
+const build = gulp.series(
+  clean,
+  bower,
+  copy_build,
+  generate_isotopes,
+  generate_resource_matrix,
+  generate_ions,
+  generate_decay,
+  generate_reactions,
+  generate_antimatter,
+  generate_achievements,
+  generate_unlocks,
+  generate_exotic_upgrades,
+  generate_upgrades,
+  generate_achievement_functions,
+  generate_upgrade_functions,
+  generate_element_slot,
+  process_lang,
+  sort_resources,
+  check_isotopes,
+  populate_player,
+  populate_data,
+  concat);
 
-gulp.task('build-unit-test', function(callback) {
-  runSequence('build', 'karma', callback);
-});
+const build_unit_test = gulp.series(build, karma);
+const dist = gulp.series(build, minify, copy_lib_dist);
+const unit_test = gulp.series(dist, karma, codecov);
+const e2e_test = gulp.series(dist, protractor, disconnect);
+const test = gulp.series(unit_test, e2e_test);
 
-gulp.task('dist', function(callback) {
-  runSequence('build', 'minify', 'copy-lib-dist', callback);
-});
-
-gulp.task('unit-test', function(callback) {
-  runSequence('dist', 'karma', 'codecov', callback);
-});
-
-gulp.task('e2e-test', function(callback) {
-  runSequence('dist', 'protractor', 'disconnect',
-              callback);
-});
-
-gulp.task('test', ['unit-test', 'e2e-test']);
+export {
+  build,
+  build_unit_test,
+  dist,
+  unit_test,
+  e2e_test,
+  test
+}
