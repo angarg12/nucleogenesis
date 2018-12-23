@@ -6,9 +6,9 @@ jobs:
   include:
     - stage: test
       env:
-        - TEST_SUITE=unit-test
+        - TEST_SUITE=unit_test
         # Commenting out e2e tests: https://github.com/angular/webdriver-manager/issues/270
-        # - TEST_SUITE=e2e-test
+        # - TEST_SUITE=e2e_test
       addons:
         firefox: latest
         apt:
