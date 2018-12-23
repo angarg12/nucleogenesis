@@ -23,10 +23,12 @@ const karma = (done) => {
 };
 
 const codecov = () => {
-  return gulp
+return new Promise((resolve) => {
+  gulp
     .src(['test/unit/coverage/**/lcov.info'], { read: false })
     .pipe(plugins.codeclimateReporter({ token: '8e959350aa2fde657bbdd472964d5b2bdbb7d2ba10b8f6137865f2c241ecc86e' }))
-  ;
+    .on('end', resolve);
+  });
 };
 
 // e2e test
