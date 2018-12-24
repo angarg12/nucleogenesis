@@ -27,7 +27,7 @@
     "angular-animate": "^1.6.9",
     "angular-sanitize": "^1.6.9",
     "angular-ui-router": "^1.0.3",
-    "mdi": "^2.0.46",
+    "mdi": "^3.2.89",
     "bootstrap": "^3.3.7",
     "ziggurat": "angarg12/ziggurat",
     "version-compare": "angarg12/version_compare",
