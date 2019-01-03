@@ -50,7 +50,9 @@ function options($window, state, savegame) {
     let a = document.createElement('a');
     a.href = fileUrl;
     a.download = "nucleogenesis-save.txt";
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
     url.revokeObjectURL(fileUrl);
   };
 }
