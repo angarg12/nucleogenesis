@@ -37,8 +37,11 @@
           <button type="button"
                   class="btn btn-default"
                   ng-click="ct.util.nextAmount(ct.state.player, 'buyIndex', ct.buyAmount)">
-        <get-html value="ct.buyAmount[ct.state.player.options.buyIndex].toString()"></get-html>
-      </button>
+          <get-html value="ct.buyAmount[ct.state.player.options.buyIndex].toString()"></get-html>
+        </button>
+        <span ng-if="ct.state.player.dark_upgrades.automation_2">
+          Auto: <input type="checkbox" ng-model="ct.state.player.options.autoBuyGenerators">
+        </span>
         </td>
       </tr>
       <tr class="animif"

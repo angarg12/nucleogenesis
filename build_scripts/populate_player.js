@@ -43,6 +43,7 @@ startPlayer.options.elementBuyIndex = 0;
 startPlayer.options.hideBought = false;
 startPlayer.options.sortIndex = 0;
 startPlayer.options.hideAchievements = false;
+startPlayer.options.autoBuyGenerators = false;
 startPlayer.offline = 0;
 startPlayer.resources = {};
 for (let entry in resources) {

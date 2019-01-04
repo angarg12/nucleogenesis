@@ -58,6 +58,7 @@
     "description": "Automatically buy generators",
     "deps": [],
     "function": ["(() => {",
+      "if(!args.player.options.autoBuyGenerators) return;",
       "let generators = $controller('ct_generators');",
       "for(let slot of args.player.element_slots){",
       "  if(!slot) continue;",
