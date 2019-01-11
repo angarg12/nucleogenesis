@@ -62,7 +62,10 @@ angular.module('game').controller('ct_fusion', ['state', 'format', 'visibility',
       let productN = beamN+targetN;
       let productZ = beamZ+targetZ;
 
-      return data.resource_matrix[productZ][productN];
+      if(data.resource_matrix[productZ]){
+        return data.resource_matrix[productZ][productN];
+      }
+      return null;
     };
 
     ct.getProductEnergy = function(beam, target) {
