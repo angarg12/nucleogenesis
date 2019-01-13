@@ -26,14 +26,10 @@ angular.module('game').controller('ct_fusion_select', ['state', 'data','$scope',
       let result = [];
       for(let resource in data.resources){
         let value = data.resources[resource];
-        for(let element in player.statistics.exotic_run){
-          let currentRun = player.statistics.exotic_run[element];
-          if(value.type.indexOf('isotope') !== -1 &&
-             currentRun[resource]){
-               result.push(resource);
-               break;
-             }
-         }
+        if(value.type.indexOf('isotope') !== -1 &&
+           player.resources[resource] !== null){
+             result.push(resource);
+           }
       }
       return result;
     };
