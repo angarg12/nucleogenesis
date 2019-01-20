@@ -19,6 +19,7 @@ for (let element in elements) {
   resources[exotic].elements = {};
   resources[exotic].elements[element] = 1;
   resources[exotic].type = ['exotic'];
+  resources[exotic].html = "&#5816"+element;
 
   let isotopes = elements[element].isotopes;
   let ratioSum = 0;
