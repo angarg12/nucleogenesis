@@ -215,7 +215,17 @@ angular.module('game').controller('ct_redox', ['state', 'data', 'visibility', 'u
       slot.redoxes.splice(index, 1);
     };
 
+    ct.checkAllSlots = function(player){
+      for(let slot of player.element_slots){
+        if(slot){
+          slot.active = player.all_redox_active;
+          ct.checkAll(slot);
+        }
+      }
+    }
+
     ct.checkAll = function(slot){
+      if(!slot) return;
       for(let redox of slot.redoxes){
         redox.active = slot.active;
       }

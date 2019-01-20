@@ -80,7 +80,17 @@ function (state, data, visibility, util, format, reactionService, upgradeService
     }
   };
 
+  ct.checkAllSlots = function(player){
+    for(let slot of player.element_slots){
+      if(slot){
+        slot.active = player.all_reaction_active;
+        ct.checkAll(slot);
+      }
+    }
+  }
+
   ct.checkAll = function(slot){
+    if(!slot) return;
     for(let reaction of slot.reactions){
       reaction.active = slot.active;
     }

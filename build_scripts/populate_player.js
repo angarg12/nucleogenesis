@@ -44,6 +44,8 @@ startPlayer.options.hideBought = false;
 startPlayer.options.sortIndex = 0;
 startPlayer.options.hideAchievements = false;
 startPlayer.options.autoBuyGenerators = false;
+startPlayer.all_reaction_active = false;
+startPlayer.all_redox_active = false;
 startPlayer.offline = 0;
 startPlayer.resources = {};
 for (let entry in resources) {

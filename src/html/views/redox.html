@@ -39,6 +39,10 @@
   </span>
     </div>
   </div>
+ Toggle all:
+  <input type="checkbox"
+         ng-model="ct.state.player.all_redox_active"
+         ng-change="ct.checkAllSlots(ct.state.player)">
   <div ng-repeat="slot in ct.state.player.element_slots track by $index">
     <element-select index="$index"
                     ng-if="!slot"></element-select>
