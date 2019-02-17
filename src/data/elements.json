@@ -13,7 +13,7 @@
       "3H": {
         "ratio": 0.000001,
         "decay": {
-          "half_life": 388520000,
+          "half_life": 388523520,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -39,11 +39,22 @@
     "isotopes": {
       "4He": {
         "binding_energy": 28295668,
-        "ratio": 0.999998
+        "ratio": 0.99999866
       },
       "3He": {
         "binding_energy": 7718045,
-        "ratio": 0.000002
+        "ratio": 0.00000134
+      },
+      "6He": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 0.8067,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
       }
     },
     "ionization_energy": [
@@ -63,11 +74,11 @@
     "isotopes": {
       "6Li": {
         "binding_energy": 31993997,
-        "ratio": 0.95
+        "ratio": 0.9241
       },
       "7Li": {
         "binding_energy": 39245093,
-        "ratio": 0.05
+        "ratio": 0.0759
       }
     },
     "ionization_energy": [
@@ -133,10 +144,10 @@
     "name": "Boron",
     "isotopes": {
       "10B": {
-        "ratio": 0.2
+        "ratio": 0.199
       },
       "11B": {
-        "ratio": 0.8
+        "ratio": 0.801
       }
     },
     "ionization_energy": [
@@ -174,10 +185,13 @@
       "11C": {
         "ratio": 0,
         "decay": {
-          "half_life": 1200,
+          "half_life": 1220,
           "decay_types": {
             "beta+": {
-              "ratio": 1
+              "ratio": 0.9979
+            },
+            "electron_capture": {
+              "ratio": 0.0021
             }
           }
         }
@@ -219,7 +233,7 @@
       "13N": {
         "ratio": 0,
         "decay": {
-          "half_life": 598,
+          "half_life": 597.6,
           "decay_types": {
             "beta+": {
               "ratio": 1
@@ -228,10 +242,21 @@
         }
       },
       "14N": {
-        "ratio": 0.96
+        "ratio": 0.99636
       },
       "15N": {
-        "ratio": 0.04
+        "ratio": 0.00364
+      },
+      "16N": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 7.13,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
       }
     },
     "ionization_energy": [
@@ -257,7 +282,7 @@
       "14O": {
         "ratio": 0,
         "decay": {
-          "half_life": 71,
+          "half_life": 70.598,
           "decay_types": {
             "beta+": {
               "ratio": 1
@@ -268,7 +293,7 @@
       "15O": {
         "ratio": 0,
         "decay": {
-          "half_life": 122,
+          "half_life": 122.24,
           "decay_types": {
             "beta+": {
               "ratio": 1
@@ -277,18 +302,18 @@
         }
       },
       "16O": {
-        "ratio": 0.9976
+        "ratio": 0.99757
       },
       "17O": {
-        "ratio": 0.00039
+        "ratio": 0.00038
       },
       "18O": {
-        "ratio": 0.00201
+        "ratio": 0.00205
       },
       "19O": {
         "ratio": 0,
         "decay": {
-          "half_life": 27,
+          "half_life": 26.464,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -336,7 +361,7 @@
       "17F": {
         "ratio": 0,
         "decay": {
-          "half_life": 64,
+          "half_life": 64.49,
           "decay_types": {
             "beta+": {
               "ratio": 1
@@ -347,7 +372,18 @@
       "20F": {
         "ratio": 0,
         "decay": {
-          "half_life": 11,
+          "half_life": 11.163,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "21F": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 4.158,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -390,7 +426,7 @@
       "19Ne": {
         "ratio": 0,
         "decay": {
-          "half_life": 17,
+          "half_life": 17.296,
           "decay_types": {
             "beta+": {
               "ratio": 1
@@ -401,7 +437,7 @@
       "23Ne": {
         "ratio": 0,
         "decay": {
-          "half_life": 37,
+          "half_life": 37.24,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -412,7 +448,7 @@
       "24Ne": {
         "ratio": 0,
         "decay": {
-          "half_life": 203,
+          "half_life": 202.8,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -470,7 +506,7 @@
       "21Na": {
         "ratio": 0,
         "decay": {
-          "half_life": 22,
+          "half_life": 22.49,
           "decay_types": {
             "beta+": {
               "ratio": 1
@@ -481,7 +517,18 @@
       "25Na": {
         "ratio": 0,
         "decay": {
-          "half_life": 59,
+          "half_life": 59.1,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "26Na": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1.077,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -515,18 +562,18 @@
     "name": "Magnesium",
     "isotopes": {
       "24Mg": {
-        "ratio": 0.79
+        "ratio": 0.7899
       },
       "25Mg": {
-        "ratio": 0.1
+        "ratio": 0.1000
       },
       "26Mg": {
-        "ratio": 0.11
+        "ratio": 0.1101
       },
       "23Mg": {
         "ratio": 0,
         "decay": {
-          "half_life": 11,
+          "half_life": 11.317,
           "decay_types": {
             "beta+": {
               "ratio": 1
@@ -537,7 +584,7 @@
       "27Mg": {
         "ratio": 0,
         "decay": {
-          "half_life": 568,
+          "half_life": 567.48,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -549,6 +596,17 @@
         "ratio": 0,
         "decay": {
           "half_life": 75294,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "29Mg": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 1.3,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -597,7 +655,7 @@
       "28Al": {
         "ratio": 0,
         "decay": {
-          "half_life": 134,
+          "half_life": 134.484,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -608,7 +666,18 @@
       "29Al": {
         "ratio": 0,
         "decay": {
-          "half_life": 394,
+          "half_life": 393.6,
+          "decay_types": {
+            "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "30Al": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 3.6,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -643,14 +712,25 @@
   "Si": {
     "name": "Silicon",
     "isotopes": {
+      "27Si": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 4.16,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
       "28Si": {
-        "ratio": 0.921998
+        "ratio": 0.922228
       },
       "29Si": {
-        "ratio": 0.047
+        "ratio": 0.04685
       },
       "30Si": {
-        "ratio": 0.031
+        "ratio": 0.03092
       },
       "31Si": {
         "ratio": 0.000001,
@@ -741,7 +821,7 @@
       "34P": {
         "ratio": 0,
         "decay": {
-          "half_life": 12,
+          "half_life": 12.43,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -752,9 +832,20 @@
       "35P": {
         "ratio": 0,
         "decay": {
-          "half_life": 47,
+          "half_life": 47.3,
           "decay_types": {
             "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "29P": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 4.142,
+          "decay_types": {
+            "beta+": {
               "ratio": 1
             }
           }
@@ -790,13 +881,13 @@
     "name": "Sulfur",
     "isotopes": {
       "32S": {
-        "ratio": 0.949899
+        "ratio": 0.949299
       },
       "33S": {
-        "ratio": 0.0075
+        "ratio": 0.0076
       },
       "34S": {
-        "ratio": 0.0425
+        "ratio": 0.0429
       },
       "35S": {
         "ratio": 0.000001,
@@ -810,7 +901,7 @@
         }
       },
       "36S": {
-        "ratio": 0.0001
+        "ratio": 0.0002
       },
       "37S": {
         "ratio": 0,
@@ -866,7 +957,7 @@
     "name": "Chlorine",
     "isotopes": {
       "35Cl": {
-        "ratio": 0.759999
+        "ratio": 0.757599
       },
       "36Cl": {
         "ratio": 0.000001,
@@ -874,16 +965,16 @@
           "half_life": 9492300000000,
           "decay_types": {
             "beta-": {
-              "ratio": 0.98
+              "ratio": 0.981
             },
             "beta+": {
-              "ratio": 0.02
+              "ratio": 0.019
             }
           }
         }
       },
       "37Cl": {
-        "ratio": 0.24
+        "ratio": 0.2424
       },
       "38Cl": {
         "ratio": 0,
@@ -921,7 +1012,7 @@
       "41Cl": {
         "ratio": 0,
         "decay": {
-          "half_life": 38,
+          "half_life": 38.4,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -961,7 +1052,7 @@
     "name": "Argon",
     "isotopes": {
       "36Ar": {
-        "ratio": 0.00336
+        "ratio": 0.003336
       },
       "37Ar": {
         "ratio": 0,
@@ -975,7 +1066,7 @@
         }
       },
       "38Ar": {
-        "ratio": 0.00063
+        "ratio": 0.000629
       },
       "39Ar": {
         "ratio": 0.000001,
@@ -989,7 +1080,7 @@
         }
       },
       "40Ar": {
-        "ratio": 0.996009
+        "ratio": 0.996034
       },
       "41Ar": {
         "ratio": 0,
@@ -1136,7 +1227,7 @@
       "47K": {
         "ratio": 0,
         "decay": {
-          "half_life": 18,
+          "half_life": 17.5,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -1145,24 +1236,27 @@
         }
       },
       "39K": {
-        "ratio": 0.93258
+        "ratio": 0.932581
       },
       "40K": {
-        "ratio": 0.00012,
+        "ratio": 0.000117,
         "decay": {
           "half_life": 39356900000000000,
           "decay_types": {
             "beta-": {
-              "ratio": 0.892
+              "ratio": 0.89279
+            },
+            "electron_capture": {
+              "ratio": 0.10720
             },
             "beta+": {
-              "ratio": 0.108
+              "ratio": 0.00001
             }
           }
         }
       },
       "41K": {
-        "ratio": 0.0673
+        "ratio": 0.067302
       }
     },
     "ionization_energy": [
