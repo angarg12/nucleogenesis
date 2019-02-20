@@ -1294,9 +1294,20 @@
       "47Ca": {
         "ratio": 0,
         "decay": {
-          "half_life": 391900,
+          "half_life": 391910.4,
           "decay_types": {
             "beta-": {
+              "ratio": 1
+            }
+          }
+        }
+      },
+      "39Ca": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 0.8596,
+          "decay_types": {
+            "beta+": {
               "ratio": 1
             }
           }
@@ -1305,7 +1316,7 @@
       "49Ca": {
         "ratio": 0,
         "decay": {
-          "half_life": 523,
+          "half_life": 523.08,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -1316,7 +1327,7 @@
       "50Ca": {
         "ratio": 0,
         "decay": {
-          "half_life": 14,
+          "half_life": 13.9,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -1409,10 +1420,21 @@
   "Sc": {
     "name": "Scandium",
     "isotopes": {
+      "42Sc": {
+        "ratio": 0,
+        "decay": {
+          "half_life": 0.6813,
+          "decay_types": {
+            "beta+": {
+              "ratio": 1
+            }
+          }
+        }
+      },
       "43Sc": {
         "ratio": 0,
         "decay": {
-          "half_life": 14010,
+          "half_life": 14007.6,
           "decay_types": {
             "beta+": {
               "ratio": 1
@@ -1423,7 +1445,7 @@
       "49Sc": {
         "ratio": 0,
         "decay": {
-          "half_life": 3430,
+          "half_life": 3432,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -1434,7 +1456,7 @@
       "50Sc": {
         "ratio": 0,
         "decay": {
-          "half_life": 103,
+          "half_life": 102.5,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -1445,7 +1467,7 @@
       "51Sc": {
         "ratio": 0,
         "decay": {
-          "half_life": 12,
+          "half_life": 12.4,
           "decay_types": {
             "beta-": {
               "ratio": 1
@@ -1456,7 +1478,7 @@
       "44Sc": {
         "ratio": 0,
         "decay": {
-          "half_life": 14299,
+          "half_life": 14292,
           "decay_types": {
             "beta+": {
               "ratio": 1
