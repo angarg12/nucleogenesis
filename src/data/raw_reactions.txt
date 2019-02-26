@@ -36,6 +36,7 @@ AlO O -> Al O2
 AlO O2 -> AlO2 O
 AlO O2 -> AlO3
 As N3 -> AsN N2
+As H2 -> AsH2
 AsH2 H -> AsH3
 AsH3 Cl -> AsH2 ClH
 AsH3 F -> AsH2 FH
@@ -232,6 +233,7 @@ C NO -> CO N
 C NO2 -> CO NO
 C O -> CO
 C O2 -> CO O
+C OS2 -> CS2 O
 C10H21 H2O -> C10H22 HO
 C10H22 HO -> C10H21 H2O
 C2 -> C C
@@ -253,6 +255,7 @@ C2Cl4 -> CCl CCl3
 C2Cl4 CCl3 -> C3Cl7
 C2Cl4 Cl -> C2Cl5
 C2Cl5 -> C2Cl4 Cl
+C2Cl5 -> CCl4 CCl
 C2Cl5 Cl -> C2Cl4 Cl2
 C2F4 -> CF2 CF2
 C2F4 C2F5 -> C4F9
@@ -448,6 +451,7 @@ C2H5 O2 -> C2H4 HO2
 C2H6 -> C2H4 H2
 C2H6 -> C2H5 H
 C2H6 -> CH3 CH3
+C2H6 C2H6 -> C4H12
 C2H6 C3H4 -> C2H5 C3H5
 C2H6 C3H7 -> C2H5 C3H8
 C2H6 C4H9 -> C2H5 C4H10
@@ -573,6 +577,7 @@ C4H10 HO2 -> C4H9 H2O2
 C4H10 N N -> C3H7 CH3 N2
 C4H10 O -> C4H9 HO
 C4H10 O2 -> C4H9 HO2
+C4H12 C4H6 -> C8H18
 C4H4 CH3 -> C5H7
 C4H5 H -> C4H6
 C4H6 -> C3H3 CH3
@@ -615,6 +620,7 @@ C5H10 -> C4H7 CH3
 C5H10 -> C5H8 H2
 C5H10 CH3 -> C6H13
 C5H10 HO -> C5H9 H2O
+C5H11 C5H11 -> C10H22
 C5H12 -> C4H8 CH3 H
 C5H12 -> C4H9 CH3
 C5H12 HO -> C5H11 H2O
@@ -674,10 +680,13 @@ CCl H -> CH Cl
 CCl N -> CN Cl
 CCl O -> C ClO
 CCl O -> CO Cl
+CCl ClO -> CCl2 O
+CCl2 CCl2 -> C2Cl4
 CCl3 CCl3 -> C2Cl6
 CCl3 Cl -> CCl4
 CCl3 Cl2 -> CCl4 Cl
 CCl3 ClH -> CCl4 H
+CCl4 C -> C2Cl4
 CCl4 -> CCl3 Cl
 CCl4 Cl -> CCl3 Cl2
 CCl4 Cl3Si -> CCl3 Cl4Si
@@ -940,6 +949,7 @@ Cl NO3 -> ClO NO2
 Cl O2 -> ClO O
 Cl O2 -> ClO2
 Cl O3 -> ClO O2
+Cl H2P -> Cl2P H
 Cl2 -> Cl Cl
 Cl2 Cl2N -> Cl Cl3N
 Cl2 ClCu -> Cl Cl2Cu
@@ -1033,6 +1043,7 @@ ClH O -> Cl HO
 ClH O -> ClO H
 ClH Pb -> ClPb H
 ClH Si -> ClSi H
+ClH Ti -> ClTi H
 ClI F -> Cl FI
 ClI F -> ClF I
 ClI H -> Cl HI
@@ -1154,6 +1165,7 @@ F Xe -> FXe
 F Xe4 -> FXe4
 F10S2 -> F5S F5S
 F2 -> F F
+F2 F2S -> F4S
 F2 F2N -> F F3N
 F2 F4S -> F F5S
 F2 F5S -> F F6S
@@ -1210,6 +1222,7 @@ F6S Pb -> F5S FPb
 F6U -> F F5U
 FGa H -> F GaH
 FH -> F H
+FH FN -> F2N H
 FH H -> F H2
 FH H2Sb -> F H3Sb
 FH HO -> F H2O
@@ -1335,6 +1348,7 @@ H O3 -> HO O2
 H O3 -> HO2 O
 H O3S -> HO O2S
 H Sb -> HSb
+H Se -> HSe
 H Sn -> HSn
 H Tl -> HTl
 H10Si4 -> H2Si H8Si3
@@ -1391,6 +1405,7 @@ H2N NO2 -> H2O N2O
 H2N O -> H2 NO
 H2N O -> HN HO
 H2N O2 -> HN HO2
+H2N O2P -> H2P O2N
 H2O -> H HO
 H2O HN -> H2N HO
 H2O HO2 -> H2O2 HO
@@ -1450,6 +1465,7 @@ H3Si H3Si -> H6Si2
 H3Si H6Si2 -> H4Si H5Si2
 H3Si HI -> H4Si I
 H4N2 -> H2N H2N
+H4N2 Ge -> GeH4 N2
 H4Si -> H H3Si
 H4Si -> H2 H2Si
 H4Si H4Si2 -> H8Si3
@@ -1552,6 +1568,7 @@ I Rb -> IRb
 I2 -> I I
 I2 N -> I IN
 I2 O -> I IO
+I2 Pb -> I2Pb
 I3Pb -> I I2Pb
 I3Pb IPb -> I2Pb I2Pb
 I3Pb Pb -> I2Pb IPb
