@@ -139,6 +139,10 @@ const copy_build = gulp.series(
 );
 
 // build
+const check_reachable_molecules = () => {
+  return plugins.run('node build_scripts/check_reachable_molecules.js',{verbosity: 3}).exec();
+};
+
 const populate_player = () => {
   return plugins.run('node build_scripts/populate_player.js',{silent:true}).exec();
 };
@@ -223,6 +227,7 @@ const build = gulp.series(
   clean,
   bower,
   copy_build,
+  check_reachable_molecules,
   generate_isotopes,
   generate_resource_matrix,
   generate_ions,
