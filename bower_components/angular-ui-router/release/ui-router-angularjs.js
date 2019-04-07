@@ -1,7 +1,7 @@
 /**
  * State-based routing for AngularJS 1.x
  * This bundle requires the ui-router-core.js bundle from the @uirouter/core package.
- * @version v1.0.14
+ * @version v1.0.15
  * @link https://ui-router.github.io
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -1983,8 +1983,8 @@ ng.module('ui.router.state').provider('$uiViewScroll', $ViewScrollProvider);
 var index = 'ui.router';
 
 Object.keys(core).forEach(function (key) { exports[key] = core[key]; });
-exports.default = index;
 exports.core = core;
+exports.default = index;
 exports.watchDigests = watchDigests;
 exports.getLocals = getLocals;
 exports.getNg1ViewConfigFactory = getNg1ViewConfigFactory;
