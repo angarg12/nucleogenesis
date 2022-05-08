@@ -80,6 +80,10 @@ angular.module('game').controller('ct_dark', ['state', 'format', 'visibility', '
       for (let i in player.element_slots) {
         player.element_slots[i] = null;
       }
+      for(let fusion of player.fusion) {
+        fusion.active = false;
+        fusion.running = false;
+      }
       player.statistics.exotic_run = {};
       player.statistics.dark_run = {};
     };

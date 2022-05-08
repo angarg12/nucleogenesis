@@ -83,6 +83,19 @@ describe('Dark', function() {
           }]
         }
       ];
+      spec.state.player.fusion = [{
+        active: true,
+        running: true,
+        beam: {
+          name: '1H',
+          number: 0
+        },
+        target: {
+          name: '1H',
+          number: 0
+        },
+        eV: 0
+      }];
 
       spec.dark.update(spec.state.player);
       spec.dark.darkPrestige(spec.state.player);
@@ -94,6 +107,8 @@ describe('Dark', function() {
       expect(spec.state.player.resources.dark_matter).toEqual(8);
       expect(spec.state.player.statistics.exotic_run).toEqual({});
       expect(spec.state.player.statistics.dark_run).toEqual({});
+      expect(spec.state.player.fusion[0].active).toBeFalsy();
+      expect(spec.state.player.fusion[0].running).toBeFalsy();
     });
 
     it('should reset elements that haven\'t made a exotic prestige', function() {
